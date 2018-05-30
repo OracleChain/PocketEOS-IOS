@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AccountManagementHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="408"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_default_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="apb-hS-GDb">
+                    <rect key="frame" x="97.5" y="70" width="180" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="1dH-1f-GQd"/>
+                        <constraint firstAttribute="width" constant="180" id="pDI-yS-TOb"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用pE的扫描关注这个账号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2k-nC-a91">
+                    <rect key="frame" x="113.5" y="262" width="148.5" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="xHg-t8-32a"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8I-as-m3P" customClass="BaseConfirmButton">
+                    <rect key="frame" x="48" y="312" width="279" height="42"/>
+                    <color key="backgroundColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="VMn-qc-TWq"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="设为主账号">
+                        <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="setToMainAccount:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hqg-Fv-l80"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-nG-kOW" customClass="BaseConfirmButton">
+                    <rect key="frame" x="48" y="366" width="279" height="42"/>
+                    <color key="backgroundColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="YzJ-JE-0Dn"/>
+                        <constraint firstAttribute="height" constant="42" id="bzg-DS-HPR"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="导出私钥">
+                        <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="exportPrivateKey:" destination="iN0-l3-epB" eventType="touchUpInside" id="rcF-D1-ILJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WfA-nG-kOW" firstAttribute="top" secondItem="l8I-as-m3P" secondAttribute="bottom" constant="12" id="NH1-NJ-6eg"/>
+                <constraint firstItem="l8I-as-m3P" firstAttribute="top" secondItem="d2k-nC-a91" secondAttribute="bottom" constant="32" id="OkT-Bs-zR9"/>
+                <constraint firstAttribute="trailing" secondItem="l8I-as-m3P" secondAttribute="trailing" constant="48" id="S59-51-iCl"/>
+                <constraint firstItem="apb-hS-GDb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TjR-Jz-huq"/>
+                <constraint firstItem="d2k-nC-a91" firstAttribute="top" secondItem="apb-hS-GDb" secondAttribute="bottom" constant="12" id="Yaj-BK-N2L"/>
+                <constraint firstItem="WfA-nG-kOW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="YxK-5J-MHN"/>
+                <constraint firstItem="l8I-as-m3P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="jyT-Hy-73n"/>
+                <constraint firstItem="d2k-nC-a91" firstAttribute="centerX" secondItem="apb-hS-GDb" secondAttribute="centerX" id="mvC-Wc-2Bv"/>
+                <constraint firstItem="apb-hS-GDb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="trX-AA-Y8u"/>
+                <constraint firstAttribute="trailing" secondItem="WfA-nG-kOW" secondAttribute="trailing" constant="48" id="uWo-cc-hH9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="QRCodeImg" destination="apb-hS-GDb" id="9TA-l3-NK3"/>
+                <outlet property="exportPrivateKeyBtn" destination="WfA-nG-kOW" id="iRr-sT-i2F"/>
+                <outlet property="mainAccountBtn" destination="l8I-as-m3P" id="qfm-nJ-HcB"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="account_default_blue.png" width="100" height="100"/>
+    </resources>
+</document>

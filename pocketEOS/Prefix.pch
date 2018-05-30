@@ -1,0 +1,82 @@
+//
+//  PrefixHeader.pch
+//  pocketEOS
+//
+//  Created by oraclechain on 2017/11/27.
+//  Copyright © 2017年 oraclechain. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+/**
+ *  导入系统文件
+ */
+#import <Foundation/Foundation.h>
+
+
+#import "BaseNetworkRequest.h"
+#import "BaseHttpsNetworkRequest.h"
+#import "WalletTableManager.h"
+#import "AccountsTableManager.h"
+#import "CacheTableManager.h"
+
+/**
+ *  导入自定义文件
+ */
+#import "AppConstant.h"
+#import "BaseViewController.h"
+#import "BaseView.h"
+#import "BaseLabel.h"
+#import "BaseLabel1.h"
+#import "BaseButton.h"
+#import "BaseTableViewCell.h"
+#import "BaseTextView.h"
+#import "BaseSlimLineView.h"
+#import "BaseBoldLineView.h"
+#import "RequestUrlConstant.h"
+#import "ThemeConstant.h"
+#import "StringConstant.h"
+#import "UIColor+SNFoundation.h"
+#import "UIColor+AppConfigColor.h"
+#import "NSDate+ExFoundation.h"
+#import "NSDictionary+ExFoundation.h"
+#import "UIImage+ExFoundation.h"
+#import "NSMutableAttributedString+ExFoundation.h"
+#import "RegularExpression.h"
+#import "QuoteLocalHtmlTool.h"
+#import "NSString+Hash.h"
+#import "NSString+Extention.h"
+#import "NumberFormatter.h"
+#import "UITextView+Placeholder.h"
+#import "NSObject+Extension.h"
+#import "SocialManager.h"
+
+/**
+ *  导入第三方库文件
+ */
+#import "UIView+SDAutoLayout.h"
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "FMDB.h"
+#import "MGSwipeButton.h"
+#import "MGSwipeTableCell.h"
+#import "ToastView.h"
+#import "WebViewJavascriptBridge.h"
+#import "SGQRCode.h"
+#import "SWWButton.h"
+#import "LEETheme.h"
+#import "AESCrypt.h"
+#import "UIViewController+CWLateralSlide.h"
+
+#import "DAConfig.h"
+#import "NSBundle+DAUtils.h"
+
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="sSd-rM-pCq" customClass="UnBindSocialPlatformHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FZ8-Zi-zYo">
+                    <rect key="frame" x="147" y="75" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="0Fx-pg-uLG"/>
+                        <constraint firstAttribute="width" constant="80" id="x61-Ao-MDh"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lof-sq-35c" userLabel="tipLabel">
+                    <rect key="frame" x="20" y="195" width="335" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="g9K-2O-9jj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtv-Um-8HU">
+                    <rect key="frame" x="20" y="262" width="335" height="42"/>
+                    <color key="backgroundColor" red="0.30196078430000001" green="0.4823529412" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="psz-Je-v0C"/>
+                    </constraints>
+                    <state key="normal" title="解除绑定">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="unbind:" destination="sSd-rM-pCq" eventType="touchUpInside" id="yR0-IH-1Hf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Vtv-Um-8HU" firstAttribute="leading" secondItem="sSd-rM-pCq" secondAttribute="leading" constant="20" id="3KD-Yw-4TJ"/>
+                <constraint firstAttribute="trailing" secondItem="lof-sq-35c" secondAttribute="trailing" constant="20" id="AbK-at-fhm"/>
+                <constraint firstItem="lof-sq-35c" firstAttribute="leading" secondItem="sSd-rM-pCq" secondAttribute="leading" constant="20" id="KgZ-xc-mYJ"/>
+                <constraint firstItem="lof-sq-35c" firstAttribute="top" secondItem="FZ8-Zi-zYo" secondAttribute="bottom" constant="40" id="c0u-ia-tzF"/>
+                <constraint firstItem="FZ8-Zi-zYo" firstAttribute="top" secondItem="sSd-rM-pCq" secondAttribute="top" constant="75" id="f9f-w2-DY0"/>
+                <constraint firstItem="FZ8-Zi-zYo" firstAttribute="centerX" secondItem="sSd-rM-pCq" secondAttribute="centerX" id="h56-aY-pBX"/>
+                <constraint firstItem="Vtv-Um-8HU" firstAttribute="top" secondItem="lof-sq-35c" secondAttribute="bottom" constant="46" id="j57-Q9-KVy"/>
+                <constraint firstAttribute="trailing" secondItem="Vtv-Um-8HU" secondAttribute="trailing" constant="20" id="ob9-hp-KMF"/>
+            </constraints>
+            <connections>
+                <outlet property="bindBtn" destination="Vtv-Um-8HU" id="tEi-Xr-ygN"/>
+                <outlet property="platformImg" destination="FZ8-Zi-zYo" id="pqV-fz-dXQ"/>
+                <outlet property="tipLabel" destination="lof-sq-35c" id="lzA-fR-OJH"/>
+            </connections>
+        </view>
+    </objects>
+</document>

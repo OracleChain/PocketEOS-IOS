@@ -1,0 +1,214 @@
+<!doctype html>
+<html><head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<style type='text/css'>
+		html { font-family:Helvetica; color:#222; }
+		h1 { color:steelblue; font-size:24px; margin-top:24px; }
+		button { margin:0 3px 10px; font-size:12px; }
+		.logLine { border-bottom:1px solid #ccc; padding:4px 2px; font-family:courier; font-size:11px; }
+	</style>
+</head><body>
+	<h6>WebViewJavascriptBridge Demo</h6>
+    <script src="Eos.js"></script>
+	<script>
+	window.onerror = function(err) {
+		log('window.onerror: ' + err)
+	}
+
+    function setupWebViewJavascriptBridge(callback) {
+        if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+        if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+        window.WVJBCallbacks = [callback];
+        var WVJBIframe = document.createElement('iframe');
+        WVJBIframe.style.display = 'none';
+        WVJBIframe.src = 'https://__bridge_loaded__';
+        document.documentElement.appendChild(WVJBIframe);
+        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+    }
+
+    setupWebViewJavascriptBridge(function(bridge) {
+		var uniqueId = 1
+		function log(message, data) {
+			var log = document.getElementById('log')
+			var el = document.createElement('div')
+			el.className = 'logLine'
+			el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
+			if (log.children.length) { log.insertBefore(el, log.children[0]) }
+			else { log.appendChild(el) }
+		}
+
+		bridge.registerHandler('testJavascriptHandler', function(params, responseCallback) {
+			log('ObjC called testJavascriptHandler with', param)
+			var responseData = { 'Javascript Says':'Right back atcha!' }
+			log('JS responding with', responseData)
+			responseCallback(responseData)
+		})
+    
+      //生成私钥active_privateKeyGen
+       bridge.registerHandler('active_privateKeyGen', function(data ,
+            responseCallback){
+            setTimeout(function () {
+            const ecc = Eos.modules.ecc;
+            ecc.randomKey(10).then(priv_key => {
+            responseCallback(priv_key.toString());
+            })
+            }, 0);
+          })
+    //生成私钥owner_privateKeyGen
+    bridge.registerHandler('owner_privateKeyGen', function(data ,
+        responseCallback){
+        setTimeout(function () {
+        const ecc = Eos.modules.ecc;
+        ecc.randomKey(10).then(priv_key => {
+        responseCallback(priv_key.toString());
+        })
+        }, 0);
+    })
+        
+        //根据私钥生成公钥
+        bridge.registerHandler('privateToPublic', function(data ,
+            responseCallback){
+            setTimeout(function () {
+               const tid = data["tid"];
+               const priv_key = data["priv_key"];
+               const ecc = Eos.modules.ecc;
+               const pub_key = ecc.privateToPublic(priv_key);
+               responseCallback(pub_key.toString());
+<!--               if(typeof tid !== 'string'){-->
+<!--                   alert('0,' + pub_key.toString());-->
+<!--                   responseCallback('0,' + pub_key.toString());-->
+<!--               }-->
+<!--               else{-->
+<!--                   alert(tid + ',' + pub_key.toString());-->
+<!--                   responseCallback(tid + ',' + pub_key.toString());-->
+<!--                }-->
+            }, 1000);
+        })
+        
+        //验证私钥格式
+        bridge.registerHandler('isValidPrivate', function(data ,
+              responseCallback){
+              setTimeout(function () {
+              const tid = data["tid"];
+              const priv_key = data["priv_key"];
+              const ecc = Eos.modules.ecc;
+              const isValidPrivate = ecc.isValidPrivate(priv_key);
+              if(typeof tid !== 'string'){
+                  alert('0,' + isValidPrivate.toString());
+                  responseCallback('0,' + isValidPrivate.toString());
+              }
+              else{
+                  alert(tid + ',' + isValidPrivate.toString());
+                  responseCallback(tid + ',' + isValidPrivate.toString())
+              }
+              }, 0);
+        })
+                                 
+        //验证公钥格式
+        bridge.registerHandler('isValidPublic', function(data ,
+            responseCallback){
+              setTimeout(function () {
+                const tid = data["tid"];
+                const pub_key = data["pub_key"];
+                const ecc = Eos.modules.ecc;
+                const isValidPublic = ecc.isValidPublic(pub_key);
+                if(typeof tid !== 'string'){
+                    alert('0,' + isValidPublic.toString());
+                    responseCallback('0,' + isValidPublic.toString());
+                }
+                else{
+                    alert(tid + ',' + isValidPublic.toString());
+                    responseCallback(tid + ',' + isValidPublic.toString());
+                }
+                }, 0);
+        })
+                
+        //签名
+        bridge.registerHandler('sign', function(data ,
+              responseCallback){
+                setTimeout(function () {
+                           const tid = data["tid"];
+                           const sign_data = data["sign_data"];
+                           const priv_key = data["priv_key"];
+                           const ecc = Eos.modules.ecc;
+                           const sign = ecc.sign(sign_data, priv_key);
+                           if(typeof sign_data !== 'string'){
+                               alert('err');
+                           responseCallback('err');
+                           }else{
+                               if(typeof tid !== 'string'){
+                                   alert('0,' + sign.toString());
+                                   responseCallback('0,' + sign.toString());
+                           }
+                           else{
+                                   alert(tid + ',' + sign.toString());
+                                   responseCallback(tid + ',' + sign.toString());
+                           }
+                           
+                           }
+                           
+                           }, 0);
+        })
+          
+    //验证签名
+    bridge.registerHandler('verify', function(data ,
+          responseCallback){
+            setTimeout(function () {
+                       const tid = data["tid"];
+                       const sign = data["sign"];
+                       const verify_data = data["verify_data"];
+                       const pub_key = data["pub_key"];
+                       const ecc = Eos.modules.ecc;
+                       const isValid = ecc.verify(sign,verify_data,pub_key);
+                       if(typeof tid !== 'string'){
+                       alert('0,' + isValid.toString());
+                       responseCallback('0,' + isValid.toString());
+                       }
+                       else{
+                       alert(tid + ',' + isValid.toString());
+                       responseCallback(tid + ',' + isValid.toString());
+                       }
+                       }, 0);
+        })
+      
+                                 
+    //SHA256
+    bridge.registerHandler('sha256', function(data ,
+        responseCallback){
+            setTimeout(function () {
+                       const tid = data["tid"];
+                       const sha256_data = data["sha256_data"];
+                       const ecc = Eos.modules.ecc;
+                       const sign = ecc.sha256(sha256_data);
+                       if(typeof tid !== 'string'){
+                           alert('0,' + sign.toString());
+                           responseCallback('0,' + sign.toString());
+                       }
+                       else{
+                           alert(tid + ',' + sign.toString());
+                           responseCallback(tid + ',' + sign.toString());
+                       }
+            }, 0);
+    })
+                                 
+                                 
+                                 
+                                 
+                                 
+		document.body.appendChild(document.createElement('br'))
+                                 
+		var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+		callbackButton.innerHTML = 'Fire testObjcCallback'
+		callbackButton.onclick = function(e) {
+			e.preventDefault()
+			log('JS calling handler "testObjcCallback"')
+			bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
+				log('JS got response', response)
+			})
+		}
+	})
+	</script>
+	<div id='buttons'></div> <div id='log'></div>
+</body></html>
+
+

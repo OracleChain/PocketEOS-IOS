@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ApplicationDetailHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_default_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="IFm-di-rhl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="IFm-di-rhl" secondAttribute="height" multiplier="100:32" id="4mM-Tn-Wr6"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inq-Xt-J7A">
+                    <rect key="frame" x="0.0" y="120" width="375" height="104"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="104" id="yHA-7o-9f0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-mx-BcU" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="224" width="375" height="10"/>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="E1Z-ul-sb9"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZe-nH-qPg" userLabel="lineView1" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="284" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="NXx-zH-D9m"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNd-G2-QEz" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="398.5" width="375" height="10"/>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="Ddr-dG-ps4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4G-Fz-P6C" userLabel="lineView2" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="458.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="iGc-mg-dpe"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业推荐应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgH-0Z-tsi">
+                    <rect key="frame" x="20" y="234" width="92" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_default_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="eak-n2-Gb4">
+                    <rect key="frame" x="20" y="304.5" width="74" height="74"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="JuO-oe-x7e"/>
+                        <constraint firstAttribute="height" constant="74" id="fBt-PF-XIz"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业应用简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adL-vb-bI5">
+                    <rect key="frame" x="114" y="304.5" width="98" height="74"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="74" id="if3-Ne-vv4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf4-Me-Uxp">
+                    <rect key="frame" x="20" y="408.5" width="61.5" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dZe-nH-qPg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3LH-gG-vpp"/>
+                <constraint firstAttribute="trailing" secondItem="inq-Xt-J7A" secondAttribute="trailing" id="7rt-zo-JWo"/>
+                <constraint firstItem="pf4-Me-Uxp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="8fh-jp-mX2"/>
+                <constraint firstAttribute="trailing" secondItem="hKv-mx-BcU" secondAttribute="trailing" id="BdZ-Qe-tSN"/>
+                <constraint firstItem="g4G-Fz-P6C" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="F3S-zB-Aeo"/>
+                <constraint firstItem="g4G-Fz-P6C" firstAttribute="top" secondItem="pf4-Me-Uxp" secondAttribute="bottom" id="GQa-0N-oI0"/>
+                <constraint firstItem="VgH-0Z-tsi" firstAttribute="top" secondItem="hKv-mx-BcU" secondAttribute="bottom" id="Hb7-il-5ha"/>
+                <constraint firstItem="inq-Xt-J7A" firstAttribute="top" secondItem="IFm-di-rhl" secondAttribute="bottom" id="IAf-Cx-RHg"/>
+                <constraint firstItem="dZe-nH-qPg" firstAttribute="top" secondItem="VgH-0Z-tsi" secondAttribute="bottom" id="K54-Wk-gjM"/>
+                <constraint firstItem="KNd-G2-QEz" firstAttribute="top" secondItem="dZe-nH-qPg" secondAttribute="bottom" constant="114" id="KHA-bV-bOm"/>
+                <constraint firstItem="dZe-nH-qPg" firstAttribute="top" secondItem="hKv-mx-BcU" secondAttribute="bottom" constant="50" id="Nhb-Hu-TR8"/>
+                <constraint firstItem="adL-vb-bI5" firstAttribute="leading" secondItem="eak-n2-Gb4" secondAttribute="trailing" constant="20" id="Nyf-2a-jmh"/>
+                <constraint firstItem="VgH-0Z-tsi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Od1-a0-NEa"/>
+                <constraint firstItem="IFm-di-rhl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QBt-na-mS6"/>
+                <constraint firstAttribute="trailing" secondItem="g4G-Fz-P6C" secondAttribute="trailing" id="SLK-FH-bOE"/>
+                <constraint firstItem="IFm-di-rhl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bor-kq-Lwe"/>
+                <constraint firstItem="hKv-mx-BcU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dkE-0u-WuM"/>
+                <constraint firstItem="inq-Xt-J7A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gFB-l5-dSn"/>
+                <constraint firstItem="eak-n2-Gb4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="jVd-6I-1na"/>
+                <constraint firstItem="g4G-Fz-P6C" firstAttribute="top" secondItem="KNd-G2-QEz" secondAttribute="bottom" constant="50" id="lIu-eg-ozU"/>
+                <constraint firstItem="eak-n2-Gb4" firstAttribute="top" secondItem="dZe-nH-qPg" secondAttribute="bottom" constant="20" id="mZ3-Rd-ApR"/>
+                <constraint firstItem="adL-vb-bI5" firstAttribute="top" secondItem="dZe-nH-qPg" secondAttribute="bottom" constant="20" id="p8o-Fg-gUC"/>
+                <constraint firstItem="KNd-G2-QEz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="snH-El-yIf"/>
+                <constraint firstAttribute="trailing" secondItem="KNd-G2-QEz" secondAttribute="trailing" id="tDQ-qf-nIS"/>
+                <constraint firstItem="hKv-mx-BcU" firstAttribute="top" secondItem="inq-Xt-J7A" secondAttribute="bottom" id="wxu-Zj-9yQ"/>
+                <constraint firstAttribute="trailing" secondItem="dZe-nH-qPg" secondAttribute="trailing" id="xFX-fH-acf"/>
+                <constraint firstAttribute="trailing" secondItem="IFm-di-rhl" secondAttribute="trailing" id="xtc-Rp-SS2"/>
+                <constraint firstItem="pf4-Me-Uxp" firstAttribute="top" secondItem="KNd-G2-QEz" secondAttribute="bottom" id="yZF-kc-mwi"/>
+            </constraints>
+            <point key="canvasLocation" x="62.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="account_default_blue.png" width="100" height="100"/>
+    </resources>
+</document>

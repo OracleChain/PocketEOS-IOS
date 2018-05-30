@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  pocketEOS
+
+  Created by oraclechain on 09/04/2018.
+  Copyright © 2018 oraclechain. All rights reserved.
+*/
+// Localizable App Name是App在英语环境环境下显示的名称
+CFBundleDisplayName = "PocketEos";

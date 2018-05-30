@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ExportPrivateKeyView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaI-cw-3f5" userLabel="backgroundView">
+                    <rect key="frame" x="42" y="208.5" width="290" height="250"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKS-T4-Ceq">
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="60"/>
+                            <color key="backgroundColor" red="1" green="0.96862745098039216" blue="0.91764705882352937" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="HKy-Ha-JPF"/>
+                            </constraints>
+                            <string key="text">    警告:
+    私钥用于在钱包中导入该账号;
+    掌握私钥即可控制该账号, 请妥善保管;</string>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                            <color key="textColor" red="1" green="0.70980392156862748" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCj-nC-IX7" customClass="SWWButton">
+                            <rect key="frame" x="57" y="180" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="QEI-gU-MJc"/>
+                                <constraint firstAttribute="height" constant="60" id="mkv-4N-6hL"/>
+                            </constraints>
+                            <state key="normal" image="QRCode_green.png">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="generateQRCodeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="cIK-fg-AcR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2F-lV-jFi" customClass="SWWButton">
+                            <rect key="frame" x="173" y="180" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="Bhx-Xs-7j0"/>
+                                <constraint firstAttribute="width" constant="60" id="BpM-es-CJS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" image="copy_orange.png">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="copyBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="jG5-NZ-PS2"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpy-db-1nu">
+                            <rect key="frame" x="0.0" y="159.5" width="290" height="0.5"/>
+                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="fXr-fV-bKp"/>
+                            </constraints>
+                        </view>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rgS-le-Xty">
+                            <rect key="frame" x="0.0" y="60" width="290" height="100"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="0SP-4n-uEK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mCj-nC-IX7" firstAttribute="centerX" secondItem="VaI-cw-3f5" secondAttribute="centerX" multiplier="0.6" id="2bV-9g-asg"/>
+                        <constraint firstAttribute="width" constant="290" id="3ms-HB-lLT"/>
+                        <constraint firstAttribute="bottom" secondItem="mCj-nC-IX7" secondAttribute="bottom" constant="10" id="7ue-JG-3ub"/>
+                        <constraint firstAttribute="trailing" secondItem="wpy-db-1nu" secondAttribute="trailing" id="8cL-bT-XeE"/>
+                        <constraint firstAttribute="bottom" secondItem="J2F-lV-jFi" secondAttribute="bottom" constant="10" id="EnC-MQ-dNi"/>
+                        <constraint firstAttribute="height" constant="250" id="Nzl-FH-tcm"/>
+                        <constraint firstItem="wpy-db-1nu" firstAttribute="leading" secondItem="VaI-cw-3f5" secondAttribute="leading" id="QOW-C8-TU1"/>
+                        <constraint firstItem="rgS-le-Xty" firstAttribute="top" secondItem="IKS-T4-Ceq" secondAttribute="bottom" id="TPV-b5-88m"/>
+                        <constraint firstAttribute="trailing" secondItem="rgS-le-Xty" secondAttribute="trailing" id="cCy-fR-TGE"/>
+                        <constraint firstItem="mCj-nC-IX7" firstAttribute="top" secondItem="wpy-db-1nu" secondAttribute="bottom" constant="20" id="eKF-mJ-vsk"/>
+                        <constraint firstItem="IKS-T4-Ceq" firstAttribute="top" secondItem="VaI-cw-3f5" secondAttribute="top" id="eKI-JP-9BL"/>
+                        <constraint firstItem="J2F-lV-jFi" firstAttribute="centerX" secondItem="VaI-cw-3f5" secondAttribute="centerX" multiplier="1.4" id="gHe-fx-UUw"/>
+                        <constraint firstItem="rgS-le-Xty" firstAttribute="leading" secondItem="VaI-cw-3f5" secondAttribute="leading" id="l6x-9I-2o5"/>
+                        <constraint firstAttribute="trailing" secondItem="IKS-T4-Ceq" secondAttribute="trailing" id="o2l-kx-RQa"/>
+                        <constraint firstItem="IKS-T4-Ceq" firstAttribute="leading" secondItem="VaI-cw-3f5" secondAttribute="leading" id="wJY-kd-gsh"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VaI-cw-3f5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="52l-8F-xbS"/>
+                <constraint firstItem="VaI-cw-3f5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="N9r-t1-3qd"/>
+            </constraints>
+            <connections>
+                <outlet property="contentTextView" destination="rgS-le-Xty" id="29Q-oq-Id7"/>
+                <outlet property="generateQRCodeBtn" destination="mCj-nC-IX7" id="x9t-yf-d46"/>
+                <outlet property="privateKeyCopyBtn" destination="J2F-lV-jFi" id="mQL-S5-JBg"/>
+                <outlet property="tipLabel" destination="IKS-T4-Ceq" id="z2E-0q-oXt"/>
+                <outlet property="upBackgroundView" destination="VaI-cw-3f5" id="sN8-bX-i00"/>
+            </connections>
+            <point key="canvasLocation" x="66.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="QRCode_green.png" width="28" height="28"/>
+        <image name="copy_orange.png" width="28" height="28"/>
+    </resources>
+</document>
