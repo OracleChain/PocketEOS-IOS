@@ -50,9 +50,12 @@ Carthage/Build
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
+pocketEOS.xcodeproj/project.xcworkspace/xcuserdata/oraclechain.xcuserdatad/UserInterfaceState.xcuserstate 
+pocketEOS.xcodeproj/xcuserdata/oraclechain.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots/**/*.png
+fastlane/screenshots
 fastlane/test_output
 
 # Code Injection
