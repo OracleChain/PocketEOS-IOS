@@ -22,7 +22,7 @@
 
 &emsp;&emsp;The PocketEOS program is a full-functional wallet build on EOSIO ecology. It provides ...
 
-&emsp;&emsp;EOS开发助手是一个建立在EOSIO生态上的钱包工具。它提供了。。。
+&emsp;&emsp;PocketEOS是一个建立在EOSIO生态上的钱包工具。它提供了。。。
 
 
 ------------------------------
