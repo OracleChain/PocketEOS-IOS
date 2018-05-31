@@ -20,7 +20,7 @@
 
 <h2 id="1">Overview/简介</h2>
 
-&emsp;&emsp;口袋里的EOS世界大门，将区块链生活随身携带!
+&emsp;&emsp;口袋里的EOS世界大门，将区块链生活随身携带！      
 &emsp;&emsp;Pack EOS World in Mobile, Carry Blockchain Age with You！
 
 &emsp;&emsp;简单、易用的EOS钱包：Pocket EOS充分考虑用户使用需求和使用习惯，将接入区块链网络的钱包工具打磨得精致而易用，即使没有相关经验的手机用户，也能通过平滑流畅的引导，体验到区块链世界的魅力。
