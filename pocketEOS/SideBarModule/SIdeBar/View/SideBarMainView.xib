@@ -173,14 +173,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN9-jx-Brh" userLabel="baseView2">
                             <rect key="frame" x="20" y="367" width="250" height="20"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messageCenter.png" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-mW-j5c">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumb_black.png" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-mW-j5c">
                                     <rect key="frame" x="20" y="2" width="16" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="16" id="1rS-rN-nuT"/>
                                         <constraint firstAttribute="height" constant="16" id="gtw-m8-0We"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgM-sz-lHS" customClass="BaseLabel">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="节点投票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgM-sz-lHS" customClass="BaseLabel">
                                     <rect key="frame" x="51" y="0.5" width="60" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="Gan-rx-fKQ"/>
@@ -200,7 +200,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvj-9U-YqF">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                     <connections>
-                                        <action selector="messagesCenterBtn:" destination="FPI-HQ-coY" eventType="touchUpInside" id="UyX-Sv-O0Z"/>
+                                        <action selector="bp_voteBtn:" destination="FPI-HQ-coY" eventType="touchUpInside" id="zdi-1R-saX"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -221,14 +221,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncc-9H-maj" userLabel="baseView3">
                             <rect key="frame" x="20" y="417" width="250" height="20"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-Gq-Q1y">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messageCenter.png" translatesAutoresizingMaskIntoConstraints="NO" id="oNj-Gq-Q1y">
                                     <rect key="frame" x="20" y="2" width="16" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="NAp-jf-dAP"/>
                                         <constraint firstAttribute="width" constant="16" id="RYP-r0-VCT"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息反馈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feC-Ij-Bwa" customClass="BaseLabel">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feC-Ij-Bwa" customClass="BaseLabel">
                                     <rect key="frame" x="51" y="0.5" width="60" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="2jH-aD-SUI"/>
@@ -248,7 +248,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOk-FZ-0dP">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                     <connections>
-                                        <action selector="feedBackBtn:" destination="FPI-HQ-coY" eventType="touchUpInside" id="5Xw-bj-SvW"/>
+                                        <action selector="messagesCenterBtn:" destination="FPI-HQ-coY" eventType="touchUpInside" id="6vH-cI-lrh"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -424,14 +424,14 @@
             <connections>
                 <outlet property="avatarBtn" destination="XSB-Uo-PJF" id="812-Wo-1M0"/>
                 <outlet property="avatarImg" destination="Z1t-Pz-3fi" id="Fd8-8Q-Fbc"/>
+                <outlet property="bp_voteBaseView" destination="bN9-jx-Brh" id="Gd3-Ok-uBR"/>
+                <outlet property="bp_voteImageView" destination="GNg-mW-j5c" id="dIX-tY-iiW"/>
                 <outlet property="candyBaseView" destination="cma-PI-zOU" id="dS0-mM-LAm"/>
                 <outlet property="candyEnergyImageView" destination="yMN-rG-yej" id="3ll-Pf-Jvt"/>
                 <outlet property="candyImageView" destination="O6b-Ow-on6" id="Y0X-Af-Jkq"/>
-                <outlet property="feedbackBaseView" destination="ncc-9H-maj" id="AoL-YN-FzO"/>
-                <outlet property="feedbackImageView" destination="oNj-Gq-Q1y" id="Wbc-n1-a3s"/>
                 <outlet property="logoutBtn" destination="gCE-nW-rWV" id="fXA-vl-wge"/>
-                <outlet property="messageCenterBaseView" destination="bN9-jx-Brh" id="axU-Vt-z5C"/>
-                <outlet property="messageCenterImageView" destination="GNg-mW-j5c" id="ORa-Ie-4Px"/>
+                <outlet property="messageCenterBaseView" destination="ncc-9H-maj" id="kts-xR-o9a"/>
+                <outlet property="messageCenterImageView" destination="oNj-Gq-Q1y" id="QQI-rb-vNB"/>
                 <outlet property="nameLabel" destination="eOQ-1E-rAN" id="3Sw-0x-fYD"/>
                 <outlet property="systemSettingBaseView" destination="m9c-uf-huO" id="quC-D4-wi3"/>
                 <outlet property="systemSettingImageView" destination="FJi-jm-tE0" id="vxj-g7-Loj"/>
@@ -445,10 +445,10 @@
     <resources>
         <image name="candyIcon.png" width="16" height="16"/>
         <image name="energy" width="16" height="16"/>
-        <image name="feedBack.png" width="16" height="16"/>
         <image name="messageCenter.png" width="15" height="16"/>
         <image name="pocket.png" width="26" height="26"/>
         <image name="systemSetting.png" width="16" height="16"/>
+        <image name="thumb_black.png" width="14" height="16"/>
         <image name="transaction_history.png" width="78" height="78"/>
         <image name="versionUpdate.png" width="17" height="16"/>
         <image name="wallet_QRCode_btn.png" width="40" height="37"/>

@@ -60,8 +60,16 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="cJX-k8-dDO">
+                                            <rect key="frame" x="351" y="36.5" width="8" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="8" id="IiY-u2-QE3"/>
+                                                <constraint firstAttribute="height" constant="14" id="lbc-7F-k4L"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="cJX-k8-dDO" firstAttribute="leading" secondItem="qJd-dx-2pO" secondAttribute="trailing" constant="6" id="1qr-FV-NF6"/>
                                         <constraint firstAttribute="trailing" secondItem="mGj-z1-pAk" secondAttribute="trailing" constant="43" id="6GU-6W-bqj"/>
                                         <constraint firstItem="WoA-iT-8LW" firstAttribute="leading" secondItem="dj6-F6-6ud" secondAttribute="leading" constant="26" id="6ll-76-a3h"/>
                                         <constraint firstItem="hvM-zB-Un1" firstAttribute="top" secondItem="dj6-F6-6ud" secondAttribute="top" constant="93" id="Bdv-Qy-8wS"/>
@@ -71,6 +79,7 @@
                                         <constraint firstItem="mGj-z1-pAk" firstAttribute="top" secondItem="dj6-F6-6ud" secondAttribute="top" constant="52" id="Rjp-63-PPx"/>
                                         <constraint firstItem="qJd-dx-2pO" firstAttribute="top" secondItem="dj6-F6-6ud" secondAttribute="top" constant="33" id="WBd-Ok-O3X"/>
                                         <constraint firstItem="qJd-dx-2pO" firstAttribute="leading" secondItem="dj6-F6-6ud" secondAttribute="leading" constant="20" id="WUX-TO-Iy5"/>
+                                        <constraint firstItem="cJX-k8-dDO" firstAttribute="centerY" secondItem="qJd-dx-2pO" secondAttribute="centerY" id="bho-tp-ftk"/>
                                         <constraint firstAttribute="trailing" secondItem="qJd-dx-2pO" secondAttribute="trailing" constant="30" id="dmC-Sw-1NZ"/>
                                     </constraints>
                                 </view>
@@ -311,6 +320,7 @@
                 <outlet property="loginBtn" destination="yzn-Wc-3qB" id="r4v-dq-3St"/>
                 <outlet property="phoneTF" destination="pBj-Vr-738" id="06S-nr-zeP"/>
                 <outlet property="qqLoginBtn" destination="Ndk-8v-AjB" id="sbW-80-cgv"/>
+                <outlet property="rightArrowImg" destination="cJX-k8-dDO" id="S0r-10-ar1"/>
                 <outlet property="scrollView" destination="RiM-AM-veI" id="0lF-bK-Kvk"/>
                 <outlet property="upBackgroundView" destination="dj6-F6-6ud" id="avE-yS-plX"/>
                 <outlet property="verifyCodeTF" destination="FI6-rM-il0" id="eNc-ro-lsI"/>
@@ -324,6 +334,7 @@
         <image name="qq_login.png" width="40" height="40"/>
         <image name="rectangle_UnSelected.png" width="12" height="12"/>
         <image name="rectangle_selected.png" width="12" height="12"/>
+        <image name="right_arrow_white.png" width="8" height="14"/>
         <image name="wechat_login.png" width="40" height="40"/>
     </resources>
 </document>

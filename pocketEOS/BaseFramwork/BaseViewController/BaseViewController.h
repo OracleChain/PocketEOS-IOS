@@ -7,19 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavigationView.h"
+
 
 @interface BaseViewController : UIViewController
+
+
 @property(nonatomic, strong) UITableView *mainTableView;
 @property(nonatomic, strong) UICollectionView *mainCollectionView;
+
 
 
 /**
  *  显示没有数据页面
  */
--(void)showNoDataImage;
++ (void)showNoDataViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController;
 
 /**
  *  移除无数据页面
  */
--(void)removeNoDataImage;
+-(void)removeNoDataView;
 @end

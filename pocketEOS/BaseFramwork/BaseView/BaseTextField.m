@@ -25,6 +25,7 @@
     }
     return self;
 }
+
 -(void)awakeFromNib{
     [super awakeFromNib];
     self.lee_theme

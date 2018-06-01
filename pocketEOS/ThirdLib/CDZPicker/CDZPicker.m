@@ -272,6 +272,7 @@ static const NSInteger CDZToolBarHeight = 44;
     genderLabel.textAlignment = NSTextAlignmentCenter;
     genderLabel.font = [UIFont systemFontOfSize:14.0];
     genderLabel.textColor = HEXCOLOR(0x2A2A2A);
+    genderLabel.backgroundColor = HEXCOLOR(0xF8F8F8);
     
     if (!self.isLinkage) {
         NSArray<NSString *> *tmp = self.stringArrays[component];

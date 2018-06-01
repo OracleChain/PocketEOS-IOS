@@ -56,21 +56,30 @@
     }
     return _btn;
 }
+- (BaseSlimLineView *)bottomLineView{
+    if (!_bottomLineView) {
+        _bottomLineView = [[BaseSlimLineView alloc] init];
+    }
+    return _bottomLineView;
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         
         [self.contentView addSubview:self.img];
-        self.img.sd_layout.leftSpaceToView(self.contentView, 20).centerYEqualToView(self.contentView).widthIs(26).heightIs(26);
+        self.img.sd_layout.leftSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, 23.5).widthIs(26).heightIs(26);
         
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(_img, 10 ).rightSpaceToView(self.contentView, 20).topEqualToView(_img).heightIs(18);
+        self.titleLabel.sd_layout.leftSpaceToView(_img, 10 ).rightSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, 17.5).heightIs(18);
         
         [self.contentView addSubview:self.descriptionLabel];
-        self.descriptionLabel.sd_layout.leftSpaceToView(_img, 10).topSpaceToView(_titleLabel, 0).rightSpaceToView(self.contentView, 20).heightIs(17);
+        self.descriptionLabel.sd_layout.leftSpaceToView(_img, 10).topSpaceToView(_titleLabel, 4).rightSpaceToView(self.contentView, 20).heightIs(17);
         
         [self.contentView addSubview:self.btn];
         self.btn.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).centerYEqualToView(self.contentView).heightIs(30).widthIs(68);
+        
+        [self.contentView addSubview:self.bottomLineView];
+        self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).bottomSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).heightIs(DEFAULT_LINE_HEIGHT);
     }
     return self;
 }

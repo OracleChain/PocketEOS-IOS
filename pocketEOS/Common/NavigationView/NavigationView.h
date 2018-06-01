@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import "BaseView.h"
+#import "BaseLabel.h"
 
 @protocol NavigationViewDelegate <NSObject>
 @optional

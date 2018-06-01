@@ -38,6 +38,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarImgDidTap)];
     [self.avatarImg addGestureRecognizer:tap];
     
+    [self.totalAssetsLabel setFont:[UIFont boldSystemFontOfSize:36]];
     
 }
 

@@ -41,16 +41,22 @@ void uncaughtExceptionHandler(NSException*exception){
     BaseTabBarController *rootVC = [[BaseTabBarController alloc] init];
     [self.window setRootViewController: rootVC];
     // 初始化气泡
-//    [self configLEEBubble];
+    [self configLEEBubble];
     
     
     [[SocialManager socialManager] initWithSocialSDK:application didFinishLaunchingWithOptions:launchOptions];
     
     Wallet *wallet = CURRENT_WALLET;
-    if (wallet) {
-        // 如果本地有当前账号对应的钱包
+    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+    if (accountArray.count > 0) {
+        
         [self.window setRootViewController: rootVC];
+        
+        // 如果本地有当前账号对应的钱包且有账号
     }else{
+        if (wallet) {
+            [[WalletTableManager walletTable] deleteRecord:wallet.wallet_uid];            
+        }
         UIViewController *vc;
         if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
             vc = [[LoginMainViewController alloc] init];

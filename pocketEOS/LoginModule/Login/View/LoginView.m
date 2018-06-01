@@ -9,6 +9,7 @@
 #import "LoginView.h"
 
 @interface LoginView()<UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *rightArrowImg;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
@@ -39,6 +40,7 @@
     [self.upBackgroundView bringSubviewToFront:self.label1];
     [self.upBackgroundView bringSubviewToFront:self.label2];
     [self.upBackgroundView bringSubviewToFront:self.img];
+    [self.upBackgroundView bringSubviewToFront:self.rightArrowImg];
     [self.upBackgroundView bringSubviewToFront:self.changeToBlackBoxModeLabel];
     if (@available(iOS 11.0, *)) {
         self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

@@ -9,10 +9,20 @@
 #import "SystemSettingService.h"
 
 @implementation SystemSettingService
+
+- (NSDictionary *)dataSourceDictionary{
+    if (!_dataSourceDictionary) {
+        _dataSourceDictionary = @{
+                                  @"topSection" : @[@"消息反馈"]  ,
+                                  @"bottomSection" : @[@"清空缓存", @"法律条款与隐私政策", @"关于Pocket EOS"]
+                                  };
+    }
+    return _dataSourceDictionary;
+}
+
 -(void)buildDataSource:(CompleteBlock)complete{
     
-    self.dataSourceArray = [NSMutableArray arrayWithObjects:@"清空缓存", @"法律条款与隐私政策", @"关于Pocket EOS",  nil];
-//    self.dataSourceArray = [NSMutableArray arrayWithObjects:@"跟随手机系统", @"简体中文", @"English", nil];
+    
     complete(self , YES);
 }
 @end

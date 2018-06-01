@@ -14,7 +14,7 @@
 #import "BaseTabBarController.h"
 #import "BindPhoneNumberHeaderView.h"
 #import "NavigationView.h"
-
+#import "RtfBrowserViewController.h"
 
 
 @interface BindPhoneNumberViewController ()<UIGestureRecognizerDelegate, BindPhoneNumberHeaderViewDelegate, NavigationViewDelegate>
@@ -38,7 +38,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"BindPhoneNumberHeaderView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 260);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 280);
     }
     return _headerView;
 }
@@ -83,6 +83,10 @@
     
 }
 -(void)bindBtnDidClick:(UIButton *)sender{
+    if (self.headerView.agreeTermBtn.isSelected) {
+        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        return;
+    }
     if (![RegularExpression validateMobile:self.headerView.phoneNumberTF.text] ) {
         [TOASTVIEW showWithText: @"手机号格式有误!" ];
         return;
@@ -135,6 +139,12 @@
     }];
     
     
+}
+
+- (void)privacyPolicyBtnDidClick:(UIButton *)sender{
+    RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
+    vc.rtfFileName = @"PocketEOSPrivacyPolicy";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // NavigationViewDelegate

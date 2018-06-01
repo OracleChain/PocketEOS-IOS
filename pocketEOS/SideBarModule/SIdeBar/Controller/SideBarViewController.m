@@ -22,6 +22,8 @@
 #import "SideBarUpBackgroundView.h"
 #import "CandyMainViewController.h"
 #import "BackupAccountViewController.h"
+#import "BPVoteViewController.h"
+#import "BindPhoneNumberViewController.h"
 
 @interface SideBarViewController ()<WalletQRCodeViewDelegate, SideBarMainViewDelegate >
 
@@ -133,6 +135,13 @@
 //    BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
+}
+
+-(void)bp_voteBtnDidClick:(UIButton *)sender{
+    BPVoteViewController *vc = [[BPVoteViewController alloc] init];
+    //    [self.navigationController pushViewController:vc animated:YES];
+    [self cw_pushViewController:vc];
+    
 }
 
 - (void)feedBackBtnDidClick:(UIButton *)sender{

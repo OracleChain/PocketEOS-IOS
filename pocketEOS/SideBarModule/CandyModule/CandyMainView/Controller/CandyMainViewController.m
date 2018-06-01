@@ -66,11 +66,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.backgroundColor = [UIColor clearColor];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.scrollEnabled = NO;
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
     [self buildDataSource];
@@ -83,8 +86,8 @@
     [self.mainTableView.mj_footer resetNoMoreData];
     self.candyScoreRequest.uid = CURRENT_WALLET_UID;
     [self.candyScoreRequest getDataSusscess:^(id DAO, id data) {
-        [weakSelf.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_avatar) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
-        weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
+        [weakSelf.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_avatar) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+        weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
     } failure:^(id DAO, NSError *error) {
         
     }];

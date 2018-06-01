@@ -22,4 +22,12 @@
     }
 }
 
+- (IBAction)privacyPolicy:(BaseButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(privacyPolicyBtnDidClick:)]) {
+        [self.delegate privacyPolicyBtnDidClick:sender];
+    }
+}
+- (IBAction)agreeBtn:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
+}
 @end

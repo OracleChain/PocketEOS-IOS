@@ -20,12 +20,12 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注意: 使用区块链应用有可能产生交易行为" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cng-Wm-egC">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="49.5"/>
-                            <color key="backgroundColor" red="1" green="0.96862745098039216" blue="0.91764705882352937" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="1" green="0.96862745098039216" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49.399999999999999" id="pwG-EQ-pVk"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="1" green="0.70980392156862748" blue="0.25098039215686274" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="0.70980392156862748" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-cj-twZ" userLabel="lineView" customClass="BaseSlimLineView">
@@ -91,8 +91,8 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                     <integer key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                    <color key="value" red="0.98431372549019602" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                    <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>

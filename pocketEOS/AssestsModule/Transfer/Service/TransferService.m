@@ -184,7 +184,7 @@
     const int8_t *private_key = [[EOS_Key_Encode getRandomBytesDataWithWif:wif] bytes];
     //     [NSObject out_Int8_t:private_key andLength:32];
     if (!private_key) {
-        NSLog(@"private_key can't be nil!");
+        [TOASTVIEW showWithText:@"private_key can't be nil!"];
         return;
     }
     

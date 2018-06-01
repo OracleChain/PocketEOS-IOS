@@ -15,6 +15,7 @@
 #import "TransactionRecordTableViewCell.h"
 #import "AccountInfo.h"
 
+
 @interface TransactionRecordsViewController ()
 <UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransactionRecordsHeaderViewDelegate, PopUpWindowDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -22,6 +23,7 @@
 @property(nonatomic, strong) TransactionRecordsHeaderView *headerView;
 @property(nonatomic, strong) TransactionRecordsService *mainService;
 @property(nonatomic, strong) NSString *currentAccountName;
+
 @end
 
 @implementation TransactionRecordsViewController
@@ -65,6 +67,7 @@
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 52, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 52);
     [self.view addSubview:self.mainTableView];
     [self.mainTableView.mj_header beginRefreshing];
+    
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
     for (AccountInfo *model in accountArray) {
@@ -159,16 +162,18 @@
             if ([dataCount isEqualToNumber:@0]) {
                 [weakSelf.mainTableView.mj_header endRefreshing];
                 [weakSelf.mainTableView.mj_footer endRefreshing];
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+                
+                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithImageName:@"nomoredata" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
+                
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
+                [IMAGE_TIP_LABEL_MANAGER removeImageAndTipLabelViewManager];
             }
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+            [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithImageName:@"nomoredata" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
         }
     }];
 }

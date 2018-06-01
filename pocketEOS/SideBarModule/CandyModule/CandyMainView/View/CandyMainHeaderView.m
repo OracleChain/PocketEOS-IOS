@@ -25,11 +25,11 @@
     if(!_mainCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 3 , 170 - 30)];
-        [layout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
+        [layout setSectionInset:UIEdgeInsetsMake(10, 20, 10, 10)];
         [layout setMinimumInteritemSpacing: 20.0f];
         [layout setMinimumLineSpacing: 20.0f];
         [layout setScrollDirection: UICollectionViewScrollDirectionHorizontal];
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(20.0f, 20, COLLECTIONVIEW_WIDTH, COLLECTIONVIEW_HEIGHT ) collectionViewLayout: layout];
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(MARGIN_20, MARGIN_20, COLLECTIONVIEW_WIDTH, COLLECTIONVIEW_HEIGHT ) collectionViewLayout: layout];
         [_mainCollectionView setDataSource: self];
         [_mainCollectionView setPagingEnabled: YES];
         [_mainCollectionView setDelegate: self];

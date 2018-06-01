@@ -50,10 +50,15 @@
     }
     return _mainService;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:leftEdgeGesture];

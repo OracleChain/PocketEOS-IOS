@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 @interface BaseViewController ()<UIGestureRecognizerDelegate,UITableViewDelegate , UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic,strong) UIImageView* noDataView;
+@property (nonatomic,strong) UIView *noDataView;
 
 
 @end
@@ -87,6 +87,8 @@
     }
     return _mainCollectionView;
 }
+
+
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -114,19 +116,29 @@
 }
 
 
--(void)showNoDataImage
-{
-    _noDataView=[[UIImageView alloc] init];
-    [_noDataView setImage:[UIImage imageNamed:@"2"]];
-    [self.view.subviews enumerateObjectsUsingBlock:^(UITableView* obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[UITableView class]]) {
-            [_noDataView setFrame:CGRectMake(0, 300,100, 100)];
-            [obj addSubview:_noDataView];
-        }
-    }];
++ (void)showNoDataViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController{
+    [self showNoDataViewWithImageName:imageName andTitleStr:titleStr toView:parentView andViewController:viewController];
 }
 
--(void)removeNoDataImage{
+-(void)showNoDataViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController tag:(NSInteger)tag
+{
+    UIImageView *img = [[UIImageView alloc] init];
+    img.image = [UIImage imageNamed:imageName];
+    img.contentMode = UIViewContentModeScaleAspectFill;
+    
+    BaseLabel *label = [[BaseLabel alloc] init];
+    label.font = [UIFont systemFontOfSize:14];
+    label.text = titleStr;
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.noDataView addSubview:img];
+    [self.noDataView addSubview:label];
+    
+    [parentView addSubview:self.noDataView];
+}
+
+
+-(void)removeNoDataView{
     if (_noDataView) {
         [_noDataView removeFromSuperview];
         _noDataView = nil;

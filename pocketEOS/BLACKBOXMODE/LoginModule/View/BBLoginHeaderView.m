@@ -9,6 +9,7 @@
 #import "BBLoginHeaderView.h"
 
 @interface BBLoginHeaderView()<UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *rightArrowImg;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
@@ -36,6 +37,7 @@
     [self.upBackgroundView bringSubviewToFront:self.label2];
     [self.upBackgroundView bringSubviewToFront:self.img];
     [self.upBackgroundView bringSubviewToFront:self.changeModeLabel];
+    [self.upBackgroundView bringSubviewToFront:self.rightArrowImg];
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeModeToSocialMode)];
     [self.changeModeLabel addGestureRecognizer:tap1];
 }

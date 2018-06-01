@@ -30,7 +30,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMY-JT-EcZ" customClass="BaseConfirmButton">
-                    <rect key="frame" x="20" y="205" width="335" height="42"/>
+                    <rect key="frame" x="20" y="318.5" width="335" height="42"/>
                     <color key="backgroundColor" red="0.30196078430000001" green="0.4823529412" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="VB8-gZ-lmk"/>
@@ -43,21 +43,6 @@
                         <action selector="importAccount:" destination="dLr-lh-qEW" eventType="touchUpInside" id="Erk-Pm-udr"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoH-yP-Q6f" customClass="BaseTextView">
-                    <rect key="frame" x="20" y="255.5" width="335" height="120"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="fFC-5i-qc4"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
-                            <string key="value">该功能仅适用于EOS映射获得的私钥，且每个映射取得的私钥只创建一个的钱包账户。
-如果您已经使用PocketEOS或其他钱包工具为该私钥创建过钱包账户，请不要勾选该项，并在下一页面中选择“使用已有的EOS账号”</string>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入账户名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoR-57-yOC" customClass="BaseLabel1">
                     <rect key="frame" x="20" y="20" width="335" height="20"/>
                     <constraints>
@@ -94,6 +79,21 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoH-yP-Q6f" customClass="BaseTextView">
+                    <rect key="frame" x="20" y="186.5" width="335" height="120"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="fFC-5i-qc4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                            <string key="value">该功能仅适用于EOS映射获得的私钥，且每个映射取得的私钥只创建一个的钱包账户。
+如果您已经使用PocketEOS或其他钱包工具为该私钥创建过钱包账户，请不要勾选该项，并在下一页面中选择“使用已有的EOS账号”</string>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -104,17 +104,17 @@
                 <constraint firstItem="fPr-uW-O3Q" firstAttribute="top" secondItem="dLr-lh-qEW" secondAttribute="top" constant="84.5" id="BfO-SD-GRk"/>
                 <constraint firstAttribute="trailing" secondItem="aYz-bj-ZV1" secondAttribute="trailing" constant="20" id="GFP-r6-EDE"/>
                 <constraint firstAttribute="trailing" secondItem="4Oj-5Q-mo6" secondAttribute="trailing" id="GHq-Vx-QOi"/>
-                <constraint firstItem="RoH-yP-Q6f" firstAttribute="top" secondItem="WMY-JT-EcZ" secondAttribute="bottom" constant="8.5" id="JnT-fb-EBR"/>
+                <constraint firstItem="WMY-JT-EcZ" firstAttribute="top" secondItem="RoH-yP-Q6f" secondAttribute="bottom" constant="12" id="K22-13-gnW"/>
                 <constraint firstItem="DoR-57-yOC" firstAttribute="leading" secondItem="dLr-lh-qEW" secondAttribute="leading" constant="20" id="KIf-fj-5Md"/>
                 <constraint firstItem="g7L-cB-RU5" firstAttribute="top" secondItem="fPr-uW-O3Q" secondAttribute="bottom" constant="20" id="L1d-Ac-EQ0"/>
                 <constraint firstItem="zWI-QJ-GHx" firstAttribute="top" secondItem="DoR-57-yOC" secondAttribute="bottom" constant="14" id="Mdg-XZ-PPR"/>
                 <constraint firstAttribute="trailing" secondItem="RoH-yP-Q6f" secondAttribute="trailing" constant="20" id="Myh-od-o3Q"/>
                 <constraint firstAttribute="trailing" secondItem="DoR-57-yOC" secondAttribute="trailing" constant="20" id="No8-7m-tCc"/>
                 <constraint firstItem="zWI-QJ-GHx" firstAttribute="leading" secondItem="dLr-lh-qEW" secondAttribute="leading" constant="20" id="Sii-Fx-fWq"/>
-                <constraint firstItem="WMY-JT-EcZ" firstAttribute="top" secondItem="4Oj-5Q-mo6" secondAttribute="bottom" constant="30.5" id="YNk-3F-fSz"/>
                 <constraint firstItem="WMY-JT-EcZ" firstAttribute="leading" secondItem="dLr-lh-qEW" secondAttribute="leading" constant="20" id="b3C-tA-qtm"/>
                 <constraint firstAttribute="trailing" secondItem="WMY-JT-EcZ" secondAttribute="trailing" constant="20" id="eQa-mi-SA4"/>
                 <constraint firstItem="fPr-uW-O3Q" firstAttribute="leading" secondItem="dLr-lh-qEW" secondAttribute="leading" constant="20" id="fQM-DL-hdN"/>
+                <constraint firstItem="RoH-yP-Q6f" firstAttribute="top" secondItem="4Oj-5Q-mo6" secondAttribute="bottom" constant="12" id="fcP-fi-wgE"/>
                 <constraint firstItem="4Oj-5Q-mo6" firstAttribute="leading" secondItem="dLr-lh-qEW" secondAttribute="leading" constant="20" id="gYn-Sw-AIv"/>
                 <constraint firstAttribute="trailing" secondItem="fPr-uW-O3Q" secondAttribute="trailing" id="gpW-6h-obu"/>
                 <constraint firstItem="4Oj-5Q-mo6" firstAttribute="top" secondItem="fPr-uW-O3Q" secondAttribute="bottom" constant="89" id="lCj-KR-Lb0"/>

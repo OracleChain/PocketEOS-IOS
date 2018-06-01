@@ -266,7 +266,7 @@
 - (void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![[self.loginPasswordView.inputPasswordTF.text sha256] isEqualToString:current_wallet.wallet_shapwd]) {
+    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:@"密码输入错误!"];
         return;
     }
@@ -276,7 +276,7 @@
         AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
         NSString *privateKeyStr = [NSString stringWithFormat:@"active_private_key : %@ \n owner_private_key : %@", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
         self.exportPrivateKeyView.contentTextView.text = privateKeyStr;
-        self.loginPasswordView.inputPasswordTF.text = nil;
+       
     }else if ([self.currentAction isEqualToString:@"DeleteAccount"]){
         // 删除账号
         NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];

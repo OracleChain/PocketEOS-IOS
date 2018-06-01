@@ -11,16 +11,17 @@
 @interface SideBarMainView()
 @property (weak, nonatomic) IBOutlet UIImageView *candyEnergyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *candyImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bp_voteImageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *messageCenterImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *feedbackImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *systemSettingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *versionUpdateImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *avatarBtn;
 @property (weak, nonatomic) IBOutlet BaseLabel *walletManageLabel;
 @property (weak, nonatomic) IBOutlet UIView *candyBaseView;
+@property (weak, nonatomic) IBOutlet UIView *bp_voteBaseView;
 @property (weak, nonatomic) IBOutlet UIView *messageCenterBaseView;
-@property (weak, nonatomic) IBOutlet UIView *feedbackBaseView;
 @property (weak, nonatomic) IBOutlet UIView *systemSettingBaseView;
 @property (weak, nonatomic) IBOutlet UIView *versionUpdateBaseView;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
@@ -35,11 +36,11 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     self.candyImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"candyIcon"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"candyIcon_BB"]);
+   
+    self.bp_voteImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"thumb_black"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"thumb_white"]);
+    
     self.messageCenterImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"messageCenter"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"messageCenter_BB"]);
-    
-    self.feedbackImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"feedBack"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"feedBack_BB"]);
-    
-    self.systemSettingImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"systemSetting"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"systemSetting_BB"]);
+     self.systemSettingImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"systemSetting"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"systemSetting_BB"]);
     
     self.versionUpdateImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"versionUpdate"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"versionUpdate_BB"]);
     
@@ -50,7 +51,6 @@
         self.candyBaseView.hidden = YES;
         self.avatarImg.hidden = YES;
         self.messageCenterBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59);
-        self.feedbackBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*1);
         self.systemSettingBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*2);
         self.versionUpdateBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*3);
         
@@ -97,12 +97,12 @@
     }
 }
 
-
-- (IBAction)feedBackBtn:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(feedBackBtnDidClick:)]) {
-        [self.delegate feedBackBtnDidClick:sender];
+- (IBAction)bp_voteBtn:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(bp_voteBtnDidClick:)]) {
+        [self.delegate bp_voteBtnDidClick:sender];
     }
 }
+
 
 - (IBAction)systemSetting:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(systemSettingDidClick:)]) {

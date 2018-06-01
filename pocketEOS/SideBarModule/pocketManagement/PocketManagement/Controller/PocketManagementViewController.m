@@ -283,7 +283,7 @@
         return;
     }
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![[self.changePasswordView.oraginalPasswordTF.text sha256] isEqualToString:current_wallet.wallet_shapwd]) {
+    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.changePasswordView.oraginalPasswordTF.text]) {
         [TOASTVIEW showWithText:@"原始密码输入有误!"];
         return;
     }

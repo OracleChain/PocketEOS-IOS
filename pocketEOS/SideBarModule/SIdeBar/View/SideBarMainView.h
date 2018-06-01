@@ -15,8 +15,8 @@
 - (void)managePocketBtnDidClick:(id)sender;
 - (void)transactionRecordBtnDidClick:(UIButton *)sender;
 - (void)candyBtnDidClick:(UIButton *)sender;
+- (void)bp_voteBtnDidClick:(UIButton *)sender;
 - (void)messagesCenterBtnDidClick:(UIButton *)sender;
-- (void)feedBackBtnDidClick:(UIButton *)sender;
 - (void)systemSettingDidClick:(UIButton *)sender;
 
 - (void)versionUpdateBtnDidClick:(UIButton *)sender;

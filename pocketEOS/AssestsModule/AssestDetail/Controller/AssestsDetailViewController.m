@@ -51,6 +51,7 @@
     }
     return _navView;
 }
+
 - (AssestsDetailHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsDetailHeaderView" owner:nil options:nil] firstObject];
@@ -59,14 +60,16 @@
     }
     return _headerView;
 }
+
 - (AssestDetailFooterView *)footerView{
     if (!_footerView) {
         _footerView = [[AssestDetailFooterView alloc] init];
-        _footerView.frame = CGRectMake(0, SCREEN_HEIGHT-46, SCREEN_WIDTH, 46);
+        _footerView.frame = CGRectMake(0, SCREEN_HEIGHT - TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
         _footerView.delegate = self;
     }
     return _footerView;
 }
+
 - (AssestsShareDetailView *)assestsShareDetailView{
     if (!_assestsShareDetailView) {
         _assestsShareDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsShareDetailView" owner:nil options:nil] firstObject];

@@ -11,4 +11,5 @@
 
 @interface CandyMainTableViewCell : UITableViewCell
 @property(nonatomic , strong) CandyTaskModel *model;
+@property(nonatomic , strong) BaseSlimLineView *bottomLineView;
 @end

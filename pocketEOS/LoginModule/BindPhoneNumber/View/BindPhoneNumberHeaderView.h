@@ -11,6 +11,7 @@
 @protocol BindPhoneNumberHeaderViewDelegate<NSObject>
 - (void)getVerifyCodeBtnDidClick:(UIButton *)sender;
 - (void)bindBtnDidClick:(UIButton *)sender;
+- (void)privacyPolicyBtnDidClick:(UIButton *)sender;
 @end
 
 @interface BindPhoneNumberHeaderView : BaseView
@@ -20,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *verifyCodeTF;
 @property (weak, nonatomic) IBOutlet UIButton *getVerifyCodeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *agreeTermBtn;
 
 @end

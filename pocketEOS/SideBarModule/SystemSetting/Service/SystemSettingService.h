@@ -9,5 +9,5 @@
 #import "BaseService.h"
 
 @interface SystemSettingService : BaseService
-
+@property(nonatomic , strong) NSDictionary *dataSourceDictionary;
 @end

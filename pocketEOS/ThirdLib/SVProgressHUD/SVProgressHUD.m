@@ -199,7 +199,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 #pragma mark - Show Methods
 
 + (void)show {
-    [self showWithStatus:nil];
+//    [self showWithStatus:nil];
 }
 
 + (void)showWithMaskType:(SVProgressHUDMaskType)maskType {

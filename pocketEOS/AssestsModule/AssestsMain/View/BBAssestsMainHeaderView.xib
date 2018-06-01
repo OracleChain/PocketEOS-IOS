@@ -12,9 +12,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="0JZ-Ht-GEh" customClass="BBAssestsMainHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="294"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_black.png" translatesAutoresizingMaskIntoConstraints="NO" id="j9M-fV-wuY">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总资产(￥)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpO-hr-Jsy" customClass="BaseLabel">
                     <rect key="frame" x="30" y="123" width="80" height="20"/>
                     <constraints>
@@ -35,14 +38,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVS-by-8uf">
-                    <rect key="frame" x="0.0" y="234" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="249" width="375" height="60"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="rCD-1B-qAU"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nkw-tV-x8O" userLabel="backGroundView">
-                    <rect key="frame" x="15" y="199" width="345" height="96"/>
+                    <rect key="frame" x="15" y="214" width="345" height="96"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHk-Jy-Nwp" userLabel="lineView">
                             <rect key="frame" x="172" y="18" width="0.5" height="60"/>
@@ -201,7 +204,9 @@
                 <constraint firstItem="DjQ-fl-MWb" firstAttribute="leading" secondItem="tpO-hr-Jsy" secondAttribute="trailing" id="AwC-my-311"/>
                 <constraint firstItem="m1K-r2-uh4" firstAttribute="leading" secondItem="0JZ-Ht-GEh" secondAttribute="leading" constant="30" id="D8G-sU-ACT"/>
                 <constraint firstItem="DjQ-fl-MWb" firstAttribute="centerY" secondItem="tpO-hr-Jsy" secondAttribute="centerY" id="E7G-hw-lCs"/>
-                <constraint firstItem="Nkw-tV-x8O" firstAttribute="top" secondItem="m1K-r2-uh4" secondAttribute="bottom" id="H4e-E9-zog"/>
+                <constraint firstItem="Nkw-tV-x8O" firstAttribute="top" secondItem="m1K-r2-uh4" secondAttribute="bottom" constant="15" id="H4e-E9-zog"/>
+                <constraint firstItem="WVS-by-8uf" firstAttribute="top" secondItem="j9M-fV-wuY" secondAttribute="bottom" id="KSJ-QE-RFU"/>
+                <constraint firstItem="j9M-fV-wuY" firstAttribute="top" secondItem="0JZ-Ht-GEh" secondAttribute="top" id="LXt-Te-EDC"/>
                 <constraint firstItem="tpO-hr-Jsy" firstAttribute="leading" secondItem="0JZ-Ht-GEh" secondAttribute="leading" constant="30" id="Ng6-47-Hwa"/>
                 <constraint firstItem="VvR-MN-Tla" firstAttribute="top" secondItem="0JZ-Ht-GEh" secondAttribute="top" constant="42" id="RAw-bY-EdK"/>
                 <constraint firstAttribute="trailing" secondItem="m1K-r2-uh4" secondAttribute="trailing" constant="20" id="UbE-3y-kjP"/>
@@ -209,19 +214,22 @@
                 <constraint firstItem="Nkw-tV-x8O" firstAttribute="leading" secondItem="0JZ-Ht-GEh" secondAttribute="leading" constant="15" id="YW3-fR-nme"/>
                 <constraint firstItem="WVS-by-8uf" firstAttribute="leading" secondItem="0JZ-Ht-GEh" secondAttribute="leading" id="d9S-WW-60Y"/>
                 <constraint firstItem="tpO-hr-Jsy" firstAttribute="top" secondItem="0JZ-Ht-GEh" secondAttribute="top" constant="123" id="kXN-Gk-1vH"/>
+                <constraint firstAttribute="trailing" secondItem="j9M-fV-wuY" secondAttribute="trailing" id="lal-xw-i9V"/>
                 <constraint firstItem="m1K-r2-uh4" firstAttribute="top" secondItem="tpO-hr-Jsy" secondAttribute="bottom" id="mF3-37-0vK"/>
                 <constraint firstAttribute="trailing" secondItem="WVS-by-8uf" secondAttribute="trailing" id="tMn-h7-z72"/>
                 <constraint firstAttribute="trailing" secondItem="VvR-MN-Tla" secondAttribute="trailing" constant="15" id="tyV-bP-pjW"/>
+                <constraint firstItem="j9M-fV-wuY" firstAttribute="leading" secondItem="0JZ-Ht-GEh" secondAttribute="leading" id="uc9-cf-Gqb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="totalAssestsVisibleBtn" destination="DjQ-fl-MWb" id="oRB-jP-WvW"/>
                 <outlet property="totalAssetsLabel" destination="m1K-r2-uh4" id="thi-iK-DUu"/>
             </connections>
-            <point key="canvasLocation" x="858.5" y="-739"/>
+            <point key="canvasLocation" x="858.5" y="-739.5"/>
         </view>
     </objects>
     <resources>
+        <image name="background_black.png" width="375" height="310"/>
         <image name="recieve.png" width="30" height="31"/>
         <image name="transfer.png" width="30" height="30"/>
     </resources>

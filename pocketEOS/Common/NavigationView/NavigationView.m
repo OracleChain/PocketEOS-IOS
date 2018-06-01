@@ -66,7 +66,7 @@
         self.titleImg.sd_layout.centerXEqualToView(self).bottomSpaceToView(self, 10).widthIs(120).heightIs(20);
         
         [self addSubview:self.rightBtn];
-        self.rightBtn.sd_layout.rightSpaceToView(self, 6).bottomSpaceToView(self, 10).widthIs(30).heightIs(30);
+        self.rightBtn.sd_layout.rightSpaceToView(self, 15).bottomSpaceToView(self, 10).widthIs(30).heightIs(30);
     }
     return self;
 }

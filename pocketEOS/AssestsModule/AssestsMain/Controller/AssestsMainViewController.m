@@ -34,6 +34,7 @@
 #import "Wallet.h"
 #import "CQMarqueeView.h"
 #import "UIView+frameAdjust.h"
+#import "CreateAccountViewController.h"
 
 
 
@@ -50,12 +51,15 @@
 
 @implementation AssestsMainViewController
 
-
 - (UIImageView *)backgroundView{
     if (!_backgroundView) {
-        _backgroundView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 250))];
+        _backgroundView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 333))];
+        _backgroundView.backgroundColor = RGB(65, 115, 238);
         _backgroundView.lee_theme
-        .LeeConfigImage(@"AssestMainHeaderImage");
+        .LeeAddBackgroundColor(SOCIAL_MODE, RGB(65, 115, 238))
+        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+//        _backgroundView.lee_theme
+//        .LeeConfigImage(@"AssestMainHeaderImage");
     }
     return _backgroundView;
 }
@@ -71,14 +75,15 @@
 - (AssestsMainHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsMainHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 294 + 10);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 333);
     }
     return _headerView;
 }
+
 - (BBAssestsMainHeaderView *)BB_headerView{
     if (!_BB_headerView) {
         _BB_headerView = [[[NSBundle mainBundle] loadNibNamed:@"BBAssestsMainHeaderView" owner:nil options:nil] firstObject];
-        _BB_headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 294+10);
+        _BB_headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 294+10+15);
     }
     return _BB_headerView;
 }
@@ -107,17 +112,13 @@
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 34, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-34-TABBAR_HEIGHT);
     
     [self.mainTableView.mj_footer resetNoMoreData];
     self.mainTableView.backgroundColor = [UIColor clearColor];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // 添加跑马灯
     CQMarqueeView *marqueeView = [[CQMarqueeView alloc] initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 34)];
-//    marqueeView.lee_theme
-//    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFEFCEC))
-//    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x74747))
-//    .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0xF76A24))
-//    .LeeAddTextColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF));
     
     [self.view addSubview:marqueeView];
     marqueeView.marqueeTextArray = @[@"温馨提示：本钱包运行于测试网络，待EOS主网正是上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。"];
@@ -133,6 +134,7 @@
         
     }
     [self.mainTableView.mj_header beginRefreshing];
+    [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
     for (AccountInfo *model in accountArray) {
         if ([model.is_main_account isEqualToString:@"1"]) {
@@ -141,11 +143,12 @@
         }
     }
     
-    [self loadAllBlocks];
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:leftEdgeGesture];
     leftEdgeGesture.delegate = self;
+    
+    
     
     
 }
@@ -339,23 +342,16 @@
     }
     Assests *model = self.mainService.dataSourceArray[indexPath.row];
     if ([model.assests_price_change_in_24 hasPrefix:@"-"]) {
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%   24h", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.assests_price_change_in_24]];
         [attrString addAttribute:NSForegroundColorAttributeName
                         value:HEXCOLOR(0xB51515)
-                        range:NSMakeRange(0, model.assests_price_change_in_24.length + 1)];
-        [attrString addAttribute:NSForegroundColorAttributeName
-                           value:HEXCOLOR(0xB0B0B0)
-                           range:NSMakeRange(model.assests_price_change_in_24.length+1, 6)];
+                        range:NSMakeRange(0, model.assests_price_change_in_24.length +1)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }else{
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%   24h", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.assests_price_change_in_24]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
                            range:NSMakeRange(0, model.assests_price_change_in_24.length + 2)];
-        [attrString addAttribute:NSForegroundColorAttributeName
-                           value:HEXCOLOR(0xB0B0B0)
-                           range:NSMakeRange(model.assests_price_change_in_24.length + 2, 6)];
-
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -54,6 +54,13 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ebu-br-ceH">
+                            <rect key="frame" x="351" y="36.5" width="8" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="f57-5e-Bbv"/>
+                                <constraint firstAttribute="width" constant="8" id="feZ-Xa-Erx"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="4fz-31-Ql3"/>
@@ -61,11 +68,13 @@
                         <constraint firstItem="iNk-z8-kUd" firstAttribute="leading" secondItem="fgA-Tv-6N1" secondAttribute="leading" constant="26" id="B1S-8S-aTU"/>
                         <constraint firstAttribute="trailing" secondItem="zHc-Kp-Yj9" secondAttribute="trailing" constant="43" id="DTf-Oj-3pg"/>
                         <constraint firstItem="tpj-js-GEB" firstAttribute="leading" secondItem="fgA-Tv-6N1" secondAttribute="leading" constant="20" id="E9I-pP-E0P"/>
+                        <constraint firstItem="Ebu-br-ceH" firstAttribute="centerY" secondItem="tpj-js-GEB" secondAttribute="centerY" id="T1e-kH-kz3"/>
                         <constraint firstAttribute="trailing" secondItem="tpj-js-GEB" secondAttribute="trailing" constant="30" id="U8f-uE-1UR"/>
                         <constraint firstItem="VVW-WZ-tLc" firstAttribute="leading" secondItem="fgA-Tv-6N1" secondAttribute="leading" constant="26" id="ZEc-zj-E79"/>
                         <constraint firstItem="tpj-js-GEB" firstAttribute="top" secondItem="fgA-Tv-6N1" secondAttribute="top" constant="33" id="g6h-Bp-4mo"/>
                         <constraint firstItem="zHc-Kp-Yj9" firstAttribute="top" secondItem="fgA-Tv-6N1" secondAttribute="top" constant="52" id="i6b-VO-1uh"/>
                         <constraint firstItem="VVW-WZ-tLc" firstAttribute="top" secondItem="fgA-Tv-6N1" secondAttribute="top" constant="93" id="nw8-j6-p1A"/>
+                        <constraint firstItem="Ebu-br-ceH" firstAttribute="leading" secondItem="tpj-js-GEB" secondAttribute="trailing" constant="6" id="wh9-o3-6Hp"/>
                         <constraint firstAttribute="height" constant="200" id="ycG-Yt-5NX"/>
                     </constraints>
                 </view>
@@ -82,6 +91,7 @@
                 <outlet property="img" destination="zHc-Kp-Yj9" id="zer-IZ-kXZ"/>
                 <outlet property="label1" destination="VVW-WZ-tLc" id="7LE-4l-vg4"/>
                 <outlet property="label2" destination="iNk-z8-kUd" id="4pJ-nC-UdS"/>
+                <outlet property="rightArrowImg" destination="Ebu-br-ceH" id="LY9-Do-TfU"/>
                 <outlet property="upBackgroundView" destination="fgA-Tv-6N1" id="LhN-0i-6LT"/>
             </connections>
             <point key="canvasLocation" x="145" y="-30"/>
@@ -89,5 +99,6 @@
     </objects>
     <resources>
         <image name="lockBackground.png" width="131" height="130"/>
+        <image name="right_arrow_white.png" width="8" height="14"/>
     </resources>
 </document>

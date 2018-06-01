@@ -17,7 +17,7 @@
     
 }
 - (IBAction)createAccount:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
+//    sender.selected = !sender.isSelected;
     if (self.delegate && [self.delegate respondsToSelector:@selector(createAccountBtnDidClick:)]) {
         [self.delegate createAccountBtnDidClick:sender];
     }

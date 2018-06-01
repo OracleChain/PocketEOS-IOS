@@ -88,6 +88,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.view.backgroundColor = [UIColor whiteColor];
     self.mainTableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainTableView];

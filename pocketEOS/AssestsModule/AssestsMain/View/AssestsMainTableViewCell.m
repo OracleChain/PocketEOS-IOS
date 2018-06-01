@@ -35,7 +35,6 @@
     if (!_assestsPriceChangeLabel) {
         _assestsPriceChangeLabel = [[UILabel alloc] init];
         _assestsPriceChangeLabel.font = [UIFont systemFontOfSize:14];
-        _assestsPriceChangeLabel.textColor = HEXCOLOR(0xFF7800);
         _assestsPriceChangeLabel.textAlignment = NSTextAlignmentRight;
     }
     return _assestsPriceChangeLabel;
@@ -82,6 +81,7 @@
         _lable_24h = [[UILabel alloc] init];
         _lable_24h.text =@"24h";
         _lable_24h.textColor = HEXCOLOR(0xB0B0B0 );
+        _lable_24h.font = [UIFont systemFontOfSize:14];
     }
     return _lable_24h;
 }
@@ -91,26 +91,34 @@
         _lable_nowPrice = [[UILabel alloc] init];
         _lable_nowPrice.text = @"现价";
         _lable_nowPrice.textColor = HEXCOLOR(0xB0B0B0 );
+        _lable_nowPrice.font = [UIFont systemFontOfSize:14];
     }
     return _lable_nowPrice;
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        CGFloat topSpace = 18.5;
+        CGFloat labelHeight = 16;
         [self.contentView addSubview:self.assestsImg];
         self.assestsImg.sd_layout.leftSpaceToView(self.contentView, 16).centerYEqualToView(self.contentView).widthIs(40).heightEqualToWidth();
         
-        [self.contentView addSubview:self.assestsPriceChangeLabel];
-      self.assestsPriceChangeLabel.sd_layout.topSpaceToView(self.contentView, 17.5).rightSpaceToView(self.contentView, MARGIN_20).widthIs(100).heightIs(21);
+        [self.contentView addSubview:self.lable_24h];
+        self.lable_24h.sd_layout.topSpaceToView(self.contentView, topSpace).rightSpaceToView(self.contentView, MARGIN_20).widthIs(30).heightIs(labelHeight);
         
+        [self.contentView addSubview:self.assestsPriceChangeLabel];
+      self.assestsPriceChangeLabel.sd_layout.topSpaceToView(self.contentView, topSpace).rightSpaceToView(self.lable_24h, 8).widthIs(100).heightIs(labelHeight);
+        
+        [self.contentView addSubview:self.lable_nowPrice];
+        self.lable_nowPrice.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(_lable_24h, 8).widthIs(30).heightIs(labelHeight);
+
         [self.contentView addSubview:self.nowPriceLabel];
-        self.nowPriceLabel.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(_assestsPriceChangeLabel, 2).widthIs(100).heightIs(21);
+        self.nowPriceLabel.sd_layout.rightSpaceToView(self.lable_nowPrice, 8).centerYEqualToView(_lable_nowPrice).widthIs(200).heightIs(labelHeight);
 
         [self.contentView addSubview:self.assestsBalanceLable];
-        self.assestsBalanceLable.sd_layout.leftSpaceToView(_assestsImg, MARGIN_15).topSpaceToView(self.contentView, 17.5).rightSpaceToView(_assestsPriceChangeLabel, 10).heightIs(22);
+        self.assestsBalanceLable.sd_layout.leftSpaceToView(_assestsImg, MARGIN_15).topSpaceToView(self.contentView, topSpace).rightSpaceToView(_assestsPriceChangeLabel, 8).heightIs(labelHeight);
 
         [self.contentView addSubview:self.assestsBalanceCnyLabel];
-        self.assestsBalanceCnyLabel.sd_layout.leftSpaceToView(_assestsImg, MARGIN_15).topSpaceToView(_assestsBalanceLable, 1).rightSpaceToView(_assestsPriceChangeLabel, 10).heightIs(20);
+        self.assestsBalanceCnyLabel.sd_layout.leftSpaceToView(_assestsImg, MARGIN_15).centerYEqualToView(_lable_nowPrice).rightSpaceToView(_assestsPriceChangeLabel, 8).heightIs(labelHeight);
         
         
         [self.contentView addSubview:self.bottomLineView];
@@ -126,6 +134,6 @@
     
     self.assestsBalanceCnyLabel.text = [NSString stringWithFormat:@"≈%@ CNY", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_balance_cny.doubleValue ]]];
     
-    self.nowPriceLabel.text = [NSString stringWithFormat:@"¥%@ 现价", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_price_cny.doubleValue ]]];
+    self.nowPriceLabel.text = [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_price_cny.doubleValue ]]];
 }
 @end

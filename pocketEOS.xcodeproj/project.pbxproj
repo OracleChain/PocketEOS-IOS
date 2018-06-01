@@ -11,10 +11,6 @@
 		18017048207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18017044207EF1A300E4DA07 /* NSURLProtocol+WKWebVIew.m */; };
 		18017049207EF1A400E4DA07 /* HybridNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18017046207EF1A300E4DA07 /* HybridNSURLProtocol.m */; };
 		1801704C207F352100E4DA07 /* CacheTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801704B207F352100E4DA07 /* CacheTableManager.m */; };
-		180483D220B984B200DE10CA /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 180483CB20B984B200DE10CA /* AESCrypt.m */; };
-		180483D320B984B200DE10CA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 180483CF20B984B200DE10CA /* Base64.m */; };
-		180483D420B984B200DE10CA /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 180483D020B984B200DE10CA /* NSData+CommonCrypto.m */; };
-		180483D520B984B200DE10CA /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 180483D120B984B200DE10CA /* PBKDF2.m */; };
 		1806D0F7206E58540023D83B /* SocialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F6206E58540023D83B /* SocialModel.m */; };
 		1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F9206E5A010023D83B /* BindWechatRequest.m */; };
 		1806D0FD206E5A0C0023D83B /* BindQQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0FC206E5A0C0023D83B /* BindQQRequest.m */; };
@@ -133,6 +129,11 @@
 		1816915620BEC1B900BF49A8 /* right_arrow_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816915420BEC1B800BF49A8 /* right_arrow_white@2x.png */; };
 		1816915720BEC1B900BF49A8 /* right_arrow_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816915520BEC1B900BF49A8 /* right_arrow_white@3x.png */; };
 		1816915920BECC9F00BF49A8 /* candyBackground_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816915820BECC9F00BF49A8 /* candyBackground_blue.png */; };
+		1816919B20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1816919A20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m */; };
+		1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816919C20BF80EC00BF49A8 /* vote_box@2x.png */; };
+		1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816919D20BF80EC00BF49A8 /* vote_box@3x.png */; };
+		181691A220BF83B600BF49A8 /* nomoredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A020BF83B600BF49A8 /* nomoredata@2x.png */; };
+		181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A120BF83B600BF49A8 /* nomoredata@3x.png */; };
 		182007412069E1F100D281EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007402069E1E600D281EF /* SystemConfiguration.framework */; };
 		182007432069E27000D281EF /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007422069E27000D281EF /* libz.1.dylib */; };
 		182007452069E2AD00D281EF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007442069E2AC00D281EF /* libsqlite3.dylib */; };
@@ -274,6 +275,13 @@
 		183AE2062019EB3E002041F9 /* UploadWalletAvatarImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183AE2052019EB3E002041F9 /* UploadWalletAvatarImageRequest.m */; };
 		183C5B991FCBEC9400DE6E88 /* pocketEOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C5B981FCBEC9400DE6E88 /* pocketEOSTests.m */; };
 		183C5BA41FCBEC9400DE6E88 /* pocketEOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C5BA31FCBEC9400DE6E88 /* pocketEOSUITests.m */; };
+		183FF6DD20C0CE600058D010 /* changePassword_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6DB20C0CE600058D010 /* changePassword_BB@2x.png */; };
+		183FF6DE20C0CE600058D010 /* changePassword_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6DC20C0CE600058D010 /* changePassword_BB@3x.png */; };
+		183FF6E920C0D6820058D010 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E120C0D6800058D010 /* PBKDF2.m */; };
+		183FF6EA20C0D6820058D010 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E220C0D6810058D010 /* AESCrypt.m */; };
+		183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E620C0D6810058D010 /* NSObject+Extension.m */; };
+		183FF6EC20C0D6820058D010 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E720C0D6820058D010 /* NSData+CommonCrypto.m */; };
+		183FF6ED20C0D6820058D010 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E820C0D6820058D010 /* Base64.m */; };
 		183FF8B21FF33DB7006C25F1 /* RichListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8B11FF33DB7006C25F1 /* RichListResult.m */; };
 		183FF8BB1FF3456F006C25F1 /* NewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8BA1FF3456F006C25F1 /* NewsListCell.m */; };
 		183FF8BF1FF345C7006C25F1 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8BE1FF345C7006C25F1 /* News.m */; };
@@ -430,8 +438,6 @@
 		185BA3BA20BBB3CE00F63674 /* BaseConfirmButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BA3B920BBB3CE00F63674 /* BaseConfirmButton.m */; };
 		185BA3BD20BBC1EC00F63674 /* backup_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */; };
 		185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */; };
-		185BA3C120BBC1F500F63674 /* changePassword_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3BF20BBC1F500F63674 /* changePassword_BB@2x.png */; };
-		185BA3C220BBC1F500F63674 /* changePassword_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3C020BBC1F500F63674 /* changePassword_BB@3x.png */; };
 		185BA3C520BBC1FE00F63674 /* createAccount_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3C320BBC1FD00F63674 /* createAccount_BB@2x.png */; };
 		185BA3C620BBC1FE00F63674 /* createAccount_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3C420BBC1FD00F63674 /* createAccount_BB@3x.png */; };
 		185BA3C920BBC20500F63674 /* importAccount_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3C720BBC20400F63674 /* importAccount_BB@2x.png */; };
@@ -670,6 +676,12 @@
 		18B29133208996BA0032EE27 /* RedPacketDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B29132208996BA0032EE27 /* RedPacketDetail.m */; };
 		18B2913620899B470032EE27 /* RedPacketDetailSingleAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2913520899B470032EE27 /* RedPacketDetailSingleAccount.m */; };
 		18B44E5A208730D700BF41BA /* ShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B44E59208730D700BF41BA /* ShareModel.m */; };
+		18BCAF1820BFD8E600571577 /* BPVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCAF1720BFD8E600571577 /* BPVoteViewController.m */; };
+		18BCAF1B20BFECAD00571577 /* thumb_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1920BFECAC00571577 /* thumb_black@3x.png */; };
+		18BCAF1C20BFECAD00571577 /* thumb_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1A20BFECAD00571577 /* thumb_black@2x.png */; };
+		18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1D20BFEFF400571577 /* thumb_white.png */; };
+		18BCAF2020BFF0A600571577 /* vote_box_BB.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1F20BFF0A600571577 /* vote_box_BB.png */; };
+		18BCAF2320BFFC2200571577 /* BaseTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCAF2220BFFC2200571577 /* BaseTableViewCell1.m */; };
 		18C5C4801FCFB77F002A65CB /* NSString+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C47F1FCFB77F002A65CB /* NSString+Extention.m */; };
 		18C5C4851FCFDF34002A65CB /* BaseNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C4831FCFDF33002A65CB /* BaseNetworkRequest.m */; };
 		18C5C4881FCFDF4C002A65CB /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C4871FCFDF4C002A65CB /* BaseService.m */; };
@@ -842,14 +854,6 @@
 		18017047207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
 		1801704A207F352100E4DA07 /* CacheTableManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTableManager.h; sourceTree = "<group>"; };
 		1801704B207F352100E4DA07 /* CacheTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTableManager.m; sourceTree = "<group>"; };
-		180483CA20B984B200DE10CA /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		180483CB20B984B200DE10CA /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
-		180483CC20B984B200DE10CA /* PBKDF2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2.h; sourceTree = "<group>"; };
-		180483CD20B984B200DE10CA /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
-		180483CE20B984B200DE10CA /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
-		180483CF20B984B200DE10CA /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		180483D020B984B200DE10CA /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
-		180483D120B984B200DE10CA /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
 		1806D0F5206E58540023D83B /* SocialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialModel.h; sourceTree = "<group>"; };
 		1806D0F6206E58540023D83B /* SocialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialModel.m; sourceTree = "<group>"; };
 		1806D0F8206E5A010023D83B /* BindWechatRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindWechatRequest.h; sourceTree = "<group>"; };
@@ -1080,6 +1084,12 @@
 		1816915420BEC1B800BF49A8 /* right_arrow_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow_white@2x.png"; sourceTree = "<group>"; };
 		1816915520BEC1B900BF49A8 /* right_arrow_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow_white@3x.png"; sourceTree = "<group>"; };
 		1816915820BECC9F00BF49A8 /* candyBackground_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candyBackground_blue.png; sourceTree = "<group>"; };
+		1816919920BF7E9400BF49A8 /* ImageAndTipLabelViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageAndTipLabelViewManager.h; sourceTree = "<group>"; };
+		1816919A20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageAndTipLabelViewManager.m; sourceTree = "<group>"; };
+		1816919C20BF80EC00BF49A8 /* vote_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote_box@2x.png"; sourceTree = "<group>"; };
+		1816919D20BF80EC00BF49A8 /* vote_box@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote_box@3x.png"; sourceTree = "<group>"; };
+		181691A020BF83B600BF49A8 /* nomoredata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@2x.png"; sourceTree = "<group>"; };
+		181691A120BF83B600BF49A8 /* nomoredata@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@3x.png"; sourceTree = "<group>"; };
 		182007402069E1E600D281EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		182007422069E27000D281EF /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		182007442069E2AC00D281EF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
@@ -1310,6 +1320,18 @@
 		183C5B9F1FCBEC9400DE6E88 /* pocketEOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocketEOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183C5BA31FCBEC9400DE6E88 /* pocketEOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pocketEOSUITests.m; sourceTree = "<group>"; };
 		183C5BA51FCBEC9400DE6E88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		183FF6DB20C0CE600058D010 /* changePassword_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword_BB@2x.png"; sourceTree = "<group>"; };
+		183FF6DC20C0CE600058D010 /* changePassword_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword_BB@3x.png"; sourceTree = "<group>"; };
+		183FF6DF20C0D6800058D010 /* PBKDF2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2.h; sourceTree = "<group>"; };
+		183FF6E020C0D6800058D010 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
+		183FF6E120C0D6800058D010 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
+		183FF6E220C0D6810058D010 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
+		183FF6E320C0D6810058D010 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		183FF6E420C0D6810058D010 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		183FF6E520C0D6810058D010 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		183FF6E620C0D6810058D010 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		183FF6E720C0D6820058D010 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		183FF6E820C0D6820058D010 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		183FF8B01FF33DB7006C25F1 /* RichListResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichListResult.h; sourceTree = "<group>"; };
 		183FF8B11FF33DB7006C25F1 /* RichListResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichListResult.m; sourceTree = "<group>"; };
 		183FF8B91FF3456F006C25F1 /* NewsListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsListCell.h; sourceTree = "<group>"; };
@@ -1575,8 +1597,6 @@
 		185BA3B920BBB3CE00F63674 /* BaseConfirmButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseConfirmButton.m; sourceTree = "<group>"; };
 		185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@2x.png"; sourceTree = "<group>"; };
 		185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@3x.png"; sourceTree = "<group>"; };
-		185BA3BF20BBC1F500F63674 /* changePassword_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "changePassword_BB@2x.png"; path = "../../../../../Documents/PocketUI/黑匣子模式/切图/changePassword_BB@2x.png"; sourceTree = "<group>"; };
-		185BA3C020BBC1F500F63674 /* changePassword_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "changePassword_BB@3x.png"; path = "../../../../../Documents/PocketUI/黑匣子模式/切图/changePassword_BB@3x.png"; sourceTree = "<group>"; };
 		185BA3C320BBC1FD00F63674 /* createAccount_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount_BB@2x.png"; sourceTree = "<group>"; };
 		185BA3C420BBC1FD00F63674 /* createAccount_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount_BB@3x.png"; sourceTree = "<group>"; };
 		185BA3C720BBC20400F63674 /* importAccount_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount_BB@2x.png"; sourceTree = "<group>"; };
@@ -1945,6 +1965,14 @@
 		18B2913520899B470032EE27 /* RedPacketDetailSingleAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketDetailSingleAccount.m; sourceTree = "<group>"; };
 		18B44E58208730D700BF41BA /* ShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareModel.h; sourceTree = "<group>"; };
 		18B44E59208730D700BF41BA /* ShareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareModel.m; sourceTree = "<group>"; };
+		18BCAF1620BFD8E600571577 /* BPVoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPVoteViewController.h; sourceTree = "<group>"; };
+		18BCAF1720BFD8E600571577 /* BPVoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPVoteViewController.m; sourceTree = "<group>"; };
+		18BCAF1920BFECAC00571577 /* thumb_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb_black@3x.png"; sourceTree = "<group>"; };
+		18BCAF1A20BFECAD00571577 /* thumb_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb_black@2x.png"; sourceTree = "<group>"; };
+		18BCAF1D20BFEFF400571577 /* thumb_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb_white.png; sourceTree = "<group>"; };
+		18BCAF1F20BFF0A600571577 /* vote_box_BB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vote_box_BB.png; sourceTree = "<group>"; };
+		18BCAF2120BFFC2200571577 /* BaseTableViewCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell1.h; sourceTree = "<group>"; };
+		18BCAF2220BFFC2200571577 /* BaseTableViewCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell1.m; sourceTree = "<group>"; };
 		18C5C47E1FCFB77F002A65CB /* NSString+Extention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extention.h"; sourceTree = "<group>"; };
 		18C5C47F1FCFB77F002A65CB /* NSString+Extention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extention.m"; sourceTree = "<group>"; };
 		18C5C4831FCFDF33002A65CB /* BaseNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkRequest.m; sourceTree = "<group>"; };
@@ -2222,14 +2250,16 @@
 		180483C920B984B200DE10CA /* AESCrypt */ = {
 			isa = PBXGroup;
 			children = (
-				180483CA20B984B200DE10CA /* Base64.h */,
-				180483CB20B984B200DE10CA /* AESCrypt.m */,
-				180483CC20B984B200DE10CA /* PBKDF2.h */,
-				180483CD20B984B200DE10CA /* NSData+CommonCrypto.h */,
-				180483CE20B984B200DE10CA /* AESCrypt.h */,
-				180483CF20B984B200DE10CA /* Base64.m */,
-				180483D020B984B200DE10CA /* NSData+CommonCrypto.m */,
-				180483D120B984B200DE10CA /* PBKDF2.m */,
+				183FF6E020C0D6800058D010 /* AESCrypt.h */,
+				183FF6E220C0D6810058D010 /* AESCrypt.m */,
+				183FF6E420C0D6810058D010 /* Base64.h */,
+				183FF6E820C0D6820058D010 /* Base64.m */,
+				183FF6E320C0D6810058D010 /* NSData+CommonCrypto.h */,
+				183FF6E720C0D6820058D010 /* NSData+CommonCrypto.m */,
+				183FF6E520C0D6810058D010 /* NSObject+Extension.h */,
+				183FF6E620C0D6810058D010 /* NSObject+Extension.m */,
+				183FF6DF20C0D6800058D010 /* PBKDF2.h */,
+				183FF6E120C0D6800058D010 /* PBKDF2.m */,
 			);
 			path = AESCrypt;
 			sourceTree = "<group>";
@@ -2649,6 +2679,15 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		1816919820BF7E7A00BF49A8 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				1816919920BF7E9400BF49A8 /* ImageAndTipLabelViewManager.h */,
+				1816919A20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
 		18184F1820663EC6009CB45A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -2911,6 +2950,8 @@
 				182B8F8520AD1B9100C43AEC /* BaseView.m */,
 				182B8F9E20AD758200C43AEC /* BaseTableViewCell.h */,
 				182B8F9F20AD758200C43AEC /* BaseTableViewCell.m */,
+				18BCAF2120BFFC2200571577 /* BaseTableViewCell1.h */,
+				18BCAF2220BFFC2200571577 /* BaseTableViewCell1.m */,
 				182B8FA120AD7F5800C43AEC /* BaseCollectionViewCell.h */,
 				182B8FA220AD7F5800C43AEC /* BaseCollectionViewCell.m */,
 				18EA95ED20AEB73A0032A491 /* BaseLabel.h */,
@@ -4252,6 +4293,7 @@
 		187268321FDE315F00C898D1 /* SideBarModule */ = {
 			isa = PBXGroup;
 			children = (
+				18BCAF1420BFD8D500571577 /* BPVote */,
 				18B276F320B7A8590070F472 /* Specification */,
 				18AFBEF820B3080E00E880DD /* BackupAccount */,
 				187268331FDE315F00C898D1 /* MessageCenter(消息中心) */,
@@ -4631,6 +4673,7 @@
 		1886076B1FCBF6D300B00EE7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1816919820BF7E7A00BF49A8 /* CommonView */,
 				18372D522063C9FF004D19D0 /* Utils */,
 				184141B120205FE900A789ED /* Constant */,
 				186564B42011CD580044BBC3 /* RegularExpression */,
@@ -5099,6 +5142,23 @@
 				18B2770320B7BE1A0070F472 /* PocketEOSPrivacyPolicy.rtf */,
 			);
 			path = rtf;
+			sourceTree = "<group>";
+		};
+		18BCAF1420BFD8D500571577 /* BPVote */ = {
+			isa = PBXGroup;
+			children = (
+				18BCAF1520BFD8D500571577 /* ViewController */,
+			);
+			path = BPVote;
+			sourceTree = "<group>";
+		};
+		18BCAF1520BFD8D500571577 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18BCAF1620BFD8E600571577 /* BPVoteViewController.h */,
+				18BCAF1720BFD8E600571577 /* BPVoteViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		18C5C4811FCFDF07002A65CB /* BaseNetworkRequest */ = {
@@ -5790,10 +5850,10 @@
 				185D18681FE7669E0021AD18 /* backup@3x.png */,
 				185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */,
 				185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */,
+				183FF6DB20C0CE600058D010 /* changePassword_BB@2x.png */,
+				183FF6DC20C0CE600058D010 /* changePassword_BB@3x.png */,
 				185D18671FE7669E0021AD18 /* changePassword@2x.png */,
 				185D186D1FE7669F0021AD18 /* changePassword@3x.png */,
-				185BA3BF20BBC1F500F63674 /* changePassword_BB@2x.png */,
-				185BA3C020BBC1F500F63674 /* changePassword_BB@3x.png */,
 				185D18691FE7669E0021AD18 /* createAccount@2x.png */,
 				185D186B1FE7669F0021AD18 /* createAccount@3x.png */,
 				185BA3C320BBC1FD00F63674 /* createAccount_BB@2x.png */,
@@ -5884,6 +5944,14 @@
 				1816915420BEC1B800BF49A8 /* right_arrow_white@2x.png */,
 				1816915520BEC1B900BF49A8 /* right_arrow_white@3x.png */,
 				1816915820BECC9F00BF49A8 /* candyBackground_blue.png */,
+				1816919C20BF80EC00BF49A8 /* vote_box@2x.png */,
+				1816919D20BF80EC00BF49A8 /* vote_box@3x.png */,
+				18BCAF1F20BFF0A600571577 /* vote_box_BB.png */,
+				181691A020BF83B600BF49A8 /* nomoredata@2x.png */,
+				181691A120BF83B600BF49A8 /* nomoredata@3x.png */,
+				18BCAF1A20BFECAD00571577 /* thumb_black@2x.png */,
+				18BCAF1920BFECAC00571577 /* thumb_black@3x.png */,
+				18BCAF1D20BFEFF400571577 /* thumb_white.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -6220,6 +6288,7 @@
 			files = (
 				18E080662068D72F0032B09C /* qq_share@2x.png in Resources */,
 				187D9BF72080C02F0059BD2A /* wechat_moments@3x.png in Resources */,
+				1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */,
 				1825DC532005AA820057320C /* slider_white@2x.png in Resources */,
 				186857191FE10C02002A683A /* ExportPrivateKeyView.xib in Resources */,
 				18FDFFC12024521800AEB4FA /* scan_2@2x.png in Resources */,
@@ -6245,6 +6314,7 @@
 				185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */,
 				185D18171FE7596E0021AD18 /* pERichList@2x.png in Resources */,
 				188C30481FFDF74E00A357F3 /* wechat_login@2x.png in Resources */,
+				183FF6DE20C0CE600058D010 /* changePassword_BB@3x.png in Resources */,
 				187D9BF22080C02F0059BD2A /* qq_Zone@2x.png in Resources */,
 				185BA39520BB9AED00F63674 /* messageCenter_BB@3x .png in Resources */,
 				1820076B206A668E00D281EF /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -6261,6 +6331,7 @@
 				18F03FC32067804000697D7F /* background_blue@2x.png in Resources */,
 				18EE05571FDFAC2100134E5C /* CreateAccountHeaderView.xib in Resources */,
 				185D18441FE75FC30021AD18 /* back@3x.png in Resources */,
+				18BCAF2020BFF0A600571577 /* vote_box_BB.png in Resources */,
 				18466D7920106D44002E675A /* Eos.js in Resources */,
 				185BA39720BB9AED00F63674 /* feedBack_BB@2x.png in Resources */,
 				18FDFFC32024522000AEB4FA /* scan_3@2x.png in Resources */,
@@ -6269,6 +6340,7 @@
 				1838496120BE43AA00B89549 /* recieve_white@2x.png in Resources */,
 				185D186E1FE766A00021AD18 /* backup@2x.png in Resources */,
 				185BA3CA20BBC20500F63674 /* importAccount_BB@3x.png in Resources */,
+				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
 				185D18491FE7602E0021AD18 /* bankCard@3x.png in Resources */,
 				1853DE3120B2A083003DC727 /* EOSMappingImportAccountHeaderView.xib in Resources */,
 				18F03FCD206785CC00697D7F /* systemSetting@3x.png in Resources */,
@@ -6319,6 +6391,7 @@
 				1816915620BEC1B900BF49A8 /* right_arrow_white@2x.png in Resources */,
 				185BA3BD20BBC1EC00F63674 /* backup_BB@2x.png in Resources */,
 				185D18331FE75CDC0021AD18 /* versionUpdate@3x.png in Resources */,
+				181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */,
 				1878BCB0208458AE002A76F5 /* redPacketBackground@2x.png in Resources */,
 				1878BCA620843348002A76F5 /* AssestsShareDetailView.xib in Resources */,
 				183348741FCE5DAE00884107 /* recieve_icon@2x.png in Resources */,
@@ -6343,6 +6416,7 @@
 				185BA3D220BBC2E700F63674 /* unSelect__BB_wallet_icon@3x.png in Resources */,
 				185D181B1FE759C40021AD18 /* downImg@3x.png in Resources */,
 				185BA3C520BBC1FE00F63674 /* createAccount_BB@2x.png in Resources */,
+				183FF6DD20C0CE600058D010 /* changePassword_BB@2x.png in Resources */,
 				185D18431FE75FC30021AD18 /* share@2x.png in Resources */,
 				185D181A1FE759C40021AD18 /* downImg@2x.png in Resources */,
 				1828F90D20687C1F00513CD1 /* eye_close@2x.png in Resources */,
@@ -6356,6 +6430,7 @@
 				1825DC542005AA820057320C /* slider_white@3x.png in Resources */,
 				182A66161FD11FE1007FD541 /* scan@2x.png in Resources */,
 				185D185E1FE763B10021AD18 /* wechat_big@3x.png in Resources */,
+				18BCAF1C20BFECAD00571577 /* thumb_black@2x.png in Resources */,
 				18F03FCC206785CC00697D7F /* systemSetting@2x.png in Resources */,
 				185D181F1FE75B270021AD18 /* pocket@3x.png in Resources */,
 				18F03FBF20677C3F00697D7F /* protectAccount@2x.png in Resources */,
@@ -6367,7 +6442,6 @@
 				1872F138202D6F35005B5915 /* cancleFollow@3x.png in Resources */,
 				187B63DE206B347D00D0AE86 /* right_icon_blue@3x.png in Resources */,
 				18E72DFD1FCC0C8800D09CA3 /* Info.plist in Resources */,
-				185BA3C120BBC1F500F63674 /* changePassword_BB@2x.png in Resources */,
 				181275E220B6DF60005EDD91 /* close-marquee@3x.png in Resources */,
 				1828F91A2068C6CB00513CD1 /* delete_answer_option@3x.png in Resources */,
 				185BA3D020BBC2E700F63674 /* unSelect__BB_wallet_icon@2x.png in Resources */,
@@ -6376,9 +6450,9 @@
 				1828F91E2068C70300513CD1 /* news_list_cell_time@2x.png in Resources */,
 				185BA39920BB9AED00F63674 /* versionUpdate_BB@2x.png in Resources */,
 				18FDFFC52024522800AEB4FA /* scan_4@2x.png in Resources */,
-				185BA3C220BBC1F500F63674 /* changePassword_BB@3x.png in Resources */,
 				1872F13B202D6FD6005B5915 /* back_white@2x.png in Resources */,
 				181275DE20B6DF58005EDD91 /* volume-marquee@2x.png in Resources */,
+				181691A220BF83B600BF49A8 /* nomoredata@2x.png in Resources */,
 				18F03FD92067878C00697D7F /* transfer@3x.png in Resources */,
 				185DD692206CA75600BCFFCF /* recieve@3x.png in Resources */,
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
@@ -6433,11 +6507,13 @@
 				18DBBB19206523A00050EE20 /* PGDatePicker.bundle in Resources */,
 				183348771FCE5DAE00884107 /* transfer_icon@2x.png in Resources */,
 				186857251FE1292C002A683A /* LoginPasswordView.xib in Resources */,
+				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
 				188C30491FFDF74E00A357F3 /* qq_login@3x.png in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
 				1826837B2073A54E009699E2 /* server.cer in Resources */,
 				18466DA52010A049002E675A /* PYSearch.bundle in Resources */,
 				1826AD50207A1A500046EE7C /* SideBarMainView.xib in Resources */,
+				18BCAF1B20BFECAD00571577 /* thumb_black@3x.png in Resources */,
 				182A66171FD11FE1007FD541 /* scan@3x.png in Resources */,
 				18DBD27F204258B0001E2DDF /* account_default_avatar@2x.png in Resources */,
 				185BA3A120BBA70200F63674 /* assest_unSelect_BB@2x.png in Resources */,
@@ -6547,6 +6623,7 @@
 			files = (
 				183AE1F92019B8FE002041F9 /* EnterpriseListRequest.m in Sources */,
 				1886079D1FCC012F00B00EE7 /* NSMutableAttributedString+ExFoundation.m in Sources */,
+				183FF6EC20C0D6820058D010 /* NSData+CommonCrypto.m in Sources */,
 				182CDF42201EFEFF002B87B6 /* MessageFeedback.m in Sources */,
 				182CDEB7201EBBAA002B87B6 /* GetMessageListRequest.m in Sources */,
 				1806D0F7206E58540023D83B /* SocialModel.m in Sources */,
@@ -6600,6 +6677,7 @@
 				1856A4EE2008887200D62FEB /* NSBundle+MJRefresh.m in Sources */,
 				18B2912720898C530032EE27 /* GetRedPacketRecordRequest.m in Sources */,
 				18DBBB0D206523A00050EE20 /* NSDate+PGCategory.m in Sources */,
+				183FF6ED20C0D6820058D010 /* Base64.m in Sources */,
 				186050F22027FF7C00C87DDF /* Question.m in Sources */,
 				18423A0E1FFF583F006AB986 /* SGQRCodeHelperTool.m in Sources */,
 				186050F5202809AD00C87DDF /* QuestionListTableViewCell.m in Sources */,
@@ -6676,6 +6754,7 @@
 				1826AD302079D9ED0046EE7C /* PersonalSettingDetailHeaderView.m in Sources */,
 				18372D582063E344004D19D0 /* RecieveService.m in Sources */,
 				181130121FCD01B800BEA0D9 /* SDWebImageManager.m in Sources */,
+				183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */,
 				1806D106206E5BE10023D83B /* BindPhoneRequest.m in Sources */,
 				1832CC3820070E1C00C055B6 /* AskQuestionService.m in Sources */,
 				184D61AD1FD521C200EA26B1 /* TAAbstractDotView.m in Sources */,
@@ -6725,7 +6804,6 @@
 				185DD6D5206CA80400BCFFCF /* MJFoundation.m in Sources */,
 				18017049207EF1A400E4DA07 /* HybridNSURLProtocol.m in Sources */,
 				18466D7D20106E00002E675A /* JavascriptWebViewController.m in Sources */,
-				180483D420B984B200DE10CA /* NSData+CommonCrypto.m in Sources */,
 				1811306A1FCD020A00BEA0D9 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				186564EB201228D80044BBC3 /* CreateAccountService.m in Sources */,
 				182B02F21FF39ABC006C9DFB /* AccountsTableManager.m in Sources */,
@@ -6742,11 +6820,13 @@
 				1825DC6E20061BB30057320C /* AskQuestionViewController.m in Sources */,
 				1856A4E52008887200D62FEB /* MJRefreshAutoStateFooter.m in Sources */,
 				189E3EC1201C5B980022AF19 /* RSKInternalUtility.m in Sources */,
+				183FF6E920C0D6820058D010 /* PBKDF2.m in Sources */,
 				18B44E5A208730D700BF41BA /* ShareModel.m in Sources */,
 				18EA95F520AEC1D80032A491 /* BaseButton.m in Sources */,
 				185BCFC32085A47000C4A558 /* RedPacket.m in Sources */,
 				18FA76F32062578A00545E73 /* GetRequiredPublicKeyRequest.m in Sources */,
 				1886079C1FCC012F00B00EE7 /* NSDictionary+ExFoundation.m in Sources */,
+				18BCAF2320BFFC2200571577 /* BaseTableViewCell1.m in Sources */,
 				18466DAA2010A049002E675A /* UIView+PYSearchExtension.m in Sources */,
 				18154F29201ABB5F00F73D14 /* UpdateUserNameRequest.m in Sources */,
 				1831F3AA20170FAB002CE94D /* AccountResult.m in Sources */,
@@ -6791,6 +6871,7 @@
 				18466DA42010A049002E675A /* NSBundle+PYSearchExtension.m in Sources */,
 				18DBBB2E206525F10050EE20 /* PGPickerTableView.m in Sources */,
 				182B8F8A20AD3A6800C43AEC /* LEEBubble.m in Sources */,
+				183FF6EA20C0D6820058D010 /* AESCrypt.m in Sources */,
 				1872F145202D7713005B5915 /* CheckWhetherFollowRequest.m in Sources */,
 				18B2912A20898E910032EE27 /* RedPacketRecordResult.m in Sources */,
 				186564E42011E86C0044BBC3 /* NSString+Hash.m in Sources */,
@@ -6851,6 +6932,7 @@
 				1878B4E91FD8DED600D63037 /* RecieveQRCodeView.m in Sources */,
 				1826AD2D2079C48F0046EE7C /* LoginMainViewController.m in Sources */,
 				183FF8B21FF33DB7006C25F1 /* RichListResult.m in Sources */,
+				18BCAF1820BFD8E600571577 /* BPVoteViewController.m in Sources */,
 				183348921FCE770100884107 /* CALayer+XibConfiguration.m in Sources */,
 				188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */,
 				189E3EBD201C5B980022AF19 /* CGGeometry+RSKImageCropper.m in Sources */,
@@ -6879,7 +6961,6 @@
 				185DD6DB206D119600BCFFCF /* AskQuestionTipView.m in Sources */,
 				181130091FCD01B800BEA0D9 /* SDWebImageCoder.m in Sources */,
 				18FA76CD20623C6D00545E73 /* EosByteWriter.m in Sources */,
-				180483D220B984B200DE10CA /* AESCrypt.m in Sources */,
 				1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */,
 				18A2F4691FF0A20A00B6CE43 /* FMDatabaseAdditions.m in Sources */,
 				189EB999207B6DCB0088C6FC /* SetAppLanguageHelper.m in Sources */,
@@ -6902,11 +6983,9 @@
 				1826AD4E207A1A480046EE7C /* SideBarMainView.m in Sources */,
 				1853DE3920B2BB67003DC727 /* CandyMainViewController.m in Sources */,
 				1853DE3C20B2BB81003DC727 /* CandyMainHeaderView.m in Sources */,
-				180483D520B984B200DE10CA /* PBKDF2.m in Sources */,
 				18C5C4851FCFDF34002A65CB /* BaseNetworkRequest.m in Sources */,
 				1831F3AD20170FD3002CE94D /* Account.m in Sources */,
 				1853DE4E20B2E2B3003DC727 /* CandyTaskModel.m in Sources */,
-				180483D320B984B200DE10CA /* Base64.m in Sources */,
 				1831F3A02016E515002CE94D /* BackupEosAccountRequest.m in Sources */,
 				1864C0F51FE3B00F00031547 /* ApplicationDetailHeaderView.m in Sources */,
 				18112F6C1FCD016000BEA0D9 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -6983,6 +7062,7 @@
 				180FDFCC2021B9E500BE593F /* PocketManagementService.m in Sources */,
 				18233E14206238000087D60B /* uECC.c in Sources */,
 				184D61AF1FD521C200EA26B1 /* TADotView.m in Sources */,
+				1816919B20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m in Sources */,
 				1812BB5D20B3AD3800C70801 /* AssestDetailFooterView.m in Sources */,
 				18372D312063371B004D19D0 /* TransactionResult.m in Sources */,
 				182CDF52201EFFB4002B87B6 /* FeedbackHeaderView.m in Sources */,

@@ -116,6 +116,9 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
 
     if (self.currentOrientation != [[UIDevice currentDevice] orientation]) { // orientation changed, reload layout
         self.hotSearches = self.hotSearches;
@@ -399,6 +402,10 @@
     searchBar.placeholder = [NSBundle py_localizedStringForKey:PYSearchSearchPlaceholderText];
     searchBar.backgroundImage = [NSBundle py_imageNamed:@"clearImage"];
     searchBar.delegate = self;
+    
+    searchBar.layer.cornerRadius = 4;
+    searchBar.layer.masksToBounds = YES;
+    
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
         if ([[subView class] isSubclassOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)subView;

@@ -69,7 +69,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入钱包密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-m3-LXv" customClass="BaseLabel1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-m3-LXv" customClass="BaseLabel1">
                     <rect key="frame" x="20" y="105" width="335" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="xjt-on-6qr"/>
@@ -78,7 +78,7 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kai-wW-ZHL" customClass="BaseTextField">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kai-wW-ZHL" customClass="BaseTextField">
                     <rect key="frame" x="20" y="139" width="335" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="xmu-xD-IwP"/>
@@ -87,8 +87,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请确认钱包密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6I-r1-85M" customClass="BaseLabel1">
-                    <rect key="frame" x="20" y="193.5" width="100" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6I-r1-85M" customClass="BaseLabel1">
+                    <rect key="frame" x="20" y="193.5" width="57.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="AgF-Za-VbI"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="xjf-UH-UmW"/>
@@ -97,7 +97,7 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pzx-CS-Da9" customClass="BaseTextField">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pzx-CS-Da9" customClass="BaseTextField">
                     <rect key="frame" x="20" y="232" width="335" height="19"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Lhd-W6-sdi"/>

@@ -33,17 +33,17 @@
 //    self.backgroundColor = [UIColor colorWithHexString:@"fff4d8"];
     self.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFEFCEC))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x74747));
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x474747));
     self.clipsToBounds = YES;
     
     //------- 左边的喇叭 -------//
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(13, 9+3, 16, 12)];
-    [self addSubview:imageView];
+//    [self addSubview:imageView];
     imageView.image = [UIImage imageNamed:@"volume-marquee"];
     
     //------- 右边的关闭按钮 -------//
     UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.width - 33, 0+3, 30, 30)];
-    [self addSubview:closeButton];
+//    [self addSubview:closeButton];
     [closeButton setImage:[UIImage imageNamed:@"close-marquee"] forState:UIControlStateNormal];
     [closeButton setImageEdgeInsets:UIEdgeInsetsMake(9, 9, 9, 9)];
     [closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -53,6 +53,9 @@
     // 背景
     UIView *marqueeBgView = [[UIView alloc] initWithFrame:CGRectMake(41, 0, self.width - 41 - 38, self.height)];
     [self addSubview:marqueeBgView];
+    marqueeBgView.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFEFCEC ))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x474747 ));
     marqueeBgView.clipsToBounds = YES;
     
     // marquee label

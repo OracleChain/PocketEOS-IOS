@@ -35,7 +35,7 @@
 #import "NSObject+Extension.h"
 
 const int SALT_LEN = 32;
-const int ITERATIONS = 1000;
+const int ITERATIONS = 10000;
 const int KEY_LENGTH = 32;
 
 @implementation AESCrypt
