@@ -153,7 +153,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
-    [self.mainTableView.mj_header beginRefreshing];
+//    [self.mainTableView.mj_header beginRefreshing];
     
     [self loadAllBlocks];
     

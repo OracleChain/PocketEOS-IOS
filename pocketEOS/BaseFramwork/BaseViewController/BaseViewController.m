@@ -71,25 +71,6 @@
 
 
 
-- (UICollectionView *)mainCollectionView{
-    if(!_mainCollectionView){
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
-        
-        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + SCREEN_WIDTH * 0.40 );
-        layout.minimumLineSpacing = 1;
-        layout.minimumInteritemSpacing = 1;
-        
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
-    _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-        [_mainCollectionView setDataSource: self];
-        [_mainCollectionView setDelegate: self];
-        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
-        
-    }
-    return _mainCollectionView;
-}
-
 
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
@@ -112,7 +93,7 @@
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-    if ([[LEETheme currentThemeTag ] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -120,35 +101,6 @@
 
 }
 
-
-+ (void)showNoDataViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController{
-    [self showNoDataViewWithImageName:imageName andTitleStr:titleStr toView:parentView andViewController:viewController];
-}
-
--(void)showNoDataViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController tag:(NSInteger)tag
-{
-    UIImageView *img = [[UIImageView alloc] init];
-    img.image = [UIImage imageNamed:imageName];
-    img.contentMode = UIViewContentModeScaleAspectFill;
-    
-    BaseLabel *label = [[BaseLabel alloc] init];
-    label.font = [UIFont systemFontOfSize:14];
-    label.text = titleStr;
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.noDataView addSubview:img];
-    [self.noDataView addSubview:label];
-    
-    [parentView addSubview:self.noDataView];
-}
-
-
--(void)removeNoDataView{
-    if (_noDataView) {
-        [_noDataView removeFromSuperview];
-        _noDataView = nil;
-    }
-}
 
 
 

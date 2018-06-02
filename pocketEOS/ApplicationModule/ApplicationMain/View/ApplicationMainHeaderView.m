@@ -23,6 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *starTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *starDetailView;
 
+@property (weak, nonatomic) IBOutlet BaseSlimLineView *line1;
+@property (weak, nonatomic) IBOutlet BaseView *starLabelBaseView;
+@property (weak, nonatomic) IBOutlet BaseView *starDappBaseView;
+@property (weak, nonatomic) IBOutlet BaseSlimLineView *line2;
+@property (weak, nonatomic) IBOutlet BaseView *line3;
+@property (weak, nonatomic) IBOutlet BaseView *enterpriseBaseView;
+
+
 @end
 
 @implementation ApplicationMainHeaderView
@@ -38,6 +46,16 @@
 
 - (void)updateViewWithArray:(NSArray *)array{
     if (array.count == 0) {
+        [self sd_clearAutoLayoutSettings];
+        self.cycleScrollView.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(SCREEN_WIDTH * 0.4);
+        self.line1.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.cycleScrollView, 0).heightIs(10);
+        self.starLabelBaseView.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.line1, 0).heightIs(50);
+        self.starDappBaseView.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.starLabelBaseView, 0).heightIs(86);
+        self.line2.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.starDappBaseView, 0).heightIs(10);
+        self.enterpriseBaseView.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.line2, 0).heightIs(50);
+        self.line3.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.enterpriseBaseView, 0).heightIs(0.5);
+        [self setupAutoHeightWithBottomView:self.line3 bottomMargin:20];
+        [self setNeedsDisplay];
         return;
     }
     CGFloat itemWidth_height = 45;
@@ -81,7 +99,6 @@
     [self.starImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.applyIcon)) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     self.starTitleLabel.text = [NSString stringWithFormat:@" %@", model.applyName];
     self.starDetailView.text = model.applyDetails;
-    
-//    self.starImg.sd_cornerRadius = @10;
 }
+
 @end

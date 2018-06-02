@@ -241,7 +241,7 @@
 }
 
 -(void)sendRedPacket:(UIButton *)sender{
-    [TOASTVIEW showWithText:@"敬请期待!"];
+    [TOASTVIEW showWithText:@"EOS主网上线之后，该功能开放!"];
 //    self.mainService.sendRedpacketRequest.uid = CURRENT_WALLET_UID;
 //    self.mainService.sendRedpacketRequest.account = self.currentAccountName;
 //    self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.integerValue);

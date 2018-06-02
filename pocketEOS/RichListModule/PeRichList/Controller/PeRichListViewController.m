@@ -104,15 +104,16 @@
                 // 拿到当前的上拉刷新控件，变为没有更多数据的状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
                 [weakSelf.mainTableView.mj_footer endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
+                 [IMAGE_TIP_LABEL_MANAGER removeImageAndTipLabelViewManager];
             }
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+            [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
         }
     }];
 }

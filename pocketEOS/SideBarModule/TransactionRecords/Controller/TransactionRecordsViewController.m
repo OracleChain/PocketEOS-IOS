@@ -66,7 +66,7 @@
     [self.view addSubview:self.headerView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 52, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 52);
     [self.view addSubview:self.mainTableView];
-    [self.mainTableView.mj_header beginRefreshing];
+//    [self.mainTableView.mj_header beginRefreshing];
     
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];

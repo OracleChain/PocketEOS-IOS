@@ -89,6 +89,11 @@
     if (IsStrEmpty(self.webView.title)) {
         [self.webView reload];
     }
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -107,7 +112,7 @@
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     
-    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://59.110.162.106:8002/#/answer")]];
+    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://api.pocketeos.top:3000/#/answer")]];
     
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;

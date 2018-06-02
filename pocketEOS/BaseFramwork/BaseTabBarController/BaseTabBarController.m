@@ -116,7 +116,7 @@
     controller.tabBarItem.title = title;//跟上面一样效果
     
     
-    if ([[LEETheme currentThemeTag ]  isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         controller.tabBarItem.image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         controller.tabBarItem.selectedImage = [[UIImage imageNamed:selectImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         // 普通状态下的文字属性

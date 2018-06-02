@@ -200,7 +200,6 @@
 
 // NewsMainHeaderViewDelegate
 - (void)currentAssestsLabelDidTap:(UITapGestureRecognizer *)sender{
-    
     [self.view addSubview:self.popUpWindow];
     
     UIView *a = [(BaseTabBarController *)self.parentViewController.parentViewController view];

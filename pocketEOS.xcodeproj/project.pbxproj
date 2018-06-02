@@ -339,8 +339,8 @@
 		18452B912074C91F00FAE7CE /* XYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18452B8E2074C91F00FAE7CE /* XYTabBar.m */; };
 		184566C820C1861C0005F216 /* nomoredata_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566C620C1861B0005F216 /* nomoredata_BB@3x.png */; };
 		184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566C720C1861C0005F216 /* nomoredata_BB@2x.png */; };
-		184566CC20C18C290005F216 /* sheild_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CA20C18C280005F216 /* sheild_BB@2x.png */; };
-		184566CD20C18C290005F216 /* sheild_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CB20C18C290005F216 /* sheild_BB@3x.png */; };
+		184566CC20C18C290005F216 /* shield_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CA20C18C280005F216 /* shield_BB@2x.png */; };
+		184566CD20C18C290005F216 /* shield_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CB20C18C290005F216 /* shield_BB@3x.png */; };
 		18466D7820106D44002E675A /* Javascript.html in Resources */ = {isa = PBXBuildFile; fileRef = 18466D7620106D44002E675A /* Javascript.html */; };
 		18466D7920106D44002E675A /* Eos.js in Resources */ = {isa = PBXBuildFile; fileRef = 18466D7720106D44002E675A /* Eos.js */; };
 		18466D7D20106E00002E675A /* JavascriptWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18466D7C20106E00002E675A /* JavascriptWebViewController.m */; };
@@ -1441,8 +1441,8 @@
 		18452B8F2074C91F00FAE7CE /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
 		184566C620C1861B0005F216 /* nomoredata_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata_BB@3x.png"; sourceTree = "<group>"; };
 		184566C720C1861C0005F216 /* nomoredata_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata_BB@2x.png"; sourceTree = "<group>"; };
-		184566CA20C18C280005F216 /* sheild_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sheild_BB@2x.png"; sourceTree = "<group>"; };
-		184566CB20C18C290005F216 /* sheild_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sheild_BB@3x.png"; sourceTree = "<group>"; };
+		184566CA20C18C280005F216 /* shield_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shield_BB@2x.png"; sourceTree = "<group>"; };
+		184566CB20C18C290005F216 /* shield_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shield_BB@3x.png"; sourceTree = "<group>"; };
 		18466D7620106D44002E675A /* Javascript.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Javascript.html; sourceTree = "<group>"; };
 		18466D7720106D44002E675A /* Eos.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Eos.js; sourceTree = "<group>"; };
 		18466D7B20106E00002E675A /* JavascriptWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewController.h; sourceTree = "<group>"; };
@@ -5989,8 +5989,8 @@
 				183FF74320C159730058D010 /* transaction_history_BB@3x.png */,
 				184566C720C1861C0005F216 /* nomoredata_BB@2x.png */,
 				184566C620C1861B0005F216 /* nomoredata_BB@3x.png */,
-				184566CA20C18C280005F216 /* sheild_BB@2x.png */,
-				184566CB20C18C290005F216 /* sheild_BB@3x.png */,
+				184566CA20C18C280005F216 /* shield_BB@2x.png */,
+				184566CB20C18C290005F216 /* shield_BB@3x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -6383,7 +6383,7 @@
 				187D9BF32080C02F0059BD2A /* wechat_friends@2x.png in Resources */,
 				1838496120BE43AA00B89549 /* recieve_white@2x.png in Resources */,
 				185D186E1FE766A00021AD18 /* backup@2x.png in Resources */,
-				184566CD20C18C290005F216 /* sheild_BB@3x.png in Resources */,
+				184566CD20C18C290005F216 /* shield_BB@3x.png in Resources */,
 				185BA3CA20BBC20500F63674 /* importAccount_BB@3x.png in Resources */,
 				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
 				185D18491FE7602E0021AD18 /* bankCard@3x.png in Resources */,
@@ -6422,7 +6422,7 @@
 				1833488F1FCE69B200884107 /* 2.png in Resources */,
 				181275DF20B6DF58005EDD91 /* volume-marquee@3x.png in Resources */,
 				185D18581FE762000021AD18 /* email@2x.png in Resources */,
-				184566CC20C18C290005F216 /* sheild_BB@2x.png in Resources */,
+				184566CC20C18C290005F216 /* shield_BB@2x.png in Resources */,
 				18E72E511FCC1AAE00D09CA3 /* assest_unSelect@3x.png in Resources */,
 				18466DBC2010B291002E675A /* SelectAccountView.xib in Resources */,
 				18B2770420B7BE1A0070F472 /* PocketEOSPrivacyPolicy.rtf in Resources */,

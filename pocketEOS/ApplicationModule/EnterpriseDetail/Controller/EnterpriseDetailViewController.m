@@ -14,18 +14,21 @@
 #import "NavigationView.h"
 #import "CDZPicker.h"
 #import "EnterpriseDetailService.h"
+#import "DAppDetailViewController.h"
+#import "QuestionListViewController.h"
 
-@interface EnterpriseDetailViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate>
+@interface EnterpriseDetailViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, EnterpriseDetailHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) EnterpriseDetailHeaderView *headerView;
 @property(nonatomic, strong) EnterpriseDetailService *mainService;
+@property(nonatomic, strong) UICollectionView *mainCollectionView;
 @end
 
 @implementation EnterpriseDetailViewController
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"应用详情" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"企业详情" rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -37,6 +40,27 @@
     }
     return _mainService;
 }
+
+
+- (UICollectionView *)mainCollectionView{
+    if(!_mainCollectionView){
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
+        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + SCREEN_WIDTH * 0.40 );
+        layout.minimumLineSpacing = 1;
+        layout.minimumInteritemSpacing = 1;
+        
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
+        _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+        [_mainCollectionView setDataSource: self];
+        [_mainCollectionView setDelegate: self];
+        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
+        
+        
+    }
+    return _mainCollectionView;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,7 +98,17 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@"  , indexPath);
+    Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
+    
+    if ([model.applyName isEqualToString:@"有问币答"]) {
+        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -83,10 +117,30 @@
         if (indexPath.section == 0) {
            self.headerView = (EnterpriseDetailHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header3" forIndexPath:indexPath];
             [self.headerView updateViewWithModel:self.model];
+            self.headerView.delegate = self;
             return self.headerView;
         }
     }
     return reusableview;
+}
+
+//EnterpriseDetailHeaderViewDelegate
+- (void)recommandBtnDidClick:(UIButton *)sender{
+    if (self.mainService.recommandApplicationDataArray.count > 0) {
+        Application *model = self.mainService.recommandApplicationDataArray[0];
+        if ([model.applyName isEqualToString:@"有问币答"]) {
+            QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        
+        
+        
+    }
 }
 
 - (void)leftBtnDidClick {

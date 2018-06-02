@@ -15,6 +15,7 @@
 
 @interface ApplicationDetailViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
+@property(nonatomic, strong) UICollectionView *mainCollectionView;
 @end
 
 @implementation ApplicationDetailViewController
@@ -26,6 +27,27 @@
     }
     return _navView;
 }
+
+
+- (UICollectionView *)mainCollectionView{
+    if(!_mainCollectionView){
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
+        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + SCREEN_WIDTH * 0.40 );
+        layout.minimumLineSpacing = 1;
+        layout.minimumInteritemSpacing = 1;
+        
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
+        _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+        [_mainCollectionView setDataSource: self];
+        [_mainCollectionView setDelegate: self];
+        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
+        
+        
+    }
+    return _mainCollectionView;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

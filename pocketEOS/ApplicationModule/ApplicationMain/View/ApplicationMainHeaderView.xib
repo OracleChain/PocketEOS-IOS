@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="10" id="RXN-4f-tTV"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Z-aj-YMP" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Z-aj-YMP" userLabel="starLabelBase View" customClass="BaseView">
                     <rect key="frame" x="0.0" y="264" width="375" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本周明星应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-ss-pgo" customClass="BaseLabel">
@@ -73,7 +73,7 @@
                         <constraint firstAttribute="bottom" secondItem="x17-zD-x2u" secondAttribute="bottom" id="x5d-TT-c64"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkk-Go-VXG" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkk-Go-VXG" userLabel="starDappBase View" customClass="BaseView">
                     <rect key="frame" x="0.0" y="314" width="375" height="86"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_default_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hhc-0e-v1C">
@@ -144,7 +144,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="t6U-QA-14L"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBg-2j-u94" userLabel="baseView3" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBg-2j-u94" userLabel="enterprisebaseView3" customClass="BaseView">
                     <rect key="frame" x="0.0" y="410" width="375" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-bb-1qF" customClass="BaseLabel">
@@ -204,8 +204,14 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="cycleScrollView" destination="y2t-NF-noC" id="W9C-o5-DBg"/>
+                <outlet property="enterpriseBaseView" destination="ZBg-2j-u94" id="qIT-zK-9nC"/>
+                <outlet property="line1" destination="hXU-I2-cM3" id="dwf-yg-6h1"/>
+                <outlet property="line2" destination="LnC-We-OJU" id="14u-zE-zyV"/>
+                <outlet property="line3" destination="mCj-7q-sGI" id="UDY-kS-xUz"/>
+                <outlet property="starDappBaseView" destination="rkk-Go-VXG" id="f3c-hP-0Ki"/>
                 <outlet property="starDetailView" destination="ihJ-Bs-bAi" id="gMG-av-HD9"/>
                 <outlet property="starImg" destination="Hhc-0e-v1C" id="BZ8-ix-PTB"/>
+                <outlet property="starLabelBaseView" destination="Z9Z-aj-YMP" id="2g7-C5-htw"/>
                 <outlet property="starTitleLabel" destination="z8l-pf-Ejp" id="YKY-pp-XU6"/>
                 <outlet property="top4BackgroundView" destination="PH2-b5-79C" id="LdJ-uC-liH"/>
             </connections>

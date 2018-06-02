@@ -68,7 +68,7 @@
     if (!_backgroundView) {
         _backgroundView = [[UIImageView alloc] init];
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 333);
+            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 300);
             
         }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 248);
@@ -167,7 +167,7 @@
     [self.view addSubview:self.mainTableView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 34, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-34-TABBAR_HEIGHT);
     
-    [self.mainTableView.mj_footer resetNoMoreData];
+    self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.backgroundColor = [UIColor clearColor];
     
     // 添加跑马灯
@@ -255,7 +255,6 @@
     // 扫描二维码
     [self.navView setRightBtn1DidClickBlock:^{
     
-        
         // 1. 获取摄像设备
         AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         if (device) {
@@ -424,11 +423,11 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    CGPoint offset = scrollView.contentOffset;
-    NSLog(@"%f, %f", offset.x, offset.y);
-    if (offset.y >= 0) {
-        scrollView.contentOffset = CGPointMake(0, 0);
-    }
+//    CGPoint offset = scrollView.contentOffset;
+//    NSLog(@"%f, %f", offset.x, offset.y);
+//    if (offset.y >= 0) {
+//        scrollView.contentOffset = CGPointMake(0, 0);
+//    }
     if (scrollView.contentOffset.y >= 300) {
         // 隐藏 headerview
         [UIView animateWithDuration:0.3 animations:^{
@@ -468,9 +467,6 @@
 - (void)profileCenter{
     // 自己随心所欲创建的一个控制器
     SideBarViewController *vc = [[SideBarViewController alloc] init];
-//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-//    navi.navigationController.navigationBar.hidden = YES;
-//    navi.navigationBar.hidden = YES;
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:nil];
     

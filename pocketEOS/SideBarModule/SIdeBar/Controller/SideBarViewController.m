@@ -106,13 +106,11 @@
 
 - (void)avatarBtnDidClick:(UIButton *)sender{
     PersonalSettingViewController *vc = [[PersonalSettingViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 - (void)managePocketBtnDidClick:(id)sender{
     PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
@@ -120,45 +118,37 @@
 
 - (void)transactionRecordBtnDidClick:(UIButton *)sender{
     TransactionRecordsViewController *vc = [[TransactionRecordsViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 - (void)candyBtnDidClick:(UIButton *)sender{
     CandyMainViewController *vc = [[CandyMainViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 - (void)messagesCenterBtnDidClick:(UIButton *)sender{
     MessageCenterViewController *vc = [[MessageCenterViewController alloc] init];
-//    BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 -(void)bp_voteBtnDidClick:(UIButton *)sender{
     BPVoteViewController *vc = [[BPVoteViewController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
     
 }
 
 - (void)feedBackBtnDidClick:(UIButton *)sender{
     MessageFeedbackViewController *vc = [[MessageFeedbackViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 - (void)systemSettingDidClick:(UIButton *)sender{
     SystemSettingViewController *vc = [[SystemSettingViewController alloc ] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 
 - (void)versionUpdateBtnDidClick:(UIButton *)sender{
     VersionUpdateViewController *vc = [[VersionUpdateViewController alloc ] init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self cw_pushViewController:vc];
 }
 

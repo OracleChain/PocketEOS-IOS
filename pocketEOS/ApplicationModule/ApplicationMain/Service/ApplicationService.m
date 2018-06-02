@@ -104,6 +104,7 @@
                         }
                         [weakSelf.imageURLStringsGroup addObject :VALIDATE_STRING(model.publicImage) ];
                         [weakSelf.bannerDataArray addObject:model];
+                        
                     }
                 }
                 [database close];

@@ -174,7 +174,7 @@
     [self.view addSubview:self.footerView];
     [self configHeaderView];
    
-     [self.mainTableView.mj_header beginRefreshing];
+//     [self.mainTableView.mj_header beginRefreshing];
 //    NSValue *value0 = [NSValue valueWithCGPoint:(CGPointMake(0, 40))];
 //    NSValue *value1 = [NSValue valueWithCGPoint:(CGPointMake(10, 20))];
 //    NSValue *value2 = [NSValue valueWithCGPoint:(CGPointMake(15, 70))];
@@ -242,9 +242,9 @@
     WS(weakSelf);
     [self.getSparklinesRequest getDataSusscess:^(id DAO, id data) {
         NSString *tendencyUrlStr ;
-        if ([weakSelf.model.assestsName isEqualToString:@"eos"]) {
+        if ([weakSelf.model.assestsName isEqualToString:@"EOS"]) {
             tendencyUrlStr = data[@"data"][@"sparkline_eos_png"];
-        }else if ([weakSelf.model.assestsName isEqualToString:@"oct"]){
+        }else if ([weakSelf.model.assestsName isEqualToString:@"OCT"]){
             tendencyUrlStr = data[@"data"][@"sparkline_oct_png"];
         }
         UIImageView *imgView = [[UIImageView alloc] init];

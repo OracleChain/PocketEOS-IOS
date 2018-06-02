@@ -31,6 +31,7 @@
 @property(nonatomic, strong) ApplicationMainHeaderView *headerView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) ApplicationService *mainService;
+@property(nonatomic, strong) UICollectionView *mainCollectionView;
 @end
 
 @implementation ApplicationMainViewController
@@ -50,9 +51,36 @@
     }
     return _mainService;
 }
+
+- (UICollectionView *)mainCollectionView{
+    if(!_mainCollectionView){
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
+        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + SCREEN_WIDTH * 0.40 );
+        
+        layout.minimumLineSpacing = 1;
+        layout.minimumInteritemSpacing = 1;
+        
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
+        _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+        [_mainCollectionView setDataSource: self];
+        [_mainCollectionView setDelegate: self];
+        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
+        
+        [_mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
+        [_mainCollectionView registerNib:[UINib nibWithNibName:@"ApplicationMainHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
+        
+    }
+    return _mainCollectionView;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    }
 }
 
 - (void)viewDidLoad {
@@ -63,10 +91,8 @@
     [self.view addGestureRecognizer:leftEdgeGesture];
     leftEdgeGesture.delegate = self;
     [self.view addSubview:self.navView];
+    
     [self.view addSubview:self.mainCollectionView];
-    [self.mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
-    self.mainCollectionView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT);
-    [self.mainCollectionView registerNib:[UINib nibWithNibName:@"ApplicationMainHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
     [self buildDataSource];
 }
 
@@ -119,10 +145,19 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
     Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
-    vc.model = model;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if ([model.applyName isEqualToString:@"有问币答"]) {
+        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
+    
    
 }
 
@@ -172,9 +207,13 @@
 
 -(void)starApplicationBtnDidClick:(UIButton *)sender{
     if (self.mainService.starDataArray.count > 0) {
-        Application *application = self.mainService.starDataArray[0];
-        if ([application.applyName isEqualToString:@"有问币答"]) {
+        Application *model = self.mainService.starDataArray[0];
+        if ([model.applyName isEqualToString:@"有问币答"]) {
             QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+            vc.model = model;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

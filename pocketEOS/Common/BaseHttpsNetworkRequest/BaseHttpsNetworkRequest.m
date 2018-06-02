@@ -15,7 +15,7 @@
 #import "SVProgressHUD.h"
 
 
-#define REQUEST_BASEURL @"http://47.105.99.78:8080"
+#define REQUEST_BASEURL @"http://api.pocketeos.top"
 //http://59.110.162.106:8080 java 地址
 //http://59.110.162.106:8889 裸地址
 

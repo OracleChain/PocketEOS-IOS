@@ -64,6 +64,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    }
     [self buildDataSource];
 }
 

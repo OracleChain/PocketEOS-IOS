@@ -77,7 +77,15 @@
     }
     
     [self configTimeOut:self.networkingManager];
-    
+    // 设置自动管理Cookies
+    self.networkingManager.requestSerializer.HTTPShouldHandleCookies = YES;
+    // 如果已有Cookie, 则把你的cookie符上
+    NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
+    NSLog(@"sendCookie::%@", cookie);
+    if (cookie != nil) {
+        [self.networkingManager.requestSerializer setValue:cookie forHTTPHeaderField:@"Set-Cookie"];
+    }
+
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         [self.networkingManager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
         
@@ -177,6 +185,7 @@
     id parameters = [self parameters];
     NSLog(@"parameters = %@", parameters);
     NSLog(@"REQUEST_APIPATH = %@", REQUEST_APIPATH);
+    
     WS(weakSelf);
     self.sessionDataTask = [self.networkingManager POST: REQUEST_APIPATH parameters: parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -184,6 +193,19 @@
             if(IsNilOrNull(success)){
                 return;
             }
+           
+            //获取 Cookie
+            NSHTTPURLResponse* response = (NSHTTPURLResponse* )task.response;
+            NSDictionary *allHeaderFieldsDic = response.allHeaderFields;
+            NSString *recieveCookie = allHeaderFieldsDic[@"Set-Cookie"];
+            NSLog(@"recieveCookie : %@", recieveCookie);
+            if (!IsStrEmpty(recieveCookie)) {
+//                NSString *cookie = [[setCookie componentsSeparatedByString:@";"] objectAtIndex:0];
+                // 这里对cookie进行存储
+                [[NSUserDefaults standardUserDefaults] setObject:recieveCookie forKey:@"Set-Cookie"];
+            }
+            
+            
             success(weakSelf.networkingManager, responseObject);
         }
         else{
