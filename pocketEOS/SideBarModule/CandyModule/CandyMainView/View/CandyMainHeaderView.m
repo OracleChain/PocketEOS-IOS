@@ -25,20 +25,20 @@
     if(!_mainCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 3 , 170 - 30)];
-        [layout setSectionInset:UIEdgeInsetsMake(10, 20, 10, 10)];
-        [layout setMinimumInteritemSpacing: 20.0f];
-        [layout setMinimumLineSpacing: 20.0f];
+        [layout setSectionInset:UIEdgeInsetsMake(10, 0, 10, 13)];
+//        [layout setMinimumInteritemSpacing: 20.0f];
+//        [layout setMinimumLineSpacing: 20.0f];
         [layout setScrollDirection: UICollectionViewScrollDirectionHorizontal];
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(MARGIN_20, MARGIN_20, COLLECTIONVIEW_WIDTH, COLLECTIONVIEW_HEIGHT ) collectionViewLayout: layout];
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, MARGIN_20, COLLECTIONVIEW_WIDTH, COLLECTIONVIEW_HEIGHT ) collectionViewLayout: layout];
         [_mainCollectionView setDataSource: self];
         [_mainCollectionView setPagingEnabled: YES];
         [_mainCollectionView setDelegate: self];
-        //        [_mainCollectionView setBackgroundColor: RGB(242, 242, 242)];
-        _mainCollectionView.backgroundColor = [UIColor whiteColor];
+        [_mainCollectionView setBackgroundColor: [UIColor whiteColor]];
         [_mainCollectionView setShowsVerticalScrollIndicator: NO];
         [_mainCollectionView setShowsHorizontalScrollIndicator: NO];
         [_mainCollectionView setScrollEnabled: YES];
         [_mainCollectionView registerClass: [CandyMainCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
+        
     }
     return _mainCollectionView;
 }
@@ -47,7 +47,7 @@
     [super awakeFromNib];
     [self.collectionBackgroundView addSubview:self.mainCollectionView];
     self.mainCollectionView.sd_layout
-    .leftSpaceToView(self.collectionBackgroundView, 0.0f)
+    .leftSpaceToView(self.collectionBackgroundView, MARGIN_20)
     .rightSpaceToView(self.collectionBackgroundView, 0.0f)
     .topSpaceToView(self.collectionBackgroundView, 0.0f)
     .bottomSpaceToView(self.collectionBackgroundView, 0.0f);
@@ -62,6 +62,7 @@
     if (!cell) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSEIDENTIFIER forIndexPath:indexPath];
     }
+    
     CandyEquityModel *model = self.dataArray[indexPath.row];
     cell.model = model;
     return cell;

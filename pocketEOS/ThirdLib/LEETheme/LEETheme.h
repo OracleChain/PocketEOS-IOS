@@ -15,7 +15,8 @@
  *  @copyright    Copyright © 2016 - 2017年 lee. All rights reserved.
  *  @version    V1.1.7
  */
-
+#define LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE [[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]
+#define LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE [[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 

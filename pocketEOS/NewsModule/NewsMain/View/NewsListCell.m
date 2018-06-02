@@ -80,7 +80,7 @@
 //        self.summaryLable.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).topSpaceToView(_titleLabel, 4).widthIs(SCREEN_WIDTH - _photoImg.width - (MARGIN_20 * 3)).heightIs(17);
 
         [self.contentView addSubview:self.timeImg];
-        self.timeImg.sd_layout.leftEqualToView(_titleLabel).bottomSpaceToView(self.contentView, 18).widthIs(12).heightEqualToWidth();
+        self.timeImg.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).bottomSpaceToView(self.contentView, 18).widthIs(12).heightEqualToWidth();
 
         [self.contentView addSubview:self.timeLabel];
         self.timeLabel.sd_layout.leftSpaceToView(_timeImg, 4).centerYEqualToView(_timeImg).heightIs(18).rightSpaceToView(_photoImg, MARGIN_20);

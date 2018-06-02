@@ -21,6 +21,10 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
+    self.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    
     self.versionIntoBaseView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFFFFFF))
     .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x282A34));

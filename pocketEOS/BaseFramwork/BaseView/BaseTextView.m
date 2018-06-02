@@ -19,10 +19,10 @@
         .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
         .LeeAddTextColor(BLACKBOX_MODE, RGBA(255, 255, 255, 0.6));
         
-        if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             self.placeholderColor = HEXCOLOR(0x999999);
             
-        }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             self.placeholderColor = HEX_RGB_Alpha(0xFFFFFF, 0.6);
 
         }
@@ -36,10 +36,10 @@
     .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
     .LeeAddTextColor(BLACKBOX_MODE, RGBA(255, 255, 255, 0.6));
     
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.placeholderColor = HEXCOLOR(0x999999);
         
-    }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.placeholderColor = HEX_RGB_Alpha(0xFFFFFF, 0.6);
         
     }

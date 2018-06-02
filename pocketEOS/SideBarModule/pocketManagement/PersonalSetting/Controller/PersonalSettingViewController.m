@@ -80,7 +80,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"PersonalSettingHeaderView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 261);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 250);
     }
     return _headerView;
 }
@@ -112,14 +112,17 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.sliderVerifyView];
+    self.view.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
     
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
-        self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView, 20).heightIs(48);
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, MARGIN_20).rightSpaceToView(self.view, MARGIN_20).topSpaceToView(self.headerView, 20).heightIs(48);
         [self.view addSubview:self.tipLabel];
         self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
       
         
-    }else if([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.headerView.avatarBaseView.hidden = YES;
         self.headerView.wechatBaseView.hidden = YES;
         self.headerView.qqBaseView.hidden = YES;

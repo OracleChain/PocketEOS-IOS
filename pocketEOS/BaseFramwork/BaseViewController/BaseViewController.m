@@ -27,16 +27,18 @@
     if (_mainTableView == nil) {
         _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) style:UITableViewStylePlain];
         _mainTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _mainTableView.estimatedRowHeight = 0;
         _mainTableView.estimatedSectionHeaderHeight = 0;
         _mainTableView.estimatedSectionFooterHeight = 0;
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
+        
         _mainTableView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-        if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _mainTableView.separatorColor = HEX_RGB(0xEEEEEE);
             
-        }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _mainTableView.separatorColor = HEX_RGB_Alpha(0xFFFFFF, 0.1);
         }
         
@@ -105,11 +107,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     if ([[LEETheme currentThemeTag ] isEqualToString:SOCIAL_MODE]) {
         self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-    }else if([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     }
 

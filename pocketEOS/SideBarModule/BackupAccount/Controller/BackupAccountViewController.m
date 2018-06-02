@@ -76,7 +76,7 @@
     }
     
     AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.accountName];
-    NSString *privateKeyStr = [NSString stringWithFormat:@"active_private_key : %@ \n owner_private_key : %@", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
+    NSString *privateKeyStr = [NSString stringWithFormat:@"ACTIVEKEY：%@\nOWNKEY: %@\n", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
     self.headerView.contentTextView.text = privateKeyStr;
     
     [self.loginPasswordView removeFromSuperview];

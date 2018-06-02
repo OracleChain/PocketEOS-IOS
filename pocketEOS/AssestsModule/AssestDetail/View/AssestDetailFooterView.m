@@ -16,20 +16,18 @@
     if (self) {
         
         NSMutableArray *arr = [NSMutableArray array];
-        
-        NSArray *colorArr = @[HEXCOLOR(0x0B78E3), HEXCOLOR(0x1D9B3E)];
-        NSArray *imageArr = @[@"transfer_icon", @"recieve_white"];
-        if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE])  {
+        NSArray *imageArr = @[@"transfer_icon", @"recieve_white" , @"redpacket_icon"];
+        if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE)  {
             arr = [NSMutableArray arrayWithObjects:@"发起转账", @"发起收款", nil];
-        }else if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]){
-            arr = [NSMutableArray arrayWithObjects:@"发起转账", @"发起收款", nil];
+        }else if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE){
+            arr = [NSMutableArray arrayWithObjects:@"发起转账", @"发起收款", @"发送红包", nil];
         }
         CGFloat itemWidth = SCREEN_WIDTH/arr.count;
-        CGFloat itemheight = 46;
+        CGFloat itemheight = TABBAR_HEIGHT;
         for (int i = 0 ; i < arr.count ; i ++) {
             Enterprise *model;
             UIView *baseView = [[UIView alloc] init];
-            baseView.backgroundColor = colorArr[i];
+            baseView.backgroundColor = HEXCOLOR(0x0B78E3);
             baseView.frame = CGRectMake(itemWidth * i, 0, itemWidth, itemheight);
             [self addSubview:baseView];
             
@@ -43,7 +41,7 @@
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = HEXCOLOR(0xFFFFFF);
             label.font = [UIFont systemFontOfSize:14];
-            label.frame = CGRectMake(itemWidth/2-10 , 13, 60, MARGIN_20);
+            label.frame = CGRectMake(itemWidth/2-13 , 13, 60, MARGIN_20);
             
             UIButton *btn = [[UIButton alloc] init];
             btn.tag = 1000 + i;

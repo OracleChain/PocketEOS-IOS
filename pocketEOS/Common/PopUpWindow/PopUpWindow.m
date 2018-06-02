@@ -15,6 +15,7 @@
 @property(nonatomic, copy) NSArray *dataArray;
 // tableView 底部的 view , 用来设置 半透明
 @property(nonatomic, strong) UIView *bottomview;
+
 @end
 
 @implementation PopUpWindow
@@ -33,6 +34,7 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.tableFooterView = [UIView new];//不显示多余的分割线
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -56,6 +58,7 @@
     return _bottomview;
 }
 
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -63,6 +66,8 @@
         self.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
         [_bottomview addGestureRecognizer:tap];
+        
+        
     }
     return self;
 }
@@ -93,7 +98,7 @@
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.rightIconImgName = @"right_icon_blue";
     [cell.contentView addSubview:cell.rightIconImageView];
-    cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(10).heightIs(13).centerYEqualToView(cell.contentView);
+    cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(13).heightIs(10).centerYEqualToView(cell.contentView);
  
     
     if (self.type == PopUpWindowTypeAssest) {

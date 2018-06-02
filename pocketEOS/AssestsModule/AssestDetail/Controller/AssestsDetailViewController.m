@@ -43,9 +43,9 @@
     if (!_navView) {
         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"资产" rightBtnImgName:@"share" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
-        if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _navView.rightBtn.hidden = NO;
-        }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _navView.rightBtn.hidden = YES;
         }
     }

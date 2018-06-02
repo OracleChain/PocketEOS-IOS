@@ -18,16 +18,12 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-//    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
-//        
-//    }else if([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
-//        self.avatarBaseView.hidden = YES;
-//        self.wechatBaseView.hidden = YES;
-//        self.qqBaseView.hidden = YES;
-//        self.nameBaseView.sd_layout.topSpaceToView(self, 0);
-//        
-//        
-//    }
+    self.line2.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    self.line4.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
     
     
 }

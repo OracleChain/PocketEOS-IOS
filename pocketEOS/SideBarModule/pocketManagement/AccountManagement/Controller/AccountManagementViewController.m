@@ -181,12 +181,12 @@
     self.navView.titleLabel.text = self.model.account_name;
     [self.view addSubview:self.sliderVerifyView];
    
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView, 26).heightIs(48);
         [self.view addSubview:self.tipLabel];
         self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
        
-    }else if([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.headerView.mainAccountBtn.hidden = YES;
         self.headerView.exportPrivateKeyBtn.sd_layout.topSpaceToView(self.headerView.QRCodeImg, 66).leftSpaceToView(self.headerView, 48).rightSpaceToView(self.headerView, 48).heightIs(42);
          self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView.exportPrivateKeyBtn, 90).heightIs(48);
@@ -274,7 +274,7 @@
     if ([self.currentAction isEqualToString:@"ExportPrivateKey"]) {
         [self.view addSubview:self.exportPrivateKeyView];
         AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
-        NSString *privateKeyStr = [NSString stringWithFormat:@"active_private_key : %@ \n owner_private_key : %@", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
+        NSString *privateKeyStr = [NSString stringWithFormat:@"ACTIVEKEY：%@\nOWNKEY: %@\n", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
         self.exportPrivateKeyView.contentTextView.text = privateKeyStr;
        
     }else if ([self.currentAction isEqualToString:@"DeleteAccount"]){

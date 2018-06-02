@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKa-pF-KHJ" customClass="BaseLabel1">
-                    <rect key="frame" x="20" y="20" width="53.5" height="18"/>
+                    <rect key="frame" x="20" y="20" width="54" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="UeP-DK-asE"/>
                     </constraints>
@@ -34,14 +34,14 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayk-CR-5EG" userLabel="line1View" customClass="BaseSlimLineView">
-                    <rect key="frame" x="20" y="84" width="355" height="0.5"/>
+                    <rect key="frame" x="20" y="84" width="355" height="1"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="UsB-BV-5Cx"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXA-SA-Z7G">
-                    <rect key="frame" x="20" y="261.5" width="12" height="12"/>
+                    <rect key="frame" x="20" y="257" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="ELD-JS-HHd"/>
                         <constraint firstAttribute="height" constant="12" id="W8p-T2-kEw"/>
@@ -53,7 +53,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-RB-L2T" customClass="BaseConfirmButton">
-                    <rect key="frame" x="20" y="204.5" width="335" height="42"/>
+                    <rect key="frame" x="20" y="205" width="335" height="42"/>
                     <color key="backgroundColor" red="0.30196078430000001" green="0.4823529412" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="T3z-sT-1je"/>
@@ -67,7 +67,7 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul6-4s-jaR" customClass="BaseTextView">
-                    <rect key="frame" x="20" y="96.5" width="335" height="96"/>
+                    <rect key="frame" x="20" y="95" width="335" height="90"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -79,7 +79,7 @@
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kw-Jf-ufJ" customClass="BaseButton">
-                    <rect key="frame" x="37" y="259.5" width="239" height="14"/>
+                    <rect key="frame" x="37" y="257" width="239" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="7r8-xr-dvD"/>
                     </constraints>
@@ -94,23 +94,23 @@
             <constraints>
                 <constraint firstItem="EKa-pF-KHJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="AoQ-DO-Bmu"/>
                 <constraint firstItem="EKa-pF-KHJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FCE-7O-YJ4"/>
-                <constraint firstItem="TXA-SA-Z7G" firstAttribute="top" secondItem="EDq-RB-L2T" secondAttribute="bottom" constant="15" id="ItL-vJ-f99"/>
                 <constraint firstItem="3kw-Jf-ufJ" firstAttribute="leading" secondItem="TXA-SA-Z7G" secondAttribute="trailing" constant="5" id="KH1-cJ-I1g"/>
                 <constraint firstItem="aK5-fw-Dyj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="L5U-ZB-ig6"/>
                 <constraint firstAttribute="trailing" secondItem="ayk-CR-5EG" secondAttribute="trailing" id="RjY-R3-fFT"/>
-                <constraint firstItem="EDq-RB-L2T" firstAttribute="top" secondItem="ayk-CR-5EG" secondAttribute="bottom" constant="120" id="TgY-U0-Zk9"/>
                 <constraint firstItem="ayk-CR-5EG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="84" id="WDp-7W-PAH"/>
                 <constraint firstAttribute="trailing" secondItem="aK5-fw-Dyj" secondAttribute="trailing" constant="20" id="WaN-Wg-tsP"/>
                 <constraint firstItem="TXA-SA-Z7G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Z43-11-I1X"/>
-                <constraint firstItem="EDq-RB-L2T" firstAttribute="top" secondItem="ul6-4s-jaR" secondAttribute="bottom" constant="12" id="c67-ub-Zlt"/>
-                <constraint firstItem="3kw-Jf-ufJ" firstAttribute="top" secondItem="EDq-RB-L2T" secondAttribute="bottom" constant="13" id="cct-u8-qEZ"/>
+                <constraint firstItem="EDq-RB-L2T" firstAttribute="top" secondItem="ul6-4s-jaR" secondAttribute="bottom" constant="20" id="c67-ub-Zlt"/>
+                <constraint firstItem="3kw-Jf-ufJ" firstAttribute="top" secondItem="EDq-RB-L2T" secondAttribute="bottom" constant="10" id="eOI-ir-2i5"/>
                 <constraint firstItem="ul6-4s-jaR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="f9m-d6-tHQ"/>
+                <constraint firstItem="TXA-SA-Z7G" firstAttribute="top" secondItem="EDq-RB-L2T" secondAttribute="bottom" constant="10" id="g2w-v6-cxa"/>
                 <constraint firstItem="ayk-CR-5EG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gJj-je-8vj"/>
                 <constraint firstAttribute="trailing" secondItem="ul6-4s-jaR" secondAttribute="trailing" constant="20" id="ijN-UF-Ms0"/>
                 <constraint firstItem="EDq-RB-L2T" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="kFm-Ro-sDq"/>
                 <constraint firstItem="ayk-CR-5EG" firstAttribute="top" secondItem="aK5-fw-Dyj" secondAttribute="bottom" constant="13" id="oHA-Fd-mPr"/>
                 <constraint firstAttribute="trailing" secondItem="EDq-RB-L2T" secondAttribute="trailing" constant="20" id="qTw-iN-8Vk"/>
-                <constraint firstItem="ul6-4s-jaR" firstAttribute="top" secondItem="ayk-CR-5EG" secondAttribute="bottom" constant="12" id="z88-tL-4mu"/>
+                <constraint firstAttribute="bottom" secondItem="3kw-Jf-ufJ" secondAttribute="bottom" constant="6" id="rZm-SI-ibh"/>
+                <constraint firstItem="ul6-4s-jaR" firstAttribute="top" secondItem="ayk-CR-5EG" secondAttribute="bottom" constant="10" id="z88-tL-4mu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

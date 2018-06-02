@@ -39,20 +39,49 @@
     self.tabBar.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     [self.tabBar setBackgroundImage:[UIImage new]];
     
-    // Create a new layer which is the width of the device and with a heigh
-    // of 0.5px.
-    CALayer *topBorder = [CALayer layer];
-    topBorder.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f);
     
-    // Set the background colour of the new layer to the colour you wish to
-    // use for the border.
-    topBorder.backgroundColor = [HEXCOLOR(0xFFFFFF) CGColor];
+    CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    // Add the later to the tab bar's existing layer
-    [self.tabBar.layer addSublayer:topBorder];
-    //通过这两个参数来调整badge位置
-    //    [self.tabBar setTabIconWidth:29];
-    //    [self.tabBar setBadgeTop:9];
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    [self.tabBar setBackgroundImage:img];
+    
+    [self.tabBar setShadowImage:img];
+    
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        // Create a new layer which is the width of the device and with a heigh
+        // of 0.5px.
+        CALayer *topBorder = [CALayer layer];
+        topBorder.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f);
+        
+        // Set the background colour of the new layer to the colour you wish to
+        // use for the border.
+        topBorder.backgroundColor = [HEXCOLOR(0xEEEEEE) CGColor];
+        
+        
+        // Add the later to the tab bar's existing layer
+        [self.tabBar.layer addSublayer:topBorder];
+        //通过这两个参数来调整badge位置
+        //    [self.tabBar setTabIconWidth:29];
+        //    [self.tabBar setBadgeTop:9];
+        
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [self.tabBar setBackgroundImage:img];
+        
+        [self.tabBar setShadowImage:img];
+        
+    }
 }
 
 #pragma mark - ——————— 初始化VC ————————
@@ -63,7 +92,7 @@
 
     [self setupChildViewController:assestsMainVC title:@"资产" imageName:@"assest_unSelect" seleceImageName:@"assest_select" BB_imageName:@"assest_unSelect_BB" BB_seleceImageName:@"assest_Select_BB"];
     
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
 
         RichListMainViewController *richListVC = [[RichListMainViewController alloc]init];
         [self setupChildViewController:richListVC title:@"富豪榜" imageName:@"richList_unSelect" seleceImageName:@"richList_select" BB_imageName:@"" BB_seleceImageName:@""];
@@ -102,7 +131,7 @@
         selectedAttrs[NSForegroundColorAttributeName] = HEXCOLOR(0x2A2A2A);
         [controller.tabBarItem setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
         
-    }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         controller.tabBarItem.image = [[UIImage imageNamed:BB_imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         controller.tabBarItem.selectedImage = [[UIImage imageNamed:BB_selectImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         // 普通状态下的文字属性

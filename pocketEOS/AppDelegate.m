@@ -58,9 +58,9 @@ void uncaughtExceptionHandler(NSException*exception){
             [[WalletTableManager walletTable] deleteRecord:wallet.wallet_uid];            
         }
         UIViewController *vc;
-        if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             vc = [[LoginMainViewController alloc] init];
-        }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             vc = [[BBLoginViewController alloc] init];
         }
         
@@ -169,7 +169,7 @@ void uncaughtExceptionHandler(NSException*exception){
             
             // 切换主题
             
-            if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+            if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
                 
                 [LEETheme startTheme:BLACKBOX_MODE];
                 

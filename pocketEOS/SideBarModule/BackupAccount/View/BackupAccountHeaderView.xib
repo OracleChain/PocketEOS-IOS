@@ -15,13 +15,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-Cm-1oe" userLabel="line1View" customClass="BaseSlimLineView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="0.5" id="mqb-zN-sjQ"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的私钥是：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80c-lq-hv1" customClass="BaseLabel">
                     <rect key="frame" x="20" y="20.5" width="335" height="14"/>
                     <constraints>
@@ -35,14 +28,14 @@
                     <rect key="frame" x="20" y="52.5" width="335" height="165"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shield.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vlr-Xy-OcE">
-                            <rect key="frame" x="20" y="60" width="24" height="30"/>
+                            <rect key="frame" x="20" y="67.5" width="24" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="1JS-dX-qOP"/>
                                 <constraint firstAttribute="height" constant="30" id="kUv-Hi-3sP"/>
                             </constraints>
                         </imageView>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9N-L0-8CU">
-                            <rect key="frame" x="264" y="60.5" width="53" height="30"/>
+                            <rect key="frame" x="264" y="68" width="53" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="51" id="HK6-tf-NhU"/>
                                 <constraint firstAttribute="height" constant="30" id="ago-lh-HfX"/>
@@ -53,7 +46,7 @@
                             </connections>
                         </switch>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NG3-5D-jyL" userLabel="line2View" customClass="BaseSlimLineView">
-                            <rect key="frame" x="241" y="50" width="1" height="50"/>
+                            <rect key="frame" x="241" y="57.5" width="1" height="50"/>
                             <color key="backgroundColor" white="1" alpha="0.12" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="9bv-jo-njA"/>
@@ -61,7 +54,7 @@
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="确认没有被人窥视或拍照打开右侧按钮查看您的私钥" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxk-Uz-eGH">
-                            <rect key="frame" x="54" y="50" width="177" height="60"/>
+                            <rect key="frame" x="54" y="57.5" width="177" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="idw-LL-hub"/>
                             </constraints>
@@ -72,30 +65,34 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="Mxk-Uz-eGH" firstAttribute="leading" secondItem="Vlr-Xy-OcE" secondAttribute="trailing" constant="10" id="2z1-ur-eVt"/>
-                        <constraint firstItem="X9N-L0-8CU" firstAttribute="centerY" secondItem="Vlr-Xy-OcE" secondAttribute="centerY" id="7Eo-u6-SKp"/>
+                        <constraint firstItem="NG3-5D-jyL" firstAttribute="centerY" secondItem="Vlr-Xy-OcE" secondAttribute="centerY" id="5r3-e7-k3h"/>
                         <constraint firstItem="X9N-L0-8CU" firstAttribute="leading" secondItem="NG3-5D-jyL" secondAttribute="trailing" constant="22" id="C9V-B6-8oV"/>
                         <constraint firstItem="NG3-5D-jyL" firstAttribute="leading" secondItem="Mxk-Uz-eGH" secondAttribute="trailing" constant="10" id="CCo-ef-BeZ"/>
                         <constraint firstAttribute="height" constant="165" id="UPV-oZ-RwQ"/>
-                        <constraint firstItem="NG3-5D-jyL" firstAttribute="centerY" secondItem="Vlr-Xy-OcE" secondAttribute="centerY" id="bH3-mT-zTy"/>
-                        <constraint firstItem="Mxk-Uz-eGH" firstAttribute="centerY" secondItem="Vlr-Xy-OcE" secondAttribute="centerY" constant="5" id="ech-Vw-dWf"/>
+                        <constraint firstItem="Mxk-Uz-eGH" firstAttribute="centerY" secondItem="ghO-zD-qRK" secondAttribute="centerY" constant="5" id="eM6-KM-G4J"/>
+                        <constraint firstItem="Vlr-Xy-OcE" firstAttribute="centerY" secondItem="ghO-zD-qRK" secondAttribute="centerY" id="ieF-Nu-MGd"/>
                         <constraint firstAttribute="trailing" secondItem="X9N-L0-8CU" secondAttribute="trailing" constant="20" id="j9V-4c-qrY"/>
-                        <constraint firstItem="Vlr-Xy-OcE" firstAttribute="centerY" secondItem="ghO-zD-qRK" secondAttribute="centerY" constant="-7.5" id="lS5-Ip-TMG"/>
+                        <constraint firstItem="X9N-L0-8CU" firstAttribute="centerY" secondItem="ghO-zD-qRK" secondAttribute="centerY" id="pH2-ue-4Ne"/>
                         <constraint firstItem="Vlr-Xy-OcE" firstAttribute="leading" secondItem="ghO-zD-qRK" secondAttribute="leading" constant="20" id="wwh-bj-0Vb"/>
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-UO-spw" customClass="BaseTextView">
-                    <rect key="frame" x="20" y="232.5" width="335" height="100"/>
+                    <rect key="frame" x="20" y="227.5" width="335" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="5Ok-3c-ItD"/>
                     </constraints>
-                    <string key="text">我们建议您将私钥用纸笔抄下来，并放在安全且不会被遗忘的地方。
-您也可以通过复制私钥的方式进行备份，但将私钥存储在电子设备中可能会带来额外的危险，如数据丢失、数据被盗等。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder">
+                            <string key="value">我们建议您将私钥用纸笔抄下来，并放在安全且不会被遗忘的地方。
+您也可以通过复制私钥的方式进行备份，但将私钥存储在电子设备中可能会带来额外的危险，如数据丢失、数据被盗等。</string>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUp-kR-Ebj" customClass="BaseConfirmButton">
-                    <rect key="frame" x="20" y="362.5" width="335" height="46"/>
+                    <rect key="frame" x="20" y="347.5" width="335" height="46"/>
                     <color key="backgroundColor" red="0.043137254901960784" green="0.47058823529411764" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="XFR-ml-d74"/>
@@ -112,22 +109,20 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ghO-zD-qRK" secondAttribute="trailing" constant="20" id="0aG-eh-6wt"/>
                 <constraint firstItem="ghO-zD-qRK" firstAttribute="top" secondItem="80c-lq-hv1" secondAttribute="bottom" constant="18" id="1Q8-zA-xGU"/>
-                <constraint firstItem="1dA-Cm-1oe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8Dm-0p-WAy"/>
                 <constraint firstItem="80c-lq-hv1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FfO-jd-P1N"/>
-                <constraint firstItem="HUp-kR-Ebj" firstAttribute="top" secondItem="1Ls-UO-spw" secondAttribute="bottom" constant="30" id="IJ8-U5-un7"/>
-                <constraint firstItem="1Ls-UO-spw" firstAttribute="top" secondItem="ghO-zD-qRK" secondAttribute="bottom" constant="15" id="JiS-xv-nmH"/>
+                <constraint firstItem="HUp-kR-Ebj" firstAttribute="top" secondItem="1Ls-UO-spw" secondAttribute="bottom" constant="20" id="IJ8-U5-un7"/>
+                <constraint firstItem="1Ls-UO-spw" firstAttribute="top" secondItem="ghO-zD-qRK" secondAttribute="bottom" constant="10" id="JiS-xv-nmH"/>
                 <constraint firstItem="ghO-zD-qRK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="R7a-k1-9jb"/>
                 <constraint firstAttribute="trailing" secondItem="80c-lq-hv1" secondAttribute="trailing" constant="20" id="ScK-fd-klz"/>
+                <constraint firstItem="80c-lq-hv1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Tff-Jg-m9h"/>
                 <constraint firstAttribute="trailing" secondItem="1Ls-UO-spw" secondAttribute="trailing" constant="20" id="UPd-Iq-eGd"/>
-                <constraint firstItem="80c-lq-hv1" firstAttribute="top" secondItem="1dA-Cm-1oe" secondAttribute="bottom" constant="20" id="ajY-eS-sZf"/>
                 <constraint firstAttribute="trailing" secondItem="HUp-kR-Ebj" secondAttribute="trailing" constant="20" id="d8e-47-RXQ"/>
                 <constraint firstItem="HUp-kR-Ebj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="kLC-zK-gpr"/>
-                <constraint firstItem="1dA-Cm-1oe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pVm-S2-kSA"/>
                 <constraint firstItem="1Ls-UO-spw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="rqI-Im-NRm"/>
-                <constraint firstAttribute="trailing" secondItem="1dA-Cm-1oe" secondAttribute="trailing" id="unh-7K-JLK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backupImageView" destination="Vlr-Xy-OcE" id="2BB-Wl-LjK"/>
                 <outlet property="contentBackgroundView" destination="ghO-zD-qRK" id="GDV-L3-113"/>
                 <outlet property="tipTextView" destination="Mxk-Uz-eGH" id="WVb-xK-gDr"/>
             </connections>

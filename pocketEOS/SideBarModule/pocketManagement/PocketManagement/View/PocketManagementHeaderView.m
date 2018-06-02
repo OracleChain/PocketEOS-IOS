@@ -35,6 +35,34 @@
     self.importAccountImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"importAccount"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"importAccount_BB"]);
     self.backupWalletImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"backup"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"backup_BB"]);
     self.changePasswordImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"changePassword"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"changePassword_BB"]);
+    
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 5;// 字体的行间距
+    NSString *tipStr = @"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包";
+    
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        NSDictionary *attributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:13],
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     ,
+                                     NSForegroundColorAttributeName : HEXCOLOR(0xFFB540 )
+                                     };
+        self.tipTextView.attributedText = [[NSAttributedString alloc] initWithString:tipStr attributes:attributes];
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        NSDictionary *attributes = @{
+                                     NSFontAttributeName:[UIFont systemFontOfSize:13],
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     ,
+                                     NSForegroundColorAttributeName : HEX_RGB_Alpha(0xFFFFFF, 0.6)
+                                     };
+        self.tipTextView.attributedText = [[NSAttributedString alloc] initWithString:tipStr attributes:attributes];
+
+    }
+    
+    
+    
 }
 
 - (IBAction)createAccount:(UIButton *)sender {

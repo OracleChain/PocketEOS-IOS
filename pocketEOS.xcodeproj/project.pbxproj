@@ -282,6 +282,20 @@
 		183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E620C0D6810058D010 /* NSObject+Extension.m */; };
 		183FF6EC20C0D6820058D010 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E720C0D6820058D010 /* NSData+CommonCrypto.m */; };
 		183FF6ED20C0D6820058D010 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E820C0D6820058D010 /* Base64.m */; };
+		183FF6F220C0FD700058D010 /* qq_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6EE20C0FD6E0058D010 /* qq_login@3x.png */; };
+		183FF6F320C0FD700058D010 /* wechat_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6EF20C0FD6F0058D010 /* wechat_login@3x.png */; };
+		183FF6F420C0FD700058D010 /* wechat_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6F020C0FD6F0058D010 /* wechat_login@2x.png */; };
+		183FF6F520C0FD700058D010 /* qq_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6F120C0FD700058D010 /* qq_login@2x.png */; };
+		183FF6F820C10EF20058D010 /* paid_answer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6F620C10EF20058D010 /* paid_answer@3x.png */; };
+		183FF6F920C10EF20058D010 /* paid_answer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6F720C10EF20058D010 /* paid_answer@2x.png */; };
+		183FF73A20C14B980058D010 /* thumb_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF73820C14B980058D010 /* thumb_BB@2x.png */; };
+		183FF73B20C14B980058D010 /* thumb_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF73920C14B980058D010 /* thumb_BB@3x.png */; };
+		183FF73E20C156CA0058D010 /* login_Header_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF73C20C156C90058D010 /* login_Header_BB@2x.png */; };
+		183FF73F20C156CA0058D010 /* login_Header_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF73D20C156C90058D010 /* login_Header_BB@3x.png */; };
+		183FF74420C159740058D010 /* pocket_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF74020C159720058D010 /* pocket_BB@3x.png */; };
+		183FF74520C159740058D010 /* pocket_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF74120C159720058D010 /* pocket_BB@2x.png */; };
+		183FF74620C159740058D010 /* transaction_history_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF74220C159730058D010 /* transaction_history_BB@2x.png */; };
+		183FF74720C159740058D010 /* transaction_history_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183FF74320C159730058D010 /* transaction_history_BB@3x.png */; };
 		183FF8B21FF33DB7006C25F1 /* RichListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8B11FF33DB7006C25F1 /* RichListResult.m */; };
 		183FF8BB1FF3456F006C25F1 /* NewsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8BA1FF3456F006C25F1 /* NewsListCell.m */; };
 		183FF8BF1FF345C7006C25F1 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF8BE1FF345C7006C25F1 /* News.m */; };
@@ -323,6 +337,10 @@
 		1843CB16207C55A400EDC158 /* DAConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CB12207C55A400EDC158 /* DAConfig.m */; };
 		18452B902074C91F00FAE7CE /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18452B8C2074C91F00FAE7CE /* UITabBar+CustomBadge.m */; };
 		18452B912074C91F00FAE7CE /* XYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18452B8E2074C91F00FAE7CE /* XYTabBar.m */; };
+		184566C820C1861C0005F216 /* nomoredata_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566C620C1861B0005F216 /* nomoredata_BB@3x.png */; };
+		184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566C720C1861C0005F216 /* nomoredata_BB@2x.png */; };
+		184566CC20C18C290005F216 /* sheild_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CA20C18C280005F216 /* sheild_BB@2x.png */; };
+		184566CD20C18C290005F216 /* sheild_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184566CB20C18C290005F216 /* sheild_BB@3x.png */; };
 		18466D7820106D44002E675A /* Javascript.html in Resources */ = {isa = PBXBuildFile; fileRef = 18466D7620106D44002E675A /* Javascript.html */; };
 		18466D7920106D44002E675A /* Eos.js in Resources */ = {isa = PBXBuildFile; fileRef = 18466D7720106D44002E675A /* Eos.js */; };
 		18466D7D20106E00002E675A /* JavascriptWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18466D7C20106E00002E675A /* JavascriptWebViewController.m */; };
@@ -623,10 +641,6 @@
 		188607A01FCC012F00B00EE7 /* UIColor+SNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 188607931FCC012F00B00EE7 /* UIColor+SNFoundation.m */; };
 		188C30411FFDE25C00A357F3 /* lockBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C303F1FFDE25C00A357F3 /* lockBackground@2x.png */; };
 		188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30401FFDE25C00A357F3 /* lockBackground@3x.png */; };
-		188C30471FFDF74E00A357F3 /* wechat_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30431FFDF74C00A357F3 /* wechat_login@3x.png */; };
-		188C30481FFDF74E00A357F3 /* wechat_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30441FFDF74C00A357F3 /* wechat_login@2x.png */; };
-		188C30491FFDF74E00A357F3 /* qq_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30451FFDF74D00A357F3 /* qq_login@3x.png */; };
-		188C304A1FFDF74E00A357F3 /* qq_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30461FFDF74D00A357F3 /* qq_login@2x.png */; };
 		188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */; };
 		188C305D1FFE0EF400A357F3 /* BindPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C305B1FFE0EF400A357F3 /* BindPhoneNumberViewController.m */; };
 		188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECE420A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m */; };
@@ -793,7 +807,6 @@
 		18F03FC22067804000697D7F /* background_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FC02067803F00697D7F /* background_blue@3x.png */; };
 		18F03FC32067804000697D7F /* background_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FC12067803F00697D7F /* background_blue@2x.png */; };
 		18F03FC5206780C400697D7F /* background_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FC4206780C400697D7F /* background_black.png */; };
-		18F03FC92067822600697D7F /* paid_answer.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FC82067822600697D7F /* paid_answer.png */; };
 		18F03FCC206785CC00697D7F /* systemSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCA206785CB00697D7F /* systemSetting@2x.png */; };
 		18F03FCD206785CC00697D7F /* systemSetting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCB206785CC00697D7F /* systemSetting@3x.png */; };
 		18F03FD52067878C00697D7F /* redPacket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCF2067878B00697D7F /* redPacket@2x.png */; };
@@ -1332,6 +1345,20 @@
 		183FF6E620C0D6810058D010 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		183FF6E720C0D6820058D010 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		183FF6E820C0D6820058D010 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		183FF6EE20C0FD6E0058D010 /* qq_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_login@3x.png"; sourceTree = "<group>"; };
+		183FF6EF20C0FD6F0058D010 /* wechat_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_login@3x.png"; sourceTree = "<group>"; };
+		183FF6F020C0FD6F0058D010 /* wechat_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_login@2x.png"; sourceTree = "<group>"; };
+		183FF6F120C0FD700058D010 /* qq_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_login@2x.png"; sourceTree = "<group>"; };
+		183FF6F620C10EF20058D010 /* paid_answer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paid_answer@3x.png"; sourceTree = "<group>"; };
+		183FF6F720C10EF20058D010 /* paid_answer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paid_answer@2x.png"; sourceTree = "<group>"; };
+		183FF73820C14B980058D010 /* thumb_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb_BB@2x.png"; sourceTree = "<group>"; };
+		183FF73920C14B980058D010 /* thumb_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb_BB@3x.png"; sourceTree = "<group>"; };
+		183FF73C20C156C90058D010 /* login_Header_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_Header_BB@2x.png"; sourceTree = "<group>"; };
+		183FF73D20C156C90058D010 /* login_Header_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_Header_BB@3x.png"; sourceTree = "<group>"; };
+		183FF74020C159720058D010 /* pocket_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocket_BB@3x.png"; sourceTree = "<group>"; };
+		183FF74120C159720058D010 /* pocket_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocket_BB@2x.png"; sourceTree = "<group>"; };
+		183FF74220C159730058D010 /* transaction_history_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transaction_history_BB@2x.png"; sourceTree = "<group>"; };
+		183FF74320C159730058D010 /* transaction_history_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transaction_history_BB@3x.png"; sourceTree = "<group>"; };
 		183FF8B01FF33DB7006C25F1 /* RichListResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichListResult.h; sourceTree = "<group>"; };
 		183FF8B11FF33DB7006C25F1 /* RichListResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichListResult.m; sourceTree = "<group>"; };
 		183FF8B91FF3456F006C25F1 /* NewsListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsListCell.h; sourceTree = "<group>"; };
@@ -1412,6 +1439,10 @@
 		18452B8D2074C91F00FAE7CE /* XYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTabBar.h; sourceTree = "<group>"; };
 		18452B8E2074C91F00FAE7CE /* XYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTabBar.m; sourceTree = "<group>"; };
 		18452B8F2074C91F00FAE7CE /* UITabBar+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomBadge.h"; sourceTree = "<group>"; };
+		184566C620C1861B0005F216 /* nomoredata_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata_BB@3x.png"; sourceTree = "<group>"; };
+		184566C720C1861C0005F216 /* nomoredata_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata_BB@2x.png"; sourceTree = "<group>"; };
+		184566CA20C18C280005F216 /* sheild_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sheild_BB@2x.png"; sourceTree = "<group>"; };
+		184566CB20C18C290005F216 /* sheild_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sheild_BB@3x.png"; sourceTree = "<group>"; };
 		18466D7620106D44002E675A /* Javascript.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Javascript.html; sourceTree = "<group>"; };
 		18466D7720106D44002E675A /* Eos.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Eos.js; sourceTree = "<group>"; };
 		18466D7B20106E00002E675A /* JavascriptWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewController.h; sourceTree = "<group>"; };
@@ -1867,10 +1898,6 @@
 		1886479F1FCC080F003566A9 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		188C303F1FFDE25C00A357F3 /* lockBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lockBackground@2x.png"; sourceTree = "<group>"; };
 		188C30401FFDE25C00A357F3 /* lockBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lockBackground@3x.png"; sourceTree = "<group>"; };
-		188C30431FFDF74C00A357F3 /* wechat_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_login@3x.png"; sourceTree = "<group>"; };
-		188C30441FFDF74C00A357F3 /* wechat_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_login@2x.png"; sourceTree = "<group>"; };
-		188C30451FFDF74D00A357F3 /* qq_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_login@3x.png"; sourceTree = "<group>"; };
-		188C30461FFDF74D00A357F3 /* qq_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_login@2x.png"; sourceTree = "<group>"; };
 		188C30551FFE0AFE00A357F3 /* CreatePocketViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePocketViewController.h; sourceTree = "<group>"; };
 		188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePocketViewController.m; sourceTree = "<group>"; };
 		188C305A1FFE0EF400A357F3 /* BindPhoneNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindPhoneNumberViewController.h; sourceTree = "<group>"; };
@@ -2148,7 +2175,6 @@
 		18F03FC02067803F00697D7F /* background_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_blue@3x.png"; sourceTree = "<group>"; };
 		18F03FC12067803F00697D7F /* background_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_blue@2x.png"; sourceTree = "<group>"; };
 		18F03FC4206780C400697D7F /* background_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_black.png; sourceTree = "<group>"; };
-		18F03FC82067822600697D7F /* paid_answer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paid_answer.png; sourceTree = "<group>"; };
 		18F03FCA206785CB00697D7F /* systemSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "systemSetting@2x.png"; sourceTree = "<group>"; };
 		18F03FCB206785CC00697D7F /* systemSetting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "systemSetting@3x.png"; sourceTree = "<group>"; };
 		18F03FCF2067878B00697D7F /* redPacket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@2x.png"; sourceTree = "<group>"; };
@@ -2992,8 +3018,6 @@
 				182B8F8C20AD3A8800C43AEC /* LEEThemeHelper.h */,
 				182B8F8D20AD3A8800C43AEC /* LEETheme.h */,
 				182B8F8E20AD3A8800C43AEC /* LEETheme.m */,
-				182B8F9120AD3AE300C43AEC /* themejson_SocialMode.json */,
-				182B8F9020AD3AE300C43AEC /* themejson_BlackBoxMode.json */,
 			);
 			path = LEETheme;
 			sourceTree = "<group>";
@@ -3001,6 +3025,8 @@
 		182B8F9520AD59A700C43AEC /* LEETheme */ = {
 			isa = PBXGroup;
 			children = (
+				182B8F9120AD3AE300C43AEC /* themejson_SocialMode.json */,
+				182B8F9020AD3AE300C43AEC /* themejson_BlackBoxMode.json */,
 			);
 			name = LEETheme;
 			path = pocketEOS/Resource/LEETheme;
@@ -4665,6 +4691,10 @@
 				187D9BEC2080C02F0059BD2A /* wechat_friends@3x.png */,
 				187D9BED2080C02F0059BD2A /* wechat_moments@2x.png */,
 				187D9BEF2080C02F0059BD2A /* wechat_moments@3x.png */,
+				183FF6F120C0FD700058D010 /* qq_login@2x.png */,
+				183FF6EE20C0FD6E0058D010 /* qq_login@3x.png */,
+				183FF6F020C0FD6F0058D010 /* wechat_login@2x.png */,
+				183FF6EF20C0FD6F0058D010 /* wechat_login@3x.png */,
 			);
 			name = Social;
 			path = pocketEOS/Resource/Social;
@@ -5813,7 +5843,8 @@
 				185BA38820BB9AEB00F63674 /* versionUpdate_BB@3x.png */,
 				185D18281FE75C2D0021AD18 /* messageCenter@2x.png */,
 				185D18291FE75C2E0021AD18 /* messageCenter@3x.png */,
-				18F03FC82067822600697D7F /* paid_answer.png */,
+				183FF6F720C10EF20058D010 /* paid_answer@2x.png */,
+				183FF6F620C10EF20058D010 /* paid_answer@3x.png */,
 				185BA38120BB978500F63674 /* paid_answer_BB@2x.png */,
 				185BA38020BB978500F63674 /* paid_answer_BB@3x.png */,
 				18F03FCA206785CB00697D7F /* systemSetting@2x.png */,
@@ -5874,10 +5905,6 @@
 				1807EFA11FE8F8140010CF7F /* oval@3x.png */,
 				188C303F1FFDE25C00A357F3 /* lockBackground@2x.png */,
 				188C30401FFDE25C00A357F3 /* lockBackground@3x.png */,
-				188C30461FFDF74D00A357F3 /* qq_login@2x.png */,
-				188C30451FFDF74D00A357F3 /* qq_login@3x.png */,
-				188C30441FFDF74C00A357F3 /* wechat_login@2x.png */,
-				188C30431FFDF74C00A357F3 /* wechat_login@3x.png */,
 				1854FF67200320E300B8F253 /* slider_transparent@2x.png */,
 				1854FF66200320E300B8F253 /* slider_transparent@3x.png */,
 				185BA3B420BBB16500F63674 /* slider_blue@2x.png */,
@@ -5952,6 +5979,18 @@
 				18BCAF1A20BFECAD00571577 /* thumb_black@2x.png */,
 				18BCAF1920BFECAC00571577 /* thumb_black@3x.png */,
 				18BCAF1D20BFEFF400571577 /* thumb_white.png */,
+				183FF73820C14B980058D010 /* thumb_BB@2x.png */,
+				183FF73920C14B980058D010 /* thumb_BB@3x.png */,
+				183FF73C20C156C90058D010 /* login_Header_BB@2x.png */,
+				183FF73D20C156C90058D010 /* login_Header_BB@3x.png */,
+				183FF74120C159720058D010 /* pocket_BB@2x.png */,
+				183FF74020C159720058D010 /* pocket_BB@3x.png */,
+				183FF74220C159730058D010 /* transaction_history_BB@2x.png */,
+				183FF74320C159730058D010 /* transaction_history_BB@3x.png */,
+				184566C720C1861C0005F216 /* nomoredata_BB@2x.png */,
+				184566C620C1861B0005F216 /* nomoredata_BB@3x.png */,
+				184566CA20C18C280005F216 /* sheild_BB@2x.png */,
+				184566CB20C18C290005F216 /* sheild_BB@3x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -6286,9 +6325,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183FF73B20C14B980058D010 /* thumb_BB@3x.png in Resources */,
 				18E080662068D72F0032B09C /* qq_share@2x.png in Resources */,
 				187D9BF72080C02F0059BD2A /* wechat_moments@3x.png in Resources */,
 				1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */,
+				183FF6F820C10EF20058D010 /* paid_answer@3x.png in Resources */,
 				1825DC532005AA820057320C /* slider_white@2x.png in Resources */,
 				186857191FE10C02002A683A /* ExportPrivateKeyView.xib in Resources */,
 				18FDFFC12024521800AEB4FA /* scan_2@2x.png in Resources */,
@@ -6297,23 +6338,25 @@
 				185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */,
 				185DD6DD206D119E00BCFFCF /* AskQuestionTipView.xib in Resources */,
 				181130D11FCD468100BEA0D9 /* tip@3x.png in Resources */,
+				183FF6F920C10EF20058D010 /* paid_answer@2x.png in Resources */,
 				185D18591FE762000021AD18 /* qq@3x.png in Resources */,
 				189EB992207B5E630088C6FC /* Localizable.strings in Resources */,
 				187D9BF52080C02F0059BD2A /* wechat_moments@2x.png in Resources */,
+				183FF6F320C0FD700058D010 /* wechat_login@3x.png in Resources */,
 				186857231FE11B81002A683A /* ConfirmPasswordView.xib in Resources */,
 				185BA3B020BBA93100F63674 /* application_unSelect_BB@2x.png in Resources */,
 				18DBD27220424339001E2DDF /* WalletQRCodeView.xib in Resources */,
+				183FF74420C159740058D010 /* pocket_BB@3x.png in Resources */,
 				18DBD276204244D1001E2DDF /* walletQRCodeBoder@3x.png in Resources */,
 				18DBD281204258B0001E2DDF /* wallet_default_avatar@3x.png in Resources */,
 				18DBBB2B206525F10050EE20 /* LICENSE in Resources */,
 				185BA39220BB9AED00F63674 /* versionUpdate_BB@3x.png in Resources */,
-				188C304A1FFDF74E00A357F3 /* qq_login@2x.png in Resources */,
+				184566C820C1861C0005F216 /* nomoredata_BB@3x.png in Resources */,
 				1826AD412079F5520046EE7C /* PersonalSettingHeaderView.xib in Resources */,
 				189E3EBE201C5B980022AF19 /* RSKImageCropperStrings.bundle in Resources */,
 				1828F92E2068D5FA00513CD1 /* QRCode_green@3x.png in Resources */,
 				185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */,
 				185D18171FE7596E0021AD18 /* pERichList@2x.png in Resources */,
-				188C30481FFDF74E00A357F3 /* wechat_login@2x.png in Resources */,
 				183FF6DE20C0CE600058D010 /* changePassword_BB@3x.png in Resources */,
 				187D9BF22080C02F0059BD2A /* qq_Zone@2x.png in Resources */,
 				185BA39520BB9AED00F63674 /* messageCenter_BB@3x .png in Resources */,
@@ -6336,9 +6379,11 @@
 				185BA39720BB9AED00F63674 /* feedBack_BB@2x.png in Resources */,
 				18FDFFC32024522000AEB4FA /* scan_3@2x.png in Resources */,
 				18423A0B1FFF583F006AB986 /* SGQRCode.bundle in Resources */,
+				183FF74720C159740058D010 /* transaction_history_BB@3x.png in Resources */,
 				187D9BF32080C02F0059BD2A /* wechat_friends@2x.png in Resources */,
 				1838496120BE43AA00B89549 /* recieve_white@2x.png in Resources */,
 				185D186E1FE766A00021AD18 /* backup@2x.png in Resources */,
+				184566CD20C18C290005F216 /* sheild_BB@3x.png in Resources */,
 				185BA3CA20BBC20500F63674 /* importAccount_BB@3x.png in Resources */,
 				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
 				185D18491FE7602E0021AD18 /* bankCard@3x.png in Resources */,
@@ -6364,7 +6409,6 @@
 				184EA62620ABCFDB00169CD9 /* background_black@2x.png in Resources */,
 				184141A1202029ED00A789ED /* RichlistDetailHeaderView.xib in Resources */,
 				184EA62720ABCFDB00169CD9 /* background_black@3x.png in Resources */,
-				18F03FC92067822600697D7F /* paid_answer.png in Resources */,
 				1872E89A20AA7FB600454DA3 /* BBLoginChooseWalletFooterView.xib in Resources */,
 				18F03FD82067878C00697D7F /* transfer@2x.png in Resources */,
 				1828F92A2068D5A600513CD1 /* copy_orange@3x.png in Resources */,
@@ -6378,11 +6422,13 @@
 				1833488F1FCE69B200884107 /* 2.png in Resources */,
 				181275DF20B6DF58005EDD91 /* volume-marquee@3x.png in Resources */,
 				185D18581FE762000021AD18 /* email@2x.png in Resources */,
+				184566CC20C18C290005F216 /* sheild_BB@2x.png in Resources */,
 				18E72E511FCC1AAE00D09CA3 /* assest_unSelect@3x.png in Resources */,
 				18466DBC2010B291002E675A /* SelectAccountView.xib in Resources */,
 				18B2770420B7BE1A0070F472 /* PocketEOSPrivacyPolicy.rtf in Resources */,
 				1884A8E4204D380700C72631 /* feedBackAsk@3x.png in Resources */,
 				18E72E4E1FCC1AAE00D09CA3 /* richList_select@2x.png in Resources */,
+				183FF6F420C0FD700058D010 /* wechat_login@2x.png in Resources */,
 				1841426A2020A9AA00A789ED /* EnterpriseDetailHeaderView.xib in Resources */,
 				185BA39820BB9AED00F63674 /* feedBack_BB@3x.png in Resources */,
 				18DBD28B20428F29001E2DDF /* ChangePasswordView.xib in Resources */,
@@ -6391,9 +6437,11 @@
 				1816915620BEC1B900BF49A8 /* right_arrow_white@2x.png in Resources */,
 				185BA3BD20BBC1EC00F63674 /* backup_BB@2x.png in Resources */,
 				185D18331FE75CDC0021AD18 /* versionUpdate@3x.png in Resources */,
+				183FF6F520C0FD700058D010 /* qq_login@2x.png in Resources */,
 				181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */,
 				1878BCB0208458AE002A76F5 /* redPacketBackground@2x.png in Resources */,
 				1878BCA620843348002A76F5 /* AssestsShareDetailView.xib in Resources */,
+				183FF73E20C156CA0058D010 /* login_Header_BB@2x.png in Resources */,
 				183348741FCE5DAE00884107 /* recieve_icon@2x.png in Resources */,
 				182B8F9220AD3AE300C43AEC /* themejson_BlackBoxMode.json in Resources */,
 				18DBD27A20424F0C001E2DDF /* wallet_QRCode_btn@2x.png in Resources */,
@@ -6404,7 +6452,6 @@
 				1828F90E20687C1F00513CD1 /* eye_open@3x.png in Resources */,
 				1872E8AB20AADF1E00454DA3 /* BBAssestsMainHeaderView.xib in Resources */,
 				184D619C1FD4F79700EA26B1 /* RichlistHeaderView.xib in Resources */,
-				188C30471FFDF74E00A357F3 /* wechat_login@3x.png in Resources */,
 				185D18791FE7671A0021AD18 /* recommended@3x.png in Resources */,
 				185D185F1FE763B10021AD18 /* qq_big@2x.png in Resources */,
 				185BA3C920BBC20500F63674 /* importAccount_BB@2x.png in Resources */,
@@ -6414,6 +6461,7 @@
 				183348D41FCE7F3E00884107 /* PocketEOS@3x.png in Resources */,
 				18DBD282204258B0001E2DDF /* account_default_avatar@3x.png in Resources */,
 				185BA3D220BBC2E700F63674 /* unSelect__BB_wallet_icon@3x.png in Resources */,
+				183FF74520C159740058D010 /* pocket_BB@2x.png in Resources */,
 				185D181B1FE759C40021AD18 /* downImg@3x.png in Resources */,
 				185BA3C520BBC1FE00F63674 /* createAccount_BB@2x.png in Resources */,
 				183FF6DD20C0CE600058D010 /* changePassword_BB@2x.png in Resources */,
@@ -6467,6 +6515,7 @@
 				185D184C1FE760D10021AD18 /* QRCodeBackground@2x.png in Resources */,
 				185D18701FE766A00021AD18 /* backup@3x.png in Resources */,
 				185D18641FE766240021AD18 /* folder@3x.png in Resources */,
+				183FF74620C159740058D010 /* transaction_history_BB@2x.png in Resources */,
 				185D183C1FE75ECA0021AD18 /* rectangle_UnSelected@3x.png in Resources */,
 				18112F751FCD016000BEA0D9 /* IQKeyboardManager.bundle in Resources */,
 				185BA3A220BBA70200F63674 /* assest_Select_BB@3x.png in Resources */,
@@ -6474,6 +6523,7 @@
 				18AFBF0320B3096D00E880DD /* BackupAccountHeaderView.xib in Resources */,
 				185D182B1FE75C2E0021AD18 /* messageCenter@3x.png in Resources */,
 				182CDF53201EFFB4002B87B6 /* FeedbackHeaderView.xib in Resources */,
+				184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */,
 				186329841FE2597900E57F05 /* ApplicationMainHeaderView.xib in Resources */,
 				182A66191FD11FF5007FD541 /* setting@3x.png in Resources */,
 				18C622A31FD6393D0043447F /* TransferHeaderView.xib in Resources */,
@@ -6495,6 +6545,7 @@
 				1878BCAF208458AE002A76F5 /* redPacketBackground@3x.png in Resources */,
 				1884A8E3204D380700C72631 /* feedBackAsk@2x.png in Resources */,
 				187B63E0206B347D00D0AE86 /* transaction_history.png in Resources */,
+				183FF73F20C156CA0058D010 /* login_Header_BB@3x.png in Resources */,
 				1814140E1FCFA2BA00334C60 /* SVProgressHUD.bundle in Resources */,
 				18F03FEA2067883600697D7F /* redPacket_gray@3x.png in Resources */,
 				185D186F1FE766A00021AD18 /* changePassword@2x.png in Resources */,
@@ -6508,7 +6559,6 @@
 				183348771FCE5DAE00884107 /* transfer_icon@2x.png in Resources */,
 				186857251FE1292C002A683A /* LoginPasswordView.xib in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
-				188C30491FFDF74E00A357F3 /* qq_login@3x.png in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
 				1826837B2073A54E009699E2 /* server.cer in Resources */,
 				18466DA52010A049002E675A /* PYSearch.bundle in Resources */,
@@ -6561,11 +6611,13 @@
 				18F03FF320678BE900697D7F /* QRCode_small_white@3x.png in Resources */,
 				185D18611FE763B10021AD18 /* qq_big@3x.png in Resources */,
 				185D18751FE766A00021AD18 /* changePassword@3x.png in Resources */,
+				183FF6F220C0FD700058D010 /* qq_login@3x.png in Resources */,
 				18E080652068D72F0032B09C /* qq_share@3x.png in Resources */,
 				18466D7820106D44002E675A /* Javascript.html in Resources */,
 				1828F9292068D5A600513CD1 /* copy_orange@2x.png in Resources */,
 				1816915920BECC9F00BF49A8 /* candyBackground_blue.png in Resources */,
 				18E72E441FCC1AAE00D09CA3 /* assest_select@3x.png in Resources */,
+				183FF73A20C14B980058D010 /* thumb_BB@2x.png in Resources */,
 				181130D21FCD468100BEA0D9 /* tip@2x.png in Resources */,
 				185BA3B220BBA93100F63674 /* application_select_BB@3x.png in Resources */,
 				18F03FC22067804000697D7F /* background_blue@3x.png in Resources */,

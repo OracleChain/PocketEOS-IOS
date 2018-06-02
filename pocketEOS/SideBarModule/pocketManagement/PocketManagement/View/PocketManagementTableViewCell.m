@@ -51,6 +51,7 @@
         
         [self.contentView addSubview:self.titleLabel];
         self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, 10).centerYEqualToView(_avatarImg).rightSpaceToView(self.contentView, MARGIN_20).heightIs(21);
+        self.selectionStyle = UITableViewCellAccessoryNone;
     }
     return self;
 }

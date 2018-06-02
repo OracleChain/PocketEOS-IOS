@@ -79,7 +79,7 @@
 
 - (void)updateStarViewWithModel:(Application *)model{
     [self.starImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.applyIcon)) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
-    self.starTitleLabel.text = model.applyName;
+    self.starTitleLabel.text = [NSString stringWithFormat:@" %@", model.applyName];
     self.starDetailView.text = model.applyDetails;
     
 //    self.starImg.sd_cornerRadius = @10;

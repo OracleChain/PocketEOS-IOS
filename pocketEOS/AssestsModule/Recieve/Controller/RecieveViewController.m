@@ -164,7 +164,10 @@
         self.headerView.generateQRCodeBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
     } else {
-        [self.headerView.generateQRCodeBtn setBackgroundColor: HEXCOLOR(0xCCCCCC)];
+       
+        self.headerView.generateQRCodeBtn.lee_theme
+        .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
+        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
     }
     self.headerView.generateQRCodeBtn.enabled = isCanSubmit;
     if ([self.headerView.amountTF isFirstResponder]) {

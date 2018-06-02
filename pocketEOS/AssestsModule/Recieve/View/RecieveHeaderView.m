@@ -10,6 +10,14 @@
 
 @implementation RecieveHeaderView
 
+-(void)awakeFromNib{
+    [super awakeFromNib];
+     self.tipLabel.font = [UIFont boldSystemFontOfSize:24];
+    self.generateQRCodeBtn.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
+    
+}
 - (IBAction)selectAccount:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectAccountBtnDidClick:)]) {
         [self.delegate selectAccountBtnDidClick: sender];

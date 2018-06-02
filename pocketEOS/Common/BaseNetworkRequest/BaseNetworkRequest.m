@@ -77,6 +77,15 @@
     }
     
     [self configTimeOut:self.networkingManager];
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [self.networkingManager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
+        
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [self.networkingManager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
+        
+
+    }
     self.networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     
     return YES;

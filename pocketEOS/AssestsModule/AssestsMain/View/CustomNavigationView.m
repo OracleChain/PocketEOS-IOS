@@ -6,7 +6,7 @@
 //  Copyright © 2017年 oraclechain. All rights reserved.
 //
 
-#define BUTTON_HEIGHT 22
+#define BUTTON_HEIGHT 40
 #import "CustomNavigationView.h"
 
 @implementation CustomNavigationView
@@ -97,10 +97,10 @@
         self.originNavView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
         
         [_originNavView addSubview:self.leftBtn];
-        self.leftBtn.sd_layout.leftSpaceToView(_originNavView, 15).bottomSpaceToView(_originNavView, 10).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
+        self.leftBtn.sd_layout.leftSpaceToView(_originNavView, 6).bottomSpaceToView(_originNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
         
         [_originNavView addSubview:self.rightBtn1];
-        self.rightBtn1.sd_layout.rightSpaceToView(_originNavView, 15).bottomSpaceToView(_originNavView, 10).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
+        self.rightBtn1.sd_layout.rightSpaceToView(_originNavView, 6).bottomSpaceToView(_originNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
         
 //        [_originNavView addSubview:self.rightBtn2];
 //        self.rightBtn2.sd_layout.rightSpaceToView(self.rightBtn1, BUTTON_HEIGHT).bottomSpaceToView(_originNavView, 10).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
@@ -115,13 +115,13 @@
 //        self.changedNavView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
         
         [_changedNavView addSubview:self.changedBtn1];
-        _changedBtn1.sd_layout.leftSpaceToView(_changedNavView, 25).bottomSpaceToView(_changedNavView, 15).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
+        _changedBtn1.sd_layout.leftSpaceToView(_changedNavView, 25).bottomSpaceToView(_changedNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
         
         [_changedNavView addSubview:self.changedBtn2];
-        _changedBtn2.sd_layout.leftSpaceToView(_changedBtn1, 25).bottomSpaceToView(_changedNavView, 15).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
+        _changedBtn2.sd_layout.leftSpaceToView(_changedBtn1, 25).bottomSpaceToView(_changedNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
         
         [_changedNavView addSubview:self.changedBtn3];
-        _changedBtn3.sd_layout.leftSpaceToView(_changedBtn2, 25).bottomSpaceToView(_changedNavView, 15).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
+        _changedBtn3.sd_layout.leftSpaceToView(_changedBtn2, 25).bottomSpaceToView(_changedNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);
 
     }
     return self;

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *tipTextView;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *backupImageView;
 
 @property(nonatomic , assign) BOOL isSwitchOn;
 @property(nonatomic, strong) ExportPrivateKeyView *exportPrivateKeyView;
@@ -60,6 +61,11 @@
     self.tipTextView.lee_theme
     .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
     .LeeAddTextColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.6));
+    
+    self.backupImageView.lee_theme
+    .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"shield"])
+    .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"shield_BB"]);
+
     
 }
 

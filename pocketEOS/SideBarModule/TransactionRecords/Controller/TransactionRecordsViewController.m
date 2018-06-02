@@ -163,7 +163,7 @@
                 [weakSelf.mainTableView.mj_header endRefreshing];
                 [weakSelf.mainTableView.mj_footer endRefreshing];
                 
-                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithImageName:@"nomoredata" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
+                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
                 
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
@@ -173,7 +173,7 @@
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];
-            [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithImageName:@"nomoredata" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
+           [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:@"暂无数据" toView:weakSelf.mainTableView andViewController:weakSelf];
         }
     }];
 }

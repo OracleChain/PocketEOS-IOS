@@ -10,7 +10,7 @@
 
 
 @interface NewsMainHeaderView()
-@property(nonatomic , strong) UIView *bottomLineView;
+@property(nonatomic , strong) BaseSlimLineView *bottomLineView;
 @end
 
 
@@ -45,10 +45,10 @@
     }
     return _currentAssestsLabel;
 }
-- (UIView *)bottomLineView{
+- (BaseSlimLineView *)bottomLineView{
     if (!_bottomLineView) {
-        _bottomLineView = [[UIView alloc] init];
-        _bottomLineView.backgroundColor = HEXCOLOR(0xEEEEEE);
+        _bottomLineView = [[BaseSlimLineView alloc] init];
+        
     }
     return _bottomLineView;
 }

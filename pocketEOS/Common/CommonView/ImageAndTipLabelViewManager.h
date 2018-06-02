@@ -17,7 +17,7 @@
 /**
  *  显示页面
  */
-- (void)showImageAddTipLabelViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController;
+- (void)showImageAddTipLabelViewWithSocial_Mode_ImageName:(NSString *)imageName andBlackbox_Mode_ImageName:(NSString *)imageName_BB andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController;
 
 /**
  *  移除页面

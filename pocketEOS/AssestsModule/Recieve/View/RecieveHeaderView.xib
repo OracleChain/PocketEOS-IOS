@@ -30,7 +30,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="UqA-n2-MlP"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资产数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP6-0R-uxW" customClass="BaseLabel1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资产数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wP6-0R-uxW" customClass="BaseLabel">
                     <rect key="frame" x="20" y="60.5" width="80" height="46"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="zbA-yH-qbw"/>
@@ -72,7 +72,7 @@
                     <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoo-uu-bWg">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoo-uu-bWg" userLabel="line5View" customClass="BaseSlimLineView">
                     <rect key="frame" x="20" y="325" width="355" height="0.5"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>

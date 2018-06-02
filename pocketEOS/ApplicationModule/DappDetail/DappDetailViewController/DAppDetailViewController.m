@@ -103,8 +103,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     self.title = self.model.applyName;
     [self.view addSubview:self.selectAccountView];
 }

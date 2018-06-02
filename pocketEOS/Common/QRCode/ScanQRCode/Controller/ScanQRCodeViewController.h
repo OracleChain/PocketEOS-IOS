@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AccountPrivateKeyQRCodeModel.h"
 
-@interface ScanQRCodeViewController : UIViewController
+@interface ScanQRCodeViewController : BaseViewController
 
 @end

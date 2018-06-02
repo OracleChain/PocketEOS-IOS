@@ -35,10 +35,11 @@
 #import "CQMarqueeView.h"
 #import "UIView+frameAdjust.h"
 #import "CreateAccountViewController.h"
+#import "PopUpWindow.h"
+#import "BaseTabBarController.h"
+#import "AccountInfo.h"
 
-
-
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate>
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, PopUpWindowDelegate>
 
 @property(nonatomic, strong) UIImageView *backgroundView;
 @property(nonatomic, strong) CustomNavigationView *navView;
@@ -47,19 +48,34 @@
 @property(nonatomic, strong) AssestsMainService *mainService;
 @property(nonatomic, strong) NSString *currentAccountName;
 
+
+/**
+ 当前选中的 账号
+ */
+@property(nonatomic, strong) UILabel *currentAssestsLabel;
+
+/**
+ 箭头
+ */
+@property(nonatomic, strong) UIImageView *arrowImg;
+@property(nonatomic, strong) PopUpWindow *popUpWindow;
+
 @end
 
 @implementation AssestsMainViewController
 
 - (UIImageView *)backgroundView{
     if (!_backgroundView) {
-        _backgroundView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 333))];
-        _backgroundView.backgroundColor = RGB(65, 115, 238);
+        _backgroundView = [[UIImageView alloc] init];
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 333);
+            
+        }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 248);
+        }
         _backgroundView.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, RGB(65, 115, 238))
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
-//        _backgroundView.lee_theme
-//        .LeeConfigImage(@"AssestMainHeaderImage");
     }
     return _backgroundView;
 }
@@ -76,6 +92,8 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsMainHeaderView" owner:nil options:nil] firstObject];
         _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 333);
+        
+        
     }
     return _headerView;
 }
@@ -83,10 +101,11 @@
 - (BBAssestsMainHeaderView *)BB_headerView{
     if (!_BB_headerView) {
         _BB_headerView = [[[NSBundle mainBundle] loadNibNamed:@"BBAssestsMainHeaderView" owner:nil options:nil] firstObject];
-        _BB_headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 294+10+15);
+        _BB_headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 248);
     }
     return _BB_headerView;
 }
+
 - (AssestsMainService *)mainService{
     if (!_mainService) {
         _mainService = [[AssestsMainService alloc] init];
@@ -94,6 +113,40 @@
     return _mainService;
 }
 
+- (UILabel *)currentAssestsLabel{
+    if (!_currentAssestsLabel) {
+        _currentAssestsLabel = [[UILabel alloc] init];
+        _currentAssestsLabel.textColor = [UIColor whiteColor];
+        _currentAssestsLabel.font = [UIFont systemFontOfSize:13];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCurrentAssestsLabel:)];
+        [_currentAssestsLabel addGestureRecognizer:tap];
+        _currentAssestsLabel.userInteractionEnabled = YES;
+        
+    }
+    return _currentAssestsLabel;
+}
+
+
+- (UIImageView *)arrowImg{
+    if (!_arrowImg) {
+        _arrowImg = [[UIImageView alloc] init];
+        _arrowImg.image = [UIImage imageNamed:@"downImg"];
+        _arrowImg.userInteractionEnabled = YES;
+    }
+    return _arrowImg;
+}
+
+- (PopUpWindow *)popUpWindow{
+    if (!_popUpWindow) {
+        _popUpWindow = [[PopUpWindow alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT ))];
+        _popUpWindow.delegate = self;
+        WS(weakSelf);
+        [_popUpWindow setOnBottomViewDidClick:^{
+            [weakSelf removePopUpWindow];
+        }];
+    }
+    return _popUpWindow;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -116,23 +169,32 @@
     
     [self.mainTableView.mj_footer resetNoMoreData];
     self.mainTableView.backgroundColor = [UIColor clearColor];
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     // 添加跑马灯
     CQMarqueeView *marqueeView = [[CQMarqueeView alloc] initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 34)];
     
     [self.view addSubview:marqueeView];
-    marqueeView.marqueeTextArray = @[@"温馨提示：本钱包运行于测试网络，待EOS主网正是上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。"];
+    marqueeView.marqueeTextArray = @[@"温馨提示：本钱包运行于测试网络，待EOS主网正式上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。"];
     marqueeView.delegate = self;
     
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         [self.mainTableView setTableHeaderView:self.headerView];
-        
-    }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+        self.navView.titleImg.hidden = NO;
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         [self.mainTableView setTableHeaderView:self.BB_headerView];
+        self.navView.titleImg.hidden = YES;
+        
+        [self.navView addSubview:self.currentAssestsLabel];
+        self.currentAssestsLabel.sd_layout.centerXEqualToView(self.navView).bottomSpaceToView(self.navView, 10).heightIs(21);
+        [self.currentAssestsLabel setSingleLineAutoResizeWithMaxWidth:SCREEN_WIDTH-200];
+        
+        
+        [self.navView addSubview:self.arrowImg];
+        self.arrowImg.sd_layout.leftSpaceToView(self.currentAssestsLabel, 6).centerYEqualToView(_currentAssestsLabel).widthIs(8.7).heightIs(5);
         
     }
+    
     [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
@@ -140,6 +202,7 @@
         if ([model.is_main_account isEqualToString:@"1"]) {
             AccountInfo *mainAccount = model;
             self.currentAccountName = mainAccount.account_name;
+            self.currentAssestsLabel.text = self.currentAccountName;
         }
     }
     
@@ -171,9 +234,9 @@
         // 拿到当前的下拉刷新控件，结束刷新状态
         [weakSelf.mainTableView.mj_header endRefreshing];
         if (isSuccess) {
-            if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+            if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
                 weakSelf.headerView.model = result.data;
-            }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+            }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
                 weakSelf.BB_headerView.model = result.data;
             }
             
@@ -188,7 +251,7 @@
     [self.navView setLeftBtnDidClickBlock:^{
         [weakSelf profileCenter];
     }];
-    
+   
     // 扫描二维码
     [self.navView setRightBtn1DidClickBlock:^{
     
@@ -361,6 +424,11 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    CGPoint offset = scrollView.contentOffset;
+    NSLog(@"%f, %f", offset.x, offset.y);
+    if (offset.y >= 0) {
+        scrollView.contentOffset = CGPointMake(0, 0);
+    }
     if (scrollView.contentOffset.y >= 300) {
         // 隐藏 headerview
         [UIView animateWithDuration:0.3 animations:^{
@@ -420,5 +488,40 @@
     
     [self buidDataSource];
 }
+
+
+- (void)tapCurrentAssestsLabel:(UITapGestureRecognizer *)sender{
+    [self.view addSubview:self.popUpWindow];
+  
+    self.popUpWindow.type = PopUpWindowTypeAccount;
+    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+    if (IsStrEmpty(self.currentAccountName) && accountArray.count > 0) {
+        AccountInfo *model = accountArray[0];
+        model.selected = YES;
+    }else{
+        for (AccountInfo *model in accountArray) {
+            if ([model.account_name isEqualToString:self.currentAccountName]) {
+                model.selected = YES;
+            }else{
+                model.selected = NO;
+            }
+        }
+    }
+    [self.popUpWindow updateViewWithArray:accountArray title:@""];
+}
+
+// PopUpWindowDelegate
+- (void)popUpWindowdidSelectItem:(id )sender{
+    AccountInfo *accountInfo = sender;
+    self.currentAccountName = accountInfo.account_name;
+    self.currentAssestsLabel.text = self.currentAccountName;
+    [self removePopUpWindow];
+}
+
+- (void)removePopUpWindow{
+    [self.popUpWindow removeFromSuperview];
+    self.popUpWindow = nil;
+}
+
 
 @end

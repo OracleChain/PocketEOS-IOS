@@ -68,6 +68,7 @@
         [btn setTitle:arr[i] forState:(UIControlStateNormal)];
         [btn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
         [btn setTitleColor:HEXCOLOR(0x4D7BFE) forState:(UIControlStateSelected)];
+        [btn.titleLabel setFont: [UIFont systemFontOfSize:15]];
         btn.tag = 1000 + i;
         [btn addTarget:self action:@selector(segmentBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [btn setBackgroundColor:[UIColor clearColor]];

@@ -50,6 +50,7 @@
     if (!_navView) {
         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"资产转账" rightBtnImgName:@"scan_black" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+        _navView.rightBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"scan_black"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"scan"], UIControlStateNormal);
     }
     return _navView;
 }
@@ -255,7 +256,11 @@
         self.headerView.transferBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
     } else {
-        [self.headerView.transferBtn setBackgroundColor: HEXCOLOR(0xCCCCCC)];
+        self.headerView.transferBtn.lee_theme
+        .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
+        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
+     
+        
     }
     self.headerView.transferBtn.enabled = isCanSubmit;
     

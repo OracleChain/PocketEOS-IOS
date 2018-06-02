@@ -401,10 +401,11 @@
     self.navigationItem.titleView = titleView;
     searchBar.placeholder = [NSBundle py_localizedStringForKey:PYSearchSearchPlaceholderText];
     searchBar.backgroundImage = [NSBundle py_imageNamed:@"clearImage"];
+    searchBar.backgroundColor = RGB(245, 245, 245);
     searchBar.delegate = self;
     
-    searchBar.layer.cornerRadius = 4;
-    searchBar.layer.masksToBounds = YES;
+//    searchBar.layer.cornerRadius = 0;
+//    searchBar.layer.masksToBounds = YES;
     
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
         if ([[subView class] isSubclassOfClass:[UITextField class]]) {

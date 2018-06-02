@@ -102,6 +102,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     
     [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://59.110.162.106:8002/#/answer")]];
     

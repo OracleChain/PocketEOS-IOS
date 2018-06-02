@@ -42,6 +42,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 - (UIView *)segmentControlViewBackgroundView{
     if (!_segmentControlViewBackgroundView) {
         _segmentControlViewBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT)];
+        _segmentControlViewBackgroundView.backgroundColor = [UIColor whiteColor];
         _segmentControlView = [[SegmentControlView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT-54, SCREEN_WIDTH, 54))];
         [_segmentControlViewBackgroundView addSubview:self.segmentControlView];
         _segmentControlView.delegate = self;

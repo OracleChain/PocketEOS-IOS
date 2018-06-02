@@ -112,17 +112,17 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第三方登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSW-FR-paB">
-                                    <rect key="frame" x="153" y="515" width="70" height="18"/>
+                                    <rect key="frame" x="148" y="515" width="80" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="Bqt-t8-AlF"/>
-                                        <constraint firstAttribute="width" constant="70" id="ulP-O5-i1p"/>
+                                        <constraint firstAttribute="width" constant="80" id="ulP-O5-i1p"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.83921568629999999" green="0.89019607840000003" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8LF-yh-FP5" userLabel="leftLineView" customClass="BaseSlimLineView">
-                                    <rect key="frame" x="118" y="524.5" width="29" height="0.5"/>
+                                    <rect key="frame" x="109" y="524.5" width="29" height="0.5"/>
                                     <color key="backgroundColor" red="0.83921568629999999" green="0.89019607840000003" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="29" id="R2U-ju-Jec"/>
@@ -130,7 +130,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fr-I3-rY5" userLabel="rigghtLineView" customClass="BaseSlimLineView">
-                                    <rect key="frame" x="229" y="524" width="29" height="0.5"/>
+                                    <rect key="frame" x="238" y="524" width="29" height="0.5"/>
                                     <color key="backgroundColor" red="0.83921568629999999" green="0.89019607840000003" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="NvJ-At-2d1"/>
@@ -138,10 +138,10 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqj-AN-JE3">
-                                    <rect key="frame" x="118" y="558" width="40" height="40"/>
+                                    <rect key="frame" x="112" y="558" width="52" height="52"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="JrY-dv-waE"/>
-                                        <constraint firstAttribute="height" constant="40" id="uT1-cm-r3a"/>
+                                        <constraint firstAttribute="width" constant="52" id="JrY-dv-waE"/>
+                                        <constraint firstAttribute="height" constant="52" id="uT1-cm-r3a"/>
                                     </constraints>
                                     <state key="normal" image="wechat_login.png"/>
                                     <connections>
@@ -149,12 +149,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndk-8v-AjB">
-                                    <rect key="frame" x="218" y="558" width="40" height="40"/>
+                                    <rect key="frame" x="212" y="558" width="52" height="52"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="2GH-oF-rIm"/>
-                                        <constraint firstAttribute="height" constant="40" id="4Yg-SZ-vsa"/>
-                                        <constraint firstAttribute="width" constant="40" id="Dkh-5s-vj6"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="hp1-zb-3HN"/>
+                                        <constraint firstAttribute="height" constant="52" id="4Yg-SZ-vsa"/>
+                                        <constraint firstAttribute="width" constant="52" id="Dkh-5s-vj6"/>
                                     </constraints>
                                     <state key="normal" image="qq_login.png"/>
                                     <connections>
@@ -261,7 +259,7 @@
                                 <constraint firstItem="aSW-FR-paB" firstAttribute="centerX" secondItem="FVV-t8-BPB" secondAttribute="centerX" id="L4m-he-wtB"/>
                                 <constraint firstAttribute="trailing" secondItem="ADs-Ik-w4U" secondAttribute="trailing" constant="20" id="LCu-68-SXj"/>
                                 <constraint firstItem="6RC-hk-UPb" firstAttribute="top" secondItem="dj6-F6-6ud" secondAttribute="bottom" constant="20" id="Pg9-Gt-0Qe"/>
-                                <constraint firstItem="aSW-FR-paB" firstAttribute="leading" secondItem="8LF-yh-FP5" secondAttribute="trailing" constant="6" id="TU5-O8-Tmi"/>
+                                <constraint firstItem="aSW-FR-paB" firstAttribute="leading" secondItem="8LF-yh-FP5" secondAttribute="trailing" constant="10" id="TU5-O8-Tmi"/>
                                 <constraint firstAttribute="trailing" secondItem="dj6-F6-6ud" secondAttribute="trailing" id="UBf-ZC-Mfs"/>
                                 <constraint firstItem="tqj-AN-JE3" firstAttribute="top" secondItem="aSW-FR-paB" secondAttribute="bottom" constant="25" id="UBq-uR-Fst"/>
                                 <constraint firstItem="mwU-HM-rk9" firstAttribute="leading" secondItem="gch-bm-2sz" secondAttribute="trailing" constant="5" id="Uzs-P3-tK1"/>
@@ -275,7 +273,7 @@
                                 <constraint firstItem="6Fr-I3-rY5" firstAttribute="centerY" secondItem="aSW-FR-paB" secondAttribute="centerY" id="f3g-b3-dnB"/>
                                 <constraint firstItem="yzn-Wc-3qB" firstAttribute="top" secondItem="uKi-oX-BCf" secondAttribute="bottom" constant="32" id="f3o-In-sNq"/>
                                 <constraint firstItem="tqj-AN-JE3" firstAttribute="centerX" secondItem="FVV-t8-BPB" secondAttribute="centerX" constant="-50" id="fMx-1R-OVX"/>
-                                <constraint firstItem="6Fr-I3-rY5" firstAttribute="leading" secondItem="aSW-FR-paB" secondAttribute="trailing" constant="6" id="fdo-f6-wrf"/>
+                                <constraint firstItem="6Fr-I3-rY5" firstAttribute="leading" secondItem="aSW-FR-paB" secondAttribute="trailing" constant="10" id="fdo-f6-wrf"/>
                                 <constraint firstItem="pBj-Vr-738" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="fmQ-I8-pH4"/>
                                 <constraint firstItem="Coj-9G-n7M" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="frF-Er-7He"/>
                                 <constraint firstAttribute="trailing" secondItem="6RC-hk-UPb" secondAttribute="trailing" constant="20" id="icG-Uc-C6J"/>
@@ -331,10 +329,10 @@
     </objects>
     <resources>
         <image name="lockBackground.png" width="131" height="130"/>
-        <image name="qq_login.png" width="40" height="40"/>
+        <image name="qq_login.png" width="52" height="52"/>
         <image name="rectangle_UnSelected.png" width="12" height="12"/>
         <image name="rectangle_selected.png" width="12" height="12"/>
         <image name="right_arrow_white.png" width="8" height="14"/>
-        <image name="wechat_login.png" width="40" height="40"/>
+        <image name="wechat_login.png" width="52" height="52"/>
     </resources>
 </document>

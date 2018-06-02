@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="CUu-Vc-r9s" customClass="PersonalSettingHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Q5-51-9BE" userLabel="line1" customClass="BaseSlimLineView">
@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="56p-hU-WYC"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISd-pO-ByD" userLabel="line2" customClass="BaseSlimLineView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISd-pO-ByD" userLabel="line2">
                     <rect key="frame" x="0.0" y="128" width="375" height="10"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="ffb-e4-XVq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcQ-qC-k1K" userLabel="line4" customClass="BaseSlimLineView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcQ-qC-k1K" userLabel="line4">
                     <rect key="frame" x="0.0" y="251" width="375" height="10"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -248,17 +248,10 @@
                         <constraint firstItem="lsp-O7-xAI" firstAttribute="centerY" secondItem="ziY-Dm-xVG" secondAttribute="centerY" id="uhs-Ch-qki"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWv-98-VZX" userLabel="line5" customClass="BaseSlimLineView">
-                    <rect key="frame" x="0.0" y="261" width="375" height="0.0"/>
-                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5Q5-51-9BE" secondAttribute="trailing" constant="2" id="0iK-UM-m2a"/>
                 <constraint firstItem="bcQ-qC-k1K" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="2MV-AF-x3M"/>
-                <constraint firstAttribute="bottom" secondItem="nWv-98-VZX" secondAttribute="bottom" id="2x8-hz-98i"/>
-                <constraint firstItem="nWv-98-VZX" firstAttribute="top" secondItem="bcQ-qC-k1K" secondAttribute="bottom" id="2z8-Zm-mb2"/>
                 <constraint firstAttribute="trailing" secondItem="n8g-6e-6Ax" secondAttribute="trailing" id="4MP-fk-KBw"/>
                 <constraint firstItem="ISd-pO-ByD" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="80D-me-W8O"/>
                 <constraint firstItem="Uud-HN-GbV" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="ByD-lK-UhV"/>
@@ -270,7 +263,6 @@
                 <constraint firstItem="bcQ-qC-k1K" firstAttribute="top" secondItem="L4O-Gr-F2J" secondAttribute="bottom" constant="56" id="Lql-TX-DCR"/>
                 <constraint firstItem="n8g-6e-6Ax" firstAttribute="top" secondItem="5Q5-51-9BE" secondAttribute="bottom" id="OJg-oP-aRt"/>
                 <constraint firstItem="L4O-Gr-F2J" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" constant="20" id="P4A-4e-5gR"/>
-                <constraint firstAttribute="trailing" secondItem="nWv-98-VZX" secondAttribute="trailing" id="Tvg-E4-oJ9"/>
                 <constraint firstAttribute="trailing" secondItem="bcQ-qC-k1K" secondAttribute="trailing" id="Y7F-NH-Jv3"/>
                 <constraint firstItem="5Q5-51-9BE" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" constant="20" id="YS9-zC-Aiy"/>
                 <constraint firstItem="n8g-6e-6Ax" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="aEr-ZB-f9t"/>
@@ -278,7 +270,6 @@
                 <constraint firstAttribute="trailing" secondItem="ISd-pO-ByD" secondAttribute="trailing" id="ajm-9m-Lhs"/>
                 <constraint firstItem="L4O-Gr-F2J" firstAttribute="top" secondItem="ISd-pO-ByD" secondAttribute="bottom" constant="56" id="dXW-R0-2Pk"/>
                 <constraint firstItem="ISd-pO-ByD" firstAttribute="top" secondItem="n8g-6e-6Ax" secondAttribute="bottom" id="jWk-ea-5SI"/>
-                <constraint firstItem="nWv-98-VZX" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="jxb-0B-E9p"/>
                 <constraint firstItem="JN6-Fe-OQl" firstAttribute="leading" secondItem="CUu-Vc-r9s" secondAttribute="leading" id="kyO-Ys-Gce"/>
                 <constraint firstItem="ISd-pO-ByD" firstAttribute="top" secondItem="5Q5-51-9BE" secondAttribute="bottom" constant="56" id="ner-LT-uzn"/>
                 <constraint firstItem="Uud-HN-GbV" firstAttribute="top" secondItem="CUu-Vc-r9s" secondAttribute="top" id="nwy-Ky-l09"/>
@@ -292,10 +283,9 @@
             <connections>
                 <outlet property="avatarBaseView" destination="Uud-HN-GbV" id="YZf-6N-ooP"/>
                 <outlet property="avatarImg" destination="R2W-bu-DPB" id="Fll-3S-1gZ"/>
-                <outlet property="line2" destination="ISd-pO-ByD" id="77I-fB-NIb"/>
+                <outlet property="line2" destination="ISd-pO-ByD" id="6FK-UW-08a"/>
                 <outlet property="line3" destination="L4O-Gr-F2J" id="LEb-vl-vsl"/>
-                <outlet property="line4" destination="bcQ-qC-k1K" id="lDe-cd-1ad"/>
-                <outlet property="line5" destination="nWv-98-VZX" id="5i0-L8-bzg"/>
+                <outlet property="line4" destination="bcQ-qC-k1K" id="783-Qb-Z1g"/>
                 <outlet property="nameBaseView" destination="n8g-6e-6Ax" id="MkA-C2-5Yj"/>
                 <outlet property="qqBaseView" destination="JN6-Fe-OQl" id="sFa-o7-tpG"/>
                 <outlet property="qqIDLabel" destination="n5P-cl-63p" id="LPV-E4-4Ct"/>

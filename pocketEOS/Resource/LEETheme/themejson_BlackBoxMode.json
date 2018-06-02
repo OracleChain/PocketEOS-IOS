@@ -65,8 +65,8 @@
     "image": {
     
         "AssestMainHeaderImage" : "background_black",
-        "newstoolbar_collection_btn_noselect_image" : "base_action_bar_back_shoucang_night.png",
-        "newstoolbar_share_btn_image" : "base_action_bar_back_zhuanfa_new_night.png",
+        "pocketManageImage" : "pocket_BB",
+        "transaction_historyImage" : "transaction_history_BB",
         "newstoolbar_comment_btn_image" : "pic_base_action_bar_back_comment_night.png",
         "newstoolbar_report_btn_image" : "base_action_bar_report_night.png",
     },

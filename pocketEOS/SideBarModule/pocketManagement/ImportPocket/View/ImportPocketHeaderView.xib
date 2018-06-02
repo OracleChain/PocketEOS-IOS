@@ -31,7 +31,7 @@
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYt-GH-kI9" customClass="BaseConfirmButton">
-                    <rect key="frame" x="50" y="210" width="275" height="42"/>
+                    <rect key="frame" x="50" y="200" width="275" height="42"/>
                     <color key="backgroundColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="xYg-LA-dlg"/>
@@ -51,7 +51,7 @@
                 <constraint firstItem="fYD-mG-8gH" firstAttribute="leading" secondItem="WPb-kR-yFR" secondAttribute="leading" constant="20" id="3EV-o2-cd7"/>
                 <constraint firstAttribute="trailing" secondItem="sYt-GH-kI9" secondAttribute="trailing" constant="50" id="BTd-5k-vvT"/>
                 <constraint firstAttribute="trailing" secondItem="fYD-mG-8gH" secondAttribute="trailing" constant="20" id="YuR-XQ-fZh"/>
-                <constraint firstItem="sYt-GH-kI9" firstAttribute="top" secondItem="fYD-mG-8gH" secondAttribute="bottom" constant="30" id="c78-ej-X8F"/>
+                <constraint firstItem="sYt-GH-kI9" firstAttribute="top" secondItem="fYD-mG-8gH" secondAttribute="bottom" constant="20" id="c78-ej-X8F"/>
                 <constraint firstItem="fYD-mG-8gH" firstAttribute="top" secondItem="WPb-kR-yFR" secondAttribute="top" constant="20" id="j9j-1v-IGY"/>
                 <constraint firstItem="sYt-GH-kI9" firstAttribute="leading" secondItem="WPb-kR-yFR" secondAttribute="leading" constant="50" id="wAM-Jc-r1U"/>
             </constraints>

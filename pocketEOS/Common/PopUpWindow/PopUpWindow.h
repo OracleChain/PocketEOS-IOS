@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, PopUpWindowType) {
 
 @interface PopUpWindow : UIView
 
+
 @property(nonatomic, weak) id<PopUpWindowDelegate> delegate;
 
 @property(nonatomic, strong) NSString *title;

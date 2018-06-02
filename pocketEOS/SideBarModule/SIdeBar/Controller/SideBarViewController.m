@@ -171,9 +171,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     UIViewController *vc;
-    if ([[LEETheme currentThemeTag] isEqualToString:SOCIAL_MODE]) {
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         vc = [[LoginMainViewController alloc] init];
-    }else if ([[LEETheme currentThemeTag] isEqualToString:BLACKBOX_MODE]){
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         vc = [[BBLoginViewController alloc] init];
     }
     

@@ -307,12 +307,13 @@ static const NSInteger CDZToolBarHeight = 44;
 
 - (UIButton *)confirmButton{
     if (!_confirmButton) {
-        _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -70, 10, 40, 30)];
+        _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -20, 10, 40, 30)];
         _confirmButton.backgroundColor = UIColor.clearColor;
         _confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         NSString *title = self.builder.confirmText.length ? self.builder.confirmText : @"确定";
         [_confirmButton setTitle:title forState:UIControlStateNormal];
         [_confirmButton setTitleColor:HEXCOLOR(0x4D7BFE) forState:UIControlStateNormal];
+        [_confirmButton.titleLabel setTextAlignment:(NSTextAlignmentRight)];
         [_confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmButton;
@@ -321,10 +322,11 @@ static const NSInteger CDZToolBarHeight = 44;
 
 - (UIButton *)cancelButton{
     if (!_cancelButton) {
-        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 10, 40, 30)];
+        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 40, 30)];
         _cancelButton.backgroundColor = UIColor.clearColor;
         _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         NSString *title = self.builder.cancelText.length ? self.builder.cancelText : @"取消";
+        [_cancelButton.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
         [_cancelButton setTitle:title forState:UIControlStateNormal];
         [_cancelButton setTitleColor:HEXCOLOR(0x4D7BFE) forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];

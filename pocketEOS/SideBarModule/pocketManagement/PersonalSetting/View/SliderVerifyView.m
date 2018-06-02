@@ -79,7 +79,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         destinationRandomOrigin_X = [self getRandomNumber: SCREEN_WIDTH/ 2 to: SCREEN_WIDTH - 54 - (48 * 2)];// 48 为 self 距左/右的边距
-        self.backgroundColor =  HEXCOLOR(0x4D7BFE);
         self.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0x4D7BFE))
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));

@@ -48,13 +48,17 @@ static ImageAndTipLabelViewManager * manager = nil;
     }
     return _tipLabel;
 }
-- (void)showImageAddTipLabelViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController{
-    [self showImageAddTipLabelViewWithImageName:imageName andTitleStr:titleStr toView:parentView andViewController:viewController tag:0];
+- (void)showImageAddTipLabelViewWithSocial_Mode_ImageName:(NSString *)imageName andBlackbox_Mode_ImageName:(NSString *)imageName_BB andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController{
+    [self showImageAddTipLabelViewWithSocial_Mode_ImageName:imageName andBlackbox_Mode_ImageName:imageName_BB andTitleStr:titleStr toView:parentView andViewController:viewController tag:0];
 }
 
--(void)showImageAddTipLabelViewWithImageName:(NSString *)imageName andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController tag:(NSInteger)tag
+-(void)showImageAddTipLabelViewWithSocial_Mode_ImageName:(NSString *)imageName andBlackbox_Mode_ImageName:(NSString *)imageName_BB andTitleStr:(NSString *)titleStr toView:(UIView *)parentView andViewController:(UIViewController *) viewController tag:(NSInteger)tag
 {
-    self.img.image = [UIImage imageNamed:imageName];
+    
+    self.img.lee_theme
+    .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:imageName])
+    .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:imageName_BB]);
+    
     self.tipLabel.text = titleStr;
     
     [self.baseView addSubview:self.img];
@@ -62,7 +66,7 @@ static ImageAndTipLabelViewManager * manager = nil;
     
     self.baseView.frame = parentView.bounds;
     
-    self.img.sd_layout.topSpaceToView(self.baseView, 150).centerXEqualToView(self.baseView).widthIs(180).heightIs(180);
+    self.img.sd_layout.centerYEqualToView(self.baseView).centerXEqualToView(self.baseView).widthIs(160).heightIs(160);
     
     
     self.tipLabel.sd_layout.topSpaceToView(self.img, 34).centerXEqualToView(self.baseView).widthIs(SCREEN_WIDTH).heightIs(14);

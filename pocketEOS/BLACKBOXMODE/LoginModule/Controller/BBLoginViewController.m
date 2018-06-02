@@ -73,7 +73,7 @@
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
         CGFloat cellHeight = 50.5;
         _chooseWalletFooterView = [[[NSBundle mainBundle] loadNibNamed:@"BBLoginChooseWalletFooterView" owner:nil options:nil] firstObject];
-        _chooseWalletFooterView.frame = CGRectMake(0, 35+ allLocalWallet.count * cellHeight, SCREEN_WIDTH, 140);
+        _chooseWalletFooterView.frame = CGRectMake(0, 35+ allLocalWallet.count * cellHeight, SCREEN_WIDTH, SCREEN_HEIGHT-200-35-allLocalWallet.count * cellHeight);
         _chooseWalletFooterView.delegate = self;
     }
     return _chooseWalletFooterView;
@@ -85,10 +85,11 @@
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
         CGFloat cellHeight = 50.5;
         
-        _chooseWalletBackgroundView.frame = CGRectMake(0, 200, SCREEN_WIDTH, 30+allLocalWallet.count*cellHeight+140);
+        _chooseWalletBackgroundView.frame = CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT-200);
         UILabel *label = [[UILabel alloc] init];
         label.textColor = HEXCOLOR(0x999999);
         label.text = @"请选择钱包:";
+        label.font = [UIFont systemFontOfSize:14];
         label.frame = CGRectMake(MARGIN_20, MARGIN_15, 150, MARGIN_15);
         [_chooseWalletBackgroundView addSubview:label];
         for (int i = 0 ; i < allLocalWallet.count; i++) {
@@ -109,10 +110,12 @@
             [backgroundCellView addSubview:btn];
             [self.select_BB_walelt_Btn_Array addObject:btn];
 
-            BaseSlimLineView *lineView = [[BaseSlimLineView alloc] init];
+            UIView *lineView = [[UIView alloc] init];
             lineView.frame = CGRectMake(MARGIN_20, 49, SCREEN_WIDTH-MARGIN_20, DEFAULT_LINE_HEIGHT);
+            lineView.backgroundColor = HEXCOLOR(0xEEEEEE);
             [backgroundCellView addSubview:lineView];
         }
+        
         
         [_chooseWalletBackgroundView addSubview:self.chooseWalletFooterView];
         

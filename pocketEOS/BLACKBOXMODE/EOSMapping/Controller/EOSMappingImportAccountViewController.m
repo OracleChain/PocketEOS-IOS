@@ -49,7 +49,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"EOSMappingImportAccountHeaderView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 367);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 230);
     }
     return _headerView;
 }
