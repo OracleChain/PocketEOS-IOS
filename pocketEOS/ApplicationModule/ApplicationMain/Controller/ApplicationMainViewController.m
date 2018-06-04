@@ -76,6 +76,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self buildDataSource];
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
@@ -98,20 +99,66 @@
 
 - (void)buildDataSource{
     WS(weakSelf);
-    [self.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
+            if (isSuccess) {
+                
+                dispatch_group_leave(group);
+            }else{
+                [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
+                        dispatch_group_leave(group);
+                }];
+            }
+        }];
+    });
+
+    dispatch_group_enter(group);
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
+            if (isSuccess) {
+                dispatch_group_leave(group);
+            
+            }else{
+                [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
+                        dispatch_group_leave(group);
+                }];
+            }
+        }];
+    });
+
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        //界面刷新
         if (weakSelf.mainService.imageURLStringsGroup.count > 0) {
             [weakSelf configBannerView];
         }
         if (weakSelf.mainService.top4DataArray.count > 0) {
             [weakSelf.headerView updateViewWithArray:weakSelf.mainService.top4DataArray];
         }
-    }];
-    [self.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
-            if (weakSelf.mainService.starDataArray.count > 0) {
-                [weakSelf.headerView updateStarViewWithModel:weakSelf.mainService.starDataArray[0]];
-                [weakSelf.mainCollectionView reloadData];
-            }
-    }];
+        if (weakSelf.mainService.starDataArray.count > 0) {
+            [weakSelf.headerView updateStarViewWithModel:weakSelf.mainService.starDataArray[0]];
+            [weakSelf.mainCollectionView reloadData];
+        }
+    });
+    
+    
+    
+//    [self.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
+//        if (weakSelf.mainService.imageURLStringsGroup.count > 0) {
+//            [weakSelf configBannerView];
+//        }
+//        if (weakSelf.mainService.top4DataArray.count > 0) {
+//            [weakSelf.headerView updateViewWithArray:weakSelf.mainService.top4DataArray];
+//        }
+//    }];
+//    [self.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
+//            if (weakSelf.mainService.starDataArray.count > 0) {
+//                [weakSelf.headerView updateStarViewWithModel:weakSelf.mainService.starDataArray[0]];
+//                [weakSelf.mainCollectionView reloadData];
+//            }
+//    }];
 }
 
 - (void)configBannerView{

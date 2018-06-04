@@ -134,6 +134,11 @@
 		1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816919D20BF80EC00BF49A8 /* vote_box@3x.png */; };
 		181691A220BF83B600BF49A8 /* nomoredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A020BF83B600BF49A8 /* nomoredata@2x.png */; };
 		181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A120BF83B600BF49A8 /* nomoredata@3x.png */; };
+		181EC30A20C4C43E001994D3 /* ApplicationMainHeaderBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC30920C4C43E001994D3 /* ApplicationMainHeaderBottomView.m */; };
+		181EC30C20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181EC30B20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib */; };
+		181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC30E20C4C9B2001994D3 /* ApplicationTop4View.m */; };
+		181EC31220C4CC08001994D3 /* ApplicationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC31120C4CC08001994D3 /* ApplicationHeaderView.m */; };
+		181EC31520C4DC17001994D3 /* ApplicationHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC31420C4DC17001994D3 /* ApplicationHeaderViewModel.m */; };
 		182007412069E1F100D281EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007402069E1E600D281EF /* SystemConfiguration.framework */; };
 		182007432069E27000D281EF /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007422069E27000D281EF /* libz.1.dylib */; };
 		182007452069E2AD00D281EF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007442069E2AC00D281EF /* libsqlite3.dylib */; };
@@ -1103,6 +1108,15 @@
 		1816919D20BF80EC00BF49A8 /* vote_box@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote_box@3x.png"; sourceTree = "<group>"; };
 		181691A020BF83B600BF49A8 /* nomoredata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@2x.png"; sourceTree = "<group>"; };
 		181691A120BF83B600BF49A8 /* nomoredata@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@3x.png"; sourceTree = "<group>"; };
+		181EC30820C4C43E001994D3 /* ApplicationMainHeaderBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationMainHeaderBottomView.h; sourceTree = "<group>"; };
+		181EC30920C4C43E001994D3 /* ApplicationMainHeaderBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationMainHeaderBottomView.m; sourceTree = "<group>"; };
+		181EC30B20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationMainHeaderBottomView.xib; sourceTree = "<group>"; };
+		181EC30D20C4C9B2001994D3 /* ApplicationTop4View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationTop4View.h; sourceTree = "<group>"; };
+		181EC30E20C4C9B2001994D3 /* ApplicationTop4View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationTop4View.m; sourceTree = "<group>"; };
+		181EC31020C4CC08001994D3 /* ApplicationHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationHeaderView.h; sourceTree = "<group>"; };
+		181EC31120C4CC08001994D3 /* ApplicationHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationHeaderView.m; sourceTree = "<group>"; };
+		181EC31320C4DC17001994D3 /* ApplicationHeaderViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationHeaderViewModel.h; sourceTree = "<group>"; };
+		181EC31420C4DC17001994D3 /* ApplicationHeaderViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationHeaderViewModel.m; sourceTree = "<group>"; };
 		182007402069E1E600D281EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		182007422069E27000D281EF /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		182007442069E2AC00D281EF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
@@ -4145,6 +4159,8 @@
 				1841420820206FF400A789ED /* EnterpriseResult.m */,
 				1841420A2020700800A789ED /* Enterprise.h */,
 				1841420B2020700800A789ED /* Enterprise.m */,
+				181EC31320C4DC17001994D3 /* ApplicationHeaderViewModel.h */,
+				181EC31420C4DC17001994D3 /* ApplicationHeaderViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5745,6 +5761,13 @@
 				186329801FE2597000E57F05 /* ApplicationMainHeaderView.h */,
 				186329811FE2597000E57F05 /* ApplicationMainHeaderView.m */,
 				186329831FE2597900E57F05 /* ApplicationMainHeaderView.xib */,
+				181EC30D20C4C9B2001994D3 /* ApplicationTop4View.h */,
+				181EC30E20C4C9B2001994D3 /* ApplicationTop4View.m */,
+				181EC31020C4CC08001994D3 /* ApplicationHeaderView.h */,
+				181EC31120C4CC08001994D3 /* ApplicationHeaderView.m */,
+				181EC30820C4C43E001994D3 /* ApplicationMainHeaderBottomView.h */,
+				181EC30920C4C43E001994D3 /* ApplicationMainHeaderBottomView.m */,
+				181EC30B20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib */,
 				1864C0E21FE36A6D00031547 /* ApplicationCollectionViewCell.h */,
 				1864C0E31FE36A6D00031547 /* ApplicationCollectionViewCell.m */,
 				18466DB82010B269002E675A /* SelectAccountView.h */,
@@ -6564,6 +6587,7 @@
 				18466DA52010A049002E675A /* PYSearch.bundle in Resources */,
 				1826AD50207A1A500046EE7C /* SideBarMainView.xib in Resources */,
 				18BCAF1B20BFECAD00571577 /* thumb_black@3x.png in Resources */,
+				181EC30C20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib in Resources */,
 				182A66171FD11FE1007FD541 /* scan@3x.png in Resources */,
 				18DBD27F204258B0001E2DDF /* account_default_avatar@2x.png in Resources */,
 				185BA3A120BBA70200F63674 /* assest_unSelect_BB@2x.png in Resources */,
@@ -6933,6 +6957,7 @@
 				1856A4E02008887200D62FEB /* MJRefreshComponent.m in Sources */,
 				182CDF45201EFF1B002B87B6 /* GetFeedbackListRequest.m in Sources */,
 				1864C0EF1FE3AFD900031547 /* ApplicationDetailViewController.m in Sources */,
+				181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */,
 				1854FF652003115F00B8F253 /* UIImage+ExFoundation.m in Sources */,
 				1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */,
 				1826AD49207A158D0046EE7C /* BindPhoneNumberHeaderView.m in Sources */,
@@ -7024,6 +7049,7 @@
 				181130141FCD01B800BEA0D9 /* SDWebImageWebPCoder.m in Sources */,
 				18EA95F220AEB7520032A491 /* BaseTextView.m in Sources */,
 				18AFBF0120B3096100E880DD /* BackupAccountHeaderView.m in Sources */,
+				181EC31520C4DC17001994D3 /* ApplicationHeaderViewModel.m in Sources */,
 				184D61751FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				18EA95FE20AEDD920032A491 /* BaseLabel2.m in Sources */,
 				1806D0FD206E5A0C0023D83B /* BindQQRequest.m in Sources */,
@@ -7097,6 +7123,7 @@
 				182CDF48201EFF2D002B87B6 /* PostFeedbackRequest.m in Sources */,
 				18DBBB1A206523A00050EE20 /* PGDatePicker.m in Sources */,
 				1808FCCD202ADBCC00625C37 /* GetTransactionRecordsRequest.m in Sources */,
+				181EC30A20C4C43E001994D3 /* ApplicationMainHeaderBottomView.m in Sources */,
 				18A2F46B1FF0A20A00B6CE43 /* FMDatabaseQueue.m in Sources */,
 				1843CB16207C55A400EDC158 /* DAConfig.m in Sources */,
 				18DBD270204242DE001E2DDF /* WalletQRCodeView.m in Sources */,
@@ -7120,6 +7147,7 @@
 				182CDF52201EFFB4002B87B6 /* FeedbackHeaderView.m in Sources */,
 				185DD6D4206CA80400BCFFCF /* MJPropertyKey.m in Sources */,
 				18CDFAF92029880000D21DF4 /* GetAccountRequest.m in Sources */,
+				181EC31220C4CC08001994D3 /* ApplicationHeaderView.m in Sources */,
 				18EE05241FDF70E600134E5C /* PocketManagementViewController.m in Sources */,
 				183FF8C61FF34C80006C25F1 /* NewsResult.m in Sources */,
 				1860510B2028456B00C87DDF /* WkDelegateController.m in Sources */,
