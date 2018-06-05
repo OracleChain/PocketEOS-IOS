@@ -26,17 +26,17 @@
 /**
   头部展示的四个位置数据源
  */
-@property(nonatomic, strong) NSArray *top4DataArray;
+@property(nonatomic, strong) NSMutableArray *top4DataArray;
 
 /**
    明星应用数据源
  */
-@property(nonatomic, strong) NSArray *starDataArray;
+@property(nonatomic, strong) NSMutableArray *starDataArray;
 
 /**
    列表应用数据源
  */
-@property(nonatomic, strong) NSArray *listDataArray;
+@property(nonatomic, strong) NSMutableArray *listDataArray;
 
 - (void)applicationModuleHeaderRequest:(CompleteBlock)complete;
 - (void)applicationModuleBodyRequest:(CompleteBlock)complete;

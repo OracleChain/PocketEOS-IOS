@@ -145,22 +145,30 @@
     if (!cell) {
         cell = [[RichListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
-    NSString *key = self.mainService.keysArray[indexPath.section];
-    NSArray *FollowsArr = [self.mainService.dataDictionary objectForKey: key];
-    Follow *model = FollowsArr[indexPath.row];
-    cell.model = model;
+    
+    if (self.mainService.keysArray.count > 0) {
+        
+        NSString *key = self.mainService.keysArray[indexPath.section];
+        NSArray *FollowsArr = [self.mainService.dataDictionary objectForKey: key];
+        Follow *model = FollowsArr[indexPath.row];
+        cell.model = model;
+        
+    }
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *key = self.mainService.keysArray[indexPath.section];
-    NSArray *followsArr = [self.mainService.dataDictionary objectForKey: key];
-    Follow *model = followsArr[indexPath.row];
-    NSLog(@"%@", model.displayName);
-    RichlistDetailViewController *vc = [[RichlistDetailViewController alloc] init];
-    vc.model = model;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.mainService.keysArray.count > 0) {
+        NSString *key = self.mainService.keysArray[indexPath.section];
+        NSArray *followsArr = [self.mainService.dataDictionary objectForKey: key];
+        Follow *model = followsArr[indexPath.row];
+        NSLog(@"%@", model.displayName);
+        RichlistDetailViewController *vc = [[RichlistDetailViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 -(NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -180,15 +188,25 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *arr = [self.mainService.dataDictionary objectForKey: self.mainService.keysArray[section]];
-    return arr.count;
+    if (self.mainService.keysArray.count > 0) {
+        NSArray *arr = [self.mainService.dataDictionary objectForKey: self.mainService.keysArray[section]];
+        return arr.count;
+        
+    }else{
+        return 0;
+    }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UILabel *headerLabel = [[UILabel alloc] init];
-    headerLabel.backgroundColor = HEXCOLOR(0xF5F5F5);
-    headerLabel.text = [NSString stringWithFormat:@"    %@", self.mainService.keysArray[section]];
-    headerLabel.font = [UIFont systemFontOfSize:11];
-    return headerLabel;
+    if (self.mainService.keysArray.count > 0) {
+        
+        UILabel *headerLabel = [[UILabel alloc] init];
+        headerLabel.backgroundColor = HEXCOLOR(0xF5F5F5);
+        headerLabel.text = [NSString stringWithFormat:@"    %@", self.mainService.keysArray[section]];
+        headerLabel.font = [UIFont systemFontOfSize:11];
+        return headerLabel;
+    }else{
+        return nil;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -11,7 +11,7 @@
 @implementation TransactionRecordsHeaderView
 
 - (IBAction)selectAccount:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectAccountBtnDidClick:)]) {
         [self.delegate selectAccountBtnDidClick: sender];
     }

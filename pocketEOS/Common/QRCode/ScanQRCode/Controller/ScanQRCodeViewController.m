@@ -35,11 +35,14 @@ static const CGFloat kMargin = 30;
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"扫一扫" rightBtnImgName:@"share" delegate:self];
-        _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+        _navView =  [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"扫一扫" rightBtnTitleName:@"相册" delegate:self];
+        _navView.leftBtn
+        .lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal)
+        .LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
 }
+
 - (SGQRCodeScanningView *)scanningView {
     if (!_scanningView) {
         _scanningView = [[SGQRCodeScanningView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.9 * self.view.frame.size.height)];
@@ -76,7 +79,7 @@ static const CGFloat kMargin = 30;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     //这个属性必须打开否则返回的时候会出现黑边
     self.view.clipsToBounds=YES;
 
@@ -163,6 +166,10 @@ static const CGFloat kMargin = 30;
 
 - (void)QRCodeAlbumManager:(SGQRCodeAlbumManager *)albumManager didFinishPickingMediaWithResult:(NSString *)result {
     [self scanQRCodeResultHandler:VALIDATE_STRING(result)];
+}
+/// 图片选择控制器读取图片二维码信息失败的回调函数
+- (void)QRCodeAlbumManagerDidReadQRCodeFailure:(SGQRCodeAlbumManager *)albumManager{
+    NSLog(@"图片选择控制器读取图片二维码信息失败的回调函数");
 }
 
 #pragma mark - - - SGQRCodeScanManagerDelegate
@@ -252,7 +259,7 @@ static const CGFloat kMargin = 30;
 }
 
 -(void)leftBtnDidClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)rightBtnDidClick{
     [self myAlbum];

@@ -5,6 +5,7 @@
 //  Created by oraclechain on 2017/11/29.
 //  Copyright © 2017年 oraclechain. All rights reserved.
 //
+#define REQUEST_BASEURL @"https://api.pocketeos.top:443"
 
 #define REQUEST_APIPATH [NSString stringWithFormat: @"%@", [self requestUrlPath]]
 
@@ -21,8 +22,9 @@
 @implementation BaseNetworkRequest
 
 - (AFHTTPSessionManager *)networkingManager{
-    if (!_networkingManager) {
-        _networkingManager = [AFHTTPSessionManager manager];
+    if(!_networkingManager){
+        _networkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
+        _networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     }
     return _networkingManager;
 }
@@ -77,6 +79,8 @@
     }
     
     [self configTimeOut:self.networkingManager];
+    // 单向验证
+    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     // 设置自动管理Cookies
     self.networkingManager.requestSerializer.HTTPShouldHandleCookies = YES;
     // 如果已有Cookie, 则把你的cookie符上
@@ -453,9 +457,28 @@
 
 
 - (void)dealloc{
-    if (!IsNilOrNull(self.sessionDataTask)) {
-        [self.sessionDataTask cancel];
-    }
+//    if (!IsNilOrNull(self.sessionDataTask)) {
+//        [self.sessionDataTask cancel];
+//    }
+}
+
+#pragma mark - ********** SSL校验 **********
+/** SSL 1.单向验证 */
+- (AFSecurityPolicy*)customSecurityPolicy {
+    
+    // AFSSLPinningModeCertificate:需要客户端预先保存服务端的证书(自建证书)
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    NSString * cerPath  = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"];
+    NSData *certData    = [NSData dataWithContentsOfFile:cerPath];
+    NSSet   *dataSet    = [NSSet setWithArray:@[certData]];
+    // 自建证书的时候，提供相应的证书
+    [securityPolicy setPinnedCertificates:dataSet];
+    // 是否允许无效证书(自建证书)
+    [securityPolicy setAllowInvalidCertificates:YES];
+    // 是否需要验证域名
+    [securityPolicy setValidatesDomainName:NO];
+    
+    return securityPolicy;
 }
 
 @end

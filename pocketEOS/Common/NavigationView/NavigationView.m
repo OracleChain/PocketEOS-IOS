@@ -40,6 +40,10 @@
     if (!_rightBtn) {
         _rightBtn = [[UIButton alloc] init];
         [_rightBtn addTarget:self action:@selector(rightBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_rightBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
+        _rightBtn.lee_theme
+        .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A), UIControlStateNormal)
+        .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
     }
     return _rightBtn;
 }
@@ -57,7 +61,7 @@
     if (self) {
 
         [self addSubview: self.leftBtn];
-        self.leftBtn.sd_layout.leftSpaceToView(self, 6 ).bottomSpaceToView(self, 10).widthIs(30).heightIs(30);
+        self.leftBtn.sd_layout.leftSpaceToView(self, 6 ).bottomSpaceToView(self, 5).widthIs(30).heightIs(30);
         
         [self addSubview:self.titleLabel];
         self.titleLabel.sd_layout.bottomSpaceToView(self, 10).centerXEqualToView(self).heightIs(20);
@@ -66,7 +70,7 @@
         self.titleImg.sd_layout.centerXEqualToView(self).bottomSpaceToView(self, 10).widthIs(120).heightIs(20);
         
         [self addSubview:self.rightBtn];
-        self.rightBtn.sd_layout.rightSpaceToView(self, 15).bottomSpaceToView(self, 10).widthIs(30).heightIs(30);
+        self.rightBtn.sd_layout.rightSpaceToView(self, 15).bottomSpaceToView(self, 5).widthIs(40).heightIs(30);
     }
     return self;
 }
@@ -94,8 +98,9 @@
     [navView.leftBtn setImage:[UIImage imageNamed: leftImgName] forState:(UIControlStateNormal)];
     navView.titleLabel.text = title;
     [navView.rightBtn setTitle:rightBtnTitleName forState:(UIControlStateNormal)];
-    navView.rightBtn.font = [UIFont systemFontOfSize:14];
-    [navView.rightBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
+    navView.rightBtn.font = [UIFont systemFontOfSize:17];
+    
+    
     
     navView.delegate = delegate;
     if (IsStrEmpty(rightBtnTitleName)) {

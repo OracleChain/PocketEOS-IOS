@@ -139,6 +139,8 @@
 		181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC30E20C4C9B2001994D3 /* ApplicationTop4View.m */; };
 		181EC31220C4CC08001994D3 /* ApplicationHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC31120C4CC08001994D3 /* ApplicationHeaderView.m */; };
 		181EC31520C4DC17001994D3 /* ApplicationHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC31420C4DC17001994D3 /* ApplicationHeaderViewModel.m */; };
+		181EC32120C58C20001994D3 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 181EC31F20C58C20001994D3 /* client.p12 */; };
+		181EC32220C58C20001994D3 /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = 181EC32020C58C20001994D3 /* server.cer */; };
 		182007412069E1F100D281EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007402069E1E600D281EF /* SystemConfiguration.framework */; };
 		182007432069E27000D281EF /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007422069E27000D281EF /* libz.1.dylib */; };
 		182007452069E2AD00D281EF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 182007442069E2AC00D281EF /* libsqlite3.dylib */; };
@@ -165,8 +167,6 @@
 		1825DC6E20061BB30057320C /* AskQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825DC6D20061BB30057320C /* AskQuestionViewController.m */; };
 		1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825DC7020061BC90057320C /* AskQuestionHeaderView.m */; };
 		1825DC7320061BD40057320C /* AskQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1825DC7220061BD40057320C /* AskQuestionHeaderView.xib */; };
-		1826837A2073A54E009699E2 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 182683782073A54D009699E2 /* client.p12 */; };
-		1826837B2073A54E009699E2 /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = 182683792073A54D009699E2 /* server.cer */; };
 		1826AD292079C3200046EE7C /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826AD262079C31F0046EE7C /* LoginView.m */; };
 		1826AD2A2079C3200046EE7C /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1826AD282079C3200046EE7C /* LoginView.xib */; };
 		1826AD2D2079C48F0046EE7C /* LoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826AD2C2079C48F0046EE7C /* LoginMainViewController.m */; };
@@ -1117,6 +1117,8 @@
 		181EC31120C4CC08001994D3 /* ApplicationHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationHeaderView.m; sourceTree = "<group>"; };
 		181EC31320C4DC17001994D3 /* ApplicationHeaderViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationHeaderViewModel.h; sourceTree = "<group>"; };
 		181EC31420C4DC17001994D3 /* ApplicationHeaderViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationHeaderViewModel.m; sourceTree = "<group>"; };
+		181EC31F20C58C20001994D3 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		181EC32020C58C20001994D3 /* server.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.cer; sourceTree = "<group>"; };
 		182007402069E1E600D281EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		182007422069E27000D281EF /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		182007442069E2AC00D281EF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
@@ -1160,8 +1162,6 @@
 		1825DC6F20061BC90057320C /* AskQuestionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskQuestionHeaderView.h; sourceTree = "<group>"; };
 		1825DC7020061BC90057320C /* AskQuestionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskQuestionHeaderView.m; sourceTree = "<group>"; };
 		1825DC7220061BD40057320C /* AskQuestionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskQuestionHeaderView.xib; sourceTree = "<group>"; };
-		182683782073A54D009699E2 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
-		182683792073A54D009699E2 /* server.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.cer; sourceTree = "<group>"; };
 		1826AD262079C31F0046EE7C /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		1826AD272079C3200046EE7C /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		1826AD282079C3200046EE7C /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -2337,9 +2337,8 @@
 		180A15A7200D9D4C0049F518 /* SecureModule */ = {
 			isa = PBXGroup;
 			children = (
+				181EC31620C561B2001994D3 /* Certificate */,
 				180483C920B984B200DE10CA /* AESCrypt */,
-				182683782073A54D009699E2 /* client.p12 */,
-				182683792073A54D009699E2 /* server.cer */,
 				18FA76CE20623C8A00545E73 /* JKBigInteger */,
 				18233E16206238540087D60B /* EC */,
 				18233E042062379D0087D60B /* Crypto */,
@@ -2741,6 +2740,16 @@
 			);
 			path = Service;
 			sourceTree = "<group>";
+		};
+		181EC31620C561B2001994D3 /* Certificate */ = {
+			isa = PBXGroup;
+			children = (
+				181EC31F20C58C20001994D3 /* client.p12 */,
+				181EC32020C58C20001994D3 /* server.cer */,
+			);
+			name = Certificate;
+			path = pocketEOS/SecureModule/Certificate;
+			sourceTree = SOURCE_ROOT;
 		};
 		182007512069F3E500D281EF /* SocialModule */ = {
 			isa = PBXGroup;
@@ -6530,11 +6539,11 @@
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
-				1826837A2073A54E009699E2 /* client.p12 in Resources */,
 				185D181E1FE75B270021AD18 /* pocket@2x.png in Resources */,
 				1872F133202D6F0C005B5915 /* addFollow@3x.png in Resources */,
 				1830A94D202BF796009ACDD8 /* oct_avatar@2x.png in Resources */,
 				185BA38320BB978500F63674 /* paid_answer_BB@2x.png in Resources */,
+				181EC32120C58C20001994D3 /* client.p12 in Resources */,
 				185D184C1FE760D10021AD18 /* QRCodeBackground@2x.png in Resources */,
 				185D18701FE766A00021AD18 /* backup@3x.png in Resources */,
 				185D18641FE766240021AD18 /* folder@3x.png in Resources */,
@@ -6583,7 +6592,6 @@
 				186857251FE1292C002A683A /* LoginPasswordView.xib in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
-				1826837B2073A54E009699E2 /* server.cer in Resources */,
 				18466DA52010A049002E675A /* PYSearch.bundle in Resources */,
 				1826AD50207A1A500046EE7C /* SideBarMainView.xib in Resources */,
 				18BCAF1B20BFECAD00571577 /* thumb_black@3x.png in Resources */,
@@ -6622,6 +6630,7 @@
 				1853DE4120B2BE8F003DC727 /* CandyMainHeaderView.xib in Resources */,
 				188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */,
 				18E72E491FCC1AAE00D09CA3 /* assest_unSelect@2x.png in Resources */,
+				181EC32220C58C20001994D3 /* server.cer in Resources */,
 				185BA3A020BBA70200F63674 /* assest_Select_BB@2x.png in Resources */,
 				185BA3D120BBC2E700F63674 /* select__BB_wallet_icon@2x.png in Resources */,
 				185BA3AA20BBA89500F63674 /* news_select_BB@3x.png in Resources */,
@@ -7368,6 +7377,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DUY3R7S5A;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -7387,10 +7397,11 @@
 					"-all_load",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos;
+				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -7402,6 +7413,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DUY3R7S5A;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -7421,10 +7433,11 @@
 					"-all_load",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos;
+				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};

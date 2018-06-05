@@ -11,7 +11,7 @@
 @interface ApplicationMainHeaderBottomView()
 @property (weak, nonatomic) IBOutlet UIImageView *starImg;
 @property (weak, nonatomic) IBOutlet UILabel *starTitleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *starDetailView;
+@property (weak, nonatomic) IBOutlet BaseLabel1 *starDetailLabel;
 
 @end
 
@@ -27,7 +27,7 @@
 
 - (void)updateStarViewWithModel:(Application *)model{
     [self.starImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.applyIcon)) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
-    self.starTitleLabel.text = [NSString stringWithFormat:@" %@", model.applyName];
-    self.starDetailView.text = model.applyDetails;
+    self.starTitleLabel.text = [NSString stringWithFormat:@"%@", model.applyName];
+    self.starDetailLabel.text = model.applyDetails;
 }
 @end

@@ -168,9 +168,10 @@
 //    } failure:^(id DAO, NSError *error) {
 //        complete(nil, NO);
 //    }];
-//}
+}
 //
-//- (void)buildNextPageDataSource:(CompleteBlock)complete{
+- (void)buildNextPageDataSource:(CompleteBlock)complete{
+    complete(@0, YES);
 //    WS(weakSelf);
 //    self.getTransactionRecordsRequest.skip_seq = @(self.dataSourceArray.count);
 //    self.getTransactionRecordsRequest.num_seq = @(PER_PAGE_SIZE_15);

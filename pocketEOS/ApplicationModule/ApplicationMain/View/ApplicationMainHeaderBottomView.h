@@ -15,7 +15,7 @@
 @end
 
 
-@interface ApplicationMainHeaderBottomView : UIView
+@interface ApplicationMainHeaderBottomView : BaseView
 
 @property(nonatomic, weak) id<ApplicationMainHeaderBottomViewDelegate> delegate;
 - (void)updateStarViewWithModel:(Application *)model;

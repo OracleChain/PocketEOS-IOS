@@ -51,22 +51,22 @@
     }
     return _imageURLStringsGroup;
 }
-- (NSArray *)top4DataArray{
+- (NSMutableArray *)top4DataArray{
     if (!_top4DataArray) {
-        _top4DataArray = [[NSArray alloc] init];
+        _top4DataArray = [[NSMutableArray alloc] init];
     }
     return _top4DataArray;
 }
-- (NSArray *)starDataArray{
+- (NSMutableArray *)starDataArray{
     if (!_starDataArray) {
-        _starDataArray = [[NSArray alloc] init];
+        _starDataArray = [[NSMutableArray alloc] init];
     }
     return _starDataArray;
 }
 
-- (NSArray *)listDataArray{
+- (NSMutableArray *)listDataArray{
     if (!_listDataArray) {
-        _listDataArray = [[NSArray alloc] init];
+        _listDataArray = [[NSMutableArray alloc] init];
     }
     return _listDataArray;
 }
@@ -110,7 +110,7 @@
                 [database close];
             }else if(resultArr.count >= 4 && resultArr.count <=7 ){
             // 添加 top4 应用数据
-            weakSelf.top4DataArray = [resultArr subarrayWithRange:NSMakeRange(4, resultArr.count - 4)];
+            weakSelf.top4DataArray = (NSMutableArray *)[resultArr subarrayWithRange:NSMakeRange(4, resultArr.count - 4)];
             }
     }
         complete(weakSelf , YES);
@@ -124,7 +124,7 @@
             }
         }else if(localApplicationBannerCacheArr.count >= 4 && localApplicationBannerCacheArr.count <=7 ){
             // 添加 top4 应用数据
-            weakSelf.top4DataArray = [localApplicationBannerCacheArr subarrayWithRange:NSMakeRange(4, localApplicationBannerCacheArr.count - 4)];
+            weakSelf.top4DataArray = (NSMutableArray *)[localApplicationBannerCacheArr subarrayWithRange:NSMakeRange(4, localApplicationBannerCacheArr.count - 4)];
         }
         complete(nil , NO);
     }];
@@ -159,10 +159,11 @@
             
             if (VALIDATE_ARRAY(result.data)) {
                 if (resultArr.count > 0 && resultArr.count < 2 ) {
-                    weakSelf.starDataArray = [resultArr subarrayWithRange:(NSMakeRange(0, 1))];
+                    weakSelf.starDataArray = (NSMutableArray *)[resultArr subarrayWithRange:(NSMakeRange(0, 1))];
                 }else if (resultArr.count > 1 ){
-                    weakSelf.starDataArray = [resultArr subarrayWithRange:(NSMakeRange(0, 1))];
-                    weakSelf.listDataArray = [resultArr subarrayWithRange:NSMakeRange(1, resultArr.count - 1)];
+                    weakSelf.starDataArray = (NSMutableArray *)[resultArr subarrayWithRange:(NSMakeRange(0, 1))];
+                    weakSelf.listDataArray = (NSMutableArray *)[resultArr subarrayWithRange:NSMakeRange(1, resultArr.count - 1)];
+                    
                 }
             }
             
@@ -179,10 +180,10 @@
         }
         if (VALIDATE_ARRAY(modelArr)) {
             if (modelArr.count >= 1) {
-                weakSelf.starDataArray = [modelArr subarrayWithRange:(NSMakeRange(0, 1))];
+                weakSelf.starDataArray = (NSMutableArray *)[modelArr subarrayWithRange:(NSMakeRange(0, 1))];
             }else if (modelArr.count >= 2){
-                weakSelf.starDataArray = [modelArr subarrayWithRange:(NSMakeRange(0, 1))];
-                weakSelf.listDataArray = [modelArr subarrayWithRange:NSMakeRange(1, modelArr.count - 1)];
+                weakSelf.starDataArray = (NSMutableArray *)[modelArr subarrayWithRange:(NSMakeRange(0, 1))];
+                weakSelf.listDataArray = (NSMutableArray *)[modelArr subarrayWithRange:NSMakeRange(1, modelArr.count - 1)];
             }
         }
         

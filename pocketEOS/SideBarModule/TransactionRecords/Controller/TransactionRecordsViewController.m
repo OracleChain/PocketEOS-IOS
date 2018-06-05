@@ -66,7 +66,7 @@
     [self.view addSubview:self.headerView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 52, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 52);
     [self.view addSubview:self.mainTableView];
-//    [self.mainTableView.mj_header beginRefreshing];
+    [self.mainTableView.mj_header beginRefreshing];
     
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
@@ -116,20 +116,18 @@
 }
 
 - (void)selectAccountBtnDidClick:(UIButton *)sender {
-    
-    if (sender.selected) {
-        [self.view addSubview:self.popUpWindow];
-        NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
-        self.popUpWindow.type = PopUpWindowTypeAccount;
-        for (AccountInfo *model in accountArr) {
-            if ([model.account_name isEqualToString:self.currentAccountName]) {
-                model.selected = YES;
-            }
+    [self.view addSubview:self.popUpWindow];
+    NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
+    self.popUpWindow.type = PopUpWindowTypeAccount;
+    for (AccountInfo *model in accountArr) {
+        if ([model.account_name isEqualToString:self.currentAccountName]) {
+            model.selected = YES;
         }
-        [_popUpWindow updateViewWithArray:accountArr title:@""];
-    }else{
-        [self removePopUpWindow];
     }
+    [_popUpWindow updateViewWithArray:accountArr title:@""];
+    
+    
+    
 }
 
 //PopUpWindowDelegate
@@ -145,7 +143,6 @@
 
 - (void)removePopUpWindow{
     [self.popUpWindow removeFromSuperview];
-    self.popUpWindow = nil;
 }
 
 #pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载

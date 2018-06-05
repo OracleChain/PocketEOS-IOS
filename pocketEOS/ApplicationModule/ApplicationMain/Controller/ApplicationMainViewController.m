@@ -24,11 +24,12 @@
 #import "EnterpriseDetailViewController.h"
 #import "CDZPicker.h"
 #import "SelectAccountView.h"
+#import "ApplicationHeaderView.h"
 
 
-@interface ApplicationMainViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, ApplicationMainHeaderViewDelegate, SDCycleScrollViewDelegate, SelectAccountViewDelegate>
+@interface ApplicationMainViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, ApplicationMainHeaderViewDelegate, SDCycleScrollViewDelegate, SelectAccountViewDelegate, ApplicationHeaderViewDelegate>
 
-@property(nonatomic, strong) ApplicationMainHeaderView *headerView;
+@property(nonatomic, strong) ApplicationHeaderView *headerView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) ApplicationService *mainService;
 @property(nonatomic, strong) UICollectionView *mainCollectionView;
@@ -56,7 +57,12 @@
     if(!_mainCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
-        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + SCREEN_WIDTH * 0.40 );
+        
+        if (self.mainService.top4DataArray.count > 0) {
+            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + SCREEN_WIDTH * 0.40 );
+        }else{
+            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206 + SCREEN_WIDTH * 0.40 );
+        }
         
         layout.minimumLineSpacing = 1;
         layout.minimumInteritemSpacing = 1;
@@ -68,7 +74,8 @@
         [_mainCollectionView setShowsVerticalScrollIndicator: NO];
         
         [_mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
-        [_mainCollectionView registerNib:[UINib nibWithNibName:@"ApplicationMainHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
+//        [_mainCollectionView registerNib:[UINib nibWithNibName:@"ApplicationHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
+        [_mainCollectionView registerClass:[ApplicationHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
         
     }
     return _mainCollectionView;
@@ -93,72 +100,29 @@
     leftEdgeGesture.delegate = self;
     [self.view addSubview:self.navView];
     
-    [self.view addSubview:self.mainCollectionView];
     [self buildDataSource];
+    
 }
 
 - (void)buildDataSource{
     WS(weakSelf);
-    
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_group_enter(group);
-    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
-            if (isSuccess) {
-                
-                dispatch_group_leave(group);
-            }else{
-                [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
-                        dispatch_group_leave(group);
-                }];
-            }
-        }];
-    });
-
-    dispatch_group_enter(group);
-    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
-            if (isSuccess) {
-                dispatch_group_leave(group);
-            
-            }else{
-                [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
-                        dispatch_group_leave(group);
-                }];
-            }
-        }];
-    });
-
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        //界面刷新
-        if (weakSelf.mainService.imageURLStringsGroup.count > 0) {
+    ApplicationHeaderViewModel *model = [[ApplicationHeaderViewModel alloc] init];
+    [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            //界面刷新
+            [weakSelf.view addSubview:weakSelf.mainCollectionView];
             [weakSelf configBannerView];
+            if (weakSelf.mainService.listDataArray) {
+                model.top4DataArray = (NSMutableArray *)weakSelf.mainService.top4DataArray;
+                [weakSelf.headerView updateViewWithModel:model];
+            }
         }
-        if (weakSelf.mainService.top4DataArray.count > 0) {
-            [weakSelf.headerView updateViewWithArray:weakSelf.mainService.top4DataArray];
-        }
-        if (weakSelf.mainService.starDataArray.count > 0) {
-            [weakSelf.headerView updateStarViewWithModel:weakSelf.mainService.starDataArray[0]];
-            [weakSelf.mainCollectionView reloadData];
-        }
-    });
-    
-    
-    
-//    [self.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
-//        if (weakSelf.mainService.imageURLStringsGroup.count > 0) {
-//            [weakSelf configBannerView];
-//        }
-//        if (weakSelf.mainService.top4DataArray.count > 0) {
-//            [weakSelf.headerView updateViewWithArray:weakSelf.mainService.top4DataArray];
-//        }
-//    }];
-//    [self.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
-//            if (weakSelf.mainService.starDataArray.count > 0) {
-//                [weakSelf.headerView updateStarViewWithModel:weakSelf.mainService.starDataArray[0]];
-//                [weakSelf.mainCollectionView reloadData];
-//            }
-//    }];
+    }];
+    [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
+        model.starDataArray = (NSMutableArray *)weakSelf.mainService.starDataArray;
+        [weakSelf.headerView updateViewWithModel:model];
+        [weakSelf.mainCollectionView reloadData];
+    }];
 }
 
 - (void)configBannerView{
@@ -166,7 +130,7 @@
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 0.4) delegate:self placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     cycleScrollView.imageURLStringsGroup = weakSelf.mainService.imageURLStringsGroup;
     cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-    [weakSelf.headerView.cycleScrollView addSubview:cycleScrollView];
+    [weakSelf.headerView addSubview:cycleScrollView];
 }
 
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
@@ -212,7 +176,7 @@
      UICollectionReusableView *reusableview = nil;
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         if (indexPath.section == 0) {
-            self.headerView = (ApplicationMainHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header" forIndexPath:indexPath];
+            self.headerView = (ApplicationHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header" forIndexPath:indexPath];
             self.headerView.delegate = self;
             return self.headerView;
         }
@@ -266,4 +230,7 @@
     }
 }
 
+- (void)loadNewData{
+    
+}
 @end

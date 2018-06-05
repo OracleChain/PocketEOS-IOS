@@ -10,7 +10,7 @@
 
 @interface ApplicationHeaderViewModel : NSObject
 
-@property(nonatomic , strong) NSMutableArray *imageURLStringsGroup;
+
 @property(nonatomic , strong) NSMutableArray *top4DataArray;
 @property(nonatomic , strong) NSMutableArray *starDataArray;
 

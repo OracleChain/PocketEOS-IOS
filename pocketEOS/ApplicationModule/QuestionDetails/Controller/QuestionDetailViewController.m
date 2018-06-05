@@ -111,8 +111,8 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
-    
-    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://api.pocketeos.top:3000/#/answer")]];
+    NSString *url = [NSString stringWithFormat:@"%@/#/answer", REQUEST_CONTRACT_BASEURL];
+    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(url)]];
     
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;

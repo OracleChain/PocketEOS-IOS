@@ -7,7 +7,7 @@
 //
 
 #define kHttpsClientP12 @"client"
-#define kHttpsP12Password @"baH1Ug78h8G"
+#define kHttpsP12Password @"oraclechain"//baH1Ug78h8G
 #define kHttpsServiceCer @"server"
 
 #import "BaseHttpsNetworkRequest.h"
@@ -15,9 +15,8 @@
 #import "SVProgressHUD.h"
 
 
-#define REQUEST_BASEURL @"http://api.pocketeos.top"
-//http://59.110.162.106:8080 java 地址
-//http://59.110.162.106:8889 裸地址
+#define REQUEST_BASEURL @"https://api.pocketeos.top"
+// https://api.pocketeos.top:443
 
 #define REQUEST_APIPATH [NSString stringWithFormat: @"/api_oc_blockchain-v1.3.0%@", [self requestUrlPath]]
 ///api_oc_blockchain-v1.3.0%@
@@ -111,9 +110,10 @@
         [SVProgressHUD show];
     }
     
-//    [self configTimeOut:self.networkingManager];
-    // 单向验证
-//    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
+    [self configTimeOut:self.networkingManager];
+    // 单向验证 :: 下面还有一处请求需要改单项验证
+    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
+    
     //客服端利用p12验证服务器 , 双向验证
 //    [self checkCredential:self.networkingManager];
     self.networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
@@ -214,7 +214,7 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [self configTimeOut:manager];
     // 单向验证
-//    [manager setSecurityPolicy:[self customSecurityPolicy]];
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
     //客服端利用p12验证服务器 , 双向验证
 //    [self checkCredential:manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];

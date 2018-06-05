@@ -339,23 +339,23 @@
 #pragma mark 上拉加载更多数据
 - (void)loadMoreData
 {
-    WS(weakSelf);
-    [self.transactionRecordsService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-        if (isSuccess) {
-            // 刷新表格
-            [weakSelf.mainTableView reloadData];
-            if ([dataCount isEqualToNumber:@0]) {
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-            }else{
-                // 拿到当前的下拉刷新控件，结束刷新状态
-                [weakSelf.mainTableView.mj_footer endRefreshing];
-            }
-        }else{
-            [weakSelf.mainTableView.mj_header endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshing];
-        }
-    }];
+//    WS(weakSelf);
+//    [self.transactionRecordsService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
+//        if (isSuccess) {
+//            // 刷新表格
+//            [weakSelf.mainTableView reloadData];
+//            if ([dataCount isEqualToNumber:@0]) {
+//                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+//                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+//            }else{
+//                // 拿到当前的下拉刷新控件，结束刷新状态
+//                [weakSelf.mainTableView.mj_footer endRefreshing];
+//            }
+//        }else{
+//            [weakSelf.mainTableView.mj_header endRefreshing];
+//            [weakSelf.mainTableView.mj_footer endRefreshing];
+//        }
+//    }];
 }
 
 

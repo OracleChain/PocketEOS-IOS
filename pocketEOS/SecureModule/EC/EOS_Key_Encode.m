@@ -133,48 +133,42 @@
  @return eos_publicKey
  */
 + (NSString *)eos_publicKey_with_wif:(NSString *)wif{
-    unsigned char prik[32];
-    for (int i = 0; i < 32; i += 2)
-    {
-        sprintf(&prik[i], "%02X", arc4random() % 255);
-    }
+    unsigned char pri[32];
     const char *baprik = [wif UTF8String];
-    unsigned char reslt[37];
+    unsigned char result[37];
     unsigned char digest[32];
     char base[100];
-    char *hash;
-    int len;
-    size_t klen=37;
+    unsigned char *hash;
+    size_t len = 100;
+    size_t klen = 37;
     
     uint8_t pub[64];
     uint8_t cpub[33];
-    //uint8_t prik[32];
     
-    //解析wif私钥
-    if (b58tobin(reslt, &klen, baprik, 51) ) printf("sccess\n");
+    if (b58tobin(result, &klen, baprik, wif.length)) {
+        printf("success\n");
+    }
     
-    memcpy(prik, reslt+1, 32);
+    memcpy(pri, result+1, 32);
     
-    //从私钥生成公钥
-    uECC_compute_public_key(prik,pub);
+    uECC_compute_public_key(pri, pub);
     
-    //将私钥编码成wif格式
-    reslt[0] = 0x80;
-    memcpy(reslt + 1 , prik, 32);
-    sha256_Raw(reslt, 33, digest);
+    result[0] = 0x80;
+    memcpy(result+1, pri, 32);
+    sha256_Raw(result, 33, digest);
     sha256_Raw(digest, 32, digest);
-    memcpy(reslt+33, digest, 4);
-    b58enc(base, &len, reslt,37);
+    memcpy(result+33, digest, 4);
+    b58enc(base, &len, result, 37);
     
-    //encode uecc_publicKey
-    uECC_compress(pub,cpub);
+    uECC_compress(pub, cpub);
     hash = RMD(cpub, 33);
-    memcpy(reslt, cpub, 33);
-    memcpy(reslt+33, hash, 4);
-    b58enc(base, &len, reslt,37);
-    return [NSString stringWithFormat:@"EOS%@", [NSString stringWithUTF8String:base]];
-}
+    memcpy(result, cpub, 33);
+    memcpy(result+33, hash, 4);
+    b58enc(base, &len, result, 37);
 
+    NSString *eosPubKey = [NSString stringWithFormat:@"EOS%@", [NSString stringWithUTF8String:base]];
+    return eosPubKey;
+}
 
 /**
  encode uecc_publicKey --> eos_PublicKey

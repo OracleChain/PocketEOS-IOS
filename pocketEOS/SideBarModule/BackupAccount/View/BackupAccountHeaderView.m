@@ -63,8 +63,8 @@
     .LeeAddTextColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.6));
     
     self.backupImageView.lee_theme
-    .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"shield"])
-    .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"shield_BB"]);
+    .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"shield_BB"])
+    .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"shield"]);
 
     
 }

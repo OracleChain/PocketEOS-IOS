@@ -161,9 +161,14 @@
     self.getRequiredPublicKeyRequest.showActivityIndicator = YES;
     [self.getRequiredPublicKeyRequest postOuterDataSuccess:^(id DAO, id data) {
         #pragma mark -- [@"data"]
-        weakSelf.required_Publickey = data[@"data"][@"required_keys"][0];
-        NSLog(@"get_required_keys_success: -- %@",data[@"data"][@"required_keys"][0]);//
-        [weakSelf pushTransactionRequestOperation];
+        if ([data[@"code"] isEqualToNumber:@0 ]) {
+            weakSelf.required_Publickey = data[@"data"][@"required_keys"][0];
+            NSLog(@"get_required_keys_success: -- %@",data[@"data"][@"required_keys"][0]);//
+            [weakSelf pushTransactionRequestOperation];
+            
+        }else{
+            [TOASTVIEW showWithText: VALIDATE_STRING(data[@"message"])];
+        }
         
     } failure:^(id DAO, NSError *error) {
         NSLog(@"get_required_keys_error: -- %@",error);

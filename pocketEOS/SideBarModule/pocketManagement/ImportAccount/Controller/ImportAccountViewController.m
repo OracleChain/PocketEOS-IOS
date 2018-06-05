@@ -163,10 +163,10 @@
     }
 }
 
-//OWNKEY:5JksnJRrhASmSYtpEwMowkNSta9kXmqiamphbgUoAHp9mG44243
-//ACTIVEKEY:5JMD3GUw1Cs7TCgLpDLfaP9oDtWaiXCFwfeVRWinXF4Zn6uq1t7
+
 - (void)createPublicKeys{
     // 将用户导入的私钥生成公钥
+   
     active_public_key_from_local = [EOS_Key_Encode eos_publicKey_with_wif:self.headerView.private_activeKey_tf.text];
     owner_public_key_from_local = [EOS_Key_Encode eos_publicKey_with_wif:self.headerView.private_ownerKey_TF.text];
     // 请求该账号的公钥
@@ -199,7 +199,7 @@
                 accountInfo.is_main_account = @"0";
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
                 [TOASTVIEW showWithText:@"导入账号成功!"];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }else{
                 [TOASTVIEW showWithText:@"导入的私钥不匹配!"];
             }
@@ -210,7 +210,7 @@
 }
 
 -(void)leftBtnDidClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)importWithQRCodeBtnDidClick:(UIButton *)sender{
