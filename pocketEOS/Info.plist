@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.3.2</string>
+	<string>1.3.3</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -103,9 +103,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>PocketEOS将访问您的相机</string>
+	<string>PocketEOS将通过相机读取二维码</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>PocketEOS将访问您的相册</string>
+	<string>PocketEOS将通过相册读取二维码</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array/>
 	<key>UISupportedInterfaceOrientations</key>

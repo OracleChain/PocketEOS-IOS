@@ -43,14 +43,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Z-aj-YMP" userLabel="starLabelBase View" customClass="BaseView">
                     <rect key="frame" x="0.0" y="264" width="375" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本周明星应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-ss-pgo" customClass="BaseLabel">
-                            <rect key="frame" x="20" y="0.0" width="92" height="50"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本周明星Dapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-ss-pgo" customClass="BaseLabel">
+                            <rect key="frame" x="20" y="0.0" width="98" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommended.png" translatesAutoresizingMaskIntoConstraints="NO" id="eCf-EW-JAP">
-                            <rect key="frame" x="118" y="19.5" width="12" height="12"/>
+                            <rect key="frame" x="124" y="19.5" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="Dau-WT-iKj"/>
                                 <constraint firstAttribute="width" constant="12" id="Iay-8O-Rh9"/>
@@ -151,7 +151,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBg-2j-u94" userLabel="enterprisebaseView3" customClass="BaseView">
                     <rect key="frame" x="0.0" y="410" width="375" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-bb-1qF" customClass="BaseLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dapps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-bb-1qF" customClass="BaseLabel">
                             <rect key="frame" x="20" y="0.0" width="355" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>

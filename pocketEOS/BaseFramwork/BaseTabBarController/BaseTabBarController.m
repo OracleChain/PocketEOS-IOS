@@ -106,7 +106,7 @@
     
 
     ApplicationMainViewController *dappVC = [[ApplicationMainViewController alloc]init];
-    [self setupChildViewController:dappVC title:@"应用" imageName:@"application_unSelect" seleceImageName:@"application_select" BB_imageName:@"application_unSelect_BB" BB_seleceImageName:@"application_select_BB"];
+    [self setupChildViewController:dappVC title:@"发现" imageName:@"application_unSelect" seleceImageName:@"application_select" BB_imageName:@"application_unSelect_BB" BB_seleceImageName:@"application_select_BB"];
     
     self.viewControllers = _VCS;
 }
