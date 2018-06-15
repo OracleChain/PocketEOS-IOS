@@ -20,7 +20,7 @@
         CGFloat cornerRadius = 3;
         
         UILabel *lable = [[UILabel alloc] init];
-        lable.text = @"添加选项";
+        lable.text = NSLocalizedString(@"添加选项", nil);
         lable.userInteractionEnabled = YES;
         lable.textColor = HEXCOLOR(0xCECECE);
         lable.textAlignment = NSTextAlignmentCenter;

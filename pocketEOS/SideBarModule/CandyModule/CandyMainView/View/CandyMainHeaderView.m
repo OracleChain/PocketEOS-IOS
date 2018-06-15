@@ -69,8 +69,8 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%@", indexPath);
-    CandyEquityModel *model = self.dataArray[indexPath.row];
-    [TOASTVIEW showWithText:model.equity_description];
+//    CandyEquityModel *model = self.dataArray[indexPath.row];
+//    [TOASTVIEW showWithText:model.equity_description];
 }
 
 @end

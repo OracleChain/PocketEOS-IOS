@@ -277,7 +277,7 @@
          //注意：bottomView不能为nil
          [cell setupAutoHeightWithBottomView:bottomView bottomMargin:bottomMargin];
          */
-        NSAssert(self.modelCell.sd_bottomViewsArray.count, @">>>>>> 你的cell还没有调用“setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改");
+        NSAssert(self.modelCell.sd_bottomViewsArray.count, NSLocalizedString(@">>>>>> 你的cell还没有调用“setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改", nil));
         
 #endif
         

@@ -25,7 +25,6 @@
 #import "TransactionRecord.h"
 #import "Follow.h"
 #import "WalletAccount.h"
-#import "LoginPasswordView.h"
 #import "TransferAbi_json_to_bin_request.h"
 
 @interface TransferViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransferHeaderViewDelegate, PopUpWindowDelegate, ChangeAccountViewControllerDelegate, UITextFieldDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
@@ -48,7 +47,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"资产转账" rightBtnImgName:@"scan_black" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产转账", nil)rightBtnImgName:@"scan_black" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         _navView.rightBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"scan_black"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"scan"], UIControlStateNormal);
     }
@@ -336,7 +335,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     
@@ -360,9 +359,10 @@
         #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.currentAccountName];
-        weakSelf.mainService.available_keys = @[accountInfo.account_owner_public_key , accountInfo.account_active_public_key];
+        weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.mainService.action = @"transfer";
         weakSelf.mainService.sender = weakSelf.currentAccountName;
+        #pragma mark -- [@"data"]
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
@@ -380,7 +380,7 @@
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-        [TOASTVIEW showWithText:@"转账成功"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"转账成功", nil)];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         [TOASTVIEW showWithText: result.message];
@@ -422,10 +422,10 @@
                         [self.navigationController pushViewController:vc animated:YES];
                     });
                     // 用户第一次同意了访问相机权限
-                    NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                 }else {
                     // 用户第一次拒绝了访问相机权限
-                    NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                 }
                 
                 
@@ -434,8 +434,8 @@
             ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];
             
@@ -443,13 +443,13 @@
             [self presentViewController:alertC animated:YES completion:nil];
             
         } else if (status == AVAuthorizationStatusRestricted) {
-            NSLog(@"因为系统原因, 无法访问相册");
+            NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
         }
         
         
     }else {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
             
         }];
         

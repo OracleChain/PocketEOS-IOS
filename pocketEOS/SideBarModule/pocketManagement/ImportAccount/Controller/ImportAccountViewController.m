@@ -15,7 +15,6 @@
 #import "GetAccount.h"
 #import "Permission.h"
 #import "EOS_Key_Encode.h"
-#import "LoginPasswordView.h"
 
 @interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) ImportAccountHeaderView *headerView;
@@ -44,7 +43,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"导入新账号" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"导入新账号", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -109,7 +108,7 @@
 
 - (void)importBtnDidClick:(UIButton *)sender{
     if (IsStrEmpty(self.headerView.accountNameTF.text)  || IsStrEmpty(self.headerView.private_ownerKey_TF.text) || IsStrEmpty(self.headerView.private_activeKey_tf.text)) {
-        [TOASTVIEW showWithText:@"输入框不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
         return;
     }else{
         [self.view addSubview:self.loginPasswordView];
@@ -126,7 +125,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     [SVProgressHUD show];
@@ -140,7 +139,7 @@
 - (void)checkLocalDatabaseAlreadyHasAccountWithAccountName:(NSString *)accountName{
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:accountName];
     if (accountInfo) {
-        [TOASTVIEW showWithText:@"本地钱包已存在该账号!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包已存在该账号!", nil)];
         return;
     }
 }
@@ -149,7 +148,7 @@
 - (void)validateInputFormat{
     // 验证账号名私钥格式是否正确
     if (![RegularExpression validateEosAccountName:self.headerView.accountNameTF.text]) {
-        [TOASTVIEW showWithText:@"您的账号名不匹配!^[1-5a-z]{7,13}$"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"您的账号名不匹配!^[1-5a-z]{7,13}$", nil)];
         return;
     }
     private_owner_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.private_ownerKey_TF.text];
@@ -158,7 +157,7 @@
     if ((private_owner_Key_is_validate == YES) && (private_active_Key_is_validate == YES)) {
         [self createPublicKeys];
     }else{
-        [TOASTVIEW showWithText:@"私钥格式有误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"私钥格式有误!", nil)];
         return ;
     }
 }
@@ -198,10 +197,10 @@
                  accountInfo.is_privacy_policy = @"0";
                 accountInfo.is_main_account = @"0";
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
-                [TOASTVIEW showWithText:@"导入账号成功!"];
+                [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }else{
-                [TOASTVIEW showWithText:@"导入的私钥不匹配!"];
+                [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
             }
         }
     } failure:^(id DAO, NSError *error) {
@@ -228,29 +227,29 @@
                         [weakSelf.navigationController pushViewController:vc animated:YES];
                     });
                     // 用户第一次同意了访问相机权限
-                    NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                 }else {
                     // 用户第一次拒绝了访问相机权限
-                    NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                    NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                 }
             }];
         }else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
             ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];
             [alertC addAction:alertA];
             [weakSelf presentViewController:alertC animated:YES completion:nil];
             
         } else if (status == AVAuthorizationStatusRestricted) {
-            NSLog(@"因为系统原因, 无法访问相册");
+            NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
         }
     }else {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
             
         }];
         

@@ -19,6 +19,7 @@
 #import "BindPhoneNumberViewController.h"
 #import "BBLoginViewController.h"
 #import "RtfBrowserViewController.h"
+#import "CreateAccountViewController.h"
 
 @interface LoginMainViewController ()<UIGestureRecognizerDelegate, LoginViewDelegate>
 @property(nonatomic, strong) LoginService *mainService;
@@ -61,7 +62,7 @@
 }
 - (void)getVerifyBtnDidClick:(UIButton *)sender{
     if (![RegularExpression validateMobile:self.loginView.phoneTF.text] ) {
-        [TOASTVIEW showWithText: @"手机号格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
         return;
     }
     
@@ -79,16 +80,16 @@
 
 - (void)loginBtnDidClick:(UIButton *)sender{
     if (self.loginView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
     
     if (![RegularExpression validateMobile:self.loginView.phoneTF.text] ) {
-        [TOASTVIEW showWithText: @"手机号格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
         return;
     }
     if (![RegularExpression validateVerifyCode:self.loginView.verifyCodeTF.text] ) {
-        [TOASTVIEW showWithText: @"验证码格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"验证码格式有误!", nil)];
         return;
     }
     WS(weakSelf);
@@ -107,8 +108,16 @@
                 
                 if (wallet) {
                     NSLog(@"%@", wallet.account_info_table_name);
-                    // 如果本地有当前账号对应的钱包
-                    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+                    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+                    if (accountArray.count > 0) {
+                        // 如果本地有当前账号对应的钱包
+                        [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+                    }else{
+                        CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
+                        vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromCreatePocketVC;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    
                 }else{
                     
                     // 如果本地没有当前账号对应的钱包
@@ -209,7 +218,7 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.loginView.getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.loginView.getVerifyCodeBtn setTitle:NSLocalizedString(@"获取验证码", nil)forState:UIControlStateNormal];
                 self.loginView.getVerifyCodeBtn.userInteractionEnabled = YES;
             });
         }else{
@@ -222,7 +231,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.loginView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                [self.loginView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@秒后重新发送", nil),strTime] forState:UIControlStateNormal];
                 self.loginView.getVerifyCodeBtn.userInteractionEnabled = NO;
                 
             });

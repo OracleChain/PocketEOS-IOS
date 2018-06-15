@@ -35,7 +35,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:@"糖果积分" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:NSLocalizedString(@"糖果积分", nil)rightBtnImgName:@"" delegate:self];
         _navView.backgroundColor = [UIColor clearColor];
         _navView.titleLabel.textColor = [UIColor whiteColor];
     }
@@ -73,7 +73,11 @@
     [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.backgroundColor = [UIColor clearColor];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.scrollEnabled = NO;
+    if ([DeviceType getIsIpad]) {
+        self.mainTableView.scrollEnabled = YES;
+    }else{
+        self.mainTableView.scrollEnabled = NO;
+    }
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
     [self buildDataSource];

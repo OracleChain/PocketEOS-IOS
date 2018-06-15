@@ -35,7 +35,7 @@
     if (!_editTextView) {
         _editTextView = [[BaseTextView alloc] init];
         [_editTextView setFont:[UIFont systemFontOfSize:14]];
-        _editTextView.placeholder = @"输入答案选项";
+        _editTextView.placeholder = NSLocalizedString(@"输入答案选项", nil);
     }
     return _editTextView;
 }

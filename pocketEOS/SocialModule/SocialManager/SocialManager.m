@@ -82,11 +82,11 @@
 -(void)tencentDidNotLogin:(BOOL)cancelled{
     if (cancelled)
     {
-        [TOASTVIEW showWithText:@"用户取消登录"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"用户取消登录", nil)];
     }
     else
     {
-        [TOASTVIEW showWithText:@"qq登录失败"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"qq登录失败", nil)];
     }
 }
 
@@ -103,7 +103,7 @@
 }
 
 -(void)tencentDidNotNetWork{
-    [TOASTVIEW showWithText:@"无网络连接，请设置网络"];
+    [TOASTVIEW showWithText:NSLocalizedString(@"无网络连接，请设置网络", nil)];
 }
 
 -(void)addShareResponse:(APIResponse *)response{
@@ -140,7 +140,7 @@
             // 用户同意
             NSString *authCode = [(SendAuthResp *)resp code];
             if (IsStrEmpty(authCode)) {
-                [TOASTVIEW showWithText: @"微信认证失败"];
+                [TOASTVIEW showWithText: NSLocalizedString(@"微信认证失败", nil)];
             }else{
                 AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] init];
                 [outerNetworkingManager.requestSerializer setValue: @"application/json" forHTTPHeaderField: @"Accept"];

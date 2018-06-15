@@ -33,7 +33,7 @@
 
 - (FMDatabase *)openLocalDatabase{
    NSString *databasePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString: [NSString stringWithFormat:@"/%@.db",  LOCAL_DATABASE ]];
-    NSLog(@"数据库路径:%@", databasePath);
+    NSLog(NSLocalizedString(@"数据库路径:%@", nil), databasePath);
     return [FMDatabase databaseWithPath:databasePath];
 }
 
@@ -44,7 +44,7 @@
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (wallet_name , wallet_uid, wallet_img, wallet_main_account ,wallet_main_account_img, wallet_phone , wallet_shapwd , wallet_qq, wallet_weixin, password_check , account_info_table_name) VALUES  ('%@','%@' ,'%@','%@','%@','%@','%@','%@','%@','%@','%@')", WALLET_TABLE, model.wallet_name,  model.wallet_uid, model.wallet_img , model.wallet_main_account , model.wallet_main_account_img, model.wallet_phone , model.wallet_shapwd, model.wallet_qq , model.wallet_weixin , model.password_check, model.account_info_table_name ];
         BOOL result = [database executeUpdate:sql];
         if (result) {
-            NSLog(@"添加钱包成功!");
+            NSLog(NSLocalizedString(@"添加钱包成功!", nil));
         }
         [database close];
         return result;
@@ -59,7 +59,7 @@
         NSString *sql = [NSString stringWithFormat: @"DELETE FROM %@ WHERE wallet_uid = ('%@')" , WALLET_TABLE, wallet_uid];
         BOOL result = [database executeUpdate:sql];
         if (result) {
-            NSLog(@"删除钱包成功!");
+            NSLog(NSLocalizedString(@"删除钱包成功!", nil));
         }
         [database close];
         return result;

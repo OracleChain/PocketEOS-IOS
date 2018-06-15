@@ -41,7 +41,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"资产" rightBtnImgName:@"share" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产", nil)rightBtnImgName:@"share" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _navView.rightBtn.hidden = NO;
@@ -84,7 +84,7 @@
         _socialSharePanelView.backgroundColor = HEXCOLOR(0xF7F7F7);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[@"微信好友",@"朋友圈", @"QQ好友", @"QQ空间"];
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
         for (int i = 0; i < 4; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];
@@ -121,7 +121,7 @@
         [topView addGestureRecognizer:tap];
         
         UIButton *cancleBtn = [[UIButton alloc] init];
-        [cancleBtn setTitle:@"取消" forState:(UIControlStateNormal)];
+        [cancleBtn setTitle:NSLocalizedString(@"取消", nil)forState:(UIControlStateNormal)];
         [cancleBtn setBackgroundColor:HEXCOLOR(0xF7F7F7)];
         [cancleBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
         [cancleBtn addTarget:self action:@selector(cancleShareAssestsDetail) forControlEvents:(UIControlEventTouchUpInside)];
@@ -229,7 +229,7 @@
         self.headerView.fluctuateLabel.attributedText = attrString;
     }
 
-    self.headerView.totalLabel.text = [NSString stringWithFormat:@"额(24h)%@CNY", self.model.assests_market_cap_cny];
+    self.headerView.totalLabel.text = [NSString stringWithFormat:NSLocalizedString(@"额(24h)%@CNY", nil), self.model.assests_market_cap_cny];
     self.headerView.accountLabel.text = self.accountName;
     if ([self.model.assestsName isEqualToString:@"eos"]) {
         self.headerView.Assest_balance_Label.text = [NSString stringWithFormat:@"%@ EOS", [NumberFormatter displayStringFromNumber:@(self.model.assests_balance.doubleValue)]];
@@ -320,10 +320,10 @@
     NSString *platformName = self.platformNameArr[sender.view.tag-1000];
     ShareModel *model = [[ShareModel alloc] init];
     if ([self.model.assestsName isEqualToString:@"eos"]) {
-        model.title = @"EOS最新咨询详情";
+        model.title = NSLocalizedString(@"EOS最新咨询详情", nil);
         model.imageName = @"eos_avatar";
     }else if ([self.model.assestsName isEqualToString:@"oct"]){
-        model.title = @"OCT最新咨询详情";
+        model.title = NSLocalizedString(@"OCT最新咨询详情", nil);
         model.imageName = @"oct_avatar";
     }
     NSString *priceChange ;
@@ -332,7 +332,7 @@
     }else{
         priceChange = [NSString stringWithFormat:@"+%@%%", self.model.assests_price_change_in_24];
     }
-    model.detailDescription = [NSString stringWithFormat:@"参考价格%@\n24小时涨跌幅%@\n总市值¥%@\n", [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:@(self.model.assests_price_cny.doubleValue)]], priceChange,[NumberFormatter displayStringFromNumber:@(self.model.assests_market_cap_cny.doubleValue)]];
+    model.detailDescription = [NSString stringWithFormat:NSLocalizedString(@"参考价格%@\n24小时涨跌幅%@\n总市值¥%@\n", nil), [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:@(self.model.assests_price_cny.doubleValue)]], priceChange,[NumberFormatter displayStringFromNumber:@(self.model.assests_market_cap_cny.doubleValue)]];
     model.webPageUrl = @"https://pocketeos.com";
     NSLog(@"%@", platformName);
     if ([platformName isEqualToString:@"wechat_friends"]) {

@@ -46,7 +46,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
         _segmentControlView = [[SegmentControlView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT-54, SCREEN_WIDTH, 54))];
         [_segmentControlViewBackgroundView addSubview:self.segmentControlView];
         _segmentControlView.delegate = self;
-        [_segmentControlView updateViewWithArray:[NSMutableArray arrayWithObjects:@"现有问题", @"过往问题",  nil]];
+        [_segmentControlView updateViewWithArray:[NSMutableArray arrayWithObjects:NSLocalizedString(@"现有问题", nil), NSLocalizedString(@"过往问题", nil),  nil]];
     }
     return _segmentControlViewBackgroundView;
 }
@@ -54,7 +54,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 - (UIButton *)askQuestionBtn{
     if(!_askQuestionBtn){
         _askQuestionBtn = [[UIButton alloc] init];
-        [_askQuestionBtn setTitle:@"提问" forState:(UIControlStateNormal)];
+        [_askQuestionBtn setTitle:NSLocalizedString(@"提问", nil)forState:(UIControlStateNormal)];
         _askQuestionBtn.lee_theme.LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0x4D7BFE)).LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
         _askQuestionBtn.layer.masksToBounds = YES;
         _askQuestionBtn.layer.cornerRadius = 28;
@@ -96,7 +96,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
     [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT );
     
-    [self.headerView updateViewWithArray:[NSMutableArray arrayWithObjects:@"现有问题", @"过往问题",  nil]];
+    [self.headerView updateViewWithArray:[NSMutableArray arrayWithObjects:NSLocalizedString(@"现有问题", nil), NSLocalizedString(@"过往问题", nil),  nil]];
     [self.view addSubview:self.selectAccountView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(askQuestionDidFinish) name:AskQuestionDidSuccessNotification object:nil];
@@ -192,12 +192,11 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 - (void)selectAccountBtnDidClick:(UIButton *)sender{
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
     builder.showMask = YES;
-    builder.cancelTextColor = UIColor.redColor;
     WS(weakSelf);
     
     NSArray *accountNameArr = [[AccountsTableManager accountTable] selectAllNativeAccountName];
     if (accountNameArr.count == 0) {
-        [TOASTVIEW showWithText:@"暂无账号!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"暂无账号!", nil)];
         return;
     }
     
@@ -212,7 +211,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 
 - (void)understandBtnDidClick:(UIButton *)sender{
     if (IsStrEmpty(self.choosedAccountName)) {
-        [TOASTVIEW showWithText:@"请选择您将选择的账号!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请选择您将选择的账号!", nil)];
         return;
     } else{
         [self.selectAccountView removeFromSuperview];

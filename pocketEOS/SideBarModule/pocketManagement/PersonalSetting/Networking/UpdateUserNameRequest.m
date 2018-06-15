@@ -15,7 +15,7 @@
 
 -(id)parameters{
     return @{@"uid" : VALIDATE_STRING(CURRENT_WALLET_UID),
-             @"userName" : self.userName
+             @"userName" : VALIDATE_STRING(self.userName)
              };
 }
 @end

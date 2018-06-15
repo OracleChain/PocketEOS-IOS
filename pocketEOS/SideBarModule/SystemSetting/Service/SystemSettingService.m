@@ -13,8 +13,8 @@
 - (NSDictionary *)dataSourceDictionary{
     if (!_dataSourceDictionary) {
         _dataSourceDictionary = @{
-                                  @"topSection" : @[@"消息反馈"]  ,
-                                  @"bottomSection" : @[@"清空缓存", @"法律条款与隐私政策", @"关于Pocket EOS"]
+                                  @"topSection" : @[NSLocalizedString(@"消息反馈", nil)]  ,
+                                  @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil),NSLocalizedString(@"语言", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
                                   };
     }
     return _dataSourceDictionary;
@@ -43,6 +43,6 @@
 //        AppDelegate *appDele = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //        BaseTabBarController * vc =[[BaseTabBarController alloc]init];
 //        appDele.window.rootViewController = vc;
-//        [TOASTVIEW showWithText:NSLocalizedString(@"语言切换中", nil) duration:1];
+//        [TOASTVIEW showWithText:NSLocalizedString(NSLocalizedString(@"语言切换中", nil), nil) duration:1];
 //
 //    });

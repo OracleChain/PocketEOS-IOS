@@ -37,6 +37,7 @@
 #import "BaseTextView.h"
 #import "BaseSlimLineView.h"
 #import "BaseBoldLineView.h"
+#import "LoginPasswordView.h"
 #import "ImageAndTipLabelViewManager.h"
 #import "RequestUrlConstant.h"
 #import "ThemeConstant.h"
@@ -55,6 +56,10 @@
 #import "UITextView+Placeholder.h"
 #import "NSObject+Extension.h"
 #import "SocialManager.h"
+#import "DeviceType.h"
+#import "SetAppLanguageHelper.h"
+#import "OptionModel.h"
+
 
 /**
  *  导入第三方库文件

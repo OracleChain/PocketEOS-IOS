@@ -38,8 +38,12 @@
 #import "PopUpWindow.h"
 #import "BaseTabBarController.h"
 #import "AccountInfo.h"
+#import "AdvertisementView.h"
+#import "BPVoteViewController.h"
+#import "UnStakeEOSViewController.h"
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, PopUpWindowDelegate>
+
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, PopUpWindowDelegate, AdvertisementViewDelegate>
 
 @property(nonatomic, strong) UIImageView *backgroundView;
 @property(nonatomic, strong) CustomNavigationView *navView;
@@ -59,7 +63,9 @@
  */
 @property(nonatomic, strong) UIImageView *arrowImg;
 @property(nonatomic, strong) PopUpWindow *popUpWindow;
-
+@property(nonatomic , strong) AdvertisementView *advertisementView;
+@property(nonatomic , strong) AccountResult *currentAccountResult;
+@property(nonatomic, strong) UIButton *unStakeBtn;
 @end
 
 @implementation AssestsMainViewController
@@ -73,9 +79,18 @@
         }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 248);
         }
+//        _backgroundView.lee_theme
+//        .LeeAddBackgroundColor(SOCIAL_MODE, RGB(62, 113, 236))
+//        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+//        
+//        _backgroundView.lee_theme
+//        .LeeAddBackgroundImage(SOCIAL_MODE, [UIImage imageNamed:@"background_blue"])
+//        .LeeAddBackgroundImage(BLACKBOX_MODE, [UIImage imageNamed:@"background_black"])
         _backgroundView.lee_theme
-        .LeeAddBackgroundColor(SOCIAL_MODE, RGB(65, 115, 238))
-        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+        .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"background_blue"])
+        .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"background_black"]);
+        
+        
     }
     return _backgroundView;
 }
@@ -148,11 +163,39 @@
     return _popUpWindow;
 }
 
+- (AdvertisementView *)advertisementView{
+    if (!_advertisementView) {
+        _advertisementView = [[[NSBundle mainBundle] loadNibNamed:@"AdvertisementView" owner:nil options:nil] firstObject];
+        _advertisementView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TABBAR_HEIGHT);
+        _advertisementView.delegate = self;
+    }
+    return _advertisementView;
+}
+
+
+- (AccountResult *)currentAccountResult{
+    if (!_currentAccountResult) {
+        _currentAccountResult = [[AccountResult alloc] init];
+    }
+    return _currentAccountResult;
+}
+
+- (UIButton *)unStakeBtn{
+    if(!_unStakeBtn){
+        _unStakeBtn = [[UIButton alloc] init];
+        [_unStakeBtn setImage:[UIImage imageNamed:@"unStakeEOS_blue"] forState:(UIControlStateNormal)];
+        _unStakeBtn.layer.masksToBounds = YES;
+        _unStakeBtn.layer.cornerRadius = 31;
+        [_unStakeBtn addTarget: self action: @selector(unStakeBtnClick:) forControlEvents: UIControlEventTouchUpInside];
+    }
+    return _unStakeBtn;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     Wallet *model = CURRENT_WALLET;
-    self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@的钱包", model.wallet_name];
+    self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
     [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     [self buidDataSource];
 }
@@ -165,17 +208,10 @@
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
-    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 34, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-34-TABBAR_HEIGHT);
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     
     self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.backgroundColor = [UIColor clearColor];
-    
-    // 添加跑马灯
-    CQMarqueeView *marqueeView = [[CQMarqueeView alloc] initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 34)];
-    
-    [self.view addSubview:marqueeView];
-    marqueeView.marqueeTextArray = @[@"温馨提示：本钱包运行于测试网络，待EOS主网正式上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。"];
-    marqueeView.delegate = self;
     
     self.view.backgroundColor = [UIColor whiteColor];
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
@@ -211,19 +247,10 @@
     [self.view addGestureRecognizer:leftEdgeGesture];
     leftEdgeGesture.delegate = self;
     
-    
-    
-    
-}
-
-// 跑马灯view上的关闭按钮点击时回调
-- (void)marqueeView:(CQMarqueeView *)marqueeView closeButtonDidClick:(UIButton *)sender {
-    NSLog(@"点击了关闭按钮");
-    [UIView animateWithDuration:1 animations:^{
-        marqueeView.height = 0;
-    } completion:^(BOOL finished) {
-        [marqueeView removeFromSuperview];
-    }];
+    // 配置开屏广告
+    [self configAdvertisement];
+    [self addunStakeBtn];
+  
 }
 
 // 构建数据源
@@ -234,12 +261,12 @@
         // 拿到当前的下拉刷新控件，结束刷新状态
         [weakSelf.mainTableView.mj_header endRefreshing];
         if (isSuccess) {
+            weakSelf.currentAccountResult = result;
             if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
                 weakSelf.headerView.model = result.data;
             }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
                 weakSelf.BB_headerView.model = result.data;
             }
-            
             [weakSelf.mainTableView reloadData];
         }
     }];
@@ -268,10 +295,10 @@
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         });
                         // 用户第一次同意了访问相机权限
-                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }else {
                         // 用户第一次拒绝了访问相机权限
-                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }
                     
                     
@@ -280,8 +307,8 @@
                 ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                     
                 }];
                 
@@ -289,13 +316,13 @@
                 [weakSelf presentViewController:alertC animated:YES completion:nil];
                 
             } else if (status == AVAuthorizationStatusRestricted) {
-                NSLog(@"因为系统原因, 无法访问相册");
+                NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
             }
             
             
         }else {
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];
             
@@ -511,12 +538,51 @@
     AccountInfo *accountInfo = sender;
     self.currentAccountName = accountInfo.account_name;
     self.currentAssestsLabel.text = self.currentAccountName;
+    [self buidDataSource];
     [self removePopUpWindow];
+    
 }
 
 - (void)removePopUpWindow{
     [self.popUpWindow removeFromSuperview];
     self.popUpWindow = nil;
+}
+
+//AdvertisementViewDelegate
+- (void)goforwardDidClick{
+    BPVoteViewController *vc = [[BPVoteViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [self.advertisementView removeFromSuperview];
+}
+
+- (void)configAdvertisement{
+    [self.view addSubview:self.advertisementView];
+    self.advertisementView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [self.view bringSubviewToFront:self.advertisementView];
+}
+
+- (void)addunStakeBtn{
+//    UIView *shadowView = [[UIView alloc] init];
+//    shadowView.backgroundColor = HEXCOLOR(0x4D7BFE);
+//    shadowView.layer.shadowOffset = CGSizeMake(0, 5);
+//    shadowView.layer.shadowColor = HEXCOLOR(0x4D7BFE).CGColor;
+//    shadowView.layer.shadowOpacity = 0.5;
+//    shadowView.layer.cornerRadius = 31;
+//    shadowView.frame = CGRectMake(SCREEN_WIDTH - MARGIN_20 - 56, SCREEN_HEIGHT - TABBAR_HEIGHT - MARGIN_20, 62, 62);
+//    [self.view addSubview: shadowView];
+    
+    [self.view addSubview:self.unStakeBtn];
+    self.unStakeBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(62).heightEqualToWidth();
+}
+
+- (void)unStakeBtnClick:(UIButton *)sender{
+    UnStakeEOSViewController *vc = [[UnStakeEOSViewController alloc] init];
+    self.currentAccountResult.data.account_name = self.currentAccountName;
+//    self.currentAccountResult.data.eos_cpu_weight = @"6";
+//    self.currentAccountResult.data.eos_net_weight = @"8";
+    vc.accountResult = self.currentAccountResult;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

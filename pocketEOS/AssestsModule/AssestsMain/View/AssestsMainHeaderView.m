@@ -92,14 +92,14 @@
         nameStr = wallet.wallet_name ;
     }
     if (nameStr.length > 0) {
-        self.userNameLabel.text = [NSString stringWithFormat:@"%@的钱包", VALIDATE_STRING(nameStr)];
+        self.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), VALIDATE_STRING(nameStr)];
     }else{
-        self.userNameLabel.text = [NSString stringWithFormat:@"***的钱包"];
+        self.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"***的钱包", nil)];
     }
     
     NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
     if (accountArr.count == 0) {
-        self.userAccountLabel.text = [NSString stringWithFormat:@"没有账号"] ;
+        self.userAccountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"没有账号", nil)] ;
     }else{
         self.userAccountLabel.text = [NSString stringWithFormat:@"%@", VALIDATE_STRING(model.account_name) ] ;
         

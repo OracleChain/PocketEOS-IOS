@@ -19,7 +19,7 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:@"填写金额"];
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:NSLocalizedString(@"填写金额", nil)];
     
     //添加文字颜色
     [attrStr addAttribute:NSForegroundColorAttributeName value:HEXCOLOR(0xDDDDDD) range:NSMakeRange(0, 3)];

@@ -11,7 +11,6 @@
 #import "BindSocialPlatformViewController.h"
 #import "UnBindSocialPlatformViewController.h"
 #import "SliderVerifyView.h"
-#import "LoginPasswordView.h"
 #import "LoginMainViewController.h"
 #import "AppDelegate.h"
 #import "PersonalSettingService.h"
@@ -34,7 +33,7 @@
 - (SliderVerifyView *)sliderVerifyView{
     if (!_sliderVerifyView) {
         _sliderVerifyView = [[SliderVerifyView alloc] init];
-        _sliderVerifyView.tipLabel.text = @"滑动销毁钱包";
+        _sliderVerifyView.tipLabel.text = NSLocalizedString(@"滑动销毁钱包", nil);
         _sliderVerifyView.delegate = self;
     }
     return _sliderVerifyView;
@@ -44,7 +43,7 @@
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] init];
         _tipLabel.backgroundColor = [UIColor clearColor];
-        _tipLabel.text = @"将滑块滑动到右侧指定位置内即可解锁";
+        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可解锁", nil);
         _tipLabel.textColor = HEXCOLOR(0x999999);
         _tipLabel.font = [UIFont systemFontOfSize:13];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
@@ -70,7 +69,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"个人设置" rightBtnTitleName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"个人设置", nil)rightBtnTitleName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -88,9 +87,9 @@
     [super viewWillAppear:animated];
     Wallet *model = CURRENT_WALLET;
     if (IsStrEmpty(model.wallet_name)) {
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:@"******的钱包"];
+        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"******的钱包", nil)];
     }else{
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@的钱包", model.wallet_name];
+        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
         
     }
     [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
@@ -98,12 +97,12 @@
     if (model.wallet_weixin.length > 0 &&  ![model.wallet_weixin isEqualToString:@"(null)"]) {
         self.headerView.wechatIDLabel.text = model.wallet_weixin;
     }else{
-        self.headerView.wechatIDLabel.text = @"未绑定微信";
+        self.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
     }
     if (model.wallet_qq.length > 0 &&  ![model.wallet_qq isEqualToString:@"(null)"]) {
         self.headerView.qqIDLabel.text = model.wallet_qq;
     }else{
-        self.headerView.qqIDLabel.text = @"未绑定QQ";
+        self.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
     }
 }
 
@@ -143,7 +142,7 @@
 
 //PersonalSettingHeaderViewDelegate
 -(void)avatarBtnDidClick:(UIButton *)sender{
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle: nil otherButtonTitles:@"我的相册", @"拍照", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil)destructiveButtonTitle: nil otherButtonTitles:NSLocalizedString(@"我的相册", nil), NSLocalizedString(@"拍照", nil), nil];
     [sheet dismissWithClickedButtonIndex:2 animated:YES];
     [sheet showInView:self.view];
     
@@ -151,8 +150,8 @@
 
 -(void)nameBtnDidClick:(UIButton *)sender{
     PersonnalSettingDetailViewController *vc = [[PersonnalSettingDetailViewController alloc] init];
-    vc.titleStr = @"名字";
-    vc.itemName = @"名字";
+    vc.titleStr = NSLocalizedString(@"名字", nil);
+    vc.itemName = NSLocalizedString(@"名字", nil);
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -298,7 +297,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     

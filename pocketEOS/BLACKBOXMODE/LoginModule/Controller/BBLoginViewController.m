@@ -88,7 +88,7 @@
         _chooseWalletBackgroundView.frame = CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT-200);
         UILabel *label = [[UILabel alloc] init];
         label.textColor = HEXCOLOR(0x999999);
-        label.text = @"请选择钱包:";
+        label.text = NSLocalizedString(@"请选择钱包:", nil);
         label.font = [UIFont systemFontOfSize:14];
         label.frame = CGRectMake(MARGIN_20, MARGIN_15, 150, MARGIN_15);
         [_chooseWalletBackgroundView addSubview:label];
@@ -170,28 +170,28 @@
 // BBLoginCreateWalletViewDelegate
 -(void)nextStepBtnDidClick{
     if (self.createWalletView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
     
     
     if (IsStrEmpty(self.createWalletView.walletNameTF.text)) {
-        [TOASTVIEW showWithText:@"钱包名称不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"钱包名称不能为空!", nil)];
         return;
     }
     if (IsStrEmpty(self.createWalletView.passwordTF.text)) {
-        [TOASTVIEW showWithText:@"密码不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码不能为空!", nil)];
         return;
     }
     if (![self.createWalletView.confirmPasswordTF.text isEqualToString:self.createWalletView.passwordTF.text]) {
-        [TOASTVIEW showWithText:@"两次输入的密码不一致!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"两次输入的密码不一致!", nil)];
         return;
     }
     // 查重本地钱包名不可重复
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     for (Wallet *model in localWalletsArr) {
         if ([model.wallet_name isEqualToString:self.createWalletView.walletNameTF.text]) {
-            [TOASTVIEW showWithText:@"本地钱包名不可重复!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包名不可重复!", nil)];
             return;
         }
     }
@@ -235,7 +235,7 @@
 //BBLoginChooseWalletFooterViewDelegate
 - (void)confirmBtnDidClick{
     if (self.chooseWalletFooterView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
     NSArray *localWalletArr = [[WalletTableManager walletTable] selectAllLocalWallet];
@@ -244,8 +244,18 @@
             [[NSUserDefaults standardUserDefaults] setObject: wallet.wallet_uid  forKey:Current_wallet_uid];
             [[NSUserDefaults standardUserDefaults] synchronize];
             NSLog(@"%@", wallet.account_info_table_name);
-            // 如果本地有当前账号对应的钱包
-            [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+            
+            NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+            if (accountArray.count > 0) {
+                // 如果本地有当前账号对应的钱包
+                [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+                
+            }else{
+                CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
+                vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromCreatePocketVC;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
             break;
         }
     }

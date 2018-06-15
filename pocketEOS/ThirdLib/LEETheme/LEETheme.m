@@ -61,7 +61,7 @@ static NSString * const LEEThemeConfigInfo = @"LEEThemeConfigInfo";
 
 + (void)startTheme:(NSString *)tag{
     
-    NSAssert([[LEETheme shareTheme].allTags containsObject:tag], @"所启用的主题不存在 - 请检查是否添加了该%@主题的设置" , tag);
+    NSAssert([[LEETheme shareTheme].allTags containsObject:tag], NSLocalizedString(@"所启用的主题不存在 - 请检查是否添加了该%@主题的设置", nil), tag);
     
     if (!tag) return;
     
@@ -161,9 +161,9 @@ static NSString * const LEEThemeConfigInfo = @"LEEThemeConfigInfo";
         
         NSDictionary *jsonConfigInfo = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&jsonError];
         
-        NSAssert(!jsonError, @"添加的主题json配置数据解析错误 - 错误描述");
-        NSAssert(jsonConfigInfo, @"添加的主题json配置数据解析为空 - 请检查");
-        NSAssert(tag, @"添加的主题json标签不能为空");
+        NSAssert(!jsonError, NSLocalizedString(@"添加的主题json配置数据解析错误 - 错误描述", nil));
+        NSAssert(jsonConfigInfo, NSLocalizedString(@"添加的主题json配置数据解析为空 - 请检查", nil));
+        NSAssert(tag, NSLocalizedString(@"添加的主题json标签不能为空", nil));
         
         if (!jsonError && jsonConfigInfo) {
         
@@ -2073,7 +2073,7 @@ typedef NS_ENUM(NSInteger, LEEThemeIdentifierConfigType) {
         } break;
     }
     
-    NSAssert(unsupportedType == NO, @"方法的参数类型暂不支持");
+    NSAssert(unsupportedType == NO, NSLocalizedString(@"方法的参数类型暂不支持", nil));
 }
 
 - (void)changeThemeConfig{
@@ -2155,7 +2155,7 @@ typedef NS_ENUM(NSInteger, LEEThemeIdentifierConfigType) {
                 
             } else {
                 
-                NSAssert(YES, @"参数个数与方法参数个数不匹配");
+                NSAssert(YES, NSLocalizedString(@"参数个数与方法参数个数不匹配", nil));
             }
             
         }
@@ -2170,7 +2170,7 @@ typedef NS_ENUM(NSInteger, LEEThemeIdentifierConfigType) {
     
     if (!model) {
         
-        NSAssert(![self isKindOfClass:[LEEThemeConfigModel class]], @"是不是点多了? ( *・ω・)✄╰ひ╯ ");
+        NSAssert(![self isKindOfClass:[LEEThemeConfigModel class]], NSLocalizedString(@"是不是点多了? ( *・ω・)✄╰ひ╯ ", nil));
         
         model = [LEEThemeConfigModel new];
         

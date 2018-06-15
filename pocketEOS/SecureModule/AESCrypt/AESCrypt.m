@@ -35,7 +35,7 @@
 #import "NSObject+Extension.h"
 
 const int SALT_LEN = 32;
-const int ITERATIONS = 10000;
+const int ITERATIONS = 1000;
 const int KEY_LENGTH = 32;
 
 @implementation AESCrypt
@@ -56,7 +56,7 @@ const int KEY_LENGTH = 32;
     NSLog(@"%@", salt);
 //    [NSObject out_Hex:derivedKey.bytes andLength:derivedKey.length];
     NSData *encryptedData = [data AES256EncryptedDataUsingKey:derivedKey error:nil];
-    [NSObject out_Int8_t:encryptedData.bytes andLength:encryptedData.length];
+//    [NSObject out_Int8_t:encryptedData.bytes andLength:encryptedData.length];
 //    NSString *base64EncodedString = [encryptedData base64EncodedStringWithWrapWidth:[encryptedData length]];
 //    NSString *mixedData = [NSString stringWithFormat:@"%@%@", salt, base64EncodedString];
     

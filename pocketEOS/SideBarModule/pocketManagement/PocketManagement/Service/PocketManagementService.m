@@ -61,7 +61,7 @@
                 self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
                 self.setMainAccountRequest.eosAccountName = model.account_name;
                 [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
-                    NSLog(@"通知服务器设置主账号成功!");
+                    NSLog(NSLocalizedString(@"通知服务器设置主账号成功!", nil));
                 } failure:^(id DAO, NSError *error) {
                     
                 }];

@@ -11,7 +11,6 @@
 @implementation GetAccountAssetRequest
 
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_account_asset", REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_account_asset";
 }
 

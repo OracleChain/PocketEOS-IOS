@@ -77,7 +77,7 @@ static NSNumberFormatter *numberFormatter_;
     // 获得JSON对象
     keyValues = [keyValues mj_JSONObject];
     
-    MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], self, [self class], @"keyValues参数不是一个字典");
+    MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], self, [self class], NSLocalizedString(@"keyValues参数不是一个字典", nil));
     
     Class clazz = [self class];
     NSArray *allowedPropertyNames = [clazz mj_totalAllowedPropertyNames];
@@ -209,7 +209,7 @@ static NSNumberFormatter *numberFormatter_;
 {
     // 获得JSON对象
     keyValues = [keyValues mj_JSONObject];
-    MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], nil, [self class], @"keyValues参数不是一个字典");
+    MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], nil, [self class], NSLocalizedString(@"keyValues参数不是一个字典", nil));
     
     if ([self isSubclassOfClass:[NSManagedObject class]] && context) {
         NSString *entityName = [NSStringFromClass(self) componentsSeparatedByString:@"."].lastObject;
@@ -220,14 +220,14 @@ static NSNumberFormatter *numberFormatter_;
 
 + (instancetype)mj_objectWithFilename:(NSString *)filename
 {
-    MJExtensionAssertError(filename != nil, nil, [self class], @"filename参数为nil");
+    MJExtensionAssertError(filename != nil, nil, [self class], NSLocalizedString(@"filename参数为nil", nil));
     
     return [self mj_objectWithFile:[[NSBundle mainBundle] pathForResource:filename ofType:nil]];
 }
 
 + (instancetype)mj_objectWithFile:(NSString *)file
 {
-    MJExtensionAssertError(file != nil, nil, [self class], @"file参数为nil");
+    MJExtensionAssertError(file != nil, nil, [self class], NSLocalizedString(@"file参数为nil", nil));
     
     return [self mj_objectWithKeyValues:[NSDictionary dictionaryWithContentsOfFile:file]];
 }
@@ -244,7 +244,7 @@ static NSNumberFormatter *numberFormatter_;
     keyValuesArray = [keyValuesArray mj_JSONObject];
     
     // 1.判断真实性
-    MJExtensionAssertError([keyValuesArray isKindOfClass:[NSArray class]], nil, [self class], @"keyValuesArray参数不是一个数组");
+    MJExtensionAssertError([keyValuesArray isKindOfClass:[NSArray class]], nil, [self class], NSLocalizedString(@"keyValuesArray参数不是一个数组", nil));
     
     // 如果数组里面放的是NSString、NSNumber等数据
     if ([MJFoundation isClassFromFoundation:self]) return [NSMutableArray arrayWithArray:keyValuesArray];
@@ -268,14 +268,14 @@ static NSNumberFormatter *numberFormatter_;
 
 + (NSMutableArray *)mj_objectArrayWithFilename:(NSString *)filename
 {
-    MJExtensionAssertError(filename != nil, nil, [self class], @"filename参数为nil");
+    MJExtensionAssertError(filename != nil, nil, [self class], NSLocalizedString(@"filename参数为nil", nil));
     
     return [self mj_objectArrayWithFile:[[NSBundle mainBundle] pathForResource:filename ofType:nil]];
 }
 
 + (NSMutableArray *)mj_objectArrayWithFile:(NSString *)file
 {
-    MJExtensionAssertError(file != nil, nil, [self class], @"file参数为nil");
+    MJExtensionAssertError(file != nil, nil, [self class], NSLocalizedString(@"file参数为nil", nil));
     
     return [self mj_objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:file]];
 }
@@ -299,7 +299,7 @@ static NSNumberFormatter *numberFormatter_;
 - (NSMutableDictionary *)mj_keyValuesWithKeys:(NSArray *)keys ignoredKeys:(NSArray *)ignoredKeys
 {
     // 如果自己不是模型类, 那就返回自己
-    MJExtensionAssertError(![MJFoundation isClassFromFoundation:[self class]], (NSMutableDictionary *)self, [self class], @"不是自定义的模型类")
+    MJExtensionAssertError(![MJFoundation isClassFromFoundation:[self class]], (NSMutableDictionary *)self, [self class], NSLocalizedString(@"不是自定义的模型类", nil))
     
     id keyValues = [NSMutableDictionary dictionary];
     
@@ -412,7 +412,7 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)mj_keyValuesArrayWithObjectArray:(NSArray *)objectArray keys:(NSArray *)keys ignoredKeys:(NSArray *)ignoredKeys
 {
     // 0.判断真实性
-    MJExtensionAssertError([objectArray isKindOfClass:[NSArray class]], nil, [self class], @"objectArray参数不是一个数组");
+    MJExtensionAssertError([objectArray isKindOfClass:[NSArray class]], nil, [self class], NSLocalizedString(@"objectArray参数不是一个数组", nil));
     
     // 1.创建数组
     NSMutableArray *keyValuesArray = [NSMutableArray array];

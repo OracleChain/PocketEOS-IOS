@@ -22,7 +22,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"导入钱包" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"导入钱包", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -48,14 +48,14 @@
     Wallet *model = [Wallet mj_objectWithKeyValues:[self.importPocketHeaderView.pocketTextView.text mj_JSONObject]];
     if ([[WalletTableManager walletTable] addRecord: model]) {
         
-        [TOASTVIEW showWithText:@"导入成功!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"导入成功!", nil)];
         for (UIView *view in WINDOW.subviews) {
             [view removeFromSuperview];
         }
         [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
         
     }else{
-        [TOASTVIEW showWithText:@"导入失败!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"导入失败!", nil)];
     }
     
     

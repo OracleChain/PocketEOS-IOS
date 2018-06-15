@@ -39,7 +39,7 @@
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 5;// 字体的行间距
-    NSString *tipStr = @"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包";
+    NSString *tipStr = NSLocalizedString(@"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包", nil);
     
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {

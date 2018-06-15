@@ -89,7 +89,7 @@
 - (UILabel *)lable_nowPrice{
     if (!_lable_nowPrice) {
         _lable_nowPrice = [[UILabel alloc] init];
-        _lable_nowPrice.text = @"现价";
+        _lable_nowPrice.text = NSLocalizedString(@"现价", nil);
         _lable_nowPrice.textColor = HEXCOLOR(0xB0B0B0 );
         _lable_nowPrice.font = [UIFont systemFontOfSize:14];
     }

@@ -9,6 +9,10 @@
 #import "AccountResult.h"
 
 @implementation AccountResult
-
-
+- (Account *)data{
+    if (!_data) {
+        _data = [[Account alloc] init];
+    }
+    return _data;
+}
 @end

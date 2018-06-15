@@ -10,7 +10,6 @@
 
 @implementation GetRateRequest
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_rate", REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_rate";
 }
 

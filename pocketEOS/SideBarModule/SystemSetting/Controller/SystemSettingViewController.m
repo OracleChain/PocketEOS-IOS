@@ -8,15 +8,14 @@
 
 #import "SystemSettingViewController.h"
 #import "NavigationView.h"
-#import "SystemSettingService.h"
 #import "BaseTabBarController.h"
 #import "AppDelegate.h"
 #import "RtfBrowserViewController.h"
 #import "MessageFeedbackViewController.h"
+#import "LanguageSettingViewController.h"
 
 @interface SystemSettingViewController ()< UIGestureRecognizerDelegate, NavigationViewDelegate, UITableViewDelegate , UITableViewDataSource>
 @property(nonatomic, strong) NavigationView *navView;
-@property(nonatomic, strong) SystemSettingService *mainService;
 @property(nonatomic , strong) NSDictionary *dataSourceDictionary;
 @end
 
@@ -24,23 +23,17 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"系统设置" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"系统设置", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
 }
 
-- (SystemSettingService *)mainService{
-    if (!_mainService) {
-        _mainService = [[SystemSettingService alloc] init];
-    }
-    return _mainService;
-}
 - (NSDictionary *)dataSourceDictionary{
     if (!_dataSourceDictionary) {
         _dataSourceDictionary = @{
-                                  @"topSection" : @[@"消息反馈"]  ,
-                                  @"bottomSection" : @[@"清空缓存", @"法律条款与隐私政策", @"关于Pocket EOS"]
+                                  @"topSection" : @[NSLocalizedString(@"消息反馈", nil)]  ,
+                                  @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil),NSLocalizedString(@"语言", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
                                   };
     }
     return _dataSourceDictionary;
@@ -82,7 +75,7 @@
     }else if (indexPath.section == 1){
         NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"bottomSection"];
         cell.textLabel.text = bottomArr[indexPath.row];
-
+        
         if (indexPath.row == 0) {
             NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)[0];
             cell.detailTextLabel.text = [cachePath fileSize];
@@ -90,8 +83,15 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
             cell.rightIconImageView.hidden = YES;
             cell.bottomLineView.hidden = NO;
-        }else if (indexPath.row == 1){
+        }else{
             cell.bottomLineView.hidden = NO;
+            if (indexPath.row == 1) {
+                // 切换语言
+                
+                
+            }
+            
+            
         }
         
         
@@ -150,16 +150,21 @@
                 // 删除子文件夹
                 BOOL isRemoveSuccessed = [mgr removeItemAtPath:cachePath error:nil];
                 if (isRemoveSuccessed) { // 删除成功
-                    [TOASTVIEW showWithText:@"清理成功~"];
+                    [TOASTVIEW showWithText:NSLocalizedString(@"清理成功~", nil)];
                 }
             }
             [tableView reloadData];
             
         }else if (indexPath.row == 1){
+            LanguageSettingViewController *vc = [[LanguageSettingViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }else if (indexPath.row == 2){
             RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
             vc.rtfFileName = @"PocketEOSPrivacyPolicy";
             [self.navigationController pushViewController:vc animated:YES];
-        }else if (indexPath.row == 2){
+            
+        }else if (indexPath.row == 3){
             RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
             vc.rtfFileName = @"AboutPocketEOS";
             [self.navigationController pushViewController:vc animated:YES];

@@ -49,10 +49,11 @@
     if (!_btn) {
         _btn = [[UIButton alloc] init];
         _btn.sd_cornerRadius = @4;
-        [_btn setTitleColor:HEXCOLOR(0xC7C7C7) forState:(UIControlStateNormal)];
         _btn.layer.borderWidth = 1;
-        _btn.layer.borderColor = HEXCOLOR(0xC7C7C7).CGColor;
         _btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        
+        [_btn setTitleColor:HEXCOLOR(0xC7C7C7) forState:(UIControlStateNormal)];
+        _btn.layer.borderColor = HEXCOLOR(0xC7C7C7).CGColor;
     }
     return _btn;
 }
@@ -89,9 +90,13 @@
     self.titleLabel.text = model.title;
     self.descriptionLabel.text = model.task_description;
     if (model.completed) {
-        [self.btn setTitle:@"已完成" forState:(UIControlStateNormal)];
+        [self.btn setTitle:NSLocalizedString(@"已完成", nil)forState:(UIControlStateNormal)];
+        [_btn setTitleColor:HEXCOLOR(0x436DFB) forState:(UIControlStateNormal)];
+        _btn.layer.borderColor = HEXCOLOR(0x436DFB).CGColor;
     }else{
-        [self.btn setTitle:@"未完成" forState:(UIControlStateNormal)];
+        [self.btn setTitle:NSLocalizedString(@"未完成", nil)forState:(UIControlStateNormal)];
+        [_btn setTitleColor:HEXCOLOR(0xC7C7C7) forState:(UIControlStateNormal)];
+        _btn.layer.borderColor = HEXCOLOR(0xC7C7C7).CGColor;
     }
 }
 

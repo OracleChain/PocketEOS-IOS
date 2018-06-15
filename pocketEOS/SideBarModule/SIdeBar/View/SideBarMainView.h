@@ -24,7 +24,7 @@
 - (void)logoutBtnDidClick:(UIButton *)sender;
 @end
 
-@interface SideBarMainView : UIView
+@interface SideBarMainView : UIScrollView
 @property(nonatomic, weak) id<SideBarMainViewDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImg;

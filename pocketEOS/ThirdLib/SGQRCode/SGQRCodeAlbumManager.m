@@ -47,7 +47,7 @@
     self.currentVC = currentController;
     
     if (currentController == nil) {
-        NSException *excp = [NSException exceptionWithName:@"SGQRCode" reason:@"readQRCodeFromAlbumWithCurrentController: 方法中的 currentController 参数不能为空" userInfo:nil];
+        NSException *excp = [NSException exceptionWithName:@"SGQRCode" reason:NSLocalizedString(@"readQRCodeFromAlbumWithCurrentController: 方法中的 currentController 参数不能为空", nil)userInfo:nil];
         [excp raise];
     }
     
@@ -65,11 +65,11 @@
                         [self enterImagePickerController];
                     });
                     if (self.isOpenLog) {
-                        SGQRCodeLog(@"用户第一次同意了访问相册权限 - - %@", [NSThread currentThread]);
+                        SGQRCodeLog(NSLocalizedString(@"用户第一次同意了访问相册权限 - - %@", nil), [NSThread currentThread]);
                     }
                 } else { // 用户第一次拒绝了访问相机权限
                     if (self.isOpenLog) {
-                        SGQRCodeLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                        SGQRCodeLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }
                 }
             }];
@@ -77,14 +77,14 @@
         } else if (status == PHAuthorizationStatusAuthorized) { // 用户允许当前应用访问相册
             self.isPHAuthorization = YES;
             if (self.isOpenLog) {
-                SGQRCodeLog(@"访问相机权限 - - %@", [NSThread currentThread]);
+                SGQRCodeLog(NSLocalizedString(@"访问相机权限 - - %@", nil), [NSThread currentThread]);
             }
             [self enterImagePickerController];
         } else if (status == PHAuthorizationStatusDenied) { // 用户拒绝当前应用访问相册
             [self enterImagePickerController];
         } else if (status == PHAuthorizationStatusRestricted) {
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"由于系统原因, 无法访问相册" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"由于系统原因, 无法访问相册", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];
             
@@ -122,7 +122,7 @@
     
     if (features.count == 0) {
         if (self.isOpenLog) {
-            SGQRCodeLog(@"暂未识别出扫描的二维码 - - %@", features);
+            SGQRCodeLog(NSLocalizedString(@"暂未识别出扫描的二维码 - - %@", nil), features);
         }
         [self.currentVC dismissViewControllerAnimated:YES completion:nil];
         return;
@@ -132,7 +132,7 @@
             CIQRCodeFeature *feature = [features objectAtIndex:index];
             NSString *resultStr = feature.messageString;
             if (self.isOpenLog) {
-                SGQRCodeLog(@"相册中读取二维码数据信息 - - %@", resultStr);
+                SGQRCodeLog(NSLocalizedString(@"相册中读取二维码数据信息 - - %@", nil), resultStr);
             }
             self.detectorString = resultStr;
         }

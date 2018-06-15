@@ -49,7 +49,7 @@ static ToastView * toastView = nil;
 
 - (UIAlertView *)alertView{
     if(!_alertView){
-        _alertView = [[UIAlertView alloc] initWithTitle: @"" message: @"" delegate: nil cancelButtonTitle: @"确定" otherButtonTitles: nil];
+        _alertView = [[UIAlertView alloc] initWithTitle: @"" message: @"" delegate: nil cancelButtonTitle: NSLocalizedString(@"确定", nil)otherButtonTitles: nil];
     }
     return _alertView;
 }
@@ -169,7 +169,7 @@ static ToastView * toastView = nil;
 }
 
 - (void)showAlertText:(NSString *) text{
-    [self.alertView setTitle: @"温馨提示"];
+    [self.alertView setTitle: NSLocalizedString(@"温馨提示", nil)];
     [self.alertView setMessage: text];
     [self.alertView show];
 }

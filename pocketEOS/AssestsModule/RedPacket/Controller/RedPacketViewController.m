@@ -43,7 +43,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"发红包" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"发红包", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -161,9 +161,9 @@
     }
     RedPacketRecord *model = self.mainService.dataSourceArray[indexPath.row];
     if (model.isSend == YES) {
-        cell.textLabel.text = [NSString stringWithFormat:@"发送%@个%@给%@个人，%@", model.amount, model.type, model.packetCount, model.residueCount == 0 ? @"全部被领取" : [NSString stringWithFormat: @"剩余%@个未被领取", model.residueCount]];
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送%@个%@给%@个人，%@", nil), model.amount, model.type, model.packetCount, model.residueCount == 0 ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: NSLocalizedString(@"剩余%@个未被领取", nil), model.residueCount]];
     }else {
-        cell.textLabel.text = [NSString stringWithFormat:@"领取%@个%@", model.amount, model.type];
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"领取%@个%@", nil), model.amount, model.type];
     }
     cell.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     cell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -241,7 +241,7 @@
 }
 
 -(void)sendRedPacket:(UIButton *)sender{
-    [TOASTVIEW showWithText:@"EOS主网上线之后，该功能开放!"];
+    [TOASTVIEW showWithText:NSLocalizedString(@"余额不足!", nil)];
 //    self.mainService.sendRedpacketRequest.uid = CURRENT_WALLET_UID;
 //    self.mainService.sendRedpacketRequest.account = self.currentAccountName;
 //    self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.integerValue);
@@ -271,7 +271,7 @@
 // TransferServiceDelegate
 - (void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-        NSLog(@"转账到oc.redpacket成功!" );
+        NSLog(NSLocalizedString(@"转账到oc.redpacket成功!", nil));
         ForwardRedPacketViewController *vc = [[ForwardRedPacketViewController alloc] init];
         RedPacketModel *model = [[RedPacketModel alloc] init];
         model.amount = self.headerView.amountTF.text;

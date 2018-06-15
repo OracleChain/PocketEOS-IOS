@@ -765,7 +765,7 @@ Class cellContVClass()
 
 - (void)setMaxNumberOfLinesToShow:(NSInteger)lineCount
 {
-    NSAssert(self.ownLayoutModel, @"请在布局完成之后再做此步设置！");
+    NSAssert(self.ownLayoutModel, NSLocalizedString(@"请在布局完成之后再做此步设置！", nil));
     if (lineCount > 0) {
         if (self.isAttributedContent) {
             NSDictionary *attrs = [self.attributedText attributesAtIndex:0 effectiveRange:nil];
@@ -950,7 +950,7 @@ Class cellContVClass()
      3.  view.sd_layout
      .leftEqualToView()...
      */
-    NSAssert(self.superview, @">>>>>>>>>在加入父view之后才可以做自动布局设置");
+    NSAssert(self.superview, NSLocalizedString(@">>>>>>>>>在加入父view之后才可以做自动布局设置", nil));
     
 #endif
     

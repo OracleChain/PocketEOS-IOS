@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.webView];
+    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
+    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     NSURL *rtfUrl = [[NSBundle mainBundle] URLForResource:self.rtfFileName withExtension:@"rtf"];
     NSURLRequest *request = [NSURLRequest requestWithURL:rtfUrl];
     [_webView loadRequest:request];

@@ -28,7 +28,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"企业详情" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"企业详情", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -100,7 +100,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
     
-    if ([model.applyName isEqualToString:@"有问币答"]) {
+    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
         QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
@@ -128,7 +128,7 @@
 - (void)recommandBtnDidClick:(UIButton *)sender{
     if (self.mainService.recommandApplicationDataArray.count > 0) {
         Application *model = self.mainService.recommandApplicationDataArray[0];
-        if ([model.applyName isEqualToString:@"有问币答"]) {
+        if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
             QuestionListViewController *vc = [[QuestionListViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else{

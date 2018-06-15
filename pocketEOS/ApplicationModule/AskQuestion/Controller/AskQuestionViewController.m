@@ -17,7 +17,6 @@
 #import "TransferService.h"
 #import "PGDatePickManager.h"
 #import "TransactionResult.h"
-#import "LoginPasswordView.h"
 #import "AskQuestionTipView.h"
 #import "AskQuestion_abi_to_json_request.h"
 #import "ApproveAbi_json_to_bin_request.h"
@@ -39,7 +38,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"我来提问" rightBtnTitleName:@"提交" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"我来提问", nil)rightBtnTitleName:NSLocalizedString(@"提交", nil)delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         _navView.rightBtn.lee_theme.LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A), UIControlStateNormal).LeeAddButtonTitleColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.6), UIControlStateNormal);
     }
@@ -147,7 +146,7 @@
     if (indexPath.row == self.mainService.dataSourceArray.count ) {
         // 添加选项 cell
         if (self.mainService.dataSourceArray.count == 6) {
-            [TOASTVIEW showWithText:@"最多添加六个选项"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"最多添加六个选项", nil)];
         }else{
             // 当前的 count
             NSUInteger count = self.mainService.dataSourceArray.count ;
@@ -190,12 +189,12 @@
 
     if (IsStrEmpty(self.headerView.amountTF.text) || IsStrEmpty(self.headerView.chooseTimeLabel.text) || IsStrEmpty(self.headerView.titleTV.text) || IsStrEmpty(self.headerView.contentTV.text) || IsStrEmpty(self.headerView.chooseTimeLabel.text) || IsStrEmpty(answerArr[0]) ||
         IsStrEmpty(answerArr[1])) {
-        [TOASTVIEW showWithText:@"问题没有编辑完整, 请继续编辑!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"问题没有编辑完整, 请继续编辑!", nil)];
         return;
     }
     [self.view addSubview:self.askQuestionTipView];
     
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"发布此问题将消费您 %@ OCT ", self.headerView.amountTF.text]];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:NSLocalizedString(@"发布此问题将消费您 %@ OCT ", nil), self.headerView.amountTF.text]];
     [attrString addAttribute:NSForegroundColorAttributeName
                        value:HEXCOLOR(0x2A2A2A)
                        range:NSMakeRange(0, 9)];
@@ -232,7 +231,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     
@@ -253,7 +252,7 @@
         #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-        weakSelf.transferService.available_keys = @[accountInfo.account_owner_public_key , accountInfo.account_active_public_key];
+        weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.transferService.action = @"approve";
         weakSelf.transferService.sender = self.choosedAccountName;
         weakSelf.transferService.code = @"octoneos";
@@ -311,7 +310,7 @@
         #pragma mark -- [@"data"]
         NSLog(@"askQuestion_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-        weakSelf.transferService.available_keys = @[accountInfo.account_owner_public_key , accountInfo.account_active_public_key];
+        weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.transferService.action = @"ask";
         weakSelf.transferService.sender = weakSelf.choosedAccountName;
         weakSelf.transferService.code = @"ocaskans";
@@ -332,7 +331,7 @@
 extern NSString *AskQuestionDidSuccessNotification;
 -(void)askQuestionDidFinish:(TransactionResult *)result{
 //    if ([result.code isEqualToNumber:@0 ]) {
-        [TOASTVIEW showWithText:@"提问成功!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"提问成功!", nil)];
         [[NSNotificationCenter defaultCenter] postNotificationName:AskQuestionDidSuccessNotification object:nil];
         [self.navigationController popViewControllerAnimated:YES];
 //    }else{
@@ -363,9 +362,9 @@ extern NSString *AskQuestionDidSuccessNotification;
     datePicker.textColorOfSelectedRow = HEXCOLOR(0x2B2B2B);
      datePicker.textColorOfOtherRow = HEXCOLOR(0xDDDDDD);
     datePickManager.cancelButtonTextColor = HEXCOLOR(0xB0B0B0);
-    datePickManager.cancelButtonText = @"取消";
+    datePickManager.cancelButtonText = NSLocalizedString(@"取消", nil);
     datePickManager.confirmButtonTextColor = HEXCOLOR(0xB0B0B0);
-    datePickManager.confirmButtonText = @"确定";
+    datePickManager.confirmButtonText = NSLocalizedString(@"确定", nil);
     [self presentViewController:datePickManager animated:false completion:nil];
 }
 

@@ -158,14 +158,14 @@
         }else{
             nameStr = self.model.displayName ;
         }
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@的钱包", nameStr];
+        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), nameStr];
         [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(self.model.avatar) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
         self.mainService.getWalletAccountsRequest.uid = self.model.uid;
         [self.mainService getWalletAccountsRequest:^(WalletAccountsResult *result, BOOL isSuccess) {
             [weakSelf.mainTableView.mj_header endRefreshing];
             if (isSuccess) {
                 if (result.data.count == 0) {
-                    [TOASTVIEW showWithText: @"该钱包暂无账号!"];
+                    [TOASTVIEW showWithText: NSLocalizedString(@"该钱包暂无账号!", nil)];
                 }else{
                     for (WalletAccount *model in weakSelf.mainService.accountsArray) {
                         if ([model.isMainAccount isEqualToNumber:@1]) {
@@ -190,7 +190,7 @@
             [weakSelf.mainTableView.mj_header endRefreshing];
             if (isSuccess) {
                 weakSelf.headerView.model = result.data;
-                weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat:@"***的钱包"];
+                weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"***的钱包", nil)];
                 [weakSelf.headerView.avatarImg sd_setImageWithURL:String_To_URL(@"") placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
                 [weakSelf.mainTableView reloadData];
             }
@@ -206,7 +206,7 @@
         if ([weakSelf.model.followType isEqualToNumber:@1]) {
             // 是钱包才可以点击切换账号
             if (self.mainService.accountsArray.count == 0) {
-                [TOASTVIEW showWithText:@"该钱包暂无账号!"];
+                [TOASTVIEW showWithText:NSLocalizedString(@"该钱包暂无账号!", nil)];
             }else{
                 ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
                 vc.dataArray = weakSelf.mainService.accountsArray;

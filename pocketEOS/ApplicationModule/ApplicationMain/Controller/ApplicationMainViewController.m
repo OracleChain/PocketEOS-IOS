@@ -41,7 +41,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"" title:@"发现" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"" title:NSLocalizedString(@"发现", nil)rightBtnImgName:@"" delegate:self];
     }
     return _navView;
 }
@@ -158,7 +158,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
     
-    if ([model.applyName isEqualToString:@"有问币答"]) {
+    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
         QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
@@ -219,7 +219,7 @@
 -(void)starApplicationBtnDidClick:(UIButton *)sender{
     if (self.mainService.starDataArray.count > 0) {
         Application *model = self.mainService.starDataArray[0];
-        if ([model.applyName isEqualToString:@"有问币答"]) {
+        if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
             QuestionListViewController *vc = [[QuestionListViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else{

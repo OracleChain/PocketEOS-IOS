@@ -26,7 +26,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"版本更新" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"版本更新", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -68,7 +68,7 @@
     [self.view addSubview:self.headerView];
     // 当前版本号
     NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
-    self.headerView.versionLabel.text = [NSString stringWithFormat:@"版本: %@", [infoDic valueForKey:@"CFBundleShortVersionString"]];
+    self.headerView.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"版本: %@", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]];
     [self buildDataSource];
     self.view.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
@@ -80,10 +80,10 @@
     [self.getVersionInfoRequest getDataSusscess:^(id DAO, id data) {
         weakSelf.versionUpdateModel = [VersionUpdateModel mj_objectWithKeyValues:data[@"data"]];
         if (weakSelf.versionUpdateModel.versionCode.integerValue > [weakSelf queryVersionNumberInBundle] ) {
-            weakSelf.headerView.tipLabel.text = @"有新版・";
+            weakSelf.headerView.tipLabel.text = NSLocalizedString(@"有新版・", nil);
             weakSelf.headerView.tipLabel.textColor = HEX_RGB(0xF21717);
         }else{
-            weakSelf.headerView.tipLabel.text = @"无新版";
+            weakSelf.headerView.tipLabel.text = NSLocalizedString(@"无新版", nil);
             weakSelf.headerView.tipLabel.textColor = HEX_RGB(0x999999);
         }
         

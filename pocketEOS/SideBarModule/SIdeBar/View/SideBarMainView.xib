@@ -421,7 +421,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGH-Nr-TG1">
-                    <rect key="frame" x="282" y="0.0" width="93" height="667"/>
+                    <rect key="frame" x="290" y="0.0" width="85" height="667"/>
                     <connections>
                         <action selector="dismissSideBar:" destination="FPI-HQ-coY" eventType="touchUpInside" id="MVX-IR-Elu"/>
                     </connections>
@@ -431,10 +431,11 @@
                 <constraint firstItem="eGH-Nr-TG1" firstAttribute="top" secondItem="FPI-HQ-coY" secondAttribute="top" id="0S4-QJ-QLf"/>
                 <constraint firstAttribute="trailing" secondItem="eGH-Nr-TG1" secondAttribute="trailing" id="7KP-F3-H1Z"/>
                 <constraint firstItem="bhh-K8-UL9" firstAttribute="leading" secondItem="FPI-HQ-coY" secondAttribute="leading" id="PwY-s0-Wyv"/>
+                <constraint firstItem="bhh-K8-UL9" firstAttribute="centerY" secondItem="FPI-HQ-coY" secondAttribute="centerY" id="fNP-tL-DJ6"/>
                 <constraint firstItem="bhh-K8-UL9" firstAttribute="top" secondItem="FPI-HQ-coY" secondAttribute="top" id="imw-l4-0pq"/>
                 <constraint firstAttribute="bottom" secondItem="bhh-K8-UL9" secondAttribute="bottom" id="myl-12-lnR"/>
                 <constraint firstAttribute="bottom" secondItem="eGH-Nr-TG1" secondAttribute="bottom" id="p2e-63-QwB"/>
-                <constraint firstItem="eGH-Nr-TG1" firstAttribute="leading" secondItem="bhh-K8-UL9" secondAttribute="trailing" constant="-8" id="xwP-HP-j6b"/>
+                <constraint firstItem="eGH-Nr-TG1" firstAttribute="leading" secondItem="bhh-K8-UL9" secondAttribute="trailing" id="xwP-HP-j6b"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -449,6 +450,7 @@
                 <outlet property="messageCenterBaseView" destination="ncc-9H-maj" id="kts-xR-o9a"/>
                 <outlet property="messageCenterImageView" destination="oNj-Gq-Q1y" id="QQI-rb-vNB"/>
                 <outlet property="nameLabel" destination="eOQ-1E-rAN" id="3Sw-0x-fYD"/>
+                <outlet property="scrollHeight" destination="fNP-tL-DJ6" id="cdV-xR-KXX"/>
                 <outlet property="systemSettingBaseView" destination="m9c-uf-huO" id="quC-D4-wi3"/>
                 <outlet property="systemSettingImageView" destination="FJi-jm-tE0" id="vxj-g7-Loj"/>
                 <outlet property="transactionImageView" destination="sqS-TE-Whw" id="nyv-ie-eJd"/>

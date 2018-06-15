@@ -12,7 +12,6 @@
 
 
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/create_account", REQUEST_BLOCKCHAIN_BASEURL];
     return @"/create_account";
 }
 

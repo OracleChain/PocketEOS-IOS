@@ -14,13 +14,23 @@
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
 
-
+// release 环境
 #define REQUEST_BASEURL @"https://api.pocketeos.top"
-// https://api.pocketeos.top:443
 
+// 生产环境
+//#define REQUEST_BASEURL @"http://47.105.50.198"
+
+// 测试环境
+//#define REQUEST_BASEURL @"http://59.110.162.106:8080"
+
+// 测试环境/lian
+//#define REQUEST_BASEURL @"http://192.168.3.205:8888"
+
+// java interface
 #define REQUEST_APIPATH [NSString stringWithFormat: @"/api_oc_blockchain-v1.3.0%@", [self requestUrlPath]]
-///api_oc_blockchain-v1.3.0%@
-///v1/chain%@
+
+// nakedAddress
+//#define REQUEST_APIPATH [NSString stringWithFormat: @"/v1/chain%@", [self requestUrlPath]]
 
 @interface BaseHttpsNetworkRequest()
 
@@ -111,7 +121,7 @@
     }
     
     [self configTimeOut:self.networkingManager];
-    // 单向验证 :: 下面还有一处请求需要改单项验证
+#pragma mark -- 单向验证 :: 下面还有一处请求需要改单项验证
     [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     
     //客服端利用p12验证服务器 , 双向验证
@@ -149,7 +159,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager, error);
         
@@ -213,12 +223,11 @@
     NSLog(@"parameters = %@", parameters);
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [self configTimeOut:manager];
-    // 单向验证
+#pragma mark -- 单向验证
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     //客服端利用p12验证服务器 , 双向验证
 //    [self checkCredential:manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
-    [self configTimeOut:manager];
     // request Json 序列化
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     [manager POST:REQUEST_APIPATH parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -242,7 +251,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         
         failure(weakSelf.networkingManager , error);

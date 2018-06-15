@@ -84,29 +84,28 @@
     }
 }
 
+
 #pragma mark - ——————— 初始化VC ————————
 -(void)setUpAllChildViewController{
     _VCS = @[].mutableCopy;
     
     AssestsMainViewController *assestsMainVC = [[AssestsMainViewController alloc]init];
-
-    [self setupChildViewController:assestsMainVC title:@"资产" imageName:@"assest_unSelect" seleceImageName:@"assest_select" BB_imageName:@"assest_unSelect_BB" BB_seleceImageName:@"assest_Select_BB"];
+    [self setupChildViewController:assestsMainVC title: NSLocalizedString(@"资产", nil)imageName:@"assest_unSelect" seleceImageName:@"assest_select" BB_imageName:@"assest_unSelect_BB" BB_seleceImageName:@"assest_Select_BB"];
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
 
         RichListMainViewController *richListVC = [[RichListMainViewController alloc]init];
-        [self setupChildViewController:richListVC title:@"富豪榜" imageName:@"richList_unSelect" seleceImageName:@"richList_select" BB_imageName:@"" BB_seleceImageName:@""];
+        [self setupChildViewController:richListVC title:NSLocalizedString(@"富豪榜", nil)imageName:@"richList_unSelect" seleceImageName:@"richList_select" BB_imageName:@"" BB_seleceImageName:@""];
 
     }
     
     
     NewsMainViewController *newsVC = [NewsMainViewController new];
-
-    [self setupChildViewController:newsVC title:@"新闻" imageName:@"news_unSelect" seleceImageName:@"news_select" BB_imageName:@"news_unSelect_BB" BB_seleceImageName:@"news_select_BB"];
+    [self setupChildViewController:newsVC title:NSLocalizedString(NSLocalizedString(@"新闻", nil), nil) imageName:@"news_unSelect" seleceImageName:@"news_select" BB_imageName:@"news_unSelect_BB" BB_seleceImageName:@"news_select_BB"];
     
 
-    ApplicationMainViewController *dappVC = [[ApplicationMainViewController alloc]init];
-    [self setupChildViewController:dappVC title:@"发现" imageName:@"application_unSelect" seleceImageName:@"application_select" BB_imageName:@"application_unSelect_BB" BB_seleceImageName:@"application_select_BB"];
+//    ApplicationMainViewController *dappVC = [[ApplicationMainViewController alloc]init];
+//    [self setupChildViewController:dappVC title:NSLocalizedString(@"发现", nil)imageName:@"application_unSelect" seleceImageName:@"application_select" BB_imageName:@"application_unSelect_BB" BB_seleceImageName:@"application_select_BB"];
     
     self.viewControllers = _VCS;
 }

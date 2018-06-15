@@ -28,7 +28,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"绑定手机号" rightBtnTitleName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"绑定手机号", nil)rightBtnTitleName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -66,7 +66,7 @@
 //BindPhoneNumberHeaderViewDelegate
 -(void)getVerifyCodeBtnDidClick:(UIButton *)sender{
     if (![RegularExpression validateMobile:self.headerView.phoneNumberTF.text] ) {
-        [TOASTVIEW showWithText: @"手机号格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
         return;
     }
     [self startCountDown];
@@ -84,15 +84,15 @@
 }
 -(void)bindBtnDidClick:(UIButton *)sender{
     if (self.headerView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
     if (![RegularExpression validateMobile:self.headerView.phoneNumberTF.text] ) {
-        [TOASTVIEW showWithText: @"手机号格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
         return;
     }
     if (![RegularExpression validateVerifyCode:self.headerView.verifyCodeTF.text] ) {
-        [TOASTVIEW showWithText: @"验证码格式有误!" ];
+        [TOASTVIEW showWithText: NSLocalizedString(@"验证码格式有误!", nil)];
         return;
     }
     
@@ -114,7 +114,7 @@
             if (wallet) {
                 NSLog(@"%@", wallet.account_info_table_name);
             }else{
-                NSLog(@"没有 wallet");
+                NSLog(NSLocalizedString(@"没有 wallet", nil));
                 // 如果本地没有当前账号对应的钱包
                 Wallet *wallet = [[Wallet alloc] init];
                 wallet.wallet_name = weakSelf.model.name;
@@ -164,7 +164,7 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.headerView.getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.headerView.getVerifyCodeBtn setTitle:NSLocalizedString(@"获取验证码", nil)forState:UIControlStateNormal];
                 self.headerView.getVerifyCodeBtn.userInteractionEnabled = YES;
             });
         }else{
@@ -177,7 +177,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.headerView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                [self.headerView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@秒后重新发送", nil),strTime] forState:UIControlStateNormal];
                 self.headerView.getVerifyCodeBtn.userInteractionEnabled = NO;
                 
             });

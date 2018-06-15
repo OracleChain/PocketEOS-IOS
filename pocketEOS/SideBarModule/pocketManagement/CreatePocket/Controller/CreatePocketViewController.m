@@ -26,7 +26,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"创建钱包" rightBtnTitleName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"创建钱包", nil)rightBtnTitleName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -45,7 +45,7 @@
     if (!_importPocketBtn) {
         _importPocketBtn = [[UIButton alloc] init];
         [_importPocketBtn addTarget:self action:@selector(importPocket:) forControlEvents:(UIControlEventTouchUpInside)];
-        NSMutableAttributedString *tncString = [[NSMutableAttributedString alloc] initWithString:@"如果已有钱包，请点击这里导入"];
+        NSMutableAttributedString *tncString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"如果已有钱包，请点击这里导入", nil)];
         [tncString addAttribute:NSUnderlineStyleAttributeName
                           value:@(NSUnderlineStyleSingle)
                           range:(NSRange){0,[tncString length]}];
@@ -75,19 +75,19 @@
 //CreatePocketHeaderViewDelegate
 -(void)createPocketBtnDidClick:(UIButton *)sender{
     if (self.headerView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:@"请勾选同意条款!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
     if (IsStrEmpty(self.headerView.nameTF.text)) {
-        [TOASTVIEW showWithText:@"钱包名称不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"钱包名称不能为空!", nil)];
         return;
     }
     if (IsStrEmpty(self.headerView.passwordTF.text)) {
-        [TOASTVIEW showWithText:@"密码不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码不能为空!", nil)];
         return;
     }
     if (![self.headerView.confirmPasswordTF.text isEqualToString:self.headerView.passwordTF.text]) {
-        [TOASTVIEW showWithText:@"两次输入的密码不一致!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"两次输入的密码不一致!", nil)];
         return;
     }
     
@@ -95,7 +95,7 @@
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     for (Wallet *model in localWalletsArr) {
         if ([model.wallet_name isEqualToString:self.headerView.nameTF.text]) {
-            [TOASTVIEW showWithText:@"本地钱包名不可重复!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包名不可重复!", nil)];
             return;
         }
     }

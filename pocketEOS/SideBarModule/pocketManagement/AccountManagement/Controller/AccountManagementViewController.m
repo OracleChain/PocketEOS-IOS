@@ -12,7 +12,6 @@
 #import "ExportPrivateKeyView.h"
 #import "SetMainAccountRequest.h"
 #import "SliderVerifyView.h"
-#import "LoginPasswordView.h"
 #import "AskQuestionTipView.h"
 #import "AppDelegate.h"
 #import "LoginMainViewController.h"
@@ -71,7 +70,7 @@
 - (SliderVerifyView *)sliderVerifyView{
     if (!_sliderVerifyView) {
         _sliderVerifyView = [[SliderVerifyView alloc] init];
-        _sliderVerifyView.tipLabel.text = @"滑动删除账号";
+        _sliderVerifyView.tipLabel.text = NSLocalizedString(@"滑动删除账号", nil);
         _sliderVerifyView.delegate = self;
     }
     return _sliderVerifyView;
@@ -81,7 +80,7 @@
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] init];
         _tipLabel.backgroundColor = [UIColor clearColor];
-        _tipLabel.text = @"将滑块滑动到右侧指定位置内即可解锁";
+        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可解锁", nil);
         _tipLabel.textColor = HEXCOLOR(0x999999);
         _tipLabel.font = [UIFont systemFontOfSize:13];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
@@ -113,7 +112,7 @@
         _socialSharePanelView.backgroundColor = HEXCOLOR(0xF7F7F7);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[@"微信好友",@"朋友圈", @"QQ好友", @"QQ空间"];
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
         for (int i = 0; i < 4; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];
@@ -149,7 +148,7 @@
         [topView addGestureRecognizer:tap];
         
         UIButton *cancleBtn = [[UIButton alloc] init];
-        [cancleBtn setTitle:@"取消" forState:(UIControlStateNormal)];
+        [cancleBtn setTitle:NSLocalizedString(@"取消", nil)forState:(UIControlStateNormal)];
         [cancleBtn setBackgroundColor:HEXCOLOR(0xF7F7F7)];
         [cancleBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
         [cancleBtn addTarget:self action:@selector(cancleShareAccountDetail) forControlEvents:(UIControlEventTouchUpInside)];
@@ -160,7 +159,7 @@
         _socialSharePanelView.sd_layout.leftSpaceToView(_shareBaseView, 0).rightSpaceToView(_shareBaseView, 0).bottomSpaceToView(cancleBtn, 0).heightIs(100);
         
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"    将二维码分享到";
+        label.text = NSLocalizedString(@"    将二维码分享到", nil);
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = HEXCOLOR(0x2A2A2A);
         [label setBackgroundColor:HEXCOLOR(0xF7F7F7)];
@@ -239,7 +238,7 @@
     // 2.将当前账号设为主账号
     BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, self.model.account_name ]];
     if (result) {
-        [TOASTVIEW showWithText:@"设置主账号成功!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"设置主账号成功!", nil)];
     }
     // 3. 通知服务器
     self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
@@ -267,7 +266,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     [self.loginPasswordView removeFromSuperview];
@@ -283,12 +282,12 @@
         if (accountArr.count > 1) {
             BOOL result = [[AccountsTableManager accountTable] executeUpdate: [NSString stringWithFormat:@"DELETE FROM '%@' WHERE account_name = '%@'", current_wallet.account_info_table_name,self.model.account_name]];
             if (result) {
-                [TOASTVIEW showWithText:@"删除账号成功!"];
+                [TOASTVIEW showWithText:NSLocalizedString(@"删除账号成功!", nil)];
                 [ self.navigationController popViewControllerAnimated:YES];
             }
         }else{ 
              [self.view addSubview:self.askQuestionTipView];
-             self.askQuestionTipView.titleLabel.text = @"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~";
+             self.askQuestionTipView.titleLabel.text = NSLocalizedString(@"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~", nil);
             
         }
         self.loginPasswordView.inputPasswordTF.text = nil;
@@ -336,7 +335,7 @@
 - (void)copyBtnDidClick:(UIButton *)sender{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.exportPrivateKeyView.contentTextView.text;
-    [TOASTVIEW showWithText:@"复制成功!"];
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功!", nil)];
 }
 
 // NavigationViewDelegate

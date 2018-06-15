@@ -16,7 +16,7 @@
 @interface EOSMappingImportAccountHeaderView : BaseView
 @property(nonatomic, weak) id<EOSMappingImportAccountHeaderViewDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UITextField *accountNameTF;
+
 @property (weak, nonatomic) IBOutlet UITextField *privateKeyTF;
 
 @end

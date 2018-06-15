@@ -9,6 +9,7 @@
 #import "LoginView.h"
 
 @interface LoginView()<UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *rightArrowImg;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
@@ -28,6 +29,9 @@
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shouldDismiss)];
 //    tap.delegate = self;
 //    [self.containView addGestureRecognizer:tap];
+    if ([DeviceType getIsIpad]) {
+        self.scrollHeight.constant = 150;
+    }
     
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);

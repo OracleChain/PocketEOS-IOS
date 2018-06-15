@@ -10,7 +10,6 @@
 
 @implementation GetRequiredPublicKeyRequest
 -(NSString *)requestUrlPath{
-    //    return [NSString stringWithFormat:@"%@/get_required_keys" , REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_required_keys";
 }
 

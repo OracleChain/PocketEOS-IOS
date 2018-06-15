@@ -35,7 +35,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"钱包管理" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"钱包管理", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -120,7 +120,7 @@
         model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
     }else if (indexPath.section == 1){
         model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row];
-        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"保护隐私" backgroundColor:HEXCOLOR(0xFABB17) callback:^BOOL(MGSwipeTableCell * _Nonnull cell) {
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:NSLocalizedString(@"保护隐私", nil)backgroundColor:HEXCOLOR(0xFABB17) callback:^BOOL(MGSwipeTableCell * _Nonnull cell) {
             weakSelf.accountPravicyProtectionRequest.eosAccountName = model.account_name;
             if ([model.is_privacy_policy isEqualToString:@"0"]) {
                 weakSelf.accountPravicyProtectionRequest.status = @1;
@@ -180,7 +180,7 @@
         BaseSlimLineView *line1 = [[BaseSlimLineView alloc] init];
         line1.frame = CGRectMake(0, 0, SCREEN_WIDTH, DEFAULT_LINE_HEIGHT);
         BaseLabel *label = [[BaseLabel alloc] init];
-        label.text = [NSString stringWithFormat:@"    其他账号"];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"    其他账号", nil)];
         label.frame = CGRectMake(0, 10, SCREEN_WIDTH, 48);
         
         label.font = [UIFont systemFontOfSize:13];
@@ -222,7 +222,7 @@
 - (void)backupPocketBtnDidClick:(UIButton *)sender{
     [self.view addSubview:self.backupPocketView];
     Wallet *wallet = CURRENT_WALLET;
-    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:@"%@的钱包",  wallet.wallet_name];
+    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil),  wallet.wallet_name];
     //获取沙盒路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     //获取文件路径
@@ -279,24 +279,24 @@
 - (void)confirmPasswordBtnDidClick:(UIButton *)sender{
     // 校验输入
     if (IsStrEmpty(self.changePasswordView.oraginalPasswordTF.text) || IsStrEmpty(self.changePasswordView.confirmPasswordTF.text) || IsStrEmpty(self.changePasswordView.inputNewPasswordTF.text)) {
-        [TOASTVIEW showWithText:@"输入不能为空!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"输入不能为空!", nil)];
         return;
     }
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.changePasswordView.oraginalPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"原始密码输入有误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"原始密码输入有误!", nil)];
         return;
     }
     
     if (![self.changePasswordView.inputNewPasswordTF.text isEqualToString:self.changePasswordView.confirmPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"两次输入的密码不一致!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"两次输入的密码不一致!", nil)];
         return;
     }
     
     // 验证通过, 修改密码
    BOOL result = [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_shapwd = '%@' WHERE wallet_uid = '%@'",  WALLET_TABLE, [self.changePasswordView.inputNewPasswordTF.text sha256], CURRENT_WALLET_UID]];
     if (result) {
-        [TOASTVIEW showWithText:@"修改密码成功!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"修改密码成功!", nil)];
     }
     
     [self cancleBtnDidClick:nil];

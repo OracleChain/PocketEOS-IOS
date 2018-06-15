@@ -45,7 +45,7 @@ static NSMutableDictionary *types_;
     } else if (code.length == 0) {
         _KVCDisabled = YES;
     } else if (code.length > 3 && [code hasPrefix:@"@\""]) {
-        // 去掉@"和"，截取中间的类型名称
+        // 去掉NSLocalizedString(@"和", nil)，截取中间的类型名称
         _code = [code substringWithRange:NSMakeRange(2, code.length - 3)];
         _typeClass = NSClassFromString(_code);
         _fromFoundation = [MJFoundation isClassFromFoundation:_typeClass];

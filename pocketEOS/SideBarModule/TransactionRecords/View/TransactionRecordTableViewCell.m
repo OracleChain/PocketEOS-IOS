@@ -84,16 +84,16 @@
     if ([model.from isEqualToString:@"oc.redpacket"] || [model.to isEqualToString:@"oc.redpacket"]) {
         // redpacket
         if ([model.from isEqualToString:@"oc.redpacket"]) {
-            self.titleLabel.text = [NSString stringWithFormat: @"红包入账"];
+            self.titleLabel.text = [NSString stringWithFormat: NSLocalizedString(@"红包入账", nil)];
         }else if ([model.to isEqualToString:@"oc.redpacket"]){
-            self.titleLabel.text = [NSString stringWithFormat:@"发出红包"];
+            self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发出红包", nil)];
         }
     }else{
         // transfer
         if ([self.currentAccountName isEqualToString:model.from]) {
-            self.titleLabel.text = [NSString stringWithFormat:@"发送给%@" , model.to];
+            self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送给%@", nil), model.to];
         }else if ([self.currentAccountName isEqualToString:model.to]){
-            self.titleLabel.text = [NSString stringWithFormat:@"接受自%@" , model.from];
+            self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"接受自%@", nil), model.from];
         }
     }
 
@@ -106,8 +106,8 @@
     }
 
 
-    self.belongBlockLabel.text = [NSString stringWithFormat:@"所在区块:%@",model.ref_block_num];
-    self.resultLabel.text = [NSString stringWithFormat:@"成功"];
+    self.belongBlockLabel.text = [NSString stringWithFormat:NSLocalizedString(@"所在区块:%@", nil),model.ref_block_num];
+    self.resultLabel.text = [NSString stringWithFormat:NSLocalizedString(@"成功", nil)];
 }
 
 @end

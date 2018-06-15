@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Account.h"
 
-@class Account;
 @interface AccountResult : NSObject
 @property(nonatomic, strong) NSNumber *code;
 @property(nonatomic, strong) NSString *message;

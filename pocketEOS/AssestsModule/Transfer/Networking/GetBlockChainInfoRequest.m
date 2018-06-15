@@ -11,7 +11,6 @@
 @implementation GetBlockChainInfoRequest
 
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_info" , REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_info";
 }
 

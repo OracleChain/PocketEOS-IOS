@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7K0-3f-e1p" customClass="AdvertisementView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjM-qP-bti" userLabel="backgroundView">
+                    <rect key="frame" x="42.5" y="213" width="290" height="241"/>
+                    <subviews>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="advertisement_BP_Vote.png" translatesAutoresizingMaskIntoConstraints="NO" id="ufe-6r-oCF">
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="152"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="152" id="0mL-gt-qcP"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knU-ib-yqk">
+                            <rect key="frame" x="20" y="179" width="250" height="42"/>
+                            <color key="backgroundColor" red="0.0078431372549019607" green="0.60784313725490191" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="立即前往">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="goforward:" destination="7K0-3f-e1p" eventType="touchUpInside" id="kXd-Kv-y1X"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="241" id="1m4-BT-Mir"/>
+                        <constraint firstAttribute="width" constant="290" id="AkY-ig-JyR"/>
+                        <constraint firstAttribute="bottom" secondItem="knU-ib-yqk" secondAttribute="bottom" constant="20" id="EgK-lj-81A"/>
+                        <constraint firstAttribute="trailing" secondItem="ufe-6r-oCF" secondAttribute="trailing" id="Fiq-ma-6I2"/>
+                        <constraint firstItem="knU-ib-yqk" firstAttribute="leading" secondItem="JjM-qP-bti" secondAttribute="leading" constant="20" id="Kb7-WK-Vst"/>
+                        <constraint firstItem="ufe-6r-oCF" firstAttribute="top" secondItem="JjM-qP-bti" secondAttribute="top" id="fmE-mB-2sb"/>
+                        <constraint firstItem="ufe-6r-oCF" firstAttribute="leading" secondItem="JjM-qP-bti" secondAttribute="leading" id="pb7-8d-bf7"/>
+                        <constraint firstItem="knU-ib-yqk" firstAttribute="top" secondItem="ufe-6r-oCF" secondAttribute="bottom" constant="27" id="ptu-4c-zkk"/>
+                        <constraint firstAttribute="trailing" secondItem="knU-ib-yqk" secondAttribute="trailing" constant="20" id="sD9-9x-vC2"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="9"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjU-5Y-Drx">
+                    <rect key="frame" x="163" y="485" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="amf-Ku-2RA"/>
+                        <constraint firstAttribute="height" constant="48" id="oLP-9Y-daZ"/>
+                    </constraints>
+                    <state key="normal" image="cancle__circle_white.png"/>
+                    <connections>
+                        <action selector="dismiss:" destination="7K0-3f-e1p" eventType="touchUpInside" id="FgE-HX-LOW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="JjM-qP-bti" firstAttribute="centerY" secondItem="7K0-3f-e1p" secondAttribute="centerY" id="Bri-Bj-yZT"/>
+                <constraint firstItem="JjM-qP-bti" firstAttribute="centerX" secondItem="7K0-3f-e1p" secondAttribute="centerX" id="Wm3-O8-vzZ"/>
+                <constraint firstItem="MjU-5Y-Drx" firstAttribute="centerX" secondItem="7K0-3f-e1p" secondAttribute="centerX" id="gLv-39-2vS"/>
+                <constraint firstItem="MjU-5Y-Drx" firstAttribute="top" secondItem="JjM-qP-bti" secondAttribute="bottom" constant="31" id="viG-BJ-IMI"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="advertisement_BP_Vote.png" width="290" height="152"/>
+        <image name="cancle__circle_white.png" width="36" height="36"/>
+    </resources>
+</document>

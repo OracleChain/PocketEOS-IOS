@@ -10,7 +10,6 @@
 
 @implementation ApproveAbi_json_to_bin_request
 -(NSString *)requestUrlPath{
-    //    return [NSString stringWithFormat:@"%@/abi_json_to_bin" , REQUEST_BLOCKCHAIN_BASEURL];
     return @"/abi_json_to_bin";
 }
 

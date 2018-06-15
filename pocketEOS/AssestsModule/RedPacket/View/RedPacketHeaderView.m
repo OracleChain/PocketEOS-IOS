@@ -38,7 +38,7 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    self.descriptionTextView.placeholder = @"恭喜发财, 大吉大利";
+    self.descriptionTextView.placeholder = NSLocalizedString(@"恭喜发财, 大吉大利", nil);
      self.tipLabel.font = [UIFont boldSystemFontOfSize:24];
     self.descriptionTextView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))

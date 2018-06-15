@@ -12,7 +12,7 @@
 
 -(NSString *)requestUrlPath{
     return [NSString stringWithFormat:@"%@/eosaskanswer30/GetAsksJson", REQUEST_CONTRACT_BASEURL];
-//    return [NSString stringWithFormat:@"%@/GetAsksJson?askid=%@&pageNum=%@&pageSize=%@&releasedLable=%@", REQUEST_CONTRACT_BASEURL , self.askid , self.pageNum , self.pageSize, self.releasedLable];
+
 }
 
 -(id)parameters{

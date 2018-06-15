@@ -69,6 +69,7 @@
             eos.assests_price_cny = VALIDATE_STRING(result.data.eos_price_cny);
             eos.assests_price_usd = VALIDATE_STRING(result.data.eos_price_usd);
             
+            
             Assests *oct = [[Assests alloc] init];
             oct.assestsName = @"OCT";
             oct.assests_avtar = @"oct_avatar";

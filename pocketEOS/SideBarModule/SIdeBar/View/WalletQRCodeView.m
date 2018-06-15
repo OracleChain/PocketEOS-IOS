@@ -29,7 +29,7 @@
         _socialSharePanelView.backgroundColor = HEXCOLOR(0xFFFFFF);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[@"微信好友",@"朋友圈", @"QQ好友", @"QQ空间"];
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
         for (int i = 0; i < 4; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];

@@ -65,6 +65,13 @@
 @property(nonatomic, copy) NSString *eos_price_cny;
 
 
+/**
+ staked token
+ */
+
+@property(nonatomic , copy) NSString *eos_net_weight;
+
+@property(nonatomic , copy) NSString *eos_cpu_weight;
 
 
 //===================================//

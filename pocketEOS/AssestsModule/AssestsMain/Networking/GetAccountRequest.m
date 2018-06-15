@@ -10,7 +10,6 @@
 
 @implementation GetAccountRequest
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_account", REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_account";
 }
 

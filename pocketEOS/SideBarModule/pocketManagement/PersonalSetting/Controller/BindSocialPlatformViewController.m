@@ -40,7 +40,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:[self.socialPlatformType isEqualToString:@"wechat"] ? @"绑定微信" : @"绑定QQ" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:[self.socialPlatformType isEqualToString:@"wechat"] ? NSLocalizedString(@"绑定微信", nil): NSLocalizedString(@"绑定QQ", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -63,14 +63,14 @@
     
     if ([self.socialPlatformType isEqualToString:@"wechat"]) {
         self.headerView.platformImgView.image = [UIImage imageNamed:@"wechat_big"];
-        self.headerView.tipLabel.text = @"您还没有绑定微信号";
-        self.headerView.subtipLabel.text = @"绑定微信号可以关联您的XX资产";
-        [self.headerView.bindBtn setTitle:@"绑定微信号" forState:(UIControlStateNormal)];
+        self.headerView.tipLabel.text = NSLocalizedString(@"您还没有绑定微信号", nil);
+        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定微信号可以关联您的XX资产", nil);
+        [self.headerView.bindBtn setTitle:NSLocalizedString(@"绑定微信号", nil)forState:(UIControlStateNormal)];
     }else if ([self.socialPlatformType isEqualToString:@"qq"]){
         self.headerView.platformImgView.image = [UIImage imageNamed:@"qq_big"];
-        self.headerView.tipLabel.text = @"您还没有绑定QQ号";
-        self.headerView.subtipLabel.text = @"绑定QQ号可以关联您的XX资产";
-        [self.headerView.bindBtn setTitle:@"绑定QQ号" forState:(UIControlStateNormal)];
+        self.headerView.tipLabel.text = NSLocalizedString(@"您还没有绑定QQ号", nil);
+        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定QQ号可以关联您的XX资产", nil);
+        [self.headerView.bindBtn setTitle:NSLocalizedString(@"绑定QQ号", nil)forState:(UIControlStateNormal)];
     }
     
 }

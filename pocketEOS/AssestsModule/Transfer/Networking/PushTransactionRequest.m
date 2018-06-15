@@ -11,7 +11,6 @@
 @implementation PushTransactionRequest
 
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/push_transaction" , REQUEST_BLOCKCHAIN_BASEURL];
     return @"/push_transaction";
 }
 

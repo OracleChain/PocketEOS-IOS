@@ -9,7 +9,6 @@
 #import "DAppDetailViewController.h"
 #import "WkDelegateController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "LoginPasswordView.h"
 #import "TransferService.h"
 #import "CDZPicker.h"
 #import "SelectAccountView.h"
@@ -123,8 +122,8 @@
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil)message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"确认", nil)style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
     }])];
     [self presentViewController:alertController animated:YES completion:nil];
@@ -162,7 +161,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
-        [TOASTVIEW showWithText:@"密码输入错误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     DappTransferResult *result = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
@@ -181,7 +180,7 @@
 #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.choosedAccountName];
-        weakSelf.mainService.available_keys = @[accountInfo.account_owner_public_key , accountInfo.account_active_public_key];
+        weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.mainService.action = @"transfer";
         weakSelf.mainService.sender = weakSelf.choosedAccountName;
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
@@ -199,7 +198,7 @@
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-        [TOASTVIEW showWithText:@"交易成功!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
         
         NSString *jsStr = [NSString stringWithFormat:@"pushActionResult('%@', '%@')",VALIDATE_STRING(result.transaction_id), self.dappTransferModel.serialNumber];
         [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
@@ -219,7 +218,7 @@
     
     NSArray *accountNameArr = [[AccountsTableManager accountTable] selectAllNativeAccountName];
     if (accountNameArr.count == 0) {
-        [TOASTVIEW showWithText:@"暂无账号!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"暂无账号!", nil)];
         return;
     }
     
@@ -234,7 +233,7 @@
 
 - (void)understandBtnDidClick:(UIButton *)sender{
     if (IsStrEmpty(self.choosedAccountName)) {
-        [TOASTVIEW showWithText:@"请选择您将选择的账号!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请选择您将选择的账号!", nil)];
         return;
     } else{
         [self.selectAccountView removeFromSuperview];

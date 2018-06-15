@@ -25,7 +25,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:@"红包已封口!" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:NSLocalizedString(@"红包已封口!", nil)rightBtnImgName:@"" delegate:self];
         _navView.backgroundColor = RGB(225, 85, 76);
         _navView.titleLabel.textColor = [UIColor whiteColor];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal);
@@ -47,7 +47,7 @@
         _socialSharePanelView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT+266, SCREEN_WIDTH, 116);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[@"微信好友",@"朋友圈", @"QQ好友", @"QQ空间"];
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
         for (int i = 0; i < 4; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];
@@ -72,8 +72,8 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
-    self.headerView.accountLabel.text = [NSString stringWithFormat:@"%@个红包，共%@%@", self.redPacketModel.count, self.redPacketModel.amount, self.redPacketModel.coin];
-    self.headerView.descriptionLabel.text = self.redPacketModel.memo.length > 0 ? self.redPacketModel.memo : @"恭喜发财，大吉大利";
+    self.headerView.accountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@个红包，共%@%@", nil), self.redPacketModel.count, self.redPacketModel.amount, self.redPacketModel.coin];
+    self.headerView.descriptionLabel.text = self.redPacketModel.memo.length > 0 ? self.redPacketModel.memo : NSLocalizedString(@"恭喜发财，大吉大利", nil);
     [self.view addSubview:self.socialSharePanelView];
 }
 
@@ -99,7 +99,7 @@
 }
 
 -(void)continueSendRedPacketBtnDidClick:(UIButton *)sender{
-    [SVProgressHUD showWithStatus:@"继续发送红包"];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"继续发送红包", nil)];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });

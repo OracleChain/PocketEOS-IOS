@@ -10,7 +10,6 @@
 
 @implementation GetTransactionRecordsRequest
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_transactions", REQUEST_BLOCKCHAIN_BASEURL];
     return @"/get_transactions";
 }
 

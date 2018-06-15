@@ -62,7 +62,7 @@
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = @"版本更新";
+        _titleLabel.text = NSLocalizedString(@"版本更新", nil);
         _titleLabel.font = [UIFont systemFontOfSize:17];
         _titleLabel.textColor = HEXCOLOR(0x2A2A2A);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -81,7 +81,7 @@
 - (UIButton *)skipBtn{
     if (!_skipBtn) {
         _skipBtn = [[UIButton alloc] init];
-        [_skipBtn setTitle:@"跳过" forState:(UIControlStateNormal)];
+        [_skipBtn setTitle:NSLocalizedString(@"跳过", nil)forState:(UIControlStateNormal)];
         [_skipBtn setTitleColor:HEXCOLOR(0x999999) forState:(UIControlStateNormal)];
         _skipBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_skipBtn addTarget:self action:@selector(skipBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -92,7 +92,7 @@
 - (UIButton *)updateBtn{
     if (!_updateBtn) {
         _updateBtn = [[UIButton alloc] init];
-        [_updateBtn setTitle:@"立即更新" forState:(UIControlStateNormal)];
+        [_updateBtn setTitle:NSLocalizedString(@"立即更新", nil)forState:(UIControlStateNormal)];
         [_updateBtn setTitleColor:HEXCOLOR(0x4D7BFE) forState:(UIControlStateNormal)];
         _updateBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];

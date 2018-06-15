@@ -36,7 +36,7 @@
 - (BaseLabel *)currentAssestsLabel{
     if (!_currentAssestsLabel) {
         _currentAssestsLabel = [[BaseLabel alloc] init];
-        _currentAssestsLabel.text = @"按资产筛选";
+        _currentAssestsLabel.text = NSLocalizedString(@"按资产筛选", nil);
         _currentAssestsLabel.font = [UIFont systemFontOfSize:13];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCurrentAssestsLabel:)];
         [_currentAssestsLabel addGestureRecognizer:tap];

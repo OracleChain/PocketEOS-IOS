@@ -9,6 +9,7 @@
 #import "SideBarMainView.h"
 
 @interface SideBarMainView()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *candyEnergyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *candyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *bp_voteImageView;
@@ -37,8 +38,11 @@
 @implementation SideBarMainView
 
 
--(void)awakeFromNib{
+- (void)awakeFromNib{
     [super awakeFromNib];
+    if ([DeviceType getIsIpad]) {
+        self.scrollHeight.constant = 100;
+    }
     self.candyImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"candyIcon"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"candyIcon_BB"]);
    
     self.bp_voteImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"thumb_black"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"thumb_BB"]);

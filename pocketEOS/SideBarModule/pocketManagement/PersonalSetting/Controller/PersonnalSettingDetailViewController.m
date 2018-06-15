@@ -28,7 +28,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:VALIDATE_STRING(self.titleStr) rightBtnTitleName:@"保存" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:VALIDATE_STRING(self.titleStr) rightBtnTitleName:NSLocalizedString(@"保存", nil)delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -57,7 +57,7 @@
 
 -(void)rightBtnDidClick{
     WS(weakSelf);
-    if ([self.titleStr isEqualToString:@"名字"]) {
+    if ([self.titleStr isEqualToString:NSLocalizedString(@"名字", nil)]) {
         // 设置钱包名字
         self.mainService.updateUserNameRequest.userName = self.headerView.itemTF.text;
         [self.mainService.updateUserNameRequest postDataSuccess:^(id DAO, id data) {

@@ -39,7 +39,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"" title:@"新闻" rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"" title:NSLocalizedString(@"新闻", nil)rightBtnImgName:@"" delegate:self];
     }
     return _navView;
 }
@@ -152,7 +152,7 @@
         vc.urlStr = news.newsUrl;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        [TOASTVIEW showWithText:@"新闻地址有误!"];
+        [TOASTVIEW showWithText:NSLocalizedString(@"链接地址有误!", nil)];
     }
 }
 
@@ -192,7 +192,7 @@
                 vc.urlStr = news.newsUrl;
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
-                [TOASTVIEW showWithText:@"新闻地址有误!"];
+                [TOASTVIEW showWithText:NSLocalizedString(@"新闻地址有误!", nil)];
             }
         }
     }

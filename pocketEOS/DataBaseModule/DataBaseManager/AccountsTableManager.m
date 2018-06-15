@@ -102,7 +102,7 @@
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (account_name, account_img, account_active_public_key, account_owner_public_key, account_active_private_key,account_owner_private_key, is_privacy_policy, is_main_account) VALUES ('%@', '%@', '%@','%@', '%@','%@' ,'%@','%@')", wallet.account_info_table_name, model.account_name, model.account_img, model.account_active_public_key , model.account_owner_public_key ,  model.account_active_private_key,model.account_owner_private_key, model.is_privacy_policy, model.is_main_account];
         BOOL result = [database executeUpdate:sql];
         if (result) {
-            NSLog(@"添加账号成功");
+            NSLog(NSLocalizedString(@"添加账号成功", nil));
         }
         [database close];
         return result;
@@ -143,6 +143,7 @@
     }
     return NO;
 }
+
 
 
 @end

@@ -35,7 +35,7 @@ static const CGFloat kMargin = 30;
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView =  [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"扫一扫" rightBtnTitleName:@"相册" delegate:self];
+        _navView =  [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"扫一扫", nil)rightBtnTitleName:NSLocalizedString(@"相册", nil)delegate:self];
         _navView.leftBtn
         .lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal)
         .LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
@@ -169,7 +169,7 @@ static const CGFloat kMargin = 30;
 }
 /// 图片选择控制器读取图片二维码信息失败的回调函数
 - (void)QRCodeAlbumManagerDidReadQRCodeFailure:(SGQRCodeAlbumManager *)albumManager{
-    NSLog(@"图片选择控制器读取图片二维码信息失败的回调函数");
+    NSLog(NSLocalizedString(@"图片选择控制器读取图片二维码信息失败的回调函数", nil));
 }
 
 #pragma mark - - - SGQRCodeScanManagerDelegate
@@ -184,7 +184,7 @@ static const CGFloat kMargin = 30;
         NSString *scannedResult = [obj stringValue];
         [self scanQRCodeResultHandler:VALIDATE_STRING(scannedResult)];
     } else {
-        NSLog(@"暂未识别出扫描的二维码");
+        NSLog(NSLocalizedString(@"暂未识别出扫描的二维码", nil));
     }
 }
 - (void)QRCodeScanManager:(SGQRCodeScanManager *)scanManager brightnessValue:(CGFloat)brightnessValue {
@@ -209,7 +209,7 @@ static const CGFloat kMargin = 30;
         _promptLabel.textAlignment = NSTextAlignmentCenter;
         _promptLabel.font = [UIFont boldSystemFontOfSize:13.0];
         _promptLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-        _promptLabel.text = @"将二维码/条码放入框内, 即可自动扫描";
+        _promptLabel.text = NSLocalizedString(@"将二维码/条码放入框内, 即可自动扫描", nil);
     }
     return _promptLabel;
 }

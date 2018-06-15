@@ -18,6 +18,7 @@ typedef NS_OPTIONS(NSUInteger, PushTransactionType) {
     PushTransactionTypeApprove,//押币
     PushTransactionTypeAskQustion,//提问(场景:DApp 有问必答)
     PushTransactionTypeAnswer,//回答问题(场景:DApp 有问必答)
+    PushTransactionTypeRegisteVoteSystem,//投票前需要将自己注册到投票系统
 };
 
 @protocol TransferServiceDelegate<NSObject>
@@ -25,6 +26,7 @@ typedef NS_OPTIONS(NSUInteger, PushTransactionType) {
 - (void)approveDidFinish:(TransactionResult *)result;
 - (void)askQuestionDidFinish:(TransactionResult *)result;
 - (void)answerQuestionDidFinish:(TransactionResult *)result;
+- (void)registeToVoteSystemQuestionDidFinish:(TransactionResult *)result;
 
 
 @end

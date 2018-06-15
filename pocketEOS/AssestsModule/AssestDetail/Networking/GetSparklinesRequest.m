@@ -11,7 +11,6 @@
 @implementation GetSparklinesRequest
 
 -(NSString *)requestUrlPath{
-//    return [NSString stringWithFormat:@"%@/get_sparklines" , REQUEST_BLOCKCHAIN_BASEURL];
     return  @"/get_sparklines";
 }
 

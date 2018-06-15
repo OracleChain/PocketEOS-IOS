@@ -5,7 +5,7 @@
 //  Created by oraclechain on 2017/11/29.
 //  Copyright © 2017年 oraclechain. All rights reserved.
 //
-#define REQUEST_BASEURL @"https://api.pocketeos.top:443"
+#define REQUEST_BASEURL @"https://api.pocketeos.top"
 
 #define REQUEST_APIPATH [NSString stringWithFormat: @"%@", [self requestUrlPath]]
 
@@ -133,7 +133,7 @@
         }
         
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(task , error);
         
@@ -170,7 +170,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager, error);
         
@@ -225,6 +225,7 @@
         if(IsNilOrNull(failure)){
             return;
         }
+        NSLog(@"%@", error);
         failure(task, error);
     }];
 }
@@ -257,7 +258,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager , error);
     }];
@@ -289,7 +290,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager , error);
     }];
@@ -299,7 +300,7 @@
     if (![self buildRequestConfigInfo]) {
         return;
     }
-    [SVProgressHUD showWithStatus:@"正在上传"];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"正在上传", nil)];
     AFHTTPSessionManager *networkingManager = [[AFHTTPSessionManager alloc] init];
     
     [networkingManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", nil]];
@@ -334,7 +335,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(networkingManager, error);
     }];
@@ -349,7 +350,7 @@
     NSLog(@"REQUEST_APIPATH = %@", [self requestUrlPath]);
     NSLog(@"parameters = %@", parameters);
     
-    AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] init];
+    AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [outerNetworkingManager GET:[self requestUrlPath] parameters:[self parameters] progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (IsNilOrNull(success)) {
@@ -363,7 +364,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager , error);
     }];
@@ -384,8 +385,13 @@
     id parameters = [self parameters];
     NSLog(@"REQUEST_APIPATH = %@", [self requestUrlPath]);
     NSLog(@"parameters = %@", parameters);
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] init];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [self configTimeOut:manager];
+#pragma mark -- 单向验证
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
+//    //客服端利用p12验证服务器 , 双向验证
+//    //    [self checkCredential:manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     // request Json 序列化
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     [manager POST:[self requestUrlPath] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -409,7 +415,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
        
         failure(weakSelf.networkingManager , error);
@@ -438,7 +444,7 @@
             return ;
         }
         if(error.code == -1001){
-            [TOASTVIEW showWithText:@"请求超时, 请稍后再试!"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         failure(weakSelf.networkingManager , error);
     }];

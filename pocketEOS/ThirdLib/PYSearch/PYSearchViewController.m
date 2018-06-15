@@ -360,7 +360,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancleButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleButton setTitle:NSLocalizedString(@"取消", nil)forState:UIControlStateNormal];
     [cancleButton setTintColor:HEXCOLOR(0x999999)];
     [cancleButton addTarget:self action:@selector(cancelDidClick) forControlEvents:UIControlEventTouchUpInside];
     [cancleButton sizeToFit];

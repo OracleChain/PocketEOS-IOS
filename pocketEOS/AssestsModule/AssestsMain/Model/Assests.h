@@ -66,4 +66,5 @@
  美元汇率
  */
 @property(nonatomic, copy) NSString *assests_price_usd;
+
 @end

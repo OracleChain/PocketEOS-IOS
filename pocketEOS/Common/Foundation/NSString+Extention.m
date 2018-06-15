@@ -98,7 +98,7 @@
     
     // 路径是否存在
     BOOL exists = [mgr fileExistsAtPath:self isDirectory:&isDirectory];
-    if (!exists) return @"暂无缓存,您无需清理~";
+    if (!exists) return NSLocalizedString(@"暂无缓存,您无需清理~", nil);
     
     if (isDirectory) { // 文件夹
         // 获得文件夹的大小  == 获得文件夹中所有文件的总大小

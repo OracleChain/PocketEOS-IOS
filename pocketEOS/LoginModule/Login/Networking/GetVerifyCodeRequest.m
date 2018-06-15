@@ -15,6 +15,6 @@
 
 -(id)parameters{
     
-    return @{@"phoneNum" : self.phoneNum};
+    return @{@"phoneNum" :VALIDATE_STRING( self.phoneNum)};
 }
 @end
