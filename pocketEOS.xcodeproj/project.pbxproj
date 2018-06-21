@@ -564,12 +564,8 @@
 		1862E76220DB43EB00F26629 /* CreateEOSAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E76120DB43EB00F26629 /* CreateEOSAccountRequest.m */; };
 		1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E76420DB5DCD00F26629 /* BackupEOSAccountService.m */; };
 		1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78120DB9FA000F26629 /* EOSResourceManageViewController.m */; };
-		1862E78520DBA14400F26629 /* EOSResourceManageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */; };
-		1862E78720DBA14B00F26629 /* EOSResourceManageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */; };
 		1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78920DBA62000F26629 /* EOSResourceService.m */; };
 		1862E78D20DBA79200F26629 /* EOSResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78C20DBA79200F26629 /* EOSResource.m */; };
-		1862E79020DBAA4900F26629 /* EOSResourceManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */; };
-		1862E79220DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */; };
 		1862E79520DBBC3500F26629 /* EOSResourceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79420DBBC3500F26629 /* EOSResourceResult.m */; };
 		1862E79820DBBF3200F26629 /* EOSResourceCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79720DBBF3200F26629 /* EOSResourceCellModel.m */; };
 		1862E79B20DBC7E400F26629 /* TradeRamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79A20DBC7E400F26629 /* TradeRamViewController.m */; };
@@ -928,6 +924,16 @@
 		18FDFFC32024522000AEB4FA /* scan_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC22024522000AEB4FA /* scan_3@2x.png */; };
 		18FDFFC52024522800AEB4FA /* scan_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC42024522800AEB4FA /* scan_4@2x.png */; };
 		18FDFFC72024523100AEB4FA /* scan_net@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC62024523100AEB4FA /* scan_net@2x.png */; };
+		24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */; };
+		24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB620DBFE7200AC73A5 /* BodyScrollView.m */; };
+		24FB2C9720DBF71800AC73A5 /* StorageManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */; };
+		24FB2C9A20DBF78000AC73A5 /* StorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2C9920DBF78000AC73A5 /* StorageService.m */; };
+		24FB2CA120DBF7F200AC73A5 /* BandwidthManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CA020DBF7F200AC73A5 /* BandwidthManageViewController.m */; };
+		24FB2CA820DBF86800AC73A5 /* BandwidthManageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CA720DBF86800AC73A5 /* BandwidthManageHeaderView.m */; };
+		24FB2CAA20DBF88800AC73A5 /* BandwidthManageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FB2CA920DBF88800AC73A5 /* BandwidthManageHeaderView.xib */; };
+		24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CAC20DBF99700AC73A5 /* BandwidthManageTableViewCell.m */; };
+		24FB2CAF20DBF99700AC73A5 /* BandwidthManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FB2CAD20DBF99700AC73A5 /* BandwidthManageTableViewCell.xib */; };
+		24FB2CB220DBF9CE00AC73A5 /* BandwidthManageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB120DBF9CE00AC73A5 /* BandwidthManageCellModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1861,16 +1867,10 @@
 		1862E76420DB5DCD00F26629 /* BackupEOSAccountService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackupEOSAccountService.m; sourceTree = "<group>"; };
 		1862E78020DB9FA000F26629 /* EOSResourceManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageViewController.h; sourceTree = "<group>"; };
 		1862E78120DB9FA000F26629 /* EOSResourceManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageViewController.m; sourceTree = "<group>"; };
-		1862E78320DBA14400F26629 /* EOSResourceManageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageHeaderView.h; sourceTree = "<group>"; };
-		1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageHeaderView.m; sourceTree = "<group>"; };
-		1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EOSResourceManageHeaderView.xib; sourceTree = "<group>"; };
 		1862E78820DBA62000F26629 /* EOSResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceService.h; sourceTree = "<group>"; };
 		1862E78920DBA62000F26629 /* EOSResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceService.m; sourceTree = "<group>"; };
 		1862E78B20DBA79200F26629 /* EOSResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResource.h; sourceTree = "<group>"; };
 		1862E78C20DBA79200F26629 /* EOSResource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResource.m; sourceTree = "<group>"; };
-		1862E78E20DBAA4900F26629 /* EOSResourceManageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageTableViewCell.h; sourceTree = "<group>"; };
-		1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageTableViewCell.m; sourceTree = "<group>"; };
-		1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EOSResourceManageTableViewCell.xib; sourceTree = "<group>"; };
 		1862E79320DBBC3500F26629 /* EOSResourceResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceResult.h; sourceTree = "<group>"; };
 		1862E79420DBBC3500F26629 /* EOSResourceResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceResult.m; sourceTree = "<group>"; };
 		1862E79620DBBF3200F26629 /* EOSResourceCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceCellModel.h; sourceTree = "<group>"; };
@@ -2456,6 +2456,27 @@
 		18FDFFC22024522000AEB4FA /* scan_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_3@2x.png"; sourceTree = "<group>"; };
 		18FDFFC42024522800AEB4FA /* scan_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_4@2x.png"; sourceTree = "<group>"; };
 		18FDFFC62024523100AEB4FA /* scan_net@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_net@2x.png"; sourceTree = "<group>"; };
+		24FB2C9520DBF71800AC73A5 /* StorageManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageManageViewController.h; sourceTree = "<group>"; };
+		24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StorageManageViewController.m; sourceTree = "<group>"; };
+		24FB2C9820DBF78000AC73A5 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		24FB2C9920DBF78000AC73A5 /* StorageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StorageService.m; sourceTree = "<group>"; };
+		24FB2C9F20DBF7F200AC73A5 /* BandwidthManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BandwidthManageViewController.h; sourceTree = "<group>"; };
+		24FB2CA020DBF7F200AC73A5 /* BandwidthManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandwidthManageViewController.m; sourceTree = "<group>"; };
+		24FB2CA620DBF86800AC73A5 /* BandwidthManageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BandwidthManageHeaderView.h; sourceTree = "<group>"; };
+		24FB2CA720DBF86800AC73A5 /* BandwidthManageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandwidthManageHeaderView.m; sourceTree = "<group>"; };
+		24FB2CA920DBF88800AC73A5 /* BandwidthManageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BandwidthManageHeaderView.xib; sourceTree = "<group>"; };
+		24FB2CAB20DBF99700AC73A5 /* BandwidthManageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BandwidthManageTableViewCell.h; sourceTree = "<group>"; };
+		24FB2CAC20DBF99700AC73A5 /* BandwidthManageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandwidthManageTableViewCell.m; sourceTree = "<group>"; };
+		24FB2CAD20DBF99700AC73A5 /* BandwidthManageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BandwidthManageTableViewCell.xib; sourceTree = "<group>"; };
+		24FB2CB020DBF9CE00AC73A5 /* BandwidthManageCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BandwidthManageCellModel.h; sourceTree = "<group>"; };
+		24FB2CB120DBF9CE00AC73A5 /* BandwidthManageCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandwidthManageCellModel.m; sourceTree = "<group>"; };
+		24FB2CB420DBFE7200AC73A5 /* PageSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageSegmentView.h; sourceTree = "<group>"; };
+		24FB2CB520DBFE7200AC73A5 /* PagerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagerHeader.h; sourceTree = "<group>"; };
+		24FB2CB620DBFE7200AC73A5 /* BodyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyScrollView.m; sourceTree = "<group>"; };
+		24FB2CB720DBFE7200AC73A5 /* UIViewAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageSegmentView.m; sourceTree = "<group>"; };
+		24FB2CB920DBFE7200AC73A5 /* BodyScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyScrollView.h; sourceTree = "<group>"; };
+		24FB2CBA20DBFE7200AC73A5 /* UIViewAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4438,40 +4459,13 @@
 		1862E76720DB9BA700F26629 /* BandwidthManage */ = {
 			isa = PBXGroup;
 			children = (
-				1862E76820DB9BA700F26629 /* Controller */,
-				1862E76920DB9BA700F26629 /* Model */,
-				1862E76A20DB9BA700F26629 /* View */,
-				1862E76B20DB9BA700F26629 /* Service */,
+				24FB2CA520DBF84D00AC73A5 /* View */,
+				24FB2C9B20DBF7D200AC73A5 /* Model */,
+				24FB2C9C20DBF7D200AC73A5 /* Networking */,
+				24FB2C9D20DBF7D300AC73A5 /* Service */,
+				24FB2C9E20DBF7D300AC73A5 /* ViewController */,
 			);
 			path = BandwidthManage;
-			sourceTree = "<group>";
-		};
-		1862E76820DB9BA700F26629 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1862E76920DB9BA700F26629 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1862E76A20DB9BA700F26629 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1862E76B20DB9BA700F26629 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		1862E76C20DB9BA700F26629 /* TradeRam */ = {
@@ -4554,12 +4548,6 @@
 		1862E77420DB9BA700F26629 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1862E78320DBA14400F26629 /* EOSResourceManageHeaderView.h */,
-				1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */,
-				1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */,
-				1862E78E20DBAA4900F26629 /* EOSResourceManageTableViewCell.h */,
-				1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */,
-				1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4576,40 +4564,12 @@
 		1862E77620DB9BA700F26629 /* StorageManage */ = {
 			isa = PBXGroup;
 			children = (
-				1862E77720DB9BA700F26629 /* Controller */,
-				1862E77820DB9BA700F26629 /* Model */,
-				1862E77920DB9BA700F26629 /* View */,
-				1862E77A20DB9BA700F26629 /* Service */,
+				24FB2C9320DBF6FD00AC73A5 /* Model */,
+				24FB2C9120DBF6FC00AC73A5 /* Service */,
+				24FB2C9420DBF6FD00AC73A5 /* View */,
+				24FB2C9220DBF6FC00AC73A5 /* ViewController */,
 			);
 			path = StorageManage;
-			sourceTree = "<group>";
-		};
-		1862E77720DB9BA700F26629 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1862E77820DB9BA700F26629 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1862E77920DB9BA700F26629 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1862E77A20DB9BA700F26629 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		1862E77B20DB9BA700F26629 /* ModifyApprove */ = {
@@ -5305,6 +5265,7 @@
 				184141B120205FE900A789ED /* Constant */,
 				186564B42011CD580044BBC3 /* RegularExpression */,
 				181275D220B6DDA3005EDD91 /* CQMarqueeView */,
+				24FB2CB320DBFE7200AC73A5 /* PageSegmentView */,
 				1832CC452007732800C055B6 /* ToastView */,
 				18423A111FFF597E006AB986 /* QRCode */,
 				1863297C1FE2558B00E57F05 /* Button(图片在上, 文字在下) */,
@@ -7131,6 +7092,97 @@
 			path = pocketEOS/Resource/QRCode;
 			sourceTree = SOURCE_ROOT;
 		};
+		24FB2C9120DBF6FC00AC73A5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2C9820DBF78000AC73A5 /* StorageService.h */,
+				24FB2C9920DBF78000AC73A5 /* StorageService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		24FB2C9220DBF6FC00AC73A5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2C9520DBF71800AC73A5 /* StorageManageViewController.h */,
+				24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		24FB2C9320DBF6FD00AC73A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24FB2C9420DBF6FD00AC73A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24FB2C9B20DBF7D200AC73A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2CB020DBF9CE00AC73A5 /* BandwidthManageCellModel.h */,
+				24FB2CB120DBF9CE00AC73A5 /* BandwidthManageCellModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24FB2C9C20DBF7D200AC73A5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		24FB2C9D20DBF7D300AC73A5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		24FB2C9E20DBF7D300AC73A5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2C9F20DBF7F200AC73A5 /* BandwidthManageViewController.h */,
+				24FB2CA020DBF7F200AC73A5 /* BandwidthManageViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		24FB2CA520DBF84D00AC73A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2CA620DBF86800AC73A5 /* BandwidthManageHeaderView.h */,
+				24FB2CA720DBF86800AC73A5 /* BandwidthManageHeaderView.m */,
+				24FB2CA920DBF88800AC73A5 /* BandwidthManageHeaderView.xib */,
+				24FB2CAB20DBF99700AC73A5 /* BandwidthManageTableViewCell.h */,
+				24FB2CAC20DBF99700AC73A5 /* BandwidthManageTableViewCell.m */,
+				24FB2CAD20DBF99700AC73A5 /* BandwidthManageTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24FB2CB320DBFE7200AC73A5 /* PageSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2CB420DBFE7200AC73A5 /* PageSegmentView.h */,
+				24FB2CB520DBFE7200AC73A5 /* PagerHeader.h */,
+				24FB2CB620DBFE7200AC73A5 /* BodyScrollView.m */,
+				24FB2CB720DBFE7200AC73A5 /* UIViewAdditions.h */,
+				24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */,
+				24FB2CB920DBFE7200AC73A5 /* BodyScrollView.h */,
+				24FB2CBA20DBFE7200AC73A5 /* UIViewAdditions.m */,
+			);
+			path = PageSegmentView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7260,7 +7312,6 @@
 				185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */,
 				185DD6DD206D119E00BCFFCF /* AskQuestionTipView.xib in Resources */,
 				181130D11FCD468100BEA0D9 /* tip@3x.png in Resources */,
-				1862E79220DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib in Resources */,
 				183FF6F920C10EF20058D010 /* paid_answer@2x.png in Resources */,
 				1860444120D36B3300BEE917 /* slider_gray_BB@3x.png in Resources */,
 				185D18591FE762000021AD18 /* qq@3x.png in Resources */,
@@ -7438,6 +7489,7 @@
 				18F03FD92067878C00697D7F /* transfer@3x.png in Resources */,
 				1860443D20D36B2C00BEE917 /* unStakeEOS_blue@2x.png in Resources */,
 				185DD692206CA75600BCFFCF /* recieve@3x.png in Resources */,
+				24FB2CAA20DBF88800AC73A5 /* BandwidthManageHeaderView.xib in Resources */,
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */,
@@ -7512,6 +7564,7 @@
 				18DBD27F204258B0001E2DDF /* account_default_avatar@2x.png in Resources */,
 				185BA3A120BBA70200F63674 /* assest_unSelect_BB@2x.png in Resources */,
 				185DD690206CA75600BCFFCF /* recieve@2x.png in Resources */,
+				24FB2CAF20DBF99700AC73A5 /* BandwidthManageTableViewCell.xib in Resources */,
 				1860443520D368CE00BEE917 /* UnStakeEOSHeaderView.xib in Resources */,
 				18AD2BBF20D0C9C400536084 /* vote_account_avatar_white@3x.png in Resources */,
 				185D18651FE766240021AD18 /* folder@2x.png in Resources */,
@@ -7585,7 +7638,6 @@
 				181275E320B6DF60005EDD91 /* close-marquee@2x.png in Resources */,
 				1872F137202D6F35005B5915 /* cancleFollow@2x.png in Resources */,
 				1826AD46207A02110046EE7C /* CreatePocketHeaderView.xib in Resources */,
-				1862E78720DBA14B00F26629 /* EOSResourceManageHeaderView.xib in Resources */,
 				1864C0F71FE3B01A00031547 /* ApplicationDetailHeaderView.xib in Resources */,
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
 				18F03FD72067878C00697D7F /* redPacket@3x.png in Resources */,
@@ -7629,6 +7681,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */,
+				24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */,
 				183AE1F92019B8FE002041F9 /* EnterpriseListRequest.m in Sources */,
 				1886079D1FCC012F00B00EE7 /* NSMutableAttributedString+ExFoundation.m in Sources */,
 				183FF6EC20C0D6820058D010 /* NSData+CommonCrypto.m in Sources */,
@@ -7700,6 +7754,7 @@
 				18233E12206238000087D60B /* rmd160.c in Sources */,
 				189832512091C6DD00377A36 /* NSData+Hash.m in Sources */,
 				181275DA20B6DDA3005EDD91 /* CQMarqueeView.m in Sources */,
+				24FB2CA120DBF7F200AC73A5 /* BandwidthManageViewController.m in Sources */,
 				185BBA9F1FF4C82900DE2AC1 /* AccountInfo.m in Sources */,
 				1850316220BD2B87007610A2 /* DappTransferResult.m in Sources */,
 				183AE2022019D0BF002041F9 /* Assest.m in Sources */,
@@ -7781,6 +7836,7 @@
 				18DBBB13206523A00050EE20 /* PGDatePicker+Logic.m in Sources */,
 				184141B0202055BA00A789ED /* GetNewstVersionID.m in Sources */,
 				185DD6D8206CD10E00BCFFCF /* TransferModel.m in Sources */,
+				24FB2C9720DBF71800AC73A5 /* StorageManageViewController.m in Sources */,
 				18EE05531FDF8F2900134E5C /* CreateAccountHeaderView.m in Sources */,
 				18DBBB0E206523A00050EE20 /* PGDatePicker+Common.m in Sources */,
 				185DD6CE206CA80400BCFFCF /* MJProperty.m in Sources */,
@@ -7914,13 +7970,13 @@
 				1832CC4120074EFB00C055B6 /* AskQuestionTableViewCell.m in Sources */,
 				1856A4E02008887200D62FEB /* MJRefreshComponent.m in Sources */,
 				182CDF45201EFF1B002B87B6 /* GetFeedbackListRequest.m in Sources */,
+				24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */,
 				1864C0EF1FE3AFD900031547 /* ApplicationDetailViewController.m in Sources */,
 				181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */,
 				1854FF652003115F00B8F253 /* UIImage+ExFoundation.m in Sources */,
 				1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */,
 				1826AD49207A158D0046EE7C /* BindPhoneNumberHeaderView.m in Sources */,
 				18C622A11FD639250043447F /* TransferHeaderView.m in Sources */,
-				1862E79020DBAA4900F26629 /* EOSResourceManageTableViewCell.m in Sources */,
 				18DBD28920428F20001E2DDF /* ChangePasswordView.m in Sources */,
 				188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */,
 				181130BD1FCD13E600BEA0D9 /* CustomNavigationView.m in Sources */,
@@ -8077,6 +8133,7 @@
 				1826AD53207A26460046EE7C /* SideBarUpBackgroundView.m in Sources */,
 				18466DBA2010B269002E675A /* SelectAccountView.m in Sources */,
 				184142682020A99F00A789ED /* EnterpriseDetailHeaderView.m in Sources */,
+				24FB2CA820DBF86800AC73A5 /* BandwidthManageHeaderView.m in Sources */,
 				184D61C61FD5418500EA26B1 /* PopUpWindow.m in Sources */,
 				1826AD292079C3200046EE7C /* LoginView.m in Sources */,
 				18FA76C920623C6D00545E73 /* TypeChainId.m in Sources */,
@@ -8090,7 +8147,6 @@
 				18E72E1B1FCC112300D09CA3 /* AssestsMainViewController.m in Sources */,
 				1878B5741FD9101600D63037 /* TendencyChartView.m in Sources */,
 				1808FCC3202AD18000625C37 /* PopUpAssestWindow.m in Sources */,
-				1862E78520DBA14400F26629 /* EOSResourceManageHeaderView.m in Sources */,
 				18466D802010725B002E675A /* VersionUpdateViewController.m in Sources */,
 				182A661C1FD12E8B007FD541 /* RichListService.m in Sources */,
 				18B291302089942D0032EE27 /* GetRedPacketDetailRequest.m in Sources */,
@@ -8165,6 +8221,7 @@
 				1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */,
 				18A2F46C1FF0A20A00B6CE43 /* FMResultSet.m in Sources */,
 				18DBBB2D206525F10050EE20 /* PGPickerColumnView.m in Sources */,
+				24FB2CB220DBF9CE00AC73A5 /* BandwidthManageCellModel.m in Sources */,
 				186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */,
 				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,
 				18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */,
@@ -8173,6 +8230,7 @@
 				1811301D1FCD01B800BEA0D9 /* UIView+WebCacheOperation.m in Sources */,
 				186564AD2011A10B0044BBC3 /* LoginService.m in Sources */,
 				18112F701FCD016000BEA0D9 /* IQBarButtonItem.m in Sources */,
+				24FB2C9A20DBF78000AC73A5 /* StorageService.m in Sources */,
 				18FA76CB20623C6D00545E73 /* Sha256.m in Sources */,
 				189CEC7F20CFB31D00F81AD8 /* GetMyVoteInfoRequest.m in Sources */,
 				183AE1F12019B52E002041F9 /* PeRichListService.m in Sources */,

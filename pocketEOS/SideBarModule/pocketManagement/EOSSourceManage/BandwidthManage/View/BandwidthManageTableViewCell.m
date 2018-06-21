@@ -1,14 +1,14 @@
 //
-//  EOSResourceManageTableViewCell.m
+//  BandwidthManageTableViewCell.m
 //  pocketEOS
 //
-//  Created by oraclechain on 2018/6/21.
+//  Created by 师巍巍 on 21/06/2018.
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#import "EOSResourceManageTableViewCell.h"
+#import "BandwidthManageTableViewCell.h"
 
-@interface EOSResourceManageTableViewCell()
+@interface BandwidthManageTableViewCell()
 @property (weak, nonatomic) IBOutlet BaseLabel1 *TotalQuotaLabel;
 @property (weak, nonatomic) IBOutlet BaseLabel1 *QuotaApproveLabel;
 @property (weak, nonatomic) IBOutlet BaseLabel1 *useLabel;
@@ -16,16 +16,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
-
-
-@implementation EOSResourceManageTableViewCell
+@implementation BandwidthManageTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
 
--(void)setModel:(EOSResourceCellModel *)model{
+-(void)setModel:(BandwidthManageCellModel *)model{
     self.titleLabel.text = model.title;
     self.TotalQuotaLabel.text = [NSString stringWithFormat:@"总配额：%@ ms", model.max];
     self.QuotaApproveLabel.text = [NSString stringWithFormat:@"配额抵押：%@", model.weight];

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Lvx-Fo-4a1" customClass="BandwidthManageHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGI-RU-fqb" customClass="BaseBoldLineView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="8RQ-VA-6hY"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-ct-0j2" customClass="BaseView">
+                    <rect key="frame" x="0.0" y="10" width="375" height="120"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已抵押(EOS)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDn-gk-13j" customClass="BaseLabel">
+                            <rect key="frame" x="0.0" y="32" width="375" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="H9r-BO-4ND"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="030-Xa-OGW" userLabel="eosAmountLabel" customClass="BaseLabel">
+                            <rect key="frame" x="0.0" y="59" width="375" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="vMJ-aO-xBv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="030-Xa-OGW" firstAttribute="top" secondItem="KDn-gk-13j" secondAttribute="bottom" constant="12" id="GIr-Yn-fsw"/>
+                        <constraint firstAttribute="trailing" secondItem="030-Xa-OGW" secondAttribute="trailing" id="QG2-lO-sf1"/>
+                        <constraint firstItem="030-Xa-OGW" firstAttribute="leading" secondItem="cDm-ct-0j2" secondAttribute="leading" id="Txv-uU-dFh"/>
+                        <constraint firstItem="KDn-gk-13j" firstAttribute="top" secondItem="cDm-ct-0j2" secondAttribute="top" constant="32" id="iSp-PC-wg4"/>
+                        <constraint firstAttribute="trailing" secondItem="KDn-gk-13j" secondAttribute="trailing" id="nxm-tH-lG7"/>
+                        <constraint firstAttribute="height" constant="120" id="qqC-O8-2jC"/>
+                        <constraint firstItem="KDn-gk-13j" firstAttribute="leading" secondItem="cDm-ct-0j2" secondAttribute="leading" id="sKz-Lc-In2"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTp-rP-iBA" customClass="BaseBoldLineView">
+                    <rect key="frame" x="0.0" y="130" width="375" height="10"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="ylG-YT-zYl"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cDm-ct-0j2" firstAttribute="top" secondItem="QGI-RU-fqb" secondAttribute="bottom" id="4Rk-UT-A64"/>
+                <constraint firstAttribute="trailing" secondItem="QGI-RU-fqb" secondAttribute="trailing" id="4UM-IP-3hi"/>
+                <constraint firstItem="cDm-ct-0j2" firstAttribute="leading" secondItem="Lvx-Fo-4a1" secondAttribute="leading" id="DcV-rZ-zwF"/>
+                <constraint firstAttribute="trailing" secondItem="cTp-rP-iBA" secondAttribute="trailing" id="FI9-O2-tdZ"/>
+                <constraint firstItem="cTp-rP-iBA" firstAttribute="top" secondItem="cDm-ct-0j2" secondAttribute="bottom" id="HJH-az-PA1"/>
+                <constraint firstItem="QGI-RU-fqb" firstAttribute="leading" secondItem="Lvx-Fo-4a1" secondAttribute="leading" id="VFF-5B-jyZ"/>
+                <constraint firstItem="cTp-rP-iBA" firstAttribute="leading" secondItem="Lvx-Fo-4a1" secondAttribute="leading" id="bJN-6Q-R1H"/>
+                <constraint firstItem="QGI-RU-fqb" firstAttribute="top" secondItem="Lvx-Fo-4a1" secondAttribute="top" id="cxa-vi-grT"/>
+                <constraint firstAttribute="trailing" secondItem="cDm-ct-0j2" secondAttribute="trailing" id="jjh-9T-CM3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="eosAmountLabel" destination="030-Xa-OGW" id="qV6-EK-fyf"/>
+            </connections>
+        </view>
+    </objects>
+</document>
