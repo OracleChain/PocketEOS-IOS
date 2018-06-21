@@ -215,7 +215,9 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
         return;
     } else{
         [self.selectAccountView removeFromSuperview];
-        [self addAskQuestionBtn];
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            [self addAskQuestionBtn];
+        }
         self.mainService.getQuestionListRequest.releasedLable = @0;
         [self configRefreshComponent];
     }

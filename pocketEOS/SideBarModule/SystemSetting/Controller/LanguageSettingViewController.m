@@ -73,7 +73,7 @@
         AppDelegate *appDele = (AppDelegate *)[UIApplication sharedApplication].delegate;
         BaseTabBarController * vc =[[BaseTabBarController alloc]init];
         appDele.window.rootViewController = vc;
-        [TOASTVIEW showWithText:NSLocalizedString(NSLocalizedString(@"语言切换中", nil), nil) duration:1];
+        [TOASTVIEW showWithText:NSLocalizedString(@"语言切换中", nil) duration:1];
     });
 }
 

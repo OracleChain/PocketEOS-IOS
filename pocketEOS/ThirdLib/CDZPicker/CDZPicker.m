@@ -307,7 +307,7 @@ static const NSInteger CDZToolBarHeight = 44;
 
 - (UIButton *)confirmButton{
     if (!_confirmButton) {
-        _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -50, 10, 30, 30)];
+        _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH -50-10, 0, 50, 44)];
         _confirmButton.backgroundColor = UIColor.clearColor;
         _confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         NSString *title = self.builder.confirmText.length ? self.builder.confirmText : NSLocalizedString(@"确定", nil);
@@ -322,7 +322,7 @@ static const NSInteger CDZToolBarHeight = 44;
 
 - (UIButton *)cancelButton{
     if (!_cancelButton) {
-        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, 30, 30)];
+        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 50, 44)];
         _cancelButton.backgroundColor = UIColor.clearColor;
         _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         NSString *title = self.builder.cancelText.length ? self.builder.cancelText : NSLocalizedString(@"取消", nil);

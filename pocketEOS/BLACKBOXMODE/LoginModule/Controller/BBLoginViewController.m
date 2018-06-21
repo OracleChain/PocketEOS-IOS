@@ -5,7 +5,7 @@
 //  Created by oraclechain on 14/05/2018.
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
-
+#define HEADERVIEW_HEIGHT 200
 #import "BBLoginViewController.h"
 #import "BBLoginHeaderView.h"
 #import "LoginMainViewController.h"
@@ -54,7 +54,7 @@
 - (BBLoginHeaderView *)loginHeaderView{
     if (!_loginHeaderView) {
         _loginHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"BBLoginHeaderView" owner:nil options:nil] firstObject];
-        _loginHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
+        _loginHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, HEADERVIEW_HEIGHT);
         _loginHeaderView.delegate = self;
     }
     return _loginHeaderView;
@@ -63,7 +63,12 @@
 - (BBLoginCreateWalletView *)createWalletView{
     if (!_createWalletView) {
         _createWalletView = [[[NSBundle mainBundle] loadNibNamed:@"BBLoginCreateWalletView" owner:nil options:nil] firstObject];
-        _createWalletView.frame = CGRectMake(0, 200, SCREEN_WIDTH, 400);
+        if ([DeviceType getIsIpad]) {
+            _createWalletView.frame = CGRectMake(0, HEADERVIEW_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            
+        }else{
+            _createWalletView.frame = CGRectMake(0, HEADERVIEW_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT- HEADERVIEW_HEIGHT);
+        }
         _createWalletView.delegate = self;
     }
     return _createWalletView;
@@ -73,7 +78,7 @@
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
         CGFloat cellHeight = 50.5;
         _chooseWalletFooterView = [[[NSBundle mainBundle] loadNibNamed:@"BBLoginChooseWalletFooterView" owner:nil options:nil] firstObject];
-        _chooseWalletFooterView.frame = CGRectMake(0, 35+ allLocalWallet.count * cellHeight, SCREEN_WIDTH, SCREEN_HEIGHT-200-35-allLocalWallet.count * cellHeight);
+        _chooseWalletFooterView.frame = CGRectMake(0, 35+ allLocalWallet.count * cellHeight, SCREEN_WIDTH, SCREEN_HEIGHT-HEADERVIEW_HEIGHT-35-allLocalWallet.count * cellHeight);
         _chooseWalletFooterView.delegate = self;
     }
     return _chooseWalletFooterView;
@@ -85,7 +90,7 @@
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
         CGFloat cellHeight = 50.5;
         
-        _chooseWalletBackgroundView.frame = CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT-200);
+        _chooseWalletBackgroundView.frame = CGRectMake(0, HEADERVIEW_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-HEADERVIEW_HEIGHT);
         UILabel *label = [[UILabel alloc] init];
         label.textColor = HEXCOLOR(0x999999);
         label.text = NSLocalizedString(@"请选择钱包:", nil);
@@ -137,7 +142,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.loginHeaderView];
-    
+    if ([DeviceType getIsIpad]) {
+        self.mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+HEADERVIEW_HEIGHT);
+    }
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     if (localWalletsArr.count > 0) {
         [self.mainScrollView addSubview:self.chooseWalletBackgroundView];

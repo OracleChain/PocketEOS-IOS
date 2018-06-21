@@ -17,11 +17,12 @@
 /**
  用户uid
  */
-@property(nonatomic, strong) NSString *uid;
+@property(nonatomic, copy) NSString *uid;
 
 /**
  eos账号名
  */
-@property(nonatomic, strong) NSString *eosAccountName;
+@property(nonatomic, copy) NSString *eosAccountName;
+
 
 @end

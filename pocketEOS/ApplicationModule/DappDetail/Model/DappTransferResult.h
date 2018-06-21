@@ -10,5 +10,5 @@
 
 @interface DappTransferResult : NSObject
 @property(nonatomic , copy) NSString *message;
-@property(nonatomic , strong) NSNumber *serialNumber;
+@property(nonatomic , copy) NSString *serialNumber;
 @end

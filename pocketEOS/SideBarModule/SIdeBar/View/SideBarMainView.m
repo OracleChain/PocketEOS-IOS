@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *transactionImageView;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *QRCodeButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *avatarBtn;
 @property (weak, nonatomic) IBOutlet BaseLabel *walletManageLabel;
@@ -55,9 +56,11 @@
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.candyBaseView.hidden = NO;
+        self.QRCodeButton.hidden = NO;
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.candyBaseView.hidden = YES;
         self.avatarImg.hidden = YES;
+        self.QRCodeButton.hidden = YES;
         self.messageCenterBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59).heightIs(40);
         self.systemSettingBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*2).heightIs(40);
         self.versionUpdateBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*3).heightIs(40);

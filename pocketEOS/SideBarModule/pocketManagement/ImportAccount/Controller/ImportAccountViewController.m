@@ -15,6 +15,7 @@
 #import "GetAccount.h"
 #import "Permission.h"
 #import "EOS_Key_Encode.h"
+#import "BackupEOSAccountService.h"
 
 @interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) ImportAccountHeaderView *headerView;
@@ -22,6 +23,7 @@
 @property(nonatomic, strong) UIScrollView *mainScrollView;
 @property(nonatomic, strong) GetAccountRequest *getAccountRequest;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
+@property(nonatomic , strong) BackupEOSAccountService *backupEOSAccountService;
 @end
 
 @implementation ImportAccountViewController
@@ -80,6 +82,12 @@
     return _mainScrollView;
 }
 
+- (BackupEOSAccountService *)backupEOSAccountService{
+    if (!_backupEOSAccountService) {
+        _backupEOSAccountService = [[BackupEOSAccountService alloc] init];
+    }
+    return _backupEOSAccountService;
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.model) {
@@ -195,9 +203,23 @@
                 accountInfo.account_owner_private_key = [AESCrypt encrypt:weakSelf.headerView.private_ownerKey_TF.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 accountInfo.account_active_private_key = [AESCrypt encrypt:weakSelf.headerView.private_activeKey_tf.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                  accountInfo.is_privacy_policy = @"0";
+                NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+                if (accountArray.count > 0) {
+                    accountInfo.is_main_account = @"0";
+                }else{
+                    accountInfo.is_main_account = @"1";
+                }
                 accountInfo.is_main_account = @"0";
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
                 [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
+                weakSelf.backupEOSAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
+                weakSelf.backupEOSAccountService.backupEosAccountRequest.eosAccountName = accountInfo.account_name;
+                [weakSelf.backupEOSAccountService backupAccount:^(id service, BOOL isSuccess) {
+                    if (isSuccess) {
+                        NSLog(@"备份到服务成功!");
+                    }
+                }];
+                
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }else{
                 [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
@@ -209,7 +231,7 @@
 }
 
 -(void)leftBtnDidClick{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)importWithQRCodeBtnDidClick:(UIButton *)sender{

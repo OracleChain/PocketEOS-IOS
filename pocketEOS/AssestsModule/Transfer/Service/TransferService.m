@@ -160,6 +160,7 @@
     
     WS(weakSelf);
     self.getRequiredPublicKeyRequest.showActivityIndicator = YES;
+    
     [self.getRequiredPublicKeyRequest postOuterDataSuccess:^(id DAO, id data) {
         #pragma mark -- [@"data"]
         if ([data[@"code"] isEqualToNumber:@0 ]) {

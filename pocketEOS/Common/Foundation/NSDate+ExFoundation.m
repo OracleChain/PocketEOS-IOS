@@ -56,7 +56,11 @@
     NSString *dateString = string;
     //设置转换格式
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    if ([string containsString:@"."]) {
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    }else{
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    }
     //NSString转NSDate
     NSDate *date=[formatter dateFromString:dateString];
     return date;

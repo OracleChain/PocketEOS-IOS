@@ -439,6 +439,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="QRCodeButton" destination="ysD-Bi-0Zz" id="3cX-fU-vbj"/>
                 <outlet property="avatarBtn" destination="XSB-Uo-PJF" id="812-Wo-1M0"/>
                 <outlet property="avatarImg" destination="Z1t-Pz-3fi" id="Fd8-8Q-Fbc"/>
                 <outlet property="bp_voteBaseView" destination="bN9-jx-Brh" id="Gd3-Ok-uBR"/>

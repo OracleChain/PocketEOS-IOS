@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface BaseViewController ()<UIGestureRecognizerDelegate,UITableViewDelegate , UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate>
+@interface BaseViewController ()<UIGestureRecognizerDelegate , UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic,strong) UIView *noDataView;
 
 

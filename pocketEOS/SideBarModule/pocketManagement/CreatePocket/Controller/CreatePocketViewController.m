@@ -99,12 +99,13 @@
             return;
         }
     }
+    
+    NSString *randomStr = [NSString randomStringWithLength:32];
+    NSString *encryptStr = [NSString stringWithFormat:@"%@%@", randomStr,self.headerView.confirmPasswordTF.text];
+    NSString *password_sha256 = [encryptStr sha256];
+    NSString *savePassword = [NSString stringWithFormat:@"%@%@", randomStr,password_sha256];
     if (self.createPocketViewControllerFromMode == CreatePocketViewControllerFromSocialMode) {
         // 已有钱包
-        NSString *randomStr = [NSString randomStringWithLength:32];
-        NSString *encryptStr = [NSString stringWithFormat:@"%@%@", randomStr,self.headerView.confirmPasswordTF.text];
-        NSString *password_sha256 = [encryptStr sha256];
-        NSString *savePassword = [NSString stringWithFormat:@"%@%@", randomStr,password_sha256];
         
         [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_shapwd = '%@',wallet_name = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , savePassword , self.headerView.nameTF.text, CURRENT_WALLET_UID]];
         
@@ -113,11 +114,11 @@
         // 如果本地没有钱包
         Wallet *model = [[Wallet alloc] init];
         model.wallet_name = self.headerView.nameTF.text;
-        model.wallet_shapwd = [self.headerView.passwordTF.text sha256];
+        model.wallet_shapwd = savePassword;
         model.wallet_uid = [model.wallet_name sha256];
-        model.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
         [[NSUserDefaults standardUserDefaults] setObject: model.wallet_uid  forKey:Current_wallet_uid];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        model.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
         [[WalletTableManager walletTable] addRecord: model];
     }
     

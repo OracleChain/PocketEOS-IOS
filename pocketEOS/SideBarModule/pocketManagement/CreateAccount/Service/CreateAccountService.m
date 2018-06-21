@@ -25,6 +25,12 @@
     return _backupEosAccountRequest;
 }
 
+- (CreateEOSAccountRequest *)createEOSAccountRequest{
+    if (!_createEOSAccountRequest) {
+        _createEOSAccountRequest = [[CreateEOSAccountRequest alloc] init];
+    }
+    return _createEOSAccountRequest;
+}
 - (void)createAccount:(CompleteBlock)complete{
     [self.createAccountRequest setShowActivityIndicator:YES];
     [self.createAccountRequest postDataSuccess:^(id DAO, id data) {
@@ -48,6 +54,16 @@
         complete(nil, NO);
     }];
     
+}
+
+- (void)createEOSAccount:(CompleteBlock)complete{
+    [self.createEOSAccountRequest postDataSuccess:^(id DAO, id data) {
+        if ([data isKindOfClass:[NSDictionary class]]) {
+            complete(data , YES);
+        }
+    } failure:^(id DAO, NSError *error) {
+        complete(nil, NO);
+    }];
 }
 
 @end

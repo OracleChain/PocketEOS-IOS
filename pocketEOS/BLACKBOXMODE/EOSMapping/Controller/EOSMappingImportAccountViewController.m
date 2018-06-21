@@ -12,7 +12,8 @@
 #import "GetAccountNameByWifRequest.h"
 #import "EOSMappingResult.h"
 #import "EOS_Key_Encode.h"
-#import "BackupAccountViewController.h"
+#import "AppDelegate.h"
+#import "BaseTabBarController.h"
 
 @interface EOSMappingImportAccountViewController ()<UIGestureRecognizerDelegate, NavigationViewDelegate, EOSMappingImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -144,10 +145,8 @@
                     accountInfo.is_main_account = @"1";
                 }
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
-                [TOASTVIEW showWithText:NSLocalizedString(@"映射账号录入成功!", nil)];
-                BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
-                vc.accountName =  accountInfo.account_name ;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
+                [TOASTVIEW showWithText:NSLocalizedString(@"账号导入成功!", nil)];
+                [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
                 
                 
             }else{

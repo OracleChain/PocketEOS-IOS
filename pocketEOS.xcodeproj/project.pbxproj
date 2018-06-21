@@ -561,6 +561,20 @@
 		1860510B2028456B00C87DDF /* WkDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1860510A2028456B00C87DDF /* WkDelegateController.m */; };
 		1861BA6C1FFCB74900404058 /* StringConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861BA6B1FFCB74900404058 /* StringConstant.m */; };
 		1861BA6F1FFCC7E900404058 /* IndexTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861BA6E1FFCC7E900404058 /* IndexTipView.m */; };
+		1862E76220DB43EB00F26629 /* CreateEOSAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E76120DB43EB00F26629 /* CreateEOSAccountRequest.m */; };
+		1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E76420DB5DCD00F26629 /* BackupEOSAccountService.m */; };
+		1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78120DB9FA000F26629 /* EOSResourceManageViewController.m */; };
+		1862E78520DBA14400F26629 /* EOSResourceManageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */; };
+		1862E78720DBA14B00F26629 /* EOSResourceManageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */; };
+		1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78920DBA62000F26629 /* EOSResourceService.m */; };
+		1862E78D20DBA79200F26629 /* EOSResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78C20DBA79200F26629 /* EOSResource.m */; };
+		1862E79020DBAA4900F26629 /* EOSResourceManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */; };
+		1862E79220DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */; };
+		1862E79520DBBC3500F26629 /* EOSResourceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79420DBBC3500F26629 /* EOSResourceResult.m */; };
+		1862E79820DBBF3200F26629 /* EOSResourceCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79720DBBF3200F26629 /* EOSResourceCellModel.m */; };
+		1862E79B20DBC7E400F26629 /* TradeRamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79A20DBC7E400F26629 /* TradeRamViewController.m */; };
+		1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79D20DBC80B00F26629 /* TradeRamHeaderView.m */; };
+		1862E7A020DBC81100F26629 /* TradeRamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E79F20DBC81100F26629 /* TradeRamHeaderView.xib */; };
 		1863294F1FE22CCB00E57F05 /* SliderVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863294E1FE22CCB00E57F05 /* SliderVerifyView.m */; };
 		1863297F1FE255A500E57F05 /* SWWButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863297E1FE255A500E57F05 /* SWWButton.m */; };
 		186329821FE2597000E57F05 /* ApplicationMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186329811FE2597000E57F05 /* ApplicationMainHeaderView.m */; };
@@ -1841,6 +1855,31 @@
 		1861BA6B1FFCB74900404058 /* StringConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringConstant.m; sourceTree = "<group>"; };
 		1861BA6D1FFCC7E900404058 /* IndexTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexTipView.h; sourceTree = "<group>"; };
 		1861BA6E1FFCC7E900404058 /* IndexTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexTipView.m; sourceTree = "<group>"; };
+		1862E76020DB43EB00F26629 /* CreateEOSAccountRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateEOSAccountRequest.h; sourceTree = "<group>"; };
+		1862E76120DB43EB00F26629 /* CreateEOSAccountRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateEOSAccountRequest.m; sourceTree = "<group>"; };
+		1862E76320DB5DCD00F26629 /* BackupEOSAccountService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackupEOSAccountService.h; sourceTree = "<group>"; };
+		1862E76420DB5DCD00F26629 /* BackupEOSAccountService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackupEOSAccountService.m; sourceTree = "<group>"; };
+		1862E78020DB9FA000F26629 /* EOSResourceManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageViewController.h; sourceTree = "<group>"; };
+		1862E78120DB9FA000F26629 /* EOSResourceManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageViewController.m; sourceTree = "<group>"; };
+		1862E78320DBA14400F26629 /* EOSResourceManageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageHeaderView.h; sourceTree = "<group>"; };
+		1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageHeaderView.m; sourceTree = "<group>"; };
+		1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EOSResourceManageHeaderView.xib; sourceTree = "<group>"; };
+		1862E78820DBA62000F26629 /* EOSResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceService.h; sourceTree = "<group>"; };
+		1862E78920DBA62000F26629 /* EOSResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceService.m; sourceTree = "<group>"; };
+		1862E78B20DBA79200F26629 /* EOSResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResource.h; sourceTree = "<group>"; };
+		1862E78C20DBA79200F26629 /* EOSResource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResource.m; sourceTree = "<group>"; };
+		1862E78E20DBAA4900F26629 /* EOSResourceManageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceManageTableViewCell.h; sourceTree = "<group>"; };
+		1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceManageTableViewCell.m; sourceTree = "<group>"; };
+		1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EOSResourceManageTableViewCell.xib; sourceTree = "<group>"; };
+		1862E79320DBBC3500F26629 /* EOSResourceResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceResult.h; sourceTree = "<group>"; };
+		1862E79420DBBC3500F26629 /* EOSResourceResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceResult.m; sourceTree = "<group>"; };
+		1862E79620DBBF3200F26629 /* EOSResourceCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSResourceCellModel.h; sourceTree = "<group>"; };
+		1862E79720DBBF3200F26629 /* EOSResourceCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSResourceCellModel.m; sourceTree = "<group>"; };
+		1862E79920DBC7E400F26629 /* TradeRamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeRamViewController.h; sourceTree = "<group>"; };
+		1862E79A20DBC7E400F26629 /* TradeRamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeRamViewController.m; sourceTree = "<group>"; };
+		1862E79C20DBC80B00F26629 /* TradeRamHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeRamHeaderView.h; sourceTree = "<group>"; };
+		1862E79D20DBC80B00F26629 /* TradeRamHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeRamHeaderView.m; sourceTree = "<group>"; };
+		1862E79F20DBC81100F26629 /* TradeRamHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TradeRamHeaderView.xib; sourceTree = "<group>"; };
 		1863294D1FE22CCA00E57F05 /* SliderVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderVerifyView.h; sourceTree = "<group>"; };
 		1863294E1FE22CCB00E57F05 /* SliderVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderVerifyView.m; sourceTree = "<group>"; };
 		1863297D1FE255A500E57F05 /* SWWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWWButton.h; sourceTree = "<group>"; };
@@ -4384,6 +4423,234 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1862E76620DB9BA700F26629 /* EOSSourceManage */ = {
+			isa = PBXGroup;
+			children = (
+				1862E76720DB9BA700F26629 /* BandwidthManage */,
+				1862E76C20DB9BA700F26629 /* TradeRam */,
+				1862E77120DB9BA700F26629 /* ResourceManage */,
+				1862E77620DB9BA700F26629 /* StorageManage */,
+				1862E77B20DB9BA700F26629 /* ModifyApprove */,
+			);
+			path = EOSSourceManage;
+			sourceTree = "<group>";
+		};
+		1862E76720DB9BA700F26629 /* BandwidthManage */ = {
+			isa = PBXGroup;
+			children = (
+				1862E76820DB9BA700F26629 /* Controller */,
+				1862E76920DB9BA700F26629 /* Model */,
+				1862E76A20DB9BA700F26629 /* View */,
+				1862E76B20DB9BA700F26629 /* Service */,
+			);
+			path = BandwidthManage;
+			sourceTree = "<group>";
+		};
+		1862E76820DB9BA700F26629 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1862E76920DB9BA700F26629 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1862E76A20DB9BA700F26629 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1862E76B20DB9BA700F26629 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1862E76C20DB9BA700F26629 /* TradeRam */ = {
+			isa = PBXGroup;
+			children = (
+				1862E76D20DB9BA700F26629 /* Controller */,
+				1862E76E20DB9BA700F26629 /* Model */,
+				1862E76F20DB9BA700F26629 /* View */,
+				1862E77020DB9BA700F26629 /* Service */,
+			);
+			path = TradeRam;
+			sourceTree = "<group>";
+		};
+		1862E76D20DB9BA700F26629 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1862E79920DBC7E400F26629 /* TradeRamViewController.h */,
+				1862E79A20DBC7E400F26629 /* TradeRamViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1862E76E20DB9BA700F26629 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1862E76F20DB9BA700F26629 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1862E79C20DBC80B00F26629 /* TradeRamHeaderView.h */,
+				1862E79D20DBC80B00F26629 /* TradeRamHeaderView.m */,
+				1862E79F20DBC81100F26629 /* TradeRamHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1862E77020DB9BA700F26629 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1862E77120DB9BA700F26629 /* ResourceManage */ = {
+			isa = PBXGroup;
+			children = (
+				1862E77220DB9BA700F26629 /* Controller */,
+				1862E77320DB9BA700F26629 /* Model */,
+				1862E77420DB9BA700F26629 /* View */,
+				1862E77520DB9BA700F26629 /* Service */,
+			);
+			path = ResourceManage;
+			sourceTree = "<group>";
+		};
+		1862E77220DB9BA700F26629 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1862E78020DB9FA000F26629 /* EOSResourceManageViewController.h */,
+				1862E78120DB9FA000F26629 /* EOSResourceManageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1862E77320DB9BA700F26629 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1862E78B20DBA79200F26629 /* EOSResource.h */,
+				1862E78C20DBA79200F26629 /* EOSResource.m */,
+				1862E79320DBBC3500F26629 /* EOSResourceResult.h */,
+				1862E79420DBBC3500F26629 /* EOSResourceResult.m */,
+				1862E79620DBBF3200F26629 /* EOSResourceCellModel.h */,
+				1862E79720DBBF3200F26629 /* EOSResourceCellModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1862E77420DB9BA700F26629 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1862E78320DBA14400F26629 /* EOSResourceManageHeaderView.h */,
+				1862E78420DBA14400F26629 /* EOSResourceManageHeaderView.m */,
+				1862E78620DBA14B00F26629 /* EOSResourceManageHeaderView.xib */,
+				1862E78E20DBAA4900F26629 /* EOSResourceManageTableViewCell.h */,
+				1862E78F20DBAA4900F26629 /* EOSResourceManageTableViewCell.m */,
+				1862E79120DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1862E77520DB9BA700F26629 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1862E78820DBA62000F26629 /* EOSResourceService.h */,
+				1862E78920DBA62000F26629 /* EOSResourceService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1862E77620DB9BA700F26629 /* StorageManage */ = {
+			isa = PBXGroup;
+			children = (
+				1862E77720DB9BA700F26629 /* Controller */,
+				1862E77820DB9BA700F26629 /* Model */,
+				1862E77920DB9BA700F26629 /* View */,
+				1862E77A20DB9BA700F26629 /* Service */,
+			);
+			path = StorageManage;
+			sourceTree = "<group>";
+		};
+		1862E77720DB9BA700F26629 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1862E77820DB9BA700F26629 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1862E77920DB9BA700F26629 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1862E77A20DB9BA700F26629 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1862E77B20DB9BA700F26629 /* ModifyApprove */ = {
+			isa = PBXGroup;
+			children = (
+				1862E77C20DB9BA700F26629 /* Controller */,
+				1862E77D20DB9BA700F26629 /* Model */,
+				1862E77E20DB9BA700F26629 /* View */,
+				1862E77F20DB9BA700F26629 /* Service */,
+			);
+			path = ModifyApprove;
+			sourceTree = "<group>";
+		};
+		1862E77C20DB9BA700F26629 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1862E77D20DB9BA700F26629 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1862E77E20DB9BA700F26629 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1862E77F20DB9BA700F26629 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		1863297C1FE2558B00E57F05 /* Button(图片在上, 文字在下) */ = {
 			isa = PBXGroup;
 			children = (
@@ -4483,6 +4750,8 @@
 				186564E7201228920044BBC3 /* CreateAccountRequest.m */,
 				1831F39E2016E515002CE94D /* BackupEosAccountRequest.h */,
 				1831F39F2016E515002CE94D /* BackupEosAccountRequest.m */,
+				1862E76020DB43EB00F26629 /* CreateEOSAccountRequest.h */,
+				1862E76120DB43EB00F26629 /* CreateEOSAccountRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4841,6 +5110,7 @@
 				18EE05201FDF70E600134E5C /* ImportAccount */,
 				18EE05131FDF70E600134E5C /* PocketManagement */,
 				1868570A1FE0D31D002A683A /* AccountManagement */,
+				1862E76620DB9BA700F26629 /* EOSSourceManage */,
 			);
 			path = pocketManagement;
 			sourceTree = "<group>";
@@ -6674,6 +6944,8 @@
 			children = (
 				186564E9201228D80044BBC3 /* CreateAccountService.h */,
 				186564EA201228D80044BBC3 /* CreateAccountService.m */,
+				1862E76320DB5DCD00F26629 /* BackupEOSAccountService.h */,
+				1862E76420DB5DCD00F26629 /* BackupEOSAccountService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -6988,6 +7260,7 @@
 				185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */,
 				185DD6DD206D119E00BCFFCF /* AskQuestionTipView.xib in Resources */,
 				181130D11FCD468100BEA0D9 /* tip@3x.png in Resources */,
+				1862E79220DBAA5D00F26629 /* EOSResourceManageTableViewCell.xib in Resources */,
 				183FF6F920C10EF20058D010 /* paid_answer@2x.png in Resources */,
 				1860444120D36B3300BEE917 /* slider_gray_BB@3x.png in Resources */,
 				185D18591FE762000021AD18 /* qq@3x.png in Resources */,
@@ -7195,6 +7468,7 @@
 				1878B4EB1FD8DEF100D63037 /* RecieveQRCodeView.xib in Resources */,
 				18B2770020B7AF530070F472 /* SpecificationBlackBoxMode.rtf in Resources */,
 				18E72E4C1FCC1AAE00D09CA3 /* richList_unSelect@2x.png in Resources */,
+				1862E7A020DBC81100F26629 /* TradeRamHeaderView.xib in Resources */,
 				185D18541FE762000021AD18 /* wechat@2x.png in Resources */,
 				185D18341FE75CDC0021AD18 /* versionUpdate@2x.png in Resources */,
 				185D18421FE75FC30021AD18 /* share@3x.png in Resources */,
@@ -7311,6 +7585,7 @@
 				181275E320B6DF60005EDD91 /* close-marquee@2x.png in Resources */,
 				1872F137202D6F35005B5915 /* cancleFollow@2x.png in Resources */,
 				1826AD46207A02110046EE7C /* CreatePocketHeaderView.xib in Resources */,
+				1862E78720DBA14B00F26629 /* EOSResourceManageHeaderView.xib in Resources */,
 				1864C0F71FE3B01A00031547 /* ApplicationDetailHeaderView.xib in Resources */,
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
 				18F03FD72067878C00697D7F /* redPacket@3x.png in Resources */,
@@ -7431,6 +7706,7 @@
 				181414101FCFA2BA00334C60 /* SVRadialGradientLayer.m in Sources */,
 				1812BB6320B5005D00C70801 /* BaseBoldLineView.m in Sources */,
 				1841419F202029E400A789ED /* RichlistDetailHeaderView.m in Sources */,
+				1862E79820DBBF3200F26629 /* EOSResourceCellModel.m in Sources */,
 				18017048207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.m in Sources */,
 				18EA95EF20AEB73A0032A491 /* BaseLabel.m in Sources */,
 				180FDF86202189E600BE593F /* Assests.m in Sources */,
@@ -7472,6 +7748,7 @@
 				187D9BE32080B6570059BD2A /* SocialSharePanelView.m in Sources */,
 				184D61B01FD521C200EA26B1 /* TAPageControl.m in Sources */,
 				18C622BC1FD63C340043447F /* RecieveHeaderView.m in Sources */,
+				1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */,
 				183226FB20A2A76600BF6D6F /* DAppDetailViewController.m in Sources */,
 				1826AD3F2079F54A0046EE7C /* PersonalSettingHeaderView.m in Sources */,
 				185BA41820BBCD1700F63674 /* Choose_BB_walletBtn.m in Sources */,
@@ -7495,6 +7772,8 @@
 				18372D582063E344004D19D0 /* RecieveService.m in Sources */,
 				181130121FCD01B800BEA0D9 /* SDWebImageManager.m in Sources */,
 				183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */,
+				1862E76220DB43EB00F26629 /* CreateEOSAccountRequest.m in Sources */,
+				1862E79B20DBC7E400F26629 /* TradeRamViewController.m in Sources */,
 				1806D106206E5BE10023D83B /* BindPhoneRequest.m in Sources */,
 				1832CC3820070E1C00C055B6 /* AskQuestionService.m in Sources */,
 				184D61AD1FD521C200EA26B1 /* TAAbstractDotView.m in Sources */,
@@ -7641,6 +7920,7 @@
 				1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */,
 				1826AD49207A158D0046EE7C /* BindPhoneNumberHeaderView.m in Sources */,
 				18C622A11FD639250043447F /* TransferHeaderView.m in Sources */,
+				1862E79020DBAA4900F26629 /* EOSResourceManageTableViewCell.m in Sources */,
 				18DBD28920428F20001E2DDF /* ChangePasswordView.m in Sources */,
 				188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */,
 				181130BD1FCD13E600BEA0D9 /* CustomNavigationView.m in Sources */,
@@ -7709,12 +7989,14 @@
 				18112F691FCD016000BEA0D9 /* IQUITextFieldView+Additions.m in Sources */,
 				18563F621FD7A56600CF05FC /* ForwardRedPacketHeaderView.m in Sources */,
 				1863297F1FE255A500E57F05 /* SWWButton.m in Sources */,
+				1862E78D20DBA79200F26629 /* EOSResource.m in Sources */,
 				181130311FCD01DF00BEA0D9 /* AFSecurityPolicy.m in Sources */,
 				1856A5782008A3F400D62FEB /* NewsBannerService.m in Sources */,
 				181130101FCD01B800BEA0D9 /* SDWebImageGIFCoder.m in Sources */,
 				18017043207EF18700E4DA07 /* JWCacheURLProtocol.m in Sources */,
 				18423A181FFF5997006AB986 /* ScanQRCodeViewController.m in Sources */,
 				181130131FCD01B800BEA0D9 /* SDWebImagePrefetcher.m in Sources */,
+				1862E79520DBBC3500F26629 /* EOSResourceResult.m in Sources */,
 				1843CB15207C55A400EDC158 /* NSBundle+DAUtils.m in Sources */,
 				18C5C4801FCFB77F002A65CB /* NSString+Extention.m in Sources */,
 				184D61761FD4F36300EA26B1 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
@@ -7759,6 +8041,7 @@
 				182CDEBA201EBCFA002B87B6 /* MessageCenterResult.m in Sources */,
 				185DD6D1206CA80400BCFFCF /* NSObject+MJProperty.m in Sources */,
 				18466DEE2010C4DF002E675A /* CDZPicker.m in Sources */,
+				1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */,
 				186564B72011CD630044BBC3 /* RegularExpression.m in Sources */,
 				183FF8BF1FF345C7006C25F1 /* News.m in Sources */,
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -7807,6 +8090,7 @@
 				18E72E1B1FCC112300D09CA3 /* AssestsMainViewController.m in Sources */,
 				1878B5741FD9101600D63037 /* TendencyChartView.m in Sources */,
 				1808FCC3202AD18000625C37 /* PopUpAssestWindow.m in Sources */,
+				1862E78520DBA14400F26629 /* EOSResourceManageHeaderView.m in Sources */,
 				18466D802010725B002E675A /* VersionUpdateViewController.m in Sources */,
 				182A661C1FD12E8B007FD541 /* RichListService.m in Sources */,
 				18B291302089942D0032EE27 /* GetRedPacketDetailRequest.m in Sources */,
@@ -7878,9 +8162,11 @@
 				18FA76ED2062573900545E73 /* GetBlockChainInfoRequest.m in Sources */,
 				1872F130202D5923005B5915 /* TransferService.m in Sources */,
 				1864FA541FF1F8B9005F636D /* RichListRequest.m in Sources */,
+				1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */,
 				18A2F46C1FF0A20A00B6CE43 /* FMResultSet.m in Sources */,
 				18DBBB2D206525F10050EE20 /* PGPickerColumnView.m in Sources */,
 				186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */,
+				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,
 				18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */,
 				1878BCAC20845798002A76F5 /* SendRedpacketRequest.m in Sources */,
 				1861BA6C1FFCB74900404058 /* StringConstant.m in Sources */,

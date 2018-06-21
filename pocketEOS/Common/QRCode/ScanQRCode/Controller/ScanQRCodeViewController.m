@@ -161,7 +161,7 @@ static const CGFloat kMargin = 30;
 
 #pragma mark - - - SGQRCodeAlbumManagerDelegate
 - (void)QRCodeAlbumManagerDidCancelWithImagePickerController:(SGQRCodeAlbumManager *)albumManager {
-    [self.view addSubview:self.scanningView];
+//    [self.view addSubview:self.scanningView];
 }
 
 - (void)QRCodeAlbumManager:(SGQRCodeAlbumManager *)albumManager didFinishPickingMediaWithResult:(NSString *)result {

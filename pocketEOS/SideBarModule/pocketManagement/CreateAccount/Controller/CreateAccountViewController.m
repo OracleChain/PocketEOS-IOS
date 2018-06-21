@@ -169,6 +169,9 @@
     [button setTitle:NSLocalizedString(@"如果已有账号，请点击这里导入", nil)forState:(UIControlStateNormal)];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:HEX_RGB_Alpha(0xFFFFFF, 0.7) forState:(UIControlStateNormal)];
+    button.lee_theme
+    .LeeAddButtonTitleColor(SOCIAL_MODE, HEX_RGB_Alpha(0x4D7BFE, 1), UIControlStateNormal)
+    .LeeAddButtonTitleColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.7), UIControlStateNormal);
     [button addTarget:self action:@selector(importAccount:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:button];
     button.sd_layout.leftSpaceToView(self.view, MARGIN_20).rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, 23).heightIs(21);
@@ -186,12 +189,14 @@
     WS(weakSelf);
     EosPrivateKey *ownerPrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
     EosPrivateKey *activePrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
-    weakSelf.createAccountService.createAccountRequest.account_name = weakSelf.headerView.accountNameTF.text;
-    weakSelf.createAccountService.createAccountRequest.owner_key = ownerPrivateKey.eosPublicKey;
-    weakSelf.createAccountService.createAccountRequest.active_key = activePrivateKey.eosPublicKey;
-    
+    weakSelf.createAccountService.createEOSAccountRequest.uid = CURRENT_WALLET_UID;
+    weakSelf.createAccountService.createEOSAccountRequest.eosAccountName = weakSelf.headerView.accountNameTF.text;
+    weakSelf.createAccountService.createEOSAccountRequest.ownerKey = ownerPrivateKey.eosPublicKey;
+    weakSelf.createAccountService.createEOSAccountRequest.activeKey = activePrivateKey.eosPublicKey;
+    NSLog(@"{ownerPrivateKey:%@\neosPublicKey:%@\nactivePrivateKey:%@\neosPublicKey:%@\n}", ownerPrivateKey.eosPrivateKey, ownerPrivateKey.eosPublicKey, activePrivateKey.eosPrivateKey, activePrivateKey.eosPublicKey);
     // 创建eos账号
-    [weakSelf.createAccountService createAccount:^(id service, BOOL isSuccess) {
+    
+    [weakSelf.createAccountService createEOSAccount:^(id service, BOOL isSuccess) {
         
         if (isSuccess) {
             NSNumber *code = service[@"code"];
@@ -216,15 +221,6 @@
                 }
                 
                 [[AccountsTableManager accountTable] addRecord: model];
-                
-                weakSelf.createAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
-                weakSelf.createAccountService.backupEosAccountRequest.eosAccountName = model.account_name;
-                [weakSelf.createAccountService backupAccount:^(id service, BOOL isSuccess) {
-                    NSNumber *code = service[@"code"];
-                    if ([code isEqualToNumber:@0]) {
-                        NSLog(NSLocalizedString(@"给用户添加新的eos账号到服务器成功!", nil));
-                    }
-                }];
                 
                 BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
                 

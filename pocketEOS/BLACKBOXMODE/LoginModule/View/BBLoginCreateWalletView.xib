@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BBLoginCreateWalletView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUr-gY-Ce5" userLabel="line1View" customClass="BaseSlimLineView">
@@ -113,7 +113,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Oq-8w-0ls">
-                    <rect key="frame" x="20" y="373" width="335" height="13"/>
+                    <rect key="frame" x="20" y="634" width="335" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="2FA-r8-cod"/>
                     </constraints>
@@ -153,6 +153,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="1Oq-8w-0ls" secondAttribute="bottom" constant="20" id="1Yi-ZX-1J3"/>
                 <constraint firstAttribute="trailing" secondItem="PcI-zP-dcG" secondAttribute="trailing" id="2ky-oK-Ntl"/>
                 <constraint firstAttribute="trailing" secondItem="5PX-dE-io7" secondAttribute="trailing" constant="20" id="2uU-Xg-eHh"/>
                 <constraint firstItem="hur-tl-MQQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="42V-Z1-U8o"/>
@@ -171,7 +172,6 @@
                 <constraint firstItem="Ox0-eH-J1u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QZJ-MG-fAG"/>
                 <constraint firstItem="NUr-gY-Ce5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Qwa-gz-3Rs"/>
                 <constraint firstAttribute="trailing" secondItem="Ox0-eH-J1u" secondAttribute="trailing" constant="20" id="RNk-j4-p9h"/>
-                <constraint firstItem="1Oq-8w-0ls" firstAttribute="top" secondItem="hur-tl-MQQ" secondAttribute="bottom" constant="40" id="Y9P-Eu-BqN"/>
                 <constraint firstItem="5PX-dE-io7" firstAttribute="top" secondItem="Vb3-en-Ff1" secondAttribute="bottom" constant="20" id="Ydi-J7-uS6"/>
                 <constraint firstItem="Vb3-en-Ff1" firstAttribute="top" secondItem="NUr-gY-Ce5" secondAttribute="bottom" constant="85" id="Z1b-10-vUg"/>
                 <constraint firstAttribute="trailing" secondItem="r2s-0H-N0z" secondAttribute="trailing" constant="20" id="d6V-B3-crq"/>
@@ -191,7 +191,6 @@
                 <constraint firstItem="jlY-K1-SyL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="yX5-DW-aqw"/>
                 <constraint firstItem="O4f-kp-LEB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ysN-d5-Ou3"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="agreeTermBtn" destination="Nja-XR-qTY" id="3ZT-CO-sEC"/>
                 <outlet property="confirmPasswordTF" destination="r2s-0H-N0z" id="4wO-Bb-BbW"/>

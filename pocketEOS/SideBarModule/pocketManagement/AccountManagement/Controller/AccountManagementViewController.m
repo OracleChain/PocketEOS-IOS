@@ -18,9 +18,13 @@
 #import "SocialSharePanelView.h"
 #import "SocialManager.h"
 #import "SocialShareModel.h"
+#import "AccountManagementService.h"
+#import "EOSResourceManageViewController.h"
 
 @interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, AccountManagementHeaderViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, SocialSharePanelViewDelegate>
+@property(nonatomic , strong) AccountManagementService *mainService;
 @property(nonatomic, strong) AccountManagementHeaderView *headerView;
+@property(nonatomic , strong) UIView *footerView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) ExportPrivateKeyView *exportPrivateKeyView;
 @property(nonatomic, strong) SetMainAccountRequest *setMainAccountRequest;
@@ -37,6 +41,12 @@
 
 @implementation AccountManagementViewController
 
+- (AccountManagementService *)mainService{
+    if (!_mainService) {
+        _mainService = [[AccountManagementService alloc] init];
+    }
+    return _mainService;
+}
 - (NavigationView *)navView{
     if (!_navView) {
         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"" rightBtnImgName:@"share" delegate:self];
@@ -47,10 +57,21 @@
 - (AccountManagementHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AccountManagementHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 408);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 328);
         _headerView.delegate = self;
     }
     return _headerView;
+}
+- (UIView *)footerView{
+    if (!_footerView) {
+        _footerView = [[UIView alloc] init];
+        _footerView.lee_theme
+        .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+        _footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 100);
+        [_footerView addSubview:self.sliderVerifyView];
+    }
+    return _footerView;
 }
 
 - (ExportPrivateKeyView *)exportPrivateKeyView{
@@ -70,6 +91,7 @@
 - (SliderVerifyView *)sliderVerifyView{
     if (!_sliderVerifyView) {
         _sliderVerifyView = [[SliderVerifyView alloc] init];
+        self.sliderVerifyView.frame = CGRectMake(48, 26, SCREEN_WIDTH-(48*2), 48);
         _sliderVerifyView.tipLabel.text = NSLocalizedString(@"滑动删除账号", nil);
         _sliderVerifyView.delegate = self;
     }
@@ -174,34 +196,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.headerView];
+    [self.view addSubview:self.mainTableView];
+    self.mainTableView.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    [self.mainTableView setTableHeaderView:self.headerView];
+    [self.mainTableView setTableFooterView:self.footerView];
+    self.mainTableView.mj_header.hidden = YES;
+    self.mainTableView.mj_footer.hidden = YES;
+    [self.mainService buildDataSource:^(id service, BOOL isSuccess) {
+        [self.mainTableView reloadData];
+    }];
     self.navView.titleLabel.text = self.model.account_name;
-    [self.view addSubview:self.sliderVerifyView];
    
-    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-        self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView, 26).heightIs(48);
-        [self.view addSubview:self.tipLabel];
-        self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
-       
-    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-        self.headerView.mainAccountBtn.hidden = YES;
-        self.headerView.exportPrivateKeyBtn.sd_layout.topSpaceToView(self.headerView.QRCodeImg, 66).leftSpaceToView(self.headerView, 48).rightSpaceToView(self.headerView, 48).heightIs(42);
-         self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView.exportPrivateKeyBtn, 90).heightIs(48);
-        [self.view addSubview:self.tipLabel];
-        self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:VALIDATE_STRING(self.model.account_name)  forKey:@"account_name"];
     [dic setObject:VALIDATE_STRING(self.model.account_img)  forKey:@"account_img"];
@@ -221,12 +230,42 @@
         self.headerView.mainAccountBtn.enabled = YES;
     }
     
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//UITableViewDelegate , UITableViewDataSource
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BaseTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    if (!cell) {
+        cell = [[BaseTableViewCell1 alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:CELL_REUSEIDENTIFIER];
+    }
+    cell.rightIconImgName = @"right_arrow_gray";
+    [cell.contentView addSubview:cell.rightIconImageView];
+    cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(7).heightIs(14).centerYEqualToView(cell.contentView);
+    
+    cell.textLabel.text = VALIDATE_STRING(self.mainService.dataSourceArray[indexPath.row]);
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *str = self.mainService.dataSourceArray[indexPath.row];
+    if ([str isEqualToString:NSLocalizedString(@"设为主账号", nil)]) {
+        [self setToMainAccountBtnDidClick:nil];
+    }else if([str isEqualToString:NSLocalizedString(@"EOS资源管理", nil)]){
+        EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
+        vc.currentAccountName = self.model.account_name;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([str isEqualToString:NSLocalizedString(@"导出私钥", nil)]){
+        [self exportPrivateKeyBtnDidClick:nil];
+    }
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.mainService.dataSourceArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 46;
 }
 
 //AccountManagementHeaderViewDelegate

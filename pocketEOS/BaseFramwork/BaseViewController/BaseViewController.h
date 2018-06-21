@@ -10,7 +10,7 @@
 #import "NavigationView.h"
 
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController<UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate>
 
 
 @property(nonatomic, strong) UITableView *mainTableView;

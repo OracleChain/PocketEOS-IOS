@@ -7,7 +7,7 @@
 //
 
 #define kHttpsClientP12 @"client"
-#define kHttpsP12Password @"oraclechain"//baH1Ug78h8G
+#define kHttpsP12Password @"oraclechain"
 #define kHttpsServiceCer @"server"
 
 #import "BaseHttpsNetworkRequest.h"

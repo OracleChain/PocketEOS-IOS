@@ -55,7 +55,6 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFo-D2-KdJ" userLabel="changeAccountButton">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
-                            <state key="normal" title="Button"/>
                             <connections>
                                 <action selector="changeAccountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="HrE-4h-V7h"/>
                             </connections>

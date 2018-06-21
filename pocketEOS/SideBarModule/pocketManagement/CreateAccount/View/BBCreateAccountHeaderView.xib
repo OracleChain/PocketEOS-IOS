@@ -16,17 +16,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用EOS映射获得的私钥创建钱包账户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-lM-kOI">
-                    <rect key="frame" x="20" y="0.0" width="315" height="40"/>
+                    <rect key="frame" x="20" y="0.0" width="225" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5B1-6h-rHu">
-                    <rect key="frame" x="335" y="0.0" width="40" height="40"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="kD4-Pw-JGR">
+                    <rect key="frame" x="353" y="13" width="7" height="14"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="AK7-lO-YGP"/>
+                        <constraint firstAttribute="width" constant="7" id="gJ6-Bx-DRf"/>
+                        <constraint firstAttribute="height" constant="14" id="t9M-R0-QDe"/>
                     </constraints>
-                    <state key="normal" image="right_arrow_gray.png"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5B1-6h-rHu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <connections>
                         <action selector="createAccount:" destination="BFU-ng-mxI" eventType="touchUpInside" id="neK-9r-ls2"/>
                     </connections>
@@ -37,9 +40,11 @@
                 <constraint firstItem="5B1-6h-rHu" firstAttribute="top" secondItem="BFU-ng-mxI" secondAttribute="top" id="3hk-aU-17L"/>
                 <constraint firstAttribute="trailing" secondItem="5B1-6h-rHu" secondAttribute="trailing" id="5Fm-RN-ngD"/>
                 <constraint firstAttribute="bottom" secondItem="6LF-lM-kOI" secondAttribute="bottom" id="AX5-M0-Mqg"/>
+                <constraint firstItem="5B1-6h-rHu" firstAttribute="leading" secondItem="BFU-ng-mxI" secondAttribute="leading" id="BO9-r6-pL2"/>
                 <constraint firstItem="6LF-lM-kOI" firstAttribute="leading" secondItem="BFU-ng-mxI" secondAttribute="leading" constant="20" id="I16-HC-3SN"/>
+                <constraint firstItem="kD4-Pw-JGR" firstAttribute="centerY" secondItem="6LF-lM-kOI" secondAttribute="centerY" id="Nps-sy-5fn"/>
+                <constraint firstAttribute="trailing" secondItem="kD4-Pw-JGR" secondAttribute="trailing" constant="15" id="PEy-ba-Dfn"/>
                 <constraint firstItem="6LF-lM-kOI" firstAttribute="top" secondItem="BFU-ng-mxI" secondAttribute="top" id="fTM-XM-o8D"/>
-                <constraint firstItem="5B1-6h-rHu" firstAttribute="leading" secondItem="6LF-lM-kOI" secondAttribute="trailing" id="iqm-KS-EHa"/>
                 <constraint firstAttribute="bottom" secondItem="5B1-6h-rHu" secondAttribute="bottom" id="tnG-hh-6dg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

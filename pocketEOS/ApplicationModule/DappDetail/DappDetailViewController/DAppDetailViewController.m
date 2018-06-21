@@ -27,6 +27,7 @@
 @property(nonatomic, strong) NSString *choosedAccountName;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
+@property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @end
 
 @implementation DAppDetailViewController
@@ -35,8 +36,13 @@
     if (!_webView) {
         //配置环境
         WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
+        
         self.userContentController =[[WKUserContentController alloc]init];
         configuration.userContentController = self.userContentController;
+        
+        self.sharedProcessPool = [[WKProcessPool alloc]init];
+        configuration.processPool = self.sharedProcessPool;
+        
         self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) configuration:configuration];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
@@ -45,6 +51,7 @@
         } else {
             // Fallback on earlier versions
         }
+
     }
     return _webView;
 }
@@ -119,6 +126,14 @@
         //TODO
         NSLog(@"%@ ",response);
     }];
+    WS(weakSelf);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString *js = [NSString stringWithFormat:@"getEosAccount('%@')", weakSelf.choosedAccountName];
+        [weakSelf.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+            //TODO
+            NSLog(@"%@ ",response);
+        }];
+    });
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
@@ -140,6 +155,9 @@
     if ([message.name isEqualToString:@"pushAction"]) {
         [self.view addSubview:self.loginPasswordView];
         self.WKScriptMessageBody = (NSDictionary *)message.body;
+        DappTransferResult *result = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
+        self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[result.message mj_JSONObject ] ];
+        self.dappTransferModel.serialNumber = result.serialNumber;
     }
     
     if ([message.name isEqualToString:@"Share"]) {
@@ -164,12 +182,15 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
-    DappTransferResult *result = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
-    self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[result.message mj_JSONObject ] ];
-    self.dappTransferModel.serialNumber = result.serialNumber;
-    
-    self.transferAbi_json_to_bin_request.code = @"octoneos";//octoneos
-    self.mainService.code = @"octoneos";//octoneos
+   
+    if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
+        self.transferAbi_json_to_bin_request.code = @"eosio.token";
+        self.mainService.code = @"eosio.token";
+        
+    }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
+        self.transferAbi_json_to_bin_request.code = @"octoneos";//octoneos
+        self.mainService.code = @"octoneos";
+    }
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
     self.transferAbi_json_to_bin_request.action = @"transfer";
     self.transferAbi_json_to_bin_request.from = self.dappTransferModel.from;
@@ -192,21 +213,22 @@
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
-    
+
 }
 
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
+    NSString *jsStr;
     if ([result.code isEqualToNumber:@0 ]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
-        
-        NSString *jsStr = [NSString stringWithFormat:@"pushActionResult('%@', '%@')",VALIDATE_STRING(result.transaction_id), self.dappTransferModel.serialNumber];
-        [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-            NSLog(@"%@----%@",result, error);
-        }];
+        jsStr = [NSString stringWithFormat:@"pushActionResult('%@', '%@')", self.dappTransferModel.serialNumber , VALIDATE_STRING(result.transaction_id) ];
     }else{
         [TOASTVIEW showWithText: result.message];
+        jsStr = [NSString stringWithFormat:@"pushActionResult('%@', '%@')",self.dappTransferModel.serialNumber, [NSString stringWithFormat:@"ERROR:%@", result.message] ];
     }
+    [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@----%@",result, error);
+    }];
 }
 
 //SelectAccountViewDelegate
@@ -237,7 +259,7 @@
         return;
     } else{
         [self.selectAccountView removeFromSuperview];
-        
+//       xgame http://47.74.145.111 self.model.url
         [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
@@ -248,6 +270,4 @@
 -(void)backgroundViewDidClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 @end

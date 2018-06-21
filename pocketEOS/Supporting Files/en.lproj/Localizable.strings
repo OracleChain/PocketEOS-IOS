@@ -5,31 +5,32 @@
 //  Created by oraclechain on 09/04/2018.
 //  Copyright © 2018 oraclechain. All rights reserved.
 //*/
-//
+
 ///*
 // CDZPicker.m
 // */
-//"确定"="confirm";
-//"取消"="cancle";
-//
-//
+//"确定"="Confirm";
+//"取消"="Cancle";
 //
 ///*
-// SGQRCodeAlbumManager.m
+// UnStakeEOSViewController.m
 // */
-//
-//"温馨提示"="Tips";
-//"由于系统原因, 无法访问相册"="由于系统原因, 无法访问相册";
-//
+//"赎回EOS"="赎回EOS";
+//"确认赎回"="确认赎回";
+//"无法赎回"="无法赎回";
+//"密码输入错误!"="密码输入错误!";
+//"无法赎回!"="无法赎回!";
+//"本地无此账号!"="本地无此账号!";
+//"赎回成功!"="赎回成功!";
 //
 ///*
 // AssestsDetailViewController.m
 // */
-//"资产"="资产";
-//"微信好友"="微信好友";
-//"朋友圈"="朋友圈";
-//"QQ好友"="QQ好友";
-//"QQ空间"="QQ空间";
+//"资产"="Assets";
+//"微信好友"="WeChat";
+//"朋友圈"="Moments";
+//"QQ好友"="QQ";
+//"QQ空间"="QZone";
 //"额(24h)%@CNY"="额(24h)%@CNY";
 //"EOS最新咨询详情"="EOS最新咨询详情";
 //"OCT最新咨询详情"="OCT最新咨询详情";
@@ -38,16 +39,14 @@
 ///*
 // AssestDetailFooterView.m
 // */
-//"发起转账"="发起转账";
-//"发起收款"="发起收款";
-//"发送红包"="发送红包";
+//"发起转账"="Send";
+//"发起收款"="Receive";
+//"发送红包"="RedPackets";
 //
 ///*
 // AssestsMainViewController.m
 // */
 //"%@的钱包"="%@的钱包";
-//"温馨提示：本钱包运行于测试网络，待EOS主网正式上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。"="温馨提示：本钱包运行于测试网络，待EOS主网正式上线后，您需要销毁本地钱包并使用您的手机号重新登录。届时我们将第一时间通知您并帮助您完成相关操作。";
-//"点击了关闭按钮"="点击了关闭按钮";
 //"用户第一次同意了访问相机权限 - - %@"="用户第一次同意了访问相机权限 - - %@";
 //"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关"="请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关";
 //"因为系统原因, 无法访问相册"="因为系统原因, 无法访问相册";
@@ -62,19 +61,18 @@
 ///*
 // AssestsMainTableViewCell.m
 // */
-//"现价"="现价";
+//"现价"="NowPrice";
 //
 ///*
 // TransferViewController.m
 // */
-//"资产转账"="资产转账";
-//"密码输入错误!"="密码输入错误!";
-//"转账成功"="转账成功";
+//"资产转账"="Send";
+//"转账成功"="Transferred!";
 //
 ///*
 // TransferHeaderView.m
 // */
-//"恭喜发财, 大吉大利"="恭喜发财, 大吉大利";
+//"恭喜发财, 大吉大利"="Best wishes!";
 //
 ///*
 // TransferService.m
@@ -84,46 +82,47 @@
 ///*
 // RecieveViewController.m
 // */
-//"资产收款"="资产收款";
+//"资产收款"="Receive";
 //
 ///*
 // ForwardRedPacketViewController.m
 // */
-//"红包已封口!"="红包已封口!";
+//"红包已封口!"="Red Packets are Ready!";
 //"%@个红包，共%@%@"="%@个红包，共%@%@";
-//"恭喜发财，大吉大利"="恭喜发财，大吉大利";
-//"继续发送红包"="继续发送红包";
+//"恭喜发财，大吉大利"="Best wishes!";
+//"继续发送红包"="Send Red Packet to More Friends";
 //
 ///*
 // RedPacketViewController.m
 // */
-//"发红包"="发红包";
+//"发红包"="Send Red Packets";
 //"发送%@个%@给%@个人，%@"="发送%@个%@给%@个人，%@";
 //"全部被领取"="全部被领取";
 //"剩余%@个未被领取"="剩余%@个未被领取";
 //"领取%@个%@"="领取%@个%@";
+//"余额不足!"="余额不足!";
 //"转账到oc.redpacket成功!"="转账到oc.redpacket成功!";
 //
 ///*
 // ChangeAccountViewController.m
 // */
-//"切换账号"="切换账号";
+//"切换账号"="Switch";
 //
 ///*
 // BindPhoneNumberViewController.m
 // */
-//"绑定手机号"="绑定手机号";
+//"绑定手机号"="Bind Mobile Phone";
 //"手机号格式有误!"="手机号格式有误!";
 //"请勾选同意条款!"="请勾选同意条款!";
 //"验证码格式有误!"="验证码格式有误!";
 //"没有 wallet"="没有 wallet";
-//"获取验证码"="获取验证码";
+//"获取验证码"="Get Verification Code";
 //"%@秒后重新发送"="%@秒后重新发送";
 //
 ///*
 // BBLoginViewController.m
 // */
-//"请选择钱包:"="请选择钱包:";
+//"请选择钱包:"="Select a wallet:";
 //"钱包名称不能为空!"="钱包名称不能为空!";
 //"密码不能为空!"="密码不能为空!";
 //"两次输入的密码不一致!"="两次输入的密码不一致!";
@@ -132,9 +131,12 @@
 ///*
 // EOSMappingImportAccountViewController.m
 // */
-//"映射账号录入"="映射账号录入";
-//"导入账号成功!"="导入账号成功!";
-//"导入的私钥不匹配!"="导入的私钥不匹配!";
+//"映射账号录入"="I have Private Key(s) from EOS Registration";
+//"输入框不能为空!"="输入框不能为空!";
+//"私钥格式有误!"="私钥格式有误!";
+//"本地钱包已存在该账号!"="本地钱包已存在该账号!";
+//"映射账号录入成功!"="映射账号录入成功!";
+//"未查到对应账号!"="未查到对应账号!";
 //
 ///*
 // SocialManager.m
@@ -152,22 +154,22 @@
 ///*
 // VersionUpdateViewController.m
 // */
-//"版本更新"="版本更新";
+//"版本更新"="Versions";
 //"版本: %@"="版本: %@";
 //"有新版・"="有新版・";
-//"无新版"="无新版";
+//"无新版"="Your PE is uptodate!";
 //
 ///*
 // VersionUpdateTipView.m
 // */
-//"跳过"="跳过";
+//"跳过"="Skip";
 //"立即更新"="立即更新";
 //
 ///*
 // TransactionRecordsViewController.m
 // */
-//"交易记录"="交易记录";
-//"暂无数据"="暂无数据";
+//"交易记录"="Tx History";
+//"暂无数据"="Nothing here";
 //
 ///*
 // TransactionRecordTableViewCell.m
@@ -187,40 +189,40 @@
 ///*
 // CandyMainTableViewCell.m
 // */
-//"已完成"="已完成";
-//"未完成"="未完成";
+//"已完成"="Done";
+//"未完成"="Undone";
 //
 ///*
 // MessageFeedbackViewController.m
 // */
-//"意见反馈"="意见反馈";
-//"提交"="提交";
+//"意见反馈"="Feedbacks";
+//"提交"="Submit";
 //
 ///*
 // LanguageSettingViewController.m
 // */
-//"语言"="语言";
-//"语言切换中"="语言切换中";
+//"语言"="Language";
+//"语言切换中"="Changing Language...";
 //
 ///*
 // SystemSettingViewController.m
 // */
-//"系统设置"="系统设置";
-//"消息反馈"="消息反馈";
+//"系统设置"="Settings";
+//"消息反馈"="Feedbacks";
 //"清空缓存"="清空缓存";
-//"法律条款与隐私政策"="法律条款与隐私政策";
-//"关于Pocket EOS"="关于Pocket EOS";
-//"清理成功~"="清理成功~";
+//"法律条款与隐私政策"="Term of Usage and Privacy Policy";
+//"关于Pocket EOS"="About Pocket EOS";
+//"清理成功~"="Cleared~";
 //
 ///*
 // LanguageSettingService.m
 // */
-//"中文"="中文";
+//"中文"="Chinese";
 //
 ///*
 // MessageCenterViewController.m
 // */
-//"消息中心"="消息中心";
+//"消息中心"="Notifications";
 //
 ///*
 // BackupAccountViewController.m
@@ -234,11 +236,33 @@
 //"什么是投票权代理?"="什么是投票权代理?";
 //
 ///*
-// BPCandidateListViewController.m
+// BPVoteAmountHeaderView.m
+// */
+//"主网启动后, 方可设置投票数量!"="主网启动后, 方可设置投票数量!";
+//
+///*
+// BPVoteAmountViewController.m
 // */
 //"节点投票"="节点投票";
-//"投票规则"="投票规则";
+//"%.4f亿票"="%.4f亿票";
+//"说明该账号还没注册到投票体统"="说明该账号还没注册到投票体统";
+//"该账号已经注册到投票体统"="该账号已经注册到投票体统";
+//"当前既没有追加, 余额也为零"="当前既没有追加, 余额也为零";
+//"投票成功!"="投票成功!";
 //"确认投票"="确认投票";
+//
+///*
+// BPCandidateTableViewCell.m
+// */
+//"%.2f亿票"="%.2f亿票";
+//
+///*
+// BPCandidateListViewController.m
+// */
+//"投票规则"="投票规则";
+//"链接地址有误!"="链接地址有误!";
+//"已选择%ld个，还可以选择%ld个"="已选择%ld个，还可以选择%ld个";
+//"至少选择一个投票节点!"="至少选择一个投票节点!";
 //
 ///*
 // BPRecommendAgentViewController.m
@@ -248,9 +272,8 @@
 ///*
 // BPVoteHeaderView.m
 // */
-//"EOS账号1"="EOS账号1";
-//"余额：100.0000EOS"="余额：100.0000EOS";
 //"已代理给ORACLECHAIN"="已代理给ORACLECHAIN";
+//"余额 : %@EOS"="余额 : %@EOS";
 //
 ///*
 // BPVoteViewController.m
@@ -263,31 +286,31 @@
 ///*
 // CreatePocketViewController.m
 // */
-//"创建钱包"="创建钱包";
+//"创建钱包"="Create My Wallet";
 //"如果已有钱包，请点击这里导入"="如果已有钱包，请点击这里导入";
 //
 ///*
 // ImportPocketViewController.m
 // */
-//"导入钱包"="导入钱包";
-//"导入成功!"="导入成功!";
-//"导入失败!"="导入失败!";
+//"导入钱包"="Import Wallet";
+//"导入成功!"="Import Success!";
+//"导入失败!"="Import Fail!";
 //
 ///*
 // CreateAccountViewController.m
 // */
 //"创建新账号"="创建新账号";
-//"您的输入不匹配!^[1-5a-z]{7,13}$"="您的输入不匹配!^[1-5a-z]{7,13}$";
-//"如果已有账号，请点击这里导入"="如果已有账号，请点击这里导入";
+//"由小写字母开头的12位字符，只能由小写字母a~z和数字1~5组成。"="由小写字母开头的12位字符，只能由小写字母a~z和数字1~5组成。";
 //"创建账号成功!"="创建账号成功!";
 //"给用户添加新的eos账号到服务器成功!"="给用户添加新的eos账号到服务器成功!";
+//"如果已有账号，请点击这里导入"="如果已有账号，请点击这里导入";
 //
 ///*
 // PocketManagementViewController.m
 // */
-//"钱包管理"="钱包管理";
-//"保护隐私"="保护隐私";
-//"    其他账号"="    其他账号";
+//"钱包管理"="Wallet Management";
+//"保护隐私"="Privacy Protection";
+//"    其他账号"="    Other accounts";
 //"输入不能为空!"="输入不能为空!";
 //"原始密码输入有误!"="原始密码输入有误!";
 //"修改密码成功!"="修改密码成功!";
@@ -295,7 +318,7 @@
 ///*
 // PocketManagementHeaderView.m
 // */
-//"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包"="1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包";
+//"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包"="1.Do backup your wallet or export private keys for each account, and keep them safely. \n2. Your private keys are stored in local and be encrypted by your wallet password. \n3.If you don't want others find your by your wallet name, please active Privacy Protection. \n4.Your wallet MUST be burned away when you stop using this device. ";
 //
 ///*
 // PocketManagementService.m
@@ -305,7 +328,7 @@
 ///*
 // AccountManagementViewController.m
 // */
-//"滑动删除账号"="滑动删除账号";
+//"滑动删除账号"="Slide to Block Up This Account";
 //"将滑块滑动到右侧指定位置内即可解锁"="将滑块滑动到右侧指定位置内即可解锁";
 //"    将二维码分享到"="    将二维码分享到";
 //"设置主账号成功!"="设置主账号成功!";
@@ -317,10 +340,9 @@
 // ImportAccountViewController.m
 // */
 //"导入新账号"="导入新账号";
-//"输入框不能为空!"="输入框不能为空!";
-//"本地钱包已存在该账号!"="本地钱包已存在该账号!";
 //"您的账号名不匹配!^[1-5a-z]{7,13}$"="您的账号名不匹配!^[1-5a-z]{7,13}$";
-//"私钥格式有误!"="私钥格式有误!";
+//"导入账号成功!"="导入账号成功!";
+//"导入的私钥不匹配!"="导入的私钥不匹配!";
 //
 ///*
 // PersonalSettingViewController.m
@@ -365,11 +387,6 @@
 //"字符串%@"="字符串%@";
 //
 ///*
-// NSString+Extention.m
-// */
-//"暂无缓存,您无需清理~"="暂无缓存,您无需清理~";
-//
-///*
 // ScanQRCodeViewController.m
 // */
 //"扫一扫"="扫一扫";
@@ -396,7 +413,7 @@
 ///*
 // RichListMainViewController.m
 // */
-//"富豪榜"="富豪榜";
+//"富豪榜"="Rich List";
 //"搜索好友"="搜索好友";
 //
 ///*
@@ -412,7 +429,7 @@
 ///*
 // PeRichListViewController.m
 // */
-//"pE富豪榜"="pE富豪榜";
+//"pE富豪榜"="pE Rich List";
 //
 ///*
 // AccountsTableManager.m
@@ -426,14 +443,9 @@
 //"添加钱包成功!"="添加钱包成功!";
 //"删除钱包成功!"="删除钱包成功!";
 //
-///*
-// JavascriptWebViewController.m
-// */
-//"oc请求js后接受的回调结果：%@"="oc请求js后接受的回调结果：%@";
 //
-///*
-// BaseTabBarController.m
-// */
+//BaseTabBarController.m
+//*/
 //"新闻"="新闻";
 //"发现"="发现";
 //

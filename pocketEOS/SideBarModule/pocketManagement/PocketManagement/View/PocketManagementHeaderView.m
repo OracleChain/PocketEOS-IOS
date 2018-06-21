@@ -66,8 +66,13 @@
 }
 
 - (IBAction)createAccount:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(createAccountBtnDidClick:)]) {
-        [self.delegate createAccountBtnDidClick:sender];
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(createAccountBtnDidClick:)]) {
+            [self.delegate createAccountBtnDidClick:sender];
+        }
+        
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [TOASTVIEW showWithText:NSLocalizedString(@"请移步社交模式进行账号创建", nil)];
     }
 }
 

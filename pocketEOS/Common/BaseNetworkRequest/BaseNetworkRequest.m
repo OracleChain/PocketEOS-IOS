@@ -80,7 +80,7 @@
     
     [self configTimeOut:self.networkingManager];
     // 单向验证
-    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
+//    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     // 设置自动管理Cookies
     self.networkingManager.requestSerializer.HTTPShouldHandleCookies = YES;
     // 如果已有Cookie, 则把你的cookie符上
@@ -301,14 +301,28 @@
         return;
     }
     [SVProgressHUD showWithStatus:NSLocalizedString(@"正在上传", nil)];
-    AFHTTPSessionManager *networkingManager = [[AFHTTPSessionManager alloc] init];
-    
-    [networkingManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", nil]];
+    AFHTTPSessionManager *networkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
+    // 单向验证
     
     networkingManager.requestSerializer = [AFJSONRequestSerializer serializer];
-    networkingManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    // 如果已有Cookie, 则把你的cookie符上
+    NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
+    NSLog(@"sendCookie::%@", cookie);
+    if (cookie != nil) {
+        [networkingManager.requestSerializer setValue:cookie forHTTPHeaderField:@"Set-Cookie"];
+    }
     [networkingManager.requestSerializer setValue:@"Multipart/form-data" forHTTPHeaderField:@"Content-type"];
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [networkingManager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [networkingManager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
+    }
     
+    networkingManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [networkingManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", nil]];
+    
+    
+//    [networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     /**
      *  Start a Post request data interface
      */
@@ -388,7 +402,7 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [self configTimeOut:manager];
 #pragma mark -- 单向验证
-    [manager setSecurityPolicy:[self customSecurityPolicy]];
+//    [manager setSecurityPolicy:[self customSecurityPolicy]];
 //    //客服端利用p12验证服务器 , 双向验证
 //    //    [self checkCredential:manager];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
