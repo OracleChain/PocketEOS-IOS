@@ -1,8 +1,8 @@
 //
-//  TradeRamViewController.h
+//  ModifyApproveViewController.h
 //  pocketEOS
 //
-//  Created by oraclechain on 2018/6/21.
+//  Created by oraclechain on 2018/6/22.
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
@@ -11,8 +11,7 @@
 #import "EOSResource.h"
 #import "AccountResult.h"
 
-
-@interface TradeRamViewController : BaseViewController
+@interface ModifyApproveViewController : BaseViewController
 @property(nonatomic , copy) NSString *pageType;
 @property(nonatomic , strong) EOSResourceResult *eosResourceResult;
 @property(nonatomic , strong) AccountResult *accountResult;

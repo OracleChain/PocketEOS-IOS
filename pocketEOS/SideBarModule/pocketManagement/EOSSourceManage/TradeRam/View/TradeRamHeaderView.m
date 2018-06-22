@@ -8,14 +8,35 @@
 
 #import "TradeRamHeaderView.h"
 
+@interface TradeRamHeaderView()
+
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet BaseLabel1 *predictLabel;
+
+@end
+
 @implementation TradeRamHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (IBAction)modifyRamSliderSlide:(UISlider *)sender {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(modifySliderDidSlide:)]) {
+        [self.delegate modifySliderDidSlide:sender];
+    }
 }
-*/
+
+- (IBAction)confirmBtnClick:(BaseConfirmButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(confirmTradeRamBtnDidClick)]) {
+        [self.delegate confirmTradeRamBtnDidClick];
+    }
+}
+
+-(void)setEosResourceResult:(EOSResourceResult *)eosResourceResult{
+    
+    self.predictLabel.text = @"预计配额：1000.00 ms";
+}
+
+-(void)setAccountResult:(AccountResult *)accountResult{
+    self.amountLabel.text = [NSString stringWithFormat:@"%@ EOS", VALIDATE_STRING([NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:accountResult.data.eos_balance.doubleValue ]])];
+}
 
 @end

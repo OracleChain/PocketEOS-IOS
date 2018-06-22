@@ -571,6 +571,12 @@
 		1862E79B20DBC7E400F26629 /* TradeRamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79A20DBC7E400F26629 /* TradeRamViewController.m */; };
 		1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E79D20DBC80B00F26629 /* TradeRamHeaderView.m */; };
 		1862E7A020DBC81100F26629 /* TradeRamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E79F20DBC81100F26629 /* TradeRamHeaderView.xib */; };
+		1862E7A320DC7C9F00F26629 /* StorageManageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E7A220DC7C9F00F26629 /* StorageManageHeaderView.m */; };
+		1862E7A520DC7CAC00F26629 /* StorageManageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E7A420DC7CAC00F26629 /* StorageManageHeaderView.xib */; };
+		1862E7A920DC850E00F26629 /* UIScrollView+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E7A720DC850E00F26629 /* UIScrollView+Touch.m */; };
+		1862E7EF20DC93A800F26629 /* ModifyApproveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E7EE20DC93A800F26629 /* ModifyApproveViewController.m */; };
+		1862E7F220DC93C500F26629 /* ModifyApproveHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E7F120DC93C500F26629 /* ModifyApproveHeaderView.m */; };
+		1862E7F420DC93CE00F26629 /* ModifyApproveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862E7F320DC93CE00F26629 /* ModifyApproveHeaderView.xib */; };
 		1863294F1FE22CCB00E57F05 /* SliderVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863294E1FE22CCB00E57F05 /* SliderVerifyView.m */; };
 		1863297F1FE255A500E57F05 /* SWWButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863297E1FE255A500E57F05 /* SWWButton.m */; };
 		186329821FE2597000E57F05 /* ApplicationMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186329811FE2597000E57F05 /* ApplicationMainHeaderView.m */; };
@@ -924,6 +930,9 @@
 		18FDFFC32024522000AEB4FA /* scan_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC22024522000AEB4FA /* scan_3@2x.png */; };
 		18FDFFC52024522800AEB4FA /* scan_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC42024522800AEB4FA /* scan_4@2x.png */; };
 		18FDFFC72024523100AEB4FA /* scan_net@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FDFFC62024523100AEB4FA /* scan_net@2x.png */; };
+		18FE3B2120DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B2020DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m */; };
+		18FE3B2420DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B2320DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m */; };
+		18FE3B3A20DD29FA005454BC /* Get_table_rows_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */; };
 		24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */; };
 		24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB620DBFE7200AC73A5 /* BodyScrollView.m */; };
 		24FB2C9720DBF71800AC73A5 /* StorageManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */; };
@@ -1880,6 +1889,16 @@
 		1862E79C20DBC80B00F26629 /* TradeRamHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeRamHeaderView.h; sourceTree = "<group>"; };
 		1862E79D20DBC80B00F26629 /* TradeRamHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeRamHeaderView.m; sourceTree = "<group>"; };
 		1862E79F20DBC81100F26629 /* TradeRamHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TradeRamHeaderView.xib; sourceTree = "<group>"; };
+		1862E7A120DC7C9F00F26629 /* StorageManageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageManageHeaderView.h; sourceTree = "<group>"; };
+		1862E7A220DC7C9F00F26629 /* StorageManageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StorageManageHeaderView.m; sourceTree = "<group>"; };
+		1862E7A420DC7CAC00F26629 /* StorageManageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StorageManageHeaderView.xib; sourceTree = "<group>"; };
+		1862E7A720DC850E00F26629 /* UIScrollView+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Touch.m"; sourceTree = "<group>"; };
+		1862E7A820DC850E00F26629 /* UIScrollView+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Touch.h"; sourceTree = "<group>"; };
+		1862E7ED20DC93A800F26629 /* ModifyApproveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyApproveViewController.h; sourceTree = "<group>"; };
+		1862E7EE20DC93A800F26629 /* ModifyApproveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyApproveViewController.m; sourceTree = "<group>"; };
+		1862E7F020DC93C500F26629 /* ModifyApproveHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyApproveHeaderView.h; sourceTree = "<group>"; };
+		1862E7F120DC93C500F26629 /* ModifyApproveHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyApproveHeaderView.m; sourceTree = "<group>"; };
+		1862E7F320DC93CE00F26629 /* ModifyApproveHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyApproveHeaderView.xib; sourceTree = "<group>"; };
 		1863294D1FE22CCA00E57F05 /* SliderVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderVerifyView.h; sourceTree = "<group>"; };
 		1863294E1FE22CCB00E57F05 /* SliderVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderVerifyView.m; sourceTree = "<group>"; };
 		1863297D1FE255A500E57F05 /* SWWButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWWButton.h; sourceTree = "<group>"; };
@@ -2456,6 +2475,12 @@
 		18FDFFC22024522000AEB4FA /* scan_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_3@2x.png"; sourceTree = "<group>"; };
 		18FDFFC42024522800AEB4FA /* scan_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_4@2x.png"; sourceTree = "<group>"; };
 		18FDFFC62024523100AEB4FA /* scan_net@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_net@2x.png"; sourceTree = "<group>"; };
+		18FE3B1F20DCE236005454BC /* Buy_ram_abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Buy_ram_abi_json_to_bin_request.h; sourceTree = "<group>"; };
+		18FE3B2020DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Buy_ram_abi_json_to_bin_request.m; sourceTree = "<group>"; };
+		18FE3B2220DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sell_ram_abi_json_to_bin_request.h; sourceTree = "<group>"; };
+		18FE3B2320DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sell_ram_abi_json_to_bin_request.m; sourceTree = "<group>"; };
+		18FE3B3820DD29FA005454BC /* Get_table_rows_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Get_table_rows_request.h; sourceTree = "<group>"; };
+		18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_table_rows_request.m; sourceTree = "<group>"; };
 		24FB2C9520DBF71800AC73A5 /* StorageManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageManageViewController.h; sourceTree = "<group>"; };
 		24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StorageManageViewController.m; sourceTree = "<group>"; };
 		24FB2C9820DBF78000AC73A5 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -2620,6 +2645,7 @@
 		18112F051FCD003E00BEA0D9 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				1862E7A620DC850E00F26629 /* UIScrollViewTouch */,
 				1838496220BE5AD700B89549 /* CWLateralSlide */,
 				185DD6B6206CA80400BCFFCF /* MJExtension */,
 				189E3EAA201C5B980022AF19 /* RSKImageCropper */,
@@ -4471,6 +4497,7 @@
 		1862E76C20DB9BA700F26629 /* TradeRam */ = {
 			isa = PBXGroup;
 			children = (
+				18FE3B1E20DCE214005454BC /* Networking */,
 				1862E76D20DB9BA700F26629 /* Controller */,
 				1862E76E20DB9BA700F26629 /* Model */,
 				1862E76F20DB9BA700F26629 /* View */,
@@ -4586,6 +4613,8 @@
 		1862E77C20DB9BA700F26629 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1862E7ED20DC93A800F26629 /* ModifyApproveViewController.h */,
+				1862E7EE20DC93A800F26629 /* ModifyApproveViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4600,6 +4629,9 @@
 		1862E77E20DB9BA700F26629 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1862E7F020DC93C500F26629 /* ModifyApproveHeaderView.h */,
+				1862E7F120DC93C500F26629 /* ModifyApproveHeaderView.m */,
+				1862E7F320DC93CE00F26629 /* ModifyApproveHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4609,6 +4641,15 @@
 			children = (
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		1862E7A620DC850E00F26629 /* UIScrollViewTouch */ = {
+			isa = PBXGroup;
+			children = (
+				1862E7A720DC850E00F26629 /* UIScrollView+Touch.m */,
+				1862E7A820DC850E00F26629 /* UIScrollView+Touch.h */,
+			);
+			path = UIScrollViewTouch;
 			sourceTree = "<group>";
 		};
 		1863297C1FE2558B00E57F05 /* Button(图片在上, 文字在下) */ = {
@@ -7092,6 +7133,19 @@
 			path = pocketEOS/Resource/QRCode;
 			sourceTree = SOURCE_ROOT;
 		};
+		18FE3B1E20DCE214005454BC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				18FE3B1F20DCE236005454BC /* Buy_ram_abi_json_to_bin_request.h */,
+				18FE3B2020DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m */,
+				18FE3B2220DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.h */,
+				18FE3B2320DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m */,
+				18FE3B3820DD29FA005454BC /* Get_table_rows_request.h */,
+				18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		24FB2C9120DBF6FC00AC73A5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -7120,6 +7174,9 @@
 		24FB2C9420DBF6FD00AC73A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1862E7A120DC7C9F00F26629 /* StorageManageHeaderView.h */,
+				1862E7A220DC7C9F00F26629 /* StorageManageHeaderView.m */,
+				1862E7A420DC7CAC00F26629 /* StorageManageHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7304,6 +7361,7 @@
 				187D9BF72080C02F0059BD2A /* wechat_moments@3x.png in Resources */,
 				1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */,
 				183FF6F820C10EF20058D010 /* paid_answer@3x.png in Resources */,
+				1862E7F420DC93CE00F26629 /* ModifyApproveHeaderView.xib in Resources */,
 				1825DC532005AA820057320C /* slider_white@2x.png in Resources */,
 				186857191FE10C02002A683A /* ExportPrivateKeyView.xib in Resources */,
 				18FDFFC12024521800AEB4FA /* scan_2@2x.png in Resources */,
@@ -7480,6 +7538,7 @@
 				185D18481FE7602E0021AD18 /* bankCard@2x.png in Resources */,
 				185BA3AB20BBA89500F63674 /* news_select_BB@2x.png in Resources */,
 				1828F91E2068C70300513CD1 /* news_list_cell_time@2x.png in Resources */,
+				1862E7A520DC7CAC00F26629 /* StorageManageHeaderView.xib in Resources */,
 				18AD2BC020D0C9C400536084 /* vote_account_avatar_white@2x.png in Resources */,
 				185BA39920BB9AED00F63674 /* versionUpdate_BB@2x.png in Resources */,
 				18FDFFC52024522800AEB4FA /* scan_4@2x.png in Resources */,
@@ -7984,6 +8043,7 @@
 				18563F5F1FD7A52800CF05FC /* ForwardRedPacketViewController.m in Sources */,
 				18C5C4881FCFDF4C002A65CB /* BaseService.m in Sources */,
 				18C622C21FD67E4A0043447F /* NavigationView.m in Sources */,
+				18FE3B3A20DD29FA005454BC /* Get_table_rows_request.m in Sources */,
 				18C622B11FD63B960043447F /* RedPacketHeaderView.m in Sources */,
 				185BBA9C1FF4883100DE2AC1 /* Wallet.m in Sources */,
 				182CDF4B201EFF4C002B87B6 /* MessageFeedbackService.m in Sources */,
@@ -8031,6 +8091,7 @@
 				188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */,
 				189E3EBD201C5B980022AF19 /* CGGeometry+RSKImageCropper.m in Sources */,
 				188F79AE20CA160000911034 /* BPVoteFooterView.m in Sources */,
+				1862E7F220DC93C500F26629 /* ModifyApproveHeaderView.m in Sources */,
 				182B8FA020AD758200C43AEC /* BaseTableViewCell.m in Sources */,
 				1853DE2A20B29F45003DC727 /* EOSMappingImportAccountHeaderView.m in Sources */,
 				18112F6A1FCD016000BEA0D9 /* IQUIView+Hierarchy.m in Sources */,
@@ -8040,6 +8101,7 @@
 				18423A0A1FFF583F006AB986 /* UIImage+ImageSize.m in Sources */,
 				182B8F8F20AD3A8800C43AEC /* LEETheme.m in Sources */,
 				188F7A1020CA5B0400911034 /* LanguageSettingService.m in Sources */,
+				1862E7A920DC850E00F26629 /* UIScrollView+Touch.m in Sources */,
 				188F79F520CA222000911034 /* BPAgentVoteViewController.m in Sources */,
 				1872685D1FDE31BA00C898D1 /* TransactionRecordsHeaderView.m in Sources */,
 				18112F691FCD016000BEA0D9 /* IQUITextFieldView+Additions.m in Sources */,
@@ -8157,6 +8219,7 @@
 				18A2F46B1FF0A20A00B6CE43 /* FMDatabaseQueue.m in Sources */,
 				1843CB16207C55A400EDC158 /* DAConfig.m in Sources */,
 				18DBD270204242DE001E2DDF /* WalletQRCodeView.m in Sources */,
+				18FE3B2420DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m in Sources */,
 				1861BA6F1FFCC7E900404058 /* IndexTipView.m in Sources */,
 				1808FCDD202B028D00625C37 /* TransactionsResult.m in Sources */,
 				18CDFB0620299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m in Sources */,
@@ -8177,6 +8240,7 @@
 				18372D312063371B004D19D0 /* TransactionResult.m in Sources */,
 				182CDF52201EFFB4002B87B6 /* FeedbackHeaderView.m in Sources */,
 				185DD6D4206CA80400BCFFCF /* MJPropertyKey.m in Sources */,
+				1862E7EF20DC93A800F26629 /* ModifyApproveViewController.m in Sources */,
 				18CDFAF92029880000D21DF4 /* GetAccountRequest.m in Sources */,
 				181EC31220C4CC08001994D3 /* ApplicationHeaderView.m in Sources */,
 				18EE05241FDF70E600134E5C /* PocketManagementViewController.m in Sources */,
@@ -8189,6 +8253,7 @@
 				18E72DFF1FCC0C8800D09CA3 /* main.m in Sources */,
 				1886079F1FCC012F00B00EE7 /* UIColor+AppConfigColor.m in Sources */,
 				18E72E211FCC116200D09CA3 /* NewsMainViewController.m in Sources */,
+				18FE3B2120DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m in Sources */,
 				1832CC3E200718F400C055B6 /* AddOptionTableViewCell.m in Sources */,
 				18466DA62010A049002E675A /* PYSearchConst.m in Sources */,
 				18423A0D1FFF583F006AB986 /* SGQRCodeGenerateManager.m in Sources */,
@@ -8221,6 +8286,7 @@
 				1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */,
 				18A2F46C1FF0A20A00B6CE43 /* FMResultSet.m in Sources */,
 				18DBBB2D206525F10050EE20 /* PGPickerColumnView.m in Sources */,
+				1862E7A320DC7C9F00F26629 /* StorageManageHeaderView.m in Sources */,
 				24FB2CB220DBF9CE00AC73A5 /* BandwidthManageCellModel.m in Sources */,
 				186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */,
 				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,

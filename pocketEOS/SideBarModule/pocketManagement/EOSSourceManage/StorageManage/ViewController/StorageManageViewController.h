@@ -7,7 +7,16 @@
 //
 
 #import "BaseViewController.h"
+#import "EOSResourceResult.h"
+#import "EOSResource.h"
+#import "EOSResourceCellModel.h"
+#import "AccountResult.h"
 
 @interface StorageManageViewController : BaseViewController
+
+@property(nonatomic , strong) EOSResourceResult *eosResourceResult;
+@property (nonatomic , retain) UINavigationController *navigationController;
+@property(nonatomic , copy) NSString *currentAccountName;
+@property(nonatomic , strong) AccountResult *accountResult;
 
 @end

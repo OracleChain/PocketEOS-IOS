@@ -20,7 +20,7 @@
              @"net_available" : @"net_limit.available",
              @"net_max" : @"net_limit.max",
              @"net_weight" : @"total_resources.net_weight",
-             
+             @"ram_max" : @"total_resources.ram_bytes",
              };
 }
 

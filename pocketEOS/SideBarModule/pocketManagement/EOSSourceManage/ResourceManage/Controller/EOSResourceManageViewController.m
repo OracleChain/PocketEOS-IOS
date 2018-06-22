@@ -13,6 +13,8 @@
 #import "BandwidthManageViewController.h"
 #import "StorageManageViewController.h"
 #import "PageSegmentView.h"
+#import "GetAccountAssetRequest.h"
+#import "AccountResult.h"
 
 
 @interface EOSResourceManageViewController ()<PageSegmentViewDelegate>
@@ -20,6 +22,8 @@
 @property(nonatomic , strong) EOSResourceService *mainService;
 @property (nonatomic, strong) NSMutableArray *allVC;
 @property (nonatomic, strong) PageSegmentView *segmentView;
+@property(nonatomic, strong) GetAccountAssetRequest *getAccountAssetRequest;
+@property(nonatomic , strong) AccountResult *currentAccountResult;
 
 @end
 
@@ -56,14 +60,28 @@
     }
     return _allVC;
 }
+
+- (GetAccountAssetRequest *)getAccountAssetRequest{
+    if (!_getAccountAssetRequest) {
+        _getAccountAssetRequest = [[GetAccountAssetRequest alloc] init];
+    }
+    return _getAccountAssetRequest;
+}
+
+// 隐藏自带的导航栏
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //隐藏默认的navigationBar
+    [self.navigationController.navigationBar setHidden: YES];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
-   
-//    self.view.lee_theme
-//    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-//    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    
     [self buildDataSource];
+    [self getAccountAssest];
 }
 
 - (void)buildDataSource{
@@ -72,24 +90,20 @@
     [self.mainService get_account:^(id service, BOOL isSuccess) {
         if (isSuccess) {
             if (weakSelf.mainService.dataSourceArray.count >= 2) {
-                EOSResourceCellModel *cpu_model = weakSelf.mainService.dataSourceArray[0];
-                EOSResourceCellModel *net_model = weakSelf.mainService.dataSourceArray[1];
-                NSArray *cpuArr = [cpu_model.weight componentsSeparatedByString:@" "];
-                NSArray *netArr = [net_model.weight componentsSeparatedByString:@" "];
-                if (cpuArr.count>0 && netArr.count > 0) {
-                    NSString *cpuStr = cpuArr[0];
-                    NSString *netStr = netArr[0];
-//                    weakSelf.headerView.eosAmountLabel.text = [NSString stringWithFormat:@"%.4f", cpuStr.doubleValue + netStr.doubleValue];
-                    
-                }
                 BandwidthManageViewController *vc1 = [[BandwidthManageViewController alloc]init];
                 vc1.dataSourceArray = weakSelf.mainService.dataSourceArray;
-                [_allVC addObject:vc1];
                 vc1.title = @"带宽管理";
+                vc1.navigationController = self.navigationController;
+                vc1.eosResourceResult = weakSelf.mainService.eosResourceResult;
+                [vc1.navigationController.navigationBar setHidden: YES];
+                [_allVC addObject:vc1];
                 
                 StorageManageViewController *vc2 = [[StorageManageViewController alloc]init];
-                [_allVC addObject:vc2];
                 vc2.title = @"存储管理";
+                vc2.navigationController = self.navigationController;
+                [vc2.navigationController.navigationBar setHidden: YES];
+                vc2.eosResourceResult = weakSelf.mainService.eosResourceResult;
+                [_allVC addObject:vc2];
                 _allVC = [NSMutableArray arrayWithObjects:vc1 , vc2, nil];
                 weakSelf.segmentView.delegate = self;
                 // 可自定义背景色和tab button的文字颜色等
@@ -104,11 +118,27 @@
     }];
 }
 
+- (void)getAccountAssest{
+    WS(weakSelf);
+    self.getAccountAssetRequest.name = self.currentAccountName;
+    [self.getAccountAssetRequest postDataSuccess:^(id DAO, id data) {
+        
+        if ([data isKindOfClass:[NSDictionary class]]) {
+            AccountResult *result = [AccountResult mj_objectWithKeyValues:data];
+            weakSelf.currentAccountResult = result;
+        }
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
 #pragma mark - DBPagerTabView Delegate
 
 - (NSUInteger)numberOfPagers:(PageSegmentView *)view {
     return [_allVC count];
 }
+
 - (UIViewController *)pagerViewOfPagers:(PageSegmentView *)view indexOfPagers:(NSUInteger)number {
     return _allVC[number];
 }
@@ -117,8 +147,8 @@
     NSLog(@"页面 %lu",(unsigned long)number);
 }
 
-
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

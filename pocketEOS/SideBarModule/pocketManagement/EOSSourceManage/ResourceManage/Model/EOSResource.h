@@ -10,6 +10,11 @@
 
 @interface EOSResource : NSObject
 
+/**
+ account_name
+ */
+@property(nonatomic , copy) NSString *account_name;
+
 
 /**
  cpu当前占用
@@ -54,6 +59,18 @@
  net配额抵押
  */
 @property(nonatomic , copy) NSString *net_weight;
+
+
+/**
+ ram总配额
+ */
+@property(nonatomic , copy) NSString *ram_max;
+
+/**
+ ram使用情况
+ */
+@property(nonatomic , copy) NSString *ram_usage;
+
 
 
 @end

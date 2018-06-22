@@ -7,9 +7,6 @@
 //
 
 #import "EOSResourceService.h"
-#import "EOSResourceResult.h"
-#import "EOSResource.h"
-#import "EOSResourceCellModel.h"
 
 
 @implementation EOSResourceService
@@ -20,6 +17,15 @@
     }
     return _getAccountRequest;
 }
+//
+//- (EOSResourceResult *)eosResourceResult{
+//    if (!_eosResourceResult) {
+//        _eosResourceResult = [[EOSResourceResult alloc] init];
+//    }
+//    return _eosResourceResult;
+//}
+
+
 /**
  账号资产详情
  */
@@ -29,29 +35,29 @@
     [self.getAccountRequest postDataSuccess:^(id DAO, id data) {
         if ([data isKindOfClass:[NSDictionary class]]) {
             
-            EOSResourceResult *result = [EOSResourceResult mj_objectWithKeyValues:data];
+            weakSelf.eosResourceResult = [EOSResourceResult mj_objectWithKeyValues:data];
             
-            if (![result.code isEqualToNumber:@0]) {
-                [TOASTVIEW showWithText: VALIDATE_STRING(result.message)];
+            if (![weakSelf.eosResourceResult.code isEqualToNumber:@0]) {
+                [TOASTVIEW showWithText: VALIDATE_STRING(weakSelf.eosResourceResult.message)];
                 return ;
             }
             
             EOSResourceCellModel *cpu_model = [[EOSResourceCellModel alloc] init];
             cpu_model.title = NSLocalizedString(@"CPU带宽", nil);
-            cpu_model.used = result.data.cpu_used;
-            cpu_model.available = result.data.cpu_available;
-            cpu_model.max = result.data.cpu_max;
-            cpu_model.weight = result.data.cpu_weight;
+            cpu_model.used = weakSelf.eosResourceResult.data.cpu_used;
+            cpu_model.available = weakSelf.eosResourceResult.data.cpu_available;
+            cpu_model.max = weakSelf.eosResourceResult.data.cpu_max;
+            cpu_model.weight = weakSelf.eosResourceResult.data.cpu_weight;
             
             EOSResourceCellModel *net_model = [[EOSResourceCellModel alloc] init];
             net_model.title = NSLocalizedString(@"net带宽", nil);
-            net_model.used = result.data.net_used;
-            net_model.available = result.data.net_available;
-            net_model.max = result.data.net_max;
-            net_model.weight = result.data.net_weight;
+            net_model.used = weakSelf.eosResourceResult.data.net_used;
+            net_model.available = weakSelf.eosResourceResult.data.net_available;
+            net_model.max = weakSelf.eosResourceResult.data.net_max;
+            net_model.weight = weakSelf.eosResourceResult.data.net_weight;
             
             weakSelf.dataSourceArray = [NSMutableArray arrayWithObjects:cpu_model, net_model, nil];
-            complete(result, YES);
+            complete(weakSelf.eosResourceResult, YES);
         }
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);

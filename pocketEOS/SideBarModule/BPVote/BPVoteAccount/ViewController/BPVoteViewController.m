@@ -151,7 +151,7 @@
     self.mainService.getMyVoteInfoRequest.accountNameStr = self.currentAccountName;
     [self.mainService buildDataSource:^(MyVoteInfoResult *result, BOOL isSuccess) {
         [weakSelf.mainTableView.mj_header endRefreshing];
-        [weakSelf.mainTableView.mj_footer resetNoMoreData ];
+        [weakSelf.mainTableView.mj_footer resetNoMoreData];
         if (isSuccess) {
             weakSelf.myVoteInfoResult = result;
             [weakSelf.mainTableView reloadData];

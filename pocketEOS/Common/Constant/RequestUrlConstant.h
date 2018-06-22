@@ -11,7 +11,7 @@
 
 // release 环境
 // 请求路径: api_oc_personal || api_oc_blockchain || REQUEST_CONTRACT_BASEURL
-//#define REQUEST_PERSONAL_BASEURL @"https://api.pocketeos.top/api_oc_personal/v1.0.0"
+#define REQUEST_PERSONAL_BASEURL @"https://api.pocketeos.top/api_oc_personal/v1.0.0"
 #define REQUEST_CANDYSYSTEM_BASEURL @"https://api.pocketeos.top/api_oc_pe_candy_system"
 #define REQUEST_CONTRACT_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_BP_BASEURL @"https://api.pocketeos.top"
@@ -34,6 +34,6 @@
 
 // 测试环境/lian
 //#define REQUEST_BP_BASEURL @"http://192.168.3.205:8080"
-#define REQUEST_PERSONAL_BASEURL @"http://192.168.3.185:9000/api_oc_personal/v1.0.0"
+//#define REQUEST_PERSONAL_BASEURL @"http://192.168.3.185:9000/api_oc_personal/v1.0.0"
 
 #endif /* RequestUrlConstant_h */

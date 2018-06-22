@@ -80,7 +80,7 @@
     
     [self configTimeOut:self.networkingManager];
     // 单向验证
-//    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
+    [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     // 设置自动管理Cookies
     self.networkingManager.requestSerializer.HTTPShouldHandleCookies = YES;
     // 如果已有Cookie, 则把你的cookie符上
@@ -209,7 +209,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:recieveCookie forKey:@"Set-Cookie"];
             }
             
-            
+            NSLog(@"responseObject:%@", responseObject);
             success(weakSelf.networkingManager, responseObject);
         }
         else{
@@ -322,7 +322,7 @@
     [networkingManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", nil]];
     
     
-//    [networkingManager setSecurityPolicy:[self customSecurityPolicy]];
+    [networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     /**
      *  Start a Post request data interface
      */
@@ -402,7 +402,7 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_BASEURL]];
     [self configTimeOut:manager];
 #pragma mark -- 单向验证
-//    [manager setSecurityPolicy:[self customSecurityPolicy]];
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
 //    //客服端利用p12验证服务器 , 双向验证
 //    //    [self checkCredential:manager];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];

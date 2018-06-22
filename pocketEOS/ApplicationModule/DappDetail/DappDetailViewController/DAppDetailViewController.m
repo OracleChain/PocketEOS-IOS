@@ -186,11 +186,13 @@
     if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
         self.transferAbi_json_to_bin_request.code = @"eosio.token";
         self.mainService.code = @"eosio.token";
-        
+
     }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
         self.transferAbi_json_to_bin_request.code = @"octoneos";//octoneos
         self.mainService.code = @"octoneos";
     }
+  
+    
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
     self.transferAbi_json_to_bin_request.action = @"transfer";
     self.transferAbi_json_to_bin_request.from = self.dappTransferModel.from;
@@ -260,7 +262,7 @@
     } else{
         [self.selectAccountView removeFromSuperview];
 //       xgame http://47.74.145.111 self.model.url
-        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
+        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://www.cheerfifa.com")]];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         [self.view addSubview:self.webView];

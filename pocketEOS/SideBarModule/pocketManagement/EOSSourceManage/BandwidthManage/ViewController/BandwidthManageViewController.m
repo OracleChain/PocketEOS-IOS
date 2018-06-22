@@ -12,9 +12,11 @@
 #import "EOSResource.h"
 #import "BandwidthManageCellModel.h"
 #import "EOSResourceService.h"
+#import "ModifyApproveViewController.h"
 
 @interface BandwidthManageViewController ()
 @property(nonatomic , strong) BandwidthManageHeaderView *headerView;
+
 @end
 
 @implementation BandwidthManageViewController
@@ -71,6 +73,18 @@
     BandwidthManageCellModel *model = self.dataSourceArray[indexPath.section];
     cell.model = model;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:indexPath];
+    ModifyApproveViewController *vc = [[ModifyApproveViewController alloc] init];
+    if (indexPath.row == 0) {
+        vc.pageType = @"cpu_bandwidth";
+    }else if (indexPath.row == 1){
+        vc.pageType = @"net_bandwidth";
+    }
+    vc.eosResourceResult = self.eosResourceResult;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

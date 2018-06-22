@@ -59,6 +59,7 @@
 - (void)createEOSAccount:(CompleteBlock)complete{
     [self.createEOSAccountRequest postDataSuccess:^(id DAO, id data) {
         if ([data isKindOfClass:[NSDictionary class]]) {
+            
             complete(data , YES);
         }
     } failure:^(id DAO, NSError *error) {
