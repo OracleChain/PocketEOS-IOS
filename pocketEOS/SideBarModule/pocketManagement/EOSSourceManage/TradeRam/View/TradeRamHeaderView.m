@@ -9,13 +9,19 @@
 #import "TradeRamHeaderView.h"
 
 @interface TradeRamHeaderView()
+@property (weak, nonatomic) IBOutlet BaseView *baseTopView;
 
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
-@property (weak, nonatomic) IBOutlet BaseLabel1 *predictLabel;
 
 @end
 
 @implementation TradeRamHeaderView
+
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    self.lee_theme
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
+    self.baseTopView.lee_theme.LeeConfigBackgroundColor(@"baseTopView_background_color");
+}
 
 - (IBAction)modifyRamSliderSlide:(UISlider *)sender {
     
@@ -28,15 +34,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(confirmTradeRamBtnDidClick)]) {
         [self.delegate confirmTradeRamBtnDidClick];
     }
-}
-
--(void)setEosResourceResult:(EOSResourceResult *)eosResourceResult{
-    
-    self.predictLabel.text = @"预计配额：1000.00 ms";
-}
-
--(void)setAccountResult:(AccountResult *)accountResult{
-    self.amountLabel.text = [NSString stringWithFormat:@"%@ EOS", VALIDATE_STRING([NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:accountResult.data.eos_balance.doubleValue ]])];
 }
 
 @end

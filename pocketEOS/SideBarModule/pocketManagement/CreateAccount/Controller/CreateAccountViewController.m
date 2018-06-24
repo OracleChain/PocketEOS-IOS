@@ -115,44 +115,8 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
-    
-    if ([self.headerView.accountNameTF.text isEqualToString:@"oraclechain4"]) {
-        // 供苹果审核专用特殊处理
-        // 创建账号成功
-        [TOASTVIEW showWithText:NSLocalizedString(@"创建账号成功!", nil)];
-        // 本地数据库添加账号
-        AccountInfo *model = [[AccountInfo alloc] init];
-        model.account_name = @"oraclechain4";
-        model.account_img = ACCOUNT_DEFALUT_AVATAR_IMG_URL_STR;
-        model.account_active_public_key = @"EOS67pa5ex64cECp2esLp6km78QfZDyEY8mAPieBHkD7JvfxiFzTG";
-        model.account_owner_public_key = @"EOS67pa5ex64cECp2esLp6km78QfZDyEY8mAPieBHkD7JvfxiFzTG";
-        model.account_active_private_key = [AESCrypt encrypt:@"5JLHReCKAn88SdEDtDt8DzMweDdD7eiaoc6w72jWFuVR4piNh5y" password:self.loginPasswordView.inputPasswordTF.text];
-        model.account_owner_private_key = model.account_active_private_key;
-        model.is_privacy_policy = @"0";
-        NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
-        if (accountsArr.count > 0) {
-            model.is_main_account = @"0";
-        }else{
-            model.is_main_account = @"1";
-        }
-        [[AccountsTableManager accountTable] addRecord: model];
-
-        self.createAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
-        self.createAccountService.backupEosAccountRequest.eosAccountName = model.account_name;
-        [self.createAccountService backupAccount:^(id service, BOOL isSuccess) {
-            NSNumber *code = service[@"code"];
-            if ([code isEqualToNumber:@0]) {
-                NSLog(NSLocalizedString(@"给用户添加新的eos账号到服务器成功!", nil));
-            }
-        }];
-        BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
-        vc.accountName =  @"oraclechain4";
-        [self.navigationController pushViewController:vc animated:YES];
-        [self.loginPasswordView removeFromSuperview];
-    }else{
-        [SVProgressHUD show];
-        [self createkeys];
-    }
+    [SVProgressHUD show];
+    [self createkeys];
 }
 
 -(void)leftBtnDidClick{

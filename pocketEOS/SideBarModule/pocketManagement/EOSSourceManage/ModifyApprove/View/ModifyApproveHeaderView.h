@@ -6,22 +6,20 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#import "BaseView.h"
-#import "EOSResourceResult.h"
-#import "EOSResource.h"
+#import "BaseHeaderView.h"
 
 @protocol ModifyApproveHeaderViewDelegate<NSObject>
 - (void)confirmModifyBtnDidClick:(UIButton *)sender;
-
+- (void)modifyApproveSliderDidSlide:(UISlider *)sender;
 @end
 
 
-@interface ModifyApproveHeaderView : BaseView
+@interface ModifyApproveHeaderView : BaseHeaderView
 
-
-@property(nonatomic , strong) EOSResourceResult *model;
-
-
+@property (weak, nonatomic) IBOutlet UISlider *modifyApproveSlider;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet BaseLabel1 *predictLabel;
+@property (weak, nonatomic) IBOutlet BaseConfirmButton *confirmBtn;
 @property(nonatomic, weak) id<ModifyApproveHeaderViewDelegate> delegate;
 
 @end

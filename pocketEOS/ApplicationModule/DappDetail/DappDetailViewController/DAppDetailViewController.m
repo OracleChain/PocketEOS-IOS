@@ -28,6 +28,9 @@
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
+@property (nonatomic , strong) UIBarButtonItem *backItem;
+@property (nonatomic , strong) UIBarButtonItem *closeItem;
+
 @end
 
 @implementation DAppDetailViewController
@@ -90,6 +93,23 @@
     return _transferAbi_json_to_bin_request;
 }
 
+-(UIBarButtonItem *)backItem{
+    if (!_backItem) {
+        _backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:(UIBarButtonItemStylePlain) target:self action:@selector(backNative)];
+    }
+    return _backItem;
+}
+
+-(UIBarButtonItem *)closeItem{
+    if (!_closeItem) {
+        _closeItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:(UIBarButtonItemStylePlain) target:self action:@selector(closeNative)];
+    }
+    return _closeItem;
+}
+
+
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -117,6 +137,7 @@
     self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     self.title = self.model.applyName;
     [self.view addSubview:self.selectAccountView];
+    self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
@@ -191,8 +212,9 @@
         self.transferAbi_json_to_bin_request.code = @"octoneos";//octoneos
         self.mainService.code = @"octoneos";
     }
-  
-    
+//    self.transferAbi_json_to_bin_request.code = @"hellowordgo";
+//    self.mainService.code = @"hellowordgo";
+
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
     self.transferAbi_json_to_bin_request.action = @"transfer";
     self.transferAbi_json_to_bin_request.from = self.dappTransferModel.from;
@@ -262,7 +284,8 @@
     } else{
         [self.selectAccountView removeFromSuperview];
 //       xgame http://47.74.145.111 self.model.url
-        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://www.cheerfifa.com")]];
+//        http://www.cheerfifa.com
+        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://47.74.145.111")]];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         [self.view addSubview:self.webView];
@@ -272,4 +295,20 @@
 -(void)backgroundViewDidClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)backNative {
+    if([self.webView canGoBack]) {
+        //如果有则返回
+        [self.webView goBack];
+        //同时设置返回按钮和关闭按钮为导航栏左边的按钮
+        self.navigationItem.leftBarButtonItems = @[self.backItem, self.closeItem];
+    }else{
+        [self closeNative];
+    }
+}
+
+- (void)closeNative {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

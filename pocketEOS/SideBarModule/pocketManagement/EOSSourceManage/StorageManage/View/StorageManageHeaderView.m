@@ -9,11 +9,11 @@
 #import "StorageManageHeaderView.h"
 
 @interface StorageManageHeaderView()
+@property (weak, nonatomic) IBOutlet BaseView *baseTopView;
 
 @end
 
 @implementation StorageManageHeaderView
-
 
 - (IBAction)buyRamBtn:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(buyRamBtnDidClick:)]) {
@@ -25,9 +25,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(sellRamBtnDidClick:)]) {
         [self.delegate sellRamBtnDidClick:sender];
     }
-}
-- (IBAction)test:(UIButton *)sender {
-    NSLog(@"fuck");
 }
 
 @end

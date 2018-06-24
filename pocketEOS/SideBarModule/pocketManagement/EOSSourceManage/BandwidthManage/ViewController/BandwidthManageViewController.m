@@ -14,9 +14,13 @@
 #import "EOSResourceService.h"
 #import "ModifyApproveViewController.h"
 
+
+NSString * const TradeBandwidthDidSuccessNotification = @"TradeBandwidthDidSuccessNotification";
+
 @interface BandwidthManageViewController ()
 @property(nonatomic , strong) BandwidthManageHeaderView *headerView;
-
+@property(nonatomic , strong) EOSResourceService *eosResourceService;
+@property(nonatomic , strong) EOSResourceResult *eosResourceResult;
 @end
 
 @implementation BandwidthManageViewController
@@ -30,12 +34,28 @@
     return _headerView;
 }
 
-- (NSMutableArray *)dataSourceArray{
-    if (!_dataSourceArray) {
-        _dataSourceArray = [[NSMutableArray alloc] init];
+-(AccountResult *)accountResult{
+    if (!_accountResult) {
+        _accountResult = [[AccountResult alloc] init];
     }
-    return _dataSourceArray;
+    return _accountResult;
 }
+- (EOSResourceService *)eosResourceService{
+    if (!_eosResourceService) {
+        _eosResourceService = [[EOSResourceService alloc] init];
+    }
+    return _eosResourceService;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self buildDataSource];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,20 +69,26 @@
     .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
     [self.mainTableView registerNib:[UINib nibWithNibName:@"BandwidthManageTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_REUSEUDENTIFIER1];
     [self buildDataSource];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tradeBandwidthDidFinish) name:TradeBandwidthDidSuccessNotification object:nil];
 }
 
+
 - (void)buildDataSource{
-    if (self.dataSourceArray.count >= 2) {
-        BandwidthManageCellModel *cpu_model = self.dataSourceArray[0];
-        BandwidthManageCellModel *net_model = self.dataSourceArray[1];
-        NSArray *cpuArr = [cpu_model.weight componentsSeparatedByString:@" "];
-        NSArray *netArr = [net_model.weight componentsSeparatedByString:@" "];
-        if (cpuArr.count>0 && netArr.count > 0) {
-            NSString *cpuStr = cpuArr[0];
-            NSString *netStr = netArr[0];
-            self.headerView.eosAmountLabel.text = [NSString stringWithFormat:@"%.4f", cpuStr.doubleValue + netStr.doubleValue];
+    WS(weakSelf);
+    self.eosResourceService.getAccountRequest.name = self.accountResult.data.account_name;
+    [self.eosResourceService get_account:^(EOSResourceResult *result, BOOL isSuccess) {
+        if (isSuccess) {
+            [weakSelf.mainTableView reloadData];
+            weakSelf.eosResourceResult = result;
+            NSArray *cpuArr = [result.data.cpu_weight componentsSeparatedByString:@" "];
+            NSArray *netArr = [result.data.net_weight componentsSeparatedByString:@" "];
+            if (cpuArr.count>0 && netArr.count > 0) {
+                NSString *cpuStr = cpuArr[0];
+                NSString *netStr = netArr[0];
+                weakSelf.headerView.eosAmountLabel.text = [NSString stringWithFormat:@"%.4f", cpuStr.doubleValue + netStr.doubleValue];
+            }
         }
-    }
+    }];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,7 +96,7 @@
     if (!cell) {
         cell =  [[NSBundle mainBundle]loadNibNamed:@"BandwidthManageTableViewCell" owner:self options:nil].firstObject;
     }
-    BandwidthManageCellModel *model = self.dataSourceArray[indexPath.section];
+    BandwidthManageCellModel *model = self.eosResourceService.dataSourceArray[indexPath.section];
     cell.model = model;
     return cell;
 }
@@ -78,11 +104,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:indexPath];
     ModifyApproveViewController *vc = [[ModifyApproveViewController alloc] init];
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         vc.pageType = @"cpu_bandwidth";
-    }else if (indexPath.row == 1){
+    }else if (indexPath.section == 1){
         vc.pageType = @"net_bandwidth";
     }
+    vc.accountResult = self.accountResult;
     vc.eosResourceResult = self.eosResourceResult;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -92,7 +119,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataSourceArray.count;
+    return self.eosResourceService.dataSourceArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -108,5 +135,11 @@
     return 10;
 }
 
+- (void)tradeBandwidthDidFinish{
+    [self buildDataSource];
+}
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

@@ -10,7 +10,7 @@
 #import "BPVoteAmountHeaderView.h"
 #import "BPCandidateModel.h"
 #import "RegisterAccountToVoteSystem_Abi_json_to_bin_request.h"
-#import "ApproveToVoteSystem_Abi_json_to_bin_request.h"
+#import "Approve_Abi_json_to_bin_request.h"
 #import "VoteProducers_Abi_json_to_bin_request.h"
 #import "TransferService.h"
 #import "GetNowVoteWeightRequest.h"
@@ -25,7 +25,7 @@
 @property(nonatomic , strong) BPVoteAmountHeaderView *headerView;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) RegisterAccountToVoteSystem_Abi_json_to_bin_request *registerAccountToVoteSystem_Abi_json_to_bin_request;
-@property(nonatomic , strong) ApproveToVoteSystem_Abi_json_to_bin_request *approveToVoteSystem_Abi_json_to_bin_request;
+@property(nonatomic , strong) Approve_Abi_json_to_bin_request *approve_Abi_json_to_bin_request;
 @property(nonatomic , strong) VoteProducers_Abi_json_to_bin_request *voteProducers_Abi_json_to_bin_request;
 @property(nonatomic , strong) TransferService *transferService;
 @property(nonatomic , strong) GetNowVoteWeightRequest *getNowVoteWeightRequest;
@@ -77,11 +77,11 @@
     return _registerAccountToVoteSystem_Abi_json_to_bin_request;
 }
 
-- (ApproveToVoteSystem_Abi_json_to_bin_request *)approveToVoteSystem_Abi_json_to_bin_request{
-    if (!_approveToVoteSystem_Abi_json_to_bin_request) {
-        _approveToVoteSystem_Abi_json_to_bin_request = [[ApproveToVoteSystem_Abi_json_to_bin_request alloc] init];
+- (Approve_Abi_json_to_bin_request *)approve_Abi_json_to_bin_request{
+    if (!_approve_Abi_json_to_bin_request) {
+        _approve_Abi_json_to_bin_request = [[Approve_Abi_json_to_bin_request alloc] init];
     }
-    return _approveToVoteSystem_Abi_json_to_bin_request;
+    return _approve_Abi_json_to_bin_request;
 }
 - (VoteProducers_Abi_json_to_bin_request *)voteProducers_Abi_json_to_bin_request{
     if (!_voteProducers_Abi_json_to_bin_request) {
@@ -245,17 +245,17 @@
 
 - (void)approveToVoteSystem{
     //    2.押入SYS用于投票
-    self.approveToVoteSystem_Abi_json_to_bin_request.action = @"delegatebw";
-    self.approveToVoteSystem_Abi_json_to_bin_request.code = @"eosio";
-    self.approveToVoteSystem_Abi_json_to_bin_request.from = self.model.account_name;
-    self.approveToVoteSystem_Abi_json_to_bin_request.receiver = self.model.account_name;
+    self.approve_Abi_json_to_bin_request.action = @"delegatebw";
+    self.approve_Abi_json_to_bin_request.code = @"eosio";
+    self.approve_Abi_json_to_bin_request.from = self.model.account_name;
+    self.approve_Abi_json_to_bin_request.receiver = self.model.account_name;
 #pragma mark -- [@"data"]
-    self.approveToVoteSystem_Abi_json_to_bin_request.stake_net_quantity = [NSString stringWithFormat:@"%.4f EOS",  self.headerView.amountTF.text.doubleValue/2];
-    self.approveToVoteSystem_Abi_json_to_bin_request.stake_cpu_quantity = [NSString stringWithFormat:@"%.4f EOS",  self.headerView.amountTF.text.doubleValue/2];
-    self.approveToVoteSystem_Abi_json_to_bin_request.transfer = @"0";
+    self.approve_Abi_json_to_bin_request.stake_net_quantity = [NSString stringWithFormat:@"%.4f EOS",  self.headerView.amountTF.text.doubleValue/2];
+    self.approve_Abi_json_to_bin_request.stake_cpu_quantity = [NSString stringWithFormat:@"%.4f EOS",  self.headerView.amountTF.text.doubleValue/2];
+    self.approve_Abi_json_to_bin_request.transfer = @"0";
     
     WS(weakSelf);
-    [self.approveToVoteSystem_Abi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
+    [self.approve_Abi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
 #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.model.account_name];

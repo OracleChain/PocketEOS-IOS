@@ -1,6 +1,8 @@
 {
     "color": {
             "baseView_background_color" : "#FFFFFF",
+            "baseTopView_background_color" : "#FFFFFF",
+            "baseHeaderView_background_color" : "#F5F5F5",
         "confirmButtonNormalStateBackgroundColor": "#4D7BFE",
             "common_font_color_1" : "#2A2A2A",
             "common_font_color_2" : "#4D7BFE",

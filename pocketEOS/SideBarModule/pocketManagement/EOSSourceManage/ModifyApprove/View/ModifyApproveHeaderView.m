@@ -9,9 +9,7 @@
 #import "ModifyApproveHeaderView.h"
 
 @interface ModifyApproveHeaderView()
-@property (weak, nonatomic) IBOutlet UISlider *modifyApproveSlider;
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
-@property (weak, nonatomic) IBOutlet BaseLabel1 *predictLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
@@ -20,7 +18,9 @@
 @implementation ModifyApproveHeaderView
 
 - (IBAction)modifyApproveSliderSlide:(UISlider *)sender {
-    NSLog(@"%f", sender.value);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(modifyApproveSliderDidSlide:)]) {
+        [self.delegate modifyApproveSliderDidSlide:sender];
+    }
 }
 
 - (IBAction)confirmBtnClick:(BaseConfirmButton *)sender {
@@ -29,11 +29,5 @@
     }
 }
 
--(void)setModel:(EOSResourceResult *)model{
-    
-    self.amountLabel.text = @"300.00 EOS";
-    self.predictLabel.text = @"预计配额：1000.00 ms";
-    self.tipLabel.text = @"当前可提取 299.00 EOS";
-}
 
 @end

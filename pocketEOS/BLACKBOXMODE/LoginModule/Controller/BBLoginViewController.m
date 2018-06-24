@@ -88,6 +88,7 @@
     if (!_chooseWalletBackgroundView) {
         _chooseWalletBackgroundView = [[UIView alloc] init];
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
+        
         CGFloat cellHeight = 50.5;
         
         _chooseWalletBackgroundView.frame = CGRectMake(0, HEADERVIEW_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-HEADERVIEW_HEIGHT);

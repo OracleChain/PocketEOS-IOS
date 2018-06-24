@@ -10,11 +10,14 @@
 #import "EOSResourceResult.h"
 #import "EOSResource.h"
 #import "EOSResourceCellModel.h"
+#import "AccountResult.h"
+#import "Account.h"
+
+
 
 @interface BandwidthManageViewController : BaseViewController
 
-@property (nonatomic , strong) NSMutableArray *dataSourceArray;
 @property (nonatomic , retain) UINavigationController *navigationController;
-@property(nonatomic , strong) EOSResourceResult *eosResourceResult;
+@property(nonatomic , strong) AccountResult *accountResult;
 
 @end

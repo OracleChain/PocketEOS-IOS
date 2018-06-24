@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="10" id="BI3-Tw-jOW"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNO-HR-DYK" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNO-HR-DYK" customClass="BaseTopView">
                     <rect key="frame" x="0.0" y="10" width="375" height="93"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存储配额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmX-oX-bOA" customClass="BaseLabel">
@@ -36,6 +36,7 @@
                         </label>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="V24-Xg-B69">
                             <rect key="frame" x="20" y="50" width="335" height="2"/>
+                            <color key="tintColor" red="0.30588235294117649" green="0.48627450980392156" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="RiQ-HH-gCY"/>
                             </constraints>
@@ -81,7 +82,7 @@
                                 <constraint firstAttribute="height" constant="0.5" id="hPo-Lu-PS5"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaE-EY-0Kx" userLabel="buyRamBaseView" customClass="BaseView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaE-EY-0Kx" userLabel="buyRamBaseView" customClass="BaseTopView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-Gm-kbl">
@@ -106,7 +107,7 @@
                             <color key="textColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40K-Dd-wDO" userLabel="sellRamBaseView" customClass="BaseView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40K-Dd-wDO" userLabel="sellRamBaseView" customClass="BaseTopView">
                             <rect key="frame" x="0.0" y="46.5" width="375" height="49.5"/>
                             <subviews>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="B61-Ta-pNm">
@@ -193,6 +194,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="baseTopView" destination="jNO-HR-DYK" id="kIl-eB-Gkb"/>
                 <outlet property="progressView" destination="V24-Xg-B69" id="Udd-Hx-6kN"/>
                 <outlet property="tipLabel" destination="J3g-b4-lyf" id="dBs-AY-0zR"/>
             </connections>

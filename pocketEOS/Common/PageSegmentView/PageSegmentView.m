@@ -105,13 +105,11 @@
     }
 
     //tabView
-    [self.tabView setBackgroundColor:self.tabBackgroundColor];
+    self.tabView.lee_theme.LeeConfigBackgroundColor(@"baseTopView_background_color");
+    
 
     //bottomLine
-    self.bottomLine.backgroundColor = [UIColor colorWithRed:240/255.0
-                                                      green:240/255.0
-                                                       blue:240/255.0
-                                                      alpha:1];
+    self.bottomLine.backgroundColor = HEXCOLOR(0x4E7CFD);
 
     _isBuildUI = YES;
 
@@ -449,10 +447,7 @@
 
 - (UIColor *)tabButtonTitleColorForSelected {
     if (!_tabButtonTitleColorForSelected) {
-        self.tabButtonTitleColorForSelected = [UIColor colorWithRed:61/255.0
-                                                              green:170/255.0
-                                                               blue:253/255.0
-                                                              alpha:1];
+        self.tabButtonTitleColorForSelected = HEXCOLOR(0x4E7CFD);
     }
     return _tabButtonTitleColorForSelected;
 }

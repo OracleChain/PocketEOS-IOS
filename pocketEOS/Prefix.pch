@@ -29,6 +29,8 @@
 #import "AppConstant.h"
 #import "BaseViewController.h"
 #import "BaseView.h"
+#import "BaseHeaderView.h"
+#import "BaseTopView.h"
 #import "BaseLabel.h"
 #import "BaseLabel1.h"
 #import "BaseButton.h"
@@ -83,6 +85,7 @@
 #import "LEETheme.h"
 #import "AESCrypt.h"
 #import "UIViewController+CWLateralSlide.h"
+#import "NSString+DecimalsCalculation.h"
 
 #import "DAConfig.h"
 #import "NSBundle+DAUtils.h"

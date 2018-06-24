@@ -220,11 +220,12 @@
 
     [self.headerView setTransferBtnDidClickBlock:^{
 //        if ([weakSelf.model.followType isEqualToNumber:@2]) {
-            TransferViewController *vc = [[TransferViewController alloc] init];
-            TransferModel *model = [[TransferModel alloc] init];
+        TransferViewController *vc = [[TransferViewController alloc] init];
+        TransferModel *model = [[TransferModel alloc] init];
         model.account_name = weakSelf.mainService.getAccountAssetRequest.name;
-            vc.transferModel = model;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+        model.coin = @"EOS";
+        vc.transferModel = model;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
 //        }
     }];
 }

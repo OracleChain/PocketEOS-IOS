@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="10" id="8RQ-VA-6hY"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-ct-0j2" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-ct-0j2" customClass="BaseTopView">
                     <rect key="frame" x="0.0" y="10" width="375" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已抵押(EOS)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDn-gk-13j" customClass="BaseLabel">

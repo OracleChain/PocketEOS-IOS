@@ -12,5 +12,5 @@
 @property(nonatomic, copy) NSString *code;
 @property(nonatomic, copy) NSString *action;
 @property(nonatomic, copy) NSString *account;
-@property(nonatomic, copy) NSString *bytes;
+@property(nonatomic, strong) NSNumber *bytes;
 @end

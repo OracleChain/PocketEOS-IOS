@@ -33,8 +33,8 @@
     if (!_dataSourceDictionary) {
         _dataSourceDictionary = @{
                                   @"topSection" : @[NSLocalizedString(@"消息反馈", nil)]  ,
-                                  @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil),NSLocalizedString(@"语言", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
-                                  };
+                                  @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
+                                  }; //NSLocalizedString(@"语言", nil),
     }
     return _dataSourceDictionary;
 }
@@ -155,16 +155,18 @@
             }
             [tableView reloadData];
             
-        }else if (indexPath.row == 1){
-            LanguageSettingViewController *vc = [[LanguageSettingViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }else if (indexPath.row == 2){
+        }
+//        else if (indexPath.row == 1){
+//            LanguageSettingViewController *vc = [[LanguageSettingViewController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//
+//        }
+        else if (indexPath.row == 1){
             RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
             vc.rtfFileName = @"PocketEOSPrivacyPolicy";
             [self.navigationController pushViewController:vc animated:YES];
             
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 2){
             RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
             vc.rtfFileName = @"AboutPocketEOS";
             [self.navigationController pushViewController:vc animated:YES];

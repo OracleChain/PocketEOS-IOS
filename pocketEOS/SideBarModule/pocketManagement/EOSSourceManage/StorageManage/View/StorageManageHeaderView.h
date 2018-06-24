@@ -6,7 +6,7 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#import "BaseView.h"
+#import "BaseHeaderView.h"
 
 @protocol StorageManageHeaderViewDelegate<NSObject>
 - (void)buyRamBtnDidClick:(UIButton *)sender;
@@ -16,7 +16,7 @@
 
 
 
-@interface StorageManageHeaderView : BaseView
+@interface StorageManageHeaderView : BaseHeaderView
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet BaseLabel1 *tipLabel;
 

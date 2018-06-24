@@ -6,9 +6,9 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#import "BaseView.h"
+#import "BaseTopView.h"
 
-@interface BandwidthManageHeaderView : BaseView
+@interface BandwidthManageHeaderView : BaseTopView
 
 @property (weak, nonatomic) IBOutlet BaseLabel *eosAmountLabel;
 @end

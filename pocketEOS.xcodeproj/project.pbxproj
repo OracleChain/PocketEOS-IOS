@@ -704,7 +704,7 @@
 		189832512091C6DD00377A36 /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898324F2091C6DD00377A36 /* NSData+Hash.m */; };
 		189CEC6A20CE414200F81AD8 /* BPCandidateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC6920CE414200F81AD8 /* BPCandidateResult.m */; };
 		189CEC7020CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC6F20CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.m */; };
-		189CEC7320CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC7220CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.m */; };
+		189CEC7320CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC7220CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m */; };
 		189CEC7620CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC7520CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m */; };
 		189CEC7920CF592300F81AD8 /* BPVoteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC7820CF592300F81AD8 /* BPVoteService.m */; };
 		189CEC7C20CF60CA00F81AD8 /* BPCandidateDetailResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CEC7B20CF60CA00F81AD8 /* BPCandidateDetailResult.m */; };
@@ -933,6 +933,12 @@
 		18FE3B2120DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B2020DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m */; };
 		18FE3B2420DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B2320DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m */; };
 		18FE3B3A20DD29FA005454BC /* Get_table_rows_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */; };
+		244769FC20DD493900B7283C /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 244769FB20DD493900B7283C /* PriceModel.m */; };
+		244769FF20DD494800B7283C /* PriceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 244769FE20DD494800B7283C /* PriceResult.m */; };
+		2473F11420DF1FAB00BE3D22 /* BaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2473F11320DF1FAB00BE3D22 /* BaseHeaderView.m */; };
+		2473F11720DF1FC400BE3D22 /* BaseTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2473F11620DF1FC400BE3D22 /* BaseTopView.m */; };
+		2473F12F20DF74E300BE3D22 /* NSString+DecimalsCalculation.h in Sources */ = {isa = PBXBuildFile; fileRef = 2473F12D20DF71F800BE3D22 /* NSString+DecimalsCalculation.h */; };
+		2473F13020DF74E300BE3D22 /* NSString+DecimalsCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2473F12E20DF71F800BE3D22 /* NSString+DecimalsCalculation.m */; };
 		24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */; };
 		24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB620DBFE7200AC73A5 /* BodyScrollView.m */; };
 		24FB2C9720DBF71800AC73A5 /* StorageManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */; };
@@ -2109,8 +2115,8 @@
 		189CEC6920CE414200F81AD8 /* BPCandidateResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPCandidateResult.m; sourceTree = "<group>"; };
 		189CEC6E20CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterAccountToVoteSystem_Abi_json_to_bin_request.h; sourceTree = "<group>"; };
 		189CEC6F20CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterAccountToVoteSystem_Abi_json_to_bin_request.m; sourceTree = "<group>"; };
-		189CEC7120CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApproveToVoteSystem_Abi_json_to_bin_request.h; sourceTree = "<group>"; };
-		189CEC7220CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApproveToVoteSystem_Abi_json_to_bin_request.m; sourceTree = "<group>"; };
+		189CEC7120CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Approve_Abi_json_to_bin_request.h; sourceTree = "<group>"; };
+		189CEC7220CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Approve_Abi_json_to_bin_request.m; sourceTree = "<group>"; };
 		189CEC7420CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoteProducers_Abi_json_to_bin_request.h; sourceTree = "<group>"; };
 		189CEC7520CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoteProducers_Abi_json_to_bin_request.m; sourceTree = "<group>"; };
 		189CEC7720CF592300F81AD8 /* BPVoteService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPVoteService.h; sourceTree = "<group>"; };
@@ -2481,6 +2487,16 @@
 		18FE3B2320DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sell_ram_abi_json_to_bin_request.m; sourceTree = "<group>"; };
 		18FE3B3820DD29FA005454BC /* Get_table_rows_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Get_table_rows_request.h; sourceTree = "<group>"; };
 		18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_table_rows_request.m; sourceTree = "<group>"; };
+		244769FA20DD493900B7283C /* PriceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
+		244769FB20DD493900B7283C /* PriceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
+		244769FD20DD494800B7283C /* PriceResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceResult.h; sourceTree = "<group>"; };
+		244769FE20DD494800B7283C /* PriceResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceResult.m; sourceTree = "<group>"; };
+		2473F11220DF1FAB00BE3D22 /* BaseHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseHeaderView.h; sourceTree = "<group>"; };
+		2473F11320DF1FAB00BE3D22 /* BaseHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseHeaderView.m; sourceTree = "<group>"; };
+		2473F11520DF1FC400BE3D22 /* BaseTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTopView.h; sourceTree = "<group>"; };
+		2473F11620DF1FC400BE3D22 /* BaseTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTopView.m; sourceTree = "<group>"; };
+		2473F12D20DF71F800BE3D22 /* NSString+DecimalsCalculation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DecimalsCalculation.h"; sourceTree = "<group>"; };
+		2473F12E20DF71F800BE3D22 /* NSString+DecimalsCalculation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DecimalsCalculation.m"; sourceTree = "<group>"; };
 		24FB2C9520DBF71800AC73A5 /* StorageManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageManageViewController.h; sourceTree = "<group>"; };
 		24FB2C9620DBF71800AC73A5 /* StorageManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StorageManageViewController.m; sourceTree = "<group>"; };
 		24FB2C9820DBF78000AC73A5 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -3262,6 +3278,10 @@
 			children = (
 				182B8F8420AD1B9100C43AEC /* BaseView.h */,
 				182B8F8520AD1B9100C43AEC /* BaseView.m */,
+				2473F11220DF1FAB00BE3D22 /* BaseHeaderView.h */,
+				2473F11320DF1FAB00BE3D22 /* BaseHeaderView.m */,
+				2473F11520DF1FC400BE3D22 /* BaseTopView.h */,
+				2473F11620DF1FC400BE3D22 /* BaseTopView.m */,
 				182B8F9E20AD758200C43AEC /* BaseTableViewCell.h */,
 				182B8F9F20AD758200C43AEC /* BaseTableViewCell.m */,
 				18BCAF2120BFFC2200571577 /* BaseTableViewCell1.h */,
@@ -4474,10 +4494,10 @@
 			isa = PBXGroup;
 			children = (
 				1862E76720DB9BA700F26629 /* BandwidthManage */,
+				1862E77B20DB9BA700F26629 /* ModifyApprove */,
 				1862E76C20DB9BA700F26629 /* TradeRam */,
 				1862E77120DB9BA700F26629 /* ResourceManage */,
 				1862E77620DB9BA700F26629 /* StorageManage */,
-				1862E77B20DB9BA700F26629 /* ModifyApprove */,
 			);
 			path = EOSSourceManage;
 			sourceTree = "<group>";
@@ -4497,9 +4517,9 @@
 		1862E76C20DB9BA700F26629 /* TradeRam */ = {
 			isa = PBXGroup;
 			children = (
+				244769F920DD492900B7283C /* Model */,
 				18FE3B1E20DCE214005454BC /* Networking */,
 				1862E76D20DB9BA700F26629 /* Controller */,
-				1862E76E20DB9BA700F26629 /* Model */,
 				1862E76F20DB9BA700F26629 /* View */,
 				1862E77020DB9BA700F26629 /* Service */,
 			);
@@ -4513,13 +4533,6 @@
 				1862E79A20DBC7E400F26629 /* TradeRamViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1862E76E20DB9BA700F26629 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1862E76F20DB9BA700F26629 /* View */ = {
@@ -5303,6 +5316,7 @@
 				18F054CD20CBB8D1001B0A29 /* Model */,
 				1816919820BF7E7A00BF49A8 /* CommonView */,
 				18372D522063C9FF004D19D0 /* Utils */,
+				2473F12C20DF71F800BE3D22 /* YWDecimalsCalculation */,
 				184141B120205FE900A789ED /* Constant */,
 				186564B42011CD580044BBC3 /* RegularExpression */,
 				181275D220B6DDA3005EDD91 /* CQMarqueeView */,
@@ -7036,8 +7050,8 @@
 			children = (
 				189CEC6E20CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.h */,
 				189CEC6F20CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.m */,
-				189CEC7120CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.h */,
-				189CEC7220CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.m */,
+				189CEC7120CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.h */,
+				189CEC7220CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m */,
 				189CEC7420CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.h */,
 				189CEC7520CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m */,
 				189CEC9F20CFE70300F81AD8 /* GetNowVoteWeightRequest.h */,
@@ -7144,6 +7158,26 @@
 				18FE3B3920DD29FA005454BC /* Get_table_rows_request.m */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		244769F920DD492900B7283C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				244769FA20DD493900B7283C /* PriceModel.h */,
+				244769FB20DD493900B7283C /* PriceModel.m */,
+				244769FD20DD494800B7283C /* PriceResult.h */,
+				244769FE20DD494800B7283C /* PriceResult.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2473F12C20DF71F800BE3D22 /* YWDecimalsCalculation */ = {
+			isa = PBXGroup;
+			children = (
+				2473F12D20DF71F800BE3D22 /* NSString+DecimalsCalculation.h */,
+				2473F12E20DF71F800BE3D22 /* NSString+DecimalsCalculation.m */,
+			);
+			path = YWDecimalsCalculation;
 			sourceTree = "<group>";
 		};
 		24FB2C9120DBF6FC00AC73A5 /* Service */ = {
@@ -7740,6 +7774,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2473F12F20DF74E300BE3D22 /* NSString+DecimalsCalculation.h in Sources */,
+				2473F13020DF74E300BE3D22 /* NSString+DecimalsCalculation.m in Sources */,
 				24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */,
 				24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */,
 				183AE1F92019B8FE002041F9 /* EnterpriseListRequest.m in Sources */,
@@ -7830,6 +7866,7 @@
 				18725DC8200C4F7900AA1889 /* WKWebViewJavascriptBridge.m in Sources */,
 				181130301FCD01DF00BEA0D9 /* AFNetworkReachabilityManager.m in Sources */,
 				18372D342063414B004D19D0 /* GetRateRequest.m in Sources */,
+				2473F11420DF1FAB00BE3D22 /* BaseHeaderView.m in Sources */,
 				1806FA31200EE12A00BDFEC4 /* SystemSettingService.m in Sources */,
 				1838497120BE5AD700B89549 /* CWLateralSlideConfiguration.m in Sources */,
 				18EA95F820AED1020032A491 /* BaseLabel1.m in Sources */,
@@ -7991,6 +8028,7 @@
 				18112F741FCD016000BEA0D9 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				18DBBB1E206523A00050EE20 /* UIColor+PGHex.m in Sources */,
 				181130331FCD01DF00BEA0D9 /* AFURLResponseSerialization.m in Sources */,
+				244769FF20DD494800B7283C /* PriceResult.m in Sources */,
 				189CEC8220CFB5F800F81AD8 /* MyVoteInfoResult.m in Sources */,
 				189E3EC4201C5B980022AF19 /* UIImage+RSKImageCropper.m in Sources */,
 				181130171FCD01B800BEA0D9 /* UIImage+GIF.m in Sources */,
@@ -8002,7 +8040,7 @@
 				184D61B21FD521C200EA26B1 /* SDCycleScrollView.m in Sources */,
 				1864C0E81FE36C5200031547 /* Application.m in Sources */,
 				185DD6D2206CA80400BCFFCF /* NSObject+MJClass.m in Sources */,
-				189CEC7320CE7BB600F81AD8 /* ApproveToVoteSystem_Abi_json_to_bin_request.m in Sources */,
+				189CEC7320CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m in Sources */,
 				1838497020BE5AD700B89549 /* CWDrawerTransition.m in Sources */,
 				180FDFD02021EAC800BE593F /* SetMainAccountRequest.m in Sources */,
 				1878B56F1FD90EF400D63037 /* AssestsDetailHeaderView.m in Sources */,
@@ -8063,6 +8101,7 @@
 				1811306E1FCD020A00BEA0D9 /* UIProgressView+AFNetworking.m in Sources */,
 				18466D8620107288002E675A /* VersionUpdateHeaderView.m in Sources */,
 				185DD6CC206CA80400BCFFCF /* MJPropertyType.m in Sources */,
+				244769FC20DD493900B7283C /* PriceModel.m in Sources */,
 				18B2912D20898EB00032EE27 /* RedPacketRecord.m in Sources */,
 				186564B32011A2F70044BBC3 /* AuthVerifyCodeRequest.m in Sources */,
 				181130181FCD01B800BEA0D9 /* UIImage+MultiFormat.m in Sources */,
@@ -8257,6 +8296,7 @@
 				1832CC3E200718F400C055B6 /* AddOptionTableViewCell.m in Sources */,
 				18466DA62010A049002E675A /* PYSearchConst.m in Sources */,
 				18423A0D1FFF583F006AB986 /* SGQRCodeGenerateManager.m in Sources */,
+				2473F11720DF1FC400BE3D22 /* BaseTopView.m in Sources */,
 				18452B902074C91F00FAE7CE /* UITabBar+CustomBadge.m in Sources */,
 				1856A4AC2008539E00D62FEB /* ImportPocketHeaderView.m in Sources */,
 				1838496E20BE5AD700B89549 /* UIViewController+CWLateralSlide.m in Sources */,
@@ -8472,6 +8512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DUY3R7S5A;
 				ENABLE_BITCODE = NO;
@@ -8508,6 +8549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2DUY3R7S5A;
 				ENABLE_BITCODE = NO;

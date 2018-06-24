@@ -1,14 +1,14 @@
 //
-//  ApproveToVoteSystem_Abi_json_to_bin_request.m
+//  Approve_Abi_json_to_bin_request.m
 //  pocketEOS
 //
 //  Created by oraclechain on 2018/6/11.
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#import "ApproveToVoteSystem_Abi_json_to_bin_request.h"
+#import "Approve_Abi_json_to_bin_request.h"
 
-@implementation ApproveToVoteSystem_Abi_json_to_bin_request
+@implementation Approve_Abi_json_to_bin_request
 
 -(NSString *)requestUrlPath{
     return @"/abi_json_to_bin";

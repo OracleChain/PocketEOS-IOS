@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ModifyApproveHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZl-Hu-Lam" customClass="BaseBoldLineView">
@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="10" id="xl6-oj-bWT"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLE-4d-qJv" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLE-4d-qJv" customClass="BaseTopView">
                     <rect key="frame" x="0.0" y="10" width="375" height="165"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改抵押额度 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfJ-FH-e2H" userLabel="titleLabel" customClass="BaseLabel">
@@ -34,7 +34,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FUh-Pt-CMT">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FUh-Pt-CMT">
                             <rect key="frame" x="18" y="54" width="339" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="WG3-4q-kZF"/>
@@ -43,7 +43,7 @@
                                 <action selector="modifyApproveSliderSlide:" destination="iN0-l3-epB" eventType="valueChanged" id="Efb-kf-TY2"/>
                             </connections>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyS-0R-wzP" userLabel="amountLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyS-0R-wzP" userLabel="amountLabel" customClass="BaseLabel">
                             <rect key="frame" x="20" y="98" width="335" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="fZ6-So-mVV"/>
@@ -92,11 +92,11 @@
                         <action selector="confirmBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AiL-ux-98t"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlS-GS-3vC" userLabel="tipLabel" customClass="BaseLabel1">
-                    <rect key="frame" x="20" y="251" width="335" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="14" id="SCb-Zq-zNC"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlS-GS-3vC" userLabel="tipLabel" customClass="BaseLabel1">
+                    <rect key="frame" x="20" y="251" width="335" height="67"/>
+                    <string key="text">1:为保证账号的正常使用，1 EOS及以下的质押额度暂无法赎回。
+2:赎回的EOS将在3天后返回余额。
+</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -120,6 +120,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="amountLabel" destination="YyS-0R-wzP" id="Bsz-aq-YZf"/>
+                <outlet property="confirmBtn" destination="fht-SB-Mj3" id="m13-gB-qpe"/>
                 <outlet property="modifyApproveSlider" destination="FUh-Pt-CMT" id="W8c-pO-9ZW"/>
                 <outlet property="predictLabel" destination="yHa-zO-8Na" id="FhD-vw-f2t"/>
                 <outlet property="tipLabel" destination="jlS-GS-3vC" id="mbR-Sk-N3Q"/>

@@ -1,5 +1,5 @@
 //
-//  ApproveToVoteSystem_Abi_json_to_bin_request.h
+//  Approve_Abi_json_to_bin_request.h
 //  pocketEOS
 //
 //  Created by oraclechain on 2018/6/11.
@@ -8,7 +8,7 @@
 
 #import "BaseNetworkRequest.h"
 
-@interface ApproveToVoteSystem_Abi_json_to_bin_request : BaseHttpsNetworkRequest
+@interface Approve_Abi_json_to_bin_request : BaseHttpsNetworkRequest
 @property(nonatomic, copy) NSString *code;
 @property(nonatomic, copy) NSString *action;
 @property(nonatomic, copy) NSString *from;

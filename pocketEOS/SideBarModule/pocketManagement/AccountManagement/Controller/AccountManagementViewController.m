@@ -241,7 +241,7 @@
     cell.rightIconImgName = @"right_arrow_gray";
     [cell.contentView addSubview:cell.rightIconImageView];
     cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(7).heightIs(14).centerYEqualToView(cell.contentView);
-    
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.text = VALIDATE_STRING(self.mainService.dataSourceArray[indexPath.row]);
     return cell;
 }

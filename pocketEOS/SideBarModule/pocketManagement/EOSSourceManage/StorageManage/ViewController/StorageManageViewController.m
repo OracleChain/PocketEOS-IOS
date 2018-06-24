@@ -10,9 +10,15 @@
 #import "StorageManageHeaderView.h"
 #import "ModifyApproveViewController.h"
 #import "TradeRamViewController.h"
+#import "EOSResourceService.h"
+
+NSString * const TradeRamDidSuccessNotification = @"TradeRamDidSuccessNotification";
 
 @interface StorageManageViewController ()<StorageManageHeaderViewDelegate>
 @property(nonatomic , strong) StorageManageHeaderView *headerView;
+@property(nonatomic , strong) EOSResourceResult *eosResourceResult;
+@property(nonatomic , strong) EOSResourceService *eosResourceService;
+
 @end
 
 @implementation StorageManageViewController
@@ -31,7 +37,17 @@
     }
     return _eosResourceResult;
 }
+- (EOSResourceService *)eosResourceService{
+    if (!_eosResourceService) {
+        _eosResourceService = [[EOSResourceService alloc] init];
+    }
+    return _eosResourceService;
+}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self buildDataSource];
+}
 
 
 - (void)viewDidLoad {
@@ -41,12 +57,20 @@
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
     .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
     [self buildDataSource];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tradeRamDidFinish) name:TradeRamDidSuccessNotification object:nil];
 }
 
 - (void)buildDataSource{
-    CGFloat progress = self.eosResourceResult.data.ram_usage.doubleValue/self.eosResourceResult.data.ram_max.doubleValue;
-    self.headerView.progressView.progress = progress;
-    self.headerView.tipLabel.text = [NSString stringWithFormat:@"存储配额使用情况(%@byte/%@byte)", self.eosResourceResult.data.ram_usage, self.eosResourceResult.data.ram_max];
+    WS(weakSelf);
+    self.eosResourceService.getAccountRequest.name = self.accountResult.data.account_name;
+    [self.eosResourceService get_account:^(EOSResourceResult *result, BOOL isSuccess) {
+        if (isSuccess) {
+            weakSelf.eosResourceResult = result;
+            CGFloat progress = weakSelf.eosResourceResult.data.ram_usage.doubleValue/weakSelf.eosResourceResult.data.ram_max.doubleValue;
+            weakSelf.headerView.progressView.progress = progress;
+            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"存储配额使用情况(%@byte/%@byte)", weakSelf.eosResourceResult.data.ram_usage, weakSelf.eosResourceResult.data.ram_max];
+        }
+    }];
 }
 
 
@@ -55,6 +79,7 @@
     TradeRamViewController *vc = [[TradeRamViewController alloc] init];
     vc.pageType = @"buy_ram";
     vc.eosResourceResult = self.eosResourceResult;
+    vc.accountResult = self.accountResult;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -62,8 +87,12 @@
     TradeRamViewController *vc = [[TradeRamViewController alloc] init];
     vc.pageType = @"sell_ram";
     vc.eosResourceResult = self.eosResourceResult;
+    vc.accountResult = self.accountResult;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)tradeRamDidFinish{
+    [self buildDataSource];
+}
 
 @end

@@ -18,10 +18,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="146.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLa-vi-1b4" userLabel="BaseTopView" customClass="BaseView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLa-vi-1b4" userLabel="BaseTopView" customClass="BaseTopView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPr-b3-JN1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPr-b3-JN1" customClass="BaseLabel">
                                 <rect key="frame" x="20" y="0.0" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="gim-36-mDO"/>
@@ -68,7 +68,7 @@
                             <constraint firstAttribute="height" constant="0.5" id="OyX-Ey-PPc"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiJ-Cr-bTt" userLabel="BaseBottomView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiJ-Cr-bTt" userLabel="BaseBottomView" customClass="BaseTopView">
                         <rect key="frame" x="0.0" y="40.5" width="375" height="106.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWt-EE-kki" userLabel="TotalQuotaLabel" customClass="BaseLabel1">

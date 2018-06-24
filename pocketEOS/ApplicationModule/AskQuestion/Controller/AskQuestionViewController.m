@@ -330,13 +330,13 @@
 //transferserviceDelegate
 extern NSString *AskQuestionDidSuccessNotification;
 -(void)askQuestionDidFinish:(TransactionResult *)result{
-//    if ([result.code isEqualToNumber:@0 ]) {
+    if ([result.code isEqualToNumber:@0 ]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"提问成功!", nil)];
         [[NSNotificationCenter defaultCenter] postNotificationName:AskQuestionDidSuccessNotification object:nil];
         [self.navigationController popViewControllerAnimated:YES];
-//    }else{
-//        [TOASTVIEW showWithText: result.message];
-//    }
+    }else{
+        [TOASTVIEW showWithText: result.message];
+    }
 }
 
 -(void)approveDidFinish:(TransactionResult *)result{
@@ -379,6 +379,9 @@ extern NSString *AskQuestionDidSuccessNotification;
     self.endTimetamp = [NSNumber numberWithInteger:(int)timeStamp];
 }
 
+-(void)dealloc{
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end

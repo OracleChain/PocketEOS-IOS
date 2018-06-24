@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="10" id="gjT-yr-Clz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qJ-Gb-LXu" customClass="BaseView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qJ-Gb-LXu">
                     <rect key="frame" x="0.0" y="10" width="375" height="165"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改抵押额度 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvF-QL-NTW" userLabel="titleLabel" customClass="BaseLabel">
@@ -43,17 +43,17 @@
                                 <action selector="modifyRamSliderSlide:" destination="RWT-uE-1WV" eventType="valueChanged" id="dEV-8t-DNR"/>
                             </connections>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgS-1X-Eia" userLabel="amountLabel">
-                            <rect key="frame" x="20" y="98" width="335" height="14"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgS-1X-Eia" userLabel="amountLabel" customClass="BaseLabel">
+                            <rect key="frame" x="20" y="98" width="335" height="15"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="14" id="QrN-ha-4ht"/>
+                                <constraint firstAttribute="height" constant="15" id="QrN-ha-4ht"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9d-S3-N4c" userLabel="predictLabel" customClass="BaseLabel1">
-                            <rect key="frame" x="20" y="132" width="335" height="13"/>
+                            <rect key="frame" x="20" y="133" width="335" height="13"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="13" id="vGZ-c3-X6z"/>
                             </constraints>
@@ -108,6 +108,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="amountLabel" destination="rgS-1X-Eia" id="Vry-Ug-mTq"/>
+                <outlet property="baseTopView" destination="7qJ-Gb-LXu" id="Vpp-XE-oDJ"/>
                 <outlet property="modifyRamSlider" destination="uht-pV-XSh" id="91R-yl-hv2"/>
                 <outlet property="predictLabel" destination="u9d-S3-N4c" id="Yd7-wY-qFO"/>
                 <outlet property="titleLabel" destination="uvF-QL-NTW" id="bg7-Dj-e0w"/>

@@ -43,14 +43,14 @@
             }
             
             EOSResourceCellModel *cpu_model = [[EOSResourceCellModel alloc] init];
-            cpu_model.title = NSLocalizedString(@"CPU带宽", nil);
+            cpu_model.title = NSLocalizedString(@"cpu", nil);
             cpu_model.used = weakSelf.eosResourceResult.data.cpu_used;
             cpu_model.available = weakSelf.eosResourceResult.data.cpu_available;
             cpu_model.max = weakSelf.eosResourceResult.data.cpu_max;
             cpu_model.weight = weakSelf.eosResourceResult.data.cpu_weight;
             
             EOSResourceCellModel *net_model = [[EOSResourceCellModel alloc] init];
-            net_model.title = NSLocalizedString(@"net带宽", nil);
+            net_model.title = NSLocalizedString(@"net", nil);
             net_model.used = weakSelf.eosResourceResult.data.net_used;
             net_model.available = weakSelf.eosResourceResult.data.net_available;
             net_model.max = weakSelf.eosResourceResult.data.net_max;

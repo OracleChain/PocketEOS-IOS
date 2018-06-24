@@ -26,23 +26,3 @@
     complete(self , YES);
 }
 @end
-
-// 设置语言
-//    if (indexPath.row == 0) {
-//        [DAConfig setUserLanguage:nil];
-//    } else if (indexPath.row == 1) {
-//        [DAConfig setUserLanguage:@"zh-Hans"];
-//    } else {
-//        [DAConfig setUserLanguage:@"en"];
-//    }
-//
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        for (UIView *view in WINDOW.subviews) {
-//            [view removeFromSuperview];
-//        }
-//        AppDelegate *appDele = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        BaseTabBarController * vc =[[BaseTabBarController alloc]init];
-//        appDele.window.rootViewController = vc;
-//        [TOASTVIEW showWithText:NSLocalizedString(NSLocalizedString(@"语言切换中", nil), nil) duration:1];
-//
-//    });

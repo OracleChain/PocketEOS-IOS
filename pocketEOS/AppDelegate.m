@@ -34,7 +34,6 @@ void uncaughtExceptionHandler(NSException*exception){
     // 设置主题
     [self configTheme];
     
-    
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
@@ -50,11 +49,12 @@ void uncaughtExceptionHandler(NSException*exception){
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
     if (accountArray.count > 0) {
         
+        // 如果本地有当前账号对应的钱包且有账号
         [self.window setRootViewController: rootVC];
         
-        // 如果本地有当前账号对应的钱包且有账号
     }else{
         if (wallet) {
+            
             [[WalletTableManager walletTable] deleteRecord:wallet.wallet_uid];            
         }
         UIViewController *vc;

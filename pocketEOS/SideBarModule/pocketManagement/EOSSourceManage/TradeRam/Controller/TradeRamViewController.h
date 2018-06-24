@@ -10,7 +10,7 @@
 #import "EOSResourceResult.h"
 #import "EOSResource.h"
 #import "AccountResult.h"
-
+#import "Account.h"
 
 @interface TradeRamViewController : BaseViewController
 @property(nonatomic , copy) NSString *pageType;
