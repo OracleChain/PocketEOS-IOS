@@ -20,7 +20,7 @@
 #import "RtfBrowserWithoutThemeViewController.h"
 
 
-@interface BPVoteAmountViewController ()<NavigationViewDelegate, BPVoteAmountHeaderViewDelegate, UITableViewDelegate, UITableViewDataSource, LoginPasswordViewDelegate, TransferServiceDelegate>
+@interface BPVoteAmountViewController ()<NavigationViewDelegate, BPVoteAmountHeaderViewDelegate, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate, LoginPasswordViewDelegate, TransferServiceDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic , strong) BPVoteAmountHeaderView *headerView;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
@@ -116,6 +116,26 @@
     }
     return _getNowVoteWeightRequest;
 }
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(0x000000);
@@ -182,7 +202,7 @@
     
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -215,8 +235,8 @@
     //    投票
     //    1.投票前需要将自己注册到投票系统
     [SVProgressHUD show];
-    self.registerAccountToVoteSystem_Abi_json_to_bin_request.action = @"regproxy";
-    self.registerAccountToVoteSystem_Abi_json_to_bin_request.code = @"eosio";
+    self.registerAccountToVoteSystem_Abi_json_to_bin_request.action = ContractAction_REGPROXY;
+    self.registerAccountToVoteSystem_Abi_json_to_bin_request.code = ContractName_EOSIO;
     self.registerAccountToVoteSystem_Abi_json_to_bin_request.proxy = self.model.account_name;
     self.registerAccountToVoteSystem_Abi_json_to_bin_request.isproxy = @"0";
     WS(weakSelf);
@@ -229,9 +249,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"regproxy";
+        weakSelf.transferService.action = ContractAction_REGPROXY;
         weakSelf.transferService.sender = weakSelf.model.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeRegisteVoteSystem;
@@ -245,8 +265,8 @@
 
 - (void)approveToVoteSystem{
     //    2.押入SYS用于投票
-    self.approve_Abi_json_to_bin_request.action = @"delegatebw";
-    self.approve_Abi_json_to_bin_request.code = @"eosio";
+    self.approve_Abi_json_to_bin_request.action = ContractAction_DELEGATEBW;
+    self.approve_Abi_json_to_bin_request.code = ContractName_EOSIO;
     self.approve_Abi_json_to_bin_request.from = self.model.account_name;
     self.approve_Abi_json_to_bin_request.receiver = self.model.account_name;
 #pragma mark -- [@"data"]
@@ -260,9 +280,9 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.model.account_name];
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"delegatebw";
+        weakSelf.transferService.action = ContractAction_DELEGATEBW;
         weakSelf.transferService.sender = weakSelf.model.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeApprove;
@@ -276,8 +296,8 @@
 
 - (void)pushTransaction{
     //    3.投票给n个节点
-    self.voteProducers_Abi_json_to_bin_request.action = @"voteproducer";
-    self.voteProducers_Abi_json_to_bin_request.code = @"eosio";
+    self.voteProducers_Abi_json_to_bin_request.action = ContractAction_VOTEPRODUCER;
+    self.voteProducers_Abi_json_to_bin_request.code = ContractName_EOSIO;
     self.voteProducers_Abi_json_to_bin_request.voter = self.model.account_name;
     self.voteProducers_Abi_json_to_bin_request.proxy = @"";
     NSMutableArray *bpNameArr = [[NSMutableArray alloc] init];
@@ -297,9 +317,9 @@
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.model.account_name];
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key), VALIDATE_STRING(accountInfo.account_active_public_key)];
         
-        weakSelf.transferService.action = @"voteproducer";
+        weakSelf.transferService.action = ContractAction_VOTEPRODUCER;
         weakSelf.transferService.sender = weakSelf.model.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;

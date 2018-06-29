@@ -170,6 +170,9 @@
                     for (WalletAccount *model in weakSelf.mainService.accountsArray) {
                         if ([model.isMainAccount isEqualToNumber:@1]) {
                             // 获取主账号资产详情
+                            if (IsNilOrNull(model.eosAccountName)) {
+                                return;
+                            }
                             weakSelf.mainService.getAccountAssetRequest.name = model.eosAccountName;
                             [weakSelf.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
                                 if (isSuccess) {
@@ -184,7 +187,11 @@
         }];
     }else if ([self.model.followType isEqualToNumber:@2]){
         // 账号
+        if (IsNilOrNull(self.model.displayName)) {
+            return;
+        }
         self.mainService.getAccountAssetRequest.name =  self.model.displayName;
+        
         [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
             // 拿到当前的下拉刷新控件，结束刷新状态
             [weakSelf.mainTableView.mj_header endRefreshing];
@@ -353,6 +360,9 @@
 //ChangeAccountViewControllerDelegate
 -(void)changeAccountCellDidClick:(NSString *)name{
     WS(weakSelf);
+    if (IsNilOrNull(name)) {
+        return;
+    }
     self.mainService.getAccountAssetRequest.name = name;
     [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
         if (isSuccess) {

@@ -97,19 +97,7 @@
     return output;
 }
 
-+ (BOOL)validateWalletPasswordWithSha256:(NSString *)sha256 password:(NSString *)password{
-    if (sha256.length < 32) {
-        return NO;
-    }
-    NSString *passwordSha256 =  [sha256 substringFromIndex:32];
-    NSString *randomStr = [sha256 substringToIndex:32];
-    NSString *decryptStr = [NSString stringWithFormat:@"%@%@",randomStr,password];
-    NSString *newSha256 = [decryptStr sha256];
-    if ([newSha256 isEqualToString:passwordSha256]) {
-        return YES;
-    }else{
-        return NO;
-    }
-}
+
+
 @end
 

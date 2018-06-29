@@ -100,7 +100,12 @@
     self.bindPhoneRequest.avatar = self.model.avatar;
     self.bindPhoneRequest.openid = self.model.openid;
     self.bindPhoneRequest.phoneNum = self.headerView.phoneNumberTF.text;
-    self.bindPhoneRequest.type = self.model.type;
+    if (self.model.socialModelType == SocialTypeQQ) {
+        self.bindPhoneRequest.type = @"1";
+    }else if (self.model.socialModelType == SocialTypeWechat){
+        self.bindPhoneRequest.type = @"2";
+    }
+    
     self.bindPhoneRequest.code = self.headerView.verifyCodeTF.text;
     WS(weakSelf);
     [self.bindPhoneRequest postDataSuccess:^(id DAO, id data) {
@@ -112,7 +117,15 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             Wallet *wallet = CURRENT_WALLET;
             if (wallet) {
-                NSLog(@"%@", wallet.account_info_table_name);
+                
+                NSString *columnName ;
+                if (weakSelf.model.socialModelType == SocialTypeQQ) {
+                    columnName = @"wallet_qq";
+                }else if (weakSelf.model.socialModelType == SocialTypeWechat){
+                    columnName = @"wallet_weixin";
+                }
+                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET '%@' = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , columnName, self.model.openid , CURRENT_WALLET_UID]];
+                [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
             }else{
                 NSLog(NSLocalizedString(@"没有 wallet", nil));
                 // 如果本地没有当前账号对应的钱包
@@ -120,9 +133,9 @@
                 wallet.wallet_name = weakSelf.model.name;
                 wallet.wallet_img = weakSelf.model.avatar;
                 
-                if ([weakSelf.model.type isEqualToString:@"1"]) {
+                if (weakSelf.model.socialModelType == SocialTypeQQ) {
                     wallet.wallet_qq = weakSelf.model.openid;
-                }else if ([weakSelf.model.type isEqualToString:@"2"]){
+                }else if (weakSelf.model.socialModelType == SocialTypeWechat){
                     wallet.wallet_weixin = weakSelf.model.openid;
                 }
                 

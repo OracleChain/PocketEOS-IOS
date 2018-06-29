@@ -29,7 +29,7 @@
 //eos 账号名验证
 + (BOOL) validateEosAccountName:(NSString *)accountName{
     // 6位数字
-    NSString *verifyAccountNameRegex = @"^[a-z]{1}[1-5a-z]{11}$";
+    NSString *verifyAccountNameRegex = @"^[1-5a-z]{12}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",verifyAccountNameRegex];
     return [predicate evaluateWithObject:accountName];
 }

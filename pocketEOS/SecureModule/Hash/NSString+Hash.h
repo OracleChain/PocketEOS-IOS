@@ -14,6 +14,6 @@
 -(NSString *) sha256;
 -(NSString *) sha384;
 -(NSString *) sha512;
-+ (BOOL)validateWalletPasswordWithSha256:(NSString *)sha256 password:(NSString *)password;
+
 @end
 

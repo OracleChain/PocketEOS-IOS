@@ -230,7 +230,7 @@
     
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -242,10 +242,10 @@
 // 押币
 - (void)approve{
     [SVProgressHUD show];
-    self.approveAbi_json_to_bin_request.action = @"approve";
-    self.approveAbi_json_to_bin_request.code = @"octoneos";
+    self.approveAbi_json_to_bin_request.action = ContractAction_APPROVE;
+    self.approveAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
     self.approveAbi_json_to_bin_request.owner = self.choosedAccountName;
-    self.approveAbi_json_to_bin_request.spender = @"ocaskans";
+    self.approveAbi_json_to_bin_request.spender = ContractName_OCASKANS;
     self.approveAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
     WS(weakSelf);
     [self.approveAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
@@ -253,9 +253,9 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"approve";
+        weakSelf.transferService.action = ContractAction_APPROVE;
         weakSelf.transferService.sender = self.choosedAccountName;
-        weakSelf.transferService.code = @"octoneos";
+        weakSelf.transferService.code = ContractName_OCTOTHEMOON;
         #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeApprove;
@@ -297,8 +297,8 @@
         [json insertString:insertStr atIndex: json.length - 1];
     }
     
-    self.askQuestion_abi_to_json_request.code = @"ocaskans";
-    self.askQuestion_abi_to_json_request.action = @"ask";
+    self.askQuestion_abi_to_json_request.code = ContractName_OCASKANS;
+    self.askQuestion_abi_to_json_request.action = ContractAction_ASK;
     self.askQuestion_abi_to_json_request.from = self.choosedAccountName;
     self.askQuestion_abi_to_json_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
     self.askQuestion_abi_to_json_request.endtime = self.endTimetamp;
@@ -311,9 +311,9 @@
         NSLog(@"askQuestion_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"ask";
+        weakSelf.transferService.action = ContractAction_ASK;
         weakSelf.transferService.sender = weakSelf.choosedAccountName;
-        weakSelf.transferService.code = @"ocaskans";
+        weakSelf.transferService.code = ContractName_OCASKANS;
         #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeAskQustion;

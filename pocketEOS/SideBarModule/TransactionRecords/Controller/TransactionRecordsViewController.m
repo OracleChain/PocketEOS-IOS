@@ -77,7 +77,9 @@
         }
     }
     self.headerView.accountLabel.text = self.currentAccountName;
-    self.mainService.getTransactionRecordsRequest.account_name = self.currentAccountName;
+    self.mainService.getTransactionRecordsRequest.from = self.currentAccountName;
+    self.mainService.getTransactionRecordsRequest.to = self.currentAccountName;
+    self.mainService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN }, @{@"symbolName":@"OCT"  , @"contractName": ContractName_OCTOTHEMOON },nil];
 }
 
 - (void)loadAllBlocks{
@@ -133,9 +135,11 @@
 //PopUpWindowDelegate
 -(void)popUpWindowdidSelectItem:(id)sender{
     AccountInfo *accountInfo = sender;
-    self.mainService.getTransactionRecordsRequest.account_name = accountInfo.account_name;
     self.headerView.accountLabel.text = accountInfo.account_name;
     self.currentAccountName = accountInfo.account_name;
+    self.mainService.getTransactionRecordsRequest.from = self.currentAccountName;
+    self.mainService.getTransactionRecordsRequest.to = self.currentAccountName;
+    self.mainService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN }, @{@"symbolName":@"OCT"  , @"contractName": ContractName_OCTOTHEMOON },nil];
     [self removePopUpWindow];
     [self loadNewData];
 }

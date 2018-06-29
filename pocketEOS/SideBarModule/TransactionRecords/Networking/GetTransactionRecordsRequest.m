@@ -10,14 +10,16 @@
 
 @implementation GetTransactionRecordsRequest
 -(NSString *)requestUrlPath{
-    return @"/get_transactions";
+    return [NSString stringWithFormat:@"%@/VX/GetActions", REQUEST_TRANSACTION_RECORDS];
 }
 
 -(id)parameters{
     return @{
-             @"account_name"  : VALIDATE_STRING(self.account_name),
-             @"skip_seq"  : VALIDATE_NUMBER(self.skip_seq),
-             @"num_seq"  : VALIDATE_NUMBER(self.num_seq)
+             @"symbols"  : VALIDATE_ARRAY(self.symbols),
+             @"from"  : VALIDATE_STRING(self.from),
+             @"to"  : VALIDATE_NUMBER(self.to),
+             @"page"  : VALIDATE_NUMBER(self.page),
+             @"pageSize"  : VALIDATE_NUMBER(self.pageSize)
              };
 }
 @end

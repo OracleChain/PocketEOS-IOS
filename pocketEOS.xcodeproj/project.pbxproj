@@ -261,6 +261,7 @@
 		18372D3A206342C3004D19D0 /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18372D39206342C3004D19D0 /* Rate.m */; };
 		18372D552063CA11004D19D0 /* NumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18372D542063CA11004D19D0 /* NumberFormatter.m */; };
 		18372D582063E344004D19D0 /* RecieveService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18372D572063E344004D19D0 /* RecieveService.m */; };
+		1837D76C20E3C93C005A9E98 /* WalletUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837D76B20E3C93C005A9E98 /* WalletUtil.m */; };
 		1838495E20BE43AA00B89549 /* recieve_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1838495A20BE43A900B89549 /* recieve_white@3x.png */; };
 		1838495F20BE43AA00B89549 /* shield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1838495B20BE43AA00B89549 /* shield@2x.png */; };
 		1838496020BE43AA00B89549 /* shield@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1838495C20BE43AA00B89549 /* shield@3x.png */; };
@@ -367,6 +368,7 @@
 		18466DBA2010B269002E675A /* SelectAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18466DB92010B269002E675A /* SelectAccountView.m */; };
 		18466DBC2010B291002E675A /* SelectAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18466DBB2010B291002E675A /* SelectAccountView.xib */; };
 		18466DEE2010C4DF002E675A /* CDZPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 18466DED2010C4DF002E675A /* CDZPicker.m */; };
+		1847F04420E22BDA00623332 /* ContractConstant.h in Sources */ = {isa = PBXBuildFile; fileRef = 1847F04320E22B9C00623332 /* ContractConstant.h */; };
 		184D61751FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D61701FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.m */; };
 		184D61761FD4F36300EA26B1 /* NSDictionary+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D61721FD4F36300EA26B1 /* NSDictionary+HYBUnicodeReadable.m */; };
 		184D61771FD4F36300EA26B1 /* NSSet+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D61741FD4F36300EA26B1 /* NSSet+HYBUnicodeReadable.m */; };
@@ -1415,6 +1417,8 @@
 		18372D542063CA11004D19D0 /* NumberFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumberFormatter.m; sourceTree = "<group>"; };
 		18372D562063E344004D19D0 /* RecieveService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecieveService.h; sourceTree = "<group>"; };
 		18372D572063E344004D19D0 /* RecieveService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecieveService.m; sourceTree = "<group>"; };
+		1837D76A20E3C93C005A9E98 /* WalletUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletUtil.h; sourceTree = "<group>"; };
+		1837D76B20E3C93C005A9E98 /* WalletUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletUtil.m; sourceTree = "<group>"; };
 		1838495A20BE43A900B89549 /* recieve_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve_white@3x.png"; sourceTree = "<group>"; };
 		1838495B20BE43AA00B89549 /* shield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shield@2x.png"; sourceTree = "<group>"; };
 		1838495C20BE43AA00B89549 /* shield@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shield@3x.png"; sourceTree = "<group>"; };
@@ -1600,6 +1604,7 @@
 		18466DBB2010B291002E675A /* SelectAccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccountView.xib; sourceTree = "<group>"; };
 		18466DEC2010C4DF002E675A /* CDZPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDZPicker.h; sourceTree = "<group>"; };
 		18466DED2010C4DF002E675A /* CDZPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDZPicker.m; sourceTree = "<group>"; };
+		1847F04320E22B9C00623332 /* ContractConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractConstant.h; sourceTree = "<group>"; };
 		184D616F1FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
 		184D61701FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
 		184D61711FD4F36300EA26B1 /* NSDictionary+HYBUnicodeReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
@@ -3526,6 +3531,8 @@
 				18372D542063CA11004D19D0 /* NumberFormatter.m */,
 				1884127E20C8D7FD005D752C /* DeviceType.h */,
 				1884127F20C8D7FD005D752C /* DeviceType.m */,
+				1837D76A20E3C93C005A9E98 /* WalletUtil.h */,
+				1837D76B20E3C93C005A9E98 /* WalletUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3810,6 +3817,7 @@
 				1861BA6A1FFCB74900404058 /* StringConstant.h */,
 				1861BA6B1FFCB74900404058 /* StringConstant.m */,
 				181351792025D1A9001A9B17 /* RequestUrlConstant.h */,
+				1847F04320E22B9C00623332 /* ContractConstant.h */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -7774,6 +7782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1847F04420E22BDA00623332 /* ContractConstant.h in Sources */,
 				2473F12F20DF74E300BE3D22 /* NSString+DecimalsCalculation.h in Sources */,
 				2473F13020DF74E300BE3D22 /* NSString+DecimalsCalculation.m in Sources */,
 				24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */,
@@ -7911,6 +7920,7 @@
 				18E72E1E1FCC115700D09CA3 /* RichListMainViewController.m in Sources */,
 				1811306D1FCD020A00BEA0D9 /* UIImageView+AFNetworking.m in Sources */,
 				18FA76CA20623C6D00545E73 /* EosPrivateKey.m in Sources */,
+				1837D76C20E3C93C005A9E98 /* WalletUtil.m in Sources */,
 				18FA76DA20623C8A00545E73 /* tommath.c in Sources */,
 				1886079B1FCC012F00B00EE7 /* NSDate+ExFoundation.m in Sources */,
 				18DBBB17206523A00050EE20 /* PGDatePicker+Year.m in Sources */,

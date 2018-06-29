@@ -15,5 +15,6 @@
 @property(nonatomic, strong) NSNumber *code;
 @property(nonatomic, strong) NSString *message;
 @property(nonatomic, strong) NSDictionary *data;
+@property(nonatomic , strong) NSString *error;
 @property(nonatomic , copy) NSString *transaction_id;
 @end

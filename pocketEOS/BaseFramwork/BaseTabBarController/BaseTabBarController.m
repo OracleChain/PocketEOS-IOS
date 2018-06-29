@@ -40,7 +40,7 @@
     [self.tabBar setBackgroundImage:[UIImage new]];
     
     
-    CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    CGRect rect = CGRectMake(0, SCREEN_HEIGHT-TABBAR_HEIGHT, SCREEN_WIDTH, TABBAR_HEIGHT);
     
     UIGraphicsBeginImageContext(rect.size);
     

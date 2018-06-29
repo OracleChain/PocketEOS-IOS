@@ -165,7 +165,7 @@
             // bind phone => createPocket
             BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
             vc.model = model;
-            vc.model.type = @"1";
+            vc.model.socialModelType = SocialTypeWechat;
             [self.navigationController pushViewController:vc animated:YES];
             
         }
@@ -194,7 +194,7 @@
             // bind phone => createPocket
             BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
             vc.model = model;
-            vc.model.type = @"1";
+            vc.model.socialModelType = SocialTypeQQ;
             [self.navigationController pushViewController:vc animated:YES];
             
         }

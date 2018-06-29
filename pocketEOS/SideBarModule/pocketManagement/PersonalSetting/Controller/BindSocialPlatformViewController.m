@@ -64,12 +64,12 @@
     if ([self.socialPlatformType isEqualToString:@"wechat"]) {
         self.headerView.platformImgView.image = [UIImage imageNamed:@"wechat_big"];
         self.headerView.tipLabel.text = NSLocalizedString(@"您还没有绑定微信号", nil);
-        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定微信号可以关联您的XX资产", nil);
+        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定微信号可以关联您的资产", nil);
         [self.headerView.bindBtn setTitle:NSLocalizedString(@"绑定微信号", nil)forState:(UIControlStateNormal)];
     }else if ([self.socialPlatformType isEqualToString:@"qq"]){
         self.headerView.platformImgView.image = [UIImage imageNamed:@"qq_big"];
         self.headerView.tipLabel.text = NSLocalizedString(@"您还没有绑定QQ号", nil);
-        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定QQ号可以关联您的XX资产", nil);
+        self.headerView.subtipLabel.text = NSLocalizedString(@"绑定QQ号可以关联您的资产", nil);
         [self.headerView.bindBtn setTitle:NSLocalizedString(@"绑定QQ号", nil)forState:(UIControlStateNormal)];
     }
     
@@ -109,7 +109,7 @@
             [weakSelf.bindQQRequest postDataSuccess:^(id DAO, id data) {
                 NSNumber *code = data[@"code"];
                 if ([code isEqualToNumber:@0]) {
-                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_qq = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , model.name , CURRENT_WALLET_UID]];
+                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_qq = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , model.openid , CURRENT_WALLET_UID]];
                 }
                 [TOASTVIEW showWithText:VALIDATE_STRING(data[@"message"])];
                 [weakSelf.navigationController popViewControllerAnimated:YES];

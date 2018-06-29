@@ -81,11 +81,11 @@
 }
 
 - (void)setModel:(TransactionRecord *)model{
-    if ([model.from isEqualToString:@"oc.redpacket"] || [model.to isEqualToString:@"oc.redpacket"]) {
+    if ([model.from isEqualToString:RedPacketReciever] || [model.to isEqualToString:RedPacketReciever]) {
         // redpacket
-        if ([model.from isEqualToString:@"oc.redpacket"]) {
+        if ([model.from isEqualToString:RedPacketReciever]) {
             self.titleLabel.text = [NSString stringWithFormat: NSLocalizedString(@"红包入账", nil)];
-        }else if ([model.to isEqualToString:@"oc.redpacket"]){
+        }else if ([model.to isEqualToString:RedPacketReciever]){
             self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发出红包", nil)];
         }
     }else{

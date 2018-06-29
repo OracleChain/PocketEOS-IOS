@@ -10,5 +10,8 @@
 
 // 交易记录 Model
 @interface TransactionsResult : NSObject
-@property(nonatomic, strong) NSMutableArray *transactions;
+@property(nonatomic, strong) NSMutableArray *actions;
+@property(nonatomic , strong) NSNumber *pageSize;
+@property(nonatomic , strong) NSNumber *page;
+@property(nonatomic , strong) NSNumber *hasMore;
 @end

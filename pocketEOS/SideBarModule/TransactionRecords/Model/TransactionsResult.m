@@ -10,6 +10,6 @@
 
 @implementation TransactionsResult
 +(NSDictionary *)mj_objectClassInArray{
-    return @{ @"transactions" : @"TransactionRecord"};
+    return @{ @"actions" : @"TransactionRecord"};
 }
 @end

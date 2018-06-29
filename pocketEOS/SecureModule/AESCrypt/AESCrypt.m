@@ -45,6 +45,9 @@ const int KEY_LENGTH = 32;
 }
 
 + (NSString *)decrypt:(NSString *)base64EncodedString password:(NSString *)password {
+    if (base64EncodedString.length < SALT_LEN) {
+        return nil;
+    }
     NSData *decryptedData = [self decryptData:base64EncodedString password:password];
     return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
 }

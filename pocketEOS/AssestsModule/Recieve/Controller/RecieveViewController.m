@@ -85,12 +85,19 @@
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (self.transferModel) {
+        self.currentAssestsType = self.transferModel.coin;
+    }else{
+        self.currentAssestsType = @"EOS";
+    }
     // 设置默认的转账账号及资产
     self.headerView.accountChooserLabel.text = self.accountName;
-    self.headerView.assestChooserLabel.text = @"EOS";
+    self.headerView.assestChooserLabel.text = self.currentAssestsType;
     self.currentAccountName = self.accountName;
-    self.currentAssestsType = @"EOS";
-   [self buidDataSource]; self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+    [self buidDataSource];
+    
+    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
     [self loadNewData];
 }
 
@@ -105,9 +112,12 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
-//    [self.mainTableView.mj_header beginRefreshing];
+    [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
-    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+    
+    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
+    [self buidDataSource];
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
 }
@@ -122,6 +132,7 @@
     [self.transferService get_rate:^(GetRateResult *result, BOOL isSuccess) {
         if (isSuccess) {
             weakSelf.getRateResult = result;
+            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * weakSelf.getRateResult.data.price_cny.doubleValue)]];
         }
     }];
 }
@@ -218,7 +229,7 @@
     self.recieveQRCodeView.assestTypeLabel.text = [NSString stringWithFormat:@"/ %@", self.currentAssestsType];
 
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:VALIDATE_STRING(self.accountName)  forKey:@"account_name"];
+    [dic setObject:VALIDATE_STRING(self.currentAccountName)  forKey:@"account_name"];
     [dic setObject:VALIDATE_STRING(self.currentAssestsType)  forKey:@"coin"];
     [dic setObject:VALIDATE_STRING(self.headerView.amountTF.text)  forKey:@"money"];
     [dic setObject:@"make_collections_QRCode"  forKey:@"type"];
@@ -241,10 +252,11 @@
     if ([sender isKindOfClass: [Assest class]]) {
         self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
         self.currentAssestsType = [(Assest *)sender assetName];
+        [self buidDataSource];
     }else if ([sender isKindOfClass: [AccountInfo class] ]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
-        self.transactionRecordsService.getTransactionRecordsRequest.account_name = [(AccountInfo *)sender account_name];
+        self.transactionRecordsService.getTransactionRecordsRequest.to = [(AccountInfo *)sender account_name];
         [self loadNewData];
     }
     

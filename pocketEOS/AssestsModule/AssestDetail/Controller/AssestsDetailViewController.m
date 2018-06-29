@@ -22,12 +22,14 @@
 #import "SocialShareModel.h"
 #import "SocialManager.h"
 #import "AssestDetailFooterView.h"
+#import "TransferModel.h"
 
 @interface AssestsDetailViewController ()< UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, AssestsDetailHeaderViewDelegate, SocialSharePanelViewDelegate, AssestDetailFooterViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) AssestsDetailHeaderView *headerView;
-@property(nonatomic, strong) NSString *currentAccountName;
-@property(nonatomic, strong) NSString *currentAssestsType;
+@property(nonatomic, copy) NSString *currentAccountName;
+@property(nonatomic, copy) NSString *currentAssestsType;
+@property(nonatomic , copy) NSString *currentContractName;
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
 @property(nonatomic , strong) GetSparklinesRequest *getSparklinesRequest;
 @property(nonatomic , strong) UIView *shareBaseView;
@@ -55,7 +57,7 @@
 - (AssestsDetailHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsDetailHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 233);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 233+50);
         _headerView.delegate = self;
     }
     return _headerView;
@@ -156,7 +158,14 @@
 
     self.currentAccountName = self.accountName;
     self.currentAssestsType = self.model.assestsName;
-    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
+    if ([self.model.assestsName isEqualToString:@"EOS"]) {
+        self.currentContractName = ContractName_EOSIOTOKEN;
+    }else if ([self.currentAssestsType isEqualToString:@"OCT" ]){
+        self.currentContractName = ContractName_OCTOTHEMOON;
+    }
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":VALIDATE_STRING(self.currentAssestsType)  , @"contractName": VALIDATE_STRING(self.currentContractName) }, nil];
     [self loadNewData];
 }
 
@@ -171,10 +180,11 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT- TABBAR_HEIGHT);
     [self.view addSubview:self.footerView];
     [self configHeaderView];
    
-//     [self.mainTableView.mj_header beginRefreshing];
+     [self.mainTableView.mj_header beginRefreshing];
 //    NSValue *value0 = [NSValue valueWithCGPoint:(CGPointMake(0, 40))];
 //    NSValue *value1 = [NSValue valueWithCGPoint:(CGPointMake(10, 20))];
 //    NSValue *value2 = [NSValue valueWithCGPoint:(CGPointMake(15, 70))];
@@ -205,7 +215,7 @@
 }
 
 - (void)configHeaderView{
-    self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ CNY", [NumberFormatter displayStringFromNumber:@(self.model.assests_balance.doubleValue * self.model.assests_price_cny.doubleValue)]];
+    self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ CNY", [NumberFormatter displayStringFromNumber:@( self.model.assests_price_cny.doubleValue)]];
     if ([self.model.assests_price_change_in_24 hasPrefix:@"-"]) {
         //        HEXCOLOR(0x1E903C) HEXCOLOR(0xB0B0B0)
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%   24h", self.model.assests_price_change_in_24]];
@@ -231,9 +241,9 @@
 
     self.headerView.totalLabel.text = [NSString stringWithFormat:NSLocalizedString(@"额(24h)%@CNY", nil), self.model.assests_market_cap_cny];
     self.headerView.accountLabel.text = self.accountName;
-    if ([self.model.assestsName isEqualToString:@"eos"]) {
+    if ([self.model.assestsName isEqualToString:@"EOS"]) {
         self.headerView.Assest_balance_Label.text = [NSString stringWithFormat:@"%@ EOS", [NumberFormatter displayStringFromNumber:@(self.model.assests_balance.doubleValue)]];
-        }else if ([self.model.assestsName isEqualToString:@"oct"]){
+        }else if ([self.model.assestsName isEqualToString:@"OCT"]){
         self.headerView.Assest_balance_Label.text = [NSString stringWithFormat:@"%@ OCT", [NumberFormatter displayStringFromNumber:@(self.model.assests_balance.doubleValue)]];
     }
     
@@ -263,9 +273,9 @@
         cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
-    if ([self.model.assestsName isEqualToString:@"eos"]) {
+    if ([self.model.assestsName isEqualToString:@"EOS"]) {
        model = self.transactionRecordsService.eosTransactionDatasourceArray[indexPath.row];
-    }else if ([self.model.assestsName isEqualToString:@"oct"]){
+    }else if ([self.model.assestsName isEqualToString:@"OCT"]){
        model = self.transactionRecordsService.octTransactionDatasourceArray[indexPath.row];
     }
     cell.currentAccountName = self.currentAccountName;
@@ -274,9 +284,9 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([self.model.assestsName isEqualToString:@"eos"]) {
+    if ([self.model.assestsName isEqualToString:@"EOS"]) {
         return self.transactionRecordsService.eosTransactionDatasourceArray.count;
-    }else if ([self.model.assestsName isEqualToString:@"oct"]){
+    }else if ([self.model.assestsName isEqualToString:@"OCT"]){
         return self.transactionRecordsService.octTransactionDatasourceArray.count;
     }
     return 0;
@@ -319,10 +329,10 @@
 - (void)SocialSharePanelViewDidTap:(UITapGestureRecognizer *)sender{
     NSString *platformName = self.platformNameArr[sender.view.tag-1000];
     ShareModel *model = [[ShareModel alloc] init];
-    if ([self.model.assestsName isEqualToString:@"eos"]) {
+    if ([self.model.assestsName isEqualToString:@"EOS"]) {
         model.title = NSLocalizedString(@"EOS最新咨询详情", nil);
         model.imageName = @"eos_avatar";
-    }else if ([self.model.assestsName isEqualToString:@"oct"]){
+    }else if ([self.model.assestsName isEqualToString:@"OCT"]){
         model.title = NSLocalizedString(@"OCT最新咨询详情", nil);
         model.imageName = @"oct_avatar";
     }
@@ -350,6 +360,7 @@
 - (void)transferBtnDidClick{
     TransferViewController *vc = [[TransferViewController alloc] init];
     vc.accountName = self.accountName;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -369,10 +380,18 @@
     if (sender.tag == 1000) {
         TransferViewController *vc = [[TransferViewController alloc] init];
         vc.accountName = self.accountName;
+        TransferModel *model = [[TransferModel alloc] init];
+        model.account_name = self.accountName;
+        model.coin = self.currentAssestsType;
+        vc.transferModel = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1001){
         RecieveViewController *vc = [[RecieveViewController alloc] init];
         vc.accountName = self.accountName;
+        TransferModel *model = [[TransferModel alloc] init];
+        model.account_name = self.accountName;
+        model.coin = self.currentAssestsType;
+        vc.transferModel = model;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1002){
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];

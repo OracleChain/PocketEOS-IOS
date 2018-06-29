@@ -16,6 +16,7 @@
 
 // 最少质押的 eos 数量
 #define MIN_AMOUNT @"1.0000000"
+//#define MIN_AMOUNT @"0.0010000"
 
 @interface ModifyApproveViewController ()<UINavigationControllerDelegate, LoginPasswordViewDelegate, ModifyApproveHeaderViewDelegate, TransferServiceDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -83,6 +84,25 @@
         _transferService.delegate = self;
     }
     return _transferService;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -196,7 +216,7 @@
     
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -211,8 +231,8 @@
 }
 
 - (void)approve{
-    self.approve_Abi_json_to_bin_request.action = @"delegatebw";
-    self.approve_Abi_json_to_bin_request.code = @"eosio";
+    self.approve_Abi_json_to_bin_request.action = ContractAction_DELEGATEBW;
+    self.approve_Abi_json_to_bin_request.code = ContractName_EOSIO;
     self.approve_Abi_json_to_bin_request.from = self.eosResourceResult.data.account_name;
     self.approve_Abi_json_to_bin_request.receiver = self.eosResourceResult.data.account_name;
     self.approve_Abi_json_to_bin_request.transfer = @"0";
@@ -233,9 +253,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"delegatebw";
+        weakSelf.transferService.action = ContractAction_DELEGATEBW;
         weakSelf.transferService.sender = weakSelf.eosResourceResult.data.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;
@@ -247,8 +267,8 @@
 }
 
 - (void)unStake{
-    self.unstakeEosAbiJsonTobinRequest.action = @"undelegatebw";
-    self.unstakeEosAbiJsonTobinRequest.code = @"eosio";
+    self.unstakeEosAbiJsonTobinRequest.action = ContractAction_UNDELEGATEBW;
+    self.unstakeEosAbiJsonTobinRequest.code = ContractName_EOSIO;
     self.unstakeEosAbiJsonTobinRequest.from = self.eosResourceResult.data.account_name;
     self.unstakeEosAbiJsonTobinRequest.receiver = self.eosResourceResult.data.account_name;
     if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
@@ -268,9 +288,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"undelegatebw";
+        weakSelf.transferService.action = ContractAction_UNDELEGATEBW;
         weakSelf.transferService.sender = weakSelf.eosResourceResult.data.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;
@@ -308,12 +328,5 @@ extern NSString *TradeBandwidthDidSuccessNotification;
     [self.loginPasswordView removeFromSuperview];
     self.loginPasswordView = nil;
 }
-
-// 通知上个页面刷新数据
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TradeBandwidthDidSuccessNotification object:nil];
-}
-
 
 @end

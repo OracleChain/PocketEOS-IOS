@@ -11,7 +11,8 @@
 @implementation TransactionResult
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{
-             @"transaction_id" : @"data.transaction_id"
+             @"transaction_id" : @"data.transaction_id",
+             @"error" : @"data"
              };
 }
 @end

@@ -157,13 +157,19 @@
 }
 
 -(void)wechatIDBtnDidClick:(UIButton *)sender{
+//    Wallet *wallet = CURRENT_WALLET;
+//    UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
+//    vc.socialPlatformType = @"wechat";
+//    vc.socialPlatformName = wallet.wallet_weixin;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
     Wallet *wallet = CURRENT_WALLET;
     if (wallet.wallet_weixin.length > 0 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"wechat";
         vc.socialPlatformName = wallet.wallet_weixin;
         [self.navigationController pushViewController:vc animated:YES];
-        
+
     }else{
         BindSocialPlatformViewController *vc = [[BindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"wechat";
@@ -173,6 +179,12 @@
 }
 
 -(void)qqIDBtnBtnDidClick:(UIButton *)sender{
+//    Wallet *wallet = CURRENT_WALLET;
+//    UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
+//    vc.socialPlatformType = @"qq";
+//    vc.socialPlatformName = wallet.wallet_qq;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
     Wallet *wallet = CURRENT_WALLET;
     if (wallet.wallet_qq.length > 0 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
@@ -296,7 +308,7 @@
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }

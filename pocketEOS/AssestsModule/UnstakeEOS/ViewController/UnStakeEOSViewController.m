@@ -70,6 +70,24 @@
     return _accountResult;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
@@ -104,7 +122,7 @@
 
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -121,8 +139,8 @@
 // 一键赎回质押的EOS
 - (void)unstakeEOS{
     [SVProgressHUD show];
-    self.unstakeEosAbiJsonTobinRequest.action = @"undelegatebw";
-    self.unstakeEosAbiJsonTobinRequest.code = @"eosio";
+    self.unstakeEosAbiJsonTobinRequest.action = ContractAction_UNDELEGATEBW;
+    self.unstakeEosAbiJsonTobinRequest.code = ContractName_EOSIO;
     self.unstakeEosAbiJsonTobinRequest.from = self.accountResult.data.account_name;
     self.unstakeEosAbiJsonTobinRequest.receiver = self.accountResult.data.account_name;
     self.unstakeEosAbiJsonTobinRequest.unstake_net_quantity = [NSString stringWithFormat:@"%.4f EOS", self.accountResult.data.eos_net_weight.doubleValue-1];
@@ -137,9 +155,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"undelegatebw";
+        weakSelf.transferService.action = ContractAction_UNDELEGATEBW;
         weakSelf.transferService.sender = weakSelf.accountResult.data.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;

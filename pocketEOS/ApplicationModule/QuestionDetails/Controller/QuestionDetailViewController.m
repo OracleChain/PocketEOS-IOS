@@ -195,49 +195,17 @@
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
-    
-    
-    // 1.押币 2.回答
-    [self approve];
-    
+    [self answerQuestion];
 }
-
-// 押币
-- (void)approve{
-    [SVProgressHUD show];
-    self.approveAbi_json_to_bin_request.action = @"approve";
-    self.approveAbi_json_to_bin_request.code = @"octoneos";
-    self.approveAbi_json_to_bin_request.owner = self.choosedAccountName;
-    self.approveAbi_json_to_bin_request.spender = @"ocaskans";
-    self.approveAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"1.0000 OCT"];
-    WS(weakSelf);
-    [self.approveAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
-         #pragma mark -- [@"data"]
-        NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
-        AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-        weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"approve";
-        weakSelf.transferService.sender = weakSelf.choosedAccountName;
-        weakSelf.transferService.code = @"octoneos";
-         #pragma mark -- [@"data"]
-        weakSelf.transferService.binargs = data[@"data"][@"binargs"];
-        weakSelf.transferService.pushTransactionType = PushTransactionTypeApprove;
-        weakSelf.transferService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
-        [weakSelf.transferService pushTransaction];
-    } failure:^(id DAO, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-}
-
 
 - (void)answerQuestion{
     WS(weakSelf);
-    self.answerQuestion_abi_json_to_bin_request.code = @"ocaskans";
-    self.answerQuestion_abi_json_to_bin_request.action = @"answer";
+    self.answerQuestion_abi_json_to_bin_request.code = ContractName_OCASKANS;
+    self.answerQuestion_abi_json_to_bin_request.action = ContractAction_ANSWER;
     self.answerQuestion_abi_json_to_bin_request.from = self.choosedAccountName;
     self.answerQuestion_abi_json_to_bin_request.askid = self.question.question_id.stringValue;
     self.answerQuestion_abi_json_to_bin_request.choosedanswer = @(self.WKScriptMessageBody.integerValue);
@@ -246,9 +214,9 @@
         NSLog(@"answer_Question_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"answer";
+        weakSelf.transferService.action = ContractAction_ANSWER;
         weakSelf.transferService.sender = weakSelf.choosedAccountName;
-        weakSelf.transferService.code = @"ocaskans";
+        weakSelf.transferService.code = ContractName_OCASKANS;
          #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeAnswer;
@@ -266,15 +234,6 @@
     if ([result.code isEqualToNumber:@0 ]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"回答问题成功!", nil)];
         [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [TOASTVIEW showWithText: result.message];
-    }
-}
-
-
--(void)approveDidFinish:(TransactionResult *)result{
-    if ([result.code isEqualToNumber:@0 ]) {
-        [self answerQuestion];
     }else{
         [TOASTVIEW showWithText: result.message];
     }

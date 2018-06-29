@@ -284,6 +284,7 @@
 
 - (void)getRichlistAccount:(CompleteBlock)complete{
     WS(weakSelf);
+    
     [self.richListRequest postDataSuccess:^(id DAO, id data) {
         [weakSelf.richListDataArray removeAllObjects];
         RichListResult *result = [RichListResult mj_objectWithKeyValues:data];

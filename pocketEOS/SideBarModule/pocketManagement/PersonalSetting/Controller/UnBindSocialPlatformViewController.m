@@ -47,6 +47,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"UnBindSocialPlatformHeaderView" owner:nil options:nil] firstObject];
         _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 320);
+        _headerView.delegate = self;
     }
     return _headerView;
 }

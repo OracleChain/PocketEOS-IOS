@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TransactionRecordsResult : NSObject
-@property(nonatomic, strong) NSString *message;
+@property(nonatomic, strong) NSString *msg;
 
 
 @property(nonatomic, strong) NSNumber *code;

@@ -16,6 +16,8 @@
 #import "Permission.h"
 #import "EOS_Key_Encode.h"
 #import "BackupEOSAccountService.h"
+#import "AppDelegate.h"
+#import "BaseTabBarController.h"
 
 @interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) ImportAccountHeaderView *headerView;
@@ -126,37 +128,38 @@
 
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
-    [self.loginPasswordView removeFromSuperview];
+    [self removeLoginPasswordView];
 }
 
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     [SVProgressHUD show];
-    [self checkLocalDatabaseAlreadyHasAccountWithAccountName:VALIDATE_STRING(self.headerView.accountNameTF.text) ];
+    
+    // 检查本地是否有对应的账号
+    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.headerView.accountNameTF.text];
+    if (accountInfo) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包已存在该账号!", nil)];
+        [self removeLoginPasswordView];
+        return;
+    }
     // 验证 account_name. owner_private_key , active_private_key 是否匹配
     [self validateInputFormat];
 }
 
 
-// 检查本地是否有对应的账号
-- (void)checkLocalDatabaseAlreadyHasAccountWithAccountName:(NSString *)accountName{
-    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:accountName];
-    if (accountInfo) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包已存在该账号!", nil)];
-        return;
-    }
-}
+
 
 // 检查输入的格式
 - (void)validateInputFormat{
     // 验证账号名私钥格式是否正确
     if (![RegularExpression validateEosAccountName:self.headerView.accountNameTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"您的账号名不匹配!^[1-5a-z]{7,13}$", nil)];
+        [self removeLoginPasswordView];
         return;
     }
     private_owner_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.private_ownerKey_TF.text];
@@ -166,6 +169,7 @@
         [self createPublicKeys];
     }else{
         [TOASTVIEW showWithText:NSLocalizedString(@"私钥格式有误!", nil)];
+        [self removeLoginPasswordView];
         return ;
     }
 }
@@ -209,7 +213,7 @@
                 }else{
                     accountInfo.is_main_account = @"1";
                 }
-                accountInfo.is_main_account = @"0";
+                
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
                 [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
                 weakSelf.backupEOSAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
@@ -220,7 +224,7 @@
                     }
                 }];
                 
-                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
             }else{
                 [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
             }
@@ -279,4 +283,11 @@
         [weakSelf presentViewController:alertC animated:YES completion:nil];
     }
 }
+- (void)removeLoginPasswordView{
+    if (self.loginPasswordView) {
+        [self.loginPasswordView removeFromSuperview];
+        self.loginPasswordView = nil;
+    }
+}
+
 @end

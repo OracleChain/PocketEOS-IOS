@@ -23,7 +23,6 @@
 #import "CandyMainViewController.h"
 #import "BackupAccountViewController.h"
 #import "BPVoteViewController.h"
-#import "BindPhoneNumberViewController.h"
 
 
 @interface SideBarViewController ()<WalletQRCodeViewDelegate, SideBarMainViewDelegate >

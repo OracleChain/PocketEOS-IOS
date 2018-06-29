@@ -137,7 +137,16 @@
     self.currentAccountName = self.accountName;
     self.headerView.accountChooserLabel.text = self.accountName;
     [self buidDataSource];
-    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+    
+    self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
+    NSString *contractName;
+    if ([self.currentAssestsType isEqualToString:@"EOS" ]) {
+        contractName = ContractName_EOSIOTOKEN;
+    }else if ([self.currentAssestsType isEqualToString:@"OCT" ]){
+        contractName = ContractName_OCTOTHEMOON;
+    }
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
+    
     [self loadNewData];
 }
 
@@ -158,7 +167,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.nameTF];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
-    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
+    NSString *contractName;
+    self.currentAssestsType = @"EOS";
+    if ([self.currentAssestsType isEqualToString:@"EOS" ]) {
+        contractName = ContractName_EOSIOTOKEN;
+    }else if ([self.currentAssestsType isEqualToString:@"OCT" ]){
+        contractName = ContractName_OCTOTHEMOON;
+    }
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
     
     self.mainService.richListRequest.uid = CURRENT_WALLET_UID;
     [self.mainService getRichlistAccount:^(id service, BOOL isSuccess) {
@@ -190,6 +207,9 @@
     // getAccountAsset
     dispatch_group_enter(group);
     dispatch_group_async(group, dispatch_get_global_queue(0, 0 ), ^{
+        if (IsNilOrNull(weakSelf.currentAccountName)) {
+            return;
+        }
         weakSelf.assestsMainService.getAccountAssetRequest.name = weakSelf.currentAccountName;
         [weakSelf.assestsMainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
             if (isSuccess) {
@@ -334,23 +354,27 @@
 - (void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
     
     if ([self.currentAssestsType isEqualToString:@"EOS"]) {
-        self.transferAbi_json_to_bin_request.code = @"eosio.token";
-        self.mainService.code = @"eosio.token";
+        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
+        self.mainService.code = ContractName_EOSIOTOKEN;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f EOS", self.headerView.amountTF.text.doubleValue];
     }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
-        self.transferAbi_json_to_bin_request.code = @"octoneos";//octoneos
-        self.mainService.code = @"octoneos";//octoneos
+        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
+        self.mainService.code = ContractName_OCTOTHEMOON;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
 
     }
-
-    self.transferAbi_json_to_bin_request.action = @"transfer";
+    
+//    self.transferAbi_json_to_bin_request.code = @"helloworldgo";//octoneos
+//    self.mainService.code = @"helloworldgo";//octoneos
+//    self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f AAA", self.headerView.amountTF.text.doubleValue];
+    
+    self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = self.currentAccountName;
     self.transferAbi_json_to_bin_request.to = self.headerView.nameTF.text;
     self.transferAbi_json_to_bin_request.memo = self.headerView.memoTV.text;
@@ -360,7 +384,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.currentAccountName];
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.mainService.action = @"transfer";
+        weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.sender = weakSelf.currentAccountName;
         #pragma mark -- [@"data"]
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
@@ -396,10 +420,12 @@
     if ([sender isKindOfClass: [Assest class]]) {
         self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
         self.currentAssestsType = [(Assest *)sender assetName];
+        
     }else if ([sender isKindOfClass:[AccountInfo class]]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
-        self.transactionRecordsService.getTransactionRecordsRequest.account_name = [(AccountInfo *)sender account_name];
+        self.transactionRecordsService.getTransactionRecordsRequest.from = [(AccountInfo *)sender account_name];
+        
         [self loadNewData];
     }
     [self buidDataSource];
@@ -478,6 +504,7 @@
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
+                
             }
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];

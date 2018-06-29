@@ -272,8 +272,7 @@
 
 //ChangePasswordViewDelegate
 - (void)cancleBtnDidClick:(UIButton *)sender{
-    [self.changePasswordView removeFromSuperview];
-    self.changePasswordView = nil;
+    [self remove_change_passwordView];
 }
 
 - (void)confirmPasswordBtnDidClick:(UIButton *)sender{
@@ -282,23 +281,50 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"输入不能为空!", nil)];
         return;
     }
-    Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.changePasswordView.oraginalPasswordTF.text]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"原始密码输入有误!", nil)];
-        return;
-    }
     
     if (![self.changePasswordView.inputNewPasswordTF.text isEqualToString:self.changePasswordView.confirmPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"两次输入的密码不一致!", nil)];
         return;
     }
     
+    Wallet *current_wallet = CURRENT_WALLET;
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.changePasswordView.oraginalPasswordTF.text]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"原始密码输入有误!", nil)];
+        [self remove_change_passwordView];
+        return;
+    }
+    [self changeWalletPassword];
+}
+
+- (void)changeWalletPassword{
+    NSArray *allLocalAccount = [[AccountsTableManager accountTable] selectAccountTable];
+    Wallet *wallet = CURRENT_WALLET;
+    for (AccountInfo *model in allLocalAccount) {
+        NSString *decrypt_active_private_key = [AESCrypt decrypt:model.account_active_private_key password:self.changePasswordView.oraginalPasswordTF.text];
+        NSString *decrypt_owner_private_key = [AESCrypt decrypt:model.account_owner_private_key password:self.changePasswordView.oraginalPasswordTF.text];
+        
+        NSString *encrypt_active_private_key = [AESCrypt encrypt:decrypt_active_private_key password:self.changePasswordView.confirmPasswordTF.text];
+        NSString *encrypt_owner_private_key = [AESCrypt encrypt:decrypt_owner_private_key password:self.changePasswordView.confirmPasswordTF.text];
+  
+        // update table
+       BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET account_active_private_key = '%@', account_owner_private_key = '%@'  WHERE account_name = '%@'", wallet.account_info_table_name, encrypt_active_private_key, encrypt_owner_private_key , model.account_name]];
+        if (result) {
+            NSLog(@"changeWalletPassword Success");
+        }
+    }
+    
     // 验证通过, 修改密码
-   BOOL result = [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_shapwd = '%@' WHERE wallet_uid = '%@'",  WALLET_TABLE, [self.changePasswordView.inputNewPasswordTF.text sha256], CURRENT_WALLET_UID]];
+    BOOL result = [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_shapwd = '%@' WHERE wallet_uid = '%@'",  WALLET_TABLE, [WalletUtil generate_wallet_shapwd_withPassword:self.changePasswordView.confirmPasswordTF.text], CURRENT_WALLET_UID]];
     if (result) {
         [TOASTVIEW showWithText:NSLocalizedString(@"修改密码成功!", nil)];
     }
-    
-    [self cancleBtnDidClick:nil];
+    [self remove_change_passwordView];
 }
+
+
+- (void)remove_change_passwordView{
+    [self.changePasswordView removeFromSuperview];
+    self.changePasswordView = nil;
+}
+
 @end

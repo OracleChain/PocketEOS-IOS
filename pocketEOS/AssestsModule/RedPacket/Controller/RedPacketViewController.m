@@ -102,7 +102,7 @@
     // 设置默认的转账账号及资产
     self.headerView.accountChooserLabel.text = self.currentAccountName;
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
-    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
+//    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
     [self loadNewData];
 //    [self textFieldChange:nil];
 }

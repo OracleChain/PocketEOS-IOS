@@ -31,10 +31,17 @@
 
 - (NSDictionary *)dataSourceDictionary{
     if (!_dataSourceDictionary) {
-        _dataSourceDictionary = @{
-                                  @"topSection" : @[NSLocalizedString(@"消息反馈", nil)]  ,
-                                  @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
-                                  }; //NSLocalizedString(@"语言", nil),
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            _dataSourceDictionary = @{
+                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil) , NSLocalizedString(@"消息反馈", nil)]  ,
+                                      @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
+                                      };//NSLocalizedString(@"语言", nil),
+        }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            _dataSourceDictionary = @{
+                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil)],
+                                      @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
+                                      };//NSLocalizedString(@"语言", nil),
+        }
     }
     return _dataSourceDictionary;
 }
@@ -66,37 +73,28 @@
     cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(7).heightIs(14).centerYEqualToView(cell.contentView);
     cell.rightIconImageView.hidden = NO;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.bottomLineView.hidden = YES;
+    cell.bottomLineView.hidden = NO;
     
     if (indexPath.section == 0) {
         NSArray *topArr = [self.dataSourceDictionary objectForKey:@"topSection"];
         cell.textLabel.text = topArr[indexPath.row];
-        
-    }else if (indexPath.section == 1){
-        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"bottomSection"];
-        cell.textLabel.text = bottomArr[indexPath.row];
-        
-        if (indexPath.row == 0) {
+        if([cell.textLabel.text isEqualToString:NSLocalizedString(@"清空缓存", nil)]){
             NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)[0];
             cell.detailTextLabel.text = [cachePath fileSize];
             cell.detailTextLabel.textColor = RGB(240, 143, 67);
             cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
             cell.rightIconImageView.hidden = YES;
-            cell.bottomLineView.hidden = NO;
-        }else{
-            cell.bottomLineView.hidden = NO;
-            if (indexPath.row == 1) {
-                // 切换语言
-                
-                
-            }
-            
-            
         }
-        
-        
+        if (indexPath.row == (topArr.count-1)) {
+            cell.bottomLineView.hidden = YES;
+        }
+    }else if (indexPath.section == 1){
+        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"bottomSection"];
+        cell.textLabel.text = bottomArr[indexPath.row];
+        if (indexPath.row == (bottomArr.count-1)) {
+            cell.bottomLineView.hidden = YES;
+        }
     }
-    
     return cell;
 }
 
@@ -135,42 +133,37 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == 0) {
+    BaseTableViewCell1 *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.textLabel.text isEqualToString:NSLocalizedString(@"语言", nil)]) {
+        LanguageSettingViewController *vc = [[LanguageSettingViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"清空缓存", nil)]){
+        // clear cache
+        NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)[0];
+        NSFileManager *mgr = [NSFileManager defaultManager];
+        if ([mgr fileExistsAtPath:cachePath]) {
+            // 删除子文件夹
+            BOOL isRemoveSuccessed = [mgr removeItemAtPath:cachePath error:nil];
+            if (isRemoveSuccessed) { // 删除成功
+                [TOASTVIEW showWithText:NSLocalizedString(@"清理成功~", nil)];
+            }
+        }
+        [tableView reloadData];
+        
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"消息反馈", nil)]){
         MessageFeedbackViewController *vc = [[MessageFeedbackViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         
-    }else if (indexPath.section == 1){
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"法律条款与隐私政策", nil)]){
+        RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
+        vc.rtfFileName = @"PocketEOSPrivacyPolicy";
+        [self.navigationController pushViewController:vc animated:YES];
         
-        if (indexPath.row == 0) {
-            // clear cache
-            NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)[0];
-            NSFileManager *mgr = [NSFileManager defaultManager];
-            if ([mgr fileExistsAtPath:cachePath]) {
-                // 删除子文件夹
-                BOOL isRemoveSuccessed = [mgr removeItemAtPath:cachePath error:nil];
-                if (isRemoveSuccessed) { // 删除成功
-                    [TOASTVIEW showWithText:NSLocalizedString(@"清理成功~", nil)];
-                }
-            }
-            [tableView reloadData];
-            
-        }
-//        else if (indexPath.row == 1){
-//            LanguageSettingViewController *vc = [[LanguageSettingViewController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//
-//        }
-        else if (indexPath.row == 1){
-            RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-            vc.rtfFileName = @"PocketEOSPrivacyPolicy";
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }else if (indexPath.row == 2){
-            RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-            vc.rtfFileName = @"AboutPocketEOS";
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"关于Pocket EOS", nil)]){
+        RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
+        vc.rtfFileName = @"AboutPocketEOS";
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
 }
 

@@ -45,7 +45,7 @@
         if ([data isKindOfClass:[NSDictionary class]]) {
             AccountResult *result = [AccountResult mj_objectWithKeyValues:data];
             Assests *eos = [[Assests alloc] init];
-            eos.assestsName = @"eos";
+            eos.assestsName = @"EOS";
             eos.assests_avtar = @"eos_avatar";
             eos.assests_balance = VALIDATE_STRING(result.data.eos_balance);
             eos.assests_balance_cny = VALIDATE_STRING(result.data.eos_balance_cny);
@@ -57,7 +57,7 @@
             eos.assests_price_usd = VALIDATE_STRING(result.data.eos_price_usd);
             
             Assests *oct = [[Assests alloc] init];
-            oct.assestsName = @"oct";
+            oct.assestsName = @"OCT";
             oct.assests_avtar = @"oct_avatar";
             oct.assests_balance = VALIDATE_STRING(result.data.oct_balance);
             oct.assests_balance_cny = VALIDATE_STRING(result.data.oct_balance_cny);

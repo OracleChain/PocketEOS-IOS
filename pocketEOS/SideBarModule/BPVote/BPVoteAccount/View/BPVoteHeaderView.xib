@@ -54,7 +54,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFo-D2-KdJ" userLabel="changeAccountButton">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
+                            <rect key="frame" x="243" y="0.0" width="100" height="90"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="uhx-FR-JtG"/>
+                            </constraints>
                             <connections>
                                 <action selector="changeAccountBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="HrE-4h-V7h"/>
                             </connections>
@@ -74,7 +77,6 @@
                         <constraint firstItem="3sx-Al-GyZ" firstAttribute="centerY" secondItem="dLk-OU-9fE" secondAttribute="centerY" id="MWA-E0-6nY"/>
                         <constraint firstItem="dLk-OU-9fE" firstAttribute="top" secondItem="hIb-SG-gk9" secondAttribute="top" constant="19" id="OJ3-HG-KS0"/>
                         <constraint firstAttribute="trailing" secondItem="Jee-bf-FuF" secondAttribute="trailing" id="XVD-GV-EUS"/>
-                        <constraint firstItem="tFo-D2-KdJ" firstAttribute="leading" secondItem="hIb-SG-gk9" secondAttribute="leading" id="YB1-Oe-tdr"/>
                         <constraint firstItem="dLk-OU-9fE" firstAttribute="leading" secondItem="hIb-SG-gk9" secondAttribute="leading" constant="16" id="f8x-ex-XAA"/>
                         <constraint firstAttribute="trailing" secondItem="tFo-D2-KdJ" secondAttribute="trailing" id="fw1-Pf-kRl"/>
                         <constraint firstAttribute="trailing" secondItem="bTI-lU-dea" secondAttribute="trailing" constant="20" id="oFk-OH-8an"/>

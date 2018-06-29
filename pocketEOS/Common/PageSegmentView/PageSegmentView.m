@@ -374,7 +374,7 @@
 - (UIView *)bottomLine {
     if (!_bottomLine) {
         self.bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0,self.tabView.height-0.5,self.width,0.5)];
-        [self addSubview:_bottomLine];
+//        [self addSubview:_bottomLine];
     }
     return _bottomLine;
 }

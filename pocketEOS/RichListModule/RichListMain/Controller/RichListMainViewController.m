@@ -77,6 +77,7 @@
 
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     [self.mainTableView setTableHeaderView: self.headerView];
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;

@@ -60,7 +60,7 @@
         self.contentView.backgroundColor = HEXCOLOR(0x000000);
         
         [self.contentView addSubview:self.rectBtn];
-        self.rectBtn.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, MARGIN_20).widthIs(16).heightEqualToWidth();
+        self.rectBtn.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).centerYEqualToView(self.contentView).widthIs(20).heightEqualToWidth();
         
         [self.contentView addSubview:self.avatarImgView];
         self.avatarImgView.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, MARGIN_20).widthIs(40).heightEqualToWidth();

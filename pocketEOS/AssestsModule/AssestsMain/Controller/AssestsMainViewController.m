@@ -79,18 +79,9 @@
         }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 248);
         }
-//        _backgroundView.lee_theme
-//        .LeeAddBackgroundColor(SOCIAL_MODE, RGB(62, 113, 236))
-//        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
-//        
-//        _backgroundView.lee_theme
-//        .LeeAddBackgroundImage(SOCIAL_MODE, [UIImage imageNamed:@"background_blue"])
-//        .LeeAddBackgroundImage(BLACKBOX_MODE, [UIImage imageNamed:@"background_black"])
         _backgroundView.lee_theme
         .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"background_blue"])
         .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"background_black"]);
-        
-        
     }
     return _backgroundView;
 }
@@ -250,12 +241,18 @@
     // 配置开屏广告
     [self configAdvertisement];
     [self addunStakeBtn];
+    
+    
+    
   
 }
 
 // 构建数据源
 - (void)buidDataSource{
     WS(weakSelf);
+    if (IsNilOrNull(self.currentAccountName)) {
+        return;
+    }
     self.mainService.getAccountAssetRequest.name = self.currentAccountName;
     [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
         // 拿到当前的下拉刷新控件，结束刷新状态

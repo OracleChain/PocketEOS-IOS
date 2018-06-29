@@ -101,6 +101,26 @@
     return _transferService;
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
@@ -188,7 +208,7 @@
     
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -204,8 +224,8 @@
 }
 
 - (void)buyRam{
-    self.buy_ram_abi_json_to_bin_request.action = @"buyram";
-    self.buy_ram_abi_json_to_bin_request.code = @"eosio";
+    self.buy_ram_abi_json_to_bin_request.action = ContractAction_BUYRAM;
+    self.buy_ram_abi_json_to_bin_request.code = ContractName_EOSIO;
     self.buy_ram_abi_json_to_bin_request.payer = self.eosResourceResult.data.account_name;
     self.buy_ram_abi_json_to_bin_request.receiver = self.eosResourceResult.data.account_name;
     self.buy_ram_abi_json_to_bin_request.quant = [NSString stringWithFormat:@"%@",self.headerView.amountLabel.text];
@@ -219,9 +239,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"buyram";
+        weakSelf.transferService.action = ContractAction_BUYRAM;
         weakSelf.transferService.sender = weakSelf.eosResourceResult.data.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;
@@ -234,8 +254,8 @@
 }
 
 - (void)sellRam{
-    self.sell_ram_abi_json_to_bin_request.action = @"sellram";
-    self.sell_ram_abi_json_to_bin_request.code = @"eosio";
+    self.sell_ram_abi_json_to_bin_request.action = ContractAction_SELLRAM;
+    self.sell_ram_abi_json_to_bin_request.code = ContractName_EOSIO;
     self.sell_ram_abi_json_to_bin_request.account = self.eosResourceResult.data.account_name;
     if (self.headerView.amountLabel.text.length > 6) {
         double bytes;
@@ -252,9 +272,9 @@
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
-        weakSelf.transferService.action = @"sellram";
+        weakSelf.transferService.action = ContractAction_SELLRAM;
         weakSelf.transferService.sender = weakSelf.eosResourceResult.data.account_name;
-        weakSelf.transferService.code = @"eosio";
+        weakSelf.transferService.code = ContractName_EOSIO;
 #pragma mark -- [@"data"]
         weakSelf.transferService.binargs = data[@"data"][@"binargs"];
         weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;
@@ -281,8 +301,10 @@ extern NSString *TradeRamDidSuccessNotification;
 }
 
 - (void)removeLoginPasswordView{
-    [self.loginPasswordView removeFromSuperview];
-    self.loginPasswordView = nil;
+    if (self.loginPasswordView) {
+        [self.loginPasswordView removeFromSuperview];
+        self.loginPasswordView = nil;
+    }
 }
 
 -(void)leftBtnDidClick{
@@ -295,10 +317,5 @@ extern NSString *TradeRamDidSuccessNotification;
 }
 
 
-// 通知上个页面刷新数据
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TradeRamDidSuccessNotification object:nil];
-}
 
 @end

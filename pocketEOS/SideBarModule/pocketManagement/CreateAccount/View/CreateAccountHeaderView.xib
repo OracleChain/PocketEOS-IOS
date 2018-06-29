@@ -24,7 +24,7 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12位字符，由a~z和1~5组成，小写字母开头" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-fw-Dyj" customClass="BaseTextField">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12位字符，只能由小写字母a~z和数字1~5组成。" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-fw-Dyj" customClass="BaseTextField">
                     <rect key="frame" x="20" y="47" width="335" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="KFb-xz-tdw"/>

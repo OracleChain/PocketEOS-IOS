@@ -98,7 +98,7 @@
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -137,7 +137,7 @@
                 accountInfo.account_active_private_key = [AESCrypt encrypt:weakSelf.headerView.privateKeyTF.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 accountInfo.account_owner_private_key = accountInfo.account_active_private_key;
                 accountInfo.is_privacy_policy = @"0";
-                NSMutableArray *mainAccountArr = [NSMutableArray array];
+                
                 NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
                 if (accountsArr.count > 0) {
                     accountInfo.is_main_account = @"0";

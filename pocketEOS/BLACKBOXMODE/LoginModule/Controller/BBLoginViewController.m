@@ -207,16 +207,7 @@
     Wallet *model = [[Wallet alloc] init];
     model.wallet_name = self.createWalletView.walletNameTF.text;
     
-    
-    NSString *randomStr = [NSString randomStringWithLength:32];
-    NSString *encryptStr = [NSString stringWithFormat:@"%@%@", randomStr,self.createWalletView.passwordTF.text];
-    NSString *password_sha256 = [encryptStr sha256];
-    NSString *savePassword = [NSString stringWithFormat:@"%@%@", randomStr,password_sha256];
-    
-    
-    
-    
-    model.wallet_shapwd = savePassword;
+    model.wallet_shapwd = [WalletUtil generate_wallet_shapwd_withPassword:self.createWalletView.passwordTF.text];
     model.wallet_uid = [model.wallet_name sha256];
     model.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,model.wallet_uid];
     [[WalletTableManager walletTable] addRecord: model];

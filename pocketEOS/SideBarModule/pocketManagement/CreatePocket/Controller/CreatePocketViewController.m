@@ -100,10 +100,9 @@
         }
     }
     
-    NSString *randomStr = [NSString randomStringWithLength:32];
-    NSString *encryptStr = [NSString stringWithFormat:@"%@%@", randomStr,self.headerView.confirmPasswordTF.text];
-    NSString *password_sha256 = [encryptStr sha256];
-    NSString *savePassword = [NSString stringWithFormat:@"%@%@", randomStr,password_sha256];
+   
+    
+    NSString *savePassword = [WalletUtil generate_wallet_shapwd_withPassword:self.headerView.confirmPasswordTF.text];
     if (self.createPocketViewControllerFromMode == CreatePocketViewControllerFromSocialMode) {
         // 已有钱包
         

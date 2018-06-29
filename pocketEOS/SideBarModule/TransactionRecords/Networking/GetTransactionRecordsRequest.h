@@ -8,18 +8,16 @@
 
 #import "BaseNetworkRequest.h"
 
-@interface GetTransactionRecordsRequest : BaseHttpsNetworkRequest
+@interface GetTransactionRecordsRequest : BaseNetworkRequest
 
-/**
- 必选
- */
-@property(nonatomic, strong) NSString *account_name;
-/**
- 可选，本次查询返回的交易偏移位置
- */
-@property(nonatomic, strong) NSNumber *skip_seq;
-/**
- 可选，本次查询返回的交易个数
- */
-@property(nonatomic, strong) NSNumber *num_seq;
+@property(nonatomic , strong) NSMutableArray *symbols;
+
+@property(nonatomic, copy) NSString *from;
+
+@property(nonatomic, copy) NSString *to;
+
+@property(nonatomic, copy) NSNumber *page;
+
+@property(nonatomic, copy) NSNumber *pageSize;
+
 @end

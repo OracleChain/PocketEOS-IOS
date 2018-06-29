@@ -45,6 +45,7 @@
 #import "RequestUrlConstant.h"
 #import "ThemeConstant.h"
 #import "StringConstant.h"
+#import "ContractConstant.h"
 #import "UIColor+SNFoundation.h"
 #import "UIColor+AppConfigColor.h"
 #import "NSDate+ExFoundation.h"
@@ -61,6 +62,7 @@
 #import "NSObject+Extension.h"
 #import "SocialManager.h"
 #import "DeviceType.h"
+#import "WalletUtil.h"
 #import "SetAppLanguageHelper.h"
 #import "OptionModel.h"
 

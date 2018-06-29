@@ -100,7 +100,7 @@
                 <outlet property="tendencyChartView" destination="jWx-op-Zpl" id="H70-PI-Mcy"/>
                 <outlet property="totalLabel" destination="spc-9x-OlX" id="9u4-rw-YI9"/>
             </connections>
-            <point key="canvasLocation" x="53.5" y="54"/>
+            <point key="canvasLocation" x="53.5" y="53.5"/>
         </view>
     </objects>
 </document>

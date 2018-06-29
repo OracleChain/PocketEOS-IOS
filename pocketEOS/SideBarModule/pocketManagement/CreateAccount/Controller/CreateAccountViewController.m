@@ -96,7 +96,7 @@
         return;
     }
     if (![ RegularExpression validateEosAccountName:self.headerView.accountNameTF.text ]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"由小写字母开头的12位字符，只能由小写字母a~z和数字1~5组成。", nil)];
+        [TOASTVIEW showWithText:NSLocalizedString(@"12位字符，只能由小写字母a~z和数字1~5组成。", nil)];
         return;
     }
     [self.view addSubview:self.loginPasswordView];
@@ -111,7 +111,7 @@
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
     
-    if (![NSString validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
         return;
     }
@@ -153,7 +153,11 @@
     WS(weakSelf);
     EosPrivateKey *ownerPrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
     EosPrivateKey *activePrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
-    weakSelf.createAccountService.createEOSAccountRequest.uid = CURRENT_WALLET_UID;
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        weakSelf.createAccountService.createEOSAccountRequest.uid = CURRENT_WALLET_UID;
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        weakSelf.createAccountService.createEOSAccountRequest.uid = @"6f1a8e0eb24afb7ddc829f96f9f74e9d";
+    }
     weakSelf.createAccountService.createEOSAccountRequest.eosAccountName = weakSelf.headerView.accountNameTF.text;
     weakSelf.createAccountService.createEOSAccountRequest.ownerKey = ownerPrivateKey.eosPublicKey;
     weakSelf.createAccountService.createEOSAccountRequest.activeKey = activePrivateKey.eosPublicKey;

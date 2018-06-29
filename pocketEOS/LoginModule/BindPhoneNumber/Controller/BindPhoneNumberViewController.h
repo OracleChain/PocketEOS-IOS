@@ -11,4 +11,5 @@
 
 @interface BindPhoneNumberViewController : BaseViewController
 @property(nonatomic , strong) SocialModel *model;
+
 @end
