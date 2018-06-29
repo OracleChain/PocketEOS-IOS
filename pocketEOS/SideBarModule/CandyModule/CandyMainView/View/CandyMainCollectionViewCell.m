@@ -8,6 +8,11 @@
 
 #import "CandyMainCollectionViewCell.h"
 
+@interface CandyMainCollectionViewCell()
+@property(nonatomic , strong) UIImageView *img;
+@end
+
+
 @implementation CandyMainCollectionViewCell
 
 - (UIImageView *)img{
@@ -34,9 +39,10 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.img];
-        self.img.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).topSpaceToView(self.contentView, MARGIN_20).heightIs(80);
+        self.img.sd_layout.leftSpaceToView(self.contentView, 5).rightSpaceToView(self.contentView, 5).topSpaceToView(self.contentView, MARGIN_20).heightIs(80);
+        
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(self.contentView, 0 ).rightSpaceToView(self.contentView, 0).topSpaceToView(_img, 15).heightIs(13);
+        self.titleLabel.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).topSpaceToView(_img, 15).heightIs(13);
     }
     return self;
 }

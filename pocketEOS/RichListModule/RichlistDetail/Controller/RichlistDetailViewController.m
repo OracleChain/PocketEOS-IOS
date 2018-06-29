@@ -248,24 +248,16 @@
     }
     Assests *model = self.mainService.dataSourceArray[indexPath.row];
     if ([model.assests_price_change_in_24 hasPrefix:@"-"]) {
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%   24h", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.assests_price_change_in_24]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0xB51515)
                            range:NSMakeRange(0, model.assests_price_change_in_24.length + 1)];
-        [attrString addAttribute:NSForegroundColorAttributeName
-                           value:HEXCOLOR(0xB0B0B0)
-                           range:NSMakeRange(model.assests_price_change_in_24.length+1, 6)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }else{
-        //B51515
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%   24h", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.assests_price_change_in_24]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
                            range:NSMakeRange(0, model.assests_price_change_in_24.length + 2)];
-        [attrString addAttribute:NSForegroundColorAttributeName
-                           value:HEXCOLOR(0xB0B0B0)
-                           range:NSMakeRange(model.assests_price_change_in_24.length + 2, 6)];
-        
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }
     

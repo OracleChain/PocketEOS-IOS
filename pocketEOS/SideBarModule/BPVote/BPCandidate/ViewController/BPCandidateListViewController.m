@@ -107,12 +107,12 @@
     BPCandidateModel *model = self.mainService.dataSourceArray[indexPath.row];
     if ([self.choosedBPDataArray containsObject:model] ) {
         [self.choosedBPDataArray removeObject:model];
+        model.isSelected = NO;
     }else{
         [self.choosedBPDataArray addObject:model];
+        model.isSelected = YES;
     }
-    
-    BPCandidateTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.rectBtn.selected = !cell.rectBtn.selected;
+    [self.mainTableView reloadData];
     NSInteger remainCount = 30-self.choosedBPDataArray.count;
     self.footerView.tipLabel.text = [NSString stringWithFormat:@"已选择%ld个，还可以选择%ld个", self.choosedBPDataArray.count, remainCount ];
     
@@ -168,6 +168,7 @@
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [IMAGE_TIP_LABEL_MANAGER removeImageAndTipLabelViewManager];
             }
+            [weakSelf.mainTableView.mj_header setHidden:YES];
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];

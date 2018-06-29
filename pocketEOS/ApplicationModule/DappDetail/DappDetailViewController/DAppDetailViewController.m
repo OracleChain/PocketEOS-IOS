@@ -165,6 +165,9 @@
     [self passEosAccountNameToJS];
     WS(weakSelf);
     // 确保js 能收到 eosAccountName
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf passEosAccountNameToJS];
+    });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf passEosAccountNameToJS];
     });

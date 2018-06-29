@@ -21,7 +21,7 @@
 - (UIImageView *)img{
     if (!_img) {
         _img = [[UIImageView alloc] init];
-        _img.contentMode = UIViewContentModeScaleAspectFit;
+        _img.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _img;
 }
@@ -91,12 +91,12 @@
     self.descriptionLabel.text = model.task_description;
     if (model.completed) {
         [self.btn setTitle:NSLocalizedString(@"已完成", nil)forState:(UIControlStateNormal)];
-        [_btn setTitleColor:HEXCOLOR(0x436DFB) forState:(UIControlStateNormal)];
-        _btn.layer.borderColor = HEXCOLOR(0x436DFB).CGColor;
-    }else{
-        [self.btn setTitle:NSLocalizedString(@"未完成", nil)forState:(UIControlStateNormal)];
         [_btn setTitleColor:HEXCOLOR(0xC7C7C7) forState:(UIControlStateNormal)];
         _btn.layer.borderColor = HEXCOLOR(0xC7C7C7).CGColor;
+    }else{
+        [self.btn setTitle:NSLocalizedString(@"未完成", nil)forState:(UIControlStateNormal)];
+        [_btn setTitleColor:HEXCOLOR(0x436DFB) forState:(UIControlStateNormal)];
+        _btn.layer.borderColor = HEXCOLOR(0x436DFB).CGColor;
     }
 }
 

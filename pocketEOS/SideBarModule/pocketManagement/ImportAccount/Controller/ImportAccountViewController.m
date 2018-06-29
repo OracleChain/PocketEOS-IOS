@@ -158,7 +158,7 @@
 - (void)validateInputFormat{
     // 验证账号名私钥格式是否正确
     if (![RegularExpression validateEosAccountName:self.headerView.accountNameTF.text]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"您的账号名不匹配!^[1-5a-z]{7,13}$", nil)];
+        [TOASTVIEW showWithText:NSLocalizedString(@"12位字符，只能由小写字母a~z和数字1~5组成。", nil)];
         [self removeLoginPasswordView];
         return;
     }

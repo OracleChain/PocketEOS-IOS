@@ -33,6 +33,7 @@
     return _backgroundView;
 }
 
+
 - (NavigationView *)navView{
     if (!_navView) {
         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:NSLocalizedString(@"糖果积分", nil)rightBtnImgName:@"" delegate:self];
@@ -73,13 +74,9 @@
     [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.backgroundColor = [UIColor clearColor];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    if ([DeviceType getIsIpad]) {
-        self.mainTableView.scrollEnabled = YES;
-    }else{
-        self.mainTableView.scrollEnabled = NO;
-    }
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self buildDataSource];
 }
 

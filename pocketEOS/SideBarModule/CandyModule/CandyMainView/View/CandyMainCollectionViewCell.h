@@ -10,7 +10,7 @@
 #import "CandyEquityModel.h"
 
 @interface CandyMainCollectionViewCell : UICollectionViewCell
-@property(nonatomic , strong) UIImageView *img;
+
 @property(nonatomic , strong) UILabel *titleLabel;
 @property(nonatomic , strong) CandyEquityModel *model;
 @end

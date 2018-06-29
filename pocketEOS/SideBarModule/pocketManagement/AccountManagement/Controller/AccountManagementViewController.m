@@ -70,6 +70,8 @@
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
         _footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 100);
         [_footerView addSubview:self.sliderVerifyView];
+        [_footerView addSubview:self.tipLabel];
+        self.tipLabel.frame = CGRectMake(MARGIN_20, 26+48+10, SCREEN_WIDTH-(MARGIN_20*2), 18);
     }
     return _footerView;
 }
@@ -91,9 +93,11 @@
 - (SliderVerifyView *)sliderVerifyView{
     if (!_sliderVerifyView) {
         _sliderVerifyView = [[SliderVerifyView alloc] init];
-        self.sliderVerifyView.frame = CGRectMake(48, 26, SCREEN_WIDTH-(48*2), 48);
+        self.sliderVerifyView.frame = CGRectMake(MARGIN_20, 26, SCREEN_WIDTH-(MARGIN_20*2), 48);
         _sliderVerifyView.tipLabel.text = NSLocalizedString(@"滑动删除账号", nil);
         _sliderVerifyView.delegate = self;
+        
+        
     }
     return _sliderVerifyView;
 }

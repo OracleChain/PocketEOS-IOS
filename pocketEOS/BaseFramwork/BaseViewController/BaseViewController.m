@@ -9,7 +9,6 @@
 #import "BaseViewController.h"
 
 @interface BaseViewController ()<  UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic,strong) UIView *noDataView;
 
 
 @end

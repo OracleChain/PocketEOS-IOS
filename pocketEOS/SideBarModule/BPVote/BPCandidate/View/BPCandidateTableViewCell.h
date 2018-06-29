@@ -11,7 +11,6 @@
 
 
 @interface BPCandidateTableViewCell : BaseTableViewCell
-@property(nonatomic , strong) UIButton *rectBtn;
 @property(nonatomic , strong) BPCandidateModel *model;
 @property(nonatomic, copy) void(^onAvatarViewClick)();
 @end
