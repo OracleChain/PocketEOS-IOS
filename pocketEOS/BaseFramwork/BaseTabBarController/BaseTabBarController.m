@@ -14,7 +14,6 @@
 #import "ApplicationMainViewController.h"
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
-#import "YNSuspendCenterPageVC.h"
 
 @interface BaseTabBarController()<UITabBarControllerDelegate>
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
@@ -101,9 +100,7 @@
     }
     
     
-    NewsMainViewController *newsVC = [NewsMainViewController new];
-//   YNSuspendCenterPageVC *newsVC = [YNSuspendCenterPageVC suspendCenterPageVC];
-//    newsVC.title = NSLocalizedString(@"新闻", nil);
+    NewsMainViewController *newsVC = [[NewsMainViewController alloc] init];
     [self setupChildViewController:newsVC title:NSLocalizedString(@"新闻", nil) imageName:@"news_unSelect" seleceImageName:@"news_select" BB_imageName:@"news_unSelect_BB" BB_seleceImageName:@"news_select_BB"];
     
 

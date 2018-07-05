@@ -205,12 +205,16 @@
 - (void)backupPocketBtnDidClick{
     [self.view addSubview:self.backupPocketView];
     Wallet *wallet = CURRENT_WALLET;
-    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil),  wallet.wallet_name];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //获取当前时间
+    NSDate *dateNow = [NSDate date];
+    NSString *dateStr = [formatter stringFromDate:dateNow];
+    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包%@", nil),  wallet.wallet_name, dateStr];
     //获取沙盒路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     //获取文件路径
-    NSString *theFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"wallet_Backup.txt"];
-    
+    NSString *theFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.txt",self.backupPocketView.backupPocketTitleLabel.text]];
     NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
     wallet.account_info = [NSMutableArray arrayWithArray:accountsArr];
     NSString *wallet_json = wallet.mj_JSONString;
@@ -229,7 +233,7 @@
     //获取沙盒路径
     NSArray *paths  = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     //获取文件路径
-    NSString *theFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"wallet_Backup.txt"];
+   NSString *theFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.txt",self.backupPocketView.backupPocketTitleLabel.text]];
     
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:theFilePath]) {
