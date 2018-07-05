@@ -15,16 +15,16 @@
 @property(nonatomic, strong) UIView *originNavView;
 
 @property(nonatomic, strong) UIImageView *titleImg;
-// 设置
+
 @property(nonatomic, strong) UIButton *leftBtn;
-// 二维码
+// 
 @property(nonatomic, strong) UIButton *rightBtn1;
-// 通知
-//@property(nonatomic, strong) UIButton *rightBtn2;
+//
+@property(nonatomic, strong) UIButton *rightBtn2;
 
 @property(nonatomic, copy) void (^leftBtnDidClickBlock)(void);
 @property(nonatomic, copy) void (^rightBtn1DidClickBlock)(void);
-//@property(nonatomic, copy) void (^rightBtn2DidClickBlock)(void);
+@property(nonatomic, copy) void (^rightBtn2DidClickBlock)(void);
 
 
 

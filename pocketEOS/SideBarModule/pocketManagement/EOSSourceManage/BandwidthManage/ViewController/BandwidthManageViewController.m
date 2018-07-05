@@ -65,8 +65,7 @@ NSString * const TradeBandwidthDidSuccessNotification = @"TradeBandwidthDidSucce
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     [self.mainTableView registerNib:[UINib nibWithNibName:@"BandwidthManageTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_REUSEUDENTIFIER1];
     [self buildDataSource];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tradeBandwidthDidFinish) name:TradeBandwidthDidSuccessNotification object:nil];

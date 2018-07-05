@@ -8,17 +8,21 @@
 
 #import "UnStakeEOSViewController.h"
 #import "UnstakeEosAbiJsonTobinRequest.h"
+#import "AssestsMainService.h"
 #import "TransferService.h"
 #import "UnStakeEOSHeaderView.h"
 #import "NavigationView.h"
-
+#import "AccountResult.h"
+#import "Account.h"
 
 @interface UnStakeEOSViewController ()<LoginPasswordViewDelegate, TransferServiceDelegate, UnStakeEOSHeaderViewDelegate, NavigationViewDelegate>
 @property(nonatomic , strong) UnstakeEosAbiJsonTobinRequest *unstakeEosAbiJsonTobinRequest;
+@property(nonatomic , strong) AssestsMainService *assestsMainService;
 @property(nonatomic , strong) TransferService *transferService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) UnStakeEOSHeaderView *headerView;
+@property(nonatomic , strong) AccountResult *accountResult;
 @end
 
 @implementation UnStakeEOSViewController
@@ -46,6 +50,14 @@
     }
     return _unstakeEosAbiJsonTobinRequest;
 }
+
+- (AssestsMainService *)assestsMainService{
+    if (!_assestsMainService) {
+        _assestsMainService = [[AssestsMainService alloc] init];
+    }
+    return _assestsMainService;
+}
+
 - (TransferService *)transferService{
     if (!_transferService) {
         _transferService = [[TransferService alloc] init];
@@ -92,22 +104,41 @@
     [super viewDidLoad];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
-    self.headerView.model = self.accountResult;
     
-    if (self.accountResult.data.eos_net_weight.doubleValue > 1 &&  self.accountResult.data.eos_cpu_weight.doubleValue > 1) {
-        self.headerView.confirmBtn.lee_theme
-        .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
-        [self.headerView.confirmBtn setTitle:NSLocalizedString(@"确认赎回", nil) forState:(UIControlStateNormal)];
-        self.headerView.confirmBtn.enabled =  YES;
-    }else{
-        self.headerView.confirmBtn.lee_theme
-        .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
-        .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
-        [self.headerView.confirmBtn setTitle:NSLocalizedString(@"无法赎回", nil) forState:(UIControlStateNormal)];
-        self.headerView.confirmBtn.enabled =  NO;
-    }
+    
+    [self buidDataSource];
     
 }
+
+
+// 构建数据源
+- (void)buidDataSource{
+    WS(weakSelf);
+    if (IsNilOrNull(self.currentAccountName)) {
+        return;
+    }
+    self.assestsMainService.getAccountAssetRequest.name = self.currentAccountName;
+    [self.assestsMainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
+        if (isSuccess) {
+            weakSelf.accountResult = result;
+            weakSelf.headerView.model = weakSelf.accountResult;
+                if (self.accountResult.data.eos_net_weight.doubleValue > 1 &&  self.accountResult.data.eos_cpu_weight.doubleValue > 1) {
+                    self.headerView.confirmBtn.lee_theme
+                    .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
+                    [self.headerView.confirmBtn setTitle:NSLocalizedString(@"确认赎回", nil) forState:(UIControlStateNormal)];
+                    self.headerView.confirmBtn.enabled =  YES;
+                }else{
+                    self.headerView.confirmBtn.lee_theme
+                    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
+                    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
+                    [self.headerView.confirmBtn setTitle:NSLocalizedString(@"无法赎回", nil) forState:(UIControlStateNormal)];
+                    self.headerView.confirmBtn.enabled =  NO;
+                }
+                
+        }
+    }];
+}
+
 
 - (void)confirmUnStakeBtnDidClick{
     [self.view addSubview:self.loginPasswordView];

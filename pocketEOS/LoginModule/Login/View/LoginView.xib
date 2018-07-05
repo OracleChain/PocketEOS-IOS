@@ -220,31 +220,15 @@
                                         <action selector="getVerifyCodeBtn:" destination="dk3-Vz-bM6" eventType="touchUpInside" id="M6B-pz-4Bg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gch-bm-2sz">
-                                    <rect key="frame" x="20" y="464" width="12" height="12"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CJ-yn-36E">
+                                    <rect key="frame" x="20" y="464" width="335" height="14"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="12" id="6b7-WR-qc8"/>
-                                        <constraint firstAttribute="width" constant="12" id="nAT-xb-3mJ"/>
+                                        <constraint firstAttribute="height" constant="14" id="AwT-7B-0Eb"/>
                                     </constraints>
-                                    <state key="normal" image="rectangle_selected.png"/>
-                                    <state key="selected" image="rectangle_UnSelected.png"/>
-                                    <connections>
-                                        <action selector="agreeBtn:" destination="dk3-Vz-bM6" eventType="touchUpInside" id="KdU-Zz-N8A"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwU-HM-rk9" customClass="BaseButton">
-                                    <rect key="frame" x="37" y="464" width="239" height="14"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="14" id="N8c-B8-yzf"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" title="我已仔细阅读并同意用户协议及隐私政策">
-                                        <color key="titleColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="privacyPolicy:" destination="dk3-Vz-bM6" eventType="touchUpInside" id="Ycu-lG-Qs8"/>
-                                    </connections>
-                                </button>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -255,6 +239,8 @@
                                 <constraint firstItem="Ndk-8v-AjB" firstAttribute="top" secondItem="aSW-FR-paB" secondAttribute="bottom" constant="25" id="E1R-48-3cR"/>
                                 <constraint firstItem="ADs-Ik-w4U" firstAttribute="centerY" secondItem="FI6-rM-il0" secondAttribute="centerY" id="EAx-OI-Ctb"/>
                                 <constraint firstItem="8LF-yh-FP5" firstAttribute="centerY" secondItem="aSW-FR-paB" secondAttribute="centerY" id="J21-9S-kpB"/>
+                                <constraint firstItem="8CJ-yn-36E" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="K5b-8W-b7F"/>
+                                <constraint firstItem="8CJ-yn-36E" firstAttribute="top" secondItem="yzn-Wc-3qB" secondAttribute="bottom" constant="11" id="KGJ-zv-UtS"/>
                                 <constraint firstItem="dj6-F6-6ud" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" id="KjD-yB-Z3C"/>
                                 <constraint firstItem="aSW-FR-paB" firstAttribute="centerX" secondItem="FVV-t8-BPB" secondAttribute="centerX" id="L4m-he-wtB"/>
                                 <constraint firstAttribute="trailing" secondItem="ADs-Ik-w4U" secondAttribute="trailing" constant="20" id="LCu-68-SXj"/>
@@ -262,14 +248,12 @@
                                 <constraint firstItem="aSW-FR-paB" firstAttribute="leading" secondItem="8LF-yh-FP5" secondAttribute="trailing" constant="10" id="TU5-O8-Tmi"/>
                                 <constraint firstAttribute="trailing" secondItem="dj6-F6-6ud" secondAttribute="trailing" id="UBf-ZC-Mfs"/>
                                 <constraint firstItem="tqj-AN-JE3" firstAttribute="top" secondItem="aSW-FR-paB" secondAttribute="bottom" constant="25" id="UBq-uR-Fst"/>
-                                <constraint firstItem="mwU-HM-rk9" firstAttribute="leading" secondItem="gch-bm-2sz" secondAttribute="trailing" constant="5" id="Uzs-P3-tK1"/>
                                 <constraint firstItem="FI6-rM-il0" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="V4n-Nc-vtG"/>
                                 <constraint firstItem="FI6-rM-il0" firstAttribute="top" secondItem="gcO-dv-80i" secondAttribute="bottom" constant="14" id="Wpr-rp-4V1"/>
-                                <constraint firstItem="mwU-HM-rk9" firstAttribute="top" secondItem="yzn-Wc-3qB" secondAttribute="bottom" constant="11" id="a8d-iA-PQ4"/>
+                                <constraint firstAttribute="trailing" secondItem="8CJ-yn-36E" secondAttribute="trailing" constant="20" id="Yco-7R-GZp"/>
                                 <constraint firstItem="pBj-Vr-738" firstAttribute="top" secondItem="6RC-hk-UPb" secondAttribute="bottom" constant="14" id="a9v-kg-fLN"/>
                                 <constraint firstItem="6RC-hk-UPb" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="bAv-Jj-JCD"/>
                                 <constraint firstAttribute="trailing" secondItem="Coj-9G-n7M" secondAttribute="trailing" id="cHD-6g-3sD"/>
-                                <constraint firstItem="gch-bm-2sz" firstAttribute="top" secondItem="yzn-Wc-3qB" secondAttribute="bottom" constant="11" id="ejA-aX-85x"/>
                                 <constraint firstItem="6Fr-I3-rY5" firstAttribute="centerY" secondItem="aSW-FR-paB" secondAttribute="centerY" id="f3g-b3-dnB"/>
                                 <constraint firstItem="yzn-Wc-3qB" firstAttribute="top" secondItem="uKi-oX-BCf" secondAttribute="bottom" constant="32" id="f3o-In-sNq"/>
                                 <constraint firstItem="tqj-AN-JE3" firstAttribute="centerX" secondItem="FVV-t8-BPB" secondAttribute="centerX" constant="-50" id="fMx-1R-OVX"/>
@@ -285,7 +269,6 @@
                                 <constraint firstItem="Ndk-8v-AjB" firstAttribute="centerX" secondItem="FVV-t8-BPB" secondAttribute="centerX" constant="50" id="shp-2H-cbH"/>
                                 <constraint firstItem="yzn-Wc-3qB" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="udF-8y-Q9n"/>
                                 <constraint firstItem="Coj-9G-n7M" firstAttribute="top" secondItem="dj6-F6-6ud" secondAttribute="bottom" constant="89" id="wFL-OG-irz"/>
-                                <constraint firstItem="gch-bm-2sz" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="xE8-oP-EcT"/>
                                 <constraint firstItem="uKi-oX-BCf" firstAttribute="leading" secondItem="FVV-t8-BPB" secondAttribute="leading" constant="20" id="xok-kr-5Jo"/>
                             </constraints>
                         </view>
@@ -308,7 +291,6 @@
                 <constraint firstAttribute="bottom" secondItem="RiM-AM-veI" secondAttribute="bottom" id="nES-Cq-Frh"/>
             </constraints>
             <connections>
-                <outlet property="agreeTermBtn" destination="gch-bm-2sz" id="Iba-gy-q5y"/>
                 <outlet property="changeToBlackBoxModeLabel" destination="qJd-dx-2pO" id="oy2-V7-qJG"/>
                 <outlet property="containView" destination="FVV-t8-BPB" id="rAn-y1-fNU"/>
                 <outlet property="getVerifyCodeBtn" destination="ADs-Ik-w4U" id="TAw-Ve-qcg"/>
@@ -317,6 +299,7 @@
                 <outlet property="label2" destination="hvM-zB-Un1" id="QD8-XH-ZVb"/>
                 <outlet property="loginBtn" destination="yzn-Wc-3qB" id="r4v-dq-3St"/>
                 <outlet property="phoneTF" destination="pBj-Vr-738" id="06S-nr-zeP"/>
+                <outlet property="privacyPolicyLabel" destination="8CJ-yn-36E" id="1iV-H1-t05"/>
                 <outlet property="qqLoginBtn" destination="Ndk-8v-AjB" id="sbW-80-cgv"/>
                 <outlet property="rightArrowImg" destination="cJX-k8-dDO" id="S0r-10-ar1"/>
                 <outlet property="scrollHeight" destination="Ldv-dN-8aJ" id="S8t-dA-n62"/>
@@ -331,8 +314,6 @@
     <resources>
         <image name="lockBackground.png" width="131" height="130"/>
         <image name="qq_login.png" width="52" height="52"/>
-        <image name="rectangle_UnSelected.png" width="12" height="12"/>
-        <image name="rectangle_selected.png" width="12" height="12"/>
         <image name="right_arrow_white.png" width="8" height="14"/>
         <image name="wechat_login.png" width="52" height="52"/>
     </resources>

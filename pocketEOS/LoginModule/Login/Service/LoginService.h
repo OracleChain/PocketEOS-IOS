@@ -9,6 +9,7 @@
 #import "BaseService.h"
 #import "GetVerifyCodeRequest.h"
 #import "AuthVerifyCodeRequest.h"
+#import "GetUserInfoRequest.h"
 
 @interface LoginService : BaseService
 
@@ -16,6 +17,7 @@
 
 @property(nonatomic, strong) AuthVerifyCodeRequest *authVerifyCodeRequest;
 
+@property(nonatomic , strong) GetUserInfoRequest *getUserInfoRequest;
 /**
  获取验证码
  */
@@ -26,5 +28,11 @@
  认证短信码
  */
 - (void)authVerifyCode:(CompleteBlock)complete;
+
+/**
+ 获取用户信息
+ */
+- (void)getUserInfo:(CompleteBlock)complete;
+
 
 @end

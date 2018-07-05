@@ -59,5 +59,12 @@
     
 }
 
+- (void)getUserInfo:(CompleteBlock)complete{
+    [self.getUserInfoRequest postDataSuccess:^(id DAO, id data) {
+        
+    } failure:^(id DAO, NSError *error) {
+        
+    }];
+}
 
 @end

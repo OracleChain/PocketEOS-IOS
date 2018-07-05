@@ -79,10 +79,6 @@
 }
 
 - (void)loginBtnDidClick:(UIButton *)sender{
-    if (self.loginView.agreeTermBtn.isSelected) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
-        return;
-    }
     
     if (![RegularExpression validateMobile:self.loginView.phoneTF.text] ) {
         [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
@@ -201,10 +197,11 @@
     }];
 }
 
-- (void)privacyPolicyBtnDidClick:(UIButton *)sender{
+- (void)privacyPolicyLabelDidTap{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
     vc.rtfFileName = @"PocketEOSPrivacyPolicy";
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 // 开始倒计时

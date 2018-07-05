@@ -44,7 +44,7 @@
 /**
  为true是发送信息，false表示领取信息
  */
-@property(nonatomic , copy) NSString *isSend;
+@property(nonatomic , assign) BOOL isSend;
 
 /**
  redPacketOrderRedisDtos

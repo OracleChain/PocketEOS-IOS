@@ -10,6 +10,7 @@
 #import "AccountManagementHeaderView.h"
 #import "NavigationView.h"
 #import "ExportPrivateKeyView.h"
+#import "AccountPravicyProtectionRequest.h"
 #import "SetMainAccountRequest.h"
 #import "SliderVerifyView.h"
 #import "AskQuestionTipView.h"
@@ -20,8 +21,9 @@
 #import "SocialShareModel.h"
 #import "AccountManagementService.h"
 #import "EOSResourceManageViewController.h"
+#import "UnStakeEOSViewController.h"
 
-@interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, AccountManagementHeaderViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, SocialSharePanelViewDelegate>
+@interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, SocialSharePanelViewDelegate>
 @property(nonatomic , strong) AccountManagementService *mainService;
 @property(nonatomic, strong) AccountManagementHeaderView *headerView;
 @property(nonatomic , strong) UIView *footerView;
@@ -37,6 +39,7 @@
 @property(nonatomic , strong) UIView *shareBaseView;
 @property(nonatomic , strong) SocialSharePanelView *socialSharePanelView;
 @property(nonatomic , strong) NSArray *platformNameArr;
+@property(nonatomic, strong) AccountPravicyProtectionRequest *accountPravicyProtectionRequest;
 @end
 
 @implementation AccountManagementViewController
@@ -57,8 +60,7 @@
 - (AccountManagementHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AccountManagementHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 328);
-        _headerView.delegate = self;
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 245);
     }
     return _headerView;
 }
@@ -191,9 +193,15 @@
         [label setBackgroundColor:HEXCOLOR(0xF7F7F7)];
         [_shareBaseView addSubview: label];
         label.sd_layout.leftSpaceToView(_shareBaseView, 0).rightSpaceToView(_shareBaseView, 0).bottomSpaceToView(_socialSharePanelView, 0).heightIs(50);
-        
     }
     return _shareBaseView;
+}
+
+- (AccountPravicyProtectionRequest *)accountPravicyProtectionRequest{
+    if (!_accountPravicyProtectionRequest) {
+        _accountPravicyProtectionRequest = [[AccountPravicyProtectionRequest alloc] init];
+    }
+    return _accountPravicyProtectionRequest;
 }
 
 
@@ -204,8 +212,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     self.mainTableView.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     [self.mainTableView setTableHeaderView:self.headerView];
     [self.mainTableView setTableFooterView:self.footerView];
     self.mainTableView.mj_header.hidden = YES;
@@ -213,7 +220,6 @@
     [self.mainService buildDataSource:^(id service, BOOL isSuccess) {
         [self.mainTableView reloadData];
     }];
-    self.navView.titleLabel.text = self.model.account_name;
    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:VALIDATE_STRING(self.model.account_name)  forKey:@"account_name"];
@@ -225,15 +231,8 @@
     
     
     AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
-    
-    if ([model.is_main_account isEqualToString:@"1"]) {
-        [self.headerView.mainAccountBtn setBackgroundColor: HEXCOLOR(0xCCCCCC)];
-        self.headerView.mainAccountBtn.enabled = NO;
-    } else {
-        [self.headerView.mainAccountBtn setBackgroundColor:HEXCOLOR(0x4D7BFE )];
-        self.headerView.mainAccountBtn.enabled = YES;
-    }
-    
+    self.model = model;
+    self.navView.titleLabel.text = self.model.account_name;
 }
 
 //UITableViewDelegate , UITableViewDataSource
@@ -242,11 +241,41 @@
     if (!cell) {
         cell = [[BaseTableViewCell1 alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
-    cell.rightIconImgName = @"right_arrow_gray";
-    [cell.contentView addSubview:cell.rightIconImageView];
-    cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(7).heightIs(14).centerYEqualToView(cell.contentView);
+    
+    NSString *str = self.mainService.dataSourceArray[indexPath.row];
+    if ([str isEqualToString:NSLocalizedString(@"设为主账号", nil)]) {
+        UISwitch *switchView = [[UISwitch alloc] init];
+        if ([self.model.is_main_account isEqualToString:@"1"]) {
+            switchView.on = YES;
+            switchView.enabled = NO;
+        }else{
+            switchView.on = NO;
+        }
+        switchView.onTintColor = HEXCOLOR(0x4D7BFE);
+        
+        [switchView addTarget:self action:@selector(setToMainAccountBtnDidClick:) forControlEvents:(UIControlEventValueChanged)];
+        [cell.contentView addSubview:switchView];
+        switchView.sd_layout.rightSpaceToView(cell.contentView, MARGIN_20).centerYEqualToView(cell.contentView).widthIs(58).heightIs(30);
+        
+    }else if ([str isEqualToString:NSLocalizedString(@"保护隐私", nil)]){
+        UISwitch *switchView = [[UISwitch alloc] init];
+        if ([self.model.is_privacy_policy isEqualToString:@"1"]) {
+            switchView.on = YES;
+        }else{
+            switchView.on = NO;
+        }
+        switchView.onTintColor = HEXCOLOR(0x4D7BFE);
+        [switchView addTarget:self action:@selector(setProtectPrivate:) forControlEvents:(UIControlEventValueChanged)];
+        [cell.contentView addSubview:switchView];
+        switchView.sd_layout.rightSpaceToView(cell.contentView, MARGIN_20).centerYEqualToView(cell.contentView).widthIs(58).heightIs(30);
+    }else{
+        cell.rightIconImgName = @"right_arrow_gray";
+        [cell.contentView addSubview:cell.rightIconImageView];
+        cell.rightIconImageView.sd_layout.rightSpaceToView(cell.contentView, 20).widthIs(7).heightIs(14).centerYEqualToView(cell.contentView);
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.text = VALIDATE_STRING(self.mainService.dataSourceArray[indexPath.row]);
+    
     return cell;
 }
 
@@ -254,13 +283,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *str = self.mainService.dataSourceArray[indexPath.row];
     if ([str isEqualToString:NSLocalizedString(@"设为主账号", nil)]) {
-        [self setToMainAccountBtnDidClick:nil];
+        NSLog(@"设为主账号");
+    }else if([str isEqualToString:NSLocalizedString(@"保护隐私", nil)]){
+        NSLog(@"保护隐私");
     }else if([str isEqualToString:NSLocalizedString(@"EOS资源管理", nil)]){
         EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
         vc.currentAccountName = self.model.account_name;
         [self.navigationController pushViewController:vc animated:YES];
     }else if([str isEqualToString:NSLocalizedString(@"导出私钥", nil)]){
         [self exportPrivateKeyBtnDidClick:nil];
+    }else if([str isEqualToString:NSLocalizedString(@"EOS一键赎回", nil)]){
+        [self unStakeBtnClick];
     }
 }
 
@@ -273,25 +306,55 @@
 }
 
 //AccountManagementHeaderViewDelegate
-- (void)setToMainAccountBtnDidClick:(UIButton *)sender{
-    
-    // 1.将所有的账号都设为 非主账号
-    Wallet *wallet = CURRENT_WALLET;
-    [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
-    // 2.将当前账号设为主账号
-    BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, self.model.account_name ]];
-    if (result) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"设置主账号成功!", nil)];
-    }
-    // 3. 通知服务器
+- (void)setToMainAccountBtnDidClick:(UISwitch *)sender{
+    sender.enabled = NO;
+    //  通知服务器
     self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
     self.setMainAccountRequest.eosAccountName = self.model.account_name;
     [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
-        
+        BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
+        if ([result.code isEqualToNumber:@0]) {
+            // 1.将所有的账号都设为 非主账号
+            Wallet *wallet = CURRENT_WALLET;
+            [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
+            // 2.将当前账号设为主账号
+            BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, self.model.account_name ]];
+            if (result) {
+                [TOASTVIEW showWithText:NSLocalizedString(@"设置主账号成功!", nil)];
+            }
+        }else{
+            [TOASTVIEW showWithText:result.message];
+        }
     } failure:^(id DAO, NSError *error) {
         
     }];
-    
+}
+
+- (void)setProtectPrivate:(UISwitch *)sender{
+    WS(weakSelf);
+    self.accountPravicyProtectionRequest.eosAccountName = self.model.account_name;
+    if ([self.model.is_privacy_policy isEqualToString:@"0"]) {
+        weakSelf.accountPravicyProtectionRequest.status = @1;
+    }else if ([self.model.is_privacy_policy isEqualToString:@"1"]){
+        weakSelf.accountPravicyProtectionRequest.status = @0;
+    }
+    [self.accountPravicyProtectionRequest postDataSuccess:^(id DAO, id data) {
+        if ([data[@"code"] isEqual:@0]) {
+            Wallet *wallet = CURRENT_WALLET;
+            [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_privacy_policy = '%@' WHERE account_name = '%@'" , wallet.account_info_table_name , [NSString stringWithFormat:@"%@" , weakSelf.accountPravicyProtectionRequest.status]  , self.model.account_name]];
+            weakSelf.model.is_privacy_policy = [NSString stringWithFormat:@"%@" , weakSelf.accountPravicyProtectionRequest.status];
+        }else{
+            [TOASTVIEW showWithText:data[@"message"]];
+        }
+    } failure:^(id DAO, NSError *error) {}];
+}
+
+- (void)unStakeBtnClick{
+    UnStakeEOSViewController *vc = [[UnStakeEOSViewController alloc] init];
+    //    self.currentAccountResult.data.eos_cpu_weight = @"6";
+    //    self.currentAccountResult.data.eos_net_weight = @"8";
+    vc.currentAccountName = self.model.account_name;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)exportPrivateKeyBtnDidClick:(UIButton *)sender{
@@ -317,9 +380,9 @@
     if ([self.currentAction isEqualToString:@"ExportPrivateKey"]) {
         [self.view addSubview:self.exportPrivateKeyView];
         AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
-        NSString *privateKeyStr = [NSString stringWithFormat:@"ACTIVEKEY：%@\nOWNKEY: %@\n", [AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text], [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]];
+        NSString *privateKeyStr = [NSString stringWithFormat:@"OWNKEY:\n%@    \n\nACTIVEKEY：\n%@\n",  [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text],[AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text]];
         self.exportPrivateKeyView.contentTextView.text = privateKeyStr;
-        [self removePasswordView];
+        [self.loginPasswordView removeFromSuperview];
     }else if ([self.currentAction isEqualToString:@"DeleteAccount"]){
         // 删除账号
         NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];

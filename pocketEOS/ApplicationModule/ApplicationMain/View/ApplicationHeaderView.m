@@ -55,10 +55,10 @@
     }
     
     if (model.top4DataArray.count > 0) {
-        top4BaseView.frame = CGRectMake(0, SCREEN_WIDTH * 0.4, SCREEN_WIDTH, 104);
-        bottomView.frame = CGRectMake(0, SCREEN_WIDTH * 0.4+104, SCREEN_WIDTH, 206);
+        top4BaseView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT, SCREEN_WIDTH, 104);
+        bottomView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT+104, SCREEN_WIDTH, 206);
     }else{
-        bottomView.frame = CGRectMake(0, SCREEN_WIDTH * 0.4, SCREEN_WIDTH, 206);
+        bottomView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT, SCREEN_WIDTH, 206);
     }
     [self addSubview:bottomView];
 }

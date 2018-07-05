@@ -50,6 +50,7 @@
     if (!_segmentView) {
         self.segmentView = [[PageSegmentView alloc]initWithFrame:CGRectMake(0,NAVIGATIONBAR_HEIGHT,self.view.width,self.view.height - NAVIGATIONBAR_HEIGHT)];
         self.segmentView.selectedLineWidth = 60;
+        self.segmentView.tabViewWidth = SCREEN_WIDTH;
         [self.view addSubview:_segmentView];
     }
     return _segmentView;

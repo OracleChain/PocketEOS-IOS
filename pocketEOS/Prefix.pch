@@ -65,6 +65,8 @@
 #import "WalletUtil.h"
 #import "SetAppLanguageHelper.h"
 #import "OptionModel.h"
+#import "BaseResult.h"
+#import "RtfBrowserViewController.h"
 
 
 /**
@@ -73,6 +75,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
 #import "SDWebImageManager.h"
+#import "UIButton+WebCache.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"

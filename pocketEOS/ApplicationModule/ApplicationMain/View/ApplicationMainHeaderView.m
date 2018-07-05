@@ -47,7 +47,7 @@
 - (void)updateViewWithArray:(NSArray *)array{
     if (array.count == 0) {
         [self sd_clearAutoLayoutSettings];
-        self.cycleScrollView.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(SCREEN_WIDTH * 0.4);
+        self.cycleScrollView.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(CYCLESCROLLVIEW_HEIGHT);
         self.line1.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.cycleScrollView, 0).heightIs(10);
         self.starLabelBaseView.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.line1, 0).heightIs(50);
         self.starDappBaseView.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).topSpaceToView(self.starLabelBaseView, 0).heightIs(86);

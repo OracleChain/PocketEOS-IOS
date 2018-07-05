@@ -7,9 +7,8 @@
 //
 
 #import "BaseViewController.h"
-#import "AccountResult.h"
-#import "Account.h"
 
 @interface UnStakeEOSViewController : BaseViewController
-@property(nonatomic , strong) AccountResult *accountResult;
+
+@property(nonatomic , copy) NSString *currentAccountName;
 @end

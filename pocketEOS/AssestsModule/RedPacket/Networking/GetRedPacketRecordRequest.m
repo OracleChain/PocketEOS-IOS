@@ -11,7 +11,7 @@
 @implementation GetRedPacketRecordRequest
 
 - (NSString *)requestUrlPath{
-    return [NSString stringWithFormat:@"http://39.106.118.225:5000/api_oc_business/select_user_red_packet"];
+    return [NSString stringWithFormat:@"%@/select_user_red_packet", REQUEST_REDPACKET_BASEURL];
 }
 
 -(id)parameters{

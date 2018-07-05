@@ -10,7 +10,7 @@
 
 @implementation GetRedPacketDetailRequest
 - (NSString *)requestUrlPath{
-    return [NSString stringWithFormat:@"http://39.106.118.225:5000/app/mock/24/POST/39.106.118.225:8080/api_oc_business/selectRedPacketRecord/"];
+    return [NSString stringWithFormat:@"%@/selectRedPacketRecord", REQUEST_REDPACKET_BASEURL];
 }
 
 -(id)parameters{

@@ -11,6 +11,7 @@
 #import "NavigationView.h"
 #import "PopUpWindow.h"
 #import "ForwardRedPacketViewController.h"
+#import "RedPacketDetailViewController.h"
 #import "Assest.h"
 #import "GetRateResult.h"
 #import "Rate.h"
@@ -24,8 +25,9 @@
 #import "TransactionRecordTableViewCell.h"
 #import "RedPacketRecordResult.h"
 #import "RedPacketRecord.h"
+#import "TransferAbi_json_to_bin_request.h"
 
-@interface RedPacketViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RedPacketHeaderViewDelegate, PopUpWindowDelegate, TransferServiceDelegate>
+@interface RedPacketViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RedPacketHeaderViewDelegate, PopUpWindowDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PopUpWindow *popUpWindow;
 @property(nonatomic, strong) RedPacketHeaderView *headerView;
@@ -33,9 +35,12 @@
 @property(nonatomic, strong) NSString *currentAssestsType;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) GetRateRequest *getRateRequest;
+@property(nonatomic , strong) RedPacket *redPacket;
 @property(nonatomic , strong) RedpacketService *mainService;
 @property(nonatomic , strong) TransferService *transferService;
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
+@property(nonatomic, strong) LoginPasswordView *loginPasswordView;
+@property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @end
 
 @implementation RedPacketViewController
@@ -59,10 +64,18 @@
 - (RedPacketHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"RedPacketHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 489);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 505);
         _headerView.delegate = self;
     }
     return _headerView;
+}
+- (LoginPasswordView *)loginPasswordView{
+    if (!_loginPasswordView) {
+        _loginPasswordView = [[[NSBundle mainBundle] loadNibNamed:@"LoginPasswordView" owner:nil options:nil] firstObject];
+        _loginPasswordView.frame = self.view.bounds;
+        _loginPasswordView.delegate = self;
+    }
+    return _loginPasswordView;
 }
 
 - (GetRateRequest *)getRateRequest{
@@ -94,16 +107,24 @@
     return _transactionRecordsService;
 }
 
+- (TransferAbi_json_to_bin_request *)transferAbi_json_to_bin_request{
+    if (!_transferAbi_json_to_bin_request) {
+        _transferAbi_json_to_bin_request = [[TransferAbi_json_to_bin_request alloc] init];
+    }
+    return _transferAbi_json_to_bin_request;
+}
+
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.currentAccountName = self.accountName;
-    self.currentAssestsType = @"EOS";
     // 设置默认的转账账号及资产
     self.headerView.accountChooserLabel.text = self.currentAccountName;
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
-//    self.transactionRecordsService.getTransactionRecordsRequest.account_name = self.accountName;
-    [self loadNewData];
+    
+    self.mainService.getRedPacketRecordRequest.uid = CURRENT_WALLET_UID;
+    self.mainService.getRedPacketRecordRequest.account = self.accountName;
+    self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
 //    [self textFieldChange:nil];
 }
 
@@ -121,10 +142,13 @@
     self.currentAssestsType = @"EOS";
     [self buidDataSource];
     
+    [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.redPacketCountTF];
 }
+
+
 
 - (void)buidDataSource{
     WS(weakSelf);
@@ -155,22 +179,25 @@
 
 // UITableViewDelegate && DataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        cell = [[BaseTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     RedPacketRecord *model = self.mainService.dataSourceArray[indexPath.row];
     if (model.isSend == YES) {
-        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送%@个%@给%@个人，%@", nil), model.amount, model.type, model.packetCount, model.residueCount == 0 ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: NSLocalizedString(@"剩余%@个未被领取", nil), model.residueCount]];
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送%@个%@给%@个人，%@", nil), model.amount, model.type, model.packetCount, [model.residueCount isEqualToNumber:@0] ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: NSLocalizedString(@"已被%ld人领取", nil),  model.packetCount.integerValue - model.residueCount.integerValue]];
     }else {
         cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"领取%@个%@", nil), model.amount, model.type];
     }
-    cell.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.textColor = HEXCOLOR(0x2A2A2A);
     cell.detailTextLabel.text =model.createTime;
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.textLabel.textColor = HEXCOLOR(0x2A2A2A);
     cell.detailTextLabel.textColor = HEXCOLOR(0xB0B0B0);
+    cell.bottomLineView.hidden = NO;
+    if (indexPath.row == self.mainService.dataSourceArray.count-1) {
+        cell.bottomLineView.hidden = YES;
+    }
     return cell;
 }
 
@@ -179,11 +206,20 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.mainService getRedPacketDetail:^(id service, BOOL isSuccess) {
-        if (isSuccess) {
-            NSLog(@"getRedPacketDetailSuccess!");
-        }
-    }];
+    RedPacketDetailViewController *vc = [[RedPacketDetailViewController alloc] init];
+    RedPacketModel *model = [[RedPacketModel alloc] init];
+    model.from = self.currentAccountName;
+    model.count = self.headerView.redPacketCountTF.text;
+    model.memo =   !IsStrEmpty(self.headerView.descriptionTextView.text) ? self.headerView.descriptionTextView.text : NSLocalizedString(@"恭喜发财, 大吉大利", nil);
+    model.amount = self.headerView.amountTF.text;
+    
+    RedPacketRecord *record = self.mainService.dataSourceArray[indexPath.row];
+    model.redPacket_id = record.redPacket_id;
+    model.amount = record.amount;
+    model.isSend = record.isSend;
+    model.coin = record.type;
+    vc.redPacketModel = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -192,8 +228,7 @@
 - (void)textFieldChange:(NSNotification *)notification {
     BOOL isCanSubmit = (self.headerView.amountTF.text.length != 0 && self.headerView.redPacketCountTF.text.length != 0);
     if (isCanSubmit) {
-        self.headerView.sendRedpacketBtn.lee_theme
-        .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
+        [self.headerView.sendRedpacketBtn setBackgroundColor: HEXCOLOR(0xD82919)];
     } else {
         [self.headerView.sendRedpacketBtn setBackgroundColor: HEXCOLOR(0xCCCCCC)];
     }
@@ -241,44 +276,102 @@
 }
 
 -(void)sendRedPacket:(UIButton *)sender{
-    [TOASTVIEW showWithText:NSLocalizedString(@"余额不足!", nil)];
-//    self.mainService.sendRedpacketRequest.uid = CURRENT_WALLET_UID;
-//    self.mainService.sendRedpacketRequest.account = self.currentAccountName;
-//    self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.integerValue);
-//    self.mainService.sendRedpacketRequest.packetCount = @(self.headerView.redPacketCountTF.text.integerValue);
-//    self.mainService.sendRedpacketRequest.type = self.currentAssestsType;
-//
-//    WS(weakSelf);
-//    [self.mainService sendRedPacket:^(RedPacket *result, BOOL isSuccess) {
-//        if (isSuccess) {
-//            NSLog(@"redpacket_id:%@", result.redpacket_id);
-//            // push transaction
-//            AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.currentAccountName];
-//            weakSelf.transferService.available_keys = @[accountInfo.account_owner_public_key , accountInfo.account_active_public_key];
-//            weakSelf.transferService.action = @"transfer";
-////            weakSelf.transferService.memo = weakSelf.headerView.descriptionTextView.text;
-////            weakSelf.transferService.quantity =  self.headerView.amountTF.text ;
-////            weakSelf.transferService.receiver = @"oc.redpacket";
-//            weakSelf.transferService.sender = weakSelf.currentAccountName;
-//            weakSelf.transferService.code = [weakSelf.currentAssestsType lowercaseString];
-//            [weakSelf.transferService pushTransaction];
-//        }
-//    }];
-//
+    if (IsStrEmpty(self.headerView.amountTF.text)) {
+        [TOASTVIEW showWithText:@"请填写资产数量!"];
+        return;
+    }
+    if (IsStrEmpty(self.headerView.redPacketCountTF.text)) {
+        [TOASTVIEW showWithText:@"请填写红包个数!"];
+        return;
+    }
+    [self.view addSubview:self.loginPasswordView];
 }
+
+
+// loginPasswordViewDelegate
+- (void)cancleBtnDidClick:(UIButton *)sender{
+    [self.loginPasswordView removeFromSuperview];
+}
+
+- (void)confirmBtnDidClick:(UIButton *)sender{
+    // 验证密码输入是否正确
+    Wallet *current_wallet = CURRENT_WALLET;
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
+        return;
+    }
+    
+    self.mainService.sendRedpacketRequest.uid = CURRENT_WALLET_UID;
+    self.mainService.sendRedpacketRequest.account = self.currentAccountName;
+    self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.doubleValue);
+    self.mainService.sendRedpacketRequest.packetCount = @(self.headerView.redPacketCountTF.text.integerValue);
+    self.mainService.sendRedpacketRequest.type = self.currentAssestsType;
+    
+    WS(weakSelf);
+    [self.mainService sendRedPacket:^(RedPacket *result, BOOL isSuccess) {
+        if (isSuccess) {
+            NSLog(@"redpacket_id:%@", result.redpacket_id);
+            weakSelf.redPacket = result;
+            // push transaction
+            [weakSelf pushTransaction];
+        }
+    }];
+}
+
+
+
+
+- (void)pushTransaction{
+    if ([self.currentAssestsType isEqualToString:@"EOS"]) {
+        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
+        self.transferService.code = ContractName_EOSIOTOKEN;
+        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f EOS", self.headerView.amountTF.text.doubleValue];
+    }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
+        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
+        self.transferService.code = ContractName_OCTOTHEMOON;
+        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
+    }
+    
+    self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
+    self.transferAbi_json_to_bin_request.from = self.currentAccountName;
+    self.transferAbi_json_to_bin_request.to = RedPacketReciever;
+    self.transferAbi_json_to_bin_request.memo = self.headerView.descriptionTextView.text;
+    WS(weakSelf);
+    [self.transferAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
+#pragma mark -- [@"data"]
+        NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
+        AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.currentAccountName];
+        weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
+        weakSelf.transferService.action = ContractAction_TRANSFER;
+        weakSelf.transferService.sender = weakSelf.currentAccountName;
+#pragma mark -- [@"data"]
+        weakSelf.transferService.binargs = data[@"data"][@"binargs"];
+        weakSelf.transferService.pushTransactionType = PushTransactionTypeTransfer;
+        weakSelf.transferService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
+        [weakSelf.transferService pushTransaction];
+        [weakSelf.loginPasswordView removeFromSuperview];
+        weakSelf.loginPasswordView = nil;
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
 
 
 // TransferServiceDelegate
 - (void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-        NSLog(NSLocalizedString(@"转账到oc.redpacket成功!", nil));
+        NSLog(NSLocalizedString(@"转账到eosredpacket成功!", nil));
         ForwardRedPacketViewController *vc = [[ForwardRedPacketViewController alloc] init];
         RedPacketModel *model = [[RedPacketModel alloc] init];
+        model.from = self.currentAccountName;
         model.amount = self.headerView.amountTF.text;
         model.count = self.headerView.redPacketCountTF.text;
         model.coin = self.currentAssestsType;
         model.memo =  IsStrEmpty(self.headerView.descriptionTextView.text) ? self.headerView.descriptionTextView.text : @"";
         model.amount = self.headerView.amountTF.text;
+        model.transactionId = result.transaction_id;
+        model.redPacket_id = self.redPacket.redpacket_id;
         vc.redPacketModel = model;
         [self.navigationController pushViewController:vc animated:YES];
         
@@ -296,6 +389,8 @@
     if ([sender isKindOfClass: [Assest class]]) {
         self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
         self.currentAssestsType = [(Assest *)sender assetName];
+        self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
+        [self.mainTableView.mj_header beginRefreshing];
     }else if ([sender isKindOfClass:[AccountInfo class]]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
@@ -327,6 +422,7 @@
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
+                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
             }
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
@@ -337,10 +433,10 @@
 }
 
 #pragma mark 上拉加载更多数据
-- (void)loadMoreData
-{
+//- (void)loadMoreData
+//{
 //    WS(weakSelf);
-//    [self.transactionRecordsService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
+//    [self.mainService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
 //        if (isSuccess) {
 //            // 刷新表格
 //            [weakSelf.mainTableView reloadData];
@@ -356,7 +452,7 @@
 //            [weakSelf.mainTableView.mj_footer endRefreshing];
 //        }
 //    }];
-}
+//}
 
 
 @end

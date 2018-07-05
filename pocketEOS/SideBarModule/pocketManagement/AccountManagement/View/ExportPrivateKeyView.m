@@ -10,8 +10,9 @@
 
 
 @interface ExportPrivateKeyView()<UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *upBackgroundView;
-@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UIView *contentTextBaseView;
 
 @property (weak, nonatomic) IBOutlet UIButton *generateQRCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *privateKeyCopyBtn;
@@ -35,10 +36,21 @@
     [self addGestureRecognizer:tap];
     
     [self.upBackgroundView addSubview:self.QRCodeimg];
-    CGFloat itemWidth = 90;
-    self.QRCodeimg.frame = CGRectMake((290/2) - (itemWidth / 2), 47 + 20 , itemWidth, itemWidth);
-
+    CGFloat itemWidth = 120;
+    self.QRCodeimg.frame = CGRectMake((290/2) - (itemWidth / 2), 110, itemWidth, itemWidth);
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     
+    self.contentTextBaseView.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.1));
+    
+    self.contentTextView.lee_theme
+    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.1));
+    
+    self.contentTextView.lee_theme
+    .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
+    .LeeAddTextColor(BLACKBOX_MODE, RGBA(255, 255, 255, 1));
 }
 - (void)dismiss{
     [self removeFromSuperview];

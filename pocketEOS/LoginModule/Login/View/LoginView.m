@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *upBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *containView;
 @property (weak, nonatomic) IBOutlet UILabel *changeToBlackBoxModeLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *privacyPolicyLabel;
 
 @end
 
@@ -55,7 +55,22 @@
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeToBlackBoxMode)];
     [self.changeToBlackBoxModeLabel addGestureRecognizer:tap1];
-
+    
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString: NSLocalizedString(@"登录即代表同意《用户协议及隐私政策》", nil)];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:
+     HEXCOLOR(0x999999) range:NSMakeRange(0,attrStr.length)];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attrStr.length)];
+    [attrStr addAttribute:NSUnderlineStyleAttributeName value:
+     [NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(attrStr.length-11, 11)]; // 下划线
+    [attrStr addAttribute:NSUnderlineColorAttributeName value:
+     HEXCOLOR(0x999999) range:NSMakeRange(attrStr.length-11, 11)]; // 下划线颜色
+    self.privacyPolicyLabel.attributedText = attrStr;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(privacyPolicy)];
+    self.privacyPolicyLabel.userInteractionEnabled = YES;
+    [self.privacyPolicyLabel addGestureRecognizer:tap];
+    
 }
 
 - (void)changeToBlackBoxMode{
@@ -94,13 +109,11 @@
     }
 }
 
-- (IBAction)privacyPolicy:(BaseButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(privacyPolicyBtnDidClick:)]) {
-        [self.delegate privacyPolicyBtnDidClick:sender];
+- (void)privacyPolicy{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(privacyPolicyLabelDidTap)]) {
+        [self.delegate privacyPolicyLabelDidTap];
     }
 }
-- (IBAction)agreeBtn:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
-}
+
 
 @end

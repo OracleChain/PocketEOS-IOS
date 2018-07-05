@@ -71,8 +71,7 @@
     self.headerView.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"版本: %@", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]];
     [self buildDataSource];
     self.view.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
 }
 
 - (void)buildDataSource{

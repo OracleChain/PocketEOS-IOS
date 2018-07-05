@@ -10,6 +10,6 @@
 
 @implementation RedPacketRecord
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
-     return @{@"redpacket_id" : @"id" };
+     return @{@"redPacket_id" : @"id" };
 }
 @end

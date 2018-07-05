@@ -14,7 +14,7 @@
  */
 @interface GetRedPacketDetailRequest : BaseNetworkRequest
 /**
- 用户id
+ 
  */
 @property(nonatomic, copy) NSString *redPacket_id;
 

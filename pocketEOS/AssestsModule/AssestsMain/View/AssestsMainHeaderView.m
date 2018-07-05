@@ -12,32 +12,27 @@
 
 
 @interface AssestsMainHeaderView()
-@property(nonatomic, strong) UIImageView *accountQRCodeImg;
+@property (weak, nonatomic) IBOutlet UIView *topBackgroundView;
 @end
 
 @implementation AssestsMainHeaderView
 
-- (UIImageView *)accountQRCodeImg{
-    if (!_accountQRCodeImg) {
-        _accountQRCodeImg = [[UIImageView alloc] init];
-        _accountQRCodeImg.image = [UIImage imageNamed:@"QRCode_small_white"];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchUpinsideAccounLabel)];
-        self.userAccountLabel.userInteractionEnabled = YES;
-        self.accountQRCodeImg.userInteractionEnabled = YES;
-        [self.userAccountLabel addGestureRecognizer:tap];
-        [self.accountQRCodeImg addGestureRecognizer:tap];
-    }
-    return _accountQRCodeImg;
-}
-
 -(void)awakeFromNib{
     [super awakeFromNib];
-    self.avatarImg.userInteractionEnabled = YES;
     self.userAccountLabel.userInteractionEnabled = YES;
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarImgDidTap)];
-    [self.avatarImg addGestureRecognizer:tap];
-    
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 500);
+    layer.startPoint = CGPointMake(0, 1);
+    layer.endPoint = CGPointMake(0, 0);
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        layer.colors = @[(__bridge id)HEXCOLOR(0x095CE5).CGColor, (__bridge id)HEXCOLOR(0x3574FA).CGColor];
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        layer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
+    }
+    layer.locations = @[@(0.0f), @(1.0f)];
+    [self.topBackgroundView.layer addSublayer:layer];
+
     [self.totalAssetsLabel setFont:[UIFont boldSystemFontOfSize:36]];
     
 }
@@ -84,7 +79,6 @@
 -(void)setModel:(Account *)model{
     _model = model;
     Wallet *wallet = CURRENT_WALLET;
-    [self.avatarImg sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     NSString *nameStr = nil;
     if ([RegularExpression validateMobile:wallet.wallet_name]) {
         nameStr = [wallet.wallet_name substringFromIndex:wallet.wallet_name.length - 4];
@@ -105,9 +99,6 @@
         
     }
     
-    [self addSubview:self.accountQRCodeImg];
-    self.accountQRCodeImg.sd_layout.leftSpaceToView(self.userAccountLabel, 5).centerYEqualToView(self.userAccountLabel).widthIs(13).heightIs(13);
-    
     if ( [[[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel] isEqual:@1]) {
         self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.eos_balance.doubleValue * model.eos_price_cny.doubleValue + model.oct_balance.doubleValue * model.oct_price_cny.doubleValue]]];
         [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_open"] forState:(UIControlStateNormal)];
@@ -117,18 +108,11 @@
     }
     
 }
-
-- (void)touchUpinsideAccounLabel{
-    if (!self.accountQRCodeImgDidTapBlock) {
+- (IBAction)accountBtnDidClick:(UIButton *)sender {
+    if (!self.accountBtnDidTapBlock) {
         return;
     }
-    self.accountQRCodeImgDidTapBlock();
+    self.accountBtnDidTapBlock();
 }
 
-- (void)avatarImgDidTap{
-    if (!self.avatarImgDidTapBlock) {
-        return;
-    }
-    self.avatarImgDidTapBlock();
-}
 @end

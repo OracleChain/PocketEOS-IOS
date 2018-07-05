@@ -11,7 +11,7 @@
 @interface PocketManagementTableViewCell()
 
 @property(nonatomic, strong) UIImageView *avatarImg;
-@property(nonatomic, strong) UIImageView *protectImg;// 保护隐私
+@property(nonatomic, strong) UIImageView *mainAccountImg;
 @end
 
 
@@ -24,12 +24,12 @@
     return _avatarImg;
 }
 
-- (UIImageView *)protectImg{
-    if (!_protectImg) {
-        _protectImg = [[UIImageView alloc] init];
-        _protectImg.image = [UIImage imageNamed:@"protectAccount"];
+- (UIImageView *)mainAccountImg{
+    if (!_mainAccountImg) {
+        _mainAccountImg = [[UIImageView alloc] init];
+        _mainAccountImg.image = [UIImage imageNamed:@"mainAccount"];
     }
-    return _protectImg;
+    return _mainAccountImg;
 }
 
 
@@ -44,14 +44,19 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self.contentView addSubview:self.avatarImg];
-        self.avatarImg.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).centerYEqualToView(self.contentView).widthIs(40).heightEqualToWidth();
+        self.avatarImg.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).centerYEqualToView(self.contentView).widthIs(30).heightEqualToWidth();
         
-        [self.contentView addSubview:self.protectImg];
-        self.protectImg.sd_layout.leftSpaceToView(_avatarImg, -10).topSpaceToView(_avatarImg, -MARGIN_15).widthIs(18).heightIs(22);
         
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, 10).centerYEqualToView(_avatarImg).rightSpaceToView(self.contentView, MARGIN_20).heightIs(21);
-        self.selectionStyle = UITableViewCellAccessoryNone;
+        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, 10).centerYEqualToView(_avatarImg).widthIs(100).heightIs(21);
+        
+        [self.contentView addSubview:self.mainAccountImg];
+        self.mainAccountImg.sd_layout.leftSpaceToView(self.titleLabel, 5).centerYEqualToView(self.contentView).widthIs(16).heightIs(14);
+        
+        self.rightIconImgName = @"right_icon_blue";
+        [self.contentView addSubview:self.rightIconImageView];
+        self.rightIconImageView.sd_layout.rightSpaceToView(self.contentView, 20).widthIs(13).heightIs(10).centerYEqualToView(self.contentView);
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -60,10 +65,16 @@
     _model = model;
     _titleLabel.text = _model.account_name;
     [_avatarImg sd_setImageWithURL: String_To_URL(model.account_name) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
-    if ([_model.is_privacy_policy isEqualToString:@"0"]) {
-        _protectImg.hidden = YES;
-    }else if ([_model.is_privacy_policy isEqualToString:@"1"]){
-        _protectImg.hidden = NO;
+    if ([_model.is_main_account isEqualToString:@"1"]) {
+        _mainAccountImg.hidden = NO;
+    }else{
+        _mainAccountImg.hidden = YES;
+    }
+    
+    if (model.selected == YES) {
+        self.rightIconImageView.hidden = NO;
+    }else{
+        self.rightIconImageView.hidden = YES;
     }
 }
 

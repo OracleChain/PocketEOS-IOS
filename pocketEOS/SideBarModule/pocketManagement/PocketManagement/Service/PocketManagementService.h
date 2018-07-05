@@ -17,6 +17,7 @@
  */
 @property(nonatomic, strong) NSMutableDictionary *dataDictionary;
 
+@property(nonatomic , copy) NSString *currentAccountName;
 
 
 @end

@@ -7,27 +7,21 @@
 //
 
 #import "PocketManagementViewController.h"
-#import "PocketManagementHeaderView.h"
 #import "NavigationView.h"
 #import "CreateAccountViewController.h"
 #import "ImportAccountViewController.h"
 #import "BackupPocketView.h"
 #import "AccountManagementViewController.h"
 #import "PocketManagementTableViewCell.h"
-#import "PocketManagementService.h"
+#import "PocketManagementServiceTableViewCell.h"
 #import "ChangePasswordView.h"
-#import "AccountPravicyProtectionRequest.h"
 
 
-@interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, PocketManagementHeaderViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate>
+
+@interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
-
-@property(nonatomic, strong) PocketManagementHeaderView *headerView;
 @property(nonatomic, strong) BackupPocketView *backupPocketView;
 @property(nonatomic, strong) ChangePasswordView *changePasswordView;
-@property(nonatomic, strong) PocketManagementService *mainService;
-@property(nonatomic, strong) AccountPravicyProtectionRequest *accountPravicyProtectionRequest;
-
 @property (nonatomic ,retain)UIDocumentInteractionController *documentController;
 @end
 
@@ -35,20 +29,12 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"钱包管理", nil)rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"钱包管理", nil) rightBtnTitleName:NSLocalizedString(@"安全说明", nil) delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
 }
 
-- (PocketManagementHeaderView *)headerView{
-    if (!_headerView) {
-        _headerView = [[[NSBundle mainBundle] loadNibNamed:@"PocketManagementHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 311);
-        _headerView.delegate = self;
-    }
-    return _headerView;
-}
 
 - (BackupPocketView *)backupPocketView{
     if (!_backupPocketView) {
@@ -76,13 +62,6 @@
     return _mainService;
 }
 
-- (AccountPravicyProtectionRequest *)accountPravicyProtectionRequest{
-    if (!_accountPravicyProtectionRequest) {
-        _accountPravicyProtectionRequest = [[AccountPravicyProtectionRequest alloc] init];
-    }
-    return _accountPravicyProtectionRequest;
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self buildDataSource];
@@ -93,7 +72,8 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
-    [self.mainTableView setTableHeaderView:self.headerView];
+    self.mainTableView.lee_theme
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
     [self buildDataSource];
@@ -109,117 +89,120 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PocketManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
-    if (!cell) {
-        cell = [[PocketManagementTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
-    }
-
-    WS(weakSelf);
-    AccountInfo *model;
     if (indexPath.section == 0) {
-        model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+        PocketManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+        if (!cell) {
+            cell = [[PocketManagementTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        }
+        AccountInfo *model;
+        if (indexPath.row == 0) {
+            model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+        }else{
+            model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row-1];
+        }
+        cell.model = model;
+        return cell;
     }else if (indexPath.section == 1){
-        model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row];
-        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:NSLocalizedString(@"保护隐私", nil)backgroundColor:HEXCOLOR(0xFABB17) callback:^BOOL(MGSwipeTableCell * _Nonnull cell) {
-            weakSelf.accountPravicyProtectionRequest.eosAccountName = model.account_name;
-            if ([model.is_privacy_policy isEqualToString:@"0"]) {
-                weakSelf.accountPravicyProtectionRequest.status = @1;
-            }else if ([model.is_privacy_policy isEqualToString:@"1"]){
-                weakSelf.accountPravicyProtectionRequest.status = @0;
-            }
-            [weakSelf.accountPravicyProtectionRequest postDataSuccess:^(id DAO, id data) {
-                if ([data[@"code"] isEqual:@0]) {
-                    Wallet *wallet = CURRENT_WALLET;
-                    [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_privacy_policy = '%@' WHERE account_name = '%@'" , wallet.account_info_table_name , [NSString stringWithFormat:@"%@" , weakSelf.accountPravicyProtectionRequest.status]  , model.account_name]];
-                    model.is_privacy_policy = [NSString stringWithFormat:@"%@" , weakSelf.accountPravicyProtectionRequest.status];
-                    [weakSelf.mainTableView reloadData];
-                }else{
-                    [TOASTVIEW showWithText:data[@"message"]];
-                }
-            } failure:^(id DAO, NSError *error) {
-                
-            }];
-            return YES;
-        }]];
+        PocketManagementServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+        if (!cell) {
+            cell = [[PocketManagementServiceTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEUDENTIFIER1];
+        }
+        OptionModel *model = [self.mainService.dataDictionary objectForKey:@"servicesArr"][indexPath.row];
+        cell.model = model;
+        return cell;
     }
-    cell.model = model;
-    return cell;
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.mainService.dataDictionary.allKeys.count;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        NSArray *arr = [self.mainService.dataDictionary objectForKey:@"mainAccount"];
-        return arr.count;
+        NSArray *arr = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
+        return arr.count + 1;
     }else if (section == 1){
-       NSArray *arr = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
+       NSArray *arr = [self.mainService.dataDictionary objectForKey:@"servicesArr"];
         return arr.count;
     }
     return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 70;
+    if (indexPath.section == 0) {
+        return 50;
+    }else if(indexPath.section == 1){
+        return 45;
+    }
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 0;
+        return MARGIN_10;
     }else if (section == 1){
-        return 58;
+        return MARGIN_20;
     }
     return 0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        BaseView *headerView = [[BaseView alloc] init];
-        BaseSlimLineView *line1 = [[BaseSlimLineView alloc] init];
-        line1.frame = CGRectMake(0, 0, SCREEN_WIDTH, DEFAULT_LINE_HEIGHT);
-        BaseLabel *label = [[BaseLabel alloc] init];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"    其他账号", nil)];
-        label.frame = CGRectMake(0, 10, SCREEN_WIDTH, 48);
-        
-        label.font = [UIFont systemFontOfSize:13];
-        [headerView addSubview:label];
-        [headerView addSubview:line1];
-        
-        return headerView;
-    }
-    return nil;
+    UIView *headerView = [[UIView alloc] init];
+    headerView.lee_theme
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
+    return headerView;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AccountInfo *model;
     if (indexPath.section == 0) {
-        model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+        AccountInfo *model;
+        if (indexPath.row == 0) {
+            model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+        }else{
+            NSArray *accountArray = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
+            model = accountArray[indexPath.row-1];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(changeAccountCellDidClick:)]) {
+            [self.delegate changeAccountCellDidClick:model.account_name];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }else if (indexPath.section == 1){
-        model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row];
+        OptionModel *model = [self.mainService.dataDictionary objectForKey:@"servicesArr"][indexPath.row];
+        if ([model.optionName isEqualToString:NSLocalizedString(@"创建账号", nil)]) {
+            [self createAccountBtnDidClick];
+        }else if ([model.optionName isEqualToString:NSLocalizedString(@"导入账号", nil)]){
+            [self importAccountBtnDidClick];
+        }else if ([model.optionName isEqualToString:NSLocalizedString(@"修改密码", nil)]){
+            [self.view addSubview:self.changePasswordView];
+        }else if ([model.optionName isEqualToString:NSLocalizedString(@"备份钱包", nil)]){
+            [self backupPocketBtnDidClick];
+        }
     }
-    AccountManagementViewController *vc = [[AccountManagementViewController alloc] init];
-    vc.model = model;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)leftBtnDidClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)createAccountBtnDidClick:(UIButton *)sender{
+-(void)rightBtnDidClick{
+    RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
+    vc.rtfFileName = @"PockSecureDecalre";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)createAccountBtnDidClick{
     CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
     vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromPocketManagementVC;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-- (void)importAccountBtnDidClick:(UIButton *)sender{
+- (void)importAccountBtnDidClick{
     ImportAccountViewController *vc = [[ImportAccountViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 
 }
-- (void)backupPocketBtnDidClick:(UIButton *)sender{
+- (void)backupPocketBtnDidClick{
     [self.view addSubview:self.backupPocketView];
     Wallet *wallet = CURRENT_WALLET;
     self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil),  wallet.wallet_name];
@@ -233,7 +216,7 @@
     NSString *wallet_json = wallet.mj_JSONString;
     [wallet_json writeToFile:theFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
-- (void)changePasswordBtnDidClick:(UIButton *)sender{
+- (void)changePasswordBtnDidClick{
     [self.view addSubview:self.changePasswordView];
 }
 - (void)mainAccountBtnDidClick:(UIButton *)sender{

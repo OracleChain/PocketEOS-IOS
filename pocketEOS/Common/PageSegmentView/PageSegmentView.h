@@ -29,6 +29,8 @@
 
 @interface PageSegmentView : UIView
 
+@property (nonatomic, strong) UIScrollView   *tabView;
+
 @property (nonatomic, weak)   id<PageSegmentViewDelegate> delegate;
 @property (nonatomic, strong) UIColor* tabBackgroundColor;
 @property (nonatomic, strong) UIColor* tabButtonTitleColorForNormal;
@@ -38,6 +40,8 @@
 @property (nonatomic, assign) CGFloat  tabMargin;
 @property (nonatomic, assign) CGFloat  selectedLineWidth;
 @property (nonatomic, assign) CGFloat  selectedLineHeight;
+// 顶部的 tabview 的 width
+@property (nonatomic, assign) CGFloat  tabViewWidth;
 
 /*!
  * @brief 自定义完毕后开始build UI（required）

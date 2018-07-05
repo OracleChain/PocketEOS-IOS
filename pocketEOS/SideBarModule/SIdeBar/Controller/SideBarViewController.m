@@ -107,11 +107,6 @@
     [self cw_pushViewController:vc];
 }
 
-- (void)managePocketBtnDidClick:(id)sender{
-    PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
-    [self cw_pushViewController:vc];
-}
-
 - (void)transactionRecordBtnDidClick:(UIButton *)sender{
     TransactionRecordsViewController *vc = [[TransactionRecordsViewController alloc] init];
     [self cw_pushViewController:vc];

@@ -49,7 +49,7 @@
 
 - (void)getRedPacketDetail:(CompleteBlock)complete{
     
-    [self.getRedPacketDetailRequest getDataSusscess:^(id DAO, id data) {
+    [self.getRedPacketDetailRequest postDataSuccess:^(id DAO, id data) {
         if ([data[@"data"] isKindOfClass:[NSDictionary class]]) {
             [TOASTVIEW showWithText:data[@"data"][@"msg"]];
             RedPacketDetail *result = [RedPacketDetail mj_objectWithKeyValues:data[@"data"]];
@@ -62,9 +62,12 @@
 }
 
 -(void)buildDataSource:(CompleteBlock)complete{
-    [self.getRedPacketRecordRequest getDataSusscess:^(id DAO, id data) {
+    [self.getRedPacketRecordRequest postDataSuccess:^(id DAO, id data) {
         WS(weakSelf);
         if ([data isKindOfClass:[NSDictionary class]]) {
+            [weakSelf.responseArray removeAllObjects];
+            [weakSelf.dataSourceArray removeAllObjects];
+            
             RedPacketRecordResult *result = [RedPacketRecordResult mj_objectWithKeyValues:data];
             weakSelf.responseArray = [NSMutableArray arrayWithArray:result.data];
             weakSelf.dataSourceArray = [NSMutableArray arrayWithArray:weakSelf.responseArray];
@@ -72,7 +75,10 @@
         }
     } failure:^(id DAO, NSError *error) {
         complete(nil, NO);
+        
     }];
 }
+
+
 
 @end

@@ -19,11 +19,9 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     self.line2.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     self.line4.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     
     
 }

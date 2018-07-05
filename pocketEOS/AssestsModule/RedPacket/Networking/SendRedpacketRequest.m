@@ -11,7 +11,7 @@
 @implementation SendRedpacketRequest
 
 - (NSString *)requestUrlPath{
-    return [NSString stringWithFormat:@"http://39.106.118.225:8080/api_oc_business/send_red_packet"];
+    return [NSString stringWithFormat:@"%@/send_red_packet", REQUEST_REDPACKET_BASEURL];
 }
 
 -(id)parameters{

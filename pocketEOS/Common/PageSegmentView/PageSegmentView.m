@@ -11,7 +11,7 @@
 @interface PageSegmentView ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) BodyScrollView *bodyScrollView;
-@property (nonatomic, strong) UIScrollView   *tabView;
+
 @property (nonatomic, strong) UIView         *bottomLine;
 @property (nonatomic, strong) UIView         *selectedLine;
 
@@ -43,6 +43,9 @@
     _startOffsetX = 0;
     _continueDraggingNumber = 0;
 
+    [self.viewsArray removeAllObjects];
+    [self.tabButtons removeAllObjects];
+    
     NSUInteger number = [self.delegate numberOfPagers:self];
 
     for (int i = 0; i < number; i++) {
@@ -62,6 +65,7 @@
         itemButton.tag = i + 1; // "tag = 0" 为父视图本身,所以tag+1
         itemButton.size = [self buttonTitleRealSize:itemButton];
         [itemButton setFrame:CGRectMake(self.itemButtonX, 0, itemButton.width, self.tabFrameHeight)];
+        [itemButton setBackgroundColor:[UIColor whiteColor]];
         [self.tabButtons addObject:itemButton];
         [self.tabView addSubview:itemButton];
 
@@ -350,7 +354,7 @@
  */
 - (UIView *)tabView {
     if (!_tabView) {
-        self.tabView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0,self.width,_tabFrameHeight)];
+        self.tabView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0,self.tabViewWidth,_tabFrameHeight)];
         _tabView.delegate = self;
         _tabView.userInteractionEnabled = YES;
         _tabView.showsHorizontalScrollIndicator = NO;

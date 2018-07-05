@@ -34,6 +34,14 @@ typedef NS_ENUM(NSInteger, SocialModelType) {
 
 
 /**
+ unionid
+ */
+@property(nonatomic , copy) NSString *unionid;
+
+
+
+
+/**
    qq 微信 
  */
 @property(nonatomic , assign) SocialModelType socialModelType;

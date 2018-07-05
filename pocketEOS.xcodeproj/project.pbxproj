@@ -196,10 +196,33 @@
 		1828F91E2068C70300513CD1 /* news_list_cell_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F91C2068C70300513CD1 /* news_list_cell_time@2x.png */; };
 		1828F9252068D2EA00513CD1 /* right_arrow_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F9232068D2EA00513CD1 /* right_arrow_gray@2x.png */; };
 		1828F9262068D2EA00513CD1 /* right_arrow_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F9242068D2EA00513CD1 /* right_arrow_gray@3x.png */; };
-		1828F9292068D5A600513CD1 /* copy_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F9272068D5A500513CD1 /* copy_orange@2x.png */; };
-		1828F92A2068D5A600513CD1 /* copy_orange@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F9282068D5A500513CD1 /* copy_orange@3x.png */; };
-		1828F92D2068D5FA00513CD1 /* QRCode_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F92B2068D5F900513CD1 /* QRCode_green@2x.png */; };
-		1828F92E2068D5FA00513CD1 /* QRCode_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1828F92C2068D5FA00513CD1 /* QRCode_green@3x.png */; };
+		18291ECE20EC63A800D19CB9 /* account_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291ECC20EC63A700D19CB9 /* account_icon@2x.png */; };
+		18291ECF20EC63A800D19CB9 /* account_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291ECD20EC63A700D19CB9 /* account_icon@3x.png */; };
+		18291ED220EC6AC300D19CB9 /* pocketManagement_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291ED020EC6AC300D19CB9 /* pocketManagement_icon@2x.png */; };
+		18291ED320EC6AC300D19CB9 /* pocketManagement_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291ED120EC6AC300D19CB9 /* pocketManagement_icon@3x.png */; };
+		18291F1820ECA97300D19CB9 /* candy_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1420ECA97100D19CB9 /* candy_Icon@3x.png */; };
+		18291F1920ECA97300D19CB9 /* bpvote@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1520ECA97200D19CB9 /* bpvote@3x.png */; };
+		18291F1A20ECA97300D19CB9 /* bpvote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1620ECA97200D19CB9 /* bpvote@2x.png */; };
+		18291F1B20ECA97300D19CB9 /* candy_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1720ECA97300D19CB9 /* candy_Icon@2x.png */; };
+		18291F1F20ECAC3400D19CB9 /* transactionrecord_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1D20ECAC3300D19CB9 /* transactionrecord_icon@3x.png */; };
+		18291F2020ECAC3400D19CB9 /* transactionrecord_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F1E20ECAC3400D19CB9 /* transactionrecord_icon@2x.png */; };
+		18291F2420ECE5A400D19CB9 /* BaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F2320ECE5A400D19CB9 /* BaseResult.m */; };
+		18291F2920ED0A2F00D19CB9 /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F2820ED0A2F00D19CB9 /* NewsListViewController.m */; };
+		18291F3B20EDEF1B00D19CB9 /* UIViewController+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F2B20EDEF1B00D19CB9 /* UIViewController+YNPageExtend.m */; };
+		18291F3C20EDEF1B00D19CB9 /* UIView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F2D20EDEF1B00D19CB9 /* UIView+YNPageExtend.m */; };
+		18291F3D20EDEF1B00D19CB9 /* YNPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3020EDEF1B00D19CB9 /* YNPageViewController.m */; };
+		18291F3E20EDEF1B00D19CB9 /* YNPageConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3120EDEF1B00D19CB9 /* YNPageConfigration.m */; };
+		18291F3F20EDEF1B00D19CB9 /* YNPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3220EDEF1B00D19CB9 /* YNPageScrollView.m */; };
+		18291F4020EDEF1B00D19CB9 /* YNPageHeaderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3420EDEF1B00D19CB9 /* YNPageHeaderScrollView.m */; };
+		18291F4120EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3620EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.m */; };
+		18291F4220EDEF1B00D19CB9 /* YNPageScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F3720EDEF1B00D19CB9 /* YNPageScrollMenuView.m */; };
+		18291F4620EDF31600D19CB9 /* YNSuspendCenterPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F4520EDF31600D19CB9 /* YNSuspendCenterPageVC.m */; };
+		18291F4920EE399400D19CB9 /* ScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F4820EE399400D19CB9 /* ScrollMenuView.m */; };
+		18291F4C20EE40C900D19CB9 /* QRCode_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F4A20EE40C900D19CB9 /* QRCode_green@2x.png */; };
+		18291F4D20EE40C900D19CB9 /* QRCode_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F4B20EE40C900D19CB9 /* QRCode_green@3x.png */; };
+		18291F4F20EE423B00D19CB9 /* copy_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 18291F4E20EE423A00D19CB9 /* copy_orange.png */; };
+		18291F5220EE522600D19CB9 /* GetUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F5120EE522600D19CB9 /* GetUserInfoRequest.m */; };
+		18291F5520EE548E00D19CB9 /* UserInfoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18291F5420EE548E00D19CB9 /* UserInfoResult.m */; };
 		182A66121FD11FDA007FD541 /* notify@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A66101FD11FDA007FD541 /* notify@3x.png */; };
 		182A66131FD11FDA007FD541 /* notify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A66111FD11FDA007FD541 /* notify@2x.png */; };
 		182A66161FD11FE1007FD541 /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A66141FD11FE1007FD541 /* scan@2x.png */; };
@@ -504,14 +527,6 @@
 		185D18611FE763B10021AD18 /* qq_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D185D1FE763B10021AD18 /* qq_big@3x.png */; };
 		185D18641FE766240021AD18 /* folder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18621FE766230021AD18 /* folder@3x.png */; };
 		185D18651FE766240021AD18 /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18631FE766230021AD18 /* folder@2x.png */; };
-		185D186E1FE766A00021AD18 /* backup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18661FE7669D0021AD18 /* backup@2x.png */; };
-		185D186F1FE766A00021AD18 /* changePassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18671FE7669E0021AD18 /* changePassword@2x.png */; };
-		185D18701FE766A00021AD18 /* backup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18681FE7669E0021AD18 /* backup@3x.png */; };
-		185D18711FE766A00021AD18 /* createAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18691FE7669E0021AD18 /* createAccount@2x.png */; };
-		185D18721FE766A00021AD18 /* importAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D186A1FE7669E0021AD18 /* importAccount@2x.png */; };
-		185D18731FE766A00021AD18 /* createAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D186B1FE7669F0021AD18 /* createAccount@3x.png */; };
-		185D18741FE766A00021AD18 /* importAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D186C1FE7669F0021AD18 /* importAccount@3x.png */; };
-		185D18751FE766A00021AD18 /* changePassword@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D186D1FE7669F0021AD18 /* changePassword@3x.png */; };
 		185D18781FE7671A0021AD18 /* recommended@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18761FE7671A0021AD18 /* recommended@2x.png */; };
 		185D18791FE7671A0021AD18 /* recommended@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18771FE7671A0021AD18 /* recommended@3x.png */; };
 		185D18801FE76EA40021AD18 /* scan_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D187E1FE76EA40021AD18 /* scan_black@3x.png */; };
@@ -599,6 +614,7 @@
 		186857281FE1293A002A683A /* LoginPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186857271FE1293A002A683A /* LoginPasswordView.m */; };
 		1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572A1FE131F6002A683A /* BindSocialPlatformViewController.m */; };
 		186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572F1FE13216002A683A /* UnBindSocialPlatformViewController.m */; };
+		186C26C020E9BC5E0076BE4A /* Auth_redpacket_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */; };
 		18725DC5200C4F7900AA1889 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18725DBE200C4F7900AA1889 /* WebViewJavascriptBridge.m */; };
 		18725DC6200C4F7900AA1889 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 18725DC0200C4F7900AA1889 /* WebViewJavascriptBridge_JS.m */; };
 		18725DC7200C4F7900AA1889 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18725DC2200C4F7900AA1889 /* WebViewJavascriptBridgeBase.m */; };
@@ -797,6 +813,28 @@
 		18CDFAFC20298DED00D21DF4 /* GetAccountResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDFAFB20298DED00D21DF4 /* GetAccountResult.m */; };
 		18CDFAFF20298E3800D21DF4 /* GetAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDFAFE20298E3800D21DF4 /* GetAccount.m */; };
 		18CDFB0620299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDFB0520299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m */; };
+		18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */; };
+		18D07A4020E9F1FB00DF1FDF /* AuthRedPacketResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */; };
+		18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */; };
+		18D07A4520E9FCB700DF1FDF /* redpacket.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A4420E9FCB700DF1FDF /* redpacket.png */; };
+		18D07A4820EA034200DF1FDF /* ForwardRedPacketFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A4720EA034200DF1FDF /* ForwardRedPacketFooterView.m */; };
+		18D07A4A20EA034A00DF1FDF /* ForwardRedPacketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A4920EA034A00DF1FDF /* ForwardRedPacketFooterView.xib */; };
+		18D07A5220EA3A0700DF1FDF /* RedPacketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A5120EA3A0700DF1FDF /* RedPacketDetailViewController.m */; };
+		18D07A5520EA3A2300DF1FDF /* RedPacketDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A5420EA3A2300DF1FDF /* RedPacketDetailHeaderView.m */; };
+		18D07A5720EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A5620EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib */; };
+		18D07A5A20EA563200DF1FDF /* RedPacketDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A5920EA563200DF1FDF /* RedPacketDetailService.m */; };
+		18D07A7E20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A7C20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m */; };
+		18D07A8720EB676900DF1FDF /* importAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8120EB676700DF1FDF /* importAccount@3x.png */; };
+		18D07A8820EB676900DF1FDF /* changePassword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8220EB676800DF1FDF /* changePassword@2x.png */; };
+		18D07A8920EB676900DF1FDF /* createAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8320EB676800DF1FDF /* createAccount@3x.png */; };
+		18D07A8A20EB676900DF1FDF /* createAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8420EB676800DF1FDF /* createAccount@2x.png */; };
+		18D07A8B20EB676900DF1FDF /* changePassword@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8520EB676900DF1FDF /* changePassword@3x.png */; };
+		18D07A8C20EB676900DF1FDF /* importAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8620EB676900DF1FDF /* importAccount@2x.png */; };
+		18D07A8F20EB67ED00DF1FDF /* backup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8D20EB67EC00DF1FDF /* backup@2x.png */; };
+		18D07A9020EB67ED00DF1FDF /* backup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8E20EB67EC00DF1FDF /* backup@3x.png */; };
+		18D07A9220EB68C200DF1FDF /* PockSecureDecalre.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */; };
+		18D07A9520EB6BD500DF1FDF /* mainAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */; };
+		18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */; };
 		18DBBAC62064C4DB0050EE20 /* AskTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAC52064C4DB0050EE20 /* AskTitle.m */; };
 		18DBBACA2064E74F0050EE20 /* AskQuestion_abi_to_json_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAC92064E74F0050EE20 /* AskQuestion_abi_to_json_request.m */; };
 		18DBBB0B206523A00050EE20 /* NSBundle+PGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAE32065239F0050EE20 /* NSBundle+PGDatePicker.m */; };
@@ -874,8 +912,6 @@
 		18EA95FB20AED80B0032A491 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FA20AED80B0032A491 /* BaseTextField.m */; };
 		18EA95FE20AEDD920032A491 /* BaseLabel2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FD20AEDD920032A491 /* BaseLabel2.m */; };
 		18EE05241FDF70E600134E5C /* PocketManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05161FDF70E600134E5C /* PocketManagementViewController.m */; };
-		18EE05251FDF70E600134E5C /* PocketManagementHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE051A1FDF70E600134E5C /* PocketManagementHeaderView.m */; };
-		18EE05261FDF70E600134E5C /* PocketManagementHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE051B1FDF70E600134E5C /* PocketManagementHeaderView.xib */; };
 		18EE05421FDF8A3200134E5C /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05411FDF8A3200134E5C /* CreateAccountViewController.m */; };
 		18EE05531FDF8F2900134E5C /* CreateAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05521FDF8F2900134E5C /* CreateAccountHeaderView.m */; };
 		18EE05571FDFAC2100134E5C /* CreateAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE05561FDFAC2100134E5C /* CreateAccountHeaderView.xib */; };
@@ -1309,10 +1345,47 @@
 		1828F91C2068C70300513CD1 /* news_list_cell_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news_list_cell_time@2x.png"; sourceTree = "<group>"; };
 		1828F9232068D2EA00513CD1 /* right_arrow_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow_gray@2x.png"; sourceTree = "<group>"; };
 		1828F9242068D2EA00513CD1 /* right_arrow_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow_gray@3x.png"; sourceTree = "<group>"; };
-		1828F9272068D5A500513CD1 /* copy_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy_orange@2x.png"; sourceTree = "<group>"; };
-		1828F9282068D5A500513CD1 /* copy_orange@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy_orange@3x.png"; sourceTree = "<group>"; };
-		1828F92B2068D5F900513CD1 /* QRCode_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode_green@2x.png"; sourceTree = "<group>"; };
-		1828F92C2068D5FA00513CD1 /* QRCode_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode_green@3x.png"; sourceTree = "<group>"; };
+		18291ECC20EC63A700D19CB9 /* account_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_icon@2x.png"; sourceTree = "<group>"; };
+		18291ECD20EC63A700D19CB9 /* account_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_icon@3x.png"; sourceTree = "<group>"; };
+		18291ED020EC6AC300D19CB9 /* pocketManagement_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocketManagement_icon@2x.png"; sourceTree = "<group>"; };
+		18291ED120EC6AC300D19CB9 /* pocketManagement_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocketManagement_icon@3x.png"; sourceTree = "<group>"; };
+		18291F1420ECA97100D19CB9 /* candy_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candy_Icon@3x.png"; sourceTree = "<group>"; };
+		18291F1520ECA97200D19CB9 /* bpvote@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bpvote@3x.png"; sourceTree = "<group>"; };
+		18291F1620ECA97200D19CB9 /* bpvote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bpvote@2x.png"; sourceTree = "<group>"; };
+		18291F1720ECA97300D19CB9 /* candy_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candy_Icon@2x.png"; sourceTree = "<group>"; };
+		18291F1D20ECAC3300D19CB9 /* transactionrecord_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transactionrecord_icon@3x.png"; sourceTree = "<group>"; };
+		18291F1E20ECAC3400D19CB9 /* transactionrecord_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transactionrecord_icon@2x.png"; sourceTree = "<group>"; };
+		18291F2220ECE5A400D19CB9 /* BaseResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseResult.h; sourceTree = "<group>"; };
+		18291F2320ECE5A400D19CB9 /* BaseResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseResult.m; sourceTree = "<group>"; };
+		18291F2720ED0A2F00D19CB9 /* NewsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
+		18291F2820ED0A2F00D19CB9 /* NewsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
+		18291F2B20EDEF1B00D19CB9 /* UIViewController+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YNPageExtend.m"; sourceTree = "<group>"; };
+		18291F2C20EDEF1B00D19CB9 /* YNPageHeaderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageHeaderScrollView.h; sourceTree = "<group>"; };
+		18291F2D20EDEF1B00D19CB9 /* UIView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YNPageExtend.m"; sourceTree = "<group>"; };
+		18291F2E20EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YNPageExtend.h"; sourceTree = "<group>"; };
+		18291F2F20EDEF1B00D19CB9 /* YNPageScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollMenuView.h; sourceTree = "<group>"; };
+		18291F3020EDEF1B00D19CB9 /* YNPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageViewController.m; sourceTree = "<group>"; };
+		18291F3120EDEF1B00D19CB9 /* YNPageConfigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageConfigration.m; sourceTree = "<group>"; };
+		18291F3220EDEF1B00D19CB9 /* YNPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollView.m; sourceTree = "<group>"; };
+		18291F3320EDEF1B00D19CB9 /* UIView+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YNPageExtend.h"; sourceTree = "<group>"; };
+		18291F3420EDEF1B00D19CB9 /* YNPageHeaderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageHeaderScrollView.m; sourceTree = "<group>"; };
+		18291F3520EDEF1B00D19CB9 /* UIViewController+YNPageExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YNPageExtend.h"; sourceTree = "<group>"; };
+		18291F3620EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YNPageExtend.m"; sourceTree = "<group>"; };
+		18291F3720EDEF1B00D19CB9 /* YNPageScrollMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNPageScrollMenuView.m; sourceTree = "<group>"; };
+		18291F3820EDEF1B00D19CB9 /* YNPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageScrollView.h; sourceTree = "<group>"; };
+		18291F3920EDEF1B00D19CB9 /* YNPageConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageConfigration.h; sourceTree = "<group>"; };
+		18291F3A20EDEF1B00D19CB9 /* YNPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNPageViewController.h; sourceTree = "<group>"; };
+		18291F4420EDF31600D19CB9 /* YNSuspendCenterPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNSuspendCenterPageVC.h; sourceTree = "<group>"; };
+		18291F4520EDF31600D19CB9 /* YNSuspendCenterPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNSuspendCenterPageVC.m; sourceTree = "<group>"; };
+		18291F4720EE399400D19CB9 /* ScrollMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollMenuView.h; sourceTree = "<group>"; };
+		18291F4820EE399400D19CB9 /* ScrollMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollMenuView.m; sourceTree = "<group>"; };
+		18291F4A20EE40C900D19CB9 /* QRCode_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode_green@2x.png"; sourceTree = "<group>"; };
+		18291F4B20EE40C900D19CB9 /* QRCode_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode_green@3x.png"; sourceTree = "<group>"; };
+		18291F4E20EE423A00D19CB9 /* copy_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copy_orange.png; sourceTree = "<group>"; };
+		18291F5020EE522600D19CB9 /* GetUserInfoRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserInfoRequest.h; sourceTree = "<group>"; };
+		18291F5120EE522600D19CB9 /* GetUserInfoRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserInfoRequest.m; sourceTree = "<group>"; };
+		18291F5320EE548E00D19CB9 /* UserInfoResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoResult.h; sourceTree = "<group>"; };
+		18291F5420EE548E00D19CB9 /* UserInfoResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoResult.m; sourceTree = "<group>"; };
 		182A66101FD11FDA007FD541 /* notify@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notify@3x.png"; sourceTree = "<group>"; };
 		182A66111FD11FDA007FD541 /* notify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notify@2x.png"; sourceTree = "<group>"; };
 		182A66141FD11FE1007FD541 /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@2x.png"; sourceTree = "<group>"; };
@@ -1790,14 +1863,6 @@
 		185D185D1FE763B10021AD18 /* qq_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_big@3x.png"; sourceTree = "<group>"; };
 		185D18621FE766230021AD18 /* folder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@3x.png"; sourceTree = "<group>"; };
 		185D18631FE766230021AD18 /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
-		185D18661FE7669D0021AD18 /* backup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@2x.png"; sourceTree = "<group>"; };
-		185D18671FE7669E0021AD18 /* changePassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword@2x.png"; sourceTree = "<group>"; };
-		185D18681FE7669E0021AD18 /* backup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@3x.png"; sourceTree = "<group>"; };
-		185D18691FE7669E0021AD18 /* createAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount@2x.png"; sourceTree = "<group>"; };
-		185D186A1FE7669E0021AD18 /* importAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount@2x.png"; sourceTree = "<group>"; };
-		185D186B1FE7669F0021AD18 /* createAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount@3x.png"; sourceTree = "<group>"; };
-		185D186C1FE7669F0021AD18 /* importAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount@3x.png"; sourceTree = "<group>"; };
-		185D186D1FE7669F0021AD18 /* changePassword@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword@3x.png"; sourceTree = "<group>"; };
 		185D18761FE7671A0021AD18 /* recommended@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommended@2x.png"; sourceTree = "<group>"; };
 		185D18771FE7671A0021AD18 /* recommended@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recommended@3x.png"; sourceTree = "<group>"; };
 		185D187E1FE76EA40021AD18 /* scan_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_black@3x.png"; sourceTree = "<group>"; };
@@ -1944,6 +2009,8 @@
 		1868572A1FE131F6002A683A /* BindSocialPlatformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindSocialPlatformViewController.m; sourceTree = "<group>"; };
 		1868572E1FE13216002A683A /* UnBindSocialPlatformViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnBindSocialPlatformViewController.h; sourceTree = "<group>"; };
 		1868572F1FE13216002A683A /* UnBindSocialPlatformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnBindSocialPlatformViewController.m; sourceTree = "<group>"; };
+		186C26BE20E9BC5E0076BE4A /* Auth_redpacket_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Auth_redpacket_request.h; sourceTree = "<group>"; };
+		186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Auth_redpacket_request.m; sourceTree = "<group>"; };
 		18725DBD200C4F7900AA1889 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		18725DBE200C4F7900AA1889 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
 		18725DBF200C4F7900AA1889 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
@@ -2277,6 +2344,36 @@
 		18CDFAFE20298E3800D21DF4 /* GetAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAccount.m; sourceTree = "<group>"; };
 		18CDFB0420299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountPrivateKeyQRCodeModel.h; sourceTree = "<group>"; };
 		18CDFB0520299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountPrivateKeyQRCodeModel.m; sourceTree = "<group>"; };
+		18D07A3A20E9F0FE00DF1FDF /* ForwardRedPacketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketService.h; sourceTree = "<group>"; };
+		18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketService.m; sourceTree = "<group>"; };
+		18D07A3E20E9F1FB00DF1FDF /* AuthRedPacketResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthRedPacketResult.h; sourceTree = "<group>"; };
+		18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthRedPacketResult.m; sourceTree = "<group>"; };
+		18D07A4120E9F20500DF1FDF /* AuthRedPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthRedPacket.h; sourceTree = "<group>"; };
+		18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthRedPacket.m; sourceTree = "<group>"; };
+		18D07A4420E9FCB700DF1FDF /* redpacket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redpacket.png; sourceTree = "<group>"; };
+		18D07A4620EA034200DF1FDF /* ForwardRedPacketFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketFooterView.h; sourceTree = "<group>"; };
+		18D07A4720EA034200DF1FDF /* ForwardRedPacketFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketFooterView.m; sourceTree = "<group>"; };
+		18D07A4920EA034A00DF1FDF /* ForwardRedPacketFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForwardRedPacketFooterView.xib; sourceTree = "<group>"; };
+		18D07A5020EA3A0700DF1FDF /* RedPacketDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketDetailViewController.h; sourceTree = "<group>"; };
+		18D07A5120EA3A0700DF1FDF /* RedPacketDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketDetailViewController.m; sourceTree = "<group>"; };
+		18D07A5320EA3A2300DF1FDF /* RedPacketDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketDetailHeaderView.h; sourceTree = "<group>"; };
+		18D07A5420EA3A2300DF1FDF /* RedPacketDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketDetailHeaderView.m; sourceTree = "<group>"; };
+		18D07A5620EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedPacketDetailHeaderView.xib; sourceTree = "<group>"; };
+		18D07A5820EA563200DF1FDF /* RedPacketDetailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketDetailService.h; sourceTree = "<group>"; };
+		18D07A5920EA563200DF1FDF /* RedPacketDetailService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketDetailService.m; sourceTree = "<group>"; };
+		18D07A7B20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketManagementServiceTableViewCell.h; sourceTree = "<group>"; };
+		18D07A7C20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PocketManagementServiceTableViewCell.m; sourceTree = "<group>"; };
+		18D07A8120EB676700DF1FDF /* importAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount@3x.png"; sourceTree = "<group>"; };
+		18D07A8220EB676800DF1FDF /* changePassword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword@2x.png"; sourceTree = "<group>"; };
+		18D07A8320EB676800DF1FDF /* createAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount@3x.png"; sourceTree = "<group>"; };
+		18D07A8420EB676800DF1FDF /* createAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount@2x.png"; sourceTree = "<group>"; };
+		18D07A8520EB676900DF1FDF /* changePassword@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword@3x.png"; sourceTree = "<group>"; };
+		18D07A8620EB676900DF1FDF /* importAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount@2x.png"; sourceTree = "<group>"; };
+		18D07A8D20EB67EC00DF1FDF /* backup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@2x.png"; sourceTree = "<group>"; };
+		18D07A8E20EB67EC00DF1FDF /* backup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@3x.png"; sourceTree = "<group>"; };
+		18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PockSecureDecalre.rtf; sourceTree = "<group>"; };
+		18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@3x.png"; sourceTree = "<group>"; };
+		18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@2x.png"; sourceTree = "<group>"; };
 		18DBBAC42064C4DB0050EE20 /* AskTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskTitle.h; sourceTree = "<group>"; };
 		18DBBAC52064C4DB0050EE20 /* AskTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskTitle.m; sourceTree = "<group>"; };
 		18DBBAC82064E74F0050EE20 /* AskQuestion_abi_to_json_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskQuestion_abi_to_json_request.h; sourceTree = "<group>"; };
@@ -2396,9 +2493,6 @@
 		18EA95FD20AEDD920032A491 /* BaseLabel2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseLabel2.m; sourceTree = "<group>"; };
 		18EE05151FDF70E600134E5C /* PocketManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManagementViewController.h; sourceTree = "<group>"; };
 		18EE05161FDF70E600134E5C /* PocketManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManagementViewController.m; sourceTree = "<group>"; };
-		18EE05191FDF70E600134E5C /* PocketManagementHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManagementHeaderView.h; sourceTree = "<group>"; };
-		18EE051A1FDF70E600134E5C /* PocketManagementHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManagementHeaderView.m; sourceTree = "<group>"; };
-		18EE051B1FDF70E600134E5C /* PocketManagementHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PocketManagementHeaderView.xib; sourceTree = "<group>"; };
 		18EE05401FDF8A3200134E5C /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		18EE05411FDF8A3200134E5C /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		18EE05511FDF8F2900134E5C /* CreateAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountHeaderView.h; sourceTree = "<group>"; };
@@ -2683,6 +2777,7 @@
 				1856A4AF2008887100D62FEB /* MJRefresh */,
 				1811301E1FCD01C900BEA0D9 /* NullSafe */,
 				181414011FCFA2BA00334C60 /* SVProgressHUD */,
+				18291F2A20EDEF1B00D19CB9 /* YNPageViewController */,
 				184D619D1FD521C200EA26B1 /* SDCycleScrollView */,
 				181130531FCD020A00BEA0D9 /* UIKit+AFNetworking */,
 				184D616E1FD4F36300EA26B1 /* HYBUnicodeReadable */,
@@ -3237,6 +3332,76 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18291F1C20ECAC2900D19CB9 /* 201807 */ = {
+			isa = PBXGroup;
+			children = (
+				18291F1E20ECAC3400D19CB9 /* transactionrecord_icon@2x.png */,
+				18291F1D20ECAC3300D19CB9 /* transactionrecord_icon@3x.png */,
+				18291F4A20EE40C900D19CB9 /* QRCode_green@2x.png */,
+				18291F4B20EE40C900D19CB9 /* QRCode_green@3x.png */,
+				18291F4E20EE423A00D19CB9 /* copy_orange.png */,
+			);
+			path = 201807;
+			sourceTree = "<group>";
+		};
+		18291F2120ECE59700D19CB9 /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				18291F2220ECE5A400D19CB9 /* BaseResult.h */,
+				18291F2320ECE5A400D19CB9 /* BaseResult.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		18291F2520ED0A1200D19CB9 /* NewsList */ = {
+			isa = PBXGroup;
+			children = (
+				18291F2620ED0A1200D19CB9 /* ViewController */,
+			);
+			path = NewsList;
+			sourceTree = "<group>";
+		};
+		18291F2620ED0A1200D19CB9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18291F2720ED0A2F00D19CB9 /* NewsListViewController.h */,
+				18291F2820ED0A2F00D19CB9 /* NewsListViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18291F2A20EDEF1B00D19CB9 /* YNPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18291F2B20EDEF1B00D19CB9 /* UIViewController+YNPageExtend.m */,
+				18291F2C20EDEF1B00D19CB9 /* YNPageHeaderScrollView.h */,
+				18291F2D20EDEF1B00D19CB9 /* UIView+YNPageExtend.m */,
+				18291F2E20EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.h */,
+				18291F2F20EDEF1B00D19CB9 /* YNPageScrollMenuView.h */,
+				18291F3020EDEF1B00D19CB9 /* YNPageViewController.m */,
+				18291F3120EDEF1B00D19CB9 /* YNPageConfigration.m */,
+				18291F3220EDEF1B00D19CB9 /* YNPageScrollView.m */,
+				18291F3320EDEF1B00D19CB9 /* UIView+YNPageExtend.h */,
+				18291F3420EDEF1B00D19CB9 /* YNPageHeaderScrollView.m */,
+				18291F3520EDEF1B00D19CB9 /* UIViewController+YNPageExtend.h */,
+				18291F3620EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.m */,
+				18291F3720EDEF1B00D19CB9 /* YNPageScrollMenuView.m */,
+				18291F3820EDEF1B00D19CB9 /* YNPageScrollView.h */,
+				18291F3920EDEF1B00D19CB9 /* YNPageConfigration.h */,
+				18291F3A20EDEF1B00D19CB9 /* YNPageViewController.h */,
+			);
+			path = YNPageViewController;
+			sourceTree = "<group>";
+		};
+		18291F4320EDF31600D19CB9 /* SuspendCenterPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				18291F4420EDF31600D19CB9 /* YNSuspendCenterPageVC.h */,
+				18291F4520EDF31600D19CB9 /* YNSuspendCenterPageVC.m */,
+			);
+			path = SuspendCenterPageVC;
+			sourceTree = "<group>";
+		};
 		182B02E31FF394EE006C9DFB /* DataBaseModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -3434,6 +3599,8 @@
 			children = (
 				1831F39B2016D8D1002CE94D /* AuthResult.h */,
 				1831F39C2016D8D1002CE94D /* AuthResult.m */,
+				18291F5320EE548E00D19CB9 /* UserInfoResult.h */,
+				18291F5420EE548E00D19CB9 /* UserInfoResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4194,6 +4361,7 @@
 			isa = PBXGroup;
 			children = (
 				18563F541FD7A4F700CF05FC /* Controller */,
+				18D07A3D20E9F1DE00DF1FDF /* Model */,
 				18563F551FD7A4F700CF05FC /* Networking */,
 				18563F561FD7A4F700CF05FC /* Service */,
 				18563F571FD7A4F700CF05FC /* View */,
@@ -4220,6 +4388,8 @@
 		18563F561FD7A4F700CF05FC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				18D07A3A20E9F0FE00DF1FDF /* ForwardRedPacketService.h */,
+				18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -4230,6 +4400,9 @@
 				18563F601FD7A56600CF05FC /* ForwardRedPacketHeaderView.h */,
 				18563F611FD7A56600CF05FC /* ForwardRedPacketHeaderView.m */,
 				18563F631FD7A57700CF05FC /* ForwardRedPacketHeaderView.xib */,
+				18D07A4620EA034200DF1FDF /* ForwardRedPacketFooterView.h */,
+				18D07A4720EA034200DF1FDF /* ForwardRedPacketFooterView.m */,
+				18D07A4920EA034A00DF1FDF /* ForwardRedPacketFooterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5342,6 +5515,7 @@
 		1886076D1FCBF6DE00B00EE7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				18291F1C20ECAC2900D19CB9 /* 201807 */,
 				18AD2BB020D0C9B000536084 /* BPVote */,
 				18B276F820B7AC460070F472 /* rtf */,
 				187D9BE72080BEFD0059BD2A /* Social */,
@@ -5355,6 +5529,7 @@
 		1886076E1FCBF6DE00B00EE7 /* BaseFramwork */ = {
 			isa = PBXGroup;
 			children = (
+				18291F2120ECE59700D19CB9 /* BaseModel */,
 				182B8F8320AD1B8000C43AEC /* BaseView */,
 				1886076F1FCBF6DE00B00EE7 /* BaseNavigationController */,
 				188607701FCBF6DE00B00EE7 /* BaseTabBarController */,
@@ -5457,6 +5632,8 @@
 				186564AF2011A1240044BBC3 /* GetVerifyCodeRequest.m */,
 				186564B12011A2F70044BBC3 /* AuthVerifyCodeRequest.h */,
 				186564B22011A2F70044BBC3 /* AuthVerifyCodeRequest.m */,
+				18291F5020EE522600D19CB9 /* GetUserInfoRequest.h */,
+				18291F5120EE522600D19CB9 /* GetUserInfoRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -5941,6 +6118,10 @@
 				1860443F20D36B3200BEE917 /* slider_gray_BB@3x.png */,
 				1860444220D39E6700BEE917 /* unstake_alpha@2x.png */,
 				1860444320D39E6800BEE917 /* unstake_alpha@3x.png */,
+				18291F1620ECA97200D19CB9 /* bpvote@2x.png */,
+				18291F1520ECA97200D19CB9 /* bpvote@3x.png */,
+				18291F1720ECA97300D19CB9 /* candy_Icon@2x.png */,
+				18291F1420ECA97100D19CB9 /* candy_Icon@3x.png */,
 			);
 			path = BPVote;
 			sourceTree = "<group>";
@@ -6021,6 +6202,7 @@
 		18B276F820B7AC460070F472 /* rtf */ = {
 			isa = PBXGroup;
 			children = (
+				18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */,
 				18B276FB20B7AF520070F472 /* AboutPocketEOS.rtf */,
 				18B276FC20B7AF520070F472 /* PocketEOSProtocol.rtf */,
 				18B276FD20B7AF530070F472 /* SpecificationBlackBoxMode.rtf */,
@@ -6157,6 +6339,8 @@
 				18B2912620898C530032EE27 /* GetRedPacketRecordRequest.m */,
 				18B2912E2089942D0032EE27 /* GetRedPacketDetailRequest.h */,
 				18B2912F2089942D0032EE27 /* GetRedPacketDetailRequest.m */,
+				186C26BE20E9BC5E0076BE4A /* Auth_redpacket_request.h */,
+				186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -6243,6 +6427,70 @@
 			children = (
 				18CDFB0420299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.h */,
 				18CDFB0520299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D07A3D20E9F1DE00DF1FDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18D07A3E20E9F1FB00DF1FDF /* AuthRedPacketResult.h */,
+				18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */,
+				18D07A4120E9F20500DF1FDF /* AuthRedPacket.h */,
+				18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D07A4B20EA39EA00DF1FDF /* RedPacketDetail */ = {
+			isa = PBXGroup;
+			children = (
+				18D07A4C20EA39EA00DF1FDF /* Model */,
+				18D07A4D20EA39EA00DF1FDF /* View */,
+				18D07A4E20EA39EA00DF1FDF /* Service */,
+				18D07A4F20EA39EA00DF1FDF /* ViewController */,
+			);
+			path = RedPacketDetail;
+			sourceTree = "<group>";
+		};
+		18D07A4C20EA39EA00DF1FDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D07A4D20EA39EA00DF1FDF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18D07A5320EA3A2300DF1FDF /* RedPacketDetailHeaderView.h */,
+				18D07A5420EA3A2300DF1FDF /* RedPacketDetailHeaderView.m */,
+				18D07A5620EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18D07A4E20EA39EA00DF1FDF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18D07A5820EA563200DF1FDF /* RedPacketDetailService.h */,
+				18D07A5920EA563200DF1FDF /* RedPacketDetailService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18D07A4F20EA39EA00DF1FDF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18D07A5020EA3A0700DF1FDF /* RedPacketDetailViewController.h */,
+				18D07A5120EA3A0700DF1FDF /* RedPacketDetailViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18D07A8020EB5EC100DF1FDF /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6363,6 +6611,7 @@
 				18C622971FD637DE0043447F /* Recieve */,
 				18C622921FD637DE0043447F /* RedPacket */,
 				18563F531FD7A4F700CF05FC /* ForwardRedPacket */,
+				18D07A4B20EA39EA00DF1FDF /* RedPacketDetail */,
 				18563F651FD7E94D00CF05FC /* ChangeAccount */,
 				1860442820D3688500BEE917 /* UnstakeEOS */,
 				1884128120C8DEE1005D752C /* Advertisement */,
@@ -6373,7 +6622,9 @@
 		18E72E031FCC0EBD00D09CA3 /* NewsModule */ = {
 			isa = PBXGroup;
 			children = (
+				18291F4320EDF31600D19CB9 /* SuspendCenterPageVC */,
 				18E72E0F1FCC0FED00D09CA3 /* NewsMain */,
+				18291F2520ED0A1200D19CB9 /* NewsList */,
 				18725DC9200C502A00AA1889 /* NewsDetail */,
 			);
 			path = NewsModule;
@@ -6557,6 +6808,8 @@
 				183FF8BA1FF3456F006C25F1 /* NewsListCell.m */,
 				1841134C200476F000CD6F3F /* NewsMainHeaderView.h */,
 				1841134D200476F000CD6F3F /* NewsMainHeaderView.m */,
+				18291F4720EE399400D19CB9 /* ScrollMenuView.h */,
+				18291F4820EE399400D19CB9 /* ScrollMenuView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6747,22 +7000,22 @@
 				185D185A1FE763B10021AD18 /* wechat_big@3x.png */,
 				185D18631FE766230021AD18 /* folder@2x.png */,
 				185D18621FE766230021AD18 /* folder@3x.png */,
-				185D18661FE7669D0021AD18 /* backup@2x.png */,
-				185D18681FE7669E0021AD18 /* backup@3x.png */,
+				18D07A8D20EB67EC00DF1FDF /* backup@2x.png */,
+				18D07A8E20EB67EC00DF1FDF /* backup@3x.png */,
 				185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */,
 				185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */,
 				183FF6DB20C0CE600058D010 /* changePassword_BB@2x.png */,
 				183FF6DC20C0CE600058D010 /* changePassword_BB@3x.png */,
-				185D18671FE7669E0021AD18 /* changePassword@2x.png */,
-				185D186D1FE7669F0021AD18 /* changePassword@3x.png */,
-				185D18691FE7669E0021AD18 /* createAccount@2x.png */,
-				185D186B1FE7669F0021AD18 /* createAccount@3x.png */,
 				185BA3C320BBC1FD00F63674 /* createAccount_BB@2x.png */,
 				185BA3C420BBC1FD00F63674 /* createAccount_BB@3x.png */,
-				185D186A1FE7669E0021AD18 /* importAccount@2x.png */,
-				185D186C1FE7669F0021AD18 /* importAccount@3x.png */,
 				185BA3C720BBC20400F63674 /* importAccount_BB@2x.png */,
 				185BA3C820BBC20400F63674 /* importAccount_BB@3x.png */,
+				18D07A8220EB676800DF1FDF /* changePassword@2x.png */,
+				18D07A8520EB676900DF1FDF /* changePassword@3x.png */,
+				18D07A8420EB676800DF1FDF /* createAccount@2x.png */,
+				18D07A8320EB676800DF1FDF /* createAccount@3x.png */,
+				18D07A8620EB676900DF1FDF /* importAccount@2x.png */,
+				18D07A8120EB676700DF1FDF /* importAccount@3x.png */,
 				185D18761FE7671A0021AD18 /* recommended@2x.png */,
 				185D18771FE7671A0021AD18 /* recommended@3x.png */,
 				1878BCAE208458AE002A76F5 /* redPacketBackground@2x.png */,
@@ -6816,10 +7069,6 @@
 				1828F91B2068C70300513CD1 /* news_list_cell_time@3x.png */,
 				1828F9232068D2EA00513CD1 /* right_arrow_gray@2x.png */,
 				1828F9242068D2EA00513CD1 /* right_arrow_gray@3x.png */,
-				1828F9272068D5A500513CD1 /* copy_orange@2x.png */,
-				1828F9282068D5A500513CD1 /* copy_orange@3x.png */,
-				1828F92B2068D5F900513CD1 /* QRCode_green@2x.png */,
-				1828F92C2068D5FA00513CD1 /* QRCode_green@3x.png */,
 				18E080622068D72E0032B09C /* qq_share@2x.png */,
 				18E080612068D72E0032B09C /* qq_share@3x.png */,
 				18E080632068D72F0032B09C /* wechat_share@2x.png */,
@@ -6861,6 +7110,13 @@
 				184566C620C1861B0005F216 /* nomoredata_BB@3x.png */,
 				184566CA20C18C280005F216 /* shield_BB@2x.png */,
 				184566CB20C18C290005F216 /* shield_BB@3x.png */,
+				18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */,
+				18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */,
+				18D07A4420E9FCB700DF1FDF /* redpacket.png */,
+				18291ECC20EC63A700D19CB9 /* account_icon@2x.png */,
+				18291ECD20EC63A700D19CB9 /* account_icon@3x.png */,
+				18291ED020EC6AC300D19CB9 /* pocketManagement_icon@2x.png */,
+				18291ED120EC6AC300D19CB9 /* pocketManagement_icon@3x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -6902,6 +7158,7 @@
 				18EE05141FDF70E600134E5C /* Controller */,
 				18EE05171FDF70E600134E5C /* Service */,
 				18EE05181FDF70E600134E5C /* View */,
+				18D07A8020EB5EC100DF1FDF /* Model */,
 				18F03FB82067603000697D7F /* Networking */,
 			);
 			path = PocketManagement;
@@ -6928,11 +7185,10 @@
 		18EE05181FDF70E600134E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18EE05191FDF70E600134E5C /* PocketManagementHeaderView.h */,
-				18EE051A1FDF70E600134E5C /* PocketManagementHeaderView.m */,
-				18EE051B1FDF70E600134E5C /* PocketManagementHeaderView.xib */,
 				18423A2A1FFF77E4006AB986 /* PocketManagementTableViewCell.h */,
 				18423A2B1FFF77E4006AB986 /* PocketManagementTableViewCell.m */,
+				18D07A7B20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.h */,
+				18D07A7C20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m */,
 				18EE05601FDFBCD900134E5C /* BackupPocketView.h */,
 				18EE05611FDFBCD900134E5C /* BackupPocketView.m */,
 				18EE05631FDFBCE500134E5C /* BackupPocketView.xib */,
@@ -7400,15 +7656,19 @@
 				183FF73B20C14B980058D010 /* thumb_BB@3x.png in Resources */,
 				18A99B0620E6644000E32A29 /* Javascript.html in Resources */,
 				18AD2BBB20D0C9C400536084 /* tip_info@3x.png in Resources */,
+				18D07A4A20EA034A00DF1FDF /* ForwardRedPacketFooterView.xib in Resources */,
 				18E080662068D72F0032B09C /* qq_share@2x.png in Resources */,
 				187D9BF72080C02F0059BD2A /* wechat_moments@3x.png in Resources */,
+				18291ECF20EC63A800D19CB9 /* account_icon@3x.png in Resources */,
 				1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */,
 				183FF6F820C10EF20058D010 /* paid_answer@3x.png in Resources */,
 				1862E7F420DC93CE00F26629 /* ModifyApproveHeaderView.xib in Resources */,
 				1825DC532005AA820057320C /* slider_white@2x.png in Resources */,
+				18D07A4520E9FCB700DF1FDF /* redpacket.png in Resources */,
 				186857191FE10C02002A683A /* ExportPrivateKeyView.xib in Resources */,
 				18FDFFC12024521800AEB4FA /* scan_2@2x.png in Resources */,
 				1838495F20BE43AA00B89549 /* shield@2x.png in Resources */,
+				18291F4F20EE423B00D19CB9 /* copy_orange.png in Resources */,
 				183348791FCE5DAE00884107 /* recieve_icon@3x.png in Resources */,
 				1836746820E5D75800F04D1E /* redpacket_icon@2x.png in Resources */,
 				185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */,
@@ -7424,6 +7684,8 @@
 				18AD2BD820D11CE900536084 /* cancle__circle_white@2x.png in Resources */,
 				185BA3B020BBA93100F63674 /* application_unSelect_BB@2x.png in Resources */,
 				18DBD27220424339001E2DDF /* WalletQRCodeView.xib in Resources */,
+				18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */,
+				18D07A9220EB68C200DF1FDF /* PockSecureDecalre.rtf in Resources */,
 				183FF74420C159740058D010 /* pocket_BB@3x.png in Resources */,
 				18DBD276204244D1001E2DDF /* walletQRCodeBoder@3x.png in Resources */,
 				18DBD281204258B0001E2DDF /* wallet_default_avatar@3x.png in Resources */,
@@ -7432,7 +7694,6 @@
 				184566C820C1861C0005F216 /* nomoredata_BB@3x.png in Resources */,
 				1826AD412079F5520046EE7C /* PersonalSettingHeaderView.xib in Resources */,
 				189E3EBE201C5B980022AF19 /* RSKImageCropperStrings.bundle in Resources */,
-				1828F92E2068D5FA00513CD1 /* QRCode_green@3x.png in Resources */,
 				185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */,
 				185D18171FE7596E0021AD18 /* pERichList@2x.png in Resources */,
 				183FF6DE20C0CE600058D010 /* changePassword_BB@3x.png in Resources */,
@@ -7459,7 +7720,6 @@
 				183FF74720C159740058D010 /* transaction_history_BB@3x.png in Resources */,
 				187D9BF32080C02F0059BD2A /* wechat_friends@2x.png in Resources */,
 				1838496120BE43AA00B89549 /* recieve_white@2x.png in Resources */,
-				185D186E1FE766A00021AD18 /* backup@2x.png in Resources */,
 				184566CD20C18C290005F216 /* shield_BB@3x.png in Resources */,
 				185BA3CA20BBC20500F63674 /* importAccount_BB@3x.png in Resources */,
 				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
@@ -7482,14 +7742,12 @@
 				185BA3CF20BBC2E700F63674 /* select__BB_wallet_icon@3x.png in Resources */,
 				1860443B20D36B2C00BEE917 /* slider_gray@3x.png in Resources */,
 				18F03FD52067878C00697D7F /* redPacket@2x.png in Resources */,
-				185D18731FE766A00021AD18 /* createAccount@3x.png in Resources */,
 				186857171FE0D955002A683A /* AccountManagementHeaderView.xib in Resources */,
 				184EA62620ABCFDB00169CD9 /* background_black@2x.png in Resources */,
 				184141A1202029ED00A789ED /* RichlistDetailHeaderView.xib in Resources */,
 				184EA62720ABCFDB00169CD9 /* background_black@3x.png in Resources */,
 				1872E89A20AA7FB600454DA3 /* BBLoginChooseWalletFooterView.xib in Resources */,
 				18F03FD82067878C00697D7F /* transfer@2x.png in Resources */,
-				1828F92A2068D5A600513CD1 /* copy_orange@3x.png in Resources */,
 				18FDFFC72024523100AEB4FA /* scan_net@2x.png in Resources */,
 				18E72E431FCC1AAE00D09CA3 /* application_unSelect@2x.png in Resources */,
 				18563F641FD7A57700CF05FC /* ForwardRedPacketHeaderView.xib in Resources */,
@@ -7497,7 +7755,6 @@
 				185BA37F20BB971700F63674 /* energy@2x.png in Resources */,
 				185D18551FE762000021AD18 /*  qq.png in Resources */,
 				1884129020C93E4D005D752C /* BPVoteHeaderView.xib in Resources */,
-				18EE05261FDF70E600134E5C /* PocketManagementHeaderView.xib in Resources */,
 				18AD2BBC20D0C9C400536084 /* edit_blue@3x.png in Resources */,
 				1833488F1FCE69B200884107 /* 2.png in Resources */,
 				181275DF20B6DF58005EDD91 /* volume-marquee@3x.png in Resources */,
@@ -7519,6 +7776,7 @@
 				185D18331FE75CDC0021AD18 /* versionUpdate@3x.png in Resources */,
 				18AD2BC120D0C9C400536084 /* vote_change_account@2x.png in Resources */,
 				183FF6F520C0FD700058D010 /* qq_login@2x.png in Resources */,
+				18291ECE20EC63A800D19CB9 /* account_icon@2x.png in Resources */,
 				181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */,
 				1878BCB0208458AE002A76F5 /* redPacketBackground@2x.png in Resources */,
 				1878BCA620843348002A76F5 /* AssestsShareDetailView.xib in Resources */,
@@ -7526,6 +7784,7 @@
 				183348741FCE5DAE00884107 /* recieve_icon@2x.png in Resources */,
 				182B8F9220AD3AE300C43AEC /* themejson_BlackBoxMode.json in Resources */,
 				18DBD27A20424F0C001E2DDF /* wallet_QRCode_btn@2x.png in Resources */,
+				18291ED220EC6AC300D19CB9 /* pocketManagement_icon@2x.png in Resources */,
 				1816915720BEC1B900BF49A8 /* right_arrow_white@3x.png in Resources */,
 				18AD2BC220D0C9C400536084 /* tip_info@2x.png in Resources */,
 				1826AD4B207A15940046EE7C /* BindPhoneNumberHeaderView.xib in Resources */,
@@ -7567,7 +7826,6 @@
 				18F03FCC206785CC00697D7F /* systemSetting@2x.png in Resources */,
 				185D181F1FE75B270021AD18 /* pocket@3x.png in Resources */,
 				18F03FBF20677C3F00697D7F /* protectAccount@2x.png in Resources */,
-				185D18741FE766A00021AD18 /* importAccount@3x.png in Resources */,
 				185D18841FE76F090021AD18 /* addressBook@3x.png in Resources */,
 				187268611FDE31D400C898D1 /* TransactionRecordsHeaderView.xib in Resources */,
 				185BA41B20BBE03D00F63674 /* candyIntegrals@2x.png in Resources */,
@@ -7597,13 +7855,13 @@
 				185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
 				185D181E1FE75B270021AD18 /* pocket@2x.png in Resources */,
+				18291F4C20EE40C900D19CB9 /* QRCode_green@2x.png in Resources */,
 				1872F133202D6F0C005B5915 /* addFollow@3x.png in Resources */,
 				1830A94D202BF796009ACDD8 /* oct_avatar@2x.png in Resources */,
 				18AD2BD320D11BB300536084 /* advertisement_BP_Vote@2x.png in Resources */,
 				185BA38320BB978500F63674 /* paid_answer_BB@2x.png in Resources */,
 				181EC32120C58C20001994D3 /* client.p12 in Resources */,
 				185D184C1FE760D10021AD18 /* QRCodeBackground@2x.png in Resources */,
-				185D18701FE766A00021AD18 /* backup@3x.png in Resources */,
 				185D18641FE766240021AD18 /* folder@3x.png in Resources */,
 				183FF74620C159740058D010 /* transaction_history_BB@2x.png in Resources */,
 				18F054C920CBA7B4001B0A29 /* BPCandidateFooterView.xib in Resources */,
@@ -7616,6 +7874,7 @@
 				182CDF53201EFFB4002B87B6 /* FeedbackHeaderView.xib in Resources */,
 				184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */,
 				186329841FE2597900E57F05 /* ApplicationMainHeaderView.xib in Resources */,
+				18D07A9020EB67ED00DF1FDF /* backup@3x.png in Resources */,
 				18AD2BC820D0CCFA00536084 /* BP_account_will_be_locked.rtf in Resources */,
 				182A66191FD11FF5007FD541 /* setting@3x.png in Resources */,
 				18C622A31FD6393D0043447F /* TransferHeaderView.xib in Resources */,
@@ -7623,6 +7882,7 @@
 				18B2770020B7AF530070F472 /* SpecificationBlackBoxMode.rtf in Resources */,
 				18E72E4C1FCC1AAE00D09CA3 /* richList_unSelect@2x.png in Resources */,
 				1862E7A020DBC81100F26629 /* TradeRamHeaderView.xib in Resources */,
+				18D07A8720EB676900DF1FDF /* importAccount@3x.png in Resources */,
 				185D18541FE762000021AD18 /* wechat@2x.png in Resources */,
 				185D18341FE75CDC0021AD18 /* versionUpdate@2x.png in Resources */,
 				185D18421FE75FC30021AD18 /* share@3x.png in Resources */,
@@ -7638,15 +7898,17 @@
 				18E72E4D1FCC1AAE00D09CA3 /* news_unSelect@3x.png in Resources */,
 				1878BCAF208458AE002A76F5 /* redPacketBackground@3x.png in Resources */,
 				1884A8E3204D380700C72631 /* feedBackAsk@2x.png in Resources */,
+				18291F1F20ECAC3400D19CB9 /* transactionrecord_icon@3x.png in Resources */,
+				18291F1A20ECA97300D19CB9 /* bpvote@2x.png in Resources */,
 				187B63E0206B347D00D0AE86 /* transaction_history.png in Resources */,
+				18D07A9520EB6BD500DF1FDF /* mainAccount@3x.png in Resources */,
+				18D07A8820EB676900DF1FDF /* changePassword@2x.png in Resources */,
 				183FF73F20C156CA0058D010 /* login_Header_BB@3x.png in Resources */,
 				1814140E1FCFA2BA00334C60 /* SVProgressHUD.bundle in Resources */,
 				18F03FEA2067883600697D7F /* redPacket_gray@3x.png in Resources */,
-				185D186F1FE766A00021AD18 /* changePassword@2x.png in Resources */,
 				187B63E1206B347D00D0AE86 /* right_icon_blue@2x.png in Resources */,
 				18EE05641FDFBCE500134E5C /* BackupPocketView.xib in Resources */,
 				1884128720C8DF3C005D752C /* AdvertisementView.xib in Resources */,
-				185D18721FE766A00021AD18 /* importAccount@2x.png in Resources */,
 				18C622BE1FD63C580043447F /* RecieveHeaderView.xib in Resources */,
 				1826AD3C2079F1B70046EE7C /* UnBindSocialPlatformHeaderView.xib in Resources */,
 				187D9BF62080C02F0059BD2A /* qq_Zone@3x.png in Resources */,
@@ -7654,6 +7916,7 @@
 				183348771FCE5DAE00884107 /* transfer_icon@2x.png in Resources */,
 				186857251FE1292C002A683A /* LoginPasswordView.xib in Resources */,
 				18AD2BBD20D0C9C400536084 /* vote_account_bg_blue@3x.png in Resources */,
+				18291F4D20EE40C900D19CB9 /* QRCode_green@3x.png in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
 				18AD2BD720D11CE900536084 /* cancle__circle_white@3x.png in Resources */,
@@ -7678,7 +7941,6 @@
 				18A2F46D1FF0A20A00B6CE43 /* Info.plist in Resources */,
 				18E72E4A1FCC1AAE00D09CA3 /* application_select@2x.png in Resources */,
 				1860444520D39E6800BEE917 /* unstake_alpha@3x.png in Resources */,
-				1828F92D2068D5FA00513CD1 /* QRCode_green@2x.png in Resources */,
 				185BA41C20BBE03D00F63674 /* candyIntegrals@3x.png in Resources */,
 				185D184D1FE760D10021AD18 /* QRCodeBackground@3x.png in Resources */,
 				1826AD322079D9F90046EE7C /* PersonalSettingDetailHeaderView.xib in Resources */,
@@ -7697,9 +7959,12 @@
 				18E72E451FCC1AAE00D09CA3 /* richList_select@3x.png in Resources */,
 				18E72E481FCC1AAE00D09CA3 /* news_select@2x.png in Resources */,
 				18EE055F1FDFB32300134E5C /* ImportAccountHeaderView.xib in Resources */,
+				18D07A8B20EB676900DF1FDF /* changePassword@3x.png in Resources */,
 				185BA3B320BBA93100F63674 /* application_unSelect_BB@3x.png in Resources */,
 				1853DE4120B2BE8F003DC727 /* CandyMainHeaderView.xib in Resources */,
+				18D07A5720EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib in Resources */,
 				188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */,
+				18D07A8C20EB676900DF1FDF /* importAccount@2x.png in Resources */,
 				18E72E491FCC1AAE00D09CA3 /* assest_unSelect@2x.png in Resources */,
 				181EC32220C58C20001994D3 /* server.cer in Resources */,
 				185BA3A020BBA70200F63674 /* assest_Select_BB@2x.png in Resources */,
@@ -7707,26 +7972,28 @@
 				185BA3AA20BBA89500F63674 /* news_select_BB@3x.png in Resources */,
 				1826AD2A2079C3200046EE7C /* LoginView.xib in Resources */,
 				185D18781FE7671A0021AD18 /* recommended@2x.png in Resources */,
+				18291ED320EC6AC300D19CB9 /* pocketManagement_icon@3x.png in Resources */,
 				1807EFA31FE8F8140010CF7F /* oval@3x.png in Resources */,
 				18AD2BC720D0CCFA00536084 /* BPVoteRules.rtf in Resources */,
 				1860443C20D36B2C00BEE917 /* slider_gray@2x.png in Resources */,
 				18DBD275204244D1001E2DDF /* walletQRCodeBoder@2x.png in Resources */,
-				185D18711FE766A00021AD18 /* createAccount@2x.png in Resources */,
 				18E72E4B1FCC1AAE00D09CA3 /* assest_select@2x.png in Resources */,
 				18F03FE72067883600697D7F /* redPacket_gray@2x.png in Resources */,
+				18291F1B20ECA97300D19CB9 /* candy_Icon@2x.png in Resources */,
 				18F03FF320678BE900697D7F /* QRCode_small_white@3x.png in Resources */,
 				185D18611FE763B10021AD18 /* qq_big@3x.png in Resources */,
-				185D18751FE766A00021AD18 /* changePassword@3x.png in Resources */,
 				183FF6F220C0FD700058D010 /* qq_login@3x.png in Resources */,
 				18E080652068D72F0032B09C /* qq_share@3x.png in Resources */,
 				1860443A20D36B2C00BEE917 /* unStakeEOS_blue@3x.png in Resources */,
-				1828F9292068D5A600513CD1 /* copy_orange@2x.png in Resources */,
 				1816915920BECC9F00BF49A8 /* candyBackground_blue.png in Resources */,
+				18D07A8A20EB676900DF1FDF /* createAccount@2x.png in Resources */,
 				18E72E441FCC1AAE00D09CA3 /* assest_select@3x.png in Resources */,
 				183FF73A20C14B980058D010 /* thumb_BB@2x.png in Resources */,
 				18A99B0720E6644000E32A29 /* Eos.js in Resources */,
+				18D07A8F20EB67ED00DF1FDF /* backup@2x.png in Resources */,
 				18AD2BC420D0C9C400536084 /* vote_change_account@3x.png in Resources */,
 				181130D21FCD468100BEA0D9 /* tip@2x.png in Resources */,
+				18291F1820ECA97300D19CB9 /* candy_Icon@3x.png in Resources */,
 				18AD2BD420D11BB300536084 /* advertisement_BP_Vote@3x.png in Resources */,
 				185BA3B220BBA93100F63674 /* application_select_BB@3x.png in Resources */,
 				18F03FC22067804000697D7F /* background_blue@3x.png in Resources */,
@@ -7736,9 +8003,11 @@
 				18DBD280204258B0001E2DDF /* wallet_default_avatar@2x.png in Resources */,
 				185BA39320BB9AED00F63674 /* messageCenter_BB@2x.png in Resources */,
 				185BA3B120BBA93100F63674 /* application_select_BB@2x.png in Resources */,
+				18291F2020ECAC3400D19CB9 /* transactionrecord_icon@2x.png in Resources */,
 				181130CE1FCD3A3000BEA0D9 /* AssestsMainHeaderView.xib in Resources */,
 				181275E320B6DF60005EDD91 /* close-marquee@2x.png in Resources */,
 				1872F137202D6F35005B5915 /* cancleFollow@2x.png in Resources */,
+				18291F1920ECA97300D19CB9 /* bpvote@3x.png in Resources */,
 				1826AD46207A02110046EE7C /* CreatePocketHeaderView.xib in Resources */,
 				1864C0F71FE3B01A00031547 /* ApplicationDetailHeaderView.xib in Resources */,
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
@@ -7753,6 +8022,7 @@
 				182A66121FD11FDA007FD541 /* notify@3x.png in Resources */,
 				183348781FCE5DAE00884107 /* transfer_icon@3x.png in Resources */,
 				188F7A1E20CA89FA00911034 /* BPCandidateHeaderView.xib in Resources */,
+				18D07A8920EB676900DF1FDF /* createAccount@3x.png in Resources */,
 				1828F9252068D2EA00513CD1 /* right_arrow_gray@2x.png in Resources */,
 				185BA37E20BB971700F63674 /* energy@3x.png in Resources */,
 				187D9BF42080C02F0059BD2A /* wechat_friends@3x.png in Resources */,
@@ -7845,12 +8115,15 @@
 				181351782025C428001A9B17 /* GetQuestionListRequest.m in Sources */,
 				18F054E220CBC902001B0A29 /* BPVoteAmountViewController.m in Sources */,
 				1853DE1C20B26FD7003DC727 /* BBCreateAccountHeaderView.m in Sources */,
+				18D07A5A20EA563200DF1FDF /* RedPacketDetailService.m in Sources */,
 				18E72E241FCC116F00D09CA3 /* ApplicationMainViewController.m in Sources */,
+				18291F5520EE548E00D19CB9 /* UserInfoResult.m in Sources */,
 				1856A4EE2008887200D62FEB /* NSBundle+MJRefresh.m in Sources */,
 				18B2912720898C530032EE27 /* GetRedPacketRecordRequest.m in Sources */,
 				18DBBB0D206523A00050EE20 /* NSDate+PGCategory.m in Sources */,
 				183FF6ED20C0D6820058D010 /* Base64.m in Sources */,
 				186050F22027FF7C00C87DDF /* Question.m in Sources */,
+				18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */,
 				18423A0E1FFF583F006AB986 /* SGQRCodeHelperTool.m in Sources */,
 				186050F5202809AD00C87DDF /* QuestionListTableViewCell.m in Sources */,
 				18FA76F02062575800545E73 /* Abi_json_to_binRequest.m in Sources */,
@@ -7862,6 +8135,7 @@
 				24FB2CA120DBF7F200AC73A5 /* BandwidthManageViewController.m in Sources */,
 				185BBA9F1FF4C82900DE2AC1 /* AccountInfo.m in Sources */,
 				1850316220BD2B87007610A2 /* DappTransferResult.m in Sources */,
+				18291F2920ED0A2F00D19CB9 /* NewsListViewController.m in Sources */,
 				183AE2022019D0BF002041F9 /* Assest.m in Sources */,
 				181414101FCFA2BA00334C60 /* SVRadialGradientLayer.m in Sources */,
 				1812BB6320B5005D00C70801 /* BaseBoldLineView.m in Sources */,
@@ -7883,6 +8157,7 @@
 				1864FA851FF23218005F636D /* RichListCell.m in Sources */,
 				188607A01FCC012F00B00EE7 /* UIColor+SNFoundation.m in Sources */,
 				182CDF51201EFFB4002B87B6 /* FeedbackTableViewCell.m in Sources */,
+				18291F4920EE399400D19CB9 /* ScrollMenuView.m in Sources */,
 				1860443320D368C100BEE917 /* UnStakeEOSHeaderView.m in Sources */,
 				1812758520B66B38005EDD91 /* Candy_equity_list_request.m in Sources */,
 				18112F731FCD016000BEA0D9 /* IQToolbar.m in Sources */,
@@ -7892,6 +8167,7 @@
 				1872E89820AA7FAE00454DA3 /* BBLoginChooseWalletFooterView.m in Sources */,
 				18423A321FFF8ABA006AB986 /* MGSwipeTableCell.m in Sources */,
 				18466D8320107278002E675A /* VersionUpdateService.m in Sources */,
+				18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */,
 				1886077B1FCBF78C00B00EE7 /* BaseViewController.m in Sources */,
 				1856A4E92008887200D62FEB /* MJRefreshGifHeader.m in Sources */,
 				1864C0E41FE36A6D00031547 /* ApplicationCollectionViewCell.m in Sources */,
@@ -7908,8 +8184,10 @@
 				1878BCA920845759002A76F5 /* RedpacketService.m in Sources */,
 				187D9BE32080B6570059BD2A /* SocialSharePanelView.m in Sources */,
 				18C622BC1FD63C340043447F /* RecieveHeaderView.m in Sources */,
+				18291F2420ECE5A400D19CB9 /* BaseResult.m in Sources */,
 				1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */,
 				183226FB20A2A76600BF6D6F /* DAppDetailViewController.m in Sources */,
+				18D07A7E20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m in Sources */,
 				1826AD3F2079F54A0046EE7C /* PersonalSettingHeaderView.m in Sources */,
 				185BA41820BBCD1700F63674 /* Choose_BB_walletBtn.m in Sources */,
 				189DB8CE207DE4AB00DEF338 /* GetSparklinesRequest.m in Sources */,
@@ -7917,10 +8195,13 @@
 				183FF8C91FF34D0D006C25F1 /* NewsRequest.m in Sources */,
 				18725DC7200C4F7900AA1889 /* WebViewJavascriptBridgeBase.m in Sources */,
 				1806D103206E5A390023D83B /* UnbindQQRequest.m in Sources */,
+				18D07A4820EA034200DF1FDF /* ForwardRedPacketFooterView.m in Sources */,
+				18D07A4020E9F1FB00DF1FDF /* AuthRedPacketResult.m in Sources */,
 				18E72E1E1FCC115700D09CA3 /* RichListMainViewController.m in Sources */,
 				1811306D1FCD020A00BEA0D9 /* UIImageView+AFNetworking.m in Sources */,
 				18FA76CA20623C6D00545E73 /* EosPrivateKey.m in Sources */,
 				1837D76C20E3C93C005A9E98 /* WalletUtil.m in Sources */,
+				18291F3E20EDEF1B00D19CB9 /* YNPageConfigration.m in Sources */,
 				18FA76DA20623C8A00545E73 /* tommath.c in Sources */,
 				1886079B1FCC012F00B00EE7 /* NSDate+ExFoundation.m in Sources */,
 				18DBBB17206523A00050EE20 /* PGDatePicker+Year.m in Sources */,
@@ -8023,10 +8304,10 @@
 				184142622020A98100A789ED /* EnterpriseDetailViewController.m in Sources */,
 				181130111FCD01B800BEA0D9 /* SDWebImageImageIOCoder.m in Sources */,
 				1812758820B66B4A005EDD91 /* Candy_task_list_request.m in Sources */,
-				18EE05251FDF70E600134E5C /* PocketManagementHeaderView.m in Sources */,
 				18B2913620899B470032EE27 /* RedPacketDetailSingleAccount.m in Sources */,
 				18A99A8020E6613F00E32A29 /* TAPageControl.m in Sources */,
 				186050EC2027FE8F00C87DDF /* QuestionsListResult.m in Sources */,
+				18291F4120EDEF1B00D19CB9 /* UIScrollView+YNPageExtend.m in Sources */,
 				184141992020299200A789ED /* RichlistDetailViewController.m in Sources */,
 				18DBBB1D206523A00050EE20 /* PGDatePickManagerHeaderView.m in Sources */,
 				1811302F1FCD01DF00BEA0D9 /* AFHTTPSessionManager.m in Sources */,
@@ -8050,6 +8331,7 @@
 				185DD6D2206CA80400BCFFCF /* NSObject+MJClass.m in Sources */,
 				189CEC7320CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m in Sources */,
 				1838497020BE5AD700B89549 /* CWDrawerTransition.m in Sources */,
+				18D07A5520EA3A2300DF1FDF /* RedPacketDetailHeaderView.m in Sources */,
 				180FDFD02021EAC800BE593F /* SetMainAccountRequest.m in Sources */,
 				1878B56F1FD90EF400D63037 /* AssestsDetailHeaderView.m in Sources */,
 				1826AD44207A020A0046EE7C /* CreatePocketHeaderView.m in Sources */,
@@ -8063,6 +8345,7 @@
 				1811301A1FCD01B800BEA0D9 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18466DA42010A049002E675A /* NSBundle+PYSearchExtension.m in Sources */,
 				18DBBB2E206525F10050EE20 /* PGPickerTableView.m in Sources */,
+				18291F4020EDEF1B00D19CB9 /* YNPageHeaderScrollView.m in Sources */,
 				182B8F8A20AD3A6800C43AEC /* LEEBubble.m in Sources */,
 				183FF6EA20C0D6820058D010 /* AESCrypt.m in Sources */,
 				1872F145202D7713005B5915 /* CheckWhetherFollowRequest.m in Sources */,
@@ -8077,6 +8360,7 @@
 				24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */,
 				1864C0EF1FE3AFD900031547 /* ApplicationDetailViewController.m in Sources */,
 				181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */,
+				18291F5220EE522600D19CB9 /* GetUserInfoRequest.m in Sources */,
 				1854FF652003115F00B8F253 /* UIImage+ExFoundation.m in Sources */,
 				1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */,
 				1826AD49207A158D0046EE7C /* BindPhoneNumberHeaderView.m in Sources */,
@@ -8132,6 +8416,7 @@
 				1878B4E91FD8DED600D63037 /* RecieveQRCodeView.m in Sources */,
 				1826AD2D2079C48F0046EE7C /* LoginMainViewController.m in Sources */,
 				183FF8B21FF33DB7006C25F1 /* RichListResult.m in Sources */,
+				18291F3C20EDEF1B00D19CB9 /* UIView+YNPageExtend.m in Sources */,
 				18BCAF1820BFD8E600571577 /* BPVoteViewController.m in Sources */,
 				183348921FCE770100884107 /* CALayer+XibConfiguration.m in Sources */,
 				188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */,
@@ -8149,6 +8434,7 @@
 				188F7A1020CA5B0400911034 /* LanguageSettingService.m in Sources */,
 				1862E7A920DC850E00F26629 /* UIScrollView+Touch.m in Sources */,
 				188F79F520CA222000911034 /* BPAgentVoteViewController.m in Sources */,
+				186C26C020E9BC5E0076BE4A /* Auth_redpacket_request.m in Sources */,
 				1872685D1FDE31BA00C898D1 /* TransactionRecordsHeaderView.m in Sources */,
 				18112F691FCD016000BEA0D9 /* IQUITextFieldView+Additions.m in Sources */,
 				18563F621FD7A56600CF05FC /* ForwardRedPacketHeaderView.m in Sources */,
@@ -8156,6 +8442,7 @@
 				1862E78D20DBA79200F26629 /* EOSResource.m in Sources */,
 				181130311FCD01DF00BEA0D9 /* AFSecurityPolicy.m in Sources */,
 				1856A5782008A3F400D62FEB /* NewsBannerService.m in Sources */,
+				18291F4220EDEF1B00D19CB9 /* YNPageScrollMenuView.m in Sources */,
 				181130101FCD01B800BEA0D9 /* SDWebImageGIFCoder.m in Sources */,
 				18017043207EF18700E4DA07 /* JWCacheURLProtocol.m in Sources */,
 				18423A181FFF5997006AB986 /* ScanQRCodeViewController.m in Sources */,
@@ -8207,6 +8494,7 @@
 				1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */,
 				186564B72011CD630044BBC3 /* RegularExpression.m in Sources */,
 				183FF8BF1FF345C7006C25F1 /* News.m in Sources */,
+				18291F3B20EDEF1B00D19CB9 /* UIViewController+YNPageExtend.m in Sources */,
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
 				181130341FCD01DF00BEA0D9 /* AFURLSessionManager.m in Sources */,
 				1812BB6020B5004800C70801 /* BaseSlimLineView.m in Sources */,
@@ -8231,6 +8519,7 @@
 				1811300B1FCD01B800BEA0D9 /* SDWebImageCodersManager.m in Sources */,
 				187C6880208843C1003121E3 /* VersionUpdateTipView.m in Sources */,
 				187D9BE02080A9100059BD2A /* RedPacketModel.m in Sources */,
+				18291F4620EDF31600D19CB9 /* YNSuspendCenterPageVC.m in Sources */,
 				1831F3A320170AEA002CE94D /* AssestsMainService.m in Sources */,
 				18A99A8120E6613F00E32A29 /* TAAnimatedDotView.m in Sources */,
 				18F054C720CBA7AE001B0A29 /* BPCandidateFooterView.m in Sources */,
@@ -8330,6 +8619,7 @@
 				189E3EC3201C5B980022AF19 /* UIApplication+RSKImageCropper.m in Sources */,
 				18466D9420107994002E675A /* MessageCenterTableViewCell.m in Sources */,
 				18FA76ED2062573900545E73 /* GetBlockChainInfoRequest.m in Sources */,
+				18D07A5220EA3A0700DF1FDF /* RedPacketDetailViewController.m in Sources */,
 				1872F130202D5923005B5915 /* TransferService.m in Sources */,
 				1864FA541FF1F8B9005F636D /* RichListRequest.m in Sources */,
 				1862E78A20DBA62000F26629 /* EOSResourceService.m in Sources */,
@@ -8342,6 +8632,7 @@
 				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,
 				18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */,
 				1878BCAC20845798002A76F5 /* SendRedpacketRequest.m in Sources */,
+				18291F3D20EDEF1B00D19CB9 /* YNPageViewController.m in Sources */,
 				1861BA6C1FFCB74900404058 /* StringConstant.m in Sources */,
 				1811301D1FCD01B800BEA0D9 /* UIView+WebCacheOperation.m in Sources */,
 				186564AD2011A10B0044BBC3 /* LoginService.m in Sources */,
@@ -8349,6 +8640,7 @@
 				24FB2C9A20DBF78000AC73A5 /* StorageService.m in Sources */,
 				18FA76CB20623C6D00545E73 /* Sha256.m in Sources */,
 				189CEC7F20CFB31D00F81AD8 /* GetMyVoteInfoRequest.m in Sources */,
+				18291F3F20EDEF1B00D19CB9 /* YNPageScrollView.m in Sources */,
 				183AE1F12019B52E002041F9 /* PeRichListService.m in Sources */,
 				185BA3BA20BBB3CE00F63674 /* BaseConfirmButton.m in Sources */,
 				18771A281FDFCA6E00B5BD0E /* PersonalSettingViewController.m in Sources */,

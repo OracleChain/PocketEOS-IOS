@@ -47,6 +47,12 @@
 #define NAVIGATIONBAR_HEIGHT (STATUSBAR_HEIGHT + kNavBarHeight)
 #define kIs_iPhoneX (SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f)
 
+// 轮播图高度
+#define CYCLESCROLLVIEW_HEIGHT ([UIScreen mainScreen].bounds.size.width * 0.4)
+#define MENUSCROLLVIEW_HEIGHT 40.0f
+#define MENUSCROLLVIEW_BOTTOM_LINE_HEIGHT 1.5f
+#define MENUSCROLLVIEW_ITEM_WIDTH 50.0f
+
 /**
  *  UIApplication object
  */
@@ -216,6 +222,7 @@
  */
 #define TITLELABEL_HEIGHT 46.5f
 
+#define MARGIN_10 10.0f
 #define MARGIN_15 15.0f
 #define MARGIN_20 20.0f
 

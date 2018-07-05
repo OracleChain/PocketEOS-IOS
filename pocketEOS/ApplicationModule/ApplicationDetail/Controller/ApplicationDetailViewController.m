@@ -33,7 +33,7 @@
     if(!_mainCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
-        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + SCREEN_WIDTH * 0.40 );
+        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + CYCLESCROLLVIEW_HEIGHT );
         layout.minimumLineSpacing = 1;
         layout.minimumInteritemSpacing = 1;
         

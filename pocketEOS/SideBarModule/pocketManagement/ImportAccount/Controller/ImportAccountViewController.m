@@ -18,9 +18,12 @@
 #import "BackupEOSAccountService.h"
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
+#import "BBCreateAccountHeaderView.h"
+#import "EOSMappingImportAccountViewController.h"
 
-@interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
+@interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate, BBCreateAccountHeaderViewDelegate>
 @property(nonatomic, strong) ImportAccountHeaderView *headerView;
+@property(nonatomic , strong) BBCreateAccountHeaderView *bb_createAccountHeaderView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) UIScrollView *mainScrollView;
 @property(nonatomic, strong) GetAccountRequest *getAccountRequest;
@@ -56,10 +59,18 @@
 - (ImportAccountHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"ImportAccountHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 560);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 600);
         _headerView.delegate = self;
     }
     return _headerView;
+}
+- (BBCreateAccountHeaderView *)bb_createAccountHeaderView{
+    if (!_bb_createAccountHeaderView) {
+        _bb_createAccountHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"BBCreateAccountHeaderView" owner:nil options:nil] firstObject];
+        _bb_createAccountHeaderView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 40);
+        _bb_createAccountHeaderView.delegate = self;
+    }
+    return _bb_createAccountHeaderView;
 }
 - (LoginPasswordView *)loginPasswordView{
     if (!_loginPasswordView) {
@@ -72,7 +83,7 @@
 
 - (UIScrollView *)mainScrollView{
     if (!_mainScrollView) {
-        _mainScrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT))];
+        _mainScrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT+40, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT))];
         _mainScrollView.backgroundColor = [UIColor clearColor];
         _mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
         if (@available(iOS 11.0, *)) {
@@ -111,8 +122,10 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.navView];
+    [self.view addSubview:self.bb_createAccountHeaderView];
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.headerView];
+    
 }
 
 
@@ -290,4 +303,9 @@
     }
 }
 
+//BBCreateAccountHeaderViewDelegate
+- (void)createAccountUseEOSPrivateKey{
+    EOSMappingImportAccountViewController *vc = [[EOSMappingImportAccountViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

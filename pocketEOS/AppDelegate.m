@@ -40,7 +40,7 @@ void uncaughtExceptionHandler(NSException*exception){
     BaseTabBarController *rootVC = [[BaseTabBarController alloc] init];
     [self.window setRootViewController: rootVC];
     // 初始化气泡
-//    [self configLEEBubble];
+    [self configLEEBubble];
     
     
     [[SocialManager socialManager] initWithSocialSDK:application didFinishLaunchingWithOptions:launchOptions];

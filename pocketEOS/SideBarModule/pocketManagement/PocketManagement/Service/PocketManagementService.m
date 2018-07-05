@@ -40,8 +40,16 @@
     
     for (AccountInfo *model in accountsArr) {
         if ([model.is_main_account isEqualToString:@"1"]) {
+            
+            if ([model.account_name isEqualToString:self.currentAccountName]) {
+                model.selected = YES;
+            }
+            
             [mainAccountArr addObject:model];
         }else{
+            if ([model.account_name isEqualToString:self.currentAccountName]) {
+                model.selected = YES;
+            }
             [othersAccountArr addObject:model];
         }
     }
@@ -54,6 +62,10 @@
         for (int i = 0 ; i < accountsArr.count; i++) {
             AccountInfo *model = accountsArr[i];
             if (i == 0) {
+                
+                if ([model.account_name isEqualToString:self.currentAccountName]) {
+                    model.selected = YES;
+                }
                 // 将这个账号设为默认的主账号,
                 Wallet *wallet = CURRENT_WALLET;
                 BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
@@ -77,6 +89,18 @@
     
     
     
+    
+    // services
+     NSMutableArray *itemArr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"创建账号", nil), NSLocalizedString(@"导入账号", nil), NSLocalizedString(@"修改密码", nil), NSLocalizedString(@"备份钱包", nil), nil];
+    NSMutableArray *iconArr = [NSMutableArray arrayWithObjects:@"createAccount", @"importAccount", @"changePassword", @"backup",nil];
+    NSMutableArray *servicesArr = [NSMutableArray array];
+    for (int i = 0; i < itemArr.count; i++) {
+        OptionModel *model = [[OptionModel alloc] init];
+        model.optionName = itemArr[i];
+        model.optionNormalIcon = iconArr[i];
+        [servicesArr addObject:model];
+    }
+    [self.dataDictionary setObject:servicesArr forKey:@"servicesArr"];
     complete(self , YES);
 }
 

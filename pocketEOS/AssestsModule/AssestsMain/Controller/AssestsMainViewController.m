@@ -10,7 +10,6 @@
 #import "AssestsDetailViewController.h"
 #import "CustomNavigationView.h"
 #import "AssestsMainHeaderView.h"
-#import "BBAssestsMainHeaderView.h"
 #import "SideBarViewController.h"
 #import "TransferViewController.h"
 #import "RecieveViewController.h"
@@ -28,6 +27,7 @@
 #import "GetRateResult.h"
 #import "Rate.h"
 #import "PersonalSettingViewController.h"
+#import "PocketManagementViewController.h"
 #import "AccountManagementViewController.h"
 #import "LoginMainViewController.h"
 #import "AppDelegate.h"
@@ -35,34 +35,18 @@
 #import "CQMarqueeView.h"
 #import "UIView+frameAdjust.h"
 #import "CreateAccountViewController.h"
-#import "PopUpWindow.h"
 #import "BaseTabBarController.h"
 #import "AccountInfo.h"
 #import "AdvertisementView.h"
 #import "BPVoteViewController.h"
-#import "UnStakeEOSViewController.h"
 
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, PopUpWindowDelegate, AdvertisementViewDelegate>
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate>
 
-@property(nonatomic, strong) UIImageView *backgroundView;
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
-@property(nonatomic, strong) BBAssestsMainHeaderView *BB_headerView;
 @property(nonatomic, strong) AssestsMainService *mainService;
 @property(nonatomic, strong) NSString *currentAccountName;
-
-
-/**
- 当前选中的 账号
- */
-@property(nonatomic, strong) UILabel *currentAssestsLabel;
-
-/**
- 箭头
- */
-@property(nonatomic, strong) UIImageView *arrowImg;
-@property(nonatomic, strong) PopUpWindow *popUpWindow;
 @property(nonatomic , strong) AdvertisementView *advertisementView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
 @property(nonatomic, strong) UIButton *unStakeBtn;
@@ -70,26 +54,17 @@
 
 @implementation AssestsMainViewController
 
-- (UIImageView *)backgroundView{
-    if (!_backgroundView) {
-        _backgroundView = [[UIImageView alloc] init];
-        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 300);
-            
-        }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-            _backgroundView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 248);
-        }
-        _backgroundView.lee_theme
-        .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"background_blue"])
-        .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"background_black"]);
-    }
-    return _backgroundView;
-}
-
 
 - (CustomNavigationView *)navView{
     if (!_navView) {
         _navView = [[CustomNavigationView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT))];
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            _navView.backgroundColor = RGB(26, 102, 237);
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            _navView.backgroundColor = RGB(37, 37, 41);
+        }
+        Wallet *wallet = CURRENT_WALLET;
+        [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     }
     return _navView;
 }
@@ -97,19 +72,9 @@
 - (AssestsMainHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"AssestsMainHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 333);
-        
-        
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 290);   
     }
     return _headerView;
-}
-
-- (BBAssestsMainHeaderView *)BB_headerView{
-    if (!_BB_headerView) {
-        _BB_headerView = [[[NSBundle mainBundle] loadNibNamed:@"BBAssestsMainHeaderView" owner:nil options:nil] firstObject];
-        _BB_headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 248);
-    }
-    return _BB_headerView;
 }
 
 - (AssestsMainService *)mainService{
@@ -117,41 +82,6 @@
         _mainService = [[AssestsMainService alloc] init];
     }
     return _mainService;
-}
-
-- (UILabel *)currentAssestsLabel{
-    if (!_currentAssestsLabel) {
-        _currentAssestsLabel = [[UILabel alloc] init];
-        _currentAssestsLabel.textColor = [UIColor whiteColor];
-        _currentAssestsLabel.font = [UIFont systemFontOfSize:13];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCurrentAssestsLabel:)];
-        [_currentAssestsLabel addGestureRecognizer:tap];
-        _currentAssestsLabel.userInteractionEnabled = YES;
-        
-    }
-    return _currentAssestsLabel;
-}
-
-
-- (UIImageView *)arrowImg{
-    if (!_arrowImg) {
-        _arrowImg = [[UIImageView alloc] init];
-        _arrowImg.image = [UIImage imageNamed:@"downImg"];
-        _arrowImg.userInteractionEnabled = YES;
-    }
-    return _arrowImg;
-}
-
-- (PopUpWindow *)popUpWindow{
-    if (!_popUpWindow) {
-        _popUpWindow = [[PopUpWindow alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT ))];
-        _popUpWindow.delegate = self;
-        WS(weakSelf);
-        [_popUpWindow setOnBottomViewDidClick:^{
-            [weakSelf removePopUpWindow];
-        }];
-    }
-    return _popUpWindow;
 }
 
 - (AdvertisementView *)advertisementView{
@@ -185,43 +115,25 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    Wallet *model = CURRENT_WALLET;
-    self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
-    [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-    [self buidDataSource];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationItem.title = @"";
-    [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     
     self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.backgroundColor = [UIColor clearColor];
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-        [self.mainTableView setTableHeaderView:self.headerView];
-        self.navView.titleImg.hidden = NO;
-    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-        [self.mainTableView setTableHeaderView:self.BB_headerView];
-        self.navView.titleImg.hidden = YES;
-        
-        [self.navView addSubview:self.currentAssestsLabel];
-        self.currentAssestsLabel.sd_layout.centerXEqualToView(self.navView).bottomSpaceToView(self.navView, 10).heightIs(21);
-        [self.currentAssestsLabel setSingleLineAutoResizeWithMaxWidth:SCREEN_WIDTH-200];
-        
-        
-        [self.navView addSubview:self.arrowImg];
-        self.arrowImg.sd_layout.leftSpaceToView(self.currentAssestsLabel, 6).centerYEqualToView(_currentAssestsLabel).widthIs(8.7).heightIs(5);
-        
-    }
     
+        [self.mainTableView setTableHeaderView:self.headerView];
     [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
@@ -229,7 +141,7 @@
         if ([model.is_main_account isEqualToString:@"1"]) {
             AccountInfo *mainAccount = model;
             self.currentAccountName = mainAccount.account_name;
-            self.currentAssestsLabel.text = self.currentAccountName;
+            self.headerView.userAccountLabel.text = self.currentAccountName;
         }
     }
     
@@ -241,10 +153,6 @@
     // 配置开屏广告
     [self configAdvertisement];
     [self addunStakeBtn];
-    
-    
-    
-  
 }
 
 // 构建数据源
@@ -259,11 +167,7 @@
         [weakSelf.mainTableView.mj_header endRefreshing];
         if (isSuccess) {
             weakSelf.currentAccountResult = result;
-            if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-                weakSelf.headerView.model = result.data;
-            }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-                weakSelf.BB_headerView.model = result.data;
-            }
+            weakSelf.headerView.model = result.data;
             [weakSelf.mainTableView reloadData];
         }
     }];
@@ -276,16 +180,22 @@
         [weakSelf profileCenter];
     }];
    
-    // 扫描二维码
     [self.navView setRightBtn1DidClickBlock:^{
+        PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
+        vc.delegate = weakSelf;
+        vc.mainService.currentAccountName = weakSelf.currentAccountName;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
     
+    [self.navView setRightBtn2DidClickBlock:^{
+        
         // 1. 获取摄像设备
         AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         if (device) {
             AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
             if (status == AVAuthorizationStatusNotDetermined) {
                 [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                   
+                    
                     if (granted) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
@@ -347,7 +257,6 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self.headerView setChangeAccountBtnDidClickBlock:^{
-        
         ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
         NSMutableArray *accountInfoArray = [[AccountsTableManager accountTable] selectAccountTable];
         vc.dataArray = accountInfoArray;
@@ -374,7 +283,7 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
-    [self.headerView setAccountQRCodeImgDidTapBlock:^{
+    [self.headerView setAccountBtnDidTapBlock:^{
         AccountManagementViewController *vc = [[AccountManagementViewController alloc] init];
         AccountInfo *model = [[AccountInfo alloc] init];
         model.account_name = weakSelf.currentAccountName;
@@ -386,27 +295,6 @@
         PersonalSettingViewController *vc = [[PersonalSettingViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
  
-    }];
-    
-    [self.BB_headerView setChangeAccountBtnDidClickBlock:^{
-        
-        ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
-        NSMutableArray *accountInfoArray = [[AccountsTableManager accountTable] selectAccountTable];
-        vc.dataArray = accountInfoArray;
-        vc.changeAccountDataArrayType = ChangeAccountDataArrayTypeLocal;
-        vc.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    }];
-    [self.BB_headerView setTransferBtnDidClickBlock:^{
-        TransferViewController *vc = [[TransferViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [self.BB_headerView setRecieveBtnDidClickBlock:^{
-        RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 }
 
@@ -497,7 +385,7 @@
     
 }
 
-//ChangeAccountViewControllerDelegate
+//ChangeAccountViewControllerDelegate, PocketManagementViewControllerDelegate
 -(void)changeAccountCellDidClick:(NSString *)name{
     self.currentAccountName = name;
     [self buidDataSource];
@@ -507,42 +395,6 @@
 {
     
     [self buidDataSource];
-}
-
-
-- (void)tapCurrentAssestsLabel:(UITapGestureRecognizer *)sender{
-    [self.view addSubview:self.popUpWindow];
-  
-    self.popUpWindow.type = PopUpWindowTypeAccount;
-    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    if (IsStrEmpty(self.currentAccountName) && accountArray.count > 0) {
-        AccountInfo *model = accountArray[0];
-        model.selected = YES;
-    }else{
-        for (AccountInfo *model in accountArray) {
-            if ([model.account_name isEqualToString:self.currentAccountName]) {
-                model.selected = YES;
-            }else{
-                model.selected = NO;
-            }
-        }
-    }
-    [self.popUpWindow updateViewWithArray:accountArray title:@""];
-}
-
-// PopUpWindowDelegate
-- (void)popUpWindowdidSelectItem:(id )sender{
-    AccountInfo *accountInfo = sender;
-    self.currentAccountName = accountInfo.account_name;
-    self.currentAssestsLabel.text = self.currentAccountName;
-    [self buidDataSource];
-    [self removePopUpWindow];
-    
-}
-
-- (void)removePopUpWindow{
-    [self.popUpWindow removeFromSuperview];
-    self.popUpWindow = nil;
 }
 
 //AdvertisementViewDelegate
@@ -570,16 +422,6 @@
     
     [self.view addSubview:self.unStakeBtn];
     self.unStakeBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(62).heightEqualToWidth();
-}
-
-- (void)unStakeBtnClick:(UIButton *)sender{
-    UnStakeEOSViewController *vc = [[UnStakeEOSViewController alloc] init];
-    self.currentAccountResult.data.account_name = self.currentAccountName;
-//    self.currentAccountResult.data.eos_cpu_weight = @"6";
-//    self.currentAccountResult.data.eos_net_weight = @"8";
-    vc.accountResult = self.currentAccountResult;
-    
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

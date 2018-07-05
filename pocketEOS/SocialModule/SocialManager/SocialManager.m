@@ -199,6 +199,7 @@
         model.name = VALIDATE_STRING(responseObject[@"nickname"]);
         model.avatar = VALIDATE_STRING(responseObject[@"headimgurl"]);
         model.openid = VALIDATE_STRING(responseObject[@"openid"]);
+        model.unionid = VALIDATE_STRING(responseObject[@"unionid"]);
         weakSelf.onWechatLoginSuccess(model);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -217,7 +218,7 @@
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = model.title;
     message.description = model.detailDescription;
-    [message setThumbImage:[UIImage imageNamed: model.imageName]];
+    [message setThumbImage:[UIImage imageNamed: @"redpacket"]];
     
     WXWebpageObject *webpageObject = [WXWebpageObject object];
     webpageObject.webpageUrl = model.webPageUrl;

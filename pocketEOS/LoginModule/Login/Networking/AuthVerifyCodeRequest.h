@@ -13,9 +13,9 @@
 /**
  手机号
  */
-@property(nonatomic, strong) NSString *phoneNum;
+@property(nonatomic, copy) NSString *phoneNum;
 /**
  验证码
  */
-@property(nonatomic, strong) NSString *code;
+@property(nonatomic, copy) NSString *code;
 @end

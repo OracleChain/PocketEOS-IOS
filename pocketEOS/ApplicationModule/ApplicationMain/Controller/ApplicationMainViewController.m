@@ -59,9 +59,9 @@
         [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
         
         if (self.mainService.top4DataArray.count > 0) {
-            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + SCREEN_WIDTH * 0.40 );
+            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + CYCLESCROLLVIEW_HEIGHT);
         }else{
-            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206 + SCREEN_WIDTH * 0.40 );
+            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206 + CYCLESCROLLVIEW_HEIGHT );
         }
         
         layout.minimumLineSpacing = 1;
@@ -127,7 +127,7 @@
 
 - (void)configBannerView{
     WS(weakSelf);
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 0.4) delegate:self placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, CYCLESCROLLVIEW_HEIGHT) delegate:self placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     cycleScrollView.imageURLStringsGroup = weakSelf.mainService.imageURLStringsGroup;
     cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     [weakSelf.headerView addSubview:cycleScrollView];

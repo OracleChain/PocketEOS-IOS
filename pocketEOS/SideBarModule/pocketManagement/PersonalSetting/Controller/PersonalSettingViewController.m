@@ -112,8 +112,7 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.sliderVerifyView];
     self.view.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF5F5F5))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0x161823));
+    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, MARGIN_20).rightSpaceToView(self.view, MARGIN_20).topSpaceToView(self.headerView, 20).heightIs(48);

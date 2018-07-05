@@ -16,7 +16,7 @@
 - (void)loginBtnDidClick:(UIButton *)sender;
 - (void)wechatLoginBtnDidClick:(UIButton *)sender;
 - (void)qqLoginBtnDidClick:(UIButton *)sender;
-- (void)privacyPolicyBtnDidClick:(UIButton *)sender;
+- (void)privacyPolicyLabelDidTap;
 
 @end
 
@@ -30,8 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *wechatLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *qqLoginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *agreeTermBtn;
-
 
 
 

@@ -317,7 +317,7 @@
         [self.selectAccountView removeFromSuperview];
 //       xgame http://47.74.145.111 self.model.url
 //        http://www.cheerfifa.com
-        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(@"http://47.74.145.111")]];
+        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         [self.view addSubview:self.webView];

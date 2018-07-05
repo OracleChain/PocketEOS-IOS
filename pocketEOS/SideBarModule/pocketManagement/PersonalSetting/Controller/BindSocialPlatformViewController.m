@@ -85,11 +85,11 @@
             weakSelf.bindWechatRequest.uid = CURRENT_WALLET_UID;
             weakSelf.bindWechatRequest.name = model.name;
             weakSelf.bindWechatRequest.avatar = model.avatar;
-            weakSelf.bindWechatRequest.openid = model.openid;
+            weakSelf.bindWechatRequest.openid = model.unionid;
             [weakSelf.bindWechatRequest postDataSuccess:^(id DAO, id data) {
                 NSNumber *code = data[@"code"];
                 if ([code isEqualToNumber:@0]) {
-                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_weixin = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , model.openid , CURRENT_WALLET_UID]];
+                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_weixin = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , model.unionid , CURRENT_WALLET_UID]];
                 }
                 [TOASTVIEW showWithText:VALIDATE_STRING(data[@"message"])];
                 [weakSelf.navigationController popViewControllerAnimated:YES];

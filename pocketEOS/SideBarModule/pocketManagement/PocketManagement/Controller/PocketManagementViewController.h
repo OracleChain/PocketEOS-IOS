@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PocketManagementService.h"
+
+@protocol PocketManagementViewControllerDelegate<NSObject>
+- (void)changeAccountCellDidClick:(NSString *)name;
+@end
 
 @interface PocketManagementViewController : BaseViewController
-
+@property(nonatomic, weak) id<PocketManagementViewControllerDelegate> delegate;
+@property(nonatomic, strong) PocketManagementService *mainService;
 @end

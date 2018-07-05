@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SDCycleScrollView.h"
+#import "Assest.h"
+#import "ScrollMenuView.h"
 
 @protocol NewsMainHeaderViewDelegate<NSObject>
-- (void)currentAssestsLabelDidTap:(UITapGestureRecognizer *)sender;
+- (void)menuScrollViewItemBtnDidClick:(UIButton *)sender;
 @end
 
 @interface NewsMainHeaderView : UIView
@@ -21,17 +23,10 @@
  轮播图
  */
 @property(nonatomic, strong) SDCycleScrollView *scrollView;
+@property(nonatomic , strong) ScrollMenuView *scrollMenuView;
 
-/**
- 箭头
- */
-@property(nonatomic, strong) UIImageView *arrowImg;
+- (void)updateViewWithAssestsArray:(NSArray<Assest *> *)assestsArray;
 
-
-/**
- 当前选中的 资产
- */
-@property(nonatomic, strong) BaseLabel *currentAssestsLabel;
-
+@property(nonatomic , strong) NSMutableArray *assestsArray;
 
 @end

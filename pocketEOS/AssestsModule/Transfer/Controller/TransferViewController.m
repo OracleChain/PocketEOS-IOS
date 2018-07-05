@@ -343,6 +343,14 @@
 }
 
 - (void)transferBtnDidClick:(UIButton *)sender {
+    if (IsStrEmpty(self.headerView.nameTF.text)) {
+        [TOASTVIEW showWithText:@"收币人不能为空!"];
+        return;
+    }
+    if (IsStrEmpty(self.headerView.amountTF.text)) {
+        [TOASTVIEW showWithText:@"请填写jin!"];
+        return;
+    }
     [self.view addSubview:self.loginPasswordView];
 }
 
@@ -369,10 +377,6 @@
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
 
     }
-    
-//    self.transferAbi_json_to_bin_request.code = @"helloworldgo";//octoneos
-//    self.mainService.code = @"helloworldgo";//octoneos
-//    self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f AAA", self.headerView.amountTF.text.doubleValue];
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = self.currentAccountName;
