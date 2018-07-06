@@ -36,8 +36,8 @@
     [self addGestureRecognizer:tap];
     
     [self.upBackgroundView addSubview:self.QRCodeimg];
-    CGFloat itemWidth = 120;
-    self.QRCodeimg.frame = CGRectMake((290/2) - (itemWidth / 2), 110, itemWidth, itemWidth);
+    CGFloat itemWidth = 150;
+    self.QRCodeimg.frame = CGRectMake((290/2) - (itemWidth / 2), 80, itemWidth, itemWidth);
     self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     
     self.contentTextBaseView.lee_theme
@@ -67,7 +67,7 @@
 - (IBAction)generateQRCodeBtn:(UIButton *)sender {
     self.contentTextView.hidden = YES;
     self.QRCodeimg.hidden = NO;
-    
+    self.contentTextBaseView.hidden = YES;
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(genetateQRBtnDidClick:)]) {
         [self.delegate genetateQRBtnDidClick:sender];
@@ -75,8 +75,10 @@
 }
 
 - (IBAction)copyBtn:(UIButton *)sender {
+    
     self.QRCodeimg.hidden = YES;
     self.contentTextView.hidden = NO;
+    self.contentTextBaseView.hidden = NO;
     if (self.delegate && [self.delegate respondsToSelector:@selector(copyBtnDidClick:)]) {
         [self.delegate copyBtnDidClick:sender];
     }

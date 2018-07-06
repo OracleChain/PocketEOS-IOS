@@ -20,10 +20,15 @@
 #import "BBLoginViewController.h"
 #import "RtfBrowserViewController.h"
 #import "CreateAccountViewController.h"
+#import "UserInfoResult.h"
+#import "UserInfo.h"
+#import "CountryCodeAreaViewController.h"
+#import "AreaCodeModel.h"
 
-@interface LoginMainViewController ()<UIGestureRecognizerDelegate, LoginViewDelegate>
+@interface LoginMainViewController ()<UIGestureRecognizerDelegate, LoginViewDelegate, CountryCodeAreaViewControllerDelegate>
 @property(nonatomic, strong) LoginService *mainService;
 @property(nonatomic , strong) LoginView *loginView;
+@property(nonatomic , strong) AreaCodeModel *areaCodeModel;
 @end
 
 @implementation LoginMainViewController
@@ -61,13 +66,18 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)getVerifyBtnDidClick:(UIButton *)sender{
-    if (![RegularExpression validateMobile:self.loginView.phoneTF.text] ) {
-        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
+    if (IsStrEmpty(self.loginView.phoneTF.text)) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号不能为空!", nil)];
         return;
     }
     
     [self startCountDown];
     self.mainService.getVerifyCodeRequest.phoneNum = self.loginView.phoneTF.text;
+    if (!IsNilOrNull(self.areaCodeModel)) {
+        self.mainService.getVerifyCodeRequest.type = self.areaCodeModel.code;
+    }else{
+        self.mainService.getVerifyCodeRequest.type = @"86";
+    }
     [self.mainService getVerifyCode:^(id service, BOOL isSuccess) {
         [TOASTVIEW showWithText: VALIDATE_STRING(service[@"message"]) ];
         if (isSuccess) {
@@ -80,8 +90,8 @@
 
 - (void)loginBtnDidClick:(UIButton *)sender{
     
-    if (![RegularExpression validateMobile:self.loginView.phoneTF.text] ) {
-        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
+    if (IsStrEmpty(self.loginView.phoneTF.text)) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号不能为空!", nil)];
         return;
     }
     if (![RegularExpression validateVerifyCode:self.loginView.verifyCodeTF.text] ) {
@@ -141,12 +151,13 @@
 }
 
 - (void)wechatLoginBtnDidClick:(UIButton *)sender{
+    WS(weakSelf);
     [[SocialManager socialManager] wechatLoginRequest];
     [[SocialManager socialManager] setOnWechatLoginSuccess:^(SocialModel *model) {
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
         BOOL result = NO;
         for (Wallet *wallet in allLocalWallet) {
-            if ([wallet.wallet_weixin isEqualToString:model.openid]) {
+            if ([wallet.wallet_weixin isEqualToString:model.unionid]) {
                 // 如果本地有当前账号对应的钱包
                 [[NSUserDefaults standardUserDefaults] setObject:wallet.wallet_uid  forKey:Current_wallet_uid];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -158,11 +169,42 @@
         if (result) {
             [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
         }else{
-            // bind phone => createPocket
-            BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
-            vc.model = model;
-            vc.model.socialModelType = SocialTypeWechat;
-            [self.navigationController pushViewController:vc animated:YES];
+            // 本地没有 wallet ,请求是否服务器绑定过钱包
+            weakSelf.mainService.getUserInfoRequest.token = model.unionid;
+            weakSelf.mainService.getUserInfoRequest.type = @1;
+            weakSelf.mainService.getUserInfoRequest.from = @"login";
+            [weakSelf.mainService getUserInfo:^(UserInfoResult *result, BOOL isSuccess) {
+                if (isSuccess) {
+                    if (IsStrEmpty(result.data.uid)) {
+                        // 无此用户
+                        // bind phone => createPocket
+                        BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
+                        vc.model = model;
+                        vc.model.socialModelType = SocialTypeWechat;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }else{
+                        // 有这个用户
+                        Wallet *wallet_wechat = [[Wallet alloc] init];
+                        wallet_wechat.wallet_uid = result.data.uid;
+                        [[NSUserDefaults standardUserDefaults] setObject:wallet_wechat.wallet_uid  forKey:Current_wallet_uid];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        wallet_wechat.wallet_phone = result.data.phoneNum;
+                        wallet_wechat.wallet_avatar = result.data.avatar;
+                        wallet_wechat.wallet_img = result.data.avatar;
+                        wallet_wechat.wallet_weixin = result.data.wechat;
+                        wallet_wechat.wallet_qq = result.data.qq;
+                        wallet_wechat.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
+                        [[WalletTableManager walletTable] addRecord: wallet_wechat];
+                        
+                        // create local wallet
+                        CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
+                        vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                }
+            }];
+            
+            
             
         }
     }];
@@ -170,6 +212,7 @@
 }
 
 - (void)qqLoginBtnDidClick:(UIButton *)sender{
+    WS(weakSelf);
     [[SocialManager socialManager] qqLoginRequest];
     [[SocialManager socialManager] setOnQQLoginSuccess:^(SocialModel *model) {
         NSArray *allLocalWallet = [[WalletTableManager walletTable] selectAllLocalWallet];
@@ -187,11 +230,40 @@
         if (result) {
             [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
         }else{
-            // bind phone => createPocket
-            BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
-            vc.model = model;
-            vc.model.socialModelType = SocialTypeQQ;
-            [self.navigationController pushViewController:vc animated:YES];
+            // 本地没有 wallet ,请求是否服务器绑定过钱包
+            weakSelf.mainService.getUserInfoRequest.token = model.openid;
+            weakSelf.mainService.getUserInfoRequest.type = @2;
+            weakSelf.mainService.getUserInfoRequest.from = @"login";
+            [weakSelf.mainService getUserInfo:^(UserInfoResult *result, BOOL isSuccess) {
+                if (isSuccess) {
+                    if (IsStrEmpty(result.data.uid)) {
+                        // 无此用户
+                        // bind phone => createPocket
+                        BindPhoneNumberViewController *vc = [[BindPhoneNumberViewController alloc] init];
+                        vc.model = model;
+                        vc.model.socialModelType = SocialTypeQQ;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }else{
+                        // 有这个用户
+                        Wallet *wallet_wechat = [[Wallet alloc] init];
+                        wallet_wechat.wallet_uid = result.data.uid;
+                        [[NSUserDefaults standardUserDefaults] setObject:wallet_wechat.wallet_uid  forKey:Current_wallet_uid];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        wallet_wechat.wallet_phone = result.data.phoneNum;
+                        wallet_wechat.wallet_avatar = result.data.avatar;
+                        wallet_wechat.wallet_img = result.data.avatar;
+                        wallet_wechat.wallet_weixin = result.data.wechat;
+                        wallet_wechat.wallet_qq = result.data.qq;
+                        wallet_wechat.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
+                        [[WalletTableManager walletTable] addRecord: wallet_wechat];
+                        
+                        // create local wallet
+                        CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
+                        vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                }
+            }];
             
         }
     }];
@@ -201,8 +273,20 @@
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
     vc.rtfFileName = @"PocketEOSPrivacyPolicy";
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
+
+- (void)areaCodeBtnDidClick{
+    CountryCodeAreaViewController *vc = [[CountryCodeAreaViewController alloc] init];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//CountryCodeAreaViewControllerDelegate
+-(void)countryCodeAreaCellDidSelect:(AreaCodeModel *)model{
+    self.areaCodeModel = model;
+    self.loginView.areaCodeLabel.text = [NSString stringWithFormat:@"+%@", self.areaCodeModel.code];
+}
+
 
 // 开始倒计时
 - (void)startCountDown{

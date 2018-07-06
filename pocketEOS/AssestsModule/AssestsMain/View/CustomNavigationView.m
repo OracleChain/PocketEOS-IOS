@@ -24,6 +24,7 @@
         _leftBtn = [[UIButton alloc] init];
         [_leftBtn addTarget:self action:@selector(leftBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [_leftBtn setImage:[UIImage imageNamed:@"wallet_default_avatar"] forState:(UIControlStateNormal)];
+        _leftBtn.sd_cornerRadius = @(30/2);
     }
     return _leftBtn;
 }
@@ -40,6 +41,7 @@
         _rightBtn2 = [[UIButton alloc] init];
         [_rightBtn2 addTarget:self action:@selector(rightBtn2DidClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [_rightBtn2 setImage:[UIImage imageNamed:@"scan"] forState:(UIControlStateNormal)];
+        
     }
     return _rightBtn2;
 }
@@ -99,7 +101,7 @@
         self.originNavView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
         
         [_originNavView addSubview:self.leftBtn];
-        self.leftBtn.sd_layout.leftSpaceToView(_originNavView, 16).bottomSpaceToView(_originNavView, MARGIN_10).widthIs(24).heightIs(24);
+        self.leftBtn.sd_layout.leftSpaceToView(_originNavView, 16).bottomSpaceToView(_originNavView, 5).widthIs(30).heightIs(30);
         
         [_originNavView addSubview:self.rightBtn1];
         self.rightBtn1.sd_layout.rightSpaceToView(_originNavView, 6).bottomSpaceToView(_originNavView, 0).widthIs(BUTTON_HEIGHT).heightIs(BUTTON_HEIGHT);

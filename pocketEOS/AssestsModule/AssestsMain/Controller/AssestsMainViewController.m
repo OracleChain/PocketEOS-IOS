@@ -39,7 +39,8 @@
 #import "AccountInfo.h"
 #import "AdvertisementView.h"
 #import "BPVoteViewController.h"
-
+#import "CommonWKWebViewController.h"
+#import "DAppDetailViewController.h"
 
 @interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate>
 
@@ -49,7 +50,7 @@
 @property(nonatomic, strong) NSString *currentAccountName;
 @property(nonatomic , strong) AdvertisementView *advertisementView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
-@property(nonatomic, strong) UIButton *unStakeBtn;
+@property(nonatomic, strong) UIButton *inviteFriendBtn;
 @end
 
 @implementation AssestsMainViewController
@@ -63,8 +64,7 @@
         }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _navView.backgroundColor = RGB(37, 37, 41);
         }
-        Wallet *wallet = CURRENT_WALLET;
-        [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+       
     }
     return _navView;
 }
@@ -101,20 +101,21 @@
     return _currentAccountResult;
 }
 
-- (UIButton *)unStakeBtn{
-    if(!_unStakeBtn){
-        _unStakeBtn = [[UIButton alloc] init];
-        [_unStakeBtn setImage:[UIImage imageNamed:@"unStakeEOS_blue"] forState:(UIControlStateNormal)];
-        _unStakeBtn.layer.masksToBounds = YES;
-        _unStakeBtn.layer.cornerRadius = 31;
-        [_unStakeBtn addTarget: self action: @selector(unStakeBtnClick:) forControlEvents: UIControlEventTouchUpInside];
+- (UIButton *)inviteFriendBtn{
+    if(!_inviteFriendBtn){
+        _inviteFriendBtn = [[UIButton alloc] init];
+        [_inviteFriendBtn setImage:[UIImage imageNamed:@"inviteFriend_icon"] forState:(UIControlStateNormal)];
+        _inviteFriendBtn.layer.masksToBounds = YES;
+        [_inviteFriendBtn addTarget: self action: @selector(inviteFriendBtnClick) forControlEvents: UIControlEventTouchUpInside];
     }
-    return _unStakeBtn;
+    return _inviteFriendBtn;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    Wallet *wallet = CURRENT_WALLET;
+    [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -152,7 +153,7 @@
     
     // 配置开屏广告
     [self configAdvertisement];
-    [self addunStakeBtn];
+    [self addinviteFriendBtn];
 }
 
 // 构建数据源
@@ -410,7 +411,7 @@
     [self.view bringSubviewToFront:self.advertisementView];
 }
 
-- (void)addunStakeBtn{
+- (void)addinviteFriendBtn{
 //    UIView *shadowView = [[UIView alloc] init];
 //    shadowView.backgroundColor = HEXCOLOR(0x4D7BFE);
 //    shadowView.layer.shadowOffset = CGSizeMake(0, 5);
@@ -420,9 +421,28 @@
 //    shadowView.frame = CGRectMake(SCREEN_WIDTH - MARGIN_20 - 56, SCREEN_HEIGHT - TABBAR_HEIGHT - MARGIN_20, 62, 62);
 //    [self.view addSubview: shadowView];
     
-    [self.view addSubview:self.unStakeBtn];
-    self.unStakeBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(62).heightEqualToWidth();
+    [self.view addSubview:self.inviteFriendBtn];
+    self.inviteFriendBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(69).heightIs(53);
 }
 
+- (void)inviteFriendBtnClick{
+    CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
+//    Wallet *wallet = CURRENT_WALLET;
+//    NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
+//    vc.urlStr =[NSString stringWithFormat:@"http://192.168.3.166:8080/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=[%@]", wallet.wallet_phone, wallet.wallet_uid, cookie];
+    //https://www.baidu.com/
+    vc.urlStr = @"http://47.104.166.178:8502/#/index";
+
+    vc.title = @"邀请好友";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+//    DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+//    Application *model  = [[Application alloc] init];
+//    model.url = [NSString stringWithFormat:@"http://192.168.3.166:8080/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=[%@]", wallet.wallet_phone, wallet.wallet_uid, cookie];
+//    vc.model = model;
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+}
 
 @end

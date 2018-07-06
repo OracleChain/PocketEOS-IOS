@@ -12,11 +12,13 @@
 - (void)getVerifyCodeBtnDidClick:(UIButton *)sender;
 - (void)bindBtnDidClick:(UIButton *)sender;
 - (void)privacyPolicyBtnDidClick:(UIButton *)sender;
+- (void)areaCodeBtnDidClick;
 @end
 
 @interface BindPhoneNumberHeaderView : BaseView
 
 @property(nonatomic, weak) id<BindPhoneNumberHeaderViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *areaCodeLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *verifyCodeTF;

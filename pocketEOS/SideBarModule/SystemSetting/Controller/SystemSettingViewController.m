@@ -57,7 +57,6 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mainTableView.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
-    
     [self.mainTableView reloadData];
 }
 

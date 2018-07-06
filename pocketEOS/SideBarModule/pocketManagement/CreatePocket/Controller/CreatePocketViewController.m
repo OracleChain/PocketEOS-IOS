@@ -63,6 +63,8 @@
     [super viewDidLoad];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
+    
+    
 //    [self.view addSubview:self.importPocketBtn];
 //    self.importPocketBtn.sd_layout.leftSpaceToView(self.view, MARGIN_20).rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20).heightIs(20);
 }

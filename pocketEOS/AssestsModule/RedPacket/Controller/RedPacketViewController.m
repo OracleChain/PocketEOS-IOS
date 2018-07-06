@@ -125,6 +125,7 @@
     self.mainService.getRedPacketRecordRequest.uid = CURRENT_WALLET_UID;
     self.mainService.getRedPacketRecordRequest.account = self.accountName;
     self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
+    [self loadNewData];
 //    [self textFieldChange:nil];
 }
 
@@ -160,7 +161,7 @@
     [self.getRateRequest postDataSuccess:^(id DAO, id data) {
         if ([data isKindOfClass:[NSDictionary class]]) {
             weakSelf.getRateResult = [GetRateResult mj_objectWithKeyValues:data];
-            
+            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
         }
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
@@ -390,6 +391,7 @@
         self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
         self.currentAssestsType = [(Assest *)sender assetName];
         self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
+        [self buidDataSource];
         [self.mainTableView.mj_header beginRefreshing];
     }else if ([sender isKindOfClass:[AccountInfo class]]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];

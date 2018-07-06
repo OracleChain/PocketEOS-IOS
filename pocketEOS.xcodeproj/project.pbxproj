@@ -135,6 +135,17 @@
 		1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816919D20BF80EC00BF49A8 /* vote_box@3x.png */; };
 		181691A220BF83B600BF49A8 /* nomoredata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A020BF83B600BF49A8 /* nomoredata@2x.png */; };
 		181691A320BF83B600BF49A8 /* nomoredata@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181691A120BF83B600BF49A8 /* nomoredata@3x.png */; };
+		1817DF0F20EF0A0E0037D784 /* importAccount_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0720EF0A0A0037D784 /* importAccount_BB@3x.png */; };
+		1817DF1020EF0A0E0037D784 /* changePassword_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0820EF0A0B0037D784 /* changePassword_BB@3x.png */; };
+		1817DF1120EF0A0E0037D784 /* importAccount_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0920EF0A0B0037D784 /* importAccount_BB@2x.png */; };
+		1817DF1220EF0A0E0037D784 /* changePassword_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0A20EF0A0C0037D784 /* changePassword_BB@2x.png */; };
+		1817DF1320EF0A0E0037D784 /* backup_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0B20EF0A0C0037D784 /* backup_BB@3x.png */; };
+		1817DF1420EF0A0E0037D784 /* backup_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0C20EF0A0D0037D784 /* backup_BB@2x.png */; };
+		1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0D20EF0A0D0037D784 /* createAccount_BB@2x.png */; };
+		1817DF1620EF0A0E0037D784 /* createAccount_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF0E20EF0A0E0037D784 /* createAccount_BB@3x.png */; };
+		1817DF1920EF0B270037D784 /* bpvote_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF1720EF0B260037D784 /* bpvote_BB@2x.png */; };
+		1817DF1A20EF0B270037D784 /* bpvote_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1817DF1820EF0B260037D784 /* bpvote_BB@3x.png */; };
+		1817DF1D20EF18820037D784 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817DF1C20EF18820037D784 /* UserInfo.m */; };
 		181EC30A20C4C43E001994D3 /* ApplicationMainHeaderBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC30920C4C43E001994D3 /* ApplicationMainHeaderBottomView.m */; };
 		181EC30C20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181EC30B20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib */; };
 		181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EC30E20C4C9B2001994D3 /* ApplicationTop4View.m */; };
@@ -389,6 +400,12 @@
 		184EA62720ABCFDB00169CD9 /* background_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184EA62520ABCFDB00169CD9 /* background_black@3x.png */; };
 		1850315F20BD2253007610A2 /* DappTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850315E20BD2253007610A2 /* DappTransferModel.m */; };
 		1850316220BD2B87007610A2 /* DappTransferResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850316120BD2B87007610A2 /* DappTransferResult.m */; };
+		1850338320EF4BC80023B390 /* AreaCodeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850338220EF4BC80023B390 /* AreaCodeService.m */; };
+		1850338620EF4CE50023B390 /* AreaCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850338520EF4CE50023B390 /* AreaCodeModel.m */; };
+		1850338720EF4D620023B390 /* AreaCodeService.h in Sources */ = {isa = PBXBuildFile; fileRef = 1850338120EF4BC80023B390 /* AreaCodeService.h */; };
+		1850338820EF4D620023B390 /* AreaCodeModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 1850338420EF4CE50023B390 /* AreaCodeModel.h */; };
+		1850338F20EF536C0023B390 /* CountryAreaCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 1850338E20EF536B0023B390 /* CountryAreaCode.json */; };
+		1850339C20EF57A70023B390 /* CountryCodeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850339B20EF57A70023B390 /* CountryCodeAreaViewController.m */; };
 		1853DE1C20B26FD7003DC727 /* BBCreateAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1853DE1B20B26FD7003DC727 /* BBCreateAccountHeaderView.m */; };
 		1853DE2020B27012003DC727 /* BBCreateAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1853DE1F20B27012003DC727 /* BBCreateAccountHeaderView.xib */; };
 		1853DE2720B29F2D003DC727 /* EOSMappingImportAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1853DE2620B29F2D003DC727 /* EOSMappingImportAccountViewController.m */; };
@@ -785,6 +802,9 @@
 		18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1D20BFEFF400571577 /* thumb_white.png */; };
 		18BCAF2020BFF0A600571577 /* vote_box_BB.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1F20BFF0A600571577 /* vote_box_BB.png */; };
 		18BCAF2320BFFC2200571577 /* BaseTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCAF2220BFFC2200571577 /* BaseTableViewCell1.m */; };
+		18BE63FD20EF81AB00238492 /* inviteFriend_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BE63FB20EF81AB00238492 /* inviteFriend_icon@2x.png */; };
+		18BE63FE20EF81AB00238492 /* inviteFriend_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BE63FC20EF81AB00238492 /* inviteFriend_icon@3x.png */; };
+		18BE640220EF836A00238492 /* CommonWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BE640120EF836A00238492 /* CommonWKWebViewController.m */; };
 		18C5C4801FCFB77F002A65CB /* NSString+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C47F1FCFB77F002A65CB /* NSString+Extention.m */; };
 		18C5C4851FCFDF34002A65CB /* BaseNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C4831FCFDF33002A65CB /* BaseNetworkRequest.m */; };
 		18C5C4881FCFDF4C002A65CB /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C5C4871FCFDF4C002A65CB /* BaseService.m */; };
@@ -1243,6 +1263,18 @@
 		1816919D20BF80EC00BF49A8 /* vote_box@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote_box@3x.png"; sourceTree = "<group>"; };
 		181691A020BF83B600BF49A8 /* nomoredata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@2x.png"; sourceTree = "<group>"; };
 		181691A120BF83B600BF49A8 /* nomoredata@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nomoredata@3x.png"; sourceTree = "<group>"; };
+		1817DF0720EF0A0A0037D784 /* importAccount_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount_BB@3x.png"; sourceTree = "<group>"; };
+		1817DF0820EF0A0B0037D784 /* changePassword_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword_BB@3x.png"; sourceTree = "<group>"; };
+		1817DF0920EF0A0B0037D784 /* importAccount_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount_BB@2x.png"; sourceTree = "<group>"; };
+		1817DF0A20EF0A0C0037D784 /* changePassword_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changePassword_BB@2x.png"; sourceTree = "<group>"; };
+		1817DF0B20EF0A0C0037D784 /* backup_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@3x.png"; sourceTree = "<group>"; };
+		1817DF0C20EF0A0D0037D784 /* backup_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@2x.png"; sourceTree = "<group>"; };
+		1817DF0D20EF0A0D0037D784 /* createAccount_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount_BB@2x.png"; sourceTree = "<group>"; };
+		1817DF0E20EF0A0E0037D784 /* createAccount_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createAccount_BB@3x.png"; sourceTree = "<group>"; };
+		1817DF1720EF0B260037D784 /* bpvote_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bpvote_BB@2x.png"; sourceTree = "<group>"; };
+		1817DF1820EF0B260037D784 /* bpvote_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bpvote_BB@3x.png"; sourceTree = "<group>"; };
+		1817DF1B20EF18820037D784 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		1817DF1C20EF18820037D784 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		181EC30820C4C43E001994D3 /* ApplicationMainHeaderBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationMainHeaderBottomView.h; sourceTree = "<group>"; };
 		181EC30920C4C43E001994D3 /* ApplicationMainHeaderBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationMainHeaderBottomView.m; sourceTree = "<group>"; };
 		181EC30B20C4C445001994D3 /* ApplicationMainHeaderBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationMainHeaderBottomView.xib; sourceTree = "<group>"; };
@@ -1661,6 +1693,13 @@
 		1850315E20BD2253007610A2 /* DappTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappTransferModel.m; sourceTree = "<group>"; };
 		1850316020BD2B87007610A2 /* DappTransferResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappTransferResult.h; sourceTree = "<group>"; };
 		1850316120BD2B87007610A2 /* DappTransferResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappTransferResult.m; sourceTree = "<group>"; };
+		1850338120EF4BC80023B390 /* AreaCodeService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaCodeService.h; sourceTree = "<group>"; };
+		1850338220EF4BC80023B390 /* AreaCodeService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaCodeService.m; sourceTree = "<group>"; };
+		1850338420EF4CE50023B390 /* AreaCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaCodeModel.h; sourceTree = "<group>"; };
+		1850338520EF4CE50023B390 /* AreaCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaCodeModel.m; sourceTree = "<group>"; };
+		1850338E20EF536B0023B390 /* CountryAreaCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryAreaCode.json; sourceTree = "<group>"; };
+		1850339A20EF57A70023B390 /* CountryCodeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryCodeAreaViewController.h; sourceTree = "<group>"; };
+		1850339B20EF57A70023B390 /* CountryCodeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryCodeAreaViewController.m; sourceTree = "<group>"; };
 		1853DE1A20B26FD7003DC727 /* BBCreateAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBCreateAccountHeaderView.h; sourceTree = "<group>"; };
 		1853DE1B20B26FD7003DC727 /* BBCreateAccountHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBCreateAccountHeaderView.m; sourceTree = "<group>"; };
 		1853DE1F20B27012003DC727 /* BBCreateAccountHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BBCreateAccountHeaderView.xib; sourceTree = "<group>"; };
@@ -2281,6 +2320,10 @@
 		18BCAF1F20BFF0A600571577 /* vote_box_BB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vote_box_BB.png; sourceTree = "<group>"; };
 		18BCAF2120BFFC2200571577 /* BaseTableViewCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell1.h; sourceTree = "<group>"; };
 		18BCAF2220BFFC2200571577 /* BaseTableViewCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell1.m; sourceTree = "<group>"; };
+		18BE63FB20EF81AB00238492 /* inviteFriend_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inviteFriend_icon@2x.png"; sourceTree = "<group>"; };
+		18BE63FC20EF81AB00238492 /* inviteFriend_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inviteFriend_icon@3x.png"; sourceTree = "<group>"; };
+		18BE640020EF836A00238492 /* CommonWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonWKWebViewController.h; sourceTree = "<group>"; };
+		18BE640120EF836A00238492 /* CommonWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonWKWebViewController.m; sourceTree = "<group>"; };
 		18C5C47E1FCFB77F002A65CB /* NSString+Extention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extention.h"; sourceTree = "<group>"; };
 		18C5C47F1FCFB77F002A65CB /* NSString+Extention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extention.m"; sourceTree = "<group>"; };
 		18C5C4831FCFDF33002A65CB /* BaseNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkRequest.m; sourceTree = "<group>"; };
@@ -3309,6 +3352,18 @@
 				18291F4A20EE40C900D19CB9 /* QRCode_green@2x.png */,
 				18291F4B20EE40C900D19CB9 /* QRCode_green@3x.png */,
 				18291F4E20EE423A00D19CB9 /* copy_orange.png */,
+				1817DF0C20EF0A0D0037D784 /* backup_BB@2x.png */,
+				1817DF0B20EF0A0C0037D784 /* backup_BB@3x.png */,
+				1817DF0A20EF0A0C0037D784 /* changePassword_BB@2x.png */,
+				1817DF0820EF0A0B0037D784 /* changePassword_BB@3x.png */,
+				1817DF0D20EF0A0D0037D784 /* createAccount_BB@2x.png */,
+				1817DF0E20EF0A0E0037D784 /* createAccount_BB@3x.png */,
+				1817DF0920EF0A0B0037D784 /* importAccount_BB@2x.png */,
+				1817DF0720EF0A0A0037D784 /* importAccount_BB@3x.png */,
+				1817DF1720EF0B260037D784 /* bpvote_BB@2x.png */,
+				1817DF1820EF0B260037D784 /* bpvote_BB@3x.png */,
+				18BE63FB20EF81AB00238492 /* inviteFriend_icon@2x.png */,
+				18BE63FC20EF81AB00238492 /* inviteFriend_icon@3x.png */,
 			);
 			path = 201807;
 			sourceTree = "<group>";
@@ -3521,6 +3576,8 @@
 				1831F39C2016D8D1002CE94D /* AuthResult.m */,
 				18291F5320EE548E00D19CB9 /* UserInfoResult.h */,
 				18291F5420EE548E00D19CB9 /* UserInfoResult.m */,
+				1817DF1B20EF18820037D784 /* UserInfo.h */,
+				1817DF1C20EF18820037D784 /* UserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4168,6 +4225,51 @@
 				1850316120BD2B87007610A2 /* DappTransferResult.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1850338D20EF53660023B390 /* jsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1850338E20EF536B0023B390 /* CountryAreaCode.json */,
+			);
+			path = jsonFiles;
+			sourceTree = "<group>";
+		};
+		1850339620EF577E0023B390 /* CountryCodeArea */ = {
+			isa = PBXGroup;
+			children = (
+				1850339720EF577E0023B390 /* Model */,
+				1850339820EF577E0023B390 /* Service */,
+				1850339920EF577E0023B390 /* ViewController */,
+			);
+			path = CountryCodeArea;
+			sourceTree = "<group>";
+		};
+		1850339720EF577E0023B390 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1850338420EF4CE50023B390 /* AreaCodeModel.h */,
+				1850338520EF4CE50023B390 /* AreaCodeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1850339820EF577E0023B390 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1850338120EF4BC80023B390 /* AreaCodeService.h */,
+				1850338220EF4BC80023B390 /* AreaCodeService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1850339920EF577E0023B390 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1850339A20EF57A70023B390 /* CountryCodeAreaViewController.h */,
+				1850339B20EF57A70023B390 /* CountryCodeAreaViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		1853DE2120B29EEB003DC727 /* EOSMapping */ = {
@@ -5399,6 +5501,7 @@
 		1886076B1FCBF6D300B00EE7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				18BE63FF20EF835200238492 /* CommonWKWebView */,
 				18F054CD20CBB8D1001B0A29 /* Model */,
 				1816919820BF7E7A00BF49A8 /* CommonView */,
 				18372D522063C9FF004D19D0 /* Utils */,
@@ -5435,6 +5538,7 @@
 		1886076D1FCBF6DE00B00EE7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1850338D20EF53660023B390 /* jsonFiles */,
 				18291F1C20ECAC2900D19CB9 /* 201807 */,
 				18AD2BB020D0C9B000536084 /* BPVote */,
 				18B276F820B7AC460070F472 /* rtf */,
@@ -5518,6 +5622,7 @@
 		188C30341FFDDA2F00A357F3 /* LoginModule */ = {
 			isa = PBXGroup;
 			children = (
+				1850339620EF577E0023B390 /* CountryCodeArea */,
 				188C30351FFDDA2F00A357F3 /* Login */,
 				188C304B1FFE0A8C00A357F3 /* BindPhoneNumber */,
 			);
@@ -6152,6 +6257,15 @@
 				18BCAF1720BFD8E600571577 /* BPVoteViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18BE63FF20EF835200238492 /* CommonWKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				18BE640020EF836A00238492 /* CommonWKWebViewController.h */,
+				18BE640120EF836A00238492 /* CommonWKWebViewController.m */,
+			);
+			path = CommonWKWebView;
 			sourceTree = "<group>";
 		};
 		18C5C4811FCFDF07002A65CB /* BaseNetworkRequest */ = {
@@ -7663,6 +7777,7 @@
 				186857171FE0D955002A683A /* AccountManagementHeaderView.xib in Resources */,
 				184EA62620ABCFDB00169CD9 /* background_black@2x.png in Resources */,
 				184141A1202029ED00A789ED /* RichlistDetailHeaderView.xib in Resources */,
+				1850338F20EF536C0023B390 /* CountryAreaCode.json in Resources */,
 				184EA62720ABCFDB00169CD9 /* background_black@3x.png in Resources */,
 				1872E89A20AA7FB600454DA3 /* BBLoginChooseWalletFooterView.xib in Resources */,
 				18F03FD82067878C00697D7F /* transfer@2x.png in Resources */,
@@ -7674,6 +7789,7 @@
 				185D18551FE762000021AD18 /*  qq.png in Resources */,
 				1884129020C93E4D005D752C /* BPVoteHeaderView.xib in Resources */,
 				18AD2BBC20D0C9C400536084 /* edit_blue@3x.png in Resources */,
+				1817DF1320EF0A0E0037D784 /* backup_BB@3x.png in Resources */,
 				1833488F1FCE69B200884107 /* 2.png in Resources */,
 				181275DF20B6DF58005EDD91 /* volume-marquee@3x.png in Resources */,
 				185D18581FE762000021AD18 /* email@2x.png in Resources */,
@@ -7681,6 +7797,7 @@
 				18E72E511FCC1AAE00D09CA3 /* assest_unSelect@3x.png in Resources */,
 				18466DBC2010B291002E675A /* SelectAccountView.xib in Resources */,
 				18B2770420B7BE1A0070F472 /* PocketEOSPrivacyPolicy.rtf in Resources */,
+				1817DF1A20EF0B270037D784 /* bpvote_BB@3x.png in Resources */,
 				1884A8E4204D380700C72631 /* feedBackAsk@3x.png in Resources */,
 				18E72E4E1FCC1AAE00D09CA3 /* richList_select@2x.png in Resources */,
 				183FF6F420C0FD700058D010 /* wechat_login@2x.png in Resources */,
@@ -7719,6 +7836,7 @@
 				18FDFFBD202451FA00AEB4FA /* qrcode_scan_light_green@2x.png in Resources */,
 				1828F9192068C6CB00513CD1 /* delete_answer_option@2x.png in Resources */,
 				189EB98B207B569F0088C6FC /* InfoPlist.strings in Resources */,
+				1817DF1620EF0A0E0037D784 /* createAccount_BB@3x.png in Resources */,
 				183348D41FCE7F3E00884107 /* PocketEOS@3x.png in Resources */,
 				18DBD282204258B0001E2DDF /* account_default_avatar@3x.png in Resources */,
 				185BA3D220BBC2E700F63674 /* unSelect__BB_wallet_icon@3x.png in Resources */,
@@ -7728,6 +7846,7 @@
 				183FF6DD20C0CE600058D010 /* changePassword_BB@2x.png in Resources */,
 				185D18431FE75FC30021AD18 /* share@2x.png in Resources */,
 				185D181A1FE759C40021AD18 /* downImg@2x.png in Resources */,
+				1817DF1120EF0A0E0037D784 /* importAccount_BB@2x.png in Resources */,
 				1828F90D20687C1F00513CD1 /* eye_close@2x.png in Resources */,
 				1872F134202D6F0C005B5915 /* addFollow@2x.png in Resources */,
 				18DBD28620426521001E2DDF /* account_default_blue@2x.png in Resources */,
@@ -7771,6 +7890,7 @@
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */,
+				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
 				185D181E1FE75B270021AD18 /* pocket@2x.png in Resources */,
 				18291F4C20EE40C900D19CB9 /* QRCode_green@2x.png in Resources */,
@@ -7786,10 +7906,12 @@
 				185D183C1FE75ECA0021AD18 /* rectangle_UnSelected@3x.png in Resources */,
 				18112F751FCD016000BEA0D9 /* IQKeyboardManager.bundle in Resources */,
 				185BA3A220BBA70200F63674 /* assest_Select_BB@3x.png in Resources */,
+				1817DF1220EF0A0E0037D784 /* changePassword_BB@2x.png in Resources */,
 				1878B5711FD90EFF00D63037 /* AssestsDetailHeaderView.xib in Resources */,
 				18AFBF0320B3096D00E880DD /* BackupAccountHeaderView.xib in Resources */,
 				185D182B1FE75C2E0021AD18 /* messageCenter@3x.png in Resources */,
 				182CDF53201EFFB4002B87B6 /* FeedbackHeaderView.xib in Resources */,
+				1817DF1920EF0B270037D784 /* bpvote_BB@2x.png in Resources */,
 				184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */,
 				186329841FE2597900E57F05 /* ApplicationMainHeaderView.xib in Resources */,
 				18D07A9020EB67ED00DF1FDF /* backup@3x.png in Resources */,
@@ -7804,6 +7926,7 @@
 				185D18541FE762000021AD18 /* wechat@2x.png in Resources */,
 				185D18341FE75CDC0021AD18 /* versionUpdate@2x.png in Resources */,
 				185D18421FE75FC30021AD18 /* share@3x.png in Resources */,
+				18BE63FE20EF81AB00238492 /* inviteFriend_icon@3x.png in Resources */,
 				1860444020D36B3300BEE917 /* slider_gray_BB@2x.png in Resources */,
 				1828F9262068D2EA00513CD1 /* right_arrow_gray@3x.png in Resources */,
 				185D18801FE76EA40021AD18 /* scan_black@3x.png in Resources */,
@@ -7867,6 +7990,7 @@
 				1872F13C202D6FD6005B5915 /* back_white@3x.png in Resources */,
 				187B63DD206B347D00D0AE86 /* feedBack@2x.png in Resources */,
 				1825DC7320061BD40057320C /* AskQuestionHeaderView.xib in Resources */,
+				1817DF0F20EF0A0E0037D784 /* importAccount_BB@3x.png in Resources */,
 				18AD2BC320D0C9C400536084 /* vote_account_bg_blue@2x.png in Resources */,
 				185D183A1FE75ECA0021AD18 /* rectangle_selected@2x.png in Resources */,
 				182A66131FD11FDA007FD541 /* notify@2x.png in Resources */,
@@ -7881,6 +8005,7 @@
 				185BA3B320BBA93100F63674 /* application_unSelect_BB@3x.png in Resources */,
 				1853DE4120B2BE8F003DC727 /* CandyMainHeaderView.xib in Resources */,
 				18D07A5720EA3A2B00DF1FDF /* RedPacketDetailHeaderView.xib in Resources */,
+				1817DF1420EF0A0E0037D784 /* backup_BB@2x.png in Resources */,
 				188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */,
 				18D07A8C20EB676900DF1FDF /* importAccount@2x.png in Resources */,
 				18E72E491FCC1AAE00D09CA3 /* assest_unSelect@2x.png in Resources */,
@@ -7914,6 +8039,7 @@
 				18291F1820ECA97300D19CB9 /* candy_Icon@3x.png in Resources */,
 				18AD2BD420D11BB300536084 /* advertisement_BP_Vote@3x.png in Resources */,
 				185BA3B220BBA93100F63674 /* application_select_BB@3x.png in Resources */,
+				18BE63FD20EF81AB00238492 /* inviteFriend_icon@2x.png in Resources */,
 				18F03FC22067804000697D7F /* background_blue@3x.png in Resources */,
 				18DBBB30206525F10050EE20 /* README.md in Resources */,
 				18B276FF20B7AF530070F472 /* PocketEOSProtocol.rtf in Resources */,
@@ -7926,6 +8052,7 @@
 				181275E320B6DF60005EDD91 /* close-marquee@2x.png in Resources */,
 				1872F137202D6F35005B5915 /* cancleFollow@2x.png in Resources */,
 				18291F1920ECA97300D19CB9 /* bpvote@3x.png in Resources */,
+				1817DF1020EF0A0E0037D784 /* changePassword_BB@3x.png in Resources */,
 				1826AD46207A02110046EE7C /* CreatePocketHeaderView.xib in Resources */,
 				1864C0F71FE3B01A00031547 /* ApplicationDetailHeaderView.xib in Resources */,
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
@@ -7970,6 +8097,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1850338720EF4D620023B390 /* AreaCodeService.h in Sources */,
+				1850338820EF4D620023B390 /* AreaCodeModel.h in Sources */,
 				1847F04420E22BDA00623332 /* ContractConstant.h in Sources */,
 				2473F12F20DF74E300BE3D22 /* NSString+DecimalsCalculation.h in Sources */,
 				2473F13020DF74E300BE3D22 /* NSString+DecimalsCalculation.m in Sources */,
@@ -8055,6 +8184,7 @@
 				1850316220BD2B87007610A2 /* DappTransferResult.m in Sources */,
 				183AE2022019D0BF002041F9 /* Assest.m in Sources */,
 				181414101FCFA2BA00334C60 /* SVRadialGradientLayer.m in Sources */,
+				1850338620EF4CE50023B390 /* AreaCodeModel.m in Sources */,
 				1812BB6320B5005D00C70801 /* BaseBoldLineView.m in Sources */,
 				1841419F202029E400A789ED /* RichlistDetailHeaderView.m in Sources */,
 				1862E79820DBBF3200F26629 /* EOSResourceCellModel.m in Sources */,
@@ -8191,6 +8321,7 @@
 				18112F6F1FCD016000BEA0D9 /* IQTextView.m in Sources */,
 				183AE1FC2019C262002041F9 /* PeRichListRequest.m in Sources */,
 				18112F6D1FCD016000BEA0D9 /* IQKeyboardManager.m in Sources */,
+				1850338320EF4BC80023B390 /* AreaCodeService.m in Sources */,
 				18FA76C820623C6D00545E73 /* EcDsa.m in Sources */,
 				189CEC6A20CE414200F81AD8 /* BPCandidateResult.m in Sources */,
 				181130071FCD01B800BEA0D9 /* SDImageCache.m in Sources */,
@@ -8218,6 +8349,7 @@
 				18154F29201ABB5F00F73D14 /* UpdateUserNameRequest.m in Sources */,
 				1831F3AA20170FAB002CE94D /* AccountResult.m in Sources */,
 				184142622020A98100A789ED /* EnterpriseDetailViewController.m in Sources */,
+				1817DF1D20EF18820037D784 /* UserInfo.m in Sources */,
 				181130111FCD01B800BEA0D9 /* SDWebImageImageIOCoder.m in Sources */,
 				1812758820B66B4A005EDD91 /* Candy_task_list_request.m in Sources */,
 				18B2913620899B470032EE27 /* RedPacketDetailSingleAccount.m in Sources */,
@@ -8336,6 +8468,7 @@
 				189E3EBD201C5B980022AF19 /* CGGeometry+RSKImageCropper.m in Sources */,
 				188F79AE20CA160000911034 /* BPVoteFooterView.m in Sources */,
 				1862E7F220DC93C500F26629 /* ModifyApproveHeaderView.m in Sources */,
+				1850339C20EF57A70023B390 /* CountryCodeAreaViewController.m in Sources */,
 				182B8FA020AD758200C43AEC /* BaseTableViewCell.m in Sources */,
 				1853DE2A20B29F45003DC727 /* EOSMappingImportAccountHeaderView.m in Sources */,
 				18112F6A1FCD016000BEA0D9 /* IQUIView+Hierarchy.m in Sources */,
@@ -8542,6 +8675,7 @@
 				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,
 				18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */,
 				1878BCAC20845798002A76F5 /* SendRedpacketRequest.m in Sources */,
+				18BE640220EF836A00238492 /* CommonWKWebViewController.m in Sources */,
 				1861BA6C1FFCB74900404058 /* StringConstant.m in Sources */,
 				1811301D1FCD01B800BEA0D9 /* UIView+WebCacheOperation.m in Sources */,
 				186564AD2011A10B0044BBC3 /* LoginService.m in Sources */,

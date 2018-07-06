@@ -13,8 +13,10 @@
 @interface TransferViewController : BaseViewController
 
 // 默认选择的账号
-@property(nonatomic, strong) NSString *accountName;
+@property(nonatomic, copy) NSString *accountName;
 
 @property(nonatomic, strong) TransferModel *transferModel;
+
+@property(nonatomic, copy) NSString *currentAssestsType;
 
 @end

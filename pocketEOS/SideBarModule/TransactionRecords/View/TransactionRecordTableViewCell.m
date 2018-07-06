@@ -9,7 +9,7 @@
 #import "TransactionRecordTableViewCell.h"
 
 @interface TransactionRecordTableViewCell()
-@property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) BaseLabel *titleLabel;
 @property(nonatomic, strong) UILabel *amountLabel;
 @property(nonatomic, strong) UILabel *belongBlockLabel;
 @property(nonatomic, strong) UILabel *resultLabel;
@@ -19,11 +19,10 @@
 
 @implementation TransactionRecordTableViewCell
 
-- (UILabel *)titleLabel{
+- (BaseLabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
+        _titleLabel = [[BaseLabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = HEXCOLOR(0x2A2A2A);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;
@@ -99,7 +98,7 @@
 
     if ([self.currentAccountName isEqualToString:model.from]) {
         self.amountLabel.text = [NSString stringWithFormat:@"-%@",  model.quantity];
-        self.amountLabel.textColor = HEXCOLOR(0x2A2A2A);
+        self.amountLabel.textColor = HEXCOLOR(0x999999);
     }else if([self.currentAccountName isEqualToString:model.to]){
         self.amountLabel.text = [NSString stringWithFormat:@"+%@",  model.quantity];
         self.amountLabel.textColor = HEXCOLOR(0xE903C);

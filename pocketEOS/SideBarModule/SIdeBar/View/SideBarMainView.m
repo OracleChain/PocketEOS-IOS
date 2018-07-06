@@ -20,6 +20,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIView *voteBaseView;
+@property (weak, nonatomic) IBOutlet UIImageView *voteImageView;
 
 // bottom
 @property (weak, nonatomic) IBOutlet UIImageView *messageCenterImageView;
@@ -45,8 +46,13 @@
     if ([DeviceType getIsIpad]) {
         self.scrollHeight.constant = 100;
     }
+    
+    
+    self.voteImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"bpvote"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"bpvote_BB"]);
     self.messageCenterImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"messageCenter"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"messageCenter_BB"]);
-     self.systemSettingImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"systemSetting"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"systemSetting_BB"]);
+    
+        self.transactionImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"transactionrecord_icon"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"transaction_history_BB"]);
+    self.systemSettingImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"systemSetting"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"systemSetting_BB"]);
     
     self.versionUpdateImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"versionUpdate"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"versionUpdate_BB"]);
     
@@ -56,26 +62,8 @@
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.avatarImg.hidden = YES;
         self.QRCodeButton.hidden = YES;
-       
-        
-        
         self.voteBaseView.sd_layout.leftEqualToView(self.candyBaseView).topEqualToView(self.candyBaseView).rightEqualToView(self.candyBaseView).bottomEqualToView(self.candyBaseView);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        self.candyBaseView.hidden = YES;
-        
-        
-//        self.messageCenterBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59).heightIs(40);
-//        self.systemSettingBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*2).heightIs(40);
-//        self.versionUpdateBaseView.sd_layout.topSpaceToView(self.walletManageLabel, 59+(20+30)*3).heightIs(40);
-        
+
     }
     
     self.logoutBtn.lee_theme

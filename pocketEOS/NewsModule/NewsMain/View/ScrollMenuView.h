@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Assest.h"
+#import "BaseSlimLineView.h"
 
 @protocol ScrollMenuViewDelegate<NSObject>
 - (void)menuScrollViewItemBtnDidClick:(UIButton *)sender;
@@ -18,4 +19,5 @@
 
 @property(nonatomic, weak) id<ScrollMenuViewDelegate> delegate;
 - (void)updateViewWithAssestsArray:(NSArray<Assest *> *)assestsArray;
+@property(nonatomic , strong) BaseSlimLineView *bottomLineView;
 @end

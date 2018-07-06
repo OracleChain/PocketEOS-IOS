@@ -29,10 +29,10 @@
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shouldDismiss)];
 //    tap.delegate = self;
 //    [self.containView addGestureRecognizer:tap];
-    if ([DeviceType getIsIpad]) {
-        self.scrollHeight.constant = 150;
-    }
-    
+//    if ([DeviceType getIsIpad]) {
+//        self.scrollHeight.constant = 150;
+//    }
+    self.scrollHeight.constant = 700;
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
     layer.startPoint = CGPointMake(0, 0);
@@ -62,9 +62,9 @@
      HEXCOLOR(0x999999) range:NSMakeRange(0,attrStr.length)];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attrStr.length)];
     [attrStr addAttribute:NSUnderlineStyleAttributeName value:
-     [NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(attrStr.length-11, 11)]; // 下划线
+     [NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(attrStr.length-10, 9)]; // 下划线
     [attrStr addAttribute:NSUnderlineColorAttributeName value:
-     HEXCOLOR(0x999999) range:NSMakeRange(attrStr.length-11, 11)]; // 下划线颜色
+     HEXCOLOR(0x999999) range:NSMakeRange(attrStr.length-10, 9)]; // 下划线颜色
     self.privacyPolicyLabel.attributedText = attrStr;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(privacyPolicy)];
@@ -115,5 +115,11 @@
     }
 }
 
+- (IBAction)areaCodeBtnClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(areaCodeBtnDidClick)]) {
+        [self.delegate areaCodeBtnDidClick];
+    }
+    
+}
 
 @end

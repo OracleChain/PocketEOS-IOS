@@ -46,6 +46,9 @@
         _sideBarMainView = [[[NSBundle mainBundle] loadNibNamed:@"SideBarMainView" owner:nil options:nil] firstObject];
         _sideBarMainView.delegate = self;
         _sideBarMainView.frame = CGRectMake(0, STATUSBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - STATUSBAR_HEIGHT);
+        _sideBarMainView.contentSize = CGSizeMake(SCREEN_WIDTH, 2000);
+        _sideBarMainView.scrollEnabled = YES;
+        
     }
     return _sideBarMainView;
 }

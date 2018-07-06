@@ -54,7 +54,11 @@
 -(void)setModel:(OptionModel *)model{
     _model = model;
     _titleLabel.text = _model.optionName;
-    _avatarImg.image = [UIImage imageNamed:model.optionNormalIcon];
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        _avatarImg.image = [UIImage imageNamed:model.optionNormalIcon];
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        _avatarImg.image = [UIImage imageNamed:model.optionSelectedIcon];
+    }
     
 }
 

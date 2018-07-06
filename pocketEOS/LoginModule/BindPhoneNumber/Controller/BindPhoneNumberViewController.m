@@ -15,13 +15,16 @@
 #import "BindPhoneNumberHeaderView.h"
 #import "NavigationView.h"
 #import "RtfBrowserViewController.h"
+#import "CountryCodeAreaViewController.h"
+#import "AreaCodeModel.h"
 
 
-@interface BindPhoneNumberViewController ()<UIGestureRecognizerDelegate, BindPhoneNumberHeaderViewDelegate, NavigationViewDelegate>
+@interface BindPhoneNumberViewController ()<UIGestureRecognizerDelegate, BindPhoneNumberHeaderViewDelegate, NavigationViewDelegate, CountryCodeAreaViewControllerDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) BindPhoneNumberHeaderView *headerView;
 @property(nonatomic , strong) GetVerifyCodeRequest *getVerifyCodeRequest;
 @property(nonatomic , strong) BindPhoneRequest *bindPhoneRequest;
+@property(nonatomic , strong) AreaCodeModel *areaCodeModel;
 @end
 
 @implementation BindPhoneNumberViewController
@@ -65,12 +68,17 @@
 
 //BindPhoneNumberHeaderViewDelegate
 -(void)getVerifyCodeBtnDidClick:(UIButton *)sender{
-    if (![RegularExpression validateMobile:self.headerView.phoneNumberTF.text] ) {
-        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
+    if (IsStrEmpty(self.headerView.phoneNumberTF.text)) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号不能为空!", nil)];
         return;
     }
     [self startCountDown];
     self.getVerifyCodeRequest.phoneNum = self.headerView.phoneNumberTF.text;
+    if (!IsNilOrNull(self.areaCodeModel)) {
+        self.getVerifyCodeRequest.type = self.areaCodeModel.code;
+    }else{
+        self.getVerifyCodeRequest.type = @"86";
+    }
     [self.getVerifyCodeRequest postDataSuccess:^(id DAO, id data) {
         [TOASTVIEW showWithText: VALIDATE_STRING(data[@"message"]) ];
         if ([data[@"code"] isEqualToValue:@0]) {
@@ -87,8 +95,8 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"请勾选同意条款!", nil)];
         return;
     }
-    if (![RegularExpression validateMobile:self.headerView.phoneNumberTF.text] ) {
-        [TOASTVIEW showWithText: NSLocalizedString(@"手机号格式有误!", nil)];
+    if (IsStrEmpty(self.headerView.phoneNumberTF.text)) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"手机号不能为空!", nil)];
         return;
     }
     if (![RegularExpression validateVerifyCode:self.headerView.verifyCodeTF.text] ) {
@@ -98,15 +106,18 @@
     
     self.bindPhoneRequest.name = self.model.name;
     self.bindPhoneRequest.avatar = self.model.avatar;
-    self.bindPhoneRequest.openid = self.model.openid;
     self.bindPhoneRequest.phoneNum = self.headerView.phoneNumberTF.text;
     if (self.model.socialModelType == SocialTypeQQ) {
         self.bindPhoneRequest.type = @"1";
+        self.bindPhoneRequest.openid = self.model.openid;
     }else if (self.model.socialModelType == SocialTypeWechat){
         self.bindPhoneRequest.type = @"2";
+        self.bindPhoneRequest.openid = self.model.unionid;
+
     }
     
     self.bindPhoneRequest.code = self.headerView.verifyCodeTF.text;
+    
     WS(weakSelf);
     [self.bindPhoneRequest postDataSuccess:^(id DAO, id data) {
         [TOASTVIEW showWithText: VALIDATE_STRING(data[@"message"]) ];
@@ -119,12 +130,15 @@
             if (wallet) {
                 
                 NSString *columnName ;
+                NSString *newValue;
                 if (weakSelf.model.socialModelType == SocialTypeQQ) {
                     columnName = @"wallet_qq";
+                    newValue  = weakSelf.model.openid;
                 }else if (weakSelf.model.socialModelType == SocialTypeWechat){
                     columnName = @"wallet_weixin";
+                    newValue  = weakSelf.model.unionid;
                 }
-                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET '%@' = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , columnName, self.model.openid , CURRENT_WALLET_UID]];
+                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET '%@' = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , columnName, newValue , CURRENT_WALLET_UID]];
                 [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
             }else{
                 NSLog(NSLocalizedString(@"没有 wallet", nil));
@@ -159,6 +173,19 @@
     vc.rtfFileName = @"PocketEOSPrivacyPolicy";
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void)areaCodeBtnDidClick{
+    CountryCodeAreaViewController *vc = [[CountryCodeAreaViewController alloc] init];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//CountryCodeAreaViewControllerDelegate
+-(void)countryCodeAreaCellDidSelect:(AreaCodeModel *)model{
+    self.areaCodeModel = model;
+    self.headerView.areaCodeLabel.text = [NSString stringWithFormat:@"+%@", self.areaCodeModel.code];
+}
+
 
 // NavigationViewDelegate
 -(void)leftBtnDidClick{

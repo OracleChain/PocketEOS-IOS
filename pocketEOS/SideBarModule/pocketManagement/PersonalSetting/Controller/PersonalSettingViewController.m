@@ -17,6 +17,9 @@
 #import "RSKImageCropper.h"
 #import "PersonalSettingHeaderView.h"
 #import "NavigationView.h"
+#import "LoginService.h"
+#import "UserInfoResult.h"
+
 
 @interface PersonalSettingViewController ()<UIGestureRecognizerDelegate ,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, NavigationViewDelegate , PersonalSettingHeaderViewDelegate>
 @property(nonatomic, strong) SliderVerifyView *sliderVerifyView;
@@ -25,7 +28,7 @@
 @property(nonatomic, strong) PersonalSettingService *mainService;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PersonalSettingHeaderView *headerView;
-
+@property(nonatomic, strong) LoginService *loginService;
 @end
 
 @implementation PersonalSettingViewController
@@ -83,27 +86,35 @@
     }
     return _headerView;
 }
+
+- (LoginService *)loginService{
+    if (!_loginService) {
+        _loginService = [[LoginService alloc] init];
+    }
+    return _loginService;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    Wallet *model = CURRENT_WALLET;
-    if (IsStrEmpty(model.wallet_name)) {
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"******的钱包", nil)];
-    }else{
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
-        
-    }
-    [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-    
-    if (model.wallet_weixin.length > 0 &&  ![model.wallet_weixin isEqualToString:@"(null)"]) {
-        self.headerView.wechatIDLabel.text = model.wallet_weixin;
-    }else{
-        self.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
-    }
-    if (model.wallet_qq.length > 0 &&  ![model.wallet_qq isEqualToString:@"(null)"]) {
-        self.headerView.qqIDLabel.text = model.wallet_qq;
-    }else{
-        self.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
-    }
+    [self requestUserInfo];
+//    Wallet *model = CURRENT_WALLET;
+//    if (IsStrEmpty(model.wallet_name)) {
+//        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"******的钱包", nil)];
+//    }else{
+//        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
+//    }
+//    [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+//
+//    if (model.wallet_weixin.length > 0 &&  ![model.wallet_weixin isEqualToString:@"(null)"]) {
+//        self.headerView.wechatIDLabel.text = model.wallet_weixin;
+//    }else{
+//        self.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
+//    }
+//    if (model.wallet_qq.length > 0 &&  ![model.wallet_qq isEqualToString:@"(null)"]) {
+//        self.headerView.qqIDLabel.text = model.wallet_qq;
+//    }else{
+//        self.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
+//    }
 }
 
 - (void)viewDidLoad {
@@ -114,12 +125,11 @@
     self.view.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     
+    
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, MARGIN_20).rightSpaceToView(self.view, MARGIN_20).topSpaceToView(self.headerView, 20).heightIs(48);
         [self.view addSubview:self.tipLabel];
         self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
-      
-        
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.headerView.avatarBaseView.hidden = YES;
         self.headerView.wechatBaseView.hidden = YES;
@@ -132,11 +142,52 @@
         self.sliderVerifyView.sd_layout.leftSpaceToView(self.view, 48).rightSpaceToView(self.view, 48).topSpaceToView(self.headerView.nameBaseView, 20).heightIs(48);
         [self.view addSubview:self.tipLabel];
         self.tipLabel.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(self.sliderVerifyView, 10).heightIs(18);
-        
-
-        
     }
-    
+}
+
+- (void)requestUserInfo{
+    WS(weakSelf);
+    self.loginService.getUserInfoRequest.token = CURRENT_WALLET_UID;
+    self.loginService.getUserInfoRequest.type = @0;
+    [self.loginService getUserInfo:^(UserInfoResult *result, BOOL isSuccess) {
+        if (isSuccess) {
+            if (!IsStrEmpty(result.data.uid)) {
+                // 有这个用户
+                Wallet *wallet = [[Wallet alloc] init];
+                wallet.wallet_name = result.data.walletName;
+                wallet.wallet_img = result.data.avatar;
+                wallet.wallet_avatar = result.data.avatar;
+                wallet.wallet_phone = result.data.phoneNum;
+                wallet.wallet_weixin = result.data.wechat;
+                wallet.wallet_qq = result.data.qq;
+               BOOL result = [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_name = '%@',wallet_img = '%@',wallet_phone = '%@',wallet_weixin = '%@',wallet_qq = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , wallet.wallet_name, wallet.wallet_avatar, wallet.wallet_phone, wallet.wallet_weixin, wallet.wallet_qq , CURRENT_WALLET_UID]];
+                if (result) {
+                    NSLog(@"update local wallet success!");
+                    
+                }else{
+                    NSLog(@"update local wallet failed!");
+                }
+                
+                weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), wallet.wallet_name];
+                [weakSelf.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(wallet.wallet_avatar)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+                
+                if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
+                    weakSelf.headerView.wechatIDLabel.text = @"已绑定";
+                }else{
+                    weakSelf.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
+                }
+                
+                if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
+                    weakSelf.headerView.qqIDLabel.text = @"已绑定";
+                }else{
+                    weakSelf.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
+                }
+                
+            }
+            
+            
+        }
+    }];
 }
 
 //PersonalSettingHeaderViewDelegate
@@ -163,7 +214,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     Wallet *wallet = CURRENT_WALLET;
-    if (wallet.wallet_weixin.length > 0 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
+    if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"wechat";
         vc.socialPlatformName = wallet.wallet_weixin;
@@ -185,7 +236,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     Wallet *wallet = CURRENT_WALLET;
-    if (wallet.wallet_qq.length > 0 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
+    if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"qq";
         vc.socialPlatformName = wallet.wallet_qq;

@@ -30,4 +30,11 @@
 - (IBAction)agreeBtn:(UIButton *)sender {
     sender.selected = !sender.isSelected;
 }
+
+- (IBAction)areaCodeBtnClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(areaCodeBtnDidClick)]) {
+        [self.delegate areaCodeBtnDidClick];
+    }
+    
+}
 @end

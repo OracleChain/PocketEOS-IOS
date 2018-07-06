@@ -429,6 +429,7 @@
                 <outlet property="versionUpdateBaseView" destination="8I0-Dq-SEK" id="GWL-mt-dlD"/>
                 <outlet property="versionUpdateImageView" destination="AwC-Hc-uqt" id="DgR-T3-bKj"/>
                 <outlet property="voteBaseView" destination="tmG-pY-Z6P" id="mfG-Op-N09"/>
+                <outlet property="voteImageView" destination="sqS-TE-Whw" id="9dZ-8T-QDH"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>

@@ -13,5 +13,11 @@
 /**
  手机号
  */
-@property(nonatomic, strong) NSString *phoneNum;
+@property(nonatomic, copy) NSString *phoneNum;
+
+
+/**
+ 地区识别号 不用传“+”不传默认是86
+ */
+@property(nonatomic, copy) NSString *type;
 @end

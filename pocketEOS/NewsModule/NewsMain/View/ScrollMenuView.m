@@ -31,6 +31,12 @@
     }
     return _menuScrollView;
 }
+- (BaseSlimLineView *)bottomLineView{
+    if (!_bottomLineView) {
+        _bottomLineView = [[BaseSlimLineView alloc] init];
+    }
+    return _bottomLineView;
+}
 - (NSMutableArray *)menuScrollViewBtnArray{
     if (!_menuScrollViewBtnArray) {
         _menuScrollViewBtnArray = [NSMutableArray array];
@@ -72,7 +78,6 @@
         [self.menuScrollViewBtnArray addObject:btn];
         
         UIView *bottomLineView = [[UIView alloc] init];
-        bottomLineView.backgroundColor = HEXCOLOR(0x9B9B9B);
         bottomLineView.tag = btn.tag;
         [_menuScrollView addSubview:bottomLineView];
         
@@ -88,6 +93,9 @@
         lastView = btn;
     }
     _menuScrollView.contentSize = CGSizeMake(totalWidth, MENUSCROLLVIEW_HEIGHT);
+    
+    [self addSubview:self.bottomLineView];
+    self.bottomLineView.sd_layout.leftSpaceToView(self, 0).bottomSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(1);
 }
 
 - (void)menuScrollViewItemBtnClick:(UIButton *)sender{
@@ -102,7 +110,7 @@
         if (lineView.tag == sender.tag) {
             lineView.backgroundColor = HEXCOLOR(0x4F7DFE);
         }else{
-            lineView.backgroundColor = HEXCOLOR(0x9B9B9B);
+            lineView.backgroundColor = [UIColor clearColor];
         }
     }
     

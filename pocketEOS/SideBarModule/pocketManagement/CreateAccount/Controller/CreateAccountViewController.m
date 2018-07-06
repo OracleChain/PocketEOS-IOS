@@ -17,14 +17,12 @@
 #import "CreateAccountRequest.h"
 #import "EosPrivateKey.h"
 #import "ImportAccountViewController.h"
-#import "BBCreateAccountHeaderView.h"
 #import "EOSMappingImportAccountViewController.h"
 #import "RtfBrowserViewController.h"
 #import "BackupAccountViewController.h"
 
-@interface CreateAccountViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, CreateAccountHeaderViewDelegate, LoginPasswordViewDelegate, BBCreateAccountHeaderViewDelegate>
+@interface CreateAccountViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, CreateAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) CreateAccountHeaderView *headerView;
-@property(nonatomic , strong) BBCreateAccountHeaderView *bb_createAccountHeaderView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) CreateAccountService *createAccountService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
@@ -49,20 +47,12 @@
 - (CreateAccountHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"CreateAccountHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT+40, SCREEN_WIDTH, 277);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 277);
         _headerView.delegate = self;
     }
     return _headerView;
 }
 
-- (BBCreateAccountHeaderView *)bb_createAccountHeaderView{
-    if (!_bb_createAccountHeaderView) {
-        _bb_createAccountHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"BBCreateAccountHeaderView" owner:nil options:nil] firstObject];
-        _bb_createAccountHeaderView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 40);
-        _bb_createAccountHeaderView.delegate = self;
-    }
-    return _bb_createAccountHeaderView;
-}
 - (LoginPasswordView *)loginPasswordView{
     if (!_loginPasswordView) {
         _loginPasswordView = [[[NSBundle mainBundle] loadNibNamed:@"LoginPasswordView" owner:nil options:nil] firstObject];
@@ -75,7 +65,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.bb_createAccountHeaderView];
     [self.view addSubview:self.headerView];
     [self configImportAccountBtn];
 }
@@ -212,11 +201,6 @@
 }
 
 
-//BBCreateAccountHeaderViewDelegate
-- (void)createAccountUseEOSPrivateKey{
-    EOSMappingImportAccountViewController *vc = [[EOSMappingImportAccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 
 @end

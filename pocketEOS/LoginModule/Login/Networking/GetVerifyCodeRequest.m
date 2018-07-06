@@ -10,11 +10,13 @@
 
 @implementation GetVerifyCodeRequest
 - (NSString *)requestUrlPath{
-    return [NSString stringWithFormat:@"%@/message/send", REQUEST_PERSONAL_BASEURL];
+    return [NSString stringWithFormat:@"%@/message_push/send_message", REQUEST_MESSAGE_PUSH_BASEURL];
 }
 
 -(id)parameters{
-    
-    return @{@"phoneNum" :VALIDATE_STRING( self.phoneNum)};
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:VALIDATE_STRING( self.phoneNum) forKey:@"phoneNum"];
+    [params setObject:VALIDATE_STRING( self.type) forKey:@"type"];
+    return [params clearEmptyObject];
 }
 @end

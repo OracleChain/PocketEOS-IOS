@@ -15,7 +15,7 @@
 #import "SVProgressHUD.h"
 
 // release 环境
-#define REQUEST_BASEURL @"https://api6.pocketeos.top"
+#define REQUEST_BASEURL @"https://api.pocketeos.top"
 
 // 生产环境
 //#define REQUEST_BASEURL @"http://47.105.50.198"

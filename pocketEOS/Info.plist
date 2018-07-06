@@ -2,6 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>items</key>
+	<array>
+        <dict>
+            
+            <key>kind</key>
+            <string>software-package</string>
+            <key>url</key>
+            <string>https://pocketeos.oss-cn-beijing.aliyuncs.com/app/pocketEos1.5.0.ipa</string>
+            
+        </dict>
+        
+        <dict>
+            
+            <key>kind</key>
+            <string>display-image</string>
+            <key>url</key>
+            <string>https://</string>
+            
+        </dict>
+        
+        <dict>
+            
+            <key>kind</key>
+            <string>full-size-image</string>
+            <key>url</key>
+            <string>https://</string>
+            
+        </dict>
+
+	</array>
+    
+<!--    <dict>-->
+<!--        -->
+<!--        <key>bundle-identifier</key>-->
+<!--        <key>kind</key>-->
+<!--        <string>software-package</string>-->
+<!--        <key>url</key>-->
+<!--        <string>https://</string>-->
+<!--    -->
+<!--        -->
+<!--    </dict>-->
+
+    
+    
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -17,7 +62,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -52,7 +97,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.9</string>
+	<string>0.1</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>

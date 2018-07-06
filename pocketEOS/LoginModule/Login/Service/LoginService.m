@@ -9,6 +9,9 @@
 #import "LoginService.h"
 #import "AuthResult.h"
 #import "Wallet.h"
+#import "UserInfoResult.h"
+#import "UserInfo.h"
+
 
 @implementation LoginService
 
@@ -24,6 +27,13 @@
         _authVerifyCodeRequest = [[AuthVerifyCodeRequest alloc] init];
     }
     return _authVerifyCodeRequest;
+}
+
+- (GetUserInfoRequest *)getUserInfoRequest{
+    if (!_getUserInfoRequest) {
+        _getUserInfoRequest = [[GetUserInfoRequest alloc] init];
+    }
+    return _getUserInfoRequest;
 }
 
 /**
@@ -62,8 +72,14 @@
 - (void)getUserInfo:(CompleteBlock)complete{
     [self.getUserInfoRequest postDataSuccess:^(id DAO, id data) {
         
+        UserInfoResult *result = [UserInfoResult mj_objectWithKeyValues:data];
+        if ([result.code isEqualToNumber:@0]) {
+            complete(result, YES);
+        }else{
+            [TOASTVIEW showWithText:result.message];
+        }
     } failure:^(id DAO, NSError *error) {
-        
+        complete(nil, NO);
     }];
 }
 

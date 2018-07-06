@@ -12,11 +12,13 @@
 // release 环境
 // 请求路径: api_oc_personal || api_oc_blockchain || REQUEST_CONTRACT_BASEURL
 #define REQUEST_REDPACKET_BASEURL @"https://api.pocketeos.top/api_oc_redpacket"
-#define REQUEST_PERSONAL_BASEURL @"https://api6.pocketeos.top/api_oc_personal/v1.0.0"
-#define REQUEST_CANDYSYSTEM_BASEURL @"https://api6.pocketeos.top/api_oc_pe_candy_system"
-#define REQUEST_CONTRACT_BASEURL @"https://api6.pocketeos.top"
-#define REQUEST_BP_BASEURL @"https://api6.pocketeos.top"
+#define REQUEST_PERSONAL_BASEURL @"https://api.pocketeos.top/api_oc_personal/v1.0.0"
+#define REQUEST_CANDYSYSTEM_BASEURL @"https://api.pocketeos.top/api_oc_pe_candy_system"
+#define REQUEST_CONTRACT_BASEURL @"https://api.pocketeos.top"
+#define REQUEST_BP_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_TRANSACTION_RECORDS @"https://history.pocketeos.top"
+#define REQUEST_MESSAGE_PUSH_BASEURL @"http://push.pocketeos.top"
+
 
 
 // 主网环境

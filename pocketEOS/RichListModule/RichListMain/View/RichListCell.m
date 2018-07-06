@@ -50,7 +50,11 @@
 
 -(void)setModel:(Follow *)model{
     _model = model;
-    _titleLabel.text = _model.displayName;
+    if ([model.followType isEqualToNumber:@1]) {
+        _titleLabel.text = [NSString stringWithFormat:@"%@的钱包", _model.displayName];
+    }else if([model.followType isEqualToNumber:@2]){
+        _titleLabel.text = _model.displayName;
+    }
     [_avatarImg sd_setImageWithURL: String_To_URL(model.avatar) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
 }
 

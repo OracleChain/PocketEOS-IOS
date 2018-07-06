@@ -7,7 +7,8 @@
 //
 
 #import "BaseResult.h"
+#import "UserInfo.h"
 
 @interface UserInfoResult : BaseResult
-
+@property(nonatomic , strong) UserInfo *data;
 @end

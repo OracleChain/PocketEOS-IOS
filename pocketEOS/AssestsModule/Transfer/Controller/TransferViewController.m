@@ -34,7 +34,7 @@
 @property(nonatomic, strong) TransferService *mainService;
 @property(nonatomic, strong) AssestsMainService *assestsMainService;
 @property(nonatomic, strong) NSString *currentAccountName;
-@property(nonatomic, strong) NSString *currentAssestsType;
+
 @property(nonatomic, strong) AccountResult *accountResult;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
@@ -117,6 +117,7 @@
     [super viewWillAppear:animated];
     // 设置默认的转账账号及资产
     if (self.transferModel) {
+        
         // 从扫描二维码页面过来
         self.headerView.nameTF.text = self.transferModel.account_name;
         self.headerView.amountTF.text = self.transferModel.money;
@@ -130,8 +131,13 @@
         }
         
     }else{
-        self.currentAssestsType = @"EOS";
-        self.headerView.assestChooserLabel.text = @"EOS";
+        if (!IsStrEmpty(self.currentAssestsType)) {
+            self.headerView.assestChooserLabel.text = self.currentAssestsType;
+        }else{
+            // default
+            self.currentAssestsType = @"EOS";
+            self.headerView.assestChooserLabel.text = @"EOS";
+        }
     }
     [self textFieldChange:nil];
     self.currentAccountName = self.accountName;
@@ -169,10 +175,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
     self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
     NSString *contractName;
-    self.currentAssestsType = @"EOS";
-    if ([self.currentAssestsType isEqualToString:@"EOS" ]) {
+    if (!IsStrEmpty(self.currentAssestsType)) {
+        self.headerView.assestChooserLabel.text = self.currentAssestsType;
+    }else{
+        // default
+        self.currentAssestsType = @"EOS";
+        self.headerView.assestChooserLabel.text = @"EOS";
+    }
+    if ([self.currentAssestsType isEqualToString:@"EOS"]){
         contractName = ContractName_EOSIOTOKEN;
-    }else if ([self.currentAssestsType isEqualToString:@"OCT" ]){
+    }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
         contractName = ContractName_OCTOTHEMOON;
     }
     self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];

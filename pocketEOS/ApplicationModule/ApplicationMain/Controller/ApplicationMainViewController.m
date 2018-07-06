@@ -159,10 +159,7 @@
     Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
     
     if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-//        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-        vc.model = model;
+        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];

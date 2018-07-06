@@ -356,34 +356,12 @@
     }
 }
 
-// AssestsDetailHeaderView Delegate
-- (void)transferBtnDidClick{
-    TransferViewController *vc = [[TransferViewController alloc] init];
-    vc.accountName = self.accountName;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)recieveBtnDidClick{
-    RecieveViewController *vc = [[RecieveViewController alloc] init];
-    vc.accountName = self.accountName;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-- (void)redPacketBtnDidClick{
-    RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-
 //AssestDetailFooterViewDelegate
 - (void)assestsDetailFooterViewDidClick:(UIButton *)sender{
     if (sender.tag == 1000) {
         TransferViewController *vc = [[TransferViewController alloc] init];
         vc.accountName = self.accountName;
-        TransferModel *model = [[TransferModel alloc] init];
-        model.account_name = self.accountName;
-        model.coin = self.currentAssestsType;
-        vc.transferModel = model;
+        vc.currentAssestsType = self.currentAssestsType;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1001){
         RecieveViewController *vc = [[RecieveViewController alloc] init];

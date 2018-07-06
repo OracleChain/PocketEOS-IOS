@@ -213,7 +213,6 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%.6f", scrollView.contentOffset.y);
     WS(weakSelf);
     if (scrollView.contentOffset.y > CYCLESCROLLVIEW_HEIGHT) {
         [UIView animateWithDuration:1 animations:^{

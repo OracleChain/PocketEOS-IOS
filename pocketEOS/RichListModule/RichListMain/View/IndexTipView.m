@@ -10,7 +10,7 @@
 
 @interface IndexTipView()
 @property(nonatomic, strong) UIImageView *ovalImg;
-@property(nonatomic, strong) UILabel *titleLabel;
+@property(nonatomic, strong) BaseLabel *titleLabel;
 @end
 
 
@@ -24,9 +24,9 @@
     }
     return _ovalImg;
 }
-- (UILabel *)titleLabel{
+- (BaseLabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
+        _titleLabel = [[BaseLabel alloc] init];
         _titleLabel.frame = CGRectMake(0, 0, 40, 33);
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.font = [UIFont systemFontOfSize:20];

@@ -442,7 +442,6 @@
 - (void)copyBtnDidClick:(UIButton *)sender{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.exportPrivateKeyView.contentTextView.text;
-    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功!", nil)];
 }
 
 // NavigationViewDelegate
