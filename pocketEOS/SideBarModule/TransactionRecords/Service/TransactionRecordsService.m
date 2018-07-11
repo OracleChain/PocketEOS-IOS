@@ -17,7 +17,7 @@
 @property(nonatomic, strong) NSMutableArray *redPacketTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *sendTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *recieveTransactionResponseArray;
-
+@property(nonatomic , assign) NSUInteger page;
 @end
 
 
@@ -100,10 +100,11 @@
 
 - (void)buildDataSource:(CompleteBlock)complete{
     WS(weakSelf);
-    self.getTransactionRecordsRequest.page = @(0);
+    _page = 0;
+    self.getTransactionRecordsRequest.page = @(_page);
     self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_15);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-        NSLog(@"%@", data);
+//        NSLog(@"%@", data);
         [weakSelf.dataSourceArray removeAllObjects];
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
@@ -171,10 +172,11 @@
 - (void)buildNextPageDataSource:(CompleteBlock)complete{
     
     WS(weakSelf);
-    self.getTransactionRecordsRequest.page = @(self.dataSourceArray.count);
+    _page +=1;
+    self.getTransactionRecordsRequest.page = @(_page);
     self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_15);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-        NSLog(@"%@", data);
+//        NSLog(@"%@", data);
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
         [weakSelf.octTransactionResponseArray removeAllObjects];

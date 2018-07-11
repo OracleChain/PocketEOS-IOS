@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "确认赎回"; ObjectID = "2Z6-IY-0gU"; */
+"2Z6-IY-0gU.normalTitle" = "Unstake";
+
+/* Class = "UILabel"; text = "目前暂不支持调整赎回额度。\n为保证账户可用，1EOS以下的抵押额度暂无法赎回，请知悉。"; ObjectID = "CQw-lr-FOx"; */
+"CQw-lr-FOx.text" = "Couldn't set amount to unstake now. 1 EOS and below couldn't be unstake for stable usage.";
+
+/* Class = "UILabel"; text = "赎回CPU额度 "; ObjectID = "sn5-fy-qdD"; */
+"sn5-fy-qdD.text" = "CPU BW ";
+
+/* Class = "UILabel"; text = "赎回net额度  "; ObjectID = "zba-0d-TkE"; */
+"zba-0d-TkE.text" = "NET BW  ";

@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "确定录入"; ObjectID = "WMY-JT-EcZ"; */
+"WMY-JT-EcZ.normalTitle" = "确定录入";
+
+/* Class = "UITextField"; placeholder = "私钥"; ObjectID = "aYz-bj-ZV1"; */
+"aYz-bj-ZV1.placeholder" = "私钥";
+
+/* Class = "UILabel"; text = "输入映射的EOS私钥"; ObjectID = "g7L-cB-RU5"; */
+"g7L-cB-RU5.text" = "输入映射的EOS私钥";

@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "    交易历史"; ObjectID = "5KL-o6-YHw"; */
+"5KL-o6-YHw.text" = "    交易历史";
+
+/* Class = "UIButton"; normalTitle = "生成收款二维码"; ObjectID = "Ocb-6Z-yYt"; */
+"Ocb-6Z-yYt.normalTitle" = "生成收款二维码";
+
+/* Class = "UITextField"; placeholder = "填写数额"; ObjectID = "icK-vt-TuD"; */
+"icK-vt-TuD.placeholder" = "填写数额";
+
+/* Class = "UILabel"; text = "≈***CNY"; ObjectID = "nSz-Dy-8MG"; */
+"nSz-Dy-8MG.text" = "≈***CNY";
+
+/* Class = "UILabel"; text = "资产数量"; ObjectID = "wP6-0R-uxW"; */
+"wP6-0R-uxW.text" = "资产数量";

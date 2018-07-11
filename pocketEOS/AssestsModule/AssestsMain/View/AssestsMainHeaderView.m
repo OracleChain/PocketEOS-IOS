@@ -58,10 +58,16 @@
 }
 
 - (IBAction)redPacketBtnDidClick:(UIButton *)sender {
-    if (!self.redPacketBtnDidClickBlock) {
+    if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"请移步至社交模式", nil)];
         return;
+    }else{
+        if (!self.redPacketBtnDidClickBlock) {
+            return;
+        }
+        self.redPacketBtnDidClickBlock();
+        
     }
-    self.redPacketBtnDidClickBlock();
 }
 
 - (IBAction)totalAssestVisible:(UIButton *)sender {
@@ -86,9 +92,9 @@
         nameStr = wallet.wallet_name ;
     }
     if (nameStr.length > 0) {
-        self.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), VALIDATE_STRING(nameStr)];
+        self.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(nameStr), NSLocalizedString(@"的钱包", nil)];
     }else{
-        self.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"***的钱包", nil)];
+        self.userNameLabel.text = [NSString stringWithFormat: @"***%@", NSLocalizedString(@"的钱包", nil)];
     }
     
     NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];

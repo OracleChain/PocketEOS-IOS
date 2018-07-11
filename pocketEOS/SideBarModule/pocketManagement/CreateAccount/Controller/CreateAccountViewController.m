@@ -169,18 +169,11 @@
                 model.account_active_private_key = [AESCrypt encrypt:activePrivateKey.eosPrivateKey password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 model.account_owner_private_key = [AESCrypt encrypt:ownerPrivateKey.eosPrivateKey password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 model.is_privacy_policy = @"0";
-                NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
-                if (accountsArr.count == 0) {
-                    model.is_main_account = @"1";
-                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , model.account_name, CURRENT_WALLET_UID]];
-                }else{
-                    model.is_main_account = @"0";
-                }
-                
                 [[AccountsTableManager accountTable] addRecord: model];
+                [WalletUtil setMainAccountWithAccountInfoModel:model];
+                
                 
                 BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
-                
                 if (weakSelf.createAccountViewControllerFromVC == CreateAccountViewControllerFromCreatePocketVC) {
                     vc.backupAccountViewControllerFromVC = BackupAccountViewControllerFromCreatePocketVC;
                 }else if(weakSelf.createAccountViewControllerFromVC == CreateAccountViewControllerFromPocketManagementVC){

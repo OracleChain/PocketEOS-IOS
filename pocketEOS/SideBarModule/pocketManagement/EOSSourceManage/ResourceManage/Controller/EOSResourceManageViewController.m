@@ -84,14 +84,14 @@
         if (isSuccess) {
             if (weakSelf.mainService.dataSourceArray.count >= 2) {
                 BandwidthManageViewController *vc1 = [[BandwidthManageViewController alloc]init];
-                vc1.title = @"带宽管理";
+                vc1.title = NSLocalizedString(@"带宽管理", nil);
                 vc1.navigationController = self.navigationController;
                 vc1.accountResult = weakSelf.currentAccountResult;
                 [vc1.navigationController.navigationBar setHidden: YES];
                 [_allVC addObject:vc1];
                 
                 StorageManageViewController *vc2 = [[StorageManageViewController alloc]init];
-                vc2.title = @"存储管理";
+                vc2.title = NSLocalizedString(@"存储管理", nil);
                 vc2.navigationController = self.navigationController;
                 [vc2.navigationController.navigationBar setHidden: YES];
                 vc2.accountResult = weakSelf.currentAccountResult;

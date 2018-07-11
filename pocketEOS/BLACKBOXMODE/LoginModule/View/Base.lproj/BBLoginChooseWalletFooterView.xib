@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BBLoginChooseWalletFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEw-9v-7XG">
+                    <rect key="frame" x="20" y="30" width="335" height="46"/>
+                    <color key="backgroundColor" red="0.10980392156862745" green="0.11372549019607843" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="35e-jQ-Qgj"/>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="confirmBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="G9s-v0-ujn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfR-K6-qpQ">
+                    <rect key="frame" x="67.5" y="107" width="100" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="DrF-5E-tOP"/>
+                        <constraint firstAttribute="height" constant="13" id="hVy-DG-Eeo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="创建一个新钱包">
+                        <color key="titleColor" red="0.12156862745098039" green="0.14509803921568626" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="createBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="BuR-CE-jlr"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spd-Xe-odm">
+                    <rect key="frame" x="208" y="107" width="150" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="Pkl-x2-ulb"/>
+                        <constraint firstAttribute="width" constant="150" id="ctG-I1-xdt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="什么是黑匣子模式？">
+                        <color key="titleColor" red="0.1215686275" green="0.1450980392" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="explainBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Src-JI-FbL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXq-eb-XSH">
+                    <rect key="frame" x="20" y="86" width="12" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="EON-2R-rKe"/>
+                        <constraint firstAttribute="width" constant="12" id="p5l-sY-yZw"/>
+                    </constraints>
+                    <state key="normal" image="rectangle_selected.png"/>
+                    <state key="selected" image="rectangle_UnSelected.png"/>
+                    <connections>
+                        <action selector="agreeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="GJF-Tf-VaZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgV-2d-Per">
+                    <rect key="frame" x="37" y="86" width="239" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="Dg5-u8-iEa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="我已仔细阅读并同意用户协议及隐私政策">
+                        <color key="titleColor" red="0.12156862745098039" green="0.14509803921568626" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="privacyPolicy:" destination="iN0-l3-epB" eventType="touchUpInside" id="nQG-6f-UKy"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2EX-lh-yBb">
+                    <rect key="frame" x="187.5" y="106" width="0.5" height="15"/>
+                    <color key="backgroundColor" red="0.12156862745098039" green="0.14509803921568626" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="Dxr-E3-JOU"/>
+                        <constraint firstAttribute="width" constant="0.5" id="VGJ-8v-fYi"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uEw-9v-7XG" secondAttribute="trailing" constant="20" id="04E-18-kvf"/>
+                <constraint firstItem="spd-Xe-odm" firstAttribute="leading" secondItem="2EX-lh-yBb" secondAttribute="trailing" constant="20" id="8eh-Cx-h2d"/>
+                <constraint firstItem="uEw-9v-7XG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="CoJ-Yp-Hyd"/>
+                <constraint firstItem="dgV-2d-Per" firstAttribute="top" secondItem="uEw-9v-7XG" secondAttribute="bottom" constant="10" id="Gi4-WB-AKy"/>
+                <constraint firstAttribute="bottom" secondItem="nfR-K6-qpQ" secondAttribute="bottom" constant="20" id="KY7-w5-MVx"/>
+                <constraint firstAttribute="bottom" secondItem="spd-Xe-odm" secondAttribute="bottom" constant="20" id="Mgp-Fn-d4Z"/>
+                <constraint firstItem="2EX-lh-yBb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="N4z-NH-QQz"/>
+                <constraint firstItem="kXq-eb-XSH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="P95-4F-INg"/>
+                <constraint firstItem="2EX-lh-yBb" firstAttribute="leading" secondItem="nfR-K6-qpQ" secondAttribute="trailing" constant="20" id="ahg-aD-I26"/>
+                <constraint firstItem="uEw-9v-7XG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="cpF-8n-DWT"/>
+                <constraint firstItem="2EX-lh-yBb" firstAttribute="centerY" secondItem="nfR-K6-qpQ" secondAttribute="centerY" id="dIz-ec-eYi"/>
+                <constraint firstItem="dgV-2d-Per" firstAttribute="leading" secondItem="kXq-eb-XSH" secondAttribute="trailing" constant="5" id="nnO-61-jwA"/>
+                <constraint firstItem="kXq-eb-XSH" firstAttribute="top" secondItem="uEw-9v-7XG" secondAttribute="bottom" constant="10" id="qNF-vF-1ao"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="agreeTermBtn" destination="kXq-eb-XSH" id="4Ns-Yq-EAZ"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="rectangle_UnSelected.png" width="12" height="12"/>
+        <image name="rectangle_selected.png" width="12" height="12"/>
+    </resources>
+</document>

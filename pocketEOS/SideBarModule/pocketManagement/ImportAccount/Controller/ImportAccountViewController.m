@@ -220,20 +220,17 @@
                 accountInfo.account_owner_private_key = [AESCrypt encrypt:weakSelf.headerView.private_ownerKey_TF.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 accountInfo.account_active_private_key = [AESCrypt encrypt:weakSelf.headerView.private_activeKey_tf.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                  accountInfo.is_privacy_policy = @"0";
-                NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-                if (accountArray.count > 0) {
-                    accountInfo.is_main_account = @"0";
-                }else{
-                    accountInfo.is_main_account = @"1";
-                }
                 
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
+                [WalletUtil setMainAccountWithAccountInfoModel:accountInfo];
+                
+                
                 [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
                 weakSelf.backupEOSAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
                 weakSelf.backupEOSAccountService.backupEosAccountRequest.eosAccountName = accountInfo.account_name;
                 [weakSelf.backupEOSAccountService backupAccount:^(id service, BOOL isSuccess) {
                     if (isSuccess) {
-                        NSLog(@"备份到服务成功!");
+                        NSLog(@"备份到服务器成功!");
                     }
                 }];
                 

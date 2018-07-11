@@ -1,0 +1,12 @@
+/* Class = "UIButton"; normalTitle = "私钥"; ObjectID = "J2F-lV-jFi"; */
+"J2F-lV-jFi.normalTitle" = "私钥";
+
+/* Class = "UILabel"; text = "警告：私钥未经加密，请妥善保管"; ObjectID = "Oip-wa-hXB"; */
+"Oip-wa-hXB.text" = "警告：私钥未经加密，请妥善保管";
+
+/* Class = "UILabel"; text = "导出私钥"; ObjectID = "SPF-LZ-qo2"; */
+"SPF-LZ-qo2.text" = "导出私钥";
+
+/* Class = "UIButton"; normalTitle = "二维码"; ObjectID = "mCj-nC-IX7"; */
+"mCj-nC-IX7.normalTitle" = "二维码";
+

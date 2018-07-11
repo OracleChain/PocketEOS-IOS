@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "≈***CNY"; ObjectID = "65b-Pc-RIc"; */
+"65b-Pc-RIc.text" = "≈***CNY";
+
+/* Class = "UILabel"; text = "金额"; ObjectID = "LzN-Yh-EGZ"; */
+"LzN-Yh-EGZ.text" = "金额";
+
+/* Class = "UILabel"; text = "收币人"; ObjectID = "NbU-1e-Wp4"; */
+"NbU-1e-Wp4.text" = "收币人";
+
+/* Class = "UITextField"; placeholder = "填写账号"; ObjectID = "Seu-Yq-Erj"; */
+"Seu-Yq-Erj.placeholder" = "填写账号";
+
+/* Class = "UILabel"; text = "交易历史"; ObjectID = "b5d-sv-Nog"; */
+"b5d-sv-Nog.text" = "交易历史";
+
+/* Class = "UITextField"; placeholder = "填写数额"; ObjectID = "l6b-nZ-tNZ"; */
+"l6b-nZ-tNZ.placeholder" = "填写数额";
+
+/* Class = "UIButton"; normalTitle = "确认转账"; ObjectID = "psz-5U-798"; */
+"psz-5U-798.normalTitle" = "确认转账";
+
+/* Class = "UILabel"; text = "可用余额"; ObjectID = "qTm-s9-u4X"; */
+"qTm-s9-u4X.text" = "可用余额";

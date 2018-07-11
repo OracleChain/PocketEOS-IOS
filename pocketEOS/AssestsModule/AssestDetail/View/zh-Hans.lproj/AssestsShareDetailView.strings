@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "------来自Pocket  EOS------"; ObjectID = "Mho-aC-mdt"; */
+"Mho-aC-mdt.text" = "------来自Pocket  EOS------";
+
+/* Class = "UILabel"; text = "24h涨跌："; ObjectID = "MnY-s3-GmM"; */
+"MnY-s3-GmM.text" = "24h涨跌：";
+
+/* Class = "UILabel"; text = "总市值："; ObjectID = "VwG-H7-SnN"; */
+"VwG-H7-SnN.text" = "总市值：";
+
+/* Class = "UILabel"; text = "参考价格："; ObjectID = "hrH-UZ-hwe"; */
+"hrH-UZ-hwe.text" = "参考价格：";

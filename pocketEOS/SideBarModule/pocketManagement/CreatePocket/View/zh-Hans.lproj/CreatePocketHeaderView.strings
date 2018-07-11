@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "确认密码"; ObjectID = "M6I-r1-85M"; */
+"M6I-r1-85M.text" = "确认密码";
+
+/* Class = "UILabel"; text = "请输入钱包名称"; ObjectID = "Ohf-l8-RPB"; */
+"Ohf-l8-RPB.text" = "请输入钱包名称";
+
+/* Class = "UITextField"; placeholder = "名称"; ObjectID = "duc-9i-g0k"; */
+"duc-9i-g0k.placeholder" = "名称";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "jfN-m3-LXv"; */
+"jfN-m3-LXv.text" = "密码";
+
+/* Class = "UITextField"; placeholder = "输入密码"; ObjectID = "kai-wW-ZHL"; */
+"kai-wW-ZHL.placeholder" = "输入密码";
+
+/* Class = "UIButton"; normalTitle = "创 建"; ObjectID = "nSb-Gm-wMp"; */
+"nSb-Gm-wMp.normalTitle" = "创 建";
+
+/* Class = "UIButton"; normalTitle = "我已仔细阅读并同意用户协议及隐私政策"; ObjectID = "pEz-hD-pfP"; */
+"pEz-hD-pfP.normalTitle" = "我已仔细阅读并同意用户协议及隐私政策";
+
+/* Class = "UITextField"; placeholder = "再次输入密码"; ObjectID = "pzx-CS-Da9"; */
+"pzx-CS-Da9.placeholder" = "再次输入密码";

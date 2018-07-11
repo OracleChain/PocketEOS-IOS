@@ -194,7 +194,7 @@
     }
     [self.view addSubview:self.askQuestionTipView];
     
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:NSLocalizedString(@"发布此问题将消费您 %@ OCT ", nil), self.headerView.amountTF.text]];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat: @"%@ %@ OCT ", NSLocalizedString(@"发布此问题将消费您", nil), self.headerView.amountTF.text]];
     [attrString addAttribute:NSForegroundColorAttributeName
                        value:HEXCOLOR(0x2A2A2A)
                        range:NSMakeRange(0, 9)];

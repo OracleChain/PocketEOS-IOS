@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "企业推荐应用"; ObjectID = "VgH-0Z-tsi"; */
+"VgH-0Z-tsi.text" = "Weekly Top Dapps";
+
+/* Class = "UILabel"; text = "企业应用简介"; ObjectID = "adL-vb-bI5"; */
+"adL-vb-bI5.text" = "Introduce";
+
+/* Class = "UILabel"; text = "企业应用"; ObjectID = "pf4-Me-Uxp"; */
+"pf4-Me-Uxp.text" = "Dapps from enterprise";

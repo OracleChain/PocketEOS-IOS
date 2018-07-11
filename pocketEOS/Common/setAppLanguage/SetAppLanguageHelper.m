@@ -36,6 +36,11 @@ static NSString *const kUserLanguage = @"kUserLanguage";
                 
                 NSArray *languages = [[NSBundle mainBundle] preferredLocalizations];
                 
+                NSUserDefaults* default1 = [NSUserDefaults standardUserDefaults];
+                NSArray* languages1 = [default1 objectForKey:@"AppleLanguages"];
+                NSString* preferredLang = [languages1 objectAtIndex:0];
+                NSLog(@"Preferred Language:%@", preferredLang);
+                
                 NSString *systemLanguage = languages.firstObject;
                 
                 userLanguage = systemLanguage;
@@ -63,7 +68,7 @@ static NSString *const kUserLanguage = @"kUserLanguage";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSString *userLanguage = [defaults valueForKey:kUserLanguage];
-    userLanguage = @"zh-Hant";
+//    userLanguage = @"zh-Hant";
     if (userLanguage.length == 0) {
         
         NSArray *languages = [[NSBundle mainBundle] preferredLocalizations];

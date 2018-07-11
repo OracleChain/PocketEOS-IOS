@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "总资产(￥)"; ObjectID = "6w9-Qs-9bF"; */
+"6w9-Qs-9bF.text" = "ASSESTS(￥)";
+
+/* Class = "UILabel"; text = "发起收款"; ObjectID = "BFN-RU-aex"; */
+"BFN-RU-aex.text" = "Recieve";
+
+/* Class = "UILabel"; text = "发送红包"; ObjectID = "Qa0-DQ-L5O"; */
+"Qa0-DQ-L5O.text" = "Red Packets";
+
+/* Class = "UILabel"; text = "发起转账"; ObjectID = "T9L-La-SPP"; */
+"T9L-La-SPP.text" = "Send";

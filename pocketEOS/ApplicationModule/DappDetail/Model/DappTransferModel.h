@@ -13,5 +13,4 @@
 @property(nonatomic , copy) NSString *to;
 @property(nonatomic , copy) NSString *quantity;
 @property(nonatomic , copy) NSString *memo;
-@property(nonatomic , copy) NSString *serialNumber;
 @end

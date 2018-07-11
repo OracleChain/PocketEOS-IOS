@@ -6,511 +6,588 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //*/
 
-///*
-// CDZPicker.m
-// */
-//"确定"="Confirm";
-//"取消"="Cancle";
-//
-///*
-// UnStakeEOSViewController.m
-// */
-//"赎回EOS"="赎回EOS";
-//"确认赎回"="确认赎回";
-//"无法赎回"="无法赎回";
-//"密码输入错误!"="密码输入错误!";
-//"无法赎回!"="无法赎回!";
-//"本地无此账号!"="本地无此账号!";
-//"赎回成功!"="赎回成功!";
-//
-///*
-// AssestsDetailViewController.m
-// */
-//"资产"="Assets";
-//"微信好友"="WeChat";
-//"朋友圈"="Moments";
-//"QQ好友"="QQ";
-//"QQ空间"="QZone";
-//"额(24h)%@CNY"="额(24h)%@CNY";
-//"EOS最新咨询详情"="EOS最新咨询详情";
-//"OCT最新咨询详情"="OCT最新咨询详情";
-//"参考价格%@\n24小时涨跌幅%@\n总市值¥%@\n"="参考价格%@\n24小时涨跌幅%@\n总市值¥%@\n";
-//
-///*
-// AssestDetailFooterView.m
-// */
-//"发起转账"="Send";
-//"发起收款"="Receive";
-//"发送红包"="RedPackets";
-//
-///*
-// AssestsMainViewController.m
-// */
-//"%@的钱包"="%@的钱包";
-//"用户第一次同意了访问相机权限 - - %@"="用户第一次同意了访问相机权限 - - %@";
-//"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关"="请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关";
-//"因为系统原因, 无法访问相册"="因为系统原因, 无法访问相册";
-//"未检测到您的摄像头"="未检测到您的摄像头";
-//
-///*
-// AssestsMainHeaderView.m
-// */
-//"***的钱包"="***的钱包";
-//"没有账号"="没有账号";
-//
-///*
-// AssestsMainTableViewCell.m
-// */
-//"现价"="NowPrice";
-//
-///*
-// TransferViewController.m
-// */
-//"资产转账"="Send";
-//"转账成功"="Transferred!";
-//
-///*
-// TransferHeaderView.m
-// */
-//"恭喜发财, 大吉大利"="Best wishes!";
-//
-///*
-// TransferService.m
-// */
-//"未找到账号的私钥!"="未找到账号的私钥!";
-//
-///*
-// RecieveViewController.m
-// */
-//"资产收款"="Receive";
-//
-///*
-// ForwardRedPacketViewController.m
-// */
-//"红包已封口!"="Red Packets are Ready!";
-//"%@个红包，共%@%@"="%@个红包，共%@%@";
-//"恭喜发财，大吉大利"="Best wishes!";
-//"继续发送红包"="Send Red Packet to More Friends";
-//
-///*
-// RedPacketViewController.m
-// */
-//"发红包"="Send Red Packets";
-//"发送%@个%@给%@个人，%@"="发送%@个%@给%@个人，%@";
-//"全部被领取"="全部被领取";
-//"剩余%@个未被领取"="剩余%@个未被领取";
-//"领取%@个%@"="领取%@个%@";
-//"余额不足!"="余额不足!";
-//"转账到oc.redpacket成功!"="转账到oc.redpacket成功!";
-//
-///*
-// ChangeAccountViewController.m
-// */
-//"切换账号"="Switch";
-//
-///*
-// BindPhoneNumberViewController.m
-// */
-//"绑定手机号"="Bind Mobile Phone";
-//"手机号格式有误!"="手机号格式有误!";
-//"请勾选同意条款!"="请勾选同意条款!";
-//"验证码格式有误!"="验证码格式有误!";
-//"没有 wallet"="没有 wallet";
-//"获取验证码"="Get Verification Code";
-//"%@秒后重新发送"="%@秒后重新发送";
-//
-///*
-// BBLoginViewController.m
-// */
-//"请选择钱包:"="Select a wallet:";
-//"钱包名称不能为空!"="钱包名称不能为空!";
-//"密码不能为空!"="密码不能为空!";
-//"两次输入的密码不一致!"="两次输入的密码不一致!";
-//"本地钱包名不可重复!"="本地钱包名不可重复!";
-//
-///*
-// EOSMappingImportAccountViewController.m
-// */
-//"映射账号录入"="I have Private Key(s) from EOS Registration";
-//"输入框不能为空!"="输入框不能为空!";
-//"私钥格式有误!"="私钥格式有误!";
-//"本地钱包已存在该账号!"="本地钱包已存在该账号!";
-//"映射账号录入成功!"="映射账号录入成功!";
-//"未查到对应账号!"="未查到对应账号!";
-//
-///*
-// SocialManager.m
-// */
-//"用户取消登录"="用户取消登录";
-//"qq登录失败"="qq登录失败";
-//"无网络连接，请设置网络"="无网络连接，请设置网络";
-//"微信认证失败"="微信认证失败";
-//
-///*
-// SideBarViewController.m
-// */
-//"******的钱包"="******的钱包";
-//
-///*
-// VersionUpdateViewController.m
-// */
-//"版本更新"="Versions";
-//"版本: %@"="版本: %@";
-//"有新版・"="有新版・";
-//"无新版"="Your PE is uptodate!";
-//
-///*
-// VersionUpdateTipView.m
-// */
-//"跳过"="Skip";
-//"立即更新"="立即更新";
-//
-///*
-// TransactionRecordsViewController.m
-// */
-//"交易记录"="Tx History";
-//"暂无数据"="Nothing here";
-//
-///*
-// TransactionRecordTableViewCell.m
-// */
-//"红包入账"="红包入账";
-//"发出红包"="发出红包";
-//"发送给%@"="发送给%@";
-//"接受自%@"="接受自%@";
-//"所在区块:%@"="所在区块:%@";
-//"成功"="成功";
-//
-///*
-// CandyMainViewController.m
-// */
-//"糖果积分"="糖果积分";
-//
-///*
-// CandyMainTableViewCell.m
-// */
-//"已完成"="Done";
-//"未完成"="Undone";
-//
-///*
-// MessageFeedbackViewController.m
-// */
-//"意见反馈"="Feedbacks";
-//"提交"="Submit";
-//
-///*
-// LanguageSettingViewController.m
-// */
-//"语言"="Language";
-//"语言切换中"="Changing Language...";
-//
-///*
-// SystemSettingViewController.m
-// */
-//"系统设置"="Settings";
-//"消息反馈"="Feedbacks";
-//"清空缓存"="清空缓存";
-//"法律条款与隐私政策"="Term of Usage and Privacy Policy";
-//"关于Pocket EOS"="About Pocket EOS";
-//"清理成功~"="Cleared~";
-//
-///*
-// LanguageSettingService.m
-// */
-//"中文"="Chinese";
-//
-///*
-// MessageCenterViewController.m
-// */
-//"消息中心"="Notifications";
-//
-///*
-// BackupAccountViewController.m
-// */
-//"备份EOS账号"="备份EOS账号";
-//
-///*
-// BPAgentVoteViewController.m
-// */
-//"代理投票"="代理投票";
-//"什么是投票权代理?"="什么是投票权代理?";
-//
-///*
-// BPVoteAmountHeaderView.m
-// */
-//"主网启动后, 方可设置投票数量!"="主网启动后, 方可设置投票数量!";
-//
-///*
-// BPVoteAmountViewController.m
-// */
-//"节点投票"="节点投票";
-//"%.4f亿票"="%.4f亿票";
-//"说明该账号还没注册到投票体统"="说明该账号还没注册到投票体统";
-//"该账号已经注册到投票体统"="该账号已经注册到投票体统";
-//"当前既没有追加, 余额也为零"="当前既没有追加, 余额也为零";
-//"投票成功!"="投票成功!";
-//"确认投票"="确认投票";
-//
-///*
-// BPCandidateTableViewCell.m
-// */
-//"%.2f亿票"="%.2f亿票";
-//
-///*
-// BPCandidateListViewController.m
-// */
-//"投票规则"="投票规则";
-//"链接地址有误!"="链接地址有误!";
-//"已选择%ld个，还可以选择%ld个"="已选择%ld个，还可以选择%ld个";
-//"至少选择一个投票节点!"="至少选择一个投票节点!";
-//
-///*
-// BPRecommendAgentViewController.m
-// */
-//"推荐代理人"="推荐代理人";
-//
-///*
-// BPVoteHeaderView.m
-// */
-//"已代理给ORACLECHAIN"="已代理给ORACLECHAIN";
-//"余额 : %@EOS"="余额 : %@EOS";
-//
-///*
-// BPVoteViewController.m
-// */
-//"去投票"="去投票";
-//"委托投票"="委托投票";
-//"投票功能将在EOS主网上线开启，敬请关注"="投票功能将在EOS主网上线开启，敬请关注";
-//"暂无账号!"="暂无账号!";
-//
-///*
-// CreatePocketViewController.m
-// */
-//"创建钱包"="Create My Wallet";
-//"如果已有钱包，请点击这里导入"="如果已有钱包，请点击这里导入";
-//
-///*
-// ImportPocketViewController.m
-// */
-//"导入钱包"="Import Wallet";
-//"导入成功!"="Import Success!";
-//"导入失败!"="Import Fail!";
-//
-///*
-// CreateAccountViewController.m
-// */
-//"创建新账号"="创建新账号";
-//"由小写字母开头的12位字符，只能由小写字母a~z和数字1~5组成。"="由小写字母开头的12位字符，只能由小写字母a~z和数字1~5组成。";
-//"创建账号成功!"="创建账号成功!";
-//"给用户添加新的eos账号到服务器成功!"="给用户添加新的eos账号到服务器成功!";
-//"如果已有账号，请点击这里导入"="如果已有账号，请点击这里导入";
-//
-///*
-// PocketManagementViewController.m
-// */
-//"钱包管理"="Wallet Management";
-//"保护隐私"="Privacy Protection";
-//"    其他账号"="    Other accounts";
-//"输入不能为空!"="输入不能为空!";
-//"原始密码输入有误!"="原始密码输入有误!";
-//"修改密码成功!"="修改密码成功!";
-//
-///*
-// PocketManagementHeaderView.m
-// */
-//"1. 请务必备份好自己的钱包，或单分别导出账号（明文）妥善保管\n2.账号私钥将被加密保管在手机里\n3.选择远程托管将把加密的账号备份至pE的服务器\n4.选择保护隐私，别人将无法通过钱包名称查到此账号\n5.当更换手机时，请务必销毁钱包"="1.Do backup your wallet or export private keys for each account, and keep them safely. \n2. Your private keys are stored in local and be encrypted by your wallet password. \n3.If you don't want others find your by your wallet name, please active Privacy Protection. \n4.Your wallet MUST be burned away when you stop using this device. ";
-//
-///*
-// PocketManagementService.m
-// */
-//"通知服务器设置主账号成功!"="通知服务器设置主账号成功!";
-//
-///*
-// AccountManagementViewController.m
-// */
-//"滑动删除账号"="Slide to Block Up This Account";
-//"将滑块滑动到右侧指定位置内即可解锁"="将滑块滑动到右侧指定位置内即可解锁";
-//"    将二维码分享到"="    将二维码分享到";
-//"设置主账号成功!"="设置主账号成功!";
-//"删除账号成功!"="删除账号成功!";
-//"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~"="检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~";
-//"复制成功!"="复制成功!";
-//
-///*
-// ImportAccountViewController.m
-// */
-//"导入新账号"="导入新账号";
-//"您的账号名不匹配!^[1-5a-z]{7,13}$"="您的账号名不匹配!^[1-5a-z]{7,13}$";
-//"导入账号成功!"="导入账号成功!";
-//"导入的私钥不匹配!"="导入的私钥不匹配!";
-//
-///*
-// PersonalSettingViewController.m
-// */
-//"滑动销毁钱包"="滑动销毁钱包";
-//"个人设置"="个人设置";
-//"未绑定微信"="未绑定微信";
-//"未绑定QQ"="未绑定QQ";
-//"我的相册"="我的相册";
-//"拍照"="拍照";
-//"名字"="名字";
-//
-///*
-// UnBindSocialPlatformViewController.m
-// */
-//"解绑微信"="解绑微信";
-//"解绑QQ"="解绑QQ";
-//"绑定微信号%@"="绑定微信号%@";
-//"绑定QQ号%@"="绑定QQ号%@";
-//
-///*
-// PersonnalSettingDetailViewController.m
-// */
-//"保存"="保存";
-//
-///*
-// BindSocialPlatformViewController.m
-// */
-//"绑定微信"="绑定微信";
-//"绑定QQ"="绑定QQ";
-//"您还没有绑定微信号"="您还没有绑定微信号";
-//"绑定微信号可以关联您的资产"="绑定微信号可以关联您的XX资产";
-//"绑定微信号"="绑定微信号";
-//"您还没有绑定QQ号"="您还没有绑定QQ号";
-//"绑定QQ号可以关联您的XX资产"="绑定QQ号可以关联您的XX资产";
-//"绑定QQ号"="绑定QQ号";
-//
-///*
-// BaseHttpsNetworkRequest.m
-// */
-//"请求超时, 请稍后再试!"="请求超时, 请稍后再试!";
-//"字符串%@"="字符串%@";
-//
-///*
-// ScanQRCodeViewController.m
-// */
-//"扫一扫"="扫一扫";
-//"相册"="相册";
-//"图片选择控制器读取图片二维码信息失败的回调函数"="图片选择控制器读取图片二维码信息失败的回调函数";
-//"暂未识别出扫描的二维码"="暂未识别出扫描的二维码";
-//"将二维码/条码放入框内, 即可自动扫描"="将二维码/条码放入框内, 即可自动扫描";
-//
-///*
-// ScanQRCodeSuccessViewController.m
-// */
-//"您扫描的条形码结果如下： "="您扫描的条形码结果如下： ";
-//
-///*
-// GenerateQRCodeViewController.m
-// */
-//"钱包的二维码"="钱包的二维码";
-//
-///*
-// BaseNetworkRequest.m
-// */
-//"正在上传"="正在上传";
-//
-///*
-// RichListMainViewController.m
-// */
-//"富豪榜"="Rich List";
-//"搜索好友"="搜索好友";
-//
-///*
-// RichlistDetailViewController.m
-// */
-//"该钱包暂无账号!"="该钱包暂无账号!";
-//
-///*
-// EnterpriseListViewController.m
-// */
-//"企业账号"="企业账号";
-//
-///*
-// PeRichListViewController.m
-// */
-//"pE富豪榜"="pE Rich List";
-//
-///*
-// AccountsTableManager.m
-// */
-//"添加账号成功"="添加账号成功";
-//
-///*
-// WalletTableManager.m
-// */
-//"数据库路径:%@"="数据库路径:%@";
-//"添加钱包成功!"="添加钱包成功!";
-//"删除钱包成功!"="删除钱包成功!";
-//
-//
-//BaseTabBarController.m
-//*/
-//"新闻"="新闻";
-//"发现"="发现";
-//
-///*
-// NewsMainViewController.m
-// */
-//"新闻地址有误!"="新闻地址有误!";
-//
-///*
-// NewsMainHeaderView.m
-// */
-//"按资产筛选"="按资产筛选";
-//
-///*
-// AskQuestionViewController.m
-// */
-//"我来提问"="我来提问";
-//"最多添加六个选项"="最多添加六个选项";
-//"问题没有编辑完整, 请继续编辑!"="问题没有编辑完整, 请继续编辑!";
-//"发布此问题将消费您 %@ OCT "="发布此问题将消费您 %@ OCT ";
-//"提问成功!"="提问成功!";
-//
-///*
-// AddOptionTableViewCell.m
-// */
-//"添加选项"="添加选项";
-//
-///*
-// AskQuestionHeaderView.m
-// */
-//"填写金额"="填写金额";
-//
-///*
-// AskQuestionTableViewCell.m
-// */
-//"输入答案选项"="输入答案选项";
-//
-///*
-// EnterpriseDetailViewController.m
-// */
-//"企业详情"="企业详情";
-//"有问币答"="有问币答";
-//
-///*
-// ApplicationDetailViewController.m
-// */
-//"应用详情"="应用详情";
-//
-///*
-// DAppDetailViewController.m
-// */
-//"提示"="提示";
-//"确认"="确认";
-//"交易成功!"="交易成功!";
-//"请选择您将选择的账号!"="请选择您将选择的账号!";
-//
-///*
-// QuestionDetailViewController.m
-// */
-//"回答此问题将抵押您 %@ OCT "="回答此问题将抵押您 %@ OCT ";
-//"回答问题成功!"="回答问题成功!";
-//
-///*
-// QuestionListViewController.m
-// */
-//"现有问题"="现有问题";
-//"过往问题"="过往问题";
-//"提问"="提问";
+
+
+/*
+ CDZPicker.m
+ */
+"确定"="Confirm";
+"取消"="Cancel";
+
+/*
+ UnStakeEOSViewController.m
+ */
+"赎回EOS"="Untake EOS";
+"确认赎回"="Unstake";
+"无法赎回"="Failed";
+"密码输入错误!"="Password is invalid. Please check it!";
+"本地无此账号!"="Account Not Find!";
+"赎回成功!"="Unstaked!";
+
+/*
+ AssestsDetailViewController.m
+ */
+"资产"="Assets";
+"微信好友"="WeChat";
+"朋友圈"="Moments";
+"QQ好友"="QQ";
+"QQ空间"="Q Zone";
+"额"="Volume";
+"EOS最新资讯详情"="EOS news detail";
+"OCT最新咨询详情"="OCT news detail";
+"参考价格"="Reference Price";
+"24小时涨跌幅"="24h change";
+"总市值"="Total Market Value";
+
+
+/*
+ AssestDetailFooterView.m
+ */
+"发起转账"="Send";
+"发起收款"="Receive";
+"发送红包"="Red Packets";
+
+/*
+ AssestsMainViewController.m
+ */
+"邀请好友"="Invitation";
+
+/*
+ AssestsMainHeaderView.m
+ */
+"的钱包"="'s wallet";
+"没有账号"="no accounts";
+"请移步至社交模式"="Go to social mode please";
+
+/*
+ AssestsMainTableViewCell.m
+ */
+"现价"="";
+
+/*
+ TransferViewController.m
+ */
+"资产转账"="Send";
+"收币人不能为空"="Reciever can't be nil";
+"请填写金额"="Please input amount";
+"转账成功"="Transfer success";
+
+/*
+ TransferHeaderView.m
+ */
+"恭喜发财, 大吉大利"="Best wishes";
+
+/*
+ TransferService.m
+ */
+"未找到账号的私钥!"="Can't find private key!";
+
+/*
+ RecieveViewController.m
+ */
+"资产收款"="Receive";
+
+/*
+ ForwardRedPacketViewController.m
+ */
+"红包已封口!"="Red Packets are Ready!";
+"个红包"="redpacket";
+"共"="total";
+"支付账户"="Account";
+"退回时间"="Refunded time";
+"天降大红包，没时间解释了，快抢!"="Hurry Up! Get red packet for free!";
+"我下血本送上的区块链红包，无需消费、可以兑现，还犹豫什么？手慢无哦！"="Block chain red packet with large amout! Free and unconditional, Just Get It! Hurry up! ";
+"暂不支持~"="Don't support";
+"继续发送红包"="Send Red Packet to More Friends";
+
+/*
+ RedPacketViewController.m
+ */
+"发红包"="Send Red Packet";
+"发送"="发送";
+"个"="";
+"给"="to";
+"个人"="friends(s)";
+"全部被领取"="all claimed";
+"已被"="";
+"人领取"="claimed";
+"领取"="Got";
+"请填写资产数量!"="Input amount please!";
+"请填写红包个数!"="Input count please!";
+"转账到eosredpacket成功!"="转账到eosredpacket成功!";
+
+/*
+ RedPacketDetailViewController.m
+ */
+"    将红包发送到"="    Send Red Packet to";
+"领红包"="Open Red Packets";
+"已领取"="Open Red Packets";
+"剩余"="residue";
+
+"    红包记录"="    Red Packet History";
+"领取的"="Received";
+"已经存入您的主账号"="Red Packet transferred to your Main Account.";
+
+/*
+ ChangeAccountViewController.m
+ */
+"切换账号"="Switch";
+"好友账号"="Friend‘s account";
+
+/*
+ BindPhoneNumberViewController.m
+ */
+"绑定手机号"="Bind Mobile Phone";
+"手机号不能为空!"="telphone can't be nil!";
+"请勾选同意条款!"="please agree items!";
+"验证码格式有误!"="verify code format error";
+"没有 wallet"="no wallet";
+"获取验证码"="Get Code";
+"秒后重新发送"="s";
+
+/*
+ CountryCodeAreaViewController.m
+ */
+"选择地区"="Area";
+
+/*
+ LoginView.m
+ */
+"登录即代表同意《用户协议及隐私政策》"="Agree Term of Usage and Private Policy by login";
+
+/*
+ BBLoginViewController.m
+ */
+"请选择钱包:"="Select a wallet";
+"钱包名称不能为空!"="wallet name can't be nil!";
+"密码不能为空!"="password can't be nil!";
+"两次输入的密码不一致!"="Password is not consistent.";
+"本地钱包名不可重复!"="local wallet name can't repeat!";
+
+/*
+ EOSMappingImportAccountViewController.m
+ */
+"映射账号录入"="I have Private Key(s) from EOS mapping.";
+"输入框不能为空!"="input box can't be nil!";
+"私钥格式有误!"="private key format error!";
+"本地钱包已存在该账号!"="local wallet has this account already!";
+"账号导入成功!"="account import success!";
+"未查到对应账号!"="no matching account!";
+
+/*
+ SocialManager.m
+ */
+"用户取消登录"="cancle login";
+"qq登录失败"="login failed";
+"无网络连接，请设置网络"="net work error";
+"微信认证失败"="WeChat verify failed";
+
+
+/*
+ VersionUpdateViewController.m
+ */
+"版本更新"="Version update";
+"版本"="版本";
+"有新版・"="Has new version・";
+"无新版"="No new version";
+
+/*
+ VersionUpdateTipView.m
+ */
+"跳过"="Skip";
+"立即更新"="Update";
+
+/*
+ TransactionRecordsViewController.m
+ */
+"交易记录"="Tx History";
+"暂无数据"="Nothing here";
+
+/*
+ TransactionRecordTableViewCell.m
+ */
+"红包入账"="Got Red Packet!";
+"发出红包"="Send Red Packet";
+"发送给"="To";
+"接受自"="From";
+"所在区块"="Block";
+"成功"="Success";
+
+/*
+ CandyMainViewController.m
+ */
+"糖果积分"="PE Candies";
+
+/*
+ CandyMainTableViewCell.m
+ */
+"已完成"="Done";
+"未完成"="Undone";
+
+/*
+ MessageFeedbackViewController.m
+ */
+"意见反馈"="Feedbacks";
+"提交"="Submit";
+
+/*
+ LanguageSettingViewController.m
+ */
+"语言"="Language";
+"语言切换中"="Changing Language";
+
+/*
+ SystemSettingViewController.m
+ */
+"系统设置"="Settings";
+"清空缓存"="Clear cache";
+"意见反馈"="Feedbacks";
+"法律条款与隐私政策"="Term of Usage and Privacy Policy";
+"关于Pocket EOS"="About Pocket EOS";
+"清理成功~"="Cleared~";
+
+/*
+ LanguageSettingService.m
+ */
+"中文"="Chinese";
+
+/*
+ MessageCenterViewController.m
+ */
+"消息中心"="Notifications";
+
+/*
+ BackupAccountViewController.m
+ */
+"备份EOS账号"="Backup EOS Account";
+
+/*
+ BPVoteAmountViewController.m
+ */
+"节点投票"="EOS Voting";
+"亿票"="亿票";
+"余额不足!"="Balance not enough!";
+"投票成功!"="Vote success!";
+"确认投票"="Vote";
+
+/*
+ BPCandidateListViewController.m
+ */
+"投票规则"="Voting rules";
+"链接地址有误!"="url address error!";
+"个，还可以选择"="nodes are selected, ";
+"至少选择一个投票节点!"="None selected. Select 30 or less nodes. ";
+
+/*
+ BPVoteHeaderView.m
+ */
+"余额"="Balance";
+
+/*
+ BPVoteViewController.m
+ */
+"去投票"="Vote";
+"暂无账号!"="No accounts!";
+
+/*
+ BandwidthManageTableViewCell.m
+ */
+"总配额"="total amount";
+"配额抵押"="staking";
+"当前占用"="used";
+"当前可用"="available";
+
+/*
+ TradeRamViewController.m
+ */
+"买入配额"="Buy RAM";
+"卖出配额"="Sell RAM";
+"调整买入数量 :"="How much to buy:";
+"调整卖出数量 :"=">How much to sell:";
+"预计配额"="Estimated quota";
+"预计出售价格"="Estimated value";
+"交易数量不能为0"="Amount could'n be 0";
+"交易成功!"="Transaction success!";
+
+/*
+ EOSResourceManageViewController.m
+ */
+"资源管理"="Resources";
+"带宽管理"="Bandwidth";
+"存储管理"="RAM";
+"页面 %lu"="页面 %lu";
+
+/*
+ StorageManageViewController.m
+ */
+"存储配额使用情况"="Usage of RAM";
+
+/*
+ ModifyApproveViewController.m
+ */
+"修改抵押额度"="Change staking";
+"您将增加抵押额度"="You will stake EOS";
+"您将减少抵押额度"="You will unstake EOS";
+"无法修改"="Unavailable";
+"增加质押成功"="Staked";
+"赎回质押成功"="Unstaked";
+
+/*
+ CreatePocketViewController.m
+ */
+"创建钱包"="Create My Wallet";
+"如果已有钱包，请点击这里导入"="Click here to import your own wallet";
+
+/*
+ ImportPocketViewController.m
+ */
+"导入钱包"="Import Wallet";
+"导入成功!"="Import success!";
+"导入失败!"="Import failed!";
+
+/*
+ CreateAccountViewController.m
+ */
+"创建新账号"="Create New Accoun";
+"12位字符，只能由小写字母a~z和数字1~5组成。"="Make up of 1-5 and a-z, 12 characters.";
+"如果已有账号，请点击这里导入"="Own an account? Click here to import.";
+"创建账号成功!"="Create account success!";
+
+/*
+ PocketManagementViewController.m
+ */
+"钱包管理"="Wallet Management";
+"安全说明"="Notification";
+"创建账号"="Create New Account";
+"导入账号"="Import Account";
+"修改密码"="Reset Wallet Password";
+"备份钱包"="Backup Wallet";
+"输入不能为空!"="input box can't be nil!";
+"原始密码输入有误!"="Password is invalid. Please check it.";
+"修改密码成功!"="Change password success!";
+
+/*
+ PocketManagementService.m
+ */
+"设置主账号成功"="Set as main account";
+
+/*
+ AccountManagementViewController.m
+ */
+"滑动删除账号"="Slide to Block Up This Account";
+"将滑块滑动到右侧指定位置内即可删除"="Slide to the specific postion and unlock your wallet.";
+"    将二维码分享到"="    Share QR code to";
+"设为主账号"="Served as Main Account";
+"保护隐私"="Privacy Protection";
+"EOS资源管理"="EOS Resources Management";
+"导出私钥"="Export Private Key";
+"EOS一键赎回"="Unstake EOS";
+"设置主账号成功!"="Set as main account!";
+"删除账号成功!"="Delete account success!";
+"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~"="Only one account in your wallet. block up it will burn away your wallet at the same time. Are you sure to continue?";
+
+/*
+ CreateAccountHeaderView.m
+ */
+"备份提示：由于区块链的去中心化特性，EOS账号一旦丢失将无法找回。创建账号后请根据下页的提示妥善备份，以防账号丢失带来的损失。"="Warning：EOS account could not be recovered if you foget it due to the decentralization of blockchain. \nDO backup according to the following flow, or you will take the risk of losing your account and asset.";
+
+/*
+ EOSMappingImportAccountHeaderView.m
+ */
+"该功能仅适用于EOS映射获得的私钥，且每个映射获得的私钥只能创建一个的EOS账号。"="Only work for the private keys from EOS mapping and could create only one accout each. \nIf you have created accout with your private key by PE or other wallet, Please Import your accout.";
+
+/*
+ ImportAccountViewController.m
+ */
+"导入新账号"="Import Account";
+"导入账号成功!"="Imported!";
+"备份到服务成功!"="备份到服务成功!";
+"导入的私钥不匹配!"="Import private key not match!";
+
+/*
+ PersonalSettingViewController.m
+ */
+"滑动销毁钱包"="Slide to Burn Your Wallet Away";
+"将滑块滑动到右侧指定位置内即可销毁"="Slide to the specific postion and Burn your wallet.";
+"个人设置"="Me";
+"未绑定微信"="WeChat not bind";
+"未绑定QQ"="QQ not bind";
+"已绑定"="bind success";
+"我的相册"="My album";
+"拍照"="Take photo";
+"名字"="Name";
+
+/*
+ UnBindSocialPlatformViewController.m
+ */
+"解绑微信"="unbind WeChat";
+"解绑QQ"="unbind QQ";
+"绑定微信号"="bind WeChat";
+"绑定QQ号"="bind QQ";
+
+/*
+ PersonnalSettingDetailViewController.m
+ */
+"保存"="Save";
+
+/*
+ BindSocialPlatformViewController.m
+ */
+"绑定微信"="bind WeChat";
+"绑定QQ"="bind QQ";
+"您还没有绑定微信号"="No WeChat binded yet";
+"绑定微信号可以关联您的资产"="Bind your WeChat to get your related assets.";
+"绑定微信号"="Bind WeChat";
+"您还没有绑定QQ号"="No QQ binded yet";
+"绑定QQ号可以关联您的资产"="Bind your QQ to get your related assets.";
+"绑定QQ号"="bind QQ";
+
+/*
+ BaseHttpsNetworkRequest.m
+ */
+"请求超时, 请稍后再试!"="request timeout!";
+
+/*
+ CommonWKWebViewController.m
+ */
+"返回"="back";
+"提示"="tip";
+"确认"="comfirm";
+"完成"="done";
+
+/*
+ NSString+Extention.m
+ */
+"暂无缓存,您无需清理~"="No caches to clear~";
+
+/*
+ WalletUtil.m
+ */
+"已有本地主账号"="已有本地主账号";
+
+/*
+ ScanQRCodeViewController.m
+ */
+"扫一扫"="Scan";
+"相册"="Album";
+"图片选择控制器读取图片二维码信息失败的回调函数"="图片选择控制器读取图片二维码信息失败的回调函数";
+"暂未识别出扫描的二维码"="暂未识别出扫描的二维码";
+"将二维码/条码放入框内, 即可自动扫描"="Align QR Code within frame to scan";
+
+/*
+ ScanQRCodeSuccessViewController.m
+ */
+"您扫描的条形码结果如下： "="Scan result： ";
+
+/*
+ GenerateQRCodeViewController.m
+ */
+"钱包的二维码"="Wallet QRCode";
+
+/*
+ BaseNetworkRequest.m
+ */
+"正在上传"="uploading...";
+
+/*
+ RichListMainViewController.m
+ */
+"富豪榜"="Rich List";
+"搜索好友"="Search your friend";
+
+/*
+ RichlistDetailViewController.m
+ */
+"该钱包暂无账号!"="no account!";
+
+/*
+ EnterpriseListViewController.m
+ */
+"企业账号"="Enterprise Account";
+
+/*
+ PeRichListViewController.m
+ */
+"pE富豪榜"="Rich List";
+
+/*
+ AccountsTableManager.m
+ */
+"添加账号成功"="add account success";
+
+/*
+ WalletTableManager.m
+ */
+"数据库路径:%@"="数据库路径:%@";
+"添加钱包成功!"="添加钱包成功!";
+"删除钱包成功!"="删除钱包成功!";
+
+/*
+ JavascriptWebViewController.m
+ */
+"oc请求js后接受的回调结果：%@"="oc请求js后接受的回调结果：%@";
+
+/*
+ BaseTabBarController.m
+ */
+"新闻"="News";
+"发现"="Discover";
+
+/*
+ NewsMainViewController.m
+ */
+"新闻地址有误!"="url error!";
+
+/*
+ AskQuestionViewController.m
+ */
+"我来提问"="Ask a Qusetion";
+"最多添加六个选项"="You could add six options for maximum.";
+"问题没有编辑完整, 请继续编辑!"="question not completeness!";
+"发布此问题将消费您"="Issue this question will consume you";
+"提问成功!"="Ask success!";
+
+/*
+ AddOptionTableViewCell.m
+ */
+"添加选项"="add option";
+
+/*
+ AskQuestionHeaderView.m
+ */
+"填写金额"="imput amount";
+
+/*
+ AskQuestionTableViewCell.m
+ */
+"输入答案选项"="Input the option details";
+
+/*
+ EnterpriseDetailViewController.m
+ */
+"企业详情"="Enterprise Info";
+"有问币答"="有问币答";
+
+/*
+ ApplicationDetailViewController.m
+ */
+"应用详情"="Dapp detail";
+
+/*
+ DAppDetailViewController.m
+ */
+"关闭"="Close";
+"请选择您将选择的账号!"="Please choose an account!";
+
+/*
+ QuestionDetailViewController.m
+ */
+"回答此问题将抵押您 %@ OCT "="回答此问题将抵押您 %@ OCT ";
+"回答问题成功!"="Answered!";
+
+/*
+ QuestionListViewController.m
+ */
+"现有问题"="Open Questions";
+"过往问题"="Closed Questions";
+"提问"="Ask";

@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "切换账号"; ObjectID = "ErJ-cW-hew"; */
+"ErJ-cW-hew.normalTitle" = "切换账号";
+
+/* Class = "UILabel"; text = "发起收款"; ObjectID = "Jlu-D2-2df"; */
+"Jlu-D2-2df.text" = "发起收款";
+
+/* Class = "UILabel"; text = "转账给他"; ObjectID = "Kfo-ik-BVT"; */
+"Kfo-ik-BVT.text" = "转账给他";
+
+/* Class = "UILabel"; text = "发送红包"; ObjectID = "iwI-39-KO4"; */
+"iwI-39-KO4.text" = "发送红包";
+
+/* Class = "UILabel"; text = "总资产(￥)"; ObjectID = "mOl-yI-f2o"; */
+"mOl-yI-f2o.text" = "总资产(￥)";

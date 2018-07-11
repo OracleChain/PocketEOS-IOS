@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "投票详情"; ObjectID = "1Yo-z6-9R0"; */
+"1Yo-z6-9R0.text" = "Your votes";
+
+/* Class = "UILabel"; text = "票数"; ObjectID = "UxU-ze-19k"; */
+"UxU-ze-19k.text" = "count";
+
+/* Class = "UILabel"; text = "抵押中："; ObjectID = "XQT-IX-rcN"; */
+"XQT-IX-rcN.text" = "staked EOS：";
+
+/* Class = "UILabel"; text = "请选择您要追加的EOS投票数量"; ObjectID = "cPb-5Q-1QI"; */
+"cPb-5Q-1QI.text" = "Set the EOS for voting";
+
+/* Class = "UILabel"; text = "将被锁定"; ObjectID = "ggc-hv-AgW"; */
+"ggc-hv-AgW.text" = "would be staked";

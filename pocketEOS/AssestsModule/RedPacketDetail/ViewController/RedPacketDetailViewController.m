@@ -178,13 +178,13 @@
             [weakSelf.mainTableView reloadData];
             if (weakSelf.redPacketModel.isSend) {
                 // 发送
-                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"已领取%ld/%@个，剩余%@%@", result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount, result.residueAmount, weakSelf.redPacketModel.coin];
+                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@，%@%@%@", NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil), NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
                 weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    领取记录"];
             }else{
                 // 领取
-                weakSelf.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ %@", result.amount , weakSelf.redPacketModel.coin];
-                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"领取的%@已经存入您的主账号", weakSelf.redPacketModel.coin];
-                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    已领取%ld/%@个，剩余%@%@", result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount, result.residueAmount, weakSelf.redPacketModel.coin];
+                weakSelf.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ %@", weakSelf.redPacketModel.amount , weakSelf.redPacketModel.coin];
+                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@%@%@", NSLocalizedString(@"领取的", nil), weakSelf.redPacketModel.coin, NSLocalizedString(@"已经存入您的主账号", nil)];
+                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    %@%ld/%@%@，%@%@%@",NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil),NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
             }
             
         }
@@ -216,7 +216,7 @@
         cell = [[BaseTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     RedPacketDetailSingleAccount *model = self.redpacketService.dataSourceArray[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@领取%@ %@", model.account, model.amount, model.type];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@ %@", [model.account isEqualToString: RedPacketSpecialAccount_EOSIO] ? @"***" : model.account, NSLocalizedString(@"领取", nil), model.amount, model.type];
     cell.detailTextLabel.text =model.createTime;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:13];

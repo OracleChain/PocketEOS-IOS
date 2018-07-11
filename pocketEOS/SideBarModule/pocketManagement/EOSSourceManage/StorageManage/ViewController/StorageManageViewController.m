@@ -67,7 +67,7 @@ NSString * const TradeRamDidSuccessNotification = @"TradeRamDidSuccessNotificati
             weakSelf.eosResourceResult = result;
             CGFloat progress = weakSelf.eosResourceResult.data.ram_usage.doubleValue/weakSelf.eosResourceResult.data.ram_max.doubleValue;
             weakSelf.headerView.progressView.progress = progress;
-            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"存储配额使用情况(%@byte/%@byte)", weakSelf.eosResourceResult.data.ram_usage, weakSelf.eosResourceResult.data.ram_max];
+            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@(%@byte/%@byte)", NSLocalizedString(@"存储配额使用情况", nil), weakSelf.eosResourceResult.data.ram_usage, weakSelf.eosResourceResult.data.ram_max];
         }
     }];
 }

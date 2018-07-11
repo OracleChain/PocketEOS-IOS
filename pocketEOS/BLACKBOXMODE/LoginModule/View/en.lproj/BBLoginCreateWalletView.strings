@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "什么是黑匣子模式？"; ObjectID = "1Oq-8w-0ls"; */
+"1Oq-8w-0ls.normalTitle" = "What‘s Black Box?";
+
+/* Class = "UILabel"; text = "请确认钱包密码"; ObjectID = "5PX-dE-io7"; */
+"5PX-dE-io7.text" = "Confirm the wallet password";
+
+/* Class = "UILabel"; text = "请输入钱包名称"; ObjectID = "O4f-kp-LEB"; */
+"O4f-kp-LEB.text" = "Input the wallet name";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "Ox0-eH-J1u"; */
+"Ox0-eH-J1u.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "请输入钱包密码"; ObjectID = "XV9-EX-OMy"; */
+"XV9-EX-OMy.text" = "Set the wallet password";
+
+/* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "hur-tl-MQQ"; */
+"hur-tl-MQQ.normalTitle" = "next_step";
+
+/* Class = "UITextField"; placeholder = "名称"; ObjectID = "jlY-K1-SyL"; */
+"jlY-K1-SyL.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "我已仔细阅读并同意用户协议及隐私政策"; ObjectID = "mQI-zd-4NL"; */
+"mQI-zd-4NL.normalTitle" = "Agree Term of Usage and Private Policy by login";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "r2s-0H-N0z"; */
+"r2s-0H-N0z.placeholder" = "Password";

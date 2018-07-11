@@ -39,7 +39,7 @@
 
 
 #define RedPacketReciever @"eosredpacket"
-
+#define RedPacketSpecialAccount_EOSIO @"eosio"
 
 
 #endif /* ContractConstant_h */

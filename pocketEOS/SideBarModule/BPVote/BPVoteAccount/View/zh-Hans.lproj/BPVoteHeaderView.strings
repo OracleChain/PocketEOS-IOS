@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "投票详情"; ObjectID = "EXT-KC-4Fw"; */
+"EXT-KC-4Fw.text" = "投票详情";
+
+/* Class = "UILabel"; text = "抵押中："; ObjectID = "Thm-Vd-Odt"; */
+"Thm-Vd-Odt.text" = "抵押中：";
+
+/* Class = "UILabel"; text = "票数"; ObjectID = "wa5-98-dgb"; */
+"wa5-98-dgb.text" = "票数";

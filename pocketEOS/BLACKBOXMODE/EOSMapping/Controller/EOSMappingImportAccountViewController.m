@@ -54,7 +54,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"EOSMappingImportAccountHeaderView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 230);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 300);
     }
     return _headerView;
 }
@@ -137,14 +137,9 @@
                 accountInfo.account_active_private_key = [AESCrypt encrypt:weakSelf.headerView.privateKeyTF.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
                 accountInfo.account_owner_private_key = accountInfo.account_active_private_key;
                 accountInfo.is_privacy_policy = @"0";
-                
-                NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
-                if (accountsArr.count > 0) {
-                    accountInfo.is_main_account = @"0";
-                }else{
-                    accountInfo.is_main_account = @"1";
-                }
                 [[AccountsTableManager accountTable] addRecord:accountInfo];
+                [WalletUtil setMainAccountWithAccountInfoModel:accountInfo];
+                
                 [TOASTVIEW showWithText:NSLocalizedString(@"账号导入成功!", nil)];
                 [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
                 

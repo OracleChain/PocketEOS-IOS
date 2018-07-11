@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "您的私钥是："; ObjectID = "80c-lq-hv1"; */
+"80c-lq-hv1.text" = "Your Private Key is：";
+
+/* Class = "UIButton"; normalTitle = "我已备份，进入钱包"; ObjectID = "HUp-kR-Ebj"; */
+"HUp-kR-Ebj.normalTitle" = "Already backup, go to my wallet";
+
+/* Class = "UITextView"; text = "确认没有被人窥视或拍照打开右侧按钮查看您的私钥"; ObjectID = "Mxk-Uz-eGH"; */
+"Mxk-Uz-eGH.text" = "Make sure your screen is not be peed at or took photo of \nThen you could switch on to see your private key.";

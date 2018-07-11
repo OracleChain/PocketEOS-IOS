@@ -1,0 +1,11 @@
+/* Class = "UIButton"; normalTitle = "私钥"; ObjectID = "J2F-lV-jFi"; */
+"J2F-lV-jFi.normalTitle" = "Private Key";
+
+/* Class = "UILabel"; text = "警告：私钥未经加密，请妥善保管"; ObjectID = "Oip-wa-hXB"; */
+"Oip-wa-hXB.text" = "Warning:\nPrivate key could be used for import account to any wallet;\nPrivate key means the total accessibility, and don't share it with anyone else";
+
+/* Class = "UILabel"; text = "导出私钥"; ObjectID = "SPF-LZ-qo2"; */
+"SPF-LZ-qo2.text" = "Export Private Key";
+
+/* Class = "UIButton"; normalTitle = "二维码"; ObjectID = "mCj-nC-IX7"; */
+"mCj-nC-IX7.normalTitle" = "QRCode";

@@ -1,0 +1,24 @@
+
+/* Class = "UIButton"; normalTitle = "绑 定"; ObjectID = "BJh-Jl-fdH"; */
+"BJh-Jl-fdH.normalTitle" = "绑 定";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "GIt-XD-8dz"; */
+"GIt-XD-8dz.normalTitle" = "获取验证码";
+
+/* Class = "UILabel"; text = "+86"; ObjectID = "JcZ-Gh-LEk"; */
+"JcZ-Gh-LEk.text" = "+86";
+
+/* Class = "UILabel"; text = "手机号码"; ObjectID = "Shh-6o-dQA"; */
+"Shh-6o-dQA.text" = "手机号码";
+
+/* Class = "UITextField"; placeholder = "输入动态密码"; ObjectID = "btd-uB-p2r"; */
+"btd-uB-p2r.placeholder" = "输入动态密码";
+
+/* Class = "UILabel"; text = "动态密码"; ObjectID = "gc9-W2-gSn"; */
+"gc9-W2-gSn.text" = "动态密码";
+
+/* Class = "UITextField"; placeholder = "输入手机号码"; ObjectID = "kJh-tz-DgD"; */
+"kJh-tz-DgD.placeholder" = "输入手机号码";
+
+/* Class = "UIButton"; normalTitle = "我已仔细阅读并同意用户协议及隐私政策"; ObjectID = "nu7-r4-qnI"; */
+"nu7-r4-qnI.normalTitle" = "我已仔细阅读并同意用户协议及隐私政策";

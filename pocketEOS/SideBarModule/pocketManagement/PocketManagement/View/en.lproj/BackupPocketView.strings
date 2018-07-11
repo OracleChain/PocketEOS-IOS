@@ -1,0 +1,6 @@
+
+/* Class = "UILabel"; text = "请务必妥善保管"; ObjectID = "cjd-H3-eSj"; */
+"cjd-H3-eSj.text" = "Please keep it safely.";
+
+/* Class = "UILabel"; text = "备份文件已生成，点击下方图片选择导出方式"; ObjectID = "gKu-Py-Erk"; */
+"gKu-Py-Erk.text" = "wallet backup success, tap image to choose export way";

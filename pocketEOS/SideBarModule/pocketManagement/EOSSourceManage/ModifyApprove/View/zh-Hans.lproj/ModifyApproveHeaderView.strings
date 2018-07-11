@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "修改抵押额度 :"; ObjectID = "IfJ-FH-e2H"; */
+"IfJ-FH-e2H.text" = "修改抵押额度 :";
+
+/* Class = "UIButton"; normalTitle = "确认修改"; ObjectID = "fht-SB-Mj3"; */
+"fht-SB-Mj3.normalTitle" = "确认修改";
+
+/* Class = "UILabel"; text = "1:为保证账号的正常使用，1 EOS及以下的质押额度暂无法赎回。\n2:赎回的EOS将在3天后返回余额。\n"; ObjectID = "jlS-GS-3vC"; */
+"jlS-GS-3vC.text" = "1:为保证账号的正常使用，1 EOS及以下的质押额度暂无法赎回。\n2:赎回的EOS将在3天后返回余额。\n";

@@ -114,7 +114,7 @@
     }
     [self.mainTableView reloadData];
     NSInteger remainCount = 30-self.choosedBPDataArray.count;
-    self.footerView.tipLabel.text = [NSString stringWithFormat:@"已选择%ld个，还可以选择%ld个", self.choosedBPDataArray.count, remainCount ];
+    self.footerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld%@%ld%@", NSLocalizedString(@"已选择", nil),self.choosedBPDataArray.count, NSLocalizedString(@"个，还可以选择", nil), remainCount , NSLocalizedString(@"个", nil)];
     
 }
 

@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "微信"; ObjectID = "AdZ-dc-6Ad"; */
+"AdZ-dc-6Ad.text" = "WeChat";
+
+/* Class = "UILabel"; text = "名字"; ObjectID = "BX9-0g-fag"; */
+"BX9-0g-fag.text" = "Name";
+
+/* Class = "UILabel"; text = "头像"; ObjectID = "u2P-9p-W8q"; */
+"u2P-9p-W8q.text" = "Avatar";
+
+/* Class = "UILabel"; text = "QQ"; ObjectID = "ziY-Dm-xVG"; */
+"ziY-Dm-xVG.text" = "QQ";

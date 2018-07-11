@@ -135,11 +135,11 @@
         self.headerView.modifyApproveSlider.value = _initProgress;
         
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ ms", [self.weight_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.weight_str yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4] ];
             
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ bytes", [self.weight_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4] ];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ bytes", NSLocalizedString(@"预计配额", nil),[self.weight_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4] ];
         }
         self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ EOS", self.weight_str];
         self.amountTFAmount_str = self.weight_str;
@@ -166,19 +166,19 @@
         
         self.amountTFAmount_str = MIN_AMOUNT;
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ ms",  [MIN_AMOUNT yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[MIN_AMOUNT yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4]];
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ bytes", [MIN_AMOUNT yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ bytes",NSLocalizedString(@"预计配额", nil), [MIN_AMOUNT yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
         }
     }else{
         self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ EOS", [MIN_AMOUNT yw_stringByAdding:[self.total_str yw_stringByMultiplyingBy:[NSString stringWithFormat:@"%.2f", progress] withRoundingMode:(NSRoundPlain) scale:8] withRoundingMode:(NSRoundPlain) scale:4]];
         self.amountTFAmount_str = [MIN_AMOUNT yw_stringByAdding:[self.total_str yw_stringByMultiplyingBy:[NSString stringWithFormat:@"%.2f", progress] withRoundingMode:(NSRoundPlain) scale:8] withRoundingMode:(NSRoundPlain) scale:4];
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ ms", [self.amountTFAmount_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.amountTFAmount_str yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4]];
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"预计配额：%@ bytes",  [self.amountTFAmount_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ bytes", NSLocalizedString(@"预计配额", nil), [self.amountTFAmount_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
         }
     }
 }
@@ -186,10 +186,10 @@
 - (void)sliderEndDrag{
     if (self.amountTFAmount_str.doubleValue > self.weight_str.doubleValue) {
         // 质押
-        [TOASTVIEW showWithText:@"您将增加抵押额度"];
+        [TOASTVIEW showWithText: NSLocalizedString(@"您将增加抵押额度", nil) ];
     }else{
         // 赎回
-        [TOASTVIEW showWithText:@"您将减少抵押额度"];
+        [TOASTVIEW showWithText: NSLocalizedString(@"您将减少抵押额度", nil) ];
     }
 }
 
@@ -248,7 +248,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.eosResourceResult.data.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
@@ -283,7 +283,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.eosResourceResult.data.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
@@ -305,9 +305,9 @@ extern NSString *TradeBandwidthDidSuccessNotification;
 - (void)pushTransactionDidFinish:(EOSResourceResult *)result{
     if ([result.code isEqualToNumber:@0]) {
         if (self.amountTFAmount_str.doubleValue > self.weight_str.doubleValue) {
-            [TOASTVIEW showWithText:@"增加质押成功"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"增加质押成功", nil) ];
         }else{
-            [TOASTVIEW showWithText:@"赎回质押成功"];
+            [TOASTVIEW showWithText:NSLocalizedString(@"赎回质押成功", nil)];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:TradeBandwidthDidSuccessNotification object:nil];
         [self.navigationController popViewControllerAnimated: YES];

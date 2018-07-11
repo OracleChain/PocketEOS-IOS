@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "选择时间"; ObjectID = "1Rl-l7-MQ5"; */
+"1Rl-l7-MQ5.text" = "Begin Time";
+
+/* Class = "UILabel"; text = "总价值"; ObjectID = "3jv-xs-Nf3"; */
+"3jv-xs-Nf3.text" = "Total Value";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "GtU-id-8C1"; */
+"GtU-id-8C1.normalTitle" = "";
+
+/* Class = "UILabel"; text = "结束时间"; ObjectID = "Sj8-SP-iu7"; */
+"Sj8-SP-iu7.text" = "End Time";
+
+/* Class = "UITextField"; placeholder = "填写金额"; ObjectID = "g0i-fF-b1Z"; */
+"g0i-fF-b1Z.placeholder" = "input amount";
+
+/* Class = "UILabel"; text = "OCT"; ObjectID = "kPE-SC-Vrh"; */
+"kPE-SC-Vrh.text" = "OCT";

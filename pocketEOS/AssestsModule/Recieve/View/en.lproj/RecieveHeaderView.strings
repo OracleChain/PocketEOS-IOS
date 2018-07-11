@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "    交易历史"; ObjectID = "5KL-o6-YHw"; */
+"5KL-o6-YHw.text" = "    Tx history";
+
+/* Class = "UIButton"; normalTitle = "生成收款二维码"; ObjectID = "Ocb-6Z-yYt"; */
+"Ocb-6Z-yYt.normalTitle" = "Get Receiving QR Code";
+
+/* Class = "UITextField"; placeholder = "填写数额"; ObjectID = "icK-vt-TuD"; */
+"icK-vt-TuD.placeholder" = "Input the amount";
+
+/* Class = "UILabel"; text = "≈***CNY"; ObjectID = "nSz-Dy-8MG"; */
+"nSz-Dy-8MG.text" = "≈***CNY";
+
+/* Class = "UILabel"; text = "资产数量"; ObjectID = "wP6-0R-uxW"; */
+"wP6-0R-uxW.text" = "Amount";

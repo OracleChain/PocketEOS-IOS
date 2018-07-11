@@ -90,9 +90,9 @@
     }else{
         // transfer
         if ([self.currentAccountName isEqualToString:model.from]) {
-            self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送给%@", nil), model.to];
+            self.titleLabel.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"发送给%@", nil), model.to];
         }else if ([self.currentAccountName isEqualToString:model.to]){
-            self.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"接受自%@", nil), model.from];
+            self.titleLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"接受自", nil), model.from];
         }
     }
 
@@ -105,7 +105,7 @@
     }
 
 
-    self.belongBlockLabel.text = [NSString stringWithFormat:NSLocalizedString(@"所在区块:%@", nil),model.ref_block_num];
+    self.belongBlockLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"所在区块", nil),model.ref_block_num];
     self.resultLabel.text = [NSString stringWithFormat:NSLocalizedString(@"成功", nil)];
 }
 

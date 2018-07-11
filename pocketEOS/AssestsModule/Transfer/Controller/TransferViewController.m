@@ -356,11 +356,11 @@
 
 - (void)transferBtnDidClick:(UIButton *)sender {
     if (IsStrEmpty(self.headerView.nameTF.text)) {
-        [TOASTVIEW showWithText:@"收币人不能为空!"];
+        [TOASTVIEW showWithText:@"收币人不能为空"];
         return;
     }
     if (IsStrEmpty(self.headerView.amountTF.text)) {
-        [TOASTVIEW showWithText:@"请填写jin!"];
+        [TOASTVIEW showWithText:@"请填写金额"];
         return;
     }
     [self.view addSubview:self.loginPasswordView];

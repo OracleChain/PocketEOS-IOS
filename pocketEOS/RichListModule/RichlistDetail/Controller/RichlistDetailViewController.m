@@ -158,7 +158,7 @@
         }else{
             nameStr = self.model.displayName ;
         }
-        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), nameStr];
+        self.headerView.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(nameStr), NSLocalizedString(@"的钱包", nil)];
         [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(self.model.avatar) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
         self.mainService.getWalletAccountsRequest.uid = self.model.uid;
         [self.mainService getWalletAccountsRequest:^(WalletAccountsResult *result, BOOL isSuccess) {

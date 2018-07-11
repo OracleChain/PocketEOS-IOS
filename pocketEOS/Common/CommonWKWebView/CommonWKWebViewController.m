@@ -7,17 +7,36 @@
 //
 
 #import "CommonWKWebViewController.h"
+#import "WkDelegateController.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
-@interface CommonWKWebViewController ()<WKNavigationDelegate>
+@interface CommonWKWebViewController ()<WKNavigationDelegate, WKUIDelegate>
 @property(nonatomic, strong) WKWebView *webView;
+@property(nonatomic, strong) WKUserContentController *userContentController;
+@property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @end
 
 @implementation CommonWKWebViewController
 
 - (WKWebView *)webView{
     if (!_webView) {
-        _webView = [[WKWebView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT))];
-        _webView.navigationDelegate = self;
+        //配置环境
+        WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
+        
+        self.userContentController =[[WKUserContentController alloc]init];
+        configuration.userContentController = self.userContentController;
+        
+        self.sharedProcessPool = [[WKProcessPool alloc]init];
+        configuration.processPool = self.sharedProcessPool;
+        
+        self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) configuration:configuration];
+        self.webView.UIDelegate = self;
+        self.webView.navigationDelegate = self;
+        if (@available(iOS 9.0, *)) {
+            self.webView.customUserAgent = @"PocketEosIos";
+        } else {
+            // Fallback on earlier versions
+        }
         
     }
     return _webView;
@@ -26,6 +45,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    if (self.webView.title == nil) {
+        [self.webView reload];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -48,13 +70,58 @@
     self.navigationItem.backBarButtonItem = backButtonItem;
     self.navigationController.navigationBar.tintColor = HEXCOLOR(0x2A2A2A);
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:String_To_URL(VALIDATE_STRING(self.urlStr))]];
+//    NSURLRequest *originalRequest = [NSURLRequest requestWithURL:String_To_URL(self.urlStr)];
+//    [self.webView loadRequest: originalRequest];
     
+    NSString *requestStr = [NSString stringWithFormat:@"%@%@",self.urlStr,self.parameterStr];
+    NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
+    [self.webView loadRequest: finalRequest];
+    
+    self.webView.UIDelegate = self;
+    self.webView.navigationDelegate = self;
 }
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{
     [webView reload];
-    NSLog(@"rewlopad");
+    NSLog(@"reload");
 }
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+    NSLog(@"%s", __FUNCTION__);
+}
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
+    NSLog(@"%@", error);
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
+    //    DLOG(@"msg = %@ frmae = %@",message,frame);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(NO);
+    }])];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(YES);
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = defaultText;
+    }];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(alertController.textFields[0].text?:@"");
+    }])];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 @end

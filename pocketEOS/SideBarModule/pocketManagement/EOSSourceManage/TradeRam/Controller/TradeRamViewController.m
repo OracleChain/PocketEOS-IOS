@@ -156,7 +156,7 @@
                 
             }else if ([self.pageType isEqualToString: NSLocalizedString(@"sell_ram", nil)]){
                 weakSelf.headerView.amountLabel.text = [NSString stringWithFormat:@"%.4f bytes", self.eosResourceResult.data.ram_max.doubleValue * weakSelf.headerView.modifyRamSlider.value  ];
-                weakSelf.headerView.predictLabel.text = [NSString stringWithFormat:@"预计出售价格：%@ EOS", [[self.eosResourceResult.data.ram_max yw_stringByMultiplyingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4] yw_stringByMultiplyingBy:@"0.5" withRoundingMode:(NSRoundPlain) scale:4] ];
+                weakSelf.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ EOS", NSLocalizedString(@"预计出售价格", nil), [[self.eosResourceResult.data.ram_max yw_stringByMultiplyingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4] yw_stringByMultiplyingBy:@"0.5" withRoundingMode:(NSRoundPlain) scale:4] ];
                 
                 
                 
@@ -234,7 +234,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.eosResourceResult.data.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
@@ -267,7 +267,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.eosResourceResult.data.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];

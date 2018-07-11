@@ -68,7 +68,7 @@
     [self.view addSubview:self.headerView];
     // 当前版本号
     NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
-    self.headerView.versionLabel.text = [NSString stringWithFormat:NSLocalizedString(@"版本: %@", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]];
+    self.headerView.versionLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"版本", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]  ];
     [self buildDataSource];
     self.view.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");

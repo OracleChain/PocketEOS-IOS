@@ -46,7 +46,7 @@
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] init];
         _tipLabel.backgroundColor = [UIColor clearColor];
-        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可解锁", nil);
+        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可销毁", nil);
         _tipLabel.textColor = HEXCOLOR(0x999999);
         _tipLabel.font = [UIFont systemFontOfSize:13];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
@@ -97,24 +97,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self requestUserInfo];
-//    Wallet *model = CURRENT_WALLET;
-//    if (IsStrEmpty(model.wallet_name)) {
-//        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"******的钱包", nil)];
-//    }else{
-//        self.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
-//    }
-//    [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-//
-//    if (model.wallet_weixin.length > 0 &&  ![model.wallet_weixin isEqualToString:@"(null)"]) {
-//        self.headerView.wechatIDLabel.text = model.wallet_weixin;
-//    }else{
-//        self.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
-//    }
-//    if (model.wallet_qq.length > 0 &&  ![model.wallet_qq isEqualToString:@"(null)"]) {
-//        self.headerView.qqIDLabel.text = model.wallet_qq;
-//    }else{
-//        self.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
-//    }
 }
 
 - (void)viewDidLoad {
@@ -168,7 +150,7 @@
                     NSLog(@"update local wallet failed!");
                 }
                 
-                weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), wallet.wallet_name];
+                weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(wallet.wallet_name), NSLocalizedString(@"的钱包", nil)];
                 [weakSelf.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(wallet.wallet_avatar)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
                 
                 if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {

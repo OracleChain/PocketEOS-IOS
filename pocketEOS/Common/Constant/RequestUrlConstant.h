@@ -17,7 +17,7 @@
 #define REQUEST_CONTRACT_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_BP_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_TRANSACTION_RECORDS @"https://history.pocketeos.top"
-#define REQUEST_MESSAGE_PUSH_BASEURL @"http://push.pocketeos.top"
+#define REQUEST_MESSAGE_PUSH_BASEURL @"https://push.pocketeos.top"
 
 
 

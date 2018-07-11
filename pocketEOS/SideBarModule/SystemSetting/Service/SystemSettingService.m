@@ -13,7 +13,7 @@
 - (NSDictionary *)dataSourceDictionary{
     if (!_dataSourceDictionary) {
         _dataSourceDictionary = @{
-                                  @"topSection" : @[NSLocalizedString(@"消息反馈", nil)]  ,
+                                  @"topSection" : @[NSLocalizedString(@"意见反馈", nil)]  ,
                                   @"bottomSection" : @[NSLocalizedString(@"清空缓存", nil),NSLocalizedString(@"语言", nil), NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
                                   };
     }

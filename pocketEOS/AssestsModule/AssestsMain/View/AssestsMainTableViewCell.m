@@ -123,6 +123,7 @@
         
         [self.contentView addSubview:self.bottomLineView];
         self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, 73).bottomSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).heightIs(DEFAULT_LINE_HEIGHT);
+        [self setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     }
     return self;
 }

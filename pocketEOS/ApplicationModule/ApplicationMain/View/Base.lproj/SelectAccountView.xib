@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SelectAccountView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwF-H9-jlS" userLabel="backgroundView">
+                    <rect key="frame" x="42.5" y="232.5" width="290" height="202"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注意: 使用区块链应用有可能产生交易行为" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cng-Wm-egC">
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="49.5"/>
+                            <color key="backgroundColor" red="1" green="0.96862745098039216" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49.399999999999999" id="pwG-EQ-pVk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="0.70980392156862748" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-cj-twZ" userLabel="lineView" customClass="BaseSlimLineView">
+                            <rect key="frame" x="0.0" y="149" width="290" height="0.5"/>
+                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="L1Q-xz-RqX"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Y-Pj-C7a">
+                            <rect key="frame" x="0.0" y="149.5" width="290" height="52.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="我理解区块链应用">
+                                <color key="titleColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="understand:" destination="iN0-l3-epB" eventType="touchUpInside" id="Rfg-80-293"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfX-qz-AK2" userLabel="selectAccountBackgroundView">
+                            <rect key="frame" x="20" y="77" width="250" height="42"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您将使用的账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0v-4S-9Aq">
+                                    <rect key="frame" x="10" y="0.0" width="133" height="42"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="1hN-W1-OMv">
+                                    <rect key="frame" x="228" y="17" width="12" height="7"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="7" id="1K2-gj-RVZ"/>
+                                        <constraint firstAttribute="width" constant="12" id="IMk-8w-Qzo"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buZ-hd-qCi" userLabel="selectAccountButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="42"/>
+                                    <connections>
+                                        <action selector="selectAccount:" destination="iN0-l3-epB" eventType="touchUpInside" id="76t-HT-e1V"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="buZ-hd-qCi" secondAttribute="bottom" id="3GD-WV-d5L"/>
+                                <constraint firstItem="E0v-4S-9Aq" firstAttribute="top" secondItem="sfX-qz-AK2" secondAttribute="top" id="Ha4-RX-ZwW"/>
+                                <constraint firstItem="E0v-4S-9Aq" firstAttribute="leading" secondItem="sfX-qz-AK2" secondAttribute="leading" constant="10" id="JLG-T4-ars"/>
+                                <constraint firstAttribute="height" constant="42" id="WQf-RT-4fj"/>
+                                <constraint firstItem="1hN-W1-OMv" firstAttribute="centerY" secondItem="E0v-4S-9Aq" secondAttribute="centerY" id="Zdz-yr-d9O"/>
+                                <constraint firstItem="buZ-hd-qCi" firstAttribute="leading" secondItem="sfX-qz-AK2" secondAttribute="leading" id="h7B-e4-Uh0"/>
+                                <constraint firstAttribute="bottom" secondItem="E0v-4S-9Aq" secondAttribute="bottom" id="jBn-AI-2OS"/>
+                                <constraint firstItem="buZ-hd-qCi" firstAttribute="top" secondItem="sfX-qz-AK2" secondAttribute="top" id="r24-IB-AvZ"/>
+                                <constraint firstAttribute="trailing" secondItem="buZ-hd-qCi" secondAttribute="trailing" id="tx0-io-x0b"/>
+                                <constraint firstAttribute="trailing" secondItem="1hN-W1-OMv" secondAttribute="trailing" constant="10" id="xPB-jd-csu"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                    <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="t7m-cj-twZ" firstAttribute="leading" secondItem="IwF-H9-jlS" secondAttribute="leading" id="04p-XX-h1t"/>
+                        <constraint firstItem="cng-Wm-egC" firstAttribute="leading" secondItem="IwF-H9-jlS" secondAttribute="leading" id="1F9-6U-UX6"/>
+                        <constraint firstItem="t7m-cj-twZ" firstAttribute="top" secondItem="cng-Wm-egC" secondAttribute="bottom" constant="99.599999999999994" id="9EN-CV-Ukq"/>
+                        <constraint firstAttribute="trailing" secondItem="t7m-cj-twZ" secondAttribute="trailing" id="BcL-wi-T4M"/>
+                        <constraint firstItem="sfX-qz-AK2" firstAttribute="leading" secondItem="IwF-H9-jlS" secondAttribute="leading" constant="20" id="DSI-F6-2va"/>
+                        <constraint firstItem="S8Y-Pj-C7a" firstAttribute="leading" secondItem="IwF-H9-jlS" secondAttribute="leading" id="GuC-E9-CEu"/>
+                        <constraint firstAttribute="width" constant="290" id="Ngk-oS-kAc"/>
+                        <constraint firstItem="cng-Wm-egC" firstAttribute="top" secondItem="IwF-H9-jlS" secondAttribute="top" id="b1x-IV-XGl"/>
+                        <constraint firstAttribute="bottom" secondItem="S8Y-Pj-C7a" secondAttribute="bottom" id="daJ-Pe-EqT"/>
+                        <constraint firstAttribute="trailing" secondItem="S8Y-Pj-C7a" secondAttribute="trailing" id="hdL-9Y-LJz"/>
+                        <constraint firstAttribute="height" constant="202" id="hnR-vC-xvR"/>
+                        <constraint firstAttribute="trailing" secondItem="cng-Wm-egC" secondAttribute="trailing" id="l0L-2F-rCj"/>
+                        <constraint firstItem="S8Y-Pj-C7a" firstAttribute="top" secondItem="t7m-cj-twZ" secondAttribute="bottom" id="q1A-qd-jk8"/>
+                        <constraint firstItem="sfX-qz-AK2" firstAttribute="top" secondItem="cng-Wm-egC" secondAttribute="bottom" constant="27.600000000000001" id="xBf-BA-nC7"/>
+                        <constraint firstAttribute="trailing" secondItem="sfX-qz-AK2" secondAttribute="trailing" constant="20" id="xtf-MF-OIj"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IwF-H9-jlS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Fts-Xj-4Y3"/>
+                <constraint firstItem="IwF-H9-jlS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dQp-PO-GBy"/>
+            </constraints>
+            <connections>
+                <outlet property="accountChooseLabel" destination="E0v-4S-9Aq" id="YVJ-wy-Wl1"/>
+                <outlet property="backgroundView" destination="IwF-H9-jlS" id="Li3-UH-838"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="downImg.png" width="9" height="5"/>
+    </resources>
+</document>

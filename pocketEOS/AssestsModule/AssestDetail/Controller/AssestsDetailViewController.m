@@ -239,7 +239,7 @@
         self.headerView.fluctuateLabel.attributedText = attrString;
     }
 
-    self.headerView.totalLabel.text = [NSString stringWithFormat:NSLocalizedString(@"额(24h)%@CNY", nil), self.model.assests_market_cap_cny];
+    self.headerView.totalLabel.text = [NSString stringWithFormat:@"%@(24h)%@CNY", NSLocalizedString(@"额", nil),self.model.assests_market_cap_cny];
     self.headerView.accountLabel.text = self.accountName;
     if ([self.model.assestsName isEqualToString:@"EOS"]) {
         self.headerView.Assest_balance_Label.text = [NSString stringWithFormat:@"%@ EOS", [NumberFormatter displayStringFromNumber:@(self.model.assests_balance.doubleValue)]];
@@ -330,7 +330,7 @@
     NSString *platformName = self.platformNameArr[sender.view.tag-1000];
     ShareModel *model = [[ShareModel alloc] init];
     if ([self.model.assestsName isEqualToString:@"EOS"]) {
-        model.title = NSLocalizedString(@"EOS最新咨询详情", nil);
+        model.title = NSLocalizedString(@"EOS最新资讯详情", nil);
         model.imageName = @"eos_avatar";
     }else if ([self.model.assestsName isEqualToString:@"OCT"]){
         model.title = NSLocalizedString(@"OCT最新咨询详情", nil);
@@ -342,7 +342,7 @@
     }else{
         priceChange = [NSString stringWithFormat:@"+%@%%", self.model.assests_price_change_in_24];
     }
-    model.detailDescription = [NSString stringWithFormat:NSLocalizedString(@"参考价格%@\n24小时涨跌幅%@\n总市值¥%@\n", nil), [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:@(self.model.assests_price_cny.doubleValue)]], priceChange,[NumberFormatter displayStringFromNumber:@(self.model.assests_market_cap_cny.doubleValue)]];
+    model.detailDescription = [NSString stringWithFormat:@"%@%@\n%@%@\n%@¥%@\n", NSLocalizedString(@"参考价格", nil),[NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:@(self.model.assests_price_cny.doubleValue)]], NSLocalizedString(@"24小时涨跌幅", nil), priceChange,NSLocalizedString(@"总市值", nil), [NumberFormatter displayStringFromNumber:@(self.model.assests_market_cap_cny.doubleValue)]];
     model.webPageUrl = @"https://pocketeos.com";
     NSLog(@"%@", platformName);
     if ([platformName isEqualToString:@"wechat_friends"]) {
@@ -373,6 +373,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1002){
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+        vc.accountName = self.accountName;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

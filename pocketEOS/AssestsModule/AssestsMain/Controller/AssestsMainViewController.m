@@ -41,8 +41,12 @@
 #import "BPVoteViewController.h"
 #import "CommonWKWebViewController.h"
 #import "DAppDetailViewController.h"
+#import "VersionUpdateTipView.h"
+#import "VersionUpdateModel.h"
+#import "GetVersionInfoRequest.h"
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate>
+
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate>
 
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
@@ -51,6 +55,10 @@
 @property(nonatomic , strong) AdvertisementView *advertisementView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
 @property(nonatomic, strong) UIButton *inviteFriendBtn;
+@property(nonatomic , strong) VersionUpdateTipView *versionUpdateTipView;
+@property(nonatomic , strong) GetVersionInfoRequest *getVersionInfoRequest;
+@property(nonatomic , strong) VersionUpdateModel *versionUpdateModel;
+
 @end
 
 @implementation AssestsMainViewController
@@ -111,6 +119,19 @@
     return _inviteFriendBtn;
 }
 
+- (VersionUpdateTipView *)versionUpdateTipView{
+    if (!_versionUpdateTipView) {
+        _versionUpdateTipView = [[VersionUpdateTipView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _versionUpdateTipView.delegate = self;
+    }
+    return _versionUpdateTipView;
+}
+- (GetVersionInfoRequest *)getVersionInfoRequest{
+    if (!_getVersionInfoRequest) {
+        _getVersionInfoRequest = [[GetVersionInfoRequest alloc] init];
+    }
+    return _getVersionInfoRequest;
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -154,6 +175,7 @@
     // 配置开屏广告
     [self configAdvertisement];
     [self addinviteFriendBtn];
+    [self checkNewVersion];
 }
 
 // 构建数据源
@@ -420,29 +442,63 @@
 //    shadowView.layer.cornerRadius = 31;
 //    shadowView.frame = CGRectMake(SCREEN_WIDTH - MARGIN_20 - 56, SCREEN_HEIGHT - TABBAR_HEIGHT - MARGIN_20, 62, 62);
 //    [self.view addSubview: shadowView];
-    
-    [self.view addSubview:self.inviteFriendBtn];
-    self.inviteFriendBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(69).heightIs(53);
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [self.view addSubview:self.inviteFriendBtn];
+        self.inviteFriendBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(69).heightIs(53);
+    }
 }
 
 - (void)inviteFriendBtnClick{
     CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
-//    Wallet *wallet = CURRENT_WALLET;
-//    NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
-//    vc.urlStr =[NSString stringWithFormat:@"http://192.168.3.166:8080/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=[%@]", wallet.wallet_phone, wallet.wallet_uid, cookie];
-    //https://www.baidu.com/
-    vc.urlStr = @"http://47.104.166.178:8502/#/index";
-
+    Wallet *wallet = CURRENT_WALLET;
+    NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
+    vc.urlStr = @"http://47.104.166.178:8502";
+    NSArray *cookieArr = [cookie componentsSeparatedByString:@";"];
+    NSString *PE_cookieStr;
+    if (cookieArr.count > 0) {
+        PE_cookieStr = cookieArr[0];
+    }
+    NSString *finalCookie;
+    if (PE_cookieStr.length > 10) {
+        finalCookie = [PE_cookieStr substringFromIndex:10];
+    }else{
+        finalCookie = @"1";
+    }
+    vc.parameterStr =[NSString stringWithFormat:@"/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=%@", wallet.wallet_phone, wallet.wallet_uid, finalCookie];
     vc.title = @"邀请好友";
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
-//    DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-//    Application *model  = [[Application alloc] init];
-//    model.url = [NSString stringWithFormat:@"http://192.168.3.166:8080/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=[%@]", wallet.wallet_phone, wallet.wallet_uid, cookie];
-//    vc.model = model;
-//    [self.navigationController pushViewController:vc animated:YES];
-//
 }
 
+- (void)checkNewVersion{
+    WS(weakSelf);
+    [self.getVersionInfoRequest getDataSusscess:^(id DAO, id data) {
+        weakSelf.versionUpdateModel = [VersionUpdateModel mj_objectWithKeyValues:data[@"data"]];
+        if (weakSelf.versionUpdateModel.versionCode.integerValue > [weakSelf queryVersionNumberInBundle] ) {
+            [weakSelf.view addSubview:weakSelf.versionUpdateTipView];
+            [weakSelf.versionUpdateTipView setModel:weakSelf.versionUpdateModel];
+        }else{
+            
+        }
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+- (NSInteger)queryVersionNumberInBundle{
+    
+    NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
+    // 当前版本号
+    NSString *currentVersionStr =  [infoDic valueForKey:@"CFBundleShortVersionString"];
+    NSString *versionStr = [currentVersionStr stringByReplacingOccurrencesOfString:@"." withString:@""];
+    return versionStr.integerValue;
+}
+
+//VersionUpdateTipViewDelegate
+- (void)skipBtnDidClick:(UIButton *)sender{
+    [self.versionUpdateTipView removeFromSuperview];
+}
+
+- (void)updateBtnDidClick:(UIButton *)sender{
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
+}
 @end

@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "确认密码"; ObjectID = "M6I-r1-85M"; */
+"M6I-r1-85M.text" = "Confirm Password";
+
+/* Class = "UILabel"; text = "请输入钱包名称"; ObjectID = "Ohf-l8-RPB"; */
+"Ohf-l8-RPB.text" = "Input the wallet name";
+
+/* Class = "UITextField"; placeholder = "名称"; ObjectID = "duc-9i-g0k"; */
+"duc-9i-g0k.placeholder" = "Input the wallet name";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "jfN-m3-LXv"; */
+"jfN-m3-LXv.text" = "password";
+
+/* Class = "UITextField"; placeholder = "输入密码"; ObjectID = "kai-wW-ZHL"; */
+"kai-wW-ZHL.placeholder" = "input password";
+
+/* Class = "UIButton"; normalTitle = "创 建"; ObjectID = "nSb-Gm-wMp"; */
+"nSb-Gm-wMp.normalTitle" = "Create new wallet";
+
+/* Class = "UIButton"; normalTitle = "我已仔细阅读并同意用户协议及隐私政策"; ObjectID = "pEz-hD-pfP"; */
+"pEz-hD-pfP.normalTitle" = "Agree Term of Usage and Private Policy by login";
+
+/* Class = "UITextField"; placeholder = "再次输入密码"; ObjectID = "pzx-CS-Da9"; */
+"pzx-CS-Da9.placeholder" = "input password again";

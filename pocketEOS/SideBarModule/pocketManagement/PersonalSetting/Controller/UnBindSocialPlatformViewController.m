@@ -61,10 +61,10 @@
     
     if ([self.socialPlatformType isEqualToString:@"wechat"]) {
         self.headerView.platformImg.image = [UIImage imageNamed:@"wechat_big"];
-        self.headerView.tipLabel.text = [NSString stringWithFormat:NSLocalizedString(@"绑定微信号%@", nil), self.socialPlatformName];
+        self.headerView.tipLabel.text = [NSString stringWithFormat: @"%@%@",NSLocalizedString(@"绑定微信号", nil), self.socialPlatformName];
     }else if ([self.socialPlatformType isEqualToString:@"qq"]){
         self.headerView.platformImg.image = [UIImage imageNamed:@"qq_big"];
-        self.headerView.tipLabel.text = [NSString stringWithFormat:NSLocalizedString(@"绑定QQ号%@", nil), self.socialPlatformName];
+        self.headerView.tipLabel.text = [NSString stringWithFormat: @"%@%@", NSLocalizedString(@"绑定QQ号", nil), self.socialPlatformName];
         
     }
 }

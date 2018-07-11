@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "系统设置"; ObjectID = "5jK-4q-OsG"; */
+"5jK-4q-OsG.text" = "系统设置";
+
+/* Class = "UILabel"; text = "版本更新"; ObjectID = "Gc1-sb-AhU"; */
+"Gc1-sb-AhU.text" = "版本更新";
+
+/* Class = "UILabel"; text = "糖果积分"; ObjectID = "N8l-E0-hSG"; */
+"N8l-E0-hSG.text" = "糖果积分";
+
+/* Class = "UILabel"; text = "节点投票"; ObjectID = "Osg-wj-Gu3"; */
+"Osg-wj-Gu3.text" = "节点投票";
+
+/* Class = "UILabel"; text = "交易记录"; ObjectID = "bgM-sz-lHS"; */
+"bgM-sz-lHS.text" = "交易记录";
+
+/* Class = "UILabel"; text = "消息中心"; ObjectID = "feC-Ij-Bwa"; */
+"feC-Ij-Bwa.text" = "消息中心";
+
+/* Class = "UIButton"; normalTitle = "退出登录"; ObjectID = "gCE-nW-rWV"; */
+"gCE-nW-rWV.normalTitle" = "退出登录";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ysD-Bi-0Zz"; */
+"ysD-Bi-0Zz.normalTitle" = "Button";

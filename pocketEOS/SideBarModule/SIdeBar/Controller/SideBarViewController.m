@@ -69,9 +69,9 @@
      [self.navigationController.navigationBar setHidden: YES];
     Wallet *model = CURRENT_WALLET;
     if (IsStrEmpty(model.wallet_name)) {
-        self.sideBarMainView.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"******的钱包", nil)];
+        self.sideBarMainView.nameLabel.text = [NSString stringWithFormat: @"******%@",NSLocalizedString(@"的钱包", nil)];
     }else{
-        self.sideBarMainView.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包", nil), model.wallet_name];
+        self.sideBarMainView.nameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(model.wallet_name), NSLocalizedString(@"的钱包", nil)];
         
     }
     [self.sideBarMainView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(model.wallet_img)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];

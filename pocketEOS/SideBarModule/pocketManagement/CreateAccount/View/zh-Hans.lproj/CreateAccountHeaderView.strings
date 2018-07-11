@@ -1,0 +1,16 @@
+
+/* Class = "UIButton"; normalTitle = "我已仔细阅读并同意用户协议及隐私政策"; ObjectID = "3kw-Jf-ufJ"; */
+"3kw-Jf-ufJ.normalTitle" = "我已仔细阅读并同意用户协议及隐私政策";
+
+/* Class = "UIButton"; normalTitle = "创建"; ObjectID = "EDq-RB-L2T"; */
+"EDq-RB-L2T.normalTitle" = "创建";
+
+/* Class = "UILabel"; text = "账号名称"; ObjectID = "EKa-pF-KHJ"; */
+"EKa-pF-KHJ.text" = "账号名称";
+
+/* Class = "UITextField"; placeholder = "12位字符，只能由小写字母a~z和数字1~5组成。"; ObjectID = "aK5-fw-Dyj"; */
+"aK5-fw-Dyj.placeholder" = "12位字符，只能由小写字母a~z和数字1~5组成。";
+
+/* Class = "BaseTextView"; placeholder = "备份提示：由于区块链的去中心化特性，EOS账号一旦丢失将无法找回。
+ 创建账号后请根据下页的提示妥善备份，以防账号丢失带来的损失。"; ObjectID = "ul6-4s-jaR"; */
+"ul6-4s-jaR.placeholder" = "备份提示：由于区块链的去中心化特性，EOS账号一旦丢失将无法找回。 创建账号后请根据下页的提示妥善备份，以防账号丢失带来的损失。师巍巍"

@@ -210,7 +210,7 @@
     //获取当前时间
     NSDate *dateNow = [NSDate date];
     NSString *dateStr = [formatter stringFromDate:dateNow];
-    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@的钱包%@", nil),  wallet.wallet_name, dateStr];
+    self.backupPocketView.backupPocketTitleLabel.text = [NSString stringWithFormat: @"%@%@%@", VALIDATE_STRING(wallet.wallet_name), NSLocalizedString(@"的钱包", nil), dateStr];
     //获取沙盒路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     //获取文件路径
@@ -222,10 +222,6 @@
 }
 - (void)changePasswordBtnDidClick{
     [self.view addSubview:self.changePasswordView];
-}
-- (void)mainAccountBtnDidClick:(UIButton *)sender{
-    AccountManagementViewController *vc = [[AccountManagementViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //BackupPocketViewDelegate

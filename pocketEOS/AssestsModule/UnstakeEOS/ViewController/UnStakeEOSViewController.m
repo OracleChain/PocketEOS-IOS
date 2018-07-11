@@ -161,7 +161,7 @@
     if (self.accountResult.data.eos_net_weight.doubleValue > 1 &&  self.accountResult.data.eos_cpu_weight.doubleValue > 1) {
         [self unstakeEOS];
     }else{
-        [TOASTVIEW showWithText:@"无法赎回!"];
+        [TOASTVIEW showWithText:@"无法赎回"];
         [self.loginPasswordView removeFromSuperview];
         return;
     }
@@ -182,7 +182,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.accountResult.data.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];

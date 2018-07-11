@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "存储配额"; ObjectID = "FmX-oX-bOA"; */
+"FmX-oX-bOA.text" = "存储配额";
+
+/* Class = "UILabel"; text = "卖出配额"; ObjectID = "bKC-XH-fi3"; */
+"bKC-XH-fi3.text" = "卖出配额";
+
+/* Class = "UILabel"; text = "买入配额"; ObjectID = "rJm-W3-e9v"; */
+"rJm-W3-e9v.text" = "买入配额";

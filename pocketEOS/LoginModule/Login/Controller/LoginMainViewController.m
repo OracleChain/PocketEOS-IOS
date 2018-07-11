@@ -312,7 +312,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.loginView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@秒后重新发送", nil),strTime] forState:UIControlStateNormal];
+                [self.loginView.getVerifyCodeBtn setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@%@", nil),strTime, NSLocalizedString(@"秒后重新发送", nil)] forState:UIControlStateNormal];
                 self.loginView.getVerifyCodeBtn.userInteractionEnabled = NO;
                 
             });

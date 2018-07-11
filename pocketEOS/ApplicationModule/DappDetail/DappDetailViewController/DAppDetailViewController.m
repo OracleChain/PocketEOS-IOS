@@ -22,10 +22,12 @@
 @property(nonatomic, strong) WKUserContentController *userContentController;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic, strong) TransferService *mainService;
+@property(nonatomic, copy) NSString *WKScriptMessageName; // recieve WKScriptMessage.name
 @property(nonatomic, strong) NSDictionary *WKScriptMessageBody;// recieve WKScriptMessage.body
 @property(nonatomic, strong) SelectAccountView *selectAccountView;
 @property(nonatomic, strong) NSString *choosedAccountName;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
+@property (nonatomic , strong) DappTransferResult *dappTransferResult;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @property (nonatomic , strong) UIBarButtonItem *backItem;
@@ -136,6 +138,7 @@
     [super viewWillAppear:animated];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushAction"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"push"];
     if (IsStrEmpty(self.webView.title)) {
         [self.webView reload];
     }
@@ -146,6 +149,7 @@
     [super viewWillDisappear:animated];
     // 因此这里要记得移除handlers
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushAction('%@','%@')"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"push('%@','%@','%@','%@','%@')"];
 }
 
 - (void)viewDidLoad {
@@ -193,12 +197,12 @@
 #pragma mark - WKScriptMessageHandler
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     NSLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
-    if ([message.name isEqualToString:@"pushAction"]) {
+    self.WKScriptMessageName = (NSString *)message.name;
+    self.WKScriptMessageBody = (NSDictionary *)message.body;
+    self.dappTransferResult = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
+    self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[self.dappTransferResult.message mj_JSONObject ] ];
+    if ([self.WKScriptMessageName isEqualToString:@"pushAction"] || [self.WKScriptMessageName isEqualToString:@"push"]) {
         [self.view addSubview:self.loginPasswordView];
-        self.WKScriptMessageBody = (NSDictionary *)message.body;
-        DappTransferResult *result = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
-        self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[result.message mj_JSONObject ] ];
-        self.dappTransferModel.serialNumber = result.serialNumber;
     }
 }
 
@@ -207,7 +211,7 @@
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
     [self.loginPasswordView removeFromSuperview];
-    [self feedbackToJsWithSerialNumber:self.dappTransferModel.serialNumber andMessage:@"ERROR:Cancel"];
+    [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Cancel"];
 }
 
 -(void)confirmBtnDidClick:(UIButton *)sender{
@@ -215,20 +219,26 @@
     Wallet *current_wallet = CURRENT_WALLET;
     if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
-        [self feedbackToJsWithSerialNumber:self.dappTransferModel.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
         return;
     }
    
-    if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
-        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
-        self.mainService.code = ContractName_EOSIOTOKEN;
-
-    }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
-        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;//octoneos
-        self.mainService.code = ContractName_OCTOTHEMOON;
-    }else{
-        self.transferAbi_json_to_bin_request.code = ContractName_HELLOWORLDGO;
-        self.mainService.code = ContractName_HELLOWORLDGO;
+    if ([self.WKScriptMessageName isEqualToString:@"pushAction"]) {
+        if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
+            self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
+            self.mainService.code = ContractName_EOSIOTOKEN;
+        }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
+            self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;//octoneos
+            self.mainService.code = ContractName_OCTOTHEMOON;
+        }else{
+            [TOASTVIEW showWithText:@"Symbols not find!Please check it!"];
+            return;
+        }
+        self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
+    }else if ([self.WKScriptMessageName isEqualToString:@"push"]){
+        self.transferAbi_json_to_bin_request.code = self.dappTransferResult.contract;
+        self.mainService.code = self.dappTransferResult.contract;
+        self.transferAbi_json_to_bin_request.action = self.dappTransferResult.action;
     }
 
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
@@ -264,10 +274,10 @@
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
 //        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
-        [self feedbackToJsWithSerialNumber:self.dappTransferModel.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
     }else{
         [TOASTVIEW showWithText: result.message];
-        [self feedbackToJsWithSerialNumber:self.dappTransferModel.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.error]];
+        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
     }
 }
 

@@ -42,15 +42,15 @@
     
     self.contentTextBaseView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.1));
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xF8F8F8));
     
     self.contentTextView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.1));
+    .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xF8F8F8));
     
     self.contentTextView.lee_theme
     .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
-    .LeeAddTextColor(BLACKBOX_MODE, RGBA(255, 255, 255, 1));
+    .LeeAddTextColor(BLACKBOX_MODE, HEXCOLOR(0x2A2A2A));
 }
 - (void)dismiss{
     [self removeFromSuperview];

@@ -170,7 +170,7 @@
     cell.bottomLineView.backgroundColor = HEX_RGB_Alpha(0xFFFFFF, 0.1);
     BPCandidateModel *model = self.choosedBPDataArray[indexPath.row];
     cell.textLabel.text = model.owner;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.4f亿票", (self.model.eos_net_weight.doubleValue + self.model.eos_cpu_weight.doubleValue+ self.headerView.amountTF.text.doubleValue )* 10000 * self.nowVoteWeight.doubleValue / 1000000000000];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.4f%@", (self.model.eos_net_weight.doubleValue + self.model.eos_cpu_weight.doubleValue+ self.headerView.amountTF.text.doubleValue )* 10000 * self.nowVoteWeight.doubleValue / 1000000000000, NSLocalizedString(@"亿票", nil)];
     return cell;
 }
 
@@ -245,7 +245,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.model.account_name];
         if (!accountInfo) {
-            [TOASTVIEW showWithText:@"本地无此账号!"];
+            [TOASTVIEW showWithText: NSLocalizedString(@"本地无此账号!", nil) ];
             return ;
         }
         weakSelf.transferService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];

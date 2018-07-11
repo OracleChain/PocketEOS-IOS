@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "请选择您将使用的账号"; ObjectID = "E0v-4S-9Aq"; */
+"E0v-4S-9Aq.text" = "请选择您将使用的账号";
+
+/* Class = "UIButton"; normalTitle = "我理解区块链应用"; ObjectID = "S8Y-Pj-C7a"; */
+"S8Y-Pj-C7a.normalTitle" = "我理解区块链应用";
+
+/* Class = "UILabel"; text = "注意: 使用区块链应用有可能产生交易行为"; ObjectID = "cng-Wm-egC"; */
+"cng-Wm-egC.text" = "注意: 使用区块链应用有可能产生交易行为";

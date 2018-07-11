@@ -1,0 +1,6 @@
+
+/* Class = "UILabel"; text = "确认选择"; ObjectID = "Vb5-Vt-HbH"; */
+"Vb5-Vt-HbH.text" = "Confirm";
+
+/* Class = "UILabel"; text = "已选择0个，还可以选择30个"; ObjectID = "nS2-08-TzN"; */
+"nS2-08-TzN.text" = ">None selected. Select 30 or less nodes. ";

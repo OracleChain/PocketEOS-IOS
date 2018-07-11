@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "+86"; ObjectID = "0Dq-Lf-cai"; */
+"0Dq-Lf-cai.text" = "+86";
+
+/* Class = "UILabel"; text = "手机号码"; ObjectID = "6RC-hk-UPb"; */
+"6RC-hk-UPb.text" = "手机号码";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "ADs-Ik-w4U"; */
+"ADs-Ik-w4U.normalTitle" = "获取验证码";
+
+/* Class = "UITextField"; placeholder = "输入动态密码"; ObjectID = "FI6-rM-il0"; */
+"FI6-rM-il0.placeholder" = "输入动态密码";
+
+/* Class = "UILabel"; text = "安全、隐私、生态丰富"; ObjectID = "WoA-iT-8LW"; */
+"WoA-iT-8LW.text" = "安全、隐私、生态丰富";
+
+/* Class = "UILabel"; text = "第三方登录"; ObjectID = "aSW-FR-paB"; */
+"aSW-FR-paB.text" = "第三方登录";
+
+/* Class = "UILabel"; text = "动态密码"; ObjectID = "gcO-dv-80i"; */
+"gcO-dv-80i.text" = "动态密码";
+
+/* Class = "UILabel"; text = "Pocket EOS"; ObjectID = "hvM-zB-Un1"; */
+"hvM-zB-Un1.text" = "Pocket EOS";
+
+/* Class = "UILabel"; text = "黑匣子模式"; ObjectID = "qJd-dx-2pO"; */
+"qJd-dx-2pO.text" = "黑匣子模式";
+
+/* Class = "UITextField"; placeholder = "输入手机号码"; ObjectID = "ux4-Dd-zVi"; */
+"ux4-Dd-zVi.placeholder" = "输入手机号码";
+
+/* Class = "UIButton"; normalTitle = "登 录"; ObjectID = "yzn-Wc-3qB"; */
+"yzn-Wc-3qB.normalTitle" = "登 录";

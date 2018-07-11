@@ -66,14 +66,27 @@
                 if ([model.account_name isEqualToString:self.currentAccountName]) {
                     model.selected = YES;
                 }
-                // 将这个账号设为默认的主账号,
-                Wallet *wallet = CURRENT_WALLET;
-                BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
-                // 3. 通知服务器
+               
+                //  通知服务器
                 self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
                 self.setMainAccountRequest.eosAccountName = model.account_name;
                 [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
-                    NSLog(NSLocalizedString(@"通知服务器设置主账号成功!", nil));
+                    BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
+                    if ([result.code isEqualToNumber:@0]) {
+                        // 1.将所有的账号都设为 非主账号
+                        Wallet *wallet = CURRENT_WALLET;
+                        [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
+                        
+                        // update account table
+                        BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
+                        
+                        // update wallet table
+                        [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , model.account_name, CURRENT_WALLET_UID]];
+                        NSLog(@"设置主账号成功");
+                    }else{
+                        [TOASTVIEW showWithText:result.message];
+                    }
+                    
                 } failure:^(id DAO, NSError *error) {
                     
                 }];
@@ -82,6 +95,9 @@
                 [othersAccountArr removeObject:model];
             }
         }
+        
+        
+        
     }
     // 有主账号的情况下
     [self.dataDictionary setObject:mainAccountArr forKey:@"mainAccount"];

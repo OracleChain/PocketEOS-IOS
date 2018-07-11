@@ -51,14 +51,7 @@
 }
 
 - (IBAction)amountSlider:(UISlider *)sender {
-//    [TOASTVIEW showWithText:@"主网启动后, 方可设置投票数量!"];
-//    sender.value = sender.maximumValue;
-    
-//    [self.eosLabel sd_clearAutoLayoutSettings];
-//    self.eosLabel.sd_layout.leftSpaceToView(self.amountTF, 2).centerYEqualToView(self.amountTF).widthIs(30).heightIs(14);
-//
-//    [self.editBtn sd_clearAutoLayoutSettings];
-//    self.editBtn.sd_layout.leftSpaceToView(self.eosLabel, 8).centerYEqualToView(self.amountTF).widthIs(13).heightEqualToWidth();
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(sliderDidSlide:)]) {
         [self.delegate sliderDidSlide:sender];
     }

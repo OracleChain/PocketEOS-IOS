@@ -120,16 +120,6 @@
     self.view.backgroundColor = HEXCOLOR(0x000000);
     self.mainTableView.backgroundColor = HEXCOLOR(0x000000);
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-//    self.img.lee_theme
-//    .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"vote_box"])
-//    .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"vote_box_BB"]);
-//    self.tipLabel.text = NSLocalizedString(@"投票功能将在EOS主网上线开启，敬请关注", nil);
-//
-//    [self.view addSubview:self.img];
-//    [self.view addSubview:self.tipLabel];
-//    self.img.sd_layout.centerYIs(SCREEN_HEIGHT/2).centerXEqualToView(self.view).widthIs(140).heightIs(177);
-//
-//    self.tipLabel.sd_layout.topSpaceToView(self.img, 34).centerXEqualToView(self.view).widthIs(SCREEN_WIDTH).heightIs(14);
     
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
     for (AccountInfo *model in accountArray) {

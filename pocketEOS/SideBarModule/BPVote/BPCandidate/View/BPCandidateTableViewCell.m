@@ -79,14 +79,12 @@
 -(void)setModel:(BPCandidateModel *)model{
     [self.avatarImgView sd_setImageWithURL:String_To_URL(model.logo_256) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     self.titleLabel.text = model.owner;
-    self.detailLabel.text = [NSString stringWithFormat:@"%.2f亿票", model.total_votes.doubleValue/ 1000000000000];
+    self.detailLabel.text = [NSString stringWithFormat:@"%.2f%@", model.total_votes.doubleValue/ 1000000000000, NSLocalizedString(@"亿票", nil)];
     if (model.isSelected) {
         self.rectImg.image = [UIImage imageNamed:@"rectangle_selected"];
     }else{
         self.rectImg.image = [UIImage imageNamed:@"rectangle_UnSelected"];
     }
-//    [_rectBtn setImage:[UIImage imageNamed:@"rectangle_UnSelected"] forState:(UIControlStateNormal)];
-//    [_rectBtn setImage:[UIImage imageNamed:@"rectangle_selected"] forState:(UIControlStateSelected)];
     
 }
 

@@ -94,9 +94,9 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.footerView];
-    self.headerView.accountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@个红包，共%@%@", nil), self.redPacketModel.count, self.redPacketModel.amount, self.redPacketModel.coin];
+    self.headerView.accountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@%@，%@%@%@", nil), self.redPacketModel.count, NSLocalizedString(@"个红包", nil),NSLocalizedString(@"共", nil), self.redPacketModel.amount, self.redPacketModel.coin];
     self.headerView.descriptionLabel.text = self.redPacketModel.memo.length > 0 ? self.redPacketModel.memo : NSLocalizedString(@"", nil);//恭喜发财，大吉大利
-    self.footerView.accountLabel.text = [NSString stringWithFormat:@"支付账户:%@", self.redPacketModel.from];
+    self.footerView.accountLabel.text = [NSString stringWithFormat:@"%@:%@", NSLocalizedString(@"", nil), self.redPacketModel.from];
     [self.view addSubview:self.socialSharePanelView];
     
     self.mainService.auth_redpacket_request.redPacket_id = self.redPacketModel.redPacket_id;
@@ -104,7 +104,7 @@
     WS(weakSelf);
     [self.mainService authRedpacket:^(AuthRedPacketResult *result, BOOL isSuccess) {
         weakSelf.authRedPacketResult = result;
-        weakSelf.footerView.backupTimeLabel.text = [NSString stringWithFormat:@"返回时间:%@",  weakSelf.authRedPacketResult.data.endTime];
+        weakSelf.footerView.backupTimeLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"返回时间", nil),  weakSelf.authRedPacketResult.data.endTime];
         
     }];
 }

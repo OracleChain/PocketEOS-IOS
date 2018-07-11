@@ -11,5 +11,6 @@
 
 
 @interface CommonWKWebViewController : UIViewController
-@property(nonatomic, strong) NSString *urlStr;
+@property(nonatomic, copy) NSString *urlStr;
+@property(nonatomic , copy) NSString *parameterStr;
 @end

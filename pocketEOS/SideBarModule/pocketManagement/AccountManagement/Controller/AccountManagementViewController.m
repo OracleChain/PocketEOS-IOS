@@ -54,6 +54,9 @@
     if (!_navView) {
         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:@"" rightBtnImgName:@"share" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+        if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+            _navView.rightBtn.hidden = YES;
+        }
     }
     return _navView;
 }
@@ -108,7 +111,7 @@
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] init];
         _tipLabel.backgroundColor = [UIColor clearColor];
-        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可解锁", nil);
+        _tipLabel.text = NSLocalizedString(@"将滑块滑动到右侧指定位置内即可删除", nil);
         _tipLabel.textColor = HEXCOLOR(0x999999);
         _tipLabel.font = [UIFont systemFontOfSize:13];
         _tipLabel.textAlignment = NSTextAlignmentCenter;
@@ -307,18 +310,21 @@
 
 //AccountManagementHeaderViewDelegate
 - (void)setToMainAccountBtnDidClick:(UISwitch *)sender{
-    sender.enabled = NO;
     //  通知服务器
     self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
     self.setMainAccountRequest.eosAccountName = self.model.account_name;
     [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
         BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
         if ([result.code isEqualToNumber:@0]) {
+            sender.enabled = NO;
             // 1.将所有的账号都设为 非主账号
             Wallet *wallet = CURRENT_WALLET;
             [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
             // 2.将当前账号设为主账号
             BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, self.model.account_name ]];
+            
+            [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , self.model.account_name, CURRENT_WALLET_UID]];
+            
             if (result) {
                 [TOASTVIEW showWithText:NSLocalizedString(@"设置主账号成功!", nil)];
             }
@@ -388,9 +394,37 @@
         NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
         if (accountArr.count > 1) {
             BOOL result = [[AccountsTableManager accountTable] executeUpdate: [NSString stringWithFormat:@"DELETE FROM '%@' WHERE account_name = '%@'", current_wallet.account_info_table_name,self.model.account_name]];
+            // 再默认设置一个主账号
+            NSMutableArray *newAccountsArr = [[AccountsTableManager accountTable] selectAccountTable];
+            AccountInfo *model = newAccountsArr[0];
+            //  通知服务器
+            self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
+            self.setMainAccountRequest.eosAccountName = model.account_name;
+            [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
+                BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
+                if ([result.code isEqualToNumber:@0]) {
+                    // 1.将所有的账号都设为 非主账号
+                    Wallet *wallet = CURRENT_WALLET;
+                    [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
+                    
+                    // update account table
+                    BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
+                    
+                    // update wallet table
+                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , model.account_name, CURRENT_WALLET_UID]];
+                    NSLog(@"设置主账号成功");
+                }else{
+                    [TOASTVIEW showWithText:result.message];
+                }
+                
+            } failure:^(id DAO, NSError *error) {
+                    
+            }];
+            
+                
             if (result) {
                 [TOASTVIEW showWithText:NSLocalizedString(@"删除账号成功!", nil)];
-                [ self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }else{ 
              [self.view addSubview:self.askQuestionTipView];

@@ -51,7 +51,7 @@
 -(void)setModel:(Follow *)model{
     _model = model;
     if ([model.followType isEqualToNumber:@1]) {
-        _titleLabel.text = [NSString stringWithFormat:@"%@的钱包", _model.displayName];
+        _titleLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(_model.displayName), NSLocalizedString(@"的钱包", nil)];
     }else if([model.followType isEqualToNumber:@2]){
         _titleLabel.text = _model.displayName;
     }
