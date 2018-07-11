@@ -53,15 +53,12 @@
 
 &emsp;MACOS
 
-&emsp;1. install XCODE...xxx
+&emsp;1. XCODE 8.0 compatible
 
-&emsp;2. download our git repository.
+&emsp;2. clone our git repository.
 >`git clone --recurse-submodules https://github.com/OracleChain/PocketEOS-IOS.git`
 
-&emsp;3. xxx
-
-&emsp;4. xxx
-
+&emsp;3. command + R
 
 **DOWNLOAD & TRY/下载试用**
 
