@@ -62,12 +62,13 @@
      HEXCOLOR(0x999999) range:NSMakeRange(0,attrStr.length)];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attrStr.length)];
     
-   
-    [attrStr addAttribute:NSUnderlineStyleAttributeName value:
-     [NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(attrStr.length-10, 9)]; // 下划线
-    [attrStr addAttribute:NSUnderlineColorAttributeName value:
-     HEXCOLOR(0x999999) range:NSMakeRange(attrStr.length-10, 9)]; // 下划线颜色
-    NSLog(@"%@", SWWAppCurrentLanguage);
+    if ([NSBundle isChineseLanguage]) {
+        [attrStr addAttribute:NSUnderlineStyleAttributeName value:
+         [NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(attrStr.length-10, 9)]; // 下划线
+        [attrStr addAttribute:NSUnderlineColorAttributeName value:
+         HEXCOLOR(0x999999) range:NSMakeRange(attrStr.length-10, 9)]; // 下划线颜色
+    }
+    
     
     self.privacyPolicyLabel.attributedText = attrStr;
     

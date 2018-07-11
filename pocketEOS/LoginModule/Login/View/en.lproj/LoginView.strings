@@ -24,7 +24,7 @@
 "hvM-zB-Un1.text" = "Pocket EOS";
 
 /* Class = "UILabel"; text = "黑匣子模式"; ObjectID = "qJd-dx-2pO"; */
-"qJd-dx-2pO.text" = "Black Box Model";
+"qJd-dx-2pO.text" = "Black Box Mode";
 
 /* Class = "UITextField"; placeholder = "输入手机号码"; ObjectID = "ux4-Dd-zVi"; */
 "ux4-Dd-zVi.placeholder" = "Input phone number";

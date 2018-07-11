@@ -459,8 +459,6 @@
 		185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3B420BBB16500F63674 /* slider_blue@2x.png */; };
 		185BA3B720BBB16500F63674 /* slider_blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3B520BBB16500F63674 /* slider_blue@3x.png */; };
 		185BA3BA20BBB3CE00F63674 /* BaseConfirmButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BA3B920BBB3CE00F63674 /* BaseConfirmButton.m */; };
-		185BA3BD20BBC1EC00F63674 /* backup_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */; };
-		185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */; };
 		185BA3CF20BBC2E700F63674 /* select__BB_wallet_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3CB20BBC2E600F63674 /* select__BB_wallet_icon@3x.png */; };
 		185BA3D020BBC2E700F63674 /* unSelect__BB_wallet_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3CC20BBC2E700F63674 /* unSelect__BB_wallet_icon@2x.png */; };
 		185BA3D120BBC2E700F63674 /* select__BB_wallet_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA3CD20BBC2E700F63674 /* select__BB_wallet_icon@2x.png */; };
@@ -746,7 +744,6 @@
 		189E3ECA201C78D10022AF19 /* ApplicationModuleBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 189E3EC9201C78D10022AF19 /* ApplicationModuleBodyRequest.m */; };
 		189EB98B207B569F0088C6FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 189EB98D207B569F0088C6FC /* InfoPlist.strings */; };
 		189EB992207B5E630088C6FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 189EB994207B5E630088C6FC /* Localizable.strings */; };
-		189EB999207B6DCB0088C6FC /* SetAppLanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 189EB998207B6DCB0088C6FC /* SetAppLanguageHelper.m */; };
 		18A2F4651FF0A20A00B6CE43 /* FMDatabase+FTS3.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A2F4511FF0A20A00B6CE43 /* FMDatabase+FTS3.m */; };
 		18A2F4661FF0A20A00B6CE43 /* FMTokenizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A2F4531FF0A20A00B6CE43 /* FMTokenizers.m */; };
 		18A2F4671FF0A20A00B6CE43 /* FMDatabase+InMemoryOnDiskIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A2F4571FF0A20A00B6CE43 /* FMDatabase+InMemoryOnDiskIO.m */; };
@@ -1785,8 +1782,6 @@
 		185BA3B520BBB16500F63674 /* slider_blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_blue@3x.png"; sourceTree = "<group>"; };
 		185BA3B820BBB3CE00F63674 /* BaseConfirmButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseConfirmButton.h; sourceTree = "<group>"; };
 		185BA3B920BBB3CE00F63674 /* BaseConfirmButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseConfirmButton.m; sourceTree = "<group>"; };
-		185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@2x.png"; sourceTree = "<group>"; };
-		185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup_BB@3x.png"; sourceTree = "<group>"; };
 		185BA3CB20BBC2E600F63674 /* select__BB_wallet_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select__BB_wallet_icon@3x.png"; sourceTree = "<group>"; };
 		185BA3CC20BBC2E700F63674 /* unSelect__BB_wallet_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelect__BB_wallet_icon@2x.png"; sourceTree = "<group>"; };
 		185BA3CD20BBC2E700F63674 /* select__BB_wallet_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select__BB_wallet_icon@2x.png"; sourceTree = "<group>"; };
@@ -2327,8 +2322,6 @@
 		189EB98F207B5C030088C6FC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		189EB993207B5E630088C6FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		189EB995207B5E670088C6FC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		189EB997207B6DCB0088C6FC /* SetAppLanguageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetAppLanguageHelper.h; sourceTree = "<group>"; };
-		189EB998207B6DCB0088C6FC /* SetAppLanguageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetAppLanguageHelper.m; sourceTree = "<group>"; };
 		18A2F4501FF0A20A00B6CE43 /* FMDatabase+FTS3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+FTS3.h"; sourceTree = "<group>"; };
 		18A2F4511FF0A20A00B6CE43 /* FMDatabase+FTS3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+FTS3.m"; sourceTree = "<group>"; };
 		18A2F4521FF0A20A00B6CE43 /* FMTokenizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTokenizers.h; sourceTree = "<group>"; };
@@ -6130,8 +6123,6 @@
 				1843CB12207C55A400EDC158 /* DAConfig.m */,
 				1843CB13207C55A400EDC158 /* NSBundle+DAUtils.h */,
 				1843CB11207C55A300EDC158 /* NSBundle+DAUtils.m */,
-				189EB997207B6DCB0088C6FC /* SetAppLanguageHelper.h */,
-				189EB998207B6DCB0088C6FC /* SetAppLanguageHelper.m */,
 			);
 			path = setAppLanguage;
 			sourceTree = "<group>";
@@ -7122,8 +7113,6 @@
 				185D18621FE766230021AD18 /* folder@3x.png */,
 				18D07A8D20EB67EC00DF1FDF /* backup@2x.png */,
 				18D07A8E20EB67EC00DF1FDF /* backup@3x.png */,
-				185BA3BB20BBC1EA00F63674 /* backup_BB@2x.png */,
-				185BA3BC20BBC1EA00F63674 /* backup_BB@3x.png */,
 				18D07A8220EB676800DF1FDF /* changePassword@2x.png */,
 				18D07A8520EB676900DF1FDF /* changePassword@3x.png */,
 				18D07A8420EB676800DF1FDF /* createAccount@2x.png */,
@@ -7887,7 +7876,6 @@
 				1830A94E202BF796009ACDD8 /* oct_avatar@3x.png in Resources */,
 				186F6A4720F4972C00FFF881 /* ImportPocketHeaderView.xib in Resources */,
 				1816915620BEC1B900BF49A8 /* right_arrow_white@2x.png in Resources */,
-				185BA3BD20BBC1EC00F63674 /* backup_BB@2x.png in Resources */,
 				185D18331FE75CDC0021AD18 /* versionUpdate@3x.png in Resources */,
 				18AD2BC120D0C9C400536084 /* vote_change_account@2x.png in Resources */,
 				183FF6F520C0FD700058D010 /* qq_login@2x.png in Resources */,
@@ -7966,7 +7954,6 @@
 				186F6A7F20F4978E00FFF881 /* BandwidthManageHeaderView.xib in Resources */,
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
-				185BA3BE20BBC1EC00F63674 /* backup_BB@3x.png in Resources */,
 				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
 				185D181E1FE75B270021AD18 /* pocket@2x.png in Resources */,
@@ -8576,7 +8563,6 @@
 				18FA76CD20623C6D00545E73 /* EosByteWriter.m in Sources */,
 				1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */,
 				18A2F4691FF0A20A00B6CE43 /* FMDatabaseAdditions.m in Sources */,
-				189EB999207B6DCB0088C6FC /* SetAppLanguageHelper.m in Sources */,
 				1825DC682005C1020057320C /* SegmentControlView.m in Sources */,
 				189E3EC0201C5B980022AF19 /* RSKImageScrollView.m in Sources */,
 				1841134E200476F000CD6F3F /* NewsMainHeaderView.m in Sources */,

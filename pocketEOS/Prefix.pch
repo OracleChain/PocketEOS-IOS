@@ -63,7 +63,6 @@
 #import "SocialManager.h"
 #import "DeviceType.h"
 #import "WalletUtil.h"
-#import "SetAppLanguageHelper.h"
 #import "OptionModel.h"
 #import "BaseResult.h"
 #import "RtfBrowserViewController.h"
