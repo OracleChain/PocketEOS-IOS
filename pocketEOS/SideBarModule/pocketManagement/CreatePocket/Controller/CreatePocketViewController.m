@@ -14,12 +14,14 @@
 #import "CreatePocketHeaderView.h"
 #import "NavigationView.h"
 #import "RtfBrowserViewController.h"
+#import "PersonalSettingService.h"
 
 
 @interface CreatePocketViewController ()<UIGestureRecognizerDelegate, NavigationViewDelegate, CreatePocketHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) CreatePocketHeaderView *headerView;
 @property(nonatomic , strong) UIButton *importPocketBtn;
+@property(nonatomic , strong) PersonalSettingService *personalSettingService;
 @end
 
 @implementation CreatePocketViewController
@@ -57,6 +59,13 @@
         [_importPocketBtn setAttributedTitle:tncString forState:UIControlStateNormal];
     }
     return _importPocketBtn;
+}
+
+- (PersonalSettingService *)personalSettingService{
+    if (!_personalSettingService) {
+        _personalSettingService = [[PersonalSettingService alloc] init];
+    }
+    return _personalSettingService;
 }
 
 - (void)viewDidLoad {
@@ -107,8 +116,18 @@
     NSString *savePassword = [WalletUtil generate_wallet_shapwd_withPassword:self.headerView.confirmPasswordTF.text];
     if (self.createPocketViewControllerFromMode == CreatePocketViewControllerFromSocialMode) {
         // 已有钱包
-        
         [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_shapwd = '%@',wallet_name = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , savePassword , self.headerView.nameTF.text, CURRENT_WALLET_UID]];
+        
+        self.personalSettingService.updateUserNameRequest.userName = self.headerView.nameTF.text;
+        [self.personalSettingService.updateUserNameRequest postDataSuccess:^(id DAO, id data) {
+            BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
+            if ([result.code isEqualToNumber:@0]) {
+                NSLog(@"通知服务器设置钱包名成功");
+            }
+            
+        } failure:^(id DAO, NSError *error) {
+            
+        }];
         
     }else if (self.createPocketViewControllerFromMode == CreatePocketViewControllerFromBlackBoxMode){
         // 重新创建钱包

@@ -58,7 +58,12 @@
     for (NSDictionary *dic in resultArray) {
         AreaCodeModel *model = [AreaCodeModel mj_objectWithKeyValues:dic];
         // 生成索引数组
-        NSString *firstLetter = [NSString firstCharactorWithString: VALIDATE_STRING(model.en) ];
+        NSString *firstLetter;
+        if ([NSBundle isChineseLanguage]) {
+            firstLetter = [NSString firstCharactorWithString: VALIDATE_STRING(model.zh) ];
+        }else{
+            firstLetter = [NSString firstCharactorWithString: VALIDATE_STRING(model.en) ];
+        }
         NSString *regex = @"[A-Z]";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if ([predicate evaluateWithObject: firstLetter]) {

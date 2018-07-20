@@ -27,6 +27,7 @@
 #define ACCOUNT_DEFALUT_AVATAR_IMG_URL_STR @""
 
 // 翻页, 一页的记录个数
+#define PER_PAGE_SIZE_10 10
 #define PER_PAGE_SIZE_15 15
 
 /**
@@ -257,6 +258,10 @@
  */
 #define ACCOUNTS_TABLE @"accounts_table"
 
+/**
+ *  账号表
+ */
+#define DATABASE_NULLVALUE @"(null)"
 
 
 ///////////////////////Begin: App Parameters Macro definition///////////////////////

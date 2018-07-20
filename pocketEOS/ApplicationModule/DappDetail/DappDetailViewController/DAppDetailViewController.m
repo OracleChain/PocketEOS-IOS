@@ -6,6 +6,10 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
+#define JS_CONTRACT_METHOD_PUSH @"push"
+#define JS_CONTRACT_METHOD_PUSHACTION @"pushAction"
+
+
 #import "DAppDetailViewController.h"
 #import "WkDelegateController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
@@ -13,10 +17,11 @@
 #import "CDZPicker.h"
 #import "SelectAccountView.h"
 #import "TransferAbi_json_to_bin_request.h"
+#import "Abi_json_to_binRequest.h"
 #import "DappTransferModel.h"
 #import "DappTransferResult.h"
 
-@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate>
+@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate>
 @property WebViewJavascriptBridge* bridge;
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
@@ -27,6 +32,7 @@
 @property(nonatomic, strong) SelectAccountView *selectAccountView;
 @property(nonatomic, strong) NSString *choosedAccountName;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
+@property(nonatomic , strong) Abi_json_to_binRequest *abi_json_to_binRequest;
 @property (nonatomic , strong) DappTransferResult *dappTransferResult;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
@@ -51,12 +57,13 @@
         self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) configuration:configuration];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
+        self.webView.scrollView.delegate = self;
         if (@available(iOS 9.0, *)) {
             self.webView.customUserAgent = @"PocketEosIos";
         } else {
             // Fallback on earlier versions
         }
-
+        
     }
     return _webView;
 }
@@ -93,6 +100,13 @@
         _transferAbi_json_to_bin_request = [[TransferAbi_json_to_bin_request alloc] init];
     }
     return _transferAbi_json_to_bin_request;
+}
+
+- (Abi_json_to_binRequest *)abi_json_to_binRequest{
+    if (!_abi_json_to_binRequest) {
+        _abi_json_to_binRequest = [[Abi_json_to_binRequest alloc] init];
+    }
+    return _abi_json_to_binRequest;
 }
 
 -(UIBarButtonItem *)backItem{
@@ -136,7 +150,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushAction"];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"push"];
     if (IsStrEmpty(self.webView.title)) {
@@ -167,16 +181,20 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [self passEosAccountNameToJS];
+    [self passWalletInfoToJS];
     WS(weakSelf);
     // 确保js 能收到 eosAccountName
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf passEosAccountNameToJS];
+        [weakSelf passWalletInfoToJS];
     });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf passEosAccountNameToJS];
+        [weakSelf passWalletInfoToJS];
     });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf passEosAccountNameToJS];
+        [weakSelf passWalletInfoToJS];
     });
     
 }
@@ -222,25 +240,60 @@
         [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
         return;
     }
-   
-    if ([self.WKScriptMessageName isEqualToString:@"pushAction"]) {
-        if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
-            self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
-            self.mainService.code = ContractName_EOSIOTOKEN;
-        }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
-            self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;//octoneos
-            self.mainService.code = ContractName_OCTOTHEMOON;
-        }else{
-            [TOASTVIEW showWithText:@"Symbols not find!Please check it!"];
-            return;
-        }
-        self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
-    }else if ([self.WKScriptMessageName isEqualToString:@"push"]){
-        self.transferAbi_json_to_bin_request.code = self.dappTransferResult.contract;
-        self.mainService.code = self.dappTransferResult.contract;
-        self.transferAbi_json_to_bin_request.action = self.dappTransferResult.action;
+    if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSH]) {
+        [self push];
+    }else if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSHACTION]){
+        [self pushAction];
     }
+}
 
+- (void)push{
+    self.abi_json_to_binRequest.code = self.dappTransferResult.contract;
+    self.mainService.code = self.dappTransferResult.contract;
+    
+    self.abi_json_to_binRequest.action = self.dappTransferResult.action;
+    self.mainService.action = self.dappTransferResult.action;
+    self.abi_json_to_binRequest.args = [self.dappTransferResult.message mj_JSONObject];
+    
+    WS(weakSelf);
+    [self.abi_json_to_binRequest postOuterDataSuccess:^(id DAO, id data) {
+#pragma mark -- [@"data"]
+        NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
+        //        if (![data[@"code"] isEqualToNumber:@0]) {
+        //            [weakSelf feedbackToJsWithSerialNumber:weakSelf.dappTransferModel.serialNumber andMessage:data[@"data"]];
+        //            return ;
+        //        }
+        AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.choosedAccountName];
+        weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
+        weakSelf.mainService.sender = weakSelf.choosedAccountName;
+        weakSelf.mainService.binargs = data[@"data"][@"binargs"];
+        weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
+        weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
+        [weakSelf.mainService pushTransaction];
+        [weakSelf.loginPasswordView removeFromSuperview];
+        weakSelf.loginPasswordView = nil;
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+    
+}
+
+// adapt old version
+- (void)pushAction{
+    
+    if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
+        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
+        self.mainService.code = ContractName_EOSIOTOKEN;
+    }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
+        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;//octoneos
+        self.mainService.code = ContractName_OCTOTHEMOON;
+    }else{
+        [TOASTVIEW showWithText:@"Symbols not find!Please check it!"];
+        return;
+    }
+    self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
+    
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = self.dappTransferModel.from;
@@ -250,10 +303,11 @@
     [self.transferAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
 #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
-//        if (![data[@"code"] isEqualToNumber:@0]) {
-//            [weakSelf feedbackToJsWithSerialNumber:weakSelf.dappTransferModel.serialNumber andMessage:data[@"data"]];
-//            return ;
-//        }
+        
+        //        if (![data[@"code"] isEqualToNumber:@0]) {
+        //            [weakSelf feedbackToJsWithSerialNumber:weakSelf.dappTransferModel.serialNumber andMessage:data[@"data"]];
+        //            return ;
+        //        }
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.choosedAccountName];
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.mainService.action = ContractAction_TRANSFER;
@@ -267,13 +321,13 @@
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
-
+    
 }
 
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-//        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
+        //        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
         [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
     }else{
         [TOASTVIEW showWithText: result.message];
@@ -291,6 +345,21 @@
 
 - (void)passEosAccountNameToJS{
     NSString *js = [NSString stringWithFormat:@"getEosAccount('%@')", self.choosedAccountName];
+    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        //TODO
+        NSLog(@"%@ ",response);
+    }];
+}
+
+- (void)passWalletInfoToJS{
+    Wallet *wallet = CURRENT_WALLET;
+    NSMutableDictionary *walletDict = [[NSMutableDictionary alloc] init];
+    [walletDict setValue:wallet.wallet_phone forKey:@"phone"];
+    [walletDict setValue:self.choosedAccountName forKey:@"account"];
+    [walletDict setValue:wallet.wallet_uid forKey:@"uid"];
+    [walletDict setValue:wallet.wallet_name forKey:@"wallet_name"];
+    [walletDict setValue:wallet.wallet_avatar forKey:@"image"];
+    NSString *js = [NSString stringWithFormat:@"getWalletWithAccount('%@')",[walletDict mj_JSONString]];
     [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         //TODO
         NSLog(@"%@ ",response);
@@ -325,11 +394,12 @@
         return;
     } else{
         [self.selectAccountView removeFromSuperview];
-//       xgame http://47.74.145.111 self.model.url
-//        http://www.cheerfifa.com
+        //       xgame http://47.74.145.111 self.model.url
+        //        http://www.cheerfifa.com //  http://192.168.3.151:8081
         [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
+        self.webView.scrollView.delegate = self;
         [self.view addSubview:self.webView];
     }
 }
@@ -354,3 +424,4 @@
 }
 
 @end
+

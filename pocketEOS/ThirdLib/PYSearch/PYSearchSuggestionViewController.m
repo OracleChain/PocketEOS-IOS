@@ -126,7 +126,8 @@
         [cell.contentView addSubview:line];
     }
     cell.imageView.image = [NSBundle py_imageNamed:@"search"];
-    cell.textLabel.text = self.searchSuggestions[indexPath.row];
+//    cell.textLabel.text = self.searchSuggestions[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"mayun 222%@",self.searchSuggestions[indexPath.row]];
     return cell;
 }
 

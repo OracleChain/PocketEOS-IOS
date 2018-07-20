@@ -11,11 +11,13 @@
 #import "RichListRequest.h"
 #import "GetRateRequest.h"
 
+
 @interface AssestsMainService : BaseService
 
 @property(nonatomic, strong) GetAccountAssetRequest *getAccountAssetRequest;
 @property(nonatomic, strong) RichListRequest *richListRequest;
 @property(nonatomic, strong) GetRateRequest *getRateRequest;
+
 
 
 /**

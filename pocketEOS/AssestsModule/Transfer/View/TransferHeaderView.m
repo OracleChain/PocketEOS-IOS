@@ -20,7 +20,7 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    self.memoTV.placeholder = NSLocalizedString(NSLocalizedString(@"恭喜发财, 大吉大利", nil), nil);
+    self.memoTV.placeholder = NSLocalizedString(@"请在此输入memo", nil);
     self.assest_balanceLabel.font = [UIFont boldSystemFontOfSize:14];
     self.assest_balance_ConvertLabel.font = [UIFont boldSystemFontOfSize:14];
     self.amount_ConvertLabel.font = [UIFont boldSystemFontOfSize:24];

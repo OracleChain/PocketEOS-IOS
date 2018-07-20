@@ -107,18 +107,18 @@
     
     
     // services
-     NSMutableArray *itemArr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"创建账号", nil), NSLocalizedString(@"导入账号", nil), NSLocalizedString(@"修改密码", nil), NSLocalizedString(@"备份钱包", nil), nil];
-    NSMutableArray *iconArr = [NSMutableArray arrayWithObjects:@"createAccount", @"importAccount", @"changePassword", @"backup",nil];
-    NSMutableArray *iconArr_BB = [NSMutableArray arrayWithObjects:@"createAccount_BB", @"importAccount_BB", @"changePassword_BB", @"backup_BB",nil];
-    NSMutableArray *servicesArr = [NSMutableArray array];
-    for (int i = 0; i < itemArr.count; i++) {
-        OptionModel *model = [[OptionModel alloc] init];
-        model.optionName = itemArr[i];
-        model.optionNormalIcon = iconArr[i];
-        model.optionSelectedIcon = iconArr_BB[i];
-        [servicesArr addObject:model];
-    }
-    [self.dataDictionary setObject:servicesArr forKey:@"servicesArr"];
+//     NSMutableArray *itemArr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"创建账号", nil), NSLocalizedString(@"导入账号", nil), NSLocalizedString(@"修改密码", nil), NSLocalizedString(@"备份钱包", nil), nil];
+//    NSMutableArray *iconArr = [NSMutableArray arrayWithObjects:@"createAccount", @"importAccount", @"changePassword", @"backup",nil];
+//    NSMutableArray *iconArr_BB = [NSMutableArray arrayWithObjects:@"createAccount_BB", @"importAccount_BB", @"changePassword_BB", @"backup_BB",nil];
+//    NSMutableArray *servicesArr = [NSMutableArray array];
+//    for (int i = 0; i < itemArr.count; i++) {
+//        OptionModel *model = [[OptionModel alloc] init];
+//        model.optionName = itemArr[i];
+//        model.optionNormalIcon = iconArr[i];
+//        model.optionSelectedIcon = iconArr_BB[i];
+//        [servicesArr addObject:model];
+//    }
+//    [self.dataDictionary setObject:servicesArr forKey:@"servicesArr"];
     complete(self , YES);
 }
 

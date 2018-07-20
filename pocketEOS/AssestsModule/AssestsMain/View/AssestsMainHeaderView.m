@@ -12,10 +12,18 @@
 
 
 @interface AssestsMainHeaderView()
+@property (weak, nonatomic) IBOutlet UIImageView *addAssestsImageView;
 @property (weak, nonatomic) IBOutlet UIView *topBackgroundView;
 @end
 
 @implementation AssestsMainHeaderView
+
+- (NSMutableArray *)tokenInfoDataArray{
+    if (!_tokenInfoDataArray) {
+        _tokenInfoDataArray = [[NSMutableArray alloc] init];
+    }
+    return _tokenInfoDataArray;
+}
 
 -(void)awakeFromNib{
     [super awakeFromNib];
@@ -34,6 +42,10 @@
     [self.topBackgroundView.layer addSublayer:layer];
 
     [self.totalAssetsLabel setFont:[UIFont boldSystemFontOfSize:36]];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addAssestsImageDidTap)];
+    [self.addAssestsImageView addGestureRecognizer:tap];
     
 }
 
@@ -70,6 +82,17 @@
     }
 }
 
+
+- (IBAction)ramTradeBtnDidClick:(UIButton *)sender {
+    if (!self.ramTradeBtnDidClickBlock) {
+        return;
+    }
+    self.ramTradeBtnDidClickBlock();
+}
+
+
+
+
 - (IBAction)totalAssestVisible:(UIButton *)sender {
     
     sender.selected = !sender.isSelected;
@@ -77,9 +100,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel]);
-    if (_model) {
-        [self setModel:_model];
-    }
+    [self updateViewWithDataArray:self.tokenInfoDataArray];
 }
 
 -(void)setModel:(Account *)model{
@@ -105,8 +126,26 @@
         
     }
     
+//    if ( [[[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel] isEqual:@1]) {
+//        self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.eos_balance.doubleValue * model.eos_price_cny.doubleValue + model.oct_balance.doubleValue * model.oct_price_cny.doubleValue]]];
+//        [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_open"] forState:(UIControlStateNormal)];
+//    }else{
+//        [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_close"] forState:(UIControlStateNormal)];
+//        self.totalAssetsLabel.text = @"******";
+//    }
+    
+}
+
+
+- (void)updateViewWithDataArray:(NSMutableArray<TokenInfo *> *)dataArray{
+    self.tokenInfoDataArray = dataArray;
+    double totalBalanceCnyValue =0;
+    for (TokenInfo *model in dataArray) {
+        totalBalanceCnyValue += model.balance_cny.doubleValue;
+    }
+    
     if ( [[[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel] isEqual:@1]) {
-        self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.eos_balance.doubleValue * model.eos_price_cny.doubleValue + model.oct_balance.doubleValue * model.oct_price_cny.doubleValue]]];
+        self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%.4f", totalBalanceCnyValue];
         [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_open"] forState:(UIControlStateNormal)];
     }else{
         [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_close"] forState:(UIControlStateNormal)];
@@ -114,11 +153,19 @@
     }
     
 }
+
 - (IBAction)accountBtnDidClick:(UIButton *)sender {
     if (!self.accountBtnDidTapBlock) {
         return;
     }
     self.accountBtnDidTapBlock();
+}
+
+- (void)addAssestsImageDidTap{
+    if (!self.addAssestsImgDidTapBlock) {
+        return;
+    }
+    self.addAssestsImgDidTapBlock();
 }
 
 @end

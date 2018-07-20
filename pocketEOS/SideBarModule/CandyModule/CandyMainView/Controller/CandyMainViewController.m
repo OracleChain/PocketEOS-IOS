@@ -87,7 +87,7 @@
     [self.mainTableView.mj_footer resetNoMoreData];
     self.candyScoreRequest.uid = CURRENT_WALLET_UID;
     [self.candyScoreRequest getDataSusscess:^(id DAO, id data) {
-        [weakSelf.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_avatar) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+        [weakSelf.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
         weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
     } failure:^(id DAO, NSError *error) {
         

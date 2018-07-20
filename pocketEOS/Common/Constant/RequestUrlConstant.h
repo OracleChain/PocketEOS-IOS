@@ -20,7 +20,6 @@
 #define REQUEST_MESSAGE_PUSH_BASEURL @"https://push.pocketeos.top"
 
 
-
 // 主网环境
 //#define REQUEST_PERSONAL_BASEURL @"http://47.105.50.198:9000/api_oc_personal/v1.0.0"
 //#define REQUEST_CANDYSYSTEM_BASEURL @"http://47.105.50.198:8088/api_oc_pe_candy_system"

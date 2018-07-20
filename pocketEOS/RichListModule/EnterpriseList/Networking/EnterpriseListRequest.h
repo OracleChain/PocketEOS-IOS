@@ -15,7 +15,7 @@
 @property(nonatomic, strong) NSNumber *size;
 
 /**
- 新闻起始位置
+ 起始位置
  */
 @property(nonatomic, strong) NSNumber *offset;
 

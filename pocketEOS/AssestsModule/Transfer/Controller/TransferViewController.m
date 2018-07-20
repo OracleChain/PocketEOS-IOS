@@ -167,7 +167,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
-//    [self.mainTableView.mj_header beginRefreshing];
+    //    [self.mainTableView.mj_header beginRefreshing];
     
     [self loadAllBlocks];
     
@@ -210,8 +210,8 @@
         }
         [weakSelf.mainService get_rate:^(GetRateResult *result, BOOL isSuccess) {
             if (isSuccess) {
-                 weakSelf.getRateResult = result;
-                 dispatch_group_leave(group);
+                weakSelf.getRateResult = result;
+                dispatch_group_leave(group);
             }
         }];
     });
@@ -283,14 +283,14 @@
 - (void)textFieldChange:(NSNotification *)notification {
     BOOL isCanSubmit = (self.headerView.nameTF.text.length != 0 && self.headerView.amountTF.text.length != 0);
     if (isCanSubmit) {
-
+        
         self.headerView.transferBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
     } else {
         self.headerView.transferBtn.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
-     
+        
         
     }
     self.headerView.transferBtn.enabled = isCanSubmit;
@@ -387,7 +387,7 @@
         self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
         self.mainService.code = ContractName_OCTOTHEMOON;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
-
+        
     }
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
@@ -396,13 +396,13 @@
     self.transferAbi_json_to_bin_request.memo = self.headerView.memoTV.text;
     WS(weakSelf);
     [self.transferAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
-        #pragma mark -- [@"data"]
+#pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.currentAccountName];
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.sender = weakSelf.currentAccountName;
-        #pragma mark -- [@"data"]
+#pragma mark -- [@"data"]
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
@@ -557,3 +557,4 @@
 }
 
 @end
+

@@ -186,10 +186,19 @@
     }
     RedPacketRecord *model = self.mainService.dataSourceArray[indexPath.row];
     if (model.isSend == YES) {
-        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"发送%@个%@给%@个人，%@", nil),NSLocalizedString(@"发送", nil), model.amount, NSLocalizedString(@"个", nil),model.type, NSLocalizedString(@"给", nil),model.packetCount,NSLocalizedString(@"个人", nil), [model.residueCount isEqualToNumber:@0] ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: @"%@%ld%@", NSLocalizedString(@"已被", nil), model.packetCount.integerValue - model.residueCount.integerValue,NSLocalizedString(@"人领取", nil) ]];
+//        [model.residueCount isEqualToNumber:@0] ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: @"%@%ld%@", NSLocalizedString(@"已被", nil), model.packetCount.integerValue - model.residueCount.integerValue,NSLocalizedString(@"人领取", nil) ]
+        NSString *str;
+        if ([model.residueCount isEqualToNumber:@0]) {
+            str = NSLocalizedString(@"全部被领取", nil);
+        }else{
+            str = [NSString stringWithFormat: @"%@%ld%@", NSLocalizedString(@"已被", nil), model.packetCount.integerValue - model.residueCount.integerValue,NSLocalizedString(@"人领取", nil) ];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@, %@",NSLocalizedString(@"发送", nil), model.amount, NSLocalizedString(@"个", nil),model.type, NSLocalizedString(@"给", nil),model.packetCount,NSLocalizedString(@"个人", nil), str];
+        
     }else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@%@", NSLocalizedString(@"领取", nil), model.amount, NSLocalizedString(@"个", nil), model.type];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"领取", nil), model.amount, NSLocalizedString(@"个", nil), model.type];
     }
+//    cell.textLabel.frame = CGRectMake(MARGIN_20, MARGIN_20, SCREEN_WIDTH-(MARGIN_20*2), 21);
     cell.detailTextLabel.text =model.createTime;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:13];

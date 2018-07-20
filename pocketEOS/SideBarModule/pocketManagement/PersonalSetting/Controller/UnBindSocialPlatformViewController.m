@@ -79,7 +79,7 @@
         [self.unbindWechatRequest postDataSuccess:^(id DAO, id data) {
             NSNumber *code = data[@"code"];
             if ([code isEqualToNumber:@0]) {
-                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_weixin = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE ,@"(null)" , CURRENT_WALLET_UID]];
+                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_weixin = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE ,DATABASE_NULLVALUE , CURRENT_WALLET_UID]];
             }
             [TOASTVIEW showWithText:VALIDATE_STRING(data[@"message"])];
             [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -93,7 +93,7 @@
         [self.unbindQQRequest postDataSuccess:^(id DAO, id data) {
             NSNumber *code = data[@"code"];
             if ([code isEqualToNumber:@0]) {
-                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_qq = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , @"(null)" , CURRENT_WALLET_UID]];
+                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_qq = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , DATABASE_NULLVALUE , CURRENT_WALLET_UID]];
             }
             [TOASTVIEW showWithText:VALIDATE_STRING(data[@"message"])];
             [weakSelf.navigationController popViewControllerAnimated:YES];

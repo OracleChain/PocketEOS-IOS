@@ -12,6 +12,7 @@
 #import "AssestsMainHeaderView.h"
 #import "SideBarViewController.h"
 #import "TransferViewController.h"
+#import "TransferNewViewController.h"
 #import "RecieveViewController.h"
 #import "RedPacketViewController.h"
 #import "ChangeAccountViewController.h"
@@ -44,13 +45,19 @@
 #import "VersionUpdateTipView.h"
 #import "VersionUpdateModel.h"
 #import "GetVersionInfoRequest.h"
+#import "DAppDetailViewController.h"
+#import "AddAssestsViewController.h"
+#import "Get_token_info_service.h"
+#import "TokenInfo.h"
 
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate>
+
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate>
 
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
 @property(nonatomic, strong) AssestsMainService *mainService;
+@property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic, strong) NSString *currentAccountName;
 @property(nonatomic , strong) AdvertisementView *advertisementView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
@@ -58,7 +65,7 @@
 @property(nonatomic , strong) VersionUpdateTipView *versionUpdateTipView;
 @property(nonatomic , strong) GetVersionInfoRequest *getVersionInfoRequest;
 @property(nonatomic , strong) VersionUpdateModel *versionUpdateModel;
-
+@property(nonatomic , strong) NSMutableArray *ids;
 @end
 
 @implementation AssestsMainViewController
@@ -90,6 +97,12 @@
         _mainService = [[AssestsMainService alloc] init];
     }
     return _mainService;
+}
+- (Get_token_info_service *)get_token_info_service{
+    if (!_get_token_info_service) {
+        _get_token_info_service = [[Get_token_info_service alloc] init];
+    }
+    return _get_token_info_service;
 }
 
 - (AdvertisementView *)advertisementView{
@@ -132,6 +145,14 @@
     }
     return _getVersionInfoRequest;
 }
+
+- (NSMutableArray *)ids{
+    if (!_ids) {
+        _ids = [[NSMutableArray alloc] init];
+    }
+    return _ids;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -155,17 +176,24 @@
     self.mainTableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor whiteColor];
     
-        [self.mainTableView setTableHeaderView:self.headerView];
-    [self.mainTableView.mj_header beginRefreshing];
+    [self.mainTableView setTableHeaderView:self.headerView];
     [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    for (AccountInfo *model in accountArray) {
-        if ([model.is_main_account isEqualToString:@"1"]) {
-            AccountInfo *mainAccount = model;
-            self.currentAccountName = mainAccount.account_name;
-            self.headerView.userAccountLabel.text = self.currentAccountName;
+    if (accountArray.count == 1) {
+        // 当前只有一个账号
+        AccountInfo *model = accountArray[0];
+        self.currentAccountName = model.account_name;
+        self.headerView.userAccountLabel.text = self.currentAccountName;
+    }else{
+        for (AccountInfo *model in accountArray) {
+            if ([model.is_main_account isEqualToString:@"1"]) {
+                AccountInfo *mainAccount = model;
+                self.currentAccountName = mainAccount.account_name;
+                self.headerView.userAccountLabel.text = self.currentAccountName;
+            }
         }
     }
+    [self.mainTableView.mj_header beginRefreshing];
     
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
@@ -173,9 +201,10 @@
     leftEdgeGesture.delegate = self;
     
     // 配置开屏广告
-    [self configAdvertisement];
+//    [self configAdvertisement];
     [self addinviteFriendBtn];
     [self checkNewVersion];
+
 }
 
 // 构建数据源
@@ -184,6 +213,20 @@
     if (IsNilOrNull(self.currentAccountName)) {
         return;
     }
+    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    
+    self.get_token_info_service.get_token_info_request.ids = self.ids;
+    [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [weakSelf.mainTableView.mj_header endRefreshing];
+        if (isSuccess) {
+//            weakSelf.currentAccountResult = result;
+//            weakSelf.headerView.model = result.data;
+            [weakSelf.mainTableView reloadData];
+            [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+        }
+    }];
+    
     self.mainService.getAccountAssetRequest.name = self.currentAccountName;
     [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
         // 拿到当前的下拉刷新控件，结束刷新状态
@@ -191,7 +234,7 @@
         if (isSuccess) {
             weakSelf.currentAccountResult = result;
             weakSelf.headerView.model = result.data;
-            [weakSelf.mainTableView reloadData];
+//            [weakSelf.mainTableView reloadData];
         }
     }];
 }
@@ -235,6 +278,7 @@
                 }];
             }else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
                 ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
+                vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
@@ -263,14 +307,16 @@
     
     // 改变后的导航栏 block
     [self.navView setChangedBtn1DidClickBlock:^{
-        TransferViewController *vc = [[TransferViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
+        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
+        vc.currentAccountName = weakSelf.currentAccountName;
+        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.navView setChangedBtn2DidClickBlock:^{
         RecieveViewController *vc = [[RecieveViewController alloc] init];
         vc.accountName = weakSelf.currentAccountName;
+        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -289,20 +335,30 @@
     }];
     
     [self.headerView setTransferBtnDidClickBlock:^{
-        TransferViewController *vc = [[TransferViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
+        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
+        vc.currentAccountName = weakSelf.currentAccountName;
+        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setRecieveBtnDidClickBlock:^{
         RecieveViewController *vc = [[RecieveViewController alloc] init];
         vc.accountName = weakSelf.currentAccountName;
+        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setRedPacketBtnDidClickBlock:^{
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];
         vc.accountName = weakSelf.currentAccountName;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.headerView setRamTradeBtnDidClickBlock:^{
+        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+        Application *model = [[Application alloc] init];
+        model.url = @"http://static.pocketeos.top:3001";
+        vc.model = model;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -319,11 +375,18 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
  
     }];
+    
+    [self.headerView setAddAssestsImgDidTapBlock:^{
+        AddAssestsViewController *vc = [[AddAssestsViewController alloc] init];
+        vc.accountName = weakSelf.currentAccountName;
+        vc.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.mainService.dataSourceArray.count;
+    return self.get_token_info_service.dataSourceArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -335,20 +398,19 @@
     AssestsMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
     if (!cell) {
         cell = [[AssestsMainTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cellIdentifier"];
-        
     }
-    Assests *model = self.mainService.dataSourceArray[indexPath.row];
-    if ([model.assests_price_change_in_24 hasPrefix:@"-"]) {
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.assests_price_change_in_24]];
+    TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
+    if ([model.asset_price_change_in_24h hasPrefix:@"-"]) {
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                         value:HEXCOLOR(0xB51515)
-                        range:NSMakeRange(0, model.assests_price_change_in_24.length +1)];
+                        range:NSMakeRange(0, model.asset_price_change_in_24h.length +1)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }else{
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
-                           range:NSMakeRange(0, model.assests_price_change_in_24.length + 2)];
+                           range:NSMakeRange(0, model.asset_price_change_in_24h.length + 2)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }
     
@@ -380,9 +442,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
-    Assests *model = self.mainService.dataSourceArray[indexPath.row];
+    TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
     vc.model = model;
     vc.accountName = self.currentAccountName;
+    vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -411,6 +474,7 @@
 //ChangeAccountViewControllerDelegate, PocketManagementViewControllerDelegate
 -(void)changeAccountCellDidClick:(NSString *)name{
     self.currentAccountName = name;
+    [self.ids removeAllObjects];
     [self buidDataSource];
 }
 
@@ -452,7 +516,7 @@
     CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
     Wallet *wallet = CURRENT_WALLET;
     NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
-    vc.urlStr = @"http://47.104.166.178:8502";
+    vc.urlStr = @"http://activity.pocketeos.top:3501";
     NSArray *cookieArr = [cookie componentsSeparatedByString:@";"];
     NSString *PE_cookieStr;
     if (cookieArr.count > 0) {
@@ -499,6 +563,17 @@
 }
 
 - (void)updateBtnDidClick:(UIButton *)sender{
-        [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
 }
+
+//AddAssestsViewControllerDelegate
+- (void)addAssestsViewControllerbackButtonDidClick:(NSMutableArray *)ids{
+    self.ids = ids;
+    [self loadNewData];
+}
+
+
+
+
+
 @end

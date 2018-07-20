@@ -91,7 +91,7 @@
         self.orignalImg.frame = CGRectMake(MARGIN_4, MARGIN_4, SLIDER_WIDTH, SLIDER_HEIGHT);
         
         [self addSubview:self.tipLabel];
-        self.tipLabel.frame = CGRectMake(self.orignalImg.frame.origin.x + 50 + 15, 0, 100, 48);
+        self.tipLabel.frame = CGRectMake(self.orignalImg.frame.origin.x + 50 + 15, 0, 200, 48);
 
         [self addSubview:self.destinationImg];
         self.destinationImg.frame = CGRectMake(destinationRandomOrigin_X, MARGIN_4, SLIDER_WIDTH, SLIDER_HEIGHT);

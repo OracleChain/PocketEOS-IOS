@@ -14,6 +14,7 @@
 @interface TransactionRecordsService()
 @property(nonatomic, strong) NSMutableArray *eosTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *octTransactionResponseArray;
+@property(nonatomic, strong) NSMutableArray *assestsTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *redPacketTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *sendTransactionResponseArray;
 @property(nonatomic, strong) NSMutableArray *recieveTransactionResponseArray;
@@ -41,6 +42,13 @@
         _octTransactionDatasourceArray = [[NSMutableArray alloc] init];
     }
     return _octTransactionDatasourceArray;
+}
+
+- (NSMutableArray *)assestsTransactionDatasourceArray{
+    if (!_assestsTransactionDatasourceArray) {
+        _assestsTransactionDatasourceArray = [[NSMutableArray alloc] init];
+    }
+    return _assestsTransactionDatasourceArray;
 }
 
 - (NSMutableArray *)redPacketDatasourceArray{
@@ -77,6 +85,13 @@
     return _octTransactionResponseArray;
 }
 
+- (NSMutableArray *)assestsTransactionResponseArray{
+    if (!_assestsTransactionResponseArray) {
+        _assestsTransactionResponseArray = [[NSMutableArray alloc] init];
+    }
+    return _assestsTransactionResponseArray;
+}
+
 - (NSMutableArray *)redPacketTransactionResponseArray{
     if (!_redPacketTransactionResponseArray) {
         _redPacketTransactionResponseArray = [[NSMutableArray alloc] init];
@@ -102,15 +117,17 @@
     WS(weakSelf);
     _page = 0;
     self.getTransactionRecordsRequest.page = @(_page);
-    self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_15);
+    self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_10);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-//        NSLog(@"%@", data);
+        NSLog(@"%@", data);
         [weakSelf.dataSourceArray removeAllObjects];
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
         [weakSelf.eosTransactionDatasourceArray removeAllObjects];
         [weakSelf.octTransactionResponseArray removeAllObjects];
         [weakSelf.octTransactionDatasourceArray removeAllObjects];
+        [weakSelf.assestsTransactionResponseArray removeAllObjects];
+        [weakSelf.assestsTransactionDatasourceArray removeAllObjects];
         [weakSelf.redPacketTransactionResponseArray removeAllObjects];
         [weakSelf.redPacketDatasourceArray removeAllObjects];
         [weakSelf.sendTransactionResponseArray removeAllObjects];
@@ -138,7 +155,7 @@
                     }else if ([record.assestsType isEqualToString:@"OCT"]){
                         [weakSelf.octTransactionResponseArray addObject:record];
                     }
-
+                    [weakSelf.assestsTransactionResponseArray addObject:record];
                     // redpacket
                     if ([record.from isEqualToString:RedPacketReciever] || [record.to isEqualToString:RedPacketReciever]) {
                         [weakSelf.redPacketTransactionResponseArray addObject:record];
@@ -158,6 +175,7 @@
             weakSelf.dataSourceArray = [NSMutableArray arrayWithArray:weakSelf.responseArray];
             weakSelf.eosTransactionDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.eosTransactionResponseArray];
             weakSelf.octTransactionDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.octTransactionResponseArray];
+            weakSelf.assestsTransactionDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.assestsTransactionResponseArray];
             weakSelf.redPacketDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.redPacketTransactionResponseArray];
             weakSelf.sendTransactionDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.sendTransactionResponseArray];
             weakSelf.recieveTransactionDatasourceArray = [NSMutableArray arrayWithArray:weakSelf.recieveTransactionResponseArray];
@@ -174,12 +192,13 @@
     WS(weakSelf);
     _page +=1;
     self.getTransactionRecordsRequest.page = @(_page);
-    self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_15);
+    self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_10);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-//        NSLog(@"%@", data);
+        NSLog(@"%@", data);
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
         [weakSelf.octTransactionResponseArray removeAllObjects];
+        [weakSelf.assestsTransactionResponseArray removeAllObjects];
         [weakSelf.sendTransactionResponseArray removeAllObjects];
         [weakSelf.recieveTransactionResponseArray removeAllObjects];
         TransactionRecordsResult *result = [TransactionRecordsResult mj_objectWithKeyValues:data];
@@ -201,6 +220,7 @@
                     }else if ([record.assestsType isEqualToString:@"OCT"]){
                         [weakSelf.octTransactionResponseArray addObject:record];
                     }
+                    [weakSelf.assestsTransactionResponseArray addObject:record];
 
                     // send
                     if ([record.from isEqualToString:weakSelf.getTransactionRecordsRequest.from]) {
@@ -218,6 +238,7 @@
             [weakSelf.dataSourceArray addObjectsFromArray:weakSelf.responseArray];
             [weakSelf.eosTransactionDatasourceArray addObjectsFromArray:weakSelf.eosTransactionResponseArray];
             [weakSelf.octTransactionDatasourceArray addObjectsFromArray:weakSelf.octTransactionResponseArray];
+            [weakSelf.assestsTransactionDatasourceArray addObjectsFromArray:weakSelf.assestsTransactionResponseArray];
             [weakSelf.sendTransactionDatasourceArray addObjectsFromArray:weakSelf.sendTransactionResponseArray];
             [weakSelf.recieveTransactionDatasourceArray addObjectsFromArray:weakSelf.recieveTransactionResponseArray];
 

@@ -210,6 +210,7 @@
 {
     PYSearchViewController *searchVC = [self searchViewControllerWithHotSearches:hotSearches searchBarPlaceholder:placeholder];
     searchVC.didSearchBlock = [block copy];
+    
     return searchVC;
 }
 
@@ -360,7 +361,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancleButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    [cancleButton setTitle:NSLocalizedString(@"取消", nil)forState:UIControlStateNormal];
+    [cancleButton setTitle:NSLocalizedString(@"返回", nil)forState:UIControlStateNormal];
+  
     [cancleButton setTintColor:HEXCOLOR(0x999999)];
     [cancleButton addTarget:self action:@selector(cancelDidClick) forControlEvents:UIControlEventTouchUpInside];
     [cancleButton sizeToFit];
@@ -456,6 +458,8 @@
     self.baseSearchTableView.tableFooterView = footerView;
     
     self.hotSearches = nil;
+    
+    
 }
 
 - (UILabel *)setupTitleLabel:(NSString *)title

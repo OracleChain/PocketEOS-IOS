@@ -74,7 +74,6 @@
         [_mainCollectionView setShowsVerticalScrollIndicator: NO];
         
         [_mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
-//        [_mainCollectionView registerNib:[UINib nibWithNibName:@"ApplicationHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
         [_mainCollectionView registerClass:[ApplicationHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
         
     }
@@ -83,7 +82,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self buildDataSource];
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
@@ -101,28 +99,27 @@
     [self.view addSubview:self.navView];
     
     [self buildDataSource];
-    
 }
 
 - (void)buildDataSource{
     WS(weakSelf);
-    ApplicationHeaderViewModel *model = [[ApplicationHeaderViewModel alloc] init];
+    dispatch_group_t dispatchGroup = dispatch_group_create();
+    
+    dispatch_group_enter(dispatchGroup);
     [weakSelf.mainService applicationModuleHeaderRequest:^(id service, BOOL isSuccess) {
-        if (isSuccess) {
-            //界面刷新
-            [weakSelf.view addSubview:weakSelf.mainCollectionView];
-            [weakSelf configBannerView];
-            if (weakSelf.mainService.listDataArray) {
-                model.top4DataArray = (NSMutableArray *)weakSelf.mainService.top4DataArray;
-                [weakSelf.headerView updateViewWithModel:model];
-            }
-        }
+         dispatch_group_leave(dispatchGroup);
     }];
+    
+    dispatch_group_enter(dispatchGroup);
     [weakSelf.mainService applicationModuleBodyRequest:^(id service, BOOL isSuccess) {
-        model.starDataArray = (NSMutableArray *)weakSelf.mainService.starDataArray;
-        [weakSelf.headerView updateViewWithModel:model];
-        [weakSelf.mainCollectionView reloadData];
+         dispatch_group_leave(dispatchGroup);
     }];
+    
+    dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
+        [weakSelf.view addSubview:weakSelf.mainCollectionView];
+        [weakSelf.mainCollectionView reloadData];
+        [weakSelf configBannerView];
+    });
 }
 
 - (void)configBannerView{
@@ -174,10 +171,17 @@
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
      UICollectionReusableView *reusableview = nil;
+    WS(weakSelf);
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         if (indexPath.section == 0) {
             self.headerView = (ApplicationHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header" forIndexPath:indexPath];
             self.headerView.delegate = self;
+            
+            ApplicationHeaderViewModel *model = [[ApplicationHeaderViewModel alloc] init];
+            model.top4DataArray = (NSMutableArray *)weakSelf.mainService.top4DataArray;
+            model.starDataArray = (NSMutableArray *)weakSelf.mainService.starDataArray;
+            [weakSelf configBannerView];
+            [weakSelf.headerView updateViewWithModel:model];
             return self.headerView;
         }
     }

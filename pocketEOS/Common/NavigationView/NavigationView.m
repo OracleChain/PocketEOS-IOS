@@ -22,7 +22,7 @@
     if (!_titleLabel) {
         _titleLabel = [[BaseLabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:17];
-        [_titleLabel setSingleLineAutoResizeWithMaxWidth:200];
+        [_titleLabel setSingleLineAutoResizeWithMaxWidth:300];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;

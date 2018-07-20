@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TokenInfo.h"
 
-@class Assests;
 @interface AssestsMainTableViewCell : UITableViewCell
 @property(nonatomic, strong) UILabel *assestsPriceChangeLabel;
-@property(nonatomic, strong) Assests *model;
+@property(nonatomic, strong) TokenInfo *model;
 @end

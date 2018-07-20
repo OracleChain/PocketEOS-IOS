@@ -33,8 +33,7 @@
 "QQ好友"="QQ";
 "QQ空间"="Q Zone";
 "额"="Volume";
-"EOS最新资讯详情"="EOS news detail";
-"OCT最新咨询详情"="OCT news detail";
+"最新资讯详情"="news detail";
 "参考价格"="Reference Price";
 "24小时涨跌幅"="24h change";
 "总市值"="Total Market Value";
@@ -75,7 +74,7 @@
 /*
  TransferHeaderView.m
  */
-"恭喜发财, 大吉大利"="Best wishes";
+"请在此输入memo"="Input memo here";
 
 /*
  TransferService.m
@@ -104,7 +103,7 @@
  RedPacketViewController.m
  */
 "发红包"="Send Red Packet";
-"发送"="发送";
+"发送"="Send";
 "个"="";
 "给"="to";
 "个人"="friends(s)";
@@ -154,6 +153,11 @@
  LoginView.m
  */
 "登录即代表同意《用户协议及隐私政策》"="Agree Term of Usage and Private Policy by login";
+
+/*
+ LoginMainViewController.m
+ */
+"网络错误" = "network error";
 
 /*
  BBLoginViewController.m
@@ -348,7 +352,7 @@
 /*
  CreateAccountViewController.m
  */
-"创建新账号"="Create New Accoun";
+"创建新账号"="Create New Account";
 "12位字符，只能由小写字母a~z和数字1~5组成。"="Make up of 1-5 and a-z, 12 characters.";
 "如果已有账号，请点击这里导入"="Own an account? Click here to import.";
 "创建账号成功!"="Create account success!";
@@ -591,3 +595,22 @@
 "现有问题"="Open Questions";
 "过往问题"="Closed Questions";
 "提问"="Ask";
+
+/*
+ PocketManagementTableViewCell.m
+ */
+"Active权限"="Active permission";
+"Active权限＋Owner权限"="Owner &amp; Active permission";
+"当前主账号"="Main account";
+"其他账号"="Normal acocunt";
+
+/*
+ AddAssestsViewController.m
+ */
+"添加资产"="Add token";
+"请输入token名称或合约地址"="Input token symbol or contract";
+
+/*
+ CustomAssestsViewController.m
+ */
+"自定义管理"="Custom Token";

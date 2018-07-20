@@ -14,7 +14,11 @@
     return @{
              @"wallet_uid" : @"uid",
              @"wallet_name" : @"walletName",
-             @"wallet_avatar" : @"avatar"
+             @"wallet_img" : @"avatar",
+             @"wallet_avatar" : @"avatar",
+             @"wallet_weixin" : @"wechat",
+             @"wallet_qq" : @"qq",
+             @"wallet_phone" : @"phoneNum"
              };
 }
 

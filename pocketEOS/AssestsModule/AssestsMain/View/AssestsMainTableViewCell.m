@@ -7,7 +7,7 @@
 //
 
 #import "AssestsMainTableViewCell.h"
-#import "Assests.h"
+#import "TokenInfo.h"
 
 @interface AssestsMainTableViewCell()
 
@@ -128,13 +128,14 @@
     return self;
 }
 
--(void)setModel:(Assests *)model{
-    self.assestsImg.image = [UIImage imageNamed:model.assests_avtar];
+-(void)setModel:(TokenInfo *)model{
+    self.assestsImg.image = [UIImage imageNamed:model.iconUrl];
+    [self.assestsImg sd_setImageWithURL:String_To_URL(model.iconUrl) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
 
-    self.assestsBalanceLable.text = [NSString stringWithFormat:@"%@ %@", VALIDATE_STRING([NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_balance.doubleValue ]]), VALIDATE_STRING(model.assestsName)];
+    self.assestsBalanceLable.text = [NSString stringWithFormat:@"%@ %@", VALIDATE_STRING([NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.balance.doubleValue ]]), VALIDATE_STRING(model.token_symbol)];
     
-    self.assestsBalanceCnyLabel.text = [NSString stringWithFormat:@"≈%@ CNY", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_balance_cny.doubleValue ]]];
+    self.assestsBalanceCnyLabel.text = [NSString stringWithFormat:@"≈%@ CNY", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.balance_cny.doubleValue ]]];
     
-    self.nowPriceLabel.text = [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.assests_price_cny.doubleValue ]]];
+    self.nowPriceLabel.text = [NSString stringWithFormat:@"¥%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.asset_price_cny.doubleValue ]]];
 }
 @end

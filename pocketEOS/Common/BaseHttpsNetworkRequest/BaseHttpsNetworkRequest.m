@@ -146,6 +146,7 @@
             if (IsNilOrNull(success)) {
                 return ;
             }
+            NSLog(@"responseObject%@", responseObject);
             success(weakSelf.networkingManager, responseObject);
         }
         

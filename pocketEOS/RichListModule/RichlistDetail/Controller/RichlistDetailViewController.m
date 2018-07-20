@@ -12,7 +12,7 @@
 #import "RichlistDetailService.h"
 #import "AccountResult.h"
 #import "ChangeAccountViewController.h"
-#import "TransferViewController.h"
+#import "TransferNewViewController.h"
 #import "AssestsDetailViewController.h"
 #import "WalletAccountsResult.h"
 #import "WalletAccount.h"
@@ -23,12 +23,16 @@
 #import "CheckWhetherFollowRequest.h"
 #import "AssestsMainTableViewCell.h"
 #import "TransferModel.h"
+#import "Get_token_info_service.h"
+#import "TokenInfo.h"
+
 
 @interface RichlistDetailViewController ()< UIGestureRecognizerDelegate,UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, NavigationViewDelegate, ChangeAccountViewControllerDelegate>
 @property(nonatomic, strong) UIImageView *backgroundView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) RichlistDetailHeaderView *headerView;
 @property(nonatomic, strong) RichlistDetailService *mainService;
+@property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic, strong) AddFollowRequest *addFollowRequest;
 @property(nonatomic, strong) CancleFollowRequest *cancleFollowRequest;
 @property(nonatomic, strong) CheckWhetherFollowRequest *checkWhetherFollowRequest;
@@ -71,6 +75,13 @@
         _mainService = [[RichlistDetailService alloc] init];
     }
     return _mainService;
+}
+
+- (Get_token_info_service *)get_token_info_service{
+    if (!_get_token_info_service) {
+        _get_token_info_service = [[Get_token_info_service alloc] init];
+    }
+    return _get_token_info_service;
 }
 
 - (AddFollowRequest *)addFollowRequest{
@@ -147,6 +158,8 @@
     [self loadAllBlocks];
 }
 
+
+
 - (void)buidDataSource{
     WS(weakSelf);
     
@@ -173,11 +186,24 @@
                             if (IsNilOrNull(model.eosAccountName)) {
                                 return;
                             }
+                           
+                            self.get_token_info_service.get_token_info_request.accountName = model.eosAccountName;
+//                            self.get_token_info_service.get_token_info_request.ids = self.ids;
+                            [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+                                // 拿到当前的下拉刷新控件，结束刷新状态
+                                [weakSelf.mainTableView.mj_header endRefreshing];
+                                if (isSuccess) {
+                                    //            weakSelf.currentAccountResult = result;
+                                    //            weakSelf.headerView.model = result.data;
+                                    [weakSelf.mainTableView reloadData];
+                                    [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+                                }
+                            }];
                             weakSelf.mainService.getAccountAssetRequest.name = model.eosAccountName;
                             [weakSelf.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
                                 if (isSuccess) {
                                     weakSelf.headerView.model = result.data;
-                                    [weakSelf.mainTableView reloadData];
+//                                    [weakSelf.mainTableView reloadData];
                                 }
                             }] ;
                         }
@@ -190,6 +216,21 @@
         if (IsNilOrNull(self.model.displayName)) {
             return;
         }
+        
+        self.get_token_info_service.get_token_info_request.accountName = self.model.displayName;
+        //                            self.get_token_info_service.get_token_info_request.ids = self.ids;
+        [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+            // 拿到当前的下拉刷新控件，结束刷新状态
+            [weakSelf.mainTableView.mj_header endRefreshing];
+            if (isSuccess) {
+                //            weakSelf.currentAccountResult = result;
+                //            weakSelf.headerView.model = result.data;
+                [weakSelf.mainTableView reloadData];
+                [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+            }
+        }];
+        
+        
         self.mainService.getAccountAssetRequest.name =  self.model.displayName;
         
         [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
@@ -199,7 +240,7 @@
                 weakSelf.headerView.model = result.data;
                 weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"***的钱包", nil)];
                 [weakSelf.headerView.avatarImg sd_setImageWithURL:String_To_URL(@"") placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-                [weakSelf.mainTableView reloadData];
+//                [weakSelf.mainTableView reloadData];
             }
         }] ;
     }
@@ -227,11 +268,16 @@
 
     [self.headerView setTransferBtnDidClickBlock:^{
 //        if ([weakSelf.model.followType isEqualToNumber:@2]) {
-        TransferViewController *vc = [[TransferViewController alloc] init];
+        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         TransferModel *model = [[TransferModel alloc] init];
         model.account_name = weakSelf.mainService.getAccountAssetRequest.name;
-        model.coin = @"EOS";
+        if (weakSelf.get_token_info_service.dataSourceArray.count>0) {
+            TokenInfo *token = weakSelf.get_token_info_service.dataSourceArray[0];
+            model.coin = token.token_symbol;
+        }
         vc.transferModel = model;
+        
+        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
 //        }
     }];
@@ -239,25 +285,25 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-      return self.mainService.dataSourceArray.count;
+      return self.get_token_info_service.dataSourceArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AssestsMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
     if (!cell) {
         cell = [[AssestsMainTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cellIdentifier"];
     }
-    Assests *model = self.mainService.dataSourceArray[indexPath.row];
-    if ([model.assests_price_change_in_24 hasPrefix:@"-"]) {
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.assests_price_change_in_24]];
+    TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
+    if ([model.asset_price_change_in_24h hasPrefix:@"-"]) {
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%", model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0xB51515)
-                           range:NSMakeRange(0, model.assests_price_change_in_24.length + 1)];
+                           range:NSMakeRange(0, model.asset_price_change_in_24h.length + 1)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }else{
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.assests_price_change_in_24]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%", model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
-                           range:NSMakeRange(0, model.assests_price_change_in_24.length + 2)];
+                           range:NSMakeRange(0, model.asset_price_change_in_24h.length + 2)];
         cell.assestsPriceChangeLabel.attributedText = attrString;
     }
     

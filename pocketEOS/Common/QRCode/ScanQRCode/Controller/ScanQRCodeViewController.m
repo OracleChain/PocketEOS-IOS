@@ -15,9 +15,10 @@
 #import "Follow.h"
 #import "AccountPrivateKeyQRCodeModel.h"
 #import "ImportAccountViewController.h"
-#import "TransferViewController.h"
+#import "TransferNewViewController.h"
 #import "TransferModel.h"
-
+#import "Get_token_info_service.h"
+#import "RecieveTokenModel.h"
 
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
@@ -29,6 +30,8 @@ static const CGFloat kMargin = 30;
 @property (nonatomic, assign) BOOL isSelectedFlashlightBtn;
 @property (nonatomic, strong) UIView *bottomView;
 @property(nonatomic, strong) NavigationView *navView;
+@property(nonatomic, strong) Get_token_info_service *get_token_info_service;
+
 @end
 
 @implementation ScanQRCodeViewController
@@ -52,6 +55,21 @@ static const CGFloat kMargin = 30;
     }
     return _scanningView;
 }
+
+- (Get_token_info_service *)get_token_info_service{
+    if (!_get_token_info_service) {
+        _get_token_info_service = [[Get_token_info_service alloc] init];
+    }
+    return _get_token_info_service;
+}
+
+- (NSMutableArray *)get_token_info_service_data_array{
+    if (!_get_token_info_service_data_array) {
+        _get_token_info_service_data_array = [[NSMutableArray alloc] init];
+    }
+    return _get_token_info_service_data_array;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.scanningView addTimer];
@@ -89,6 +107,7 @@ static const CGFloat kMargin = 30;
     /// 为了 UI 效果
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.navView];
+    
 }
 
 - (void)removeScanningView {
@@ -125,10 +144,17 @@ static const CGFloat kMargin = 30;
         ImportAccountViewController *vc = [[ImportAccountViewController alloc] init];
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([scannedResult containsString:@"make_collections_QRCode"]){
+    }else if ([scannedResult containsString:@"make_collections_QRCode"] && ![scannedResult containsString:@"contract"]){
         TransferModel *model = [TransferModel mj_objectWithKeyValues: [scannedResult mj_JSONObject]];
-        TransferViewController *vc = [[TransferViewController alloc] init];
+        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         vc.transferModel = model;
+        vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([scannedResult containsString:@"token_make_collections_QRCode"] && [scannedResult containsString:@"contract"]){
+        RecieveTokenModel *model = [RecieveTokenModel mj_objectWithKeyValues: [scannedResult mj_JSONObject]];
+        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
+        vc.recieveTokenModel = model;
+        vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"scannedResult" message: VALIDATE_STRING(scannedResult) delegate:self cancelButtonTitle:@"cancle" otherButtonTitles: nil];

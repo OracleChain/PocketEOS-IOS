@@ -59,7 +59,7 @@
         cell = [[FeedbackTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     
-    cell.backgroundColor = RandomColor;
+//    cell.backgroundColor = RandomColor;
     MessageFeedback *model = self.mainService.dataSourceArray[indexPath.row];
     cell.model = model;
     return cell;

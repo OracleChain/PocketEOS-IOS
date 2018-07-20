@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "确认添加"; ObjectID = "2vH-fh-x2R"; */
+"2vH-fh-x2R.normalTitle" = "确认添加";
+
+/* Class = "UITextField"; placeholder = "请输入合约地址"; ObjectID = "RdV-7v-rwW"; */
+"RdV-7v-rwW.placeholder" = "请输入合约地址";
+
+/* Class = "UITextField"; placeholder = "请输入Token名称"; ObjectID = "Z1c-Nf-jPd"; */
+"Z1c-Nf-jPd.placeholder" = "请输入Token名称";
+
+/* Class = "UILabel"; text = "Token名称"; ObjectID = "bsA-Rr-gwe"; */
+"bsA-Rr-gwe.text" = "Token名称";
+
+/* Class = "UILabel"; text = "合约地址"; ObjectID = "vJ3-w3-suQ"; */
+"vJ3-w3-suQ.text" = "合约地址";

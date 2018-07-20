@@ -78,7 +78,11 @@
         NSString *key = self.mainService.keysArray[indexPath.section];
         NSArray *areaCodeModelArr = [self.mainService.dataDictionary objectForKey: key];
         AreaCodeModel *model = areaCodeModelArr[indexPath.row];
-        cell.textLabel.text = model.zh;
+        if ([NSBundle isChineseLanguage]) {
+            cell.textLabel.text = model.zh;
+        }else{
+            cell.textLabel.text = model.en;
+        }
         cell.detailTextLabel.text = [NSString stringWithFormat:@"+%@", model.code];
     }
     return cell;

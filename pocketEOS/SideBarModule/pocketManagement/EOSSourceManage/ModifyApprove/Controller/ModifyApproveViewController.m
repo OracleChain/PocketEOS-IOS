@@ -135,7 +135,7 @@
         self.headerView.modifyApproveSlider.value = _initProgress;
         
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.weight_str yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4] ];
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.weight_str yw_stringByDividingBy:self.price_str  withRoundingMode:(NSRoundPlain) scale:4] ];
             
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){

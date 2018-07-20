@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class AccountInfo;
 @interface PocketManagementTableViewCell : BaseTableViewCell
 @property(nonatomic, strong) BaseLabel *titleLabel;
 @property(nonatomic, strong) AccountInfo *model;
+
+@property(nonatomic, copy) void(^tipLabelTapBtnClickBlock)(AccountInfo *);
+
 @end

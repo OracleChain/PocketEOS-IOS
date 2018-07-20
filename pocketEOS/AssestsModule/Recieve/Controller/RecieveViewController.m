@@ -19,6 +19,7 @@
 #import "GetRateResult.h"
 #import "Rate.h"
 #import "TransferService.h"
+#import "TokenInfo.h"
 
 @interface RecieveViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RecieveHeaderViewDelegate, PopUpWindowDelegate, UITextFieldDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -30,6 +31,7 @@
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) TransferService *transferService;
+@property(nonatomic , strong) TokenInfo *currentToken;
 @end
 
 @implementation RecieveViewController
@@ -82,23 +84,43 @@
     return _transferService;
 }
 
+- (NSMutableArray *)get_token_info_service_data_array{
+    if (!_get_token_info_service_data_array) {
+        _get_token_info_service_data_array = [[NSMutableArray alloc] init];
+    }
+    return _get_token_info_service_data_array;
+}
+
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.transferModel) {
         self.currentAssestsType = self.transferModel.coin;
+        for (TokenInfo *token in self.get_token_info_service_data_array) {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                self.currentToken = token;
+            }
+        }
     }else{
-        self.currentAssestsType = @"EOS";
+        if (self.get_token_info_service_data_array.count > 0) {
+            self.currentToken = self.get_token_info_service_data_array[0];
+            self.currentAssestsType = self.currentToken.token_symbol;
+            
+        }
     }
     // 设置默认的转账账号及资产
     self.headerView.accountChooserLabel.text = self.accountName;
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
     self.currentAccountName = self.accountName;
-    [self buidDataSource];
-    
-    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
-    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
+    [self requestRate];
+    [self requestTransactionHistory];
+}
+
+- (void)requestTransactionHistory{
+    self.transactionRecordsService.getTransactionRecordsRequest.to = self.currentToken.account_name;
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
     [self loadNewData];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -115,24 +137,16 @@
     [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
     
-    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
-    [self buidDataSource];
-    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN },@{@"symbolName": @"OCT"  , @"contractName": ContractName_OCTOTHEMOON }, nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
 }
 
-- (void)buidDataSource{
+- (void)requestRate{
     WS(weakSelf);
-    if ([self.currentAssestsType isEqualToString:@"EOS"]) {
-        self.transferService.getRateRequest.coinmarket_id = @"eos";
-    }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
-        self.transferService.getRateRequest.coinmarket_id = @"oraclechain";
-    }
+    self.transferService.getRateRequest.coinmarket_id = VALIDATE_STRING(self.currentToken.coinmarket_id);
     [self.transferService get_rate:^(GetRateResult *result, BOOL isSuccess) {
         if (isSuccess) {
             weakSelf.getRateResult = result;
-            weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * weakSelf.getRateResult.data.price_cny.doubleValue)]];
+            [weakSelf textFieldChange:nil];
         }
     }];
 }
@@ -181,10 +195,12 @@
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
     }
     self.headerView.generateQRCodeBtn.enabled = isCanSubmit;
-    if ([self.headerView.amountTF isFirstResponder]) {
+    if (IsStrEmpty(self.currentToken.coinmarket_id)  ) {
+        self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈0CNY"];
+    }else{
         self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
+        
     }
-    
 }
 
 
@@ -208,19 +224,19 @@
 
 - (void)selectAssestsBtnDidClick:(UIButton *)sender {
     [self.view addSubview:self.popUpWindow];
-    Assest *eosAssest = [[Assest alloc] init];
-    eosAssest.assetName = @"EOS";
-    Assest *octAssest = [[Assest alloc] init];
-    octAssest.assetName = @"OCT";
+    NSMutableArray *assestsArr = [NSMutableArray array];
+    for (TokenInfo *token in self.get_token_info_service_data_array) {
+        Assest *assest = [[Assest alloc] init];
+        assest.assetName = token.token_symbol;
+        [assestsArr addObject: assest];
+    }
     _popUpWindow.type = PopUpWindowTypeAssest;
-    NSArray *assestsArr = @[eosAssest , octAssest];
     for (Assest *model in assestsArr) {
         if ([model.assetName isEqualToString:self.currentAssestsType]) {
             model.selected = YES;
         }
     }
     [_popUpWindow updateViewWithArray:assestsArr title:@""];
-
 }
 
 - (void)createQRCodeBtnDidClick:(UIButton *)sender{
@@ -230,9 +246,11 @@
 
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:VALIDATE_STRING(self.currentAccountName)  forKey:@"account_name"];
-    [dic setObject:VALIDATE_STRING(self.currentAssestsType)  forKey:@"coin"];
-    [dic setObject:VALIDATE_STRING(self.headerView.amountTF.text)  forKey:@"money"];
-    [dic setObject:@"make_collections_QRCode"  forKey:@"type"];
+    [dic setObject:VALIDATE_STRING(self.currentAssestsType)  forKey:@"token"];
+    [dic setObject:VALIDATE_STRING(self.headerView.amountTF.text)  forKey:@"quantity"];
+    [dic setObject:VALIDATE_STRING(self.currentToken.contract_name)  forKey:@"contract"];
+    [dic setObject:@"token_make_collections_QRCode"  forKey:@"type"];
+    
     //钱包二维码
     NSString *QRCodeJsonStr = [dic mj_JSONString];
     self.recieveQRCodeView.recieveAssestsQRCodeImg.image = [SGQRCodeGenerateManager generateWithLogoQRCodeData:QRCodeJsonStr logoImageName:@"account_default_blue" logoScaleToSuperView:0.2];
@@ -252,14 +270,17 @@
     if ([sender isKindOfClass: [Assest class]]) {
         self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
         self.currentAssestsType = [(Assest *)sender assetName];
-        [self buidDataSource];
+        for (TokenInfo *token in self.get_token_info_service_data_array) {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                self.currentToken = token;
+            }
+        }
+        [self requestRate];
     }else if ([sender isKindOfClass: [AccountInfo class] ]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
-        self.transactionRecordsService.getTransactionRecordsRequest.to = [(AccountInfo *)sender account_name];
-        [self loadNewData];
     }
-    
+    [self requestTransactionHistory];
 }
 
 

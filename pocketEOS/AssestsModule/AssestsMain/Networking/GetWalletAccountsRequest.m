@@ -9,9 +9,11 @@
 #import "GetWalletAccountsRequest.h"
 
 @implementation GetWalletAccountsRequest
+
 -(NSString *)requestUrlPath{
     return [NSString stringWithFormat:@"%@/user/getEosAccount", REQUEST_PERSONAL_BASEURL ];
 }
+
 -(id)parameters{
     return @{@"uid" : VALIDATE_STRING(self.uid)};
 }

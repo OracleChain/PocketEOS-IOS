@@ -153,13 +153,13 @@
                 weakSelf.headerView.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(wallet.wallet_name), NSLocalizedString(@"的钱包", nil)];
                 [weakSelf.headerView.avatarImg sd_setImageWithURL:String_To_URL(VALIDATE_STRING(wallet.wallet_avatar)) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
                 
-                if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
+                if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:DATABASE_NULLVALUE]) {
                     weakSelf.headerView.wechatIDLabel.text = @"已绑定";
                 }else{
                     weakSelf.headerView.wechatIDLabel.text = NSLocalizedString(@"未绑定微信", nil);
                 }
                 
-                if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
+                if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:DATABASE_NULLVALUE]) {
                     weakSelf.headerView.qqIDLabel.text = @"已绑定";
                 }else{
                     weakSelf.headerView.qqIDLabel.text = NSLocalizedString(@"未绑定QQ", nil);
@@ -196,7 +196,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     Wallet *wallet = CURRENT_WALLET;
-    if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:@"(null)"]) {
+    if (wallet.wallet_weixin.length > 6 &&  ![wallet.wallet_weixin isEqualToString:DATABASE_NULLVALUE]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"wechat";
         vc.socialPlatformName = wallet.wallet_weixin;
@@ -218,7 +218,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
     
     Wallet *wallet = CURRENT_WALLET;
-    if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:@"(null)"]) {
+    if (wallet.wallet_qq.length > 6 &&  ![wallet.wallet_qq isEqualToString:DATABASE_NULLVALUE]) {
         UnBindSocialPlatformViewController *vc = [[UnBindSocialPlatformViewController alloc] init];
         vc.socialPlatformType = @"qq";
         vc.socialPlatformName = wallet.wallet_qq;

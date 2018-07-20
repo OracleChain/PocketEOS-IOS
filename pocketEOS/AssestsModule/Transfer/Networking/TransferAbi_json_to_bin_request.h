@@ -16,4 +16,9 @@
 @property(nonatomic, copy) NSString *memo;
 @property(nonatomic, copy) NSString *quantity;
 
+
+
+
+
+@property(nonatomic , copy) NSString *message;
 @end

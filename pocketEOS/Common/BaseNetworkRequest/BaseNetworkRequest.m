@@ -273,6 +273,7 @@
     }
     
     id parameters = [self parameters];
+    NSLog(@"parameters = %@", parameters);
     NSLog(@"REQUEST_APIPATH = %@", REQUEST_APIPATH);
     WS(weakSelf);
     [self.networkingManager.requestSerializer setHTTPMethodsEncodingParametersInURI:[NSSet setWithObjects:@"GET", @"HEAD", nil]];
@@ -422,7 +423,7 @@
             success(weakSelf.networkingManager, responseObject);
         }
         [SVProgressHUD dismiss];
-
+        NSLog(@"responseObject %@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
          NSLog(@"error ==%@", [error userInfo][@"com.alamofire.serialization.response.error.string"]);

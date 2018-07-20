@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TokenInfo.h"
 
 
 @class Account;
@@ -20,5 +21,6 @@
 @property(nonatomic, copy) void(^transferBtnDidClickBlock)(void);
 @property(nonatomic, strong) Account *model;
 
+- (void)updateViewWithDataArray:(NSMutableArray<TokenInfo *> *)dataArray;
 
 @end

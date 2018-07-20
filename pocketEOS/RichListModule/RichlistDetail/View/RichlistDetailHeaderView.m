@@ -31,4 +31,13 @@
     self.userAccountLabel.text = [NSString stringWithFormat:@"%@", model.account_name] ;
     self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.eos_balance.doubleValue * model.eos_price_cny.doubleValue + model.oct_balance.doubleValue * model.oct_price_cny.doubleValue]]];
 }
+
+- (void)updateViewWithDataArray:(NSMutableArray<TokenInfo *> *)dataArray{
+    double totalBalanceCnyValue =0;
+    for (TokenInfo *model in dataArray) {
+        totalBalanceCnyValue += model.balance_cny.doubleValue;
+    }
+    self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%.4f", totalBalanceCnyValue];
+   
+}
 @end

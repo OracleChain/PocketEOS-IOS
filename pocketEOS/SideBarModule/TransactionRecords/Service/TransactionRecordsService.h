@@ -16,6 +16,7 @@
 
 @property(nonatomic, strong) NSMutableArray *octTransactionDatasourceArray;
 
+@property(nonatomic , strong) NSMutableArray *assestsTransactionDatasourceArray;
 
 @property(nonatomic , strong) NSMutableArray *redPacketDatasourceArray;
 

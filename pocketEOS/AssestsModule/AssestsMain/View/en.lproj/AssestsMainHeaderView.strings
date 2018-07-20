@@ -1,12 +1,15 @@
 
 /* Class = "UILabel"; text = "总资产(￥)"; ObjectID = "6w9-Qs-9bF"; */
-"6w9-Qs-9bF.text" = "ASSESTS(￥)";
+"6w9-Qs-9bF.text" = "Assets(￥)";
 
-/* Class = "UILabel"; text = "发起收款"; ObjectID = "BFN-RU-aex"; */
-"BFN-RU-aex.text" = "Recieve";
+/* Class = "UILabel"; text = "发红包"; ObjectID = "7Kr-wK-xk3"; */
+"7Kr-wK-xk3.text" = "Red Packets";
 
-/* Class = "UILabel"; text = "发送红包"; ObjectID = "Qa0-DQ-L5O"; */
-"Qa0-DQ-L5O.text" = "Red Packets";
+/* Class = "UILabel"; text = "RAM交易"; ObjectID = "Rxb-4s-whr"; */
+"Rxb-4s-whr.text" = "RAM Ex";
 
-/* Class = "UILabel"; text = "发起转账"; ObjectID = "T9L-La-SPP"; */
+/* Class = "UILabel"; text = "转账"; ObjectID = "T9L-La-SPP"; */
 "T9L-La-SPP.text" = "Send";
+
+/* Class = "UILabel"; text = "收款"; ObjectID = "w0h-Po-IP3"; */
+"w0h-Po-IP3.text" = "Recieve";

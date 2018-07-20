@@ -15,14 +15,15 @@
 #import "PocketManagementTableViewCell.h"
 #import "PocketManagementServiceTableViewCell.h"
 #import "ChangePasswordView.h"
+#import "PocketManagementHeaderView.h"
 
 
-
-@interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate>
+@interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate, PocketManagementHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) BackupPocketView *backupPocketView;
 @property(nonatomic, strong) ChangePasswordView *changePasswordView;
 @property (nonatomic ,retain)UIDocumentInteractionController *documentController;
+@property(nonatomic, strong) PocketManagementHeaderView *headerView;
 @end
 
 @implementation PocketManagementViewController
@@ -35,6 +36,14 @@
     return _navView;
 }
 
+- (PocketManagementHeaderView *)headerView{
+    if (!_headerView) {
+        _headerView = [[[NSBundle mainBundle] loadNibNamed:@"PocketManagementHeaderView" owner:nil options:nil] firstObject];
+        _headerView.delegate = self;
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 195);
+    }
+    return _headerView;
+}
 
 - (BackupPocketView *)backupPocketView{
     if (!_backupPocketView) {
@@ -55,6 +64,7 @@
     return _changePasswordView;
 }
 
+
 - (PocketManagementService *)mainService{
     if (!_mainService) {
         _mainService = [[PocketManagementService alloc] init];
@@ -72,6 +82,7 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
+    [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     self.mainTableView.mj_header.hidden = YES;
@@ -89,95 +100,48 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        PocketManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
-        if (!cell) {
-            cell = [[PocketManagementTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
-        }
-        AccountInfo *model;
-        if (indexPath.row == 0) {
-            model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
-        }else{
-            model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row-1];
-        }
-        cell.model = model;
-        return cell;
-    }else if (indexPath.section == 1){
-        PocketManagementServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
-        if (!cell) {
-            cell = [[PocketManagementServiceTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEUDENTIFIER1];
-        }
-        OptionModel *model = [self.mainService.dataDictionary objectForKey:@"servicesArr"][indexPath.row];
-        cell.model = model;
-        return cell;
+    PocketManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    if (!cell) {
+        cell = [[PocketManagementTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
-    return nil;
+    AccountInfo *model;
+    if (indexPath.row == 0) {
+        model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+    }else{
+        model = [self.mainService.dataDictionary objectForKey:@"othersAccount"][indexPath.row-1];
+    }
+    cell.model = model;
+    WS(weakSelf);
+    [cell setTipLabelTapBtnClickBlock:^(AccountInfo *accountInfo) {
+        AccountManagementViewController *vc = [[AccountManagementViewController alloc] init];
+        vc.model = accountInfo;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        NSArray *arr = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
-        return arr.count + 1;
-    }else if (section == 1){
-       NSArray *arr = [self.mainService.dataDictionary objectForKey:@"servicesArr"];
-        return arr.count;
-    }
-    return 0;
+    NSArray *arr = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
+    return arr.count + 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 50;
-    }else if(indexPath.section == 1){
-        return 45;
-    }
-    return 0;
+    return 98+5+5;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return MARGIN_10;
-    }else if (section == 1){
-        return MARGIN_20;
-    }
-    return 0;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc] init];
-    headerView.lee_theme
-    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
-    return headerView;
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        AccountInfo *model;
-        if (indexPath.row == 0) {
-            model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
-        }else{
-            NSArray *accountArray = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
-            model = accountArray[indexPath.row-1];
-        }
-        if (self.delegate && [self.delegate respondsToSelector:@selector(changeAccountCellDidClick:)]) {
-            [self.delegate changeAccountCellDidClick:model.account_name];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }else if (indexPath.section == 1){
-        OptionModel *model = [self.mainService.dataDictionary objectForKey:@"servicesArr"][indexPath.row];
-        if ([model.optionName isEqualToString:NSLocalizedString(@"创建账号", nil)]) {
-            [self createAccountBtnDidClick];
-        }else if ([model.optionName isEqualToString:NSLocalizedString(@"导入账号", nil)]){
-            [self importAccountBtnDidClick];
-        }else if ([model.optionName isEqualToString:NSLocalizedString(@"修改密码", nil)]){
-            [self.view addSubview:self.changePasswordView];
-        }else if ([model.optionName isEqualToString:NSLocalizedString(@"备份钱包", nil)]){
-            [self backupPocketBtnDidClick];
-        }
+    AccountInfo *model;
+    if (indexPath.row == 0) {
+        model = [[self.mainService.dataDictionary objectForKey:@"mainAccount"] firstObject];
+    }else{
+        NSArray *accountArray = [self.mainService.dataDictionary objectForKey:@"othersAccount"];
+        model = accountArray[indexPath.row-1];
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(changeAccountCellDidClick:)]) {
+        [self.delegate changeAccountCellDidClick:model.account_name];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -191,6 +155,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//PocketManagementHeaderViewDelegate
 - (void)createAccountBtnDidClick{
     CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
     vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromPocketManagementVC;
@@ -202,7 +167,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
-- (void)backupPocketBtnDidClick{
+- (void)backupWalletBtnDidClick{
     [self.view addSubview:self.backupPocketView];
     Wallet *wallet = CURRENT_WALLET;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

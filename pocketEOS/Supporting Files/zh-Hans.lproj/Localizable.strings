@@ -34,8 +34,7 @@
 "QQ好友"="QQ好友";
 "QQ空间"="QQ空间";
 "额"="额";
-"EOS最新资讯详情"="EOS最新资讯详情";
-"OCT最新咨询详情"="OCT最新咨询详情";
+"最新资讯详情"="最新资讯详情";
 "参考价格"="参考价格";
 "24小时涨跌幅"="24小时涨跌幅";
 "总市值"="总市值";
@@ -152,6 +151,11 @@
  LoginView.m
  */
 "登录即代表同意《用户协议及隐私政策》"="登录即代表同意《用户协议及隐私政策》";
+
+/*
+ LoginMainViewController.m
+ */
+"网络错误" = "网络错误";
 
 /*
  BBLoginViewController.m
@@ -590,3 +594,21 @@
 "现有问题"="现有问题";
 "过往问题"="过往问题";
 "提问"="提问";
+
+/*
+ PocketManagementTableViewCell.m
+ */
+"Active权限"="Active权限";
+"Active权限＋Owner权限"="Active权限＋Owner权限";
+"当前主账号"="当前主账号";
+"其他账号"="其他账号";
+
+/*
+ AddAssestsHeaderView.m
+ */
+"添加资产"="添加资产";
+
+/*
+ CustomAssestsViewController.m
+ */
+"自定义管理"="自定义管理";

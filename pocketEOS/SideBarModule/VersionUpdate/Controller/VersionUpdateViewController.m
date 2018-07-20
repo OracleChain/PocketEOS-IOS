@@ -92,6 +92,8 @@
 }
 
 - (void)versionIntroduceBtnDidClick:(UIButton *)sender{
+    [self.view addSubview:self.versionUpdateTipView];
+    [self.versionUpdateTipView setModel:self.versionUpdateModel];
 }
 
 - (void)checkNewVersionBtnDidClick:(UIButton *)sender{
@@ -113,7 +115,7 @@
 }
 
 - (void)updateBtnDidClick:(UIButton *)sender{
-//    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://itunes.apple.com/cn/app/coostay-%E6%B5%B7%E5%A4%96%E6%B7%B1%E5%BA%A6%E6%97%85%E5%B1%85%E6%96%B0%E5%85%B4%E5%AE%B6%E5%9B%AD/id1126818186?l=en&mt=8"]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
 }
 
 - (NSInteger)queryVersionNumberInBundle{
