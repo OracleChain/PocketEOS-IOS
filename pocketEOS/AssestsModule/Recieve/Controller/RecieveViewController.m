@@ -20,6 +20,7 @@
 #import "Rate.h"
 #import "TransferService.h"
 #import "TokenInfo.h"
+#import "Get_token_info_service.h"
 
 @interface RecieveViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RecieveHeaderViewDelegate, PopUpWindowDelegate, UITextFieldDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -31,6 +32,7 @@
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) TransferService *transferService;
+@property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic , strong) TokenInfo *currentToken;
 @end
 
@@ -83,6 +85,13 @@
     }
     return _transferService;
 }
+- (Get_token_info_service *)get_token_info_service{
+    if (!_get_token_info_service) {
+        _get_token_info_service = [[Get_token_info_service alloc] init];
+    }
+    return _get_token_info_service;
+}
+
 
 - (NSMutableArray *)get_token_info_service_data_array{
     if (!_get_token_info_service_data_array) {
@@ -150,6 +159,29 @@
         }
     }];
 }
+
+- (void)requestTokenInfoDataArray{
+    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    WS(weakSelf);
+    [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            weakSelf.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+            if (weakSelf.get_token_info_service_data_array.count > 0) {
+                weakSelf.currentToken = weakSelf.get_token_info_service_data_array[0];
+                weakSelf.currentAssestsType = weakSelf.currentToken.token_symbol;
+                weakSelf.headerView.assestChooserLabel.text = weakSelf.currentToken.token_symbol;
+                weakSelf.headerView.accountChooserLabel.text = weakSelf.currentAccountName;
+                [weakSelf requestRate];
+                [weakSelf requestTransactionHistory];
+            }else{
+                [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
+                return;
+            }
+        }
+    }];
+}
+
+
 
 - (void)loadAllBlocks{
     WS(weakSelf);
@@ -276,11 +308,12 @@
             }
         }
         [self requestRate];
+        [self requestTransactionHistory];
     }else if ([sender isKindOfClass: [AccountInfo class] ]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
+        [self requestTokenInfoDataArray];
     }
-    [self requestTransactionHistory];
 }
 
 

@@ -122,11 +122,7 @@
     self.headerView.accountChooserLabel.text = self.currentAccountName;
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
     
-    self.mainService.getRedPacketRecordRequest.uid = CURRENT_WALLET_UID;
-    self.mainService.getRedPacketRecordRequest.account = self.accountName;
-    self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
-    [self loadNewData];
-//    [self textFieldChange:nil];
+    [self requestRedPacketRecords];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -143,13 +139,17 @@
     self.currentAssestsType = @"EOS";
     [self buidDataSource];
     
-    [self.mainTableView.mj_header beginRefreshing];
     [self loadAllBlocks];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.redPacketCountTF];
 }
 
-
+- (void)requestRedPacketRecords{
+    self.mainService.getRedPacketRecordRequest.uid = CURRENT_WALLET_UID;
+    self.mainService.getRedPacketRecordRequest.account = self.currentAccountName;
+    self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
+    [self loadNewData];
+}
 
 - (void)buidDataSource{
     WS(weakSelf);
@@ -401,10 +401,11 @@
         self.currentAssestsType = [(Assest *)sender assetName];
         self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
         [self buidDataSource];
-        [self.mainTableView.mj_header beginRefreshing];
+        [self requestRedPacketRecords];
     }else if ([sender isKindOfClass:[AccountInfo class]]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
+        [self requestRedPacketRecords];
     }
 }
 

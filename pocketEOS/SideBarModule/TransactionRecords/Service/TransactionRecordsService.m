@@ -119,7 +119,7 @@
     self.getTransactionRecordsRequest.page = @(_page);
     self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_10);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-        NSLog(@"%@", data);
+        
         [weakSelf.dataSourceArray removeAllObjects];
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
@@ -194,7 +194,7 @@
     self.getTransactionRecordsRequest.page = @(_page);
     self.getTransactionRecordsRequest.pageSize = @(PER_PAGE_SIZE_10);
     [self.getTransactionRecordsRequest postOuterDataSuccess:^(id DAO, id data) {
-        NSLog(@"%@", data);
+        
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.eosTransactionResponseArray removeAllObjects];
         [weakSelf.octTransactionResponseArray removeAllObjects];

@@ -25,12 +25,14 @@
 #import "Follow.h"
 #import "WalletAccount.h"
 #import "TransferAbi_json_to_bin_request.h"
+#import "Get_token_info_service.h"
 
 @interface TransferNewViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransferHeaderViewDelegate, PopUpWindowDelegate, ChangeAccountViewControllerDelegate, UITextFieldDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PopUpWindow *popUpWindow;
 @property(nonatomic, strong) TransferHeaderView *headerView;
 @property(nonatomic, strong) TransferService *mainService;
+@property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic, strong) AssestsMainService *assestsMainService;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
@@ -76,6 +78,12 @@
         _mainService.delegate = self;
     }
     return _mainService;
+}
+- (Get_token_info_service *)get_token_info_service{
+    if (!_get_token_info_service) {
+        _get_token_info_service = [[Get_token_info_service alloc] init];
+    }
+    return _get_token_info_service;
 }
 
 - (TransactionRecordsService *)transactionRecordsService{
@@ -144,7 +152,7 @@
         self.headerView.assestChooserLabel.text = self.currentToken.token_symbol;
         self.headerView.accountChooserLabel.text = self.currentAccountName;
         }else{
-            [TOASTVIEW showWithText: NSLocalizedString(@"您当前未添加资产", nil)];
+            [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
             return;
         }
     }
@@ -190,10 +198,10 @@
 }
 
 - (void)requestTransactionHistory{
-    self.transactionRecordsService.getTransactionRecordsRequest.from = self.currentToken.account_name;
+    self.transactionRecordsService.getTransactionRecordsRequest.from = self.currentAccountName;
     
     self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
-        [self loadNewData];
+    [self loadNewData];
 
 }
 
@@ -213,6 +221,28 @@
         if (isSuccess) {
             weakSelf.getRateResult = result;
             [weakSelf textFieldChange:nil];
+        }
+    }];
+}
+
+- (void)requestTokenInfoDataArray{
+    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    WS(weakSelf);
+    [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            weakSelf.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+            if (weakSelf.get_token_info_service_data_array.count > 0) {
+                weakSelf.currentToken = weakSelf.get_token_info_service_data_array[0];
+                weakSelf.currentAssestsType = weakSelf.currentToken.token_symbol;
+                weakSelf.headerView.assestChooserLabel.text = weakSelf.currentToken.token_symbol;
+                weakSelf.headerView.accountChooserLabel.text = weakSelf.currentAccountName;
+                [weakSelf requestRate];
+                [weakSelf requestTransactionHistory];
+                [weakSelf configHeaderView];
+            }else{
+                [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
+                return;
+            }
         }
     }];
 }
@@ -357,7 +387,7 @@
         return;
     }
     if (IsNilOrNull(self.currentToken)) {
-        [TOASTVIEW showWithText: NSLocalizedString(@"您当前未添加资产", nil)];
+        [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
         return;
     }
     self.transferAbi_json_to_bin_request.code = self.currentToken.contract_name;
@@ -421,12 +451,13 @@
             }
         }
         [self requestRate];
+        [self requestTransactionHistory];
+        [self configHeaderView];
     }else if ([sender isKindOfClass:[AccountInfo class]]){
         self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
         self.currentAccountName = [(AccountInfo *)sender account_name];
+        [self requestTokenInfoDataArray];
     }
-    [self requestTransactionHistory];
-    [self configHeaderView];
 }
 
 

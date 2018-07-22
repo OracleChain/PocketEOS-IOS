@@ -194,7 +194,6 @@
     [self.view addSubview:self.footerView];
     [self configHeaderView];
    
-    [self loadNewData];
 //    NSValue *value0 = [NSValue valueWithCGPoint:(CGPointMake(0, 40))];
 //    NSValue *value1 = [NSValue valueWithCGPoint:(CGPointMake(10, 20))];
 //    NSValue *value2 = [NSValue valueWithCGPoint:(CGPointMake(15, 70))];
