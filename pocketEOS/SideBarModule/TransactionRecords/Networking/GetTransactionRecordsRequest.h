@@ -20,4 +20,9 @@
 
 @property(nonatomic, copy) NSNumber *pageSize;
 
+
+/**
+ 上页最后一条记录的blockNum,如果是第一页，则不传
+ */
+@property(nonatomic, copy) NSNumber *lastPageLastBlockNum;
 @end

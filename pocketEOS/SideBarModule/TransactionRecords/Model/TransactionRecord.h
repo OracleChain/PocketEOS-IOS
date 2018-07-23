@@ -46,7 +46,6 @@
  */
 @property(nonatomic, copy) NSString *memo;
 
-
 /**
  过期时间
  */
@@ -55,6 +54,5 @@
 /**
  ref_block_num
  */
-@property(nonatomic, copy) NSString *ref_block_num;
-
+@property(nonatomic, strong) NSNumber *blockNum;
 @end

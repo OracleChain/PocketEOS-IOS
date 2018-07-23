@@ -5,6 +5,7 @@
 //  Created by oraclechain on 2017/11/27.
 //  Copyright © 2017年 oraclechain. All rights reserved.
 //
+#define YOUMENG_AppKey @"5b39ed6fb27b0a50be00012d"
 
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
@@ -15,6 +16,9 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "LEEBubble.h"
+#import <UMCommon/UMCommon.h>
+#import <UMCommonLog/UMCommonLogHeaders.h>
+#import <UMAnalytics/MobClick.h>
 
 @interface AppDelegate ()<WXApiDelegate, QQApiInterfaceDelegate>
 
@@ -70,8 +74,22 @@ void uncaughtExceptionHandler(NSException*exception){
     }
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
+    
+    [self integrateUMengSDK];
+
     return YES;
 }
+
+/*
+ 友盟
+ **/
+- (void)integrateUMengSDK{
+    [UMConfigure setEncryptEnabled:NO];//打开加密传输
+    [UMConfigure setLogEnabled:YES];//设置打开日志
+    [UMConfigure initWithAppkey:YOUMENG_AppKey channel:@"pgyer"];// 蒲公英
+    
+}
+
 
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -193,6 +211,9 @@ void uncaughtExceptionHandler(NSException*exception){
         
     };
 }
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     
 }

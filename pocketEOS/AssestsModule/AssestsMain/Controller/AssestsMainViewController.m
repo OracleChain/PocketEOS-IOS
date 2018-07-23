@@ -11,7 +11,6 @@
 #import "CustomNavigationView.h"
 #import "AssestsMainHeaderView.h"
 #import "SideBarViewController.h"
-#import "TransferViewController.h"
 #import "TransferNewViewController.h"
 #import "RecieveViewController.h"
 #import "RedPacketViewController.h"

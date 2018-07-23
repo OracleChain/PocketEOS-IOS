@@ -14,6 +14,7 @@
 #import "ApplicationMainViewController.h"
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
+#import "RootNavigationController.h"
 
 @interface BaseTabBarController()<UITabBarControllerDelegate>
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
@@ -89,7 +90,7 @@
 -(void)setUpAllChildViewController{
     _VCS = @[].mutableCopy;
     
-    AssestsMainViewController *assestsMainVC = [[AssestsMainViewController alloc]init];
+    AssestsMainViewController *assestsMainVC = [[AssestsMainViewController alloc] init];
     [self setupChildViewController:assestsMainVC title: NSLocalizedString(@"资产", nil)imageName:@"assest_unSelect" seleceImageName:@"assest_select" BB_imageName:@"assest_unSelect_BB" BB_seleceImageName:@"assest_Select_BB"];
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
@@ -151,7 +152,7 @@
     
     
     //包装导航控制器
-    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:controller];
+    RootNavigationController *nav = [[RootNavigationController alloc]initWithRootViewController:controller];
     [_VCS addObject:nav];
     
 }

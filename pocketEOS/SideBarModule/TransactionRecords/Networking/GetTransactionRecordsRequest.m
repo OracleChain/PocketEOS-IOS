@@ -19,7 +19,8 @@
              @"from"  : VALIDATE_STRING(self.from),
              @"to"  : VALIDATE_NUMBER(self.to),
              @"page"  : VALIDATE_NUMBER(self.page),
-             @"pageSize"  : VALIDATE_NUMBER(self.pageSize)
+             @"pageSize"  : VALIDATE_NUMBER(self.pageSize),
+             @"lastPageLastBlockNum"  : VALIDATE_NUMBER(self.lastPageLastBlockNum)
              };
 }
 @end

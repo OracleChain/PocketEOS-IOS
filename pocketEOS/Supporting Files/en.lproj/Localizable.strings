@@ -600,7 +600,7 @@
  PocketManagementTableViewCell.m
  */
 "Active权限"="Active permission";
-"Active权限＋Owner权限"="Owner &amp; Active permission";
+"Active权限＋Owner权限"="Owner & Active permission";
 "当前主账号"="Main account";
 "其他账号"="Normal acocunt";
 

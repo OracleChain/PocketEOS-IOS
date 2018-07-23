@@ -11,21 +11,6 @@
 
 @interface TransactionRecordsService : BaseService
 
-@property(nonatomic, strong) NSMutableArray *eosTransactionDatasourceArray;
-
-
-@property(nonatomic, strong) NSMutableArray *octTransactionDatasourceArray;
-
-@property(nonatomic , strong) NSMutableArray *assestsTransactionDatasourceArray;
-
-@property(nonatomic , strong) NSMutableArray *redPacketDatasourceArray;
-
-
-@property(nonatomic, strong) NSMutableArray *sendTransactionDatasourceArray;
-
-@property(nonatomic, strong) NSMutableArray *recieveTransactionDatasourceArray;
-
-
 @property(nonatomic, strong) GetTransactionRecordsRequest *getTransactionRecordsRequest;
 - (void)buildNextPageDataSource:(CompleteBlock)complete;
 @end

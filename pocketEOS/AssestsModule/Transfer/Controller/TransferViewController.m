@@ -261,14 +261,14 @@
     if (!cell) {
         cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
-    TransactionRecord *model = self.transactionRecordsService.sendTransactionDatasourceArray[indexPath.row];
+    TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
     cell.currentAccountName = self.currentAccountName;
     cell.model = model;
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.transactionRecordsService.sendTransactionDatasourceArray.count;
+    return self.transactionRecordsService.dataSourceArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

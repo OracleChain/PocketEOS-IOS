@@ -133,9 +133,9 @@
 }
 
 
--(UIViewController *)childViewControllerForStatusBarStyle{
-    return self.topViewController;
-}
+//-(UIViewController *)childViewControllerForStatusBarStyle{
+//    return self.topViewController;
+//}
 
 
 #pragma mark ————— 转场动画区 —————

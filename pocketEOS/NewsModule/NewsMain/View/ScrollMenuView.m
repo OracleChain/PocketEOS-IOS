@@ -81,7 +81,7 @@
         bottomLineView.tag = btn.tag;
         [_menuScrollView addSubview:bottomLineView];
         
-        bottomLineView.sd_layout.centerXEqualToView(btn).widthIs(calculatedSize.width).heightIs(MENUSCROLLVIEW_BOTTOM_LINE_HEIGHT).bottomSpaceToView(_menuScrollView, 0);
+        bottomLineView.sd_layout.centerXEqualToView(btn).widthIs(calculatedSize.width).heightIs(2).bottomSpaceToView(_menuScrollView, 0);
         [self.menuScrollViewBottomLineArray addObject:bottomLineView];
         
         // defalut select item 0

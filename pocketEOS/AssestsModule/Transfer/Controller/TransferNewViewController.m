@@ -199,7 +199,6 @@
 
 - (void)requestTransactionHistory{
     self.transactionRecordsService.getTransactionRecordsRequest.from = self.currentAccountName;
-    
     self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
     [self loadNewData];
 
@@ -268,14 +267,14 @@
     if (!cell) {
         cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
-    TransactionRecord *model = self.transactionRecordsService.sendTransactionDatasourceArray[indexPath.row];
+    TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
     cell.currentAccountName = self.currentAccountName;
     cell.model = model;
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.transactionRecordsService.sendTransactionDatasourceArray.count;
+    return self.transactionRecordsService.dataSourceArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

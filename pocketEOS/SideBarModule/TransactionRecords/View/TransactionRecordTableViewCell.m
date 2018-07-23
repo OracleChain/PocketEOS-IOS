@@ -105,7 +105,7 @@
     }
 
 
-    self.belongBlockLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"所在区块", nil),model.ref_block_num];
+    self.belongBlockLabel.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"所在区块", nil),model.blockNum];
     self.resultLabel.text = [NSString stringWithFormat:NSLocalizedString(@"成功", nil)];
 }
 

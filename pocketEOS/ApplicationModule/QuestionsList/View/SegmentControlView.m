@@ -6,6 +6,7 @@
 //  Copyright © 2018年 oraclechain. All rights reserved.
 //
 
+
 #import "SegmentControlView.h"
 #import "LineView.h"
 
@@ -56,7 +57,7 @@
 
 
 - (void)updateViewWithArray:(NSMutableArray *)arr{
-    
+    CGFloat itemWidth = 140;
     [self addSubview:self.segmentControlbackgroundView];
     self.segmentControlbackgroundView.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(44);
     
@@ -80,11 +81,11 @@
         lineView.sd_layout.topSpaceToView(btn, 5).centerXEqualToView(btn).widthIs(80).heightIs(2);
         
         if (i == 0) {
-            btn.sd_layout.centerYEqualToView(_segmentControlbackgroundView).centerXIs(SCREEN_WIDTH / 2 - 60 ).widthIs(80).heightIs(21);
+            btn.sd_layout.centerYEqualToView(_segmentControlbackgroundView).centerXIs(SCREEN_WIDTH / 4 * 1 ).widthIs(itemWidth).heightIs(21);
             btn.selected = YES;
             lineView.backgroundColor = HEXCOLOR(0x4D7BFE);
         }else if (i == 1){
-            btn.sd_layout.centerYEqualToView(_segmentControlbackgroundView).centerXIs(SCREEN_WIDTH / 2 + 60 ).widthIs(80).heightIs(21);
+            btn.sd_layout.centerYEqualToView(_segmentControlbackgroundView).centerXIs(SCREEN_WIDTH / 4 * 3 ).widthIs(itemWidth).heightIs(21);
         }
         [self.buttonsArr addObject:btn];
         [self.lineViewsArr addObject:lineView];
