@@ -51,7 +51,8 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
-    [self.mainTableView.mj_header beginRefreshing];
+    self.mainService.getFeedbackListRequest.uid = CURRENT_WALLET_UID;
+    [self loadNewData];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FeedbackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
@@ -81,11 +82,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)rightBtnDidClick{
+    WS(weakSelf);
     self.mainService.postFeedbackRequest.uid = CURRENT_WALLET_UID;
     self.mainService.postFeedbackRequest.content = VALIDATE_STRING(self.headerView.feedbackTF.text);
     [self.mainService.postFeedbackRequest postDataSuccess:^(id DAO, id data) {
         NSString *str = VALIDATE_STRING(data[@"message"]);
         [TOASTVIEW showWithText:str];
+        [weakSelf loadNewData];
     } failure:^(id DAO, NSError *error) {
         
     }];
@@ -96,6 +99,7 @@
 - (void)loadNewData
 {
     WS(weakSelf);
+    
     [self.mainTableView.mj_footer resetNoMoreData];
     [self.mainService buildDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
         if (isSuccess) {

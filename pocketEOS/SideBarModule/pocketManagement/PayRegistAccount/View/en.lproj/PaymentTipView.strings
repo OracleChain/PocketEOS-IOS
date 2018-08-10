@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "支付宝付款"; ObjectID = "Gk3-ch-sAc"; */
+"Gk3-ch-sAc.text" = "Alipay";
+
+/* Class = "UILabel"; text = "付款方式"; ObjectID = "Kfw-Ui-G1s"; */
+"Kfw-Ui-G1s.text" = "How to pay";
+
+/* Class = "UIButton"; normalTitle = "确认付款"; ObjectID = "KiT-sr-s6R"; */
+"KiT-sr-s6R.normalTitle" = "Confirm to pay";
+
+/* Class = "UILabel"; text = "微信付款"; ObjectID = "kl9-3G-IJu"; */
+"kl9-3G-IJu.text" = "Wechat Pay";

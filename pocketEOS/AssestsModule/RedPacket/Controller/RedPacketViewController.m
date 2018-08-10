@@ -123,10 +123,12 @@
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
     
     [self requestRedPacketRecords];
+    [MobClick beginLogPageView:@"pe发红包"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"pe发红包"];
 }
 
 - (void)viewDidLoad {
@@ -220,11 +222,12 @@
     RedPacketModel *model = [[RedPacketModel alloc] init];
     model.from = self.currentAccountName;
     model.count = self.headerView.redPacketCountTF.text;
-    model.memo =   !IsStrEmpty(self.headerView.descriptionTextView.text) ? self.headerView.descriptionTextView.text : NSLocalizedString(@"恭喜发财, 大吉大利", nil);
+    model.memo =   self.headerView.descriptionTextView.text;
     model.amount = self.headerView.amountTF.text;
     
     RedPacketRecord *record = self.mainService.dataSourceArray[indexPath.row];
     model.redPacket_id = record.redPacket_id;
+    model.verifystring = record.verifyString;
     model.amount = record.amount;
     model.isSend = record.isSend;
     model.coin = record.type;

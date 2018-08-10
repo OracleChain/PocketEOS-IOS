@@ -255,6 +255,12 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 #endif
 }
 
++ (void)showInfoWithStatus:(nullable NSString*)status andImage:(nullable NSString *)imageName{
+    [SVProgressHUD setInfoImage:[UIImage imageNamed: imageName]];
+    [SVProgressHUD showInfoWithStatus: status];
+}
+
+
 + (void)showInfoWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType {
     SVProgressHUDMaskType existingMaskType = [self sharedView].defaultMaskType;
     [self setDefaultMaskType:maskType];

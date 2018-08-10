@@ -77,7 +77,7 @@ static const CGFloat kMargin = 30;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    [MobClick beginLogPageView:@"扫一扫"]; //("Pagename"为页面名称，可自定义)
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -85,6 +85,7 @@ static const CGFloat kMargin = 30;
     [self.scanningView removeTimer];
     [self removeFlashlightBtn];
     [_manager cancelSampleBufferDelegate];
+    [MobClick endLogPageView:@"扫一扫"];
 }
 
 - (void)dealloc {

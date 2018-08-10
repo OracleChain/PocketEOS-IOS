@@ -62,6 +62,7 @@
 #import "UITextView+Placeholder.h"
 #import "NSObject+Extension.h"
 #import "SocialManager.h"
+#import "ThirdPayManager.h"
 #import "DeviceType.h"
 #import "WalletUtil.h"
 #import "OptionModel.h"
@@ -96,5 +97,9 @@
 #import "NSBundle+DAUtils.h"
 
 
+/*
+ 友盟
+**/
+#import <UMAnalytics/MobClick.h>
 
 #endif /* PrefixHeader_pch */

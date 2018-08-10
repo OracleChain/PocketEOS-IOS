@@ -135,7 +135,8 @@
         self.headerView.modifyApproveSlider.value = _initProgress;
         
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.weight_str yw_stringByDividingBy:self.price_str  withRoundingMode:(NSRoundPlain) scale:4] ];
+//            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.weight_str yw_stringByDividingBy:self.price_str  withRoundingMode:(NSRoundPlain) scale:4] ];
+             self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[[self.weight_str yw_stringByDividingBy:self.price_str] yw_stringByDividingBy:@"1000" withRoundingMode:(NSRoundPlain) scale:4]];
             
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
@@ -166,7 +167,9 @@
         
         self.amountTFAmount_str = MIN_AMOUNT;
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[MIN_AMOUNT yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4]];
+//            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[MIN_AMOUNT yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4] ];
+            
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[[MIN_AMOUNT yw_stringByDividingBy:self.price_str] yw_stringByDividingBy:@"1000" withRoundingMode:(NSRoundPlain) scale:4]];
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
             self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ bytes",NSLocalizedString(@"预计配额", nil), [MIN_AMOUNT yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];
@@ -175,7 +178,10 @@
         self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ EOS", [MIN_AMOUNT yw_stringByAdding:[self.total_str yw_stringByMultiplyingBy:[NSString stringWithFormat:@"%.2f", progress] withRoundingMode:(NSRoundPlain) scale:8] withRoundingMode:(NSRoundPlain) scale:4]];
         self.amountTFAmount_str = [MIN_AMOUNT yw_stringByAdding:[self.total_str yw_stringByMultiplyingBy:[NSString stringWithFormat:@"%.2f", progress] withRoundingMode:(NSRoundPlain) scale:8] withRoundingMode:(NSRoundPlain) scale:4];
         if ([self.pageType isEqualToString: NSLocalizedString(@"cpu_bandwidth", nil)]) {
-            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.amountTFAmount_str yw_stringByDividingBy:[self.price_str yw_stringByDividingBy:@"1000"] withRoundingMode:(NSRoundPlain) scale:4]];
+//            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",NSLocalizedString(@"预计配额", nil), [self.amountTFAmount_str yw_stringByDividingBy:self.price_str   withRoundingMode:(NSRoundPlain) scale:4]];
+            
+            self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ ms",  NSLocalizedString(@"预计配额", nil),[[self.amountTFAmount_str yw_stringByDividingBy:self.price_str] yw_stringByDividingBy:@"1000" withRoundingMode:(NSRoundPlain) scale:4]];
+            
             
         }else if ([self.pageType isEqualToString: NSLocalizedString(@"net_bandwidth", nil)]){
             self.headerView.predictLabel.text = [NSString stringWithFormat:@"%@：%@ bytes", NSLocalizedString(@"预计配额", nil), [self.amountTFAmount_str yw_stringByDividingBy:self.price_str withRoundingMode:(NSRoundPlain) scale:4]];

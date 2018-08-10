@@ -16,6 +16,7 @@
 
 -(id)parameters{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:VALIDATE_NUMBER(self.uid) forKey:@"uid"];
     [params setObject:VALIDATE_NUMBER(self.offset) forKey:@"offset"];
     [params setObject:VALIDATE_NUMBER(self.size) forKey:@"size"];
     return [params clearEmptyObject];

@@ -19,6 +19,8 @@
 #define REQUEST_TRANSACTION_RECORDS @"https://history.pocketeos.top"
 #define REQUEST_MESSAGE_PUSH_BASEURL @"https://push.pocketeos.top"
 
+#define REQUEST_PAY_CREATEACCOUNT_BASEURL @"http://pay.pocketeos.top/oulianeosaccount"
+
 
 // 主网环境
 //#define REQUEST_PERSONAL_BASEURL @"http://47.105.50.198:9000/api_oc_personal/v1.0.0"

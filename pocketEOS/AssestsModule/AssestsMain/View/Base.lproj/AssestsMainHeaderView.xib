@@ -240,17 +240,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKl-YA-NB5" userLabel="accountBaseView">
                     <rect key="frame" x="30" y="125" width="200" height="18"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9R8-6n-1RI">
-                            <rect key="frame" x="0.0" y="0.0" width="17" height="16"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="16" id="gmA-4o-xye"/>
-                                <constraint firstAttribute="width" constant="17" id="uHS-ed-zZK"/>
-                            </constraints>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEZ-SM-uzb">
-                            <rect key="frame" x="25" y="0.5" width="100" height="15"/>
+                            <rect key="frame" x="0.0" y="1.5" width="0.0" height="15"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="hZt-Q4-T3a"/>
                                 <constraint firstAttribute="height" constant="15" id="jNx-Uz-b5r"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -258,7 +250,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="pQm-mZ-Hjs">
-                            <rect key="frame" x="125" y="3" width="5" height="10"/>
+                            <rect key="frame" x="6" y="4" width="5" height="10"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="7ST-mj-Q2o"/>
                                 <constraint firstAttribute="height" constant="10" id="Vr2-02-REQ"/>
@@ -275,22 +267,20 @@
                         <constraint firstItem="pQm-mZ-Hjs" firstAttribute="centerY" secondItem="YEZ-SM-uzb" secondAttribute="centerY" id="0S4-gC-Mqq"/>
                         <constraint firstAttribute="trailing" secondItem="XhW-Nm-6hl" secondAttribute="trailing" id="1R1-8k-HzE"/>
                         <constraint firstAttribute="width" constant="200" id="6Xb-ET-Svo"/>
-                        <constraint firstItem="9R8-6n-1RI" firstAttribute="leading" secondItem="EKl-YA-NB5" secondAttribute="leading" id="Vkx-8c-xKn"/>
                         <constraint firstItem="XhW-Nm-6hl" firstAttribute="leading" secondItem="EKl-YA-NB5" secondAttribute="leading" id="Y9Z-Go-M7R"/>
-                        <constraint firstItem="pQm-mZ-Hjs" firstAttribute="leading" secondItem="YEZ-SM-uzb" secondAttribute="trailing" id="akz-9b-a7a"/>
+                        <constraint firstItem="YEZ-SM-uzb" firstAttribute="centerY" secondItem="EKl-YA-NB5" secondAttribute="centerY" id="Ygx-Hh-qPM"/>
+                        <constraint firstItem="pQm-mZ-Hjs" firstAttribute="leading" secondItem="YEZ-SM-uzb" secondAttribute="trailing" constant="6" id="akz-9b-a7a"/>
                         <constraint firstItem="XhW-Nm-6hl" firstAttribute="top" secondItem="EKl-YA-NB5" secondAttribute="top" id="i2Y-Em-rnR"/>
-                        <constraint firstItem="YEZ-SM-uzb" firstAttribute="leading" secondItem="9R8-6n-1RI" secondAttribute="trailing" constant="8" id="jse-M0-EyD"/>
-                        <constraint firstItem="YEZ-SM-uzb" firstAttribute="centerY" secondItem="9R8-6n-1RI" secondAttribute="centerY" id="mjs-q6-ylD"/>
+                        <constraint firstItem="YEZ-SM-uzb" firstAttribute="leading" secondItem="EKl-YA-NB5" secondAttribute="leading" id="lE3-xT-7qv"/>
                         <constraint firstAttribute="bottom" secondItem="XhW-Nm-6hl" secondAttribute="bottom" id="pkR-xa-7xE"/>
-                        <constraint firstItem="9R8-6n-1RI" firstAttribute="top" secondItem="EKl-YA-NB5" secondAttribute="top" id="rDA-yL-EOZ"/>
                         <constraint firstAttribute="height" constant="18" id="z8e-d0-2mX"/>
                     </constraints>
                 </view>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addAssets.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8l-bp-hDh">
-                    <rect key="frame" x="281" y="121.5" width="94" height="25"/>
+                    <rect key="frame" x="290" y="121.5" width="85" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Kpi-jv-YMw"/>
-                        <constraint firstAttribute="width" constant="94" id="TDB-6I-Rur"/>
+                        <constraint firstAttribute="width" constant="85" id="TDB-6I-Rur"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -322,18 +312,17 @@
                 <outlet property="topBackgroundView" destination="6xI-BL-5hz" id="LCd-20-PZi"/>
                 <outlet property="totalAssestsVisibleBtn" destination="pYH-sY-JUc" id="pFt-Ca-ZEJ"/>
                 <outlet property="totalAssetsLabel" destination="Yqo-6x-K23" id="VpT-k3-4o0"/>
-                <outlet property="userAccountLabel" destination="YEZ-SM-uzb" id="uwj-M3-OCf"/>
+                <outlet property="userAccountLabel" destination="YEZ-SM-uzb" id="uT4-Mc-GRx"/>
             </connections>
             <point key="canvasLocation" x="858.5" y="-740"/>
         </view>
     </objects>
     <resources>
-        <image name="account_icon" width="16" height="16"/>
         <image name="addAssets.png" width="85" height="25"/>
         <image name="ramTrade.png" width="28" height="28"/>
-        <image name="recieve.png" width="30" height="31"/>
-        <image name="redPacket.png" width="30" height="31"/>
+        <image name="recieve.png" width="28" height="28"/>
+        <image name="redPacket.png" width="28" height="28"/>
         <image name="right_arrow_gray.png" width="7" height="14"/>
-        <image name="transfer.png" width="30" height="30"/>
+        <image name="transfer.png" width="28" height="28"/>
     </resources>
 </document>

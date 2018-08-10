@@ -20,12 +20,17 @@
 #import "EOSMappingImportAccountViewController.h"
 #import "RtfBrowserViewController.h"
 #import "BackupAccountViewController.h"
+#import "GetAccountRequest.h"
+#import "GetAccount.h"
+#import "GetAccountResult.h"
+
 
 @interface CreateAccountViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, CreateAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) CreateAccountHeaderView *headerView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) CreateAccountService *createAccountService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
+@property(nonatomic, strong) GetAccountRequest *getAccountRequest;
 @end
 
 @implementation CreateAccountViewController
@@ -62,11 +67,18 @@
     return _loginPasswordView;
 }
 
+- (GetAccountRequest *)getAccountRequest{
+    if (!_getAccountRequest) {
+        _getAccountRequest = [[GetAccountRequest alloc] init];
+    }
+    return _getAccountRequest;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
-    [self configImportAccountBtn];
+//    [self configImportAccountBtn];
 }
 
 //CreateAccountHeaderViewDelegate
@@ -88,8 +100,31 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"12位字符，只能由小写字母a~z和数字1~5组成。", nil)];
         return;
     }
-    [self.view addSubview:self.loginPasswordView];
+    [self checkAccountExist];
 }
+
+- (void)checkAccountExist{
+    WS(weakSelf);
+    self.getAccountRequest.name = VALIDATE_STRING(self.headerView.accountNameTF.text) ;
+    [self.getAccountRequest postDataSuccess:^(id DAO, id data) {
+        GetAccountResult *result = [GetAccountResult mj_objectWithKeyValues:data];
+        if (![result.code isEqualToNumber:@0]) {
+            [TOASTVIEW showWithText: result.message];
+        }else{
+            GetAccount *model = [GetAccount mj_objectWithKeyValues:result.data];
+            if (model.account_name) {
+                [TOASTVIEW showWithText: NSLocalizedString(@"账号已存在", nil)];
+                return ;
+            }else{
+                [weakSelf.view addSubview:self.loginPasswordView];
+            }
+        }
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
 
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{

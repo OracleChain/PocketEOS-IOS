@@ -1,15 +1,15 @@
 
-/* Class = "UILabel"; text = "导入账号"; ObjectID = "1gD-Cl-xWo"; */
-"1gD-Cl-xWo.text" = "导入账号";
+/* Class = "UILabel"; text = "备份钱包"; ObjectID = "1gD-Cl-xWo"; */
+"1gD-Cl-xWo.text" = "备份钱包";
 
 /* Class = "UILabel"; text = "创建账号"; ObjectID = "DHO-jo-Jhh"; */
-"DHO-jo-Jhh.text" = "创建账号";
+"DHO-jo-Jhh.text" = "添加账号";
 
 /* Class = "UILabel"; text = "修改密码"; ObjectID = "Hc1-fd-WlN"; */
 "Hc1-fd-WlN.text" = "修改密码";
 
-/* Class = "UILabel"; text = "备份钱包"; ObjectID = "sek-Rz-Are"; */
-"sek-Rz-Are.text" = "备份钱包";
+/* Class = "UILabel"; text = "个人中心"; ObjectID = "sek-Rz-Are"; */
+"sek-Rz-Are.text" = "个人中心";
 
 /* Class = "UILabel"; text = "钱包设置"; ObjectID = "xg5-Ub-0xO"; */
 "xg5-Ub-0xO.text" = "钱包设置";

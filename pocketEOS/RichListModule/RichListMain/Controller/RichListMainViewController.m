@@ -70,6 +70,13 @@
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     }
     [self buildDataSource];
+    [MobClick beginLogPageView:@"富豪榜"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"富豪榜"];
 }
 
 - (void)viewDidLoad {

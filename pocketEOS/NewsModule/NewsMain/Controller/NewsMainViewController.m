@@ -190,6 +190,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     if (self.bannerService.dataSourceArray.count > 0) {
         
+        [MobClick event:[NSString stringWithFormat:@"News_banner_%ld", index+1]];
         News *news = (News *)self.bannerService.dataSourceArray[index];
         if (news) {
             NewsDetailViewController *vc = [[NewsDetailViewController alloc] init];

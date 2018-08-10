@@ -1,3 +1,6 @@
 
-/* Class = "UILabel"; text = "用pE的扫描关注这个账号"; ObjectID = "d2k-nC-a91"; */
-"d2k-nC-a91.text" = "Scan this QR code by PE and follow my account";
+/* Class = "UILabel"; text = "Active公钥"; ObjectID = "3f6-tH-LaR"; */
+"3f6-tH-LaR.text" = "Public key (active)";
+
+/* Class = "UILabel"; text = "Owner公钥"; ObjectID = "UCo-43-3cy"; */
+"UCo-43-3cy.text" = "Public Key (owner)";

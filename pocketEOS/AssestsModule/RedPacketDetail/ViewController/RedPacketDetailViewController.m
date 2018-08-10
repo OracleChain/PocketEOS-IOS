@@ -79,8 +79,8 @@
         _socialSharePanelView.backgroundColor = HEXCOLOR(0xF7F7F7);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
-        for (int i = 0; i < 4; i++) {
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil)];//NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)
+        for (int i = 0; i < titleArr.count; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];
             model.platformImage = self.platformNameArr[i];
@@ -180,6 +180,16 @@
                 // 发送
                 weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@，%@%@%@", NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil), NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
                 weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    领取记录"];
+                if ([result.residueCount isEqualToNumber:@0]) {
+                    weakSelf.headerView.sendRedpacketBtn.enabled = NO;
+                    [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xCCCCCC)];
+                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"红包已抢完", nil) forState:(UIControlStateNormal)];
+                }else{
+                    weakSelf.headerView.sendRedpacketBtn.enabled = YES;
+                    [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xD82919)];
+                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"继续发送红包", nil) forState:(UIControlStateNormal)];
+                }
+                
             }else{
                 // 领取
                 weakSelf.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ %@", weakSelf.redPacketModel.amount , weakSelf.redPacketModel.coin];
@@ -251,6 +261,7 @@
     model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
     model.detailDescription = NSLocalizedString(@"我下血本送上的区块链红包，无需消费、可以兑现，还犹豫什么？手慢无哦！", nil);
     model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.redPacketModel.verifystring];
+    NSLog(@"model.webPageUrl : %@", model.webPageUrl);
     if ([platformName isEqualToString:@"wechat_friends"]) {
        [[SocialManager socialManager] wechatShareToScene:0 withShareModel:model];
     }else if ([platformName isEqualToString:@"wechat_moments"]){

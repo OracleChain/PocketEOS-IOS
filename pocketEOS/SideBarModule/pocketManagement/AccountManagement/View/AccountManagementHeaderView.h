@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountInfo.h"
+
+@protocol AccountManagementHeaderViewDelegate<NSObject>
+
+- (void)ownerTipLabelDidTap;
+
+@end
+
 
 @interface AccountManagementHeaderView : BaseView
-@property (weak, nonatomic) IBOutlet UIImageView *QRCodeImg;
+
+@property(nonatomic, weak) id<AccountManagementHeaderViewDelegate> delegate;
+
+
+@property (weak, nonatomic) IBOutlet BaseLabel *ownerPublicKeyLabel;
+
+@property (weak, nonatomic) IBOutlet BaseLabel *activePublicKeyLabel;
+
+@property(nonatomic , strong) AccountInfo *localAccount;
+
+- (void)updateViewWithRemoteAccountInfo:(AccountInfo *)remoteAccount;
 @end

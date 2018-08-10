@@ -8,7 +8,6 @@
 
 #import "PocketManagementViewController.h"
 #import "NavigationView.h"
-#import "CreateAccountViewController.h"
 #import "ImportAccountViewController.h"
 #import "BackupPocketView.h"
 #import "AccountManagementViewController.h"
@@ -16,7 +15,8 @@
 #import "PocketManagementServiceTableViewCell.h"
 #import "ChangePasswordView.h"
 #import "PocketManagementHeaderView.h"
-
+#import "AddAccountViewController.h"
+#import "PersonalSettingViewController.h"
 
 @interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate, PocketManagementHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -72,10 +72,17 @@
     return _mainService;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self buildDataSource];
+    [MobClick beginLogPageView:@"钱包管理"];
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"钱包管理"];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -151,19 +158,18 @@
 
 -(void)rightBtnDidClick{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = @"PockSecureDecalre";
+    vc.rtfFileName = @"PockSecureDeclare";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 //PocketManagementHeaderViewDelegate
 - (void)createAccountBtnDidClick{
-    CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
-    vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromPocketManagementVC;
+    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-- (void)importAccountBtnDidClick{
-    ImportAccountViewController *vc = [[ImportAccountViewController alloc] init];
+- (void)personalCenterBtnDidClick{
+    PersonalSettingViewController *vc = [[PersonalSettingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 
 }

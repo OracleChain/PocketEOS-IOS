@@ -8,18 +8,18 @@
 #define HEADERVIEW_HEIGHT 200
 #import "BBLoginViewController.h"
 #import "BBLoginHeaderView.h"
-#import "LoginMainViewController.h"
+#import "LoginEntranceViewController.h"
 #import "BBLoginCreateWalletView.h"
 #import "BBLoginChooseWalletFooterView.h"
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
 #import "CreatePocketViewController.h"
-#import "CreateAccountViewController.h"
+#import "AddAccountViewController.h"
 #import "RtfBrowserViewController.h"
 #import "Choose_BB_walletBtn.h"
 
 @interface BBLoginViewController ()<BBLoginHeaderViewDelegate, BBLoginCreateWalletViewDelegate, BBLoginChooseWalletFooterViewDelegate>
-@property(nonatomic, strong) UIScrollView *mainScrollView;
+@property(nonatomic, strong) UIScrollView *mainScrollView1;
 @property(nonatomic , strong) BBLoginHeaderView *loginHeaderView;
 @property(nonatomic , strong) BBLoginCreateWalletView *createWalletView;
 @property(nonatomic , strong) BBLoginChooseWalletFooterView *chooseWalletFooterView;
@@ -30,24 +30,24 @@
 
 @implementation BBLoginViewController
 
-- (UIScrollView *)mainScrollView{
-    if (!_mainScrollView) {
-        _mainScrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
-        _mainScrollView.backgroundColor = [UIColor whiteColor];
+- (UIScrollView *)mainScrollView1{
+    if (!_mainScrollView1) {
+        _mainScrollView1 = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _mainScrollView1.backgroundColor = [UIColor whiteColor];
         NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
         if (localWalletsArr.count > 0) {
-             _mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.chooseWalletBackgroundView.height_sd);
+             _mainScrollView1.contentSize = CGSizeMake(SCREEN_WIDTH, self.chooseWalletBackgroundView.height_sd);
         }else{
-            _mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.createWalletView.height_sd);
+            _mainScrollView1.contentSize = CGSizeMake(SCREEN_WIDTH, self.createWalletView.height_sd);
         }
         
         if (@available(iOS 11.0, *)) {
-            _mainScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _mainScrollView1.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
             // Fallback on earlier versions
         }
     }
-    return _mainScrollView;
+    return _mainScrollView1;
 }
 
 
@@ -141,16 +141,16 @@
     [LEETheme startTheme:BLACKBOX_MODE];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.mainScrollView];
-    [self.mainScrollView addSubview:self.loginHeaderView];
+    [self.view addSubview:self.mainScrollView1];
+    [self.mainScrollView1 addSubview:self.loginHeaderView];
     if ([DeviceType getIsIpad]) {
-        self.mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+HEADERVIEW_HEIGHT);
+        self.mainScrollView1.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+HEADERVIEW_HEIGHT);
     }
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     if (localWalletsArr.count > 0) {
-        [self.mainScrollView addSubview:self.chooseWalletBackgroundView];
+        [self.mainScrollView1 addSubview:self.chooseWalletBackgroundView];
     }else{
-        [self.mainScrollView addSubview:self.createWalletView];
+        [self.mainScrollView1 addSubview:self.createWalletView];
     }
     
 }
@@ -158,7 +158,7 @@
 
 // BBLoginHeaderViewDelegate
 -(void)changeModeToSocialMode{
-    LoginMainViewController *vc = [[LoginMainViewController alloc] init];
+    LoginEntranceViewController *vc = [[LoginEntranceViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -214,8 +214,7 @@
     [[NSUserDefaults standardUserDefaults] setObject: model.wallet_uid  forKey:Current_wallet_uid];
     [[NSUserDefaults standardUserDefaults] synchronize];
     // 创建账号(本地数据库)
-    CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
-    vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromCreatePocketVC;
+    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -250,8 +249,7 @@
                 [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
                 
             }else{
-                CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
-                vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromCreatePocketVC;
+                AddAccountViewController *vc = [[AddAccountViewController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }

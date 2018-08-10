@@ -62,6 +62,17 @@
     return _versionUpdateModel;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"版本更新"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"版本更新"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];

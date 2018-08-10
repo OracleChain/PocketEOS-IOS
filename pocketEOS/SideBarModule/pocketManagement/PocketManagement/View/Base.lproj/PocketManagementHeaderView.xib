@@ -51,7 +51,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioo-DZ-RhN" userLabel="Base ViewCreateAccount" customClass="BaseView">
                             <rect key="frame" x="0.0" y="0.0" width="172.5" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创建账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-jo-Jhh" customClass="BaseLabel">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-jo-Jhh" customClass="BaseLabel">
                                     <rect key="frame" x="57.5" y="17" width="57.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
@@ -86,13 +86,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6A-td-df2" userLabel="Base ViewImportAccount" customClass="BaseView">
                             <rect key="frame" x="173" y="0.0" width="172" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="导入账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gD-Cl-xWo" customClass="BaseLabel">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备份钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gD-Cl-xWo" customClass="BaseLabel">
                                     <rect key="frame" x="57.5" y="17" width="57.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="importAccount.png" translatesAutoresizingMaskIntoConstraints="NO" id="xvj-b7-XVs">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backup.png" translatesAutoresizingMaskIntoConstraints="NO" id="xvj-b7-XVs">
                                     <rect key="frame" x="33.5" y="18" width="14" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="5QD-41-q7h"/>
@@ -102,7 +102,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1D-tV-rxQ">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
                                     <connections>
-                                        <action selector="importAccountBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="5lj-vV-seG"/>
+                                        <action selector="backupWalletBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="fwR-6g-UI5"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -156,13 +156,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMl-wx-jdb" userLabel="Base ViewBackupWallet" customClass="BaseView">
                             <rect key="frame" x="173" y="50.5" width="172" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备份钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sek-Rz-Are" customClass="BaseLabel">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sek-Rz-Are" customClass="BaseLabel">
                                     <rect key="frame" x="57.5" y="17" width="57.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backup.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Yn-jX-zxo">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="importAccount.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Yn-jX-zxo">
                                     <rect key="frame" x="33.5" y="18" width="14" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="97T-ul-6pL"/>
@@ -172,7 +172,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9MQ-7y-1EK">
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
                                     <connections>
-                                        <action selector="backupWalletBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="wQt-wx-Qzw"/>
+                                        <action selector="personalCenterBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="DoG-9e-UbL"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -241,6 +241,12 @@
                 <constraint firstItem="yCI-2f-hSk" firstAttribute="top" secondItem="lZk-67-zq8" secondAttribute="bottom" constant="20" id="o4a-Rf-jYv"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backupImageView" destination="xvj-b7-XVs" id="DJF-1U-FT4"/>
+                <outlet property="changePasswordImageView" destination="EJj-TV-zKf" id="AjD-Me-n0a"/>
+                <outlet property="createAccountImageView" destination="p0h-Tq-Xyo" id="Png-O6-p5P"/>
+                <outlet property="importAccountImageView" destination="1Yn-jX-zxo" id="jxp-oU-IrG"/>
+            </connections>
             <point key="canvasLocation" x="52.5" y="54"/>
         </view>
     </objects>

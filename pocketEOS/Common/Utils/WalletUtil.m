@@ -42,6 +42,7 @@
 
 + (void)setMainAccountWithAccountInfoModel:(AccountInfo *)accountInfo{
     NSMutableArray *accountsArr = [[AccountsTableManager accountTable] selectAccountTable];
+    Wallet *wallet = CURRENT_WALLET;
     if (accountsArr.count == 1) {
         // 当前只有一个账号既设置为主账号
         // notice server
@@ -52,7 +53,6 @@
             BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
             if ([result.code isEqualToNumber:@0]) {
                 // 1.将所有的账号都设为 非主账号
-                Wallet *wallet = CURRENT_WALLET;
                 [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
                 
                 // update account table
@@ -69,6 +69,8 @@
         }];
     }else{
         NSLog(@"已有本地主账号");
+        // update account table
+        BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '0'  WHERE account_name = '%@'", wallet.account_info_table_name, accountInfo.account_name ]];
     }
 }
 

@@ -30,7 +30,6 @@
 @property(nonatomic, copy) NSString *WKScriptMessageName; // recieve WKScriptMessage.name
 @property(nonatomic, strong) NSDictionary *WKScriptMessageBody;// recieve WKScriptMessage.body
 @property(nonatomic, strong) SelectAccountView *selectAccountView;
-@property(nonatomic, strong) NSString *choosedAccountName;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , strong) Abi_json_to_binRequest *abi_json_to_binRequest;
 @property (nonatomic , strong) DappTransferResult *dappTransferResult;
@@ -150,7 +149,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushAction"];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"push"];
     if (IsStrEmpty(self.webView.title)) {
@@ -161,6 +164,11 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
     // 因此这里要记得移除handlers
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushAction('%@','%@')"];
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"push('%@','%@','%@','%@','%@')"];
@@ -168,14 +176,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [MobClick event:@"DAppDidClick" label: VALIDATE_STRING(self.model.applyName)];
+//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     self.title = self.model.applyName;
-    [self.view addSubview:self.selectAccountView];
+    if (IsStrEmpty(self.choosedAccountName)) {
+        [self.view addSubview:self.selectAccountView];
+    }else{
+        [self loadWebView];
+    }
     self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
 }
 
@@ -207,6 +219,12 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
+    [TOASTVIEW showWithText: [ error localizedDescription]];
+}
+
+
 
 -(void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{
     [webView reload];
@@ -394,14 +412,18 @@
         return;
     } else{
         [self.selectAccountView removeFromSuperview];
-        //       xgame http://47.74.145.111 self.model.url
-        //        http://www.cheerfifa.com //  http://192.168.3.151:8081
-        [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
-        self.webView.UIDelegate = self;
-        self.webView.navigationDelegate = self;
-        self.webView.scrollView.delegate = self;
-        [self.view addSubview:self.webView];
+        [self loadWebView];
     }
+}
+
+- (void)loadWebView{
+    //       xgame http://47.74.145.111 self.model.url
+    //        http://www.cheerfifa.com //  http://192.168.3.151:8081
+    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
+    self.webView.UIDelegate = self;
+    self.webView.navigationDelegate = self;
+    self.webView.scrollView.delegate = self;
+    [self.view addSubview:self.webView];
 }
 
 -(void)backgroundViewDidClick{

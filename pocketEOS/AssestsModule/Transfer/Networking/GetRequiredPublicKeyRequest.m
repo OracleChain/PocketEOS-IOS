@@ -42,7 +42,14 @@
     
     [params setObject:transacDic forKey:@"transaction"];
     
-    [params setObject:VALIDATE_ARRAY(self.available_keys) forKey:@"available_keys"];
+    NSMutableArray *available_keysArr = [NSMutableArray array];
+    for (NSString *publicKey in self.available_keys) {
+        if ([publicKey hasPrefix:@"EOS"]) {
+            [available_keysArr addObject: publicKey];
+        }
+    }
+    [params setObject:VALIDATE_ARRAY(available_keysArr) forKey:@"available_keys"];
+    
     return params;
 }
 

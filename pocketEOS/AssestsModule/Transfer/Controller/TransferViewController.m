@@ -399,7 +399,9 @@
 #pragma mark -- [@"data"]
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.currentAccountName];
-        weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
+//        weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
+        weakSelf.mainService.available_keys = @[ VALIDATE_STRING(accountInfo.account_active_public_key)];
+        
         weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.sender = weakSelf.currentAccountName;
 #pragma mark -- [@"data"]

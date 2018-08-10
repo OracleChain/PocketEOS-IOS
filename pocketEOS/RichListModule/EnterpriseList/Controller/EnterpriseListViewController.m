@@ -34,6 +34,18 @@
     return _mainService;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"企业账号"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"企业账号"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

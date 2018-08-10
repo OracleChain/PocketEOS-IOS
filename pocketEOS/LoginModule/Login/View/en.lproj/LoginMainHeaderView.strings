@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "微信登录"; ObjectID = "0Fn-IN-JW4"; */
+"0Fn-IN-JW4.text" = "By Wechat";
+
+/* Class = "UIButton"; normalTitle = "黑匣子模式"; ObjectID = "Eq9-wK-avU"; */
+"Eq9-wK-avU.normalTitle" = "Black Box Mode";
+
+/* Class = "UILabel"; text = "推荐使用微信登录，便于关联您的数字资产红包"; ObjectID = "HDE-Cu-CtM"; */
+"HDE-Cu-CtM.text" = "Wechat is recommended for sync your Crypro Redpacket";
+
+/* Class = "UILabel"; text = "请选择您的登录方式"; ObjectID = "VMr-4p-rn1"; */
+"VMr-4p-rn1.text" = "Chose one to login";
+
+/* Class = "UIButton"; normalTitle = "手机号登录"; ObjectID = "OBw-PI-G6M"; */
+"OBw-PI-G6M.normalTitle" = "By Phone No.";
+
+/* Class = "UILabel"; text = "安全、隐私、生态丰富"; ObjectID = "Y0l-ss-zZk"; */
+"Y0l-ss-zZk.text" = "safe, private, with abundant applications";
+
+/* Class = "UILabel"; text = "Pocket EOS"; ObjectID = "Yjp-oc-lrf"; */
+"Yjp-oc-lrf.text" = "Pocket EOS";

@@ -1,0 +1,21 @@
+
+/* Class = "UITextField"; placeholder = "输入注册码"; ObjectID = "019-DM-EfY"; */
+"019-DM-EfY.placeholder" = "输入注册码";
+
+/* Class = "UILabel"; text = "账号名称"; ObjectID = "AUG-xv-Jkw"; */
+"AUG-xv-Jkw.text" = "账号名称";
+
+/* Class = "UIButton"; normalTitle = "双私钥模式 (推荐资深用户使用)"; ObjectID = "Awd-Iu-4eq"; */
+"Awd-Iu-4eq.normalTitle" = "双私钥模式 (推荐资深用户使用)";
+
+/* Class = "UIButton"; normalTitle = "确认创建"; ObjectID = "FPV-fA-rzB"; */
+"FPV-fA-rzB.normalTitle" = "确认创建";
+
+/* Class = "UILabel"; text = "注册码"; ObjectID = "Pcx-NB-Gq0"; */
+"Pcx-NB-Gq0.text" = "注册码";
+
+/* Class = "UIButton"; normalTitle = "私钥二合一模式 (建议新手使用)"; ObjectID = "aj3-A2-KAQ"; */
+"aj3-A2-KAQ.normalTitle" = "私钥二合一模式 (建议新手使用)";
+
+/* Class = "UITextField"; placeholder = "由小写字母和数字1~5组成的12位账号"; ObjectID = "mcp-9O-25v"; */
+"mcp-9O-25v.placeholder" = "由小写字母和数字1~5组成的12位账号";

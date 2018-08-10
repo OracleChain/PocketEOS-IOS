@@ -62,7 +62,7 @@
         _socialSharePanelView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT+266, SCREEN_WIDTH, 116);
         _socialSharePanelView.delegate = self;
         NSMutableArray *modelArr = [NSMutableArray array];
-        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil), NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)];
+        NSArray *titleArr = @[NSLocalizedString(@"微信好友", nil),NSLocalizedString(@"朋友圈", nil)];//, NSLocalizedString(@"QQ好友", nil), NSLocalizedString(@"QQ空间", nil)
         for (int i = 0; i < titleArr.count; i++) {
             SocialShareModel *model = [[SocialShareModel alloc] init];
             model.platformName = titleArr[i];
@@ -87,6 +87,7 @@
     }
     return _mainService;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,7 +119,9 @@
         model.title = NSLocalizedString(@"天降大红包，没时间解释了，快抢!", nil);
         model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
         model.detailDescription = NSLocalizedString(@"我下血本送上的区块链红包，无需消费、可以兑现，还犹豫什么？手慢无哦！", nil);
+        // http://static.pocketeos.top:8003
         model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.authRedPacketResult.data.verifyString];
+        NSLog(@"model.webPageUrl :%@", model.webPageUrl);
         if ([platformName isEqualToString:@"wechat_friends"]) {
             [[SocialManager socialManager] wechatShareToScene:0 withShareModel:model];
         }else if ([platformName isEqualToString:@"wechat_moments"]){

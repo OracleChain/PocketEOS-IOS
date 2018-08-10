@@ -10,7 +10,7 @@
 
 #import "CandyMainHeaderView.h"
 #import "CandyMainCollectionViewCell.h"
-#import "CandyEquityModel.h"
+
 
 @interface CandyMainHeaderView()<UICollectionViewDataSource , UICollectionViewDelegate>
 
@@ -68,9 +68,11 @@
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
-//    CandyEquityModel *model = self.dataArray[indexPath.row];
-//    [TOASTVIEW showWithText:model.equity_description];
+    CandyEquityModel *model = self.dataArray[indexPath.row];
+    if (!self.onCandyMainCollectionCellDidSelectItemBlock) {
+        return;
+    }
+    self.onCandyMainCollectionCellDidSelectItemBlock(model);
 }
 
 @end

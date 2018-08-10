@@ -14,6 +14,5 @@
 
 
 @property(nonatomic, strong) UITableView *mainTableView;
-
-
+@property(nonatomic, strong) UIScrollView *mainScrollView;
 @end

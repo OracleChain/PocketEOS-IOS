@@ -1,0 +1,24 @@
+
+/* Class = "UITextField"; placeholder = "输入手机号码"; ObjectID = "6EX-1v-Sc1"; */
+"6EX-1v-Sc1.placeholder" = "输入手机号码";
+
+/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "B6Y-eq-iy4"; */
+"B6Y-eq-iy4.placeholder" = "请输入验证码";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "LSN-VQ-MSB"; */
+"LSN-VQ-MSB.normalTitle" = "获取验证码";
+
+/* Class = "UILabel"; text = "安全、隐私、生态丰富"; ObjectID = "c4G-3f-4aR"; */
+"c4G-3f-4aR.text" = "安全、隐私、生态丰富";
+
+/* Class = "UILabel"; text = "输入验证码"; ObjectID = "nQa-rC-sbC"; */
+"nQa-rC-sbC.text" = "输入验证码";
+
+/* Class = "UIButton"; normalTitle = "登 录"; ObjectID = "qW1-Vx-SaE"; */
+"qW1-Vx-SaE.normalTitle" = "登 录";
+
+/* Class = "UILabel"; text = "手机号码"; ObjectID = "sSO-8f-U7c"; */
+"sSO-8f-U7c.text" = "手机号码";
+
+/* Class = "UILabel"; text = "+86"; ObjectID = "u7d-x6-YIc"; */
+"u7d-x6-YIc.text" = "+86";

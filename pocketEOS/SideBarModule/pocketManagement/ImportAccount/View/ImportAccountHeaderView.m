@@ -12,15 +12,16 @@
 
 @implementation ImportAccountHeaderView
 
-- (IBAction)importWithQRCode:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(importWithQRCodeBtnDidClick:)]) {
-        [self.delegate importWithQRCodeBtnDidClick:sender];
-    }
-}
 - (IBAction)import:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(importBtnDidClick:)]) {
         [self.delegate importBtnDidClick:sender];
     }
 }
 
+- (IBAction)agreeBtn:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(agreeTermBtnDidClick:)]) {
+        [self.delegate agreeTermBtnDidClick:sender];
+    }
+}
 @end

@@ -14,5 +14,5 @@
 @interface DAppDetailViewController : UIViewController
 @property(nonatomic , strong) Application *model;
 
-
+@property(nonatomic, strong) NSString *choosedAccountName;
 @end

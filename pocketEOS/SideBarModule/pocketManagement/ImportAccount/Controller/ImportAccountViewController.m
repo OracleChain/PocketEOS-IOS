@@ -18,14 +18,10 @@
 #import "BackupEOSAccountService.h"
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
-#import "BBCreateAccountHeaderView.h"
-#import "EOSMappingImportAccountViewController.h"
 
-@interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate, BBCreateAccountHeaderViewDelegate>
+@interface ImportAccountViewController ()<UIGestureRecognizerDelegate,  UITableViewDelegate, UITableViewDataSource, NavigationViewDelegate, ImportAccountHeaderViewDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) ImportAccountHeaderView *headerView;
-@property(nonatomic , strong) BBCreateAccountHeaderView *bb_createAccountHeaderView;
 @property(nonatomic, strong) NavigationView *navView;
-@property(nonatomic, strong) UIScrollView *mainScrollView;
 @property(nonatomic, strong) GetAccountRequest *getAccountRequest;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) BackupEOSAccountService *backupEOSAccountService;
@@ -50,8 +46,9 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"导入新账号", nil)rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"导入账号", nil)rightBtnImgName:@"scan_black" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+        _navView.rightBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"scan_black"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"scan"], UIControlStateNormal);
     }
     return _navView;
 }
@@ -64,14 +61,7 @@
     }
     return _headerView;
 }
-- (BBCreateAccountHeaderView *)bb_createAccountHeaderView{
-    if (!_bb_createAccountHeaderView) {
-        _bb_createAccountHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"BBCreateAccountHeaderView" owner:nil options:nil] firstObject];
-        _bb_createAccountHeaderView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 40);
-        _bb_createAccountHeaderView.delegate = self;
-    }
-    return _bb_createAccountHeaderView;
-}
+
 - (LoginPasswordView *)loginPasswordView{
     if (!_loginPasswordView) {
         _loginPasswordView = [[[NSBundle mainBundle] loadNibNamed:@"LoginPasswordView" owner:nil options:nil] firstObject];
@@ -81,19 +71,6 @@
     return _loginPasswordView;
 }
 
-- (UIScrollView *)mainScrollView{
-    if (!_mainScrollView) {
-        _mainScrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT+40, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT))];
-        _mainScrollView.backgroundColor = [UIColor clearColor];
-        _mainScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
-        if (@available(iOS 11.0, *)) {
-            _mainScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    return _mainScrollView;
-}
 
 - (BackupEOSAccountService *)backupEOSAccountService{
     if (!_backupEOSAccountService) {
@@ -119,25 +96,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.bb_createAccountHeaderView];
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.headerView];
-    
 }
 
 
+// ImportAccountHeaderViewDelegate
 - (void)importBtnDidClick:(UIButton *)sender{
-    if (IsStrEmpty(self.headerView.accountNameTF.text)  || IsStrEmpty(self.headerView.private_ownerKey_TF.text) || IsStrEmpty(self.headerView.private_activeKey_tf.text)) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
-        return;
+    if (self.headerView.agreeTermBtn.isSelected == YES) {
+        if (IsStrEmpty(self.headerView.accountNameTF.text)  ||IsStrEmpty(self.headerView.private_activeKey_tf.text)) {
+            [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+            return;
+        }else{
+            [self.view addSubview:self.loginPasswordView];
+        }
     }else{
-        [self.view addSubview:self.loginPasswordView];
+        if (IsStrEmpty(self.headerView.accountNameTF.text)  ||IsStrEmpty(self.headerView.private_activeKey_tf.text)  || IsStrEmpty(self.headerView.private_ownerKey_TF.text)) {
+            [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+            return;
+        }else{
+            [self.view addSubview:self.loginPasswordView];
+        }
         
     }
 }
+
+- (void)agreeTermBtnDidClick:(UIButton *)sender{}
+
 
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
@@ -175,15 +161,27 @@
         [self removeLoginPasswordView];
         return;
     }
-    private_owner_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.private_ownerKey_TF.text];
+
     private_active_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.private_activeKey_tf.text];
+    private_owner_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.private_ownerKey_TF.text ];
     
-    if ((private_owner_Key_is_validate == YES) && (private_active_Key_is_validate == YES)) {
-        [self createPublicKeys];
+    
+    if (self.headerView.agreeTermBtn.isSelected == YES) {
+        if (private_active_Key_is_validate == YES) {
+            [self createPublicKeys];
+        }else{
+            [TOASTVIEW showWithText:NSLocalizedString(@"私钥格式有误!", nil)];
+            [self removeLoginPasswordView];
+            return ;
+        }
     }else{
-        [TOASTVIEW showWithText:NSLocalizedString(@"私钥格式有误!", nil)];
-        [self removeLoginPasswordView];
-        return ;
+        if ((private_owner_Key_is_validate == YES) && (private_active_Key_is_validate == YES)) {
+            [self createPublicKeys];
+        }else{
+            [TOASTVIEW showWithText:NSLocalizedString(@"私钥格式有误!", nil)];
+            [self removeLoginPasswordView];
+            return ;
+        }
     }
 }
 
@@ -210,33 +208,21 @@
                     owner_public_key_from_network = permission.required_auth_key;
                 }
             }
-            if ([active_public_key_from_network isEqualToString: active_public_key_from_local] && [owner_public_key_from_network isEqualToString:owner_public_key_from_local]) {
-                // 本地公钥和网络公钥匹配, 允许进行导入本地操作
-                AccountInfo *accountInfo = [[AccountInfo alloc] init];
-                accountInfo.account_name = weakSelf.headerView.accountNameTF.text;
-                accountInfo.account_img = ACCOUNT_DEFALUT_AVATAR_IMG_URL_STR;
-                accountInfo.account_owner_public_key = owner_public_key_from_local;
-                accountInfo.account_active_public_key = active_public_key_from_local;
-                accountInfo.account_owner_private_key = [AESCrypt encrypt:weakSelf.headerView.private_ownerKey_TF.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
-                accountInfo.account_active_private_key = [AESCrypt encrypt:weakSelf.headerView.private_activeKey_tf.text password:weakSelf.loginPasswordView.inputPasswordTF.text];
-                 accountInfo.is_privacy_policy = @"0";
-                
-                [[AccountsTableManager accountTable] addRecord:accountInfo];
-                [WalletUtil setMainAccountWithAccountInfoModel:accountInfo];
-                
-                
-                [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
-                weakSelf.backupEOSAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
-                weakSelf.backupEOSAccountService.backupEosAccountRequest.eosAccountName = accountInfo.account_name;
-                [weakSelf.backupEOSAccountService backupAccount:^(id service, BOOL isSuccess) {
-                    if (isSuccess) {
-                        NSLog(@"备份到服务器成功!");
-                    }
-                }];
-                
-                [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+            
+            if (weakSelf.headerView.agreeTermBtn.isSelected == YES) {
+                if ([active_public_key_from_network isEqualToString: active_public_key_from_local]) {
+                    // 本地公钥和网络公钥匹配, 允许进行导入本地操作
+                    [weakSelf configAccountInfo];
+                }else{
+                    [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
+                }
             }else{
-                [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
+                if ([active_public_key_from_network isEqualToString: active_public_key_from_local] && [owner_public_key_from_network isEqualToString:owner_public_key_from_local]) {
+                    // 本地公钥和网络公钥匹配, 允许进行导入本地操作
+                    [weakSelf configAccountInfo];
+                }else{
+                    [TOASTVIEW showWithText:NSLocalizedString(@"导入的私钥不匹配!", nil)];
+                }
             }
         }
     } failure:^(id DAO, NSError *error) {
@@ -244,8 +230,45 @@
     }];
 }
 
+// config account after import
+- (void)configAccountInfo{
+    AccountInfo *accountInfo = [[AccountInfo alloc] init];
+    accountInfo.account_name = self.headerView.accountNameTF.text;
+    accountInfo.account_img = ACCOUNT_DEFALUT_AVATAR_IMG_URL_STR;
+    accountInfo.account_active_public_key = active_public_key_from_local;
+    accountInfo.account_active_private_key = [AESCrypt encrypt:self.headerView.private_activeKey_tf.text password:self.loginPasswordView.inputPasswordTF.text];
+    if (self.headerView.agreeTermBtn.isSelected == YES) {
+        accountInfo.account_owner_public_key = @"";
+        accountInfo.account_owner_private_key = @"";
+    }else{
+        accountInfo.account_owner_public_key = owner_public_key_from_local;
+        accountInfo.account_owner_private_key = [AESCrypt encrypt:self.headerView.private_ownerKey_TF.text password:self.loginPasswordView.inputPasswordTF.text];
+    }
+    accountInfo.is_privacy_policy = @"0";
+    
+    [[AccountsTableManager accountTable] addRecord:accountInfo];
+    [WalletUtil setMainAccountWithAccountInfoModel:accountInfo];
+    
+    
+    [TOASTVIEW showWithText:NSLocalizedString(@"导入账号成功!", nil)];
+    self.backupEOSAccountService.backupEosAccountRequest.uid = CURRENT_WALLET_UID;
+    self.backupEOSAccountService.backupEosAccountRequest.eosAccountName = accountInfo.account_name;
+    [self.backupEOSAccountService backupAccount:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            NSLog(@"备份到服务器成功!");
+        }
+    }];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+}
+
+
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)rightBtnDidClick {
+    [self importWithQRCodeBtnDidClick:nil];
 }
 
 - (void)importWithQRCodeBtnDidClick:(UIButton *)sender{
@@ -300,9 +323,4 @@
     }
 }
 
-//BBCreateAccountHeaderViewDelegate
-- (void)createAccountUseEOSPrivateKey{
-    EOSMappingImportAccountViewController *vc = [[EOSMappingImportAccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 @end

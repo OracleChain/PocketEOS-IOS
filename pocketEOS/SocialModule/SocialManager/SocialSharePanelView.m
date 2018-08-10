@@ -21,9 +21,9 @@
     CGFloat selfWidth = self.frame.size.width;
     CGFloat item_margin;
     if (selfWidth >0 ) {
-        item_margin = (selfWidth - (itemWidth_height * array.count)) / 5;
+        item_margin = (selfWidth - (itemWidth_height * array.count)) / (array.count + 1);
     }else{
-        item_margin = (SCREEN_WIDTH - (itemWidth_height * array.count)) / 5;
+        item_margin = (SCREEN_WIDTH - (itemWidth_height * array.count)) / (array.count + 1);
     }
     
     for (int i = 0 ; i < array.count ; i ++) {
@@ -33,6 +33,7 @@
         img.tag = 1000 + i;
         img.userInteractionEnabled = YES;
         img.frame = CGRectMake(item_margin + (itemWidth_height + item_margin)*i, self.imageTopSpace ? self.imageTopSpace : 33, itemWidth_height, itemWidth_height);
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTop4ImgView:)];
         [img addGestureRecognizer:tap];
         

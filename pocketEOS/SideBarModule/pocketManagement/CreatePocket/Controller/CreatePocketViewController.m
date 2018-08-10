@@ -7,7 +7,7 @@
 //
 
 #import "CreatePocketViewController.h"
-#import "CreateAccountViewController.h"
+#import "AddAccountViewController.h"
 #import "WalletTableManager.h"
 #import "Wallet.h"
 #import "ImportPocketViewController.h"
@@ -144,8 +144,7 @@
     
     
     
-    CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
-    vc.createAccountViewControllerFromVC = CreateAccountViewControllerFromCreatePocketVC;
+    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

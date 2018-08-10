@@ -14,6 +14,7 @@
 #import "CandyTaskModel.h"
 #import "CandyMainService.h"
 #import "CandyScoreRequest.h"
+#import "CommonWKWebViewController.h"
 
 @interface CandyMainViewController ()<NavigationViewDelegate>
 @property(nonatomic, strong) UIImageView *backgroundView;
@@ -64,6 +65,19 @@
     return _candyScoreRequest;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self requestCandyScoreRequest];
+    [MobClick beginLogPageView:@"糖果积分"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"糖果积分"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -78,20 +92,16 @@
     self.mainTableView.mj_footer.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self buildDataSource];
+    [self loadAllBlocks];
 }
 
 - (void)buildDataSource{
     WS(weakSelf);
     Wallet *wallet = CURRENT_WALLET;
+    [self.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+    
     [self.mainTableView.mj_header endRefreshing];
     [self.mainTableView.mj_footer resetNoMoreData];
-    self.candyScoreRequest.uid = CURRENT_WALLET_UID;
-    [self.candyScoreRequest getDataSusscess:^(id DAO, id data) {
-        [weakSelf.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-        weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
-    } failure:^(id DAO, NSError *error) {
-        
-    }];
     
     [self.mainService getCandyTasks:^(id service, BOOL isSuccess) {
         if (isSuccess) {
@@ -106,6 +116,31 @@
         }
     }];
     
+}
+
+- (void)requestCandyScoreRequest{
+    WS(weakSelf);
+    self.candyScoreRequest.uid = CURRENT_WALLET_UID;
+    [self.candyScoreRequest getDataSusscess:^(id DAO, id data) {
+        weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)loadAllBlocks{
+    WS(weakSelf);
+    [self.headerView setOnCandyMainCollectionCellDidSelectItemBlock:^(CandyEquityModel *model) {
+        if ([model.equity_id isEqualToString:@"86347ee1d8cb412a8e793f48cb483a41"]) {
+            CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
+            vc.urlStr = model.exchangeUrl;
+            vc.parameterStr =[NSString stringWithFormat:@"?uid=%@&id=%@", CURRENT_WALLET_UID, model.equity_id];
+            vc.title = model.title;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [TOASTVIEW showWithText:model.equity_description];
+        }
+    }];
 }
 
 // UITableViewDelegate && DataSource

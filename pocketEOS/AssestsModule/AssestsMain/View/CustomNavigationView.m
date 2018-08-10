@@ -95,6 +95,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            CAGradientLayer *layer = [CAGradientLayer layer];
+            layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
+            layer.startPoint = CGPointMake(1, 1);
+            layer.endPoint = CGPointMake(0, 0);
+            layer.colors = @[(__bridge id)RGB(27, 108, 230).CGColor, (__bridge id)RGB(40, 122, 235).CGColor];
+            layer.locations = @[@(0.0f), @(1.0f)];
+            [self.layer addSublayer:layer];
+            
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            self.backgroundColor = RGB(37, 37, 41);
+        }
+        
 
         // 默认的导航栏
         [self addSubview:self.originNavView];

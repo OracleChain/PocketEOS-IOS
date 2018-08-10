@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "我的EOS账号"; ObjectID = "6d0-YF-Plg"; */
+"6d0-YF-Plg.text" = "My EOS Account";
+
+/* Class = "UILabel"; text = "扫描二维码，关注我的账号"; ObjectID = "ElR-3Q-4uI"; */
+"ElR-3Q-4uI.text" = "Scan this QR code by PE and follow my account.";
+
+/* Class = "UIButton"; normalTitle = "复制我的账号"; ObjectID = "u9A-KH-j34"; */
+"u9A-KH-j34.normalTitle" = "Copy this account";

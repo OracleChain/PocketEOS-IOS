@@ -11,4 +11,5 @@
 @interface BaseResult : NSObject
 @property(nonatomic , strong) NSNumber *code;
 @property(nonatomic , copy) NSString *message;
+@property(nonatomic , copy) NSString *msg;
 @end

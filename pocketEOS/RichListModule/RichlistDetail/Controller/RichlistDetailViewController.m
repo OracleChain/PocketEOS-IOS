@@ -188,7 +188,6 @@
                             }
                            
                             self.get_token_info_service.get_token_info_request.accountName = model.eosAccountName;
-//                            self.get_token_info_service.get_token_info_request.ids = self.ids;
                             [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
                                 // 拿到当前的下拉刷新控件，结束刷新状态
                                 [weakSelf.mainTableView.mj_header endRefreshing];
@@ -218,7 +217,6 @@
         }
         
         self.get_token_info_service.get_token_info_request.accountName = self.model.displayName;
-        //                            self.get_token_info_service.get_token_info_request.ids = self.ids;
         [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
             // 拿到当前的下拉刷新控件，结束刷新状态
             [weakSelf.mainTableView.mj_header endRefreshing];
@@ -276,8 +274,6 @@
             model.coin = token.token_symbol;
         }
         vc.transferModel = model;
-        
-        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
 //        }
     }];

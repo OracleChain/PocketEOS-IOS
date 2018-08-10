@@ -12,7 +12,6 @@
 #import "RecommandToken.h"
 
 @interface AddAssestsService()
-@property(nonatomic , assign) NSUInteger page;
 @end
 
 
@@ -49,8 +48,7 @@
 
 -(void)buildDataSource:(CompleteBlock)complete{
     WS(weakSelf);
-    _page = 0;
-    self.get_recommand_token_request.offset = @(_page);
+    self.get_recommand_token_request.offset = @(0);
     self.get_recommand_token_request.size = @(PER_PAGE_SIZE_15);
     [self.get_recommand_token_request postOuterDataSuccess:^(id DAO, id data) {
         [weakSelf.dataSourceArray removeAllObjects];
@@ -78,8 +76,7 @@
 
 - (void)buildNextPageDataSource:(CompleteBlock)complete{
     WS(weakSelf);
-    _page +=1;
-    self.get_recommand_token_request.offset = @(_page);
+    self.get_recommand_token_request.offset = @(self.dataSourceArray.count);
     self.get_recommand_token_request.size = @(PER_PAGE_SIZE_15);
     [self.get_recommand_token_request postOuterDataSuccess:^(id DAO, id data) {
         [weakSelf.responseArray removeAllObjects];

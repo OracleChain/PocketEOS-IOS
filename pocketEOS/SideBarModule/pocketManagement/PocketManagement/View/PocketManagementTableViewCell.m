@@ -9,6 +9,7 @@
 #import "PocketManagementTableViewCell.h"
 
 @interface PocketManagementTableViewCell()
+@property(nonatomic , strong) UIImageView *mainAccountImg;
 @property(nonatomic, strong) UIImageView *avatarImg;
 @property(nonatomic , strong) UIImageView *selectImg;
 @property(nonatomic , strong) BaseLabel1 *detailLabel;
@@ -20,6 +21,15 @@
 
 
 @implementation PocketManagementTableViewCell
+
+- (UIImageView *)mainAccountImg{
+    if (!_mainAccountImg) {
+        _mainAccountImg = [[UIImageView alloc] init];
+        _mainAccountImg.image= [UIImage imageNamed:@"mainAccount"];
+        _mainAccountImg.hidden = YES;
+    }
+    return _mainAccountImg;
+}
 
 - (BaseLabel *)titleLabel{
     if (!_titleLabel) {
@@ -91,15 +101,22 @@
         self.contentView.sd_layout.leftSpaceToView(self, MARGIN_15).rightSpaceToView(self, MARGIN_15).topSpaceToView(self, 5).bottomSpaceToView(self, 5);
         self.contentView.sd_cornerRadius = @4;
         self.contentView.layer.borderWidth = 1;
-        self.contentView.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor ;
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            self.contentView.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor ;
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            self.contentView.layer.borderColor = HEXCOLOR(0x999999).CGColor ;
+        }
         
         [self.contentView addSubview:self.avatarImg];
-        self.avatarImg.sd_layout.leftSpaceToView(self.contentView, 8).topSpaceToView(self.contentView, 14).widthIs(33.3).heightEqualToWidth();
+        self.avatarImg.sd_layout.leftSpaceToView(self.contentView, 8).topSpaceToView(self.contentView, 12).widthIs(38).heightEqualToWidth();
         
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_10).topSpaceToView(self.contentView, 14).heightIs(18).widthIs(200);
+        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_10).topSpaceToView(self.contentView, 14).heightIs(18);
+        [self.titleLabel setSingleLineAutoResizeWithMaxWidth:SCREEN_WIDTH/2];
         
-        
+        [self.contentView addSubview:self.mainAccountImg];
+        self.mainAccountImg.sd_layout.leftSpaceToView(self.titleLabel, 6).centerYEqualToView(self.titleLabel).widthIs(16).heightIs(14);
+
       
         self.rightIconImgName = @"right_icon_blue";
         [self.contentView addSubview:self.rightIconImageView];
@@ -110,11 +127,10 @@
         
         
         [self.contentView addSubview:self.line1];
-        self.line1.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).topSpaceToView(self.avatarImg, MARGIN_15).heightIs(DEFAULT_LINE_HEIGHT);
+        self.line1.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).topSpaceToView(self.avatarImg, 12).heightIs(DEFAULT_LINE_HEIGHT);
         
         [self.contentView addSubview:self.tipLabel];
         self.tipLabel.sd_layout.leftSpaceToView(self.contentView, MARGIN_15).topSpaceToView(self.line1, MARGIN_10).heightIs(15).widthIs(200);
-        
         
         [self.contentView addSubview:self.rightArrowImg];
         self.rightArrowImg.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).bottomSpaceToView(self.contentView, 13).widthIs(7).heightIs(13);
@@ -132,19 +148,22 @@
 -(void)setModel:(AccountInfo *)model{
     _model = model;
     _titleLabel.text = _model.account_name;
+
+    if ([model.is_main_account isEqualToString:@"1"]) {
+        _mainAccountImg.hidden = NO;
+    }else{
+        _mainAccountImg.hidden = YES;
+    }
+    
     [_avatarImg sd_setImageWithURL: String_To_URL(model.account_name) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     
-    if ([model.account_owner_private_key isEqualToString:model.account_active_private_key]) {
-        _detailLabel.text = NSLocalizedString(@"Active权限", nil);
-    }else{
+    if (model.account_owner_public_key.length > 6) {
         _detailLabel.text = NSLocalizedString(@"Active权限＋Owner权限", nil);
+    }else{
+        _detailLabel.text = NSLocalizedString(@"Active权限", nil);
     }
     
-    if ([model.is_main_account isEqualToString:@"1"]) {
-        _tipLabel.text = NSLocalizedString(@"当前主账号", nil);
-    }else{
-        _tipLabel.text = NSLocalizedString(@"其他账号", nil);
-    }
+    _tipLabel.text = NSLocalizedString(@"账号详情", nil);
     
     if (model.selected == YES) {
         self.rightIconImageView.hidden = NO;

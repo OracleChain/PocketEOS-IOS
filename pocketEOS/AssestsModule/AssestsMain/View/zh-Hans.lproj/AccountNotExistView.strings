@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "联系我们"; ObjectID = "65S-a0-ydk"; */
+"65S-a0-ydk.text" = "联系我们";
+
+/* Class = "UILabel"; text = "遇到问题,"; ObjectID = "KkD-DS-X0k"; */
+"KkD-DS-X0k.text" = "遇到问题,";
+
+/* Class = "UIButton"; normalTitle = "重新检测状态"; ObjectID = "qMs-6v-lS2"; */
+"qMs-6v-lS2.normalTitle" = "重新检测状态";

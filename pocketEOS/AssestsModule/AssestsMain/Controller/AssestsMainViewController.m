@@ -29,12 +29,11 @@
 #import "PersonalSettingViewController.h"
 #import "PocketManagementViewController.h"
 #import "AccountManagementViewController.h"
-#import "LoginMainViewController.h"
+#import "AccountQRCodeManagementViewController.h"
 #import "AppDelegate.h"
 #import "Wallet.h"
 #import "CQMarqueeView.h"
 #import "UIView+frameAdjust.h"
-#import "CreateAccountViewController.h"
 #import "BaseTabBarController.h"
 #import "AccountInfo.h"
 #import "AdvertisementView.h"
@@ -44,14 +43,17 @@
 #import "VersionUpdateTipView.h"
 #import "VersionUpdateModel.h"
 #import "GetVersionInfoRequest.h"
-#import "DAppDetailViewController.h"
 #import "AddAssestsViewController.h"
 #import "Get_token_info_service.h"
+#import "GetTokenInfoResult.h"
 #import "TokenInfo.h"
+#import "AccountNotExistView.h"
+#import "MessageFeedbackViewController.h"
+#import "GetAccountOrderStatusRequest.h"
+#import "AccountOrderStatus.h"
+#import "AccountOrderStatusResult.h"
 
-
-
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate>
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
 
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
@@ -59,12 +61,14 @@
 @property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic, strong) NSString *currentAccountName;
 @property(nonatomic , strong) AdvertisementView *advertisementView;
+@property(nonatomic , strong) AccountNotExistView *accountNotExistView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
 @property(nonatomic, strong) UIButton *inviteFriendBtn;
 @property(nonatomic , strong) VersionUpdateTipView *versionUpdateTipView;
 @property(nonatomic , strong) GetVersionInfoRequest *getVersionInfoRequest;
 @property(nonatomic , strong) VersionUpdateModel *versionUpdateModel;
 @property(nonatomic , strong) NSMutableArray *ids;
+@property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
 @end
 
 @implementation AssestsMainViewController
@@ -73,12 +77,6 @@
 - (CustomNavigationView *)navView{
     if (!_navView) {
         _navView = [[CustomNavigationView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT))];
-        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-            _navView.backgroundColor = RGB(26, 102, 237);
-        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-            _navView.backgroundColor = RGB(37, 37, 41);
-        }
-       
     }
     return _navView;
 }
@@ -138,6 +136,15 @@
     }
     return _versionUpdateTipView;
 }
+
+- (AccountNotExistView *)accountNotExistView{
+    if (!_accountNotExistView) {
+        _accountNotExistView =  [[[NSBundle mainBundle] loadNibNamed:@"AccountNotExistView" owner:nil options:nil] firstObject];
+        _accountNotExistView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
+        _accountNotExistView.delegate = self;
+    }
+    return _accountNotExistView;
+}
 - (GetVersionInfoRequest *)getVersionInfoRequest{
     if (!_getVersionInfoRequest) {
         _getVersionInfoRequest = [[GetVersionInfoRequest alloc] init];
@@ -152,11 +159,19 @@
     return _ids;
 }
 
+- (GetAccountOrderStatusRequest *)getAccountOrderStatusRequest{
+    if (!_getAccountOrderStatusRequest) {
+        _getAccountOrderStatusRequest = [[GetAccountOrderStatusRequest alloc] init];
+    }
+    return _getAccountOrderStatusRequest;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     Wallet *wallet = CURRENT_WALLET;
     [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+    self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(self.currentAccountName) ] ;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -192,7 +207,8 @@
             }
         }
     }
-    [self.mainTableView.mj_header beginRefreshing];
+    
+    [self loadNewData];
     
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
@@ -203,7 +219,7 @@
 //    [self configAdvertisement];
     [self addinviteFriendBtn];
     [self checkNewVersion];
-
+    [self checkNetworkStatus];
 }
 
 // 构建数据源
@@ -215,26 +231,20 @@
     self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
     
     self.get_token_info_service.get_token_info_request.ids = self.ids;
-    [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
+    [self.get_token_info_service get_token_info:^(GetTokenInfoResult *result, BOOL isSuccess) {
         // 拿到当前的下拉刷新控件，结束刷新状态
         [weakSelf.mainTableView.mj_header endRefreshing];
-        if (isSuccess) {
-//            weakSelf.currentAccountResult = result;
-//            weakSelf.headerView.model = result.data;
-            [weakSelf.mainTableView reloadData];
-            [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
-        }
-    }];
-    
-    self.mainService.getAccountAssetRequest.name = self.currentAccountName;
-    [self.mainService get_account_asset:^(AccountResult *result, BOOL isSuccess) {
-        // 拿到当前的下拉刷新控件，结束刷新状态
-        [weakSelf.mainTableView.mj_header endRefreshing];
-        if (isSuccess) {
-            weakSelf.currentAccountResult = result;
-            weakSelf.headerView.model = result.data;
-//            [weakSelf.mainTableView reloadData];
-        }
+        
+            if ([result.code isEqualToNumber:@0] && [result.message isEqualToString:@"ok"]) {
+                if (result.data.count == 0) {
+                    [weakSelf.view addSubview:weakSelf.accountNotExistView];
+                    weakSelf.accountNotExistView.tipLabel.text = [NSString stringWithFormat:@"%@ %@", weakSelf.currentAccountName, NSLocalizedString(@"等待主网确认", nil)];
+                }else{
+                    [weakSelf removeAccountNotExistView];
+                    [weakSelf.mainTableView reloadData];
+                    [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+                }
+            }
     }];
 }
 
@@ -357,12 +367,14 @@
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         Application *model = [[Application alloc] init];
         model.url = @"http://static.pocketeos.top:3001";
+        model.applyName = @"Ram Ex";
         vc.model = model;
+        vc.choosedAccountName = weakSelf.currentAccountName;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
-        AccountManagementViewController *vc = [[AccountManagementViewController alloc] init];
+        AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
         AccountInfo *model = [[AccountInfo alloc] init];
         model.account_name = weakSelf.currentAccountName;
         vc.model = model;
@@ -474,14 +486,34 @@
 -(void)changeAccountCellDidClick:(NSString *)name{
     self.currentAccountName = name;
     [self.ids removeAllObjects];
-    [self buidDataSource];
+    [self loadNewData];
 }
 
 - (void)loadNewData
 {
-    
-    [self buidDataSource];
+    [self checkAccountOrderStatus];
 }
+
+- (void)checkAccountOrderStatus{
+    WS(weakSelf);
+    self.getAccountOrderStatusRequest.accountName = self.currentAccountName;
+    self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    [self.getAccountOrderStatusRequest getDataSusscess:^(id DAO, id data) {
+        AccountOrderStatusResult *result = [AccountOrderStatusResult mj_objectWithKeyValues:data];
+        if ([result.code isEqualToNumber:@0]) {
+            if ([result.data.createStatus isEqualToNumber:@1] || [result.data.createStatus isEqualToNumber:@5]) {
+                [weakSelf buidDataSource];
+            }else{
+                [weakSelf.view addSubview:weakSelf.accountNotExistView];
+                weakSelf.accountNotExistView.tipLabel.text = [NSString stringWithFormat:@"%@%@", result.data.accountName, result.data.message];
+            }
+            
+        }
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
 
 //AdvertisementViewDelegate
 - (void)goforwardDidClick{
@@ -497,14 +529,6 @@
 }
 
 - (void)addinviteFriendBtn{
-//    UIView *shadowView = [[UIView alloc] init];
-//    shadowView.backgroundColor = HEXCOLOR(0x4D7BFE);
-//    shadowView.layer.shadowOffset = CGSizeMake(0, 5);
-//    shadowView.layer.shadowColor = HEXCOLOR(0x4D7BFE).CGColor;
-//    shadowView.layer.shadowOpacity = 0.5;
-//    shadowView.layer.cornerRadius = 31;
-//    shadowView.frame = CGRectMake(SCREEN_WIDTH - MARGIN_20 - 56, SCREEN_HEIGHT - TABBAR_HEIGHT - MARGIN_20, 62, 62);
-//    [self.view addSubview: shadowView];
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         [self.view addSubview:self.inviteFriendBtn];
         self.inviteFriendBtn.sd_layout.rightSpaceToView(self.view, MARGIN_20).bottomSpaceToView(self.view, MARGIN_20 + TABBAR_HEIGHT).widthIs(69).heightIs(53);
@@ -571,8 +595,56 @@
     [self loadNewData];
 }
 
+//AccountNotExistViewDelegate
+- (void)checkAccountStatusBtnDidClick{
+    [self loadNewData];
+}
 
+- (void)contactUsLabelDidTap{
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        MessageFeedbackViewController *vc = [[MessageFeedbackViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [TOASTVIEW showWithText:NSLocalizedString(@"请使用社交模式反馈错误，以便我们能与您取得联系", nil)];
+    }
+}
 
+- (void)removeAccountNotExistView{
+    if (self.accountNotExistView) {
+        [self.accountNotExistView removeFromSuperview];
+        self.accountNotExistView = nil;
+    }
+}
 
+- (void)checkNetworkStatus{
+    AFNetworkReachabilityManager * manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        /*
+         AFNetworkReachabilityStatusUnknown          = -1,
+         AFNetworkReachabilityStatusNotReachable     = 0,
+         AFNetworkReachabilityStatusReachableViaWWAN = 1,
+         AFNetworkReachabilityStatusReachableViaWiFi = 2,
+         */
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"网络状态未知");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                [SVProgressHUD setDefaultStyle:(SVProgressHUDStyleDark)];
+                [SVProgressHUD showImage:[UIImage imageNamed:@"network_error_white"] status:NSLocalizedString(@"网络已断开\n请检查网络", nil)];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"NotReachable" object:nil];
+                break;
+            case  AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"3G|4G蜂窝移动网络");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"WIFI网络");
+                break;
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];
+}
 
 @end

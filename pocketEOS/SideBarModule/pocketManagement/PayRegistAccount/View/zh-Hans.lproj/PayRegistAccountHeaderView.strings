@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "私钥二合一模式 (建议新手使用)"; ObjectID = "1vp-cP-vHV"; */
+"1vp-cP-vHV.normalTitle" = "私钥二合一模式 (建议新手使用)";
+
+/* Class = "UILabel"; text = "net"; ObjectID = "2kl-dA-aC4"; */
+"2kl-dA-aC4.text" = "net";
+
+/* Class = "UILabel"; text = "ram"; ObjectID = "734-Jd-COQ"; */
+"734-Jd-COQ.text" = "ram";
+
+/* Class = "UILabel"; text = "cpu"; ObjectID = "9vU-8G-FVQ"; */
+"9vU-8G-FVQ.text" = "cpu";
+
+/* Class = "UITextField"; placeholder = "由小写字母和数字1~5组成的12位账号"; ObjectID = "Chi-88-q4N"; */
+"Chi-88-q4N.placeholder" = "由小写字母和数字1~5组成的12位账号";
+
+/* Class = "UILabel"; text = "账号名称"; ObjectID = "XTC-B7-pkg"; */
+"XTC-B7-pkg.text" = "账号名称";
+
+/* Class = "UILabel"; text = "需付款"; ObjectID = "hqS-98-gmz"; */
+"hqS-98-gmz.text" = "需付款";
+
+/* Class = "UILabel"; text = "创建可用账号，将为您配置以下可用资源："; ObjectID = "rNY-kp-Mbv"; */
+"rNY-kp-Mbv.text" = "创建可用账号，将为您配置以下可用资源：";
+
+/* Class = "UIButton"; normalTitle = "确认付款"; ObjectID = "tWO-aq-uDX"; */
+"tWO-aq-uDX.normalTitle" = "确认付款";
+
+/* Class = "UIButton"; normalTitle = "双私钥模式 (推荐资深用户使用)"; ObjectID = "uOa-mf-sPp"; */
+"uOa-mf-sPp.normalTitle" = "双私钥模式 (推荐资深用户使用)";

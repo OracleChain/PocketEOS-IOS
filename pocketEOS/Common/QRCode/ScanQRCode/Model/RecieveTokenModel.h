@@ -14,4 +14,5 @@
 @property(nonatomic , copy) NSString *quantity;
 @property(nonatomic , copy) NSString *contract;
 @property(nonatomic , copy) NSString *type;
+@property(nonatomic , copy) NSString *memo;
 @end

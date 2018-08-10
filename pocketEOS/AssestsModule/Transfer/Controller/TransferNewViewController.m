@@ -127,7 +127,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 设置默认的转账账号及资产
-    if (self.transferModel ||  self.recieveTokenModel) {
+    if (self.transferModel || self.recieveTokenModel) {
         if (self.transferModel) {
             self.headerView.nameTF.text = self.transferModel.account_name;
             self.headerView.amountTF.text = self.transferModel.money;
@@ -136,6 +136,7 @@
             self.headerView.nameTF.text = self.recieveTokenModel.account_name;
             self.headerView.amountTF.text = self.recieveTokenModel.quantity;
             self.currentAssestsType = self.recieveTokenModel.token;
+            self.headerView.memoTV.text = self.recieveTokenModel.memo;
         }
         self.headerView.assestChooserLabel.text = self.currentAssestsType;
         [self getMainAccount];
@@ -159,7 +160,9 @@
     [self requestRate];
     [self configHeaderView];
     [self requestTransactionHistory];
+    [MobClick beginLogPageView:@"pe转账"]; //("Pagename"为页面名称，可自定义)
 }
+
 
 - (void)getMainAccount{
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
@@ -177,15 +180,17 @@
             }
         }
     }
+    [self requestTokenInfoDataArray];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"pe转账"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
@@ -407,6 +412,7 @@
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
         AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.currentAccountName];
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
+        
         weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.code = weakSelf.currentToken.contract_name;
         weakSelf.mainService.sender = weakSelf.currentAccountName;

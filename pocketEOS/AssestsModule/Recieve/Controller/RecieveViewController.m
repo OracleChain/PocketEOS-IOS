@@ -123,6 +123,7 @@
     self.currentAccountName = self.accountName;
     [self requestRate];
     [self requestTransactionHistory];
+    [MobClick beginLogPageView:@"pe收款"]; //("Pagename"为页面名称，可自定义)
 }
 
 - (void)requestTransactionHistory{
@@ -130,10 +131,12 @@
     self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
     [self loadNewData];
     
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"pe收款"];
 }
 
 - (void)viewDidLoad {

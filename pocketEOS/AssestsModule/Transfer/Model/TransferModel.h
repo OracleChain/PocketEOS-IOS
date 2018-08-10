@@ -12,5 +12,5 @@
 @property(nonatomic, copy) NSString *account_name;
 @property(nonatomic, copy) NSString *money;
 @property(nonatomic, copy) NSString *coin;
-
+@property(nonatomic , copy) NSString *memo;
 @end

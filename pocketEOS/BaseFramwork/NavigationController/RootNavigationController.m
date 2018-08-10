@@ -37,32 +37,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.popDelegate = self.interactivePopGestureRecognizer.delegate;
+//    self.popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
     
     //默认开启系统右划返回
-    self.interactivePopGestureRecognizer.enabled = YES;
-    self.interactivePopGestureRecognizer.delegate = self;
+//    self.interactivePopGestureRecognizer.enabled = YES;
+//    self.interactivePopGestureRecognizer.delegate = self;
     
     //只有在使用转场动画时，禁用系统手势，开启自定义右划手势
-    _popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
+//    _popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
     //下面是全屏返回
     //        _popRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransition:)];
-    _popRecognizer.edges = UIRectEdgeLeft;
-    [_popRecognizer setEnabled:NO];
-    [self.view addGestureRecognizer:_popRecognizer];
+//    _popRecognizer.edges = UIRectEdgeLeft;
+//    [_popRecognizer setEnabled:NO];
+//    [self.view addGestureRecognizer:_popRecognizer];
 }
 
 //解决手势失效问题
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (_isSystemSlidBack) {
-        self.interactivePopGestureRecognizer.enabled = YES;
-        [_popRecognizer setEnabled:NO];
-    }else{
-        self.interactivePopGestureRecognizer.enabled = NO;
-        [_popRecognizer setEnabled:YES];
-    }
+//    if (_isSystemSlidBack) {
+//        self.interactivePopGestureRecognizer.enabled = YES;
+//        [_popRecognizer setEnabled:NO];
+//    }else{
+//        self.interactivePopGestureRecognizer.enabled = NO;
+//        [_popRecognizer setEnabled:YES];
+//    }
 }
 
 //根视图禁用右划返回

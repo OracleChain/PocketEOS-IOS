@@ -1,0 +1,13 @@
+//
+//  AlipayResultModel.m
+//  pocketEOS
+//
+//  Created by oraclechain on 2018/8/8.
+//  Copyright © 2018 oraclechain. All rights reserved.
+//
+
+#import "AlipayResultModel.h"
+
+@implementation AlipayResultModel
+
+@end

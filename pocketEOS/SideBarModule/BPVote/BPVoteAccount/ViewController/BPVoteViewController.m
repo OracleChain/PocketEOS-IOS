@@ -106,6 +106,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self requestMyVoteInfo];
+    [MobClick beginLogPageView:@"节点投票"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"节点投票"];
 }
 
 - (void)viewDidLoad {

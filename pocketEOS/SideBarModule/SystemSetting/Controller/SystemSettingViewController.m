@@ -33,12 +33,12 @@
     if (!_dataSourceDictionary) {
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _dataSourceDictionary = @{
-                                      @"topSection" : @[NSLocalizedString(@"语言", nil),NSLocalizedString(@"清空缓存", nil) , NSLocalizedString(@"意见反馈", nil)]  ,
+                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil), NSLocalizedString(@"意见反馈", nil)]  ,
                                       @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
                                       };//NSLocalizedString(@"语言", nil),
         }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _dataSourceDictionary = @{
-                                      @"topSection" : @[NSLocalizedString(@"语言", nil),NSLocalizedString(@"清空缓存", nil)],
+                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil)],
                                       @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
                                       };//NSLocalizedString(@"语言", nil),
         }

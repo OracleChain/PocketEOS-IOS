@@ -50,6 +50,7 @@
  AssestsMainViewController.m
  */
 "邀请好友"="Invitation";
+"等待主网确认"="Waiting for mainnet verification";
 
 /*
  AssestsMainHeaderView.m
@@ -57,6 +58,7 @@
 "的钱包"="'s wallet";
 "没有账号"="no accounts";
 "请移步至社交模式"="Go to social mode please";
+"当前账号"="Account";
 
 /*
  AssestsMainTableViewCell.m
@@ -126,6 +128,8 @@
 "    红包记录"="    Red Packet History";
 "领取的"="Received";
 "已经存入您的主账号"="Red Packet transferred to your Main Account.";
+"红包已抢完"="Better Luck Next Time";
+"继续发送红包"="Send Red Packet to More Friends";
 
 /*
  ChangeAccountViewController.m
@@ -603,6 +607,8 @@
 "Active权限＋Owner权限"="Owner & Active permission";
 "当前主账号"="Main account";
 "其他账号"="Normal acocunt";
+"账号详情"="Account Details";
+
 
 /*
  AddAssestsViewController.m
@@ -614,3 +620,44 @@
  CustomAssestsViewController.m
  */
 "自定义管理"="Custom Token";
+
+/*
+ AccountQRCodeManagementViewController.m
+ */
+"复制成功"="copy success";
+"账号二维码"="Account QRCode";
+
+/*
+ ImportOwnerPermisionViewController.m
+ */
+"导入私钥成功"="Import private key success";
+
+/*
+ VipRegistAccountViewController.m
+*/
+"请选择私钥模式"="Choose private key mode please";
+"VIP注册"="VIP Regist";
+
+/*
+ AddAccountViewController.m
+ */
+"添加账号"="Add EOS accout";
+"暂无免费名额，开放时间请留意社区动态"="No quota yet";
+
+/*
+ AddAccountMainService.m
+ */
+"导入EOS账号"="Import accout";
+"付费创建"="Pay to create";
+"我是VIP"="I am VIP";
+"限时免费"="Limited time free";
+"使用已有的EOS账号"="Import old EOS account";
+"支付费用创建新EOS账号"="Pay to create new accout";
+"填写注册码免费创建EOS账号"="Free create by VIP code";
+"不定期开放，敬请关注"="Open irregular, please keep focus";
+
+/*
+ PayRegistAccountViewController.m
+ */
+"元"="";
+"账号已存在"="Account already exist";

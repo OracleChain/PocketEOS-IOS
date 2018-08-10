@@ -48,11 +48,13 @@
     if (self.webView.title == nil) {
         [self.webView reload];
     }
+      [MobClick beginLogPageView:self.title]; //("Pagename"为页面名称，可自定义)
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [MobClick endLogPageView:self.title];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -89,8 +91,9 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     NSLog(@"%s", __FUNCTION__);
 }
-- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
-    NSLog(@"%@", error);
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
+    [TOASTVIEW showWithText: [error localizedDescription]];
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{

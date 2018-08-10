@@ -3,6 +3,7 @@
             "baseView_background_color" : "#161823",
             "baseTopView_background_color" : "#282A34",
             "baseHeaderView_background_color" : "#161823",
+        "baseAddAccount_background_color" : "#161823",
         "confirmButtonNormalStateBackgroundColor": "#0B78E3",
             "common_font_color_1" : "#FFFFFF",
             "common_font_color_2" : "#161823", 

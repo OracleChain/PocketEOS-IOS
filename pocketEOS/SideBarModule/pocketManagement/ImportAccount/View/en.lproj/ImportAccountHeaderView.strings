@@ -1,36 +1,24 @@
 
-/* Class = "UITextField"; placeholder = "请输入账号"; ObjectID = "A8w-Ya-jcd"; */
-"A8w-Ya-jcd.placeholder" = "Input your account name";
+/* Class = "UITextField"; placeholder = "由小写字母和数字1~5组成的12位账号"; ObjectID = "A8w-Ya-jcd"; */
+"A8w-Ya-jcd.placeholder" = "Make up of 1-5 and a-z, 12 characters.";
 
-/* Class = "UILabel"; text = "输入账号"; ObjectID = "DUg-4U-KSc"; */
+/* Class = "UILabel"; text = "账号名称"; ObjectID = "DUg-4U-KSc"; */
 "DUg-4U-KSc.text" = "Input account";
 
-/* Class = "UIButton"; normalTitle = "导入"; ObjectID = "GFr-Hd-rbl"; */
+/* Class = "UIButton"; normalTitle = "确认无误，导入账号"; ObjectID = "GFr-Hd-rbl"; */
 "GFr-Hd-rbl.normalTitle" = "IMPORT";
 
-/* Class = "UITextField"; placeholder = "请输入私钥"; ObjectID = "PeK-6E-GwQ"; */
+/* Class = "UIButton"; normalTitle = "暂不导入owner权限"; ObjectID = "N5W-Xs-yWO"; */
+"N5W-Xs-yWO.normalTitle" = "Don't import ownerkey for now";
+
+/* Class = "UITextField"; placeholder = "输入Owner私钥"; ObjectID = "PeK-6E-GwQ"; */
 "PeK-6E-GwQ.placeholder" = "Please input your private key";
 
-/* Class = "UILabel"; text = "账号"; ObjectID = "SH4-Hp-any"; */
-"SH4-Hp-any.text" = "Account";
-
-/* Class = "UILabel"; text = "可通过扫描二维码导入"; ObjectID = "Waa-5w-ni8"; */
-"Waa-5w-ni8.text" = "You could import by scanning QR code.";
-
-/* Class = "UITextField"; placeholder = "请输入私钥"; ObjectID = "YZ3-EG-Glv"; */
+/* Class = "UITextField"; placeholder = "输入Active私钥"; ObjectID = "YZ3-EG-Glv"; */
 "YZ3-EG-Glv.placeholder" = "Please input your private key";
 
-/* Class = "UILabel"; text = "私钥"; ObjectID = "aJ6-sf-aqj"; */
-"aJ6-sf-aqj.text" = "Private Key";
+/* Class = "UILabel"; text = "Active私钥"; ObjectID = "hP7-xV-Xlj"; */
+"hP7-xV-Xlj.text" = "Input ACTIVEKEY";
 
-/* Class = "UILabel"; text = "输入OWNERKEY"; ObjectID = "hP7-xV-Xlj"; */
-"hP7-xV-Xlj.text" = "Input OWNERKEY";
-
-/* Class = "UILabel"; text = "输入ACTIVEKEY"; ObjectID = "mpg-Ae-5G4"; */
-"mpg-Ae-5G4.text" = "Input ACTIVEKEY";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "oIP-jE-vpF"; */
-"oIP-jE-vpF.normalTitle" = "";
-
-/* Class = "UILabel"; text = "私钥"; ObjectID = "oap-Fd-KwL"; */
-"oap-Fd-KwL.text" = "Private Key";
+/* Class = "UILabel"; text = "输入Owner私钥"; ObjectID = "mpg-Ae-5G4"; */
+"mpg-Ae-5G4.text" = "Input OWNERKEY";

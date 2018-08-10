@@ -27,7 +27,7 @@
         GetTokenInfoResult *result = [GetTokenInfoResult mj_objectWithKeyValues:data];
         [weakSelf.responseArray addObjectsFromArray:result.data];
         [weakSelf.dataSourceArray addObjectsFromArray:weakSelf.responseArray];
-        complete(weakSelf.dataSourceArray, YES);
+        complete(result, YES);
     } failure:^(id DAO, NSError *error) {
         complete(nil , YES);
     }];

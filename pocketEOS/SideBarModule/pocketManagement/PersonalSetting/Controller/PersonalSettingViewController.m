@@ -11,7 +11,7 @@
 #import "BindSocialPlatformViewController.h"
 #import "UnBindSocialPlatformViewController.h"
 #import "SliderVerifyView.h"
-#import "LoginMainViewController.h"
+#import "LoginEntranceViewController.h"
 #import "AppDelegate.h"
 #import "PersonalSettingService.h"
 #import "RSKImageCropper.h"
@@ -82,7 +82,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"PersonalSettingHeaderView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 250);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 250-56);
     }
     return _headerView;
 }
@@ -352,7 +352,7 @@
         [view removeFromSuperview];
         
     }
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[LoginMainViewController alloc] init]];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[[LoginEntranceViewController alloc] init]];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: navi];
     
 }

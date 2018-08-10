@@ -9,8 +9,12 @@
 #import "FeedbackHeaderView.h"
 
 
+
 @implementation FeedbackHeaderView
 
-
+-(void)awakeFromNib{
+    [super awakeFromNib];
+//    self.feedbackTF.placeholder = @"ss 是我IE我IE";
+}
 
 @end

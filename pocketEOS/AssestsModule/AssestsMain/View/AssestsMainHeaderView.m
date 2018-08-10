@@ -31,10 +31,10 @@
     
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 500);
-    layer.startPoint = CGPointMake(0, 1);
+    layer.startPoint = CGPointMake(1, 1);
     layer.endPoint = CGPointMake(0, 0);
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-        layer.colors = @[(__bridge id)HEXCOLOR(0x095CE5).CGColor, (__bridge id)HEXCOLOR(0x3574FA).CGColor];
+        layer.colors = @[(__bridge id)HEXCOLOR(0x1566DF).CGColor, (__bridge id)HEXCOLOR(0x3083FF).CGColor];
     }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         layer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
     }
@@ -102,40 +102,6 @@
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel]);
     [self updateViewWithDataArray:self.tokenInfoDataArray];
 }
-
--(void)setModel:(Account *)model{
-    _model = model;
-    Wallet *wallet = CURRENT_WALLET;
-    NSString *nameStr = nil;
-    if ([RegularExpression validateMobile:wallet.wallet_name]) {
-        nameStr = [wallet.wallet_name substringFromIndex:wallet.wallet_name.length - 4];
-    }else{
-        nameStr = wallet.wallet_name ;
-    }
-    if (nameStr.length > 0) {
-        self.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(nameStr), NSLocalizedString(@"的钱包", nil)];
-    }else{
-        self.userNameLabel.text = [NSString stringWithFormat: @"***%@", NSLocalizedString(@"的钱包", nil)];
-    }
-    
-    NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
-    if (accountArr.count == 0) {
-        self.userAccountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"没有账号", nil)] ;
-    }else{
-        self.userAccountLabel.text = [NSString stringWithFormat:@"%@", VALIDATE_STRING(model.account_name) ] ;
-        
-    }
-    
-//    if ( [[[NSUserDefaults standardUserDefaults] objectForKey: Total_assets_visibel] isEqual:@1]) {
-//        self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%@", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:model.eos_balance.doubleValue * model.eos_price_cny.doubleValue + model.oct_balance.doubleValue * model.oct_price_cny.doubleValue]]];
-//        [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_open"] forState:(UIControlStateNormal)];
-//    }else{
-//        [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_close"] forState:(UIControlStateNormal)];
-//        self.totalAssetsLabel.text = @"******";
-//    }
-    
-}
-
 
 - (void)updateViewWithDataArray:(NSMutableArray<TokenInfo *> *)dataArray{
     self.tokenInfoDataArray = dataArray;

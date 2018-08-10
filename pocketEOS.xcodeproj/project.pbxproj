@@ -19,6 +19,10 @@
 		1806D106206E5BE10023D83B /* BindPhoneRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D105206E5BE10023D83B /* BindPhoneRequest.m */; };
 		1806FA2E200EE10800BDFEC4 /* SystemSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806FA2D200EE10800BDFEC4 /* SystemSettingViewController.m */; };
 		1806FA31200EE12A00BDFEC4 /* SystemSettingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806FA30200EE12A00BDFEC4 /* SystemSettingService.m */; };
+		18074EB92109A4BA00A43559 /* PhoneLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18074EB82109A4BA00A43559 /* PhoneLoginViewController.m */; };
+		18074EBC2109A4ED00A43559 /* PhoneLoginMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18074EBB2109A4ED00A43559 /* PhoneLoginMainView.m */; };
+		18074EC12109A51900A43559 /* LoginMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18074EC02109A51900A43559 /* LoginMainHeaderView.m */; };
+		18074EC92109B23600A43559 /* LoginEntranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18074EC82109B23600A43559 /* LoginEntranceViewController.m */; };
 		1807EFA21FE8F8140010CF7F /* oval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1807EFA01FE8F8140010CF7F /* oval@2x.png */; };
 		1807EFA31FE8F8140010CF7F /* oval@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1807EFA11FE8F8140010CF7F /* oval@3x.png */; };
 		1808FCC3202AD18000625C37 /* PopUpAssestWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808FCC2202AD18000625C37 /* PopUpAssestWindow.m */; };
@@ -221,6 +225,9 @@
 		182B02EA1FF39528006C9DFB /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B02E91FF39528006C9DFB /* DataBaseManager.m */; };
 		182B02EF1FF39A99006C9DFB /* WalletTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B02EE1FF39A99006C9DFB /* WalletTableManager.m */; };
 		182B02F21FF39ABC006C9DFB /* AccountsTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B02F11FF39ABC006C9DFB /* AccountsTableManager.m */; };
+		182B1DE92112A13A00F07222 /* AccountNotExistView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B1DE82112A13A00F07222 /* AccountNotExistView.m */; };
+		182B1DEE2112A55400F07222 /* flytomoon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182B1DEC2112A55300F07222 /* flytomoon@2x.png */; };
+		182B1DEF2112A55400F07222 /* flytomoon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182B1DED2112A55300F07222 /* flytomoon@3x.png */; };
 		182B8F8620AD1B9100C43AEC /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B8F8520AD1B9100C43AEC /* BaseView.m */; };
 		182B8F8A20AD3A6800C43AEC /* LEEBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B8F8820AD3A6800C43AEC /* LEEBubble.m */; };
 		182B8F8F20AD3A8800C43AEC /* LEETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B8F8E20AD3A8800C43AEC /* LEETheme.m */; };
@@ -299,6 +306,13 @@
 		1838496F20BE5AD700B89549 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838496920BE5AD700B89549 /* CWLateralSlideAnimator.m */; };
 		1838497020BE5AD700B89549 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838496A20BE5AD700B89549 /* CWDrawerTransition.m */; };
 		1838497120BE5AD700B89549 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838496C20BE5AD700B89549 /* CWLateralSlideConfiguration.m */; };
+		18388D472119431400FF5C3E /* CreateAccountOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D462119431400FF5C3E /* CreateAccountOrderRequest.m */; };
+		18388D56211988CB00FF5C3E /* WechatPayRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D55211988CB00FF5C3E /* WechatPayRespModel.m */; };
+		18388D59211988EC00FF5C3E /* WechatPayRespResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D58211988EC00FF5C3E /* WechatPayRespResult.m */; };
+		18388D5C21198A7400FF5C3E /* AlipayRespResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D5B21198A7400FF5C3E /* AlipayRespResult.m */; };
+		18388D5F21198F7100FF5C3E /* CreateAccountResourceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D5E21198F7100FF5C3E /* CreateAccountResourceResult.m */; };
+		18388D6221198FC300FF5C3E /* CreateAccountResourceRespModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D6121198FC300FF5C3E /* CreateAccountResourceRespModel.m */; };
+		18388D652119956200FF5C3E /* GetCreateAccountResourceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18388D642119956200FF5C3E /* GetCreateAccountResourceRequest.m */; };
 		183AE1EB2019B502002041F9 /* EnterpriseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183AE1EA2019B502002041F9 /* EnterpriseListViewController.m */; };
 		183AE1EE2019B518002041F9 /* EnterpriseListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 183AE1ED2019B518002041F9 /* EnterpriseListService.m */; };
 		183AE1F12019B52E002041F9 /* PeRichListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 183AE1F02019B52E002041F9 /* PeRichListService.m */; };
@@ -310,6 +324,10 @@
 		183AE2062019EB3E002041F9 /* UploadWalletAvatarImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183AE2052019EB3E002041F9 /* UploadWalletAvatarImageRequest.m */; };
 		183C5B991FCBEC9400DE6E88 /* pocketEOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C5B981FCBEC9400DE6E88 /* pocketEOSTests.m */; };
 		183C5BA41FCBEC9400DE6E88 /* pocketEOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C5BA31FCBEC9400DE6E88 /* pocketEOSUITests.m */; };
+		183C6436211A8E6C001C9C4A /* AlipayResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C6435211A8E6C001C9C4A /* AlipayResultModel.m */; };
+		183C6439211A9E05001C9C4A /* GetAccountOrderStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C6438211A9E05001C9C4A /* GetAccountOrderStatusRequest.m */; };
+		183C643F211AA1EC001C9C4A /* AccountOrderStatusResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C643E211AA1EC001C9C4A /* AccountOrderStatusResult.m */; };
+		183C6442211AA1F7001C9C4A /* AccountOrderStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C6441211AA1F7001C9C4A /* AccountOrderStatus.m */; };
 		183FF6E920C0D6820058D010 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E120C0D6800058D010 /* PBKDF2.m */; };
 		183FF6EA20C0D6820058D010 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E220C0D6810058D010 /* AESCrypt.m */; };
 		183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E620C0D6810058D010 /* NSObject+Extension.m */; };
@@ -403,6 +421,8 @@
 		1850338820EF4D620023B390 /* AreaCodeModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 1850338420EF4CE50023B390 /* AreaCodeModel.h */; };
 		1850338F20EF536C0023B390 /* CountryAreaCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 1850338E20EF536B0023B390 /* CountryAreaCode.json */; };
 		1850339C20EF57A70023B390 /* CountryCodeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850339B20EF57A70023B390 /* CountryCodeAreaViewController.m */; };
+		18509BC6211301F600EF8749 /* network_error_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18509BC4211301F600EF8749 /* network_error_white@3x.png */; };
+		18509BC7211301F600EF8749 /* network_error_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18509BC5211301F600EF8749 /* network_error_white@2x.png */; };
 		1853DE1C20B26FD7003DC727 /* BBCreateAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1853DE1B20B26FD7003DC727 /* BBCreateAccountHeaderView.m */; };
 		1853DE2720B29F2D003DC727 /* EOSMappingImportAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1853DE2620B29F2D003DC727 /* EOSMappingImportAccountViewController.m */; };
 		1853DE2A20B29F45003DC727 /* EOSMappingImportAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1853DE2920B29F45003DC727 /* EOSMappingImportAccountHeaderView.m */; };
@@ -443,6 +463,14 @@
 		1856A4F02008887200D62FEB /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856A4DB2008887100D62FEB /* UIScrollView+MJRefresh.m */; };
 		1856A4F12008887200D62FEB /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856A4DD2008887100D62FEB /* UIView+MJExtension.m */; };
 		1856A5782008A3F400D62FEB /* NewsBannerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856A5772008A3F400D62FEB /* NewsBannerService.m */; };
+		1856E66C210AB9C8008EFC88 /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E66B210AB9C8008EFC88 /* AddAccountViewController.m */; };
+		1856E672210AB9EA008EFC88 /* AddAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E671210AB9EA008EFC88 /* AddAccountTableViewCell.m */; };
+		1856E675210ACA3D008EFC88 /* AddAccountMainService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E674210ACA3D008EFC88 /* AddAccountMainService.m */; };
+		1856E680210B1E25008EFC88 /* AccountQRCodeManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E67F210B1E25008EFC88 /* AccountQRCodeManagementViewController.m */; };
+		1856E683210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E682210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m */; };
+		1856E68C210EFEC5008EFC88 /* ImportOwnerPermisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E68B210EFEC5008EFC88 /* ImportOwnerPermisionViewController.m */; };
+		1856E68F210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856E68E210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.m */; };
+		1856E691210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1856E690210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib */; };
 		185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA36920BB94DC00F63674 /* candyIcon@3x.png */; };
 		185BA36E20BB94DD00F63674 /* candyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA36A20BB94DC00F63674 /* candyIcon@2x.png */; };
 		185BA37E20BB971700F63674 /* energy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185BA37C20BB971600F63674 /* energy@3x.png */; };
@@ -514,8 +542,6 @@
 		185D18811FE76EA40021AD18 /* scan_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D187F1FE76EA40021AD18 /* scan_black@2x.png */; };
 		185D18841FE76F090021AD18 /* addressBook@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18821FE76F090021AD18 /* addressBook@3x.png */; };
 		185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185D18831FE76F090021AD18 /* addressBook@2x.png */; };
-		185DD690206CA75600BCFFCF /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185DD68A206CA75600BCFFCF /* recieve@2x.png */; };
-		185DD692206CA75600BCFFCF /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185DD68C206CA75600BCFFCF /* recieve@3x.png */; };
 		185DD6CC206CA80400BCFFCF /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DD6BA206CA80400BCFFCF /* MJPropertyType.m */; };
 		185DD6CD206CA80400BCFFCF /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DD6BD206CA80400BCFFCF /* NSObject+MJKeyValue.m */; };
 		185DD6CE206CA80400BCFFCF /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 185DD6BE206CA80400BCFFCF /* MJProperty.m */; };
@@ -598,6 +624,7 @@
 		186857281FE1293A002A683A /* LoginPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186857271FE1293A002A683A /* LoginPasswordView.m */; };
 		1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572A1FE131F6002A683A /* BindSocialPlatformViewController.m */; };
 		186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572F1FE13216002A683A /* UnBindSocialPlatformViewController.m */; };
+		186A2B10211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186A2B12211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib */; };
 		186C26C020E9BC5E0076BE4A /* Auth_redpacket_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */; };
 		186F693D20F3661000FFF881 /* AssestsMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F693F20F3661000FFF881 /* AssestsMainHeaderView.xib */; };
 		186F694420F4945E00FFF881 /* BBLoginHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F694620F4945E00FFF881 /* BBLoginHeaderView.xib */; };
@@ -643,7 +670,6 @@
 		186F6A5C20F4975B00FFF881 /* ImportAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A5E20F4975B00FFF881 /* ImportAccountHeaderView.xib */; };
 		186F6A6320F4976400FFF881 /* BackupPocketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A6520F4976400FFF881 /* BackupPocketView.xib */; };
 		186F6A6A20F4976E00FFF881 /* ChangePasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A6C20F4976E00FFF881 /* ChangePasswordView.xib */; };
-		186F6A7120F4977900FFF881 /* AccountManagementHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A7320F4977900FFF881 /* AccountManagementHeaderView.xib */; };
 		186F6A7820F4978500FFF881 /* ExportPrivateKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A7A20F4978500FFF881 /* ExportPrivateKeyView.xib */; };
 		186F6A7F20F4978E00FFF881 /* BandwidthManageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A8120F4978E00FFF881 /* BandwidthManageHeaderView.xib */; };
 		186F6A8620F4979500FFF881 /* BandwidthManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F6A8820F4979500FFF881 /* BandwidthManageTableViewCell.xib */; };
@@ -815,6 +841,36 @@
 		18B29133208996BA0032EE27 /* RedPacketDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B29132208996BA0032EE27 /* RedPacketDetail.m */; };
 		18B2913620899B470032EE27 /* RedPacketDetailSingleAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2913520899B470032EE27 /* RedPacketDetailSingleAccount.m */; };
 		18B44E5A208730D700BF41BA /* ShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B44E59208730D700BF41BA /* ShareModel.m */; };
+		18BA1EF221106767008558DE /* WXApiResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA1EED21106767008558DE /* WXApiResponseHandler.m */; };
+		18BA1EF321106767008558DE /* WXApiRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA1EEE21106767008558DE /* WXApiRequestHandler.m */; };
+		18BA1EF421106767008558DE /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA1EF121106767008558DE /* WXApiManager.m */; };
+		18BA1EF921106BD7008558DE /* ThirdPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA1EF821106BD7008558DE /* ThirdPayManager.m */; };
+		18BA1F0A211168F7008558DE /* pocketeos_logo_and_title@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFA211168F1008558DE /* pocketeos_logo_and_title@3x.png */; };
+		18BA1F0B211168F7008558DE /* wechat_pay_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFB211168F2008558DE /* wechat_pay_icon@3x.png */; };
+		18BA1F0C211168F7008558DE /* import_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFC211168F2008558DE /* import_account@2x.png */; };
+		18BA1F0D211168F7008558DE /* free_create_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFD211168F2008558DE /* free_create_account@2x.png */; };
+		18BA1F0E211168F7008558DE /* warning_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFE211168F3008558DE /* warning_red@3x.png */; };
+		18BA1F0F211168F7008558DE /* pocketeos_logo_and_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1EFF211168F3008558DE /* pocketeos_logo_and_title@2x.png */; };
+		18BA1F10211168F7008558DE /* free_create_account@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F00211168F3008558DE /* free_create_account@3x.png */; };
+		18BA1F11211168F7008558DE /* warning_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F01211168F4008558DE /* warning_red@2x.png */; };
+		18BA1F12211168F7008558DE /* vip_create_account@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F02211168F4008558DE /* vip_create_account@3x.png */; };
+		18BA1F13211168F7008558DE /* import_account@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F03211168F4008558DE /* import_account@3x.png */; };
+		18BA1F14211168F7008558DE /* pay_create_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F04211168F4008558DE /* pay_create_account@2x.png */; };
+		18BA1F15211168F7008558DE /* pay_create_account@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F05211168F5008558DE /* pay_create_account@3x.png */; };
+		18BA1F16211168F7008558DE /* wechat_white_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F06211168F5008558DE /* wechat_white_icon@3x.png */; };
+		18BA1F17211168F7008558DE /* wechat_white_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F07211168F5008558DE /* wechat_white_icon@2x.png */; };
+		18BA1F18211168F7008558DE /* vip_create_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F08211168F6008558DE /* vip_create_account@2x.png */; };
+		18BA1F19211168F7008558DE /* wechat_pay_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F09211168F6008558DE /* wechat_pay_icon@2x.png */; };
+		18BA1F1B2111AD61008558DE /* alipay_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F1A2111AD61008558DE /* alipay_icon.png */; };
+		18BA1F1E2111B6F3008558DE /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18BA1F1C2111B6F2008558DE /* AlipaySDK.bundle */; };
+		18BA1F1F2111B6F3008558DE /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F1D2111B6F3008558DE /* AlipaySDK.framework */; };
+		18BA1F212111B739008558DE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F202111B738008558DE /* libc++.tbd */; };
+		18BA1F232111B762008558DE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F222111B761008558DE /* QuartzCore.framework */; };
+		18BA1F252111B778008558DE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F242111B778008558DE /* CoreText.framework */; };
+		18BA1F272111B78A008558DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F262111B789008558DE /* CoreGraphics.framework */; };
+		18BA1F292111B79E008558DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F282111B79E008558DE /* UIKit.framework */; };
+		18BA1F2B2111B7BC008558DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F2A2111B7BC008558DE /* Foundation.framework */; };
+		18BA1F2D2111B7CA008558DE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BA1F2C2111B7CA008558DE /* CoreMotion.framework */; };
 		18BCAF1820BFD8E600571577 /* BPVoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCAF1720BFD8E600571577 /* BPVoteViewController.m */; };
 		18BCAF1B20BFECAD00571577 /* thumb_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1920BFECAC00571577 /* thumb_black@3x.png */; };
 		18BCAF1C20BFECAD00571577 /* thumb_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCAF1A20BFECAD00571577 /* thumb_black@2x.png */; };
@@ -840,6 +896,16 @@
 		18C622B91FD63C160043447F /* RecieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622B81FD63C160043447F /* RecieveViewController.m */; };
 		18C622BC1FD63C340043447F /* RecieveHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622BB1FD63C340043447F /* RecieveHeaderView.m */; };
 		18C622C21FD67E4A0043447F /* NavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622C11FD67E4A0043447F /* NavigationView.m */; };
+		18C7F742211AE01B006AD456 /* PayRegistAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F744211AE01B006AD456 /* PayRegistAccountHeaderView.xib */; };
+		18C7F749211AE038006AD456 /* PaymentTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F74B211AE038006AD456 /* PaymentTipView.xib */; };
+		18C7F750211AE169006AD456 /* VipRegistAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F752211AE169006AD456 /* VipRegistAccountHeaderView.xib */; };
+		18C7F75A211AEFFA006AD456 /* AccountManagementHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F75C211AEFFA006AD456 /* AccountManagementHeaderView.xib */; };
+		18C7F764211AF24E006AD456 /* InviteCodeRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C7F763211AF24E006AD456 /* InviteCodeRegisterRequest.m */; };
+		18C7F768211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C7F767211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.m */; };
+		18C7F76C211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C7F76B211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.m */; };
+		18C7F76D211BD87B006AD456 /* LoginMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F76F211BD87B006AD456 /* LoginMainHeaderView.xib */; };
+		18C7F774211BD887006AD456 /* PhoneLoginMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F776211BD887006AD456 /* PhoneLoginMainView.xib */; };
+		18C7F77B211C28CB006AD456 /* AccountNotExistView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F77D211C28CB006AD456 /* AccountNotExistView.xib */; };
 		18CD043F2029DF8100D21DF4 /* Permission.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CD043E2029DF8100D21DF4 /* Permission.m */; };
 		18CDFAF92029880000D21DF4 /* GetAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDFAF82029880000D21DF4 /* GetAccountRequest.m */; };
 		18CDFAFC20298DED00D21DF4 /* GetAccountResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDFAFB20298DED00D21DF4 /* GetAccountResult.m */; };
@@ -851,7 +917,6 @@
 		18CEA64E21057DCF00B2BFE2 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA64D21057DCF00B2BFE2 /* UMCommon.framework */; };
 		18CEA65021057DDB00B2BFE2 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA64F21057DDB00B2BFE2 /* UMAnalytics.framework */; };
 		18CEA65221057DEB00B2BFE2 /* SecurityEnvSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA65121057DEB00B2BFE2 /* SecurityEnvSDK.framework */; };
-		18CEA65421057DF200B2BFE2 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA65321057DF200B2BFE2 /* UTDID.framework */; };
 		18CEA65621057DFB00B2BFE2 /* UMCommonLog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA65521057DFB00B2BFE2 /* UMCommonLog.bundle */; };
 		18CEA65821057E0300B2BFE2 /* UMCommonLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA65721057E0300B2BFE2 /* UMCommonLog.framework */; };
 		18CEA65A21057EBD00B2BFE2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CEA65921057EBD00B2BFE2 /* libsqlite3.tbd */; };
@@ -885,6 +950,12 @@
 		18CEA6A22105DC5200B2BFE2 /* application_unSelect_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */; };
 		18CEA6A32105DC5200B2BFE2 /* application_select_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */; };
 		18CEA6A42105DC5200B2BFE2 /* application_unSelect_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */; };
+		18CEA6A72106FC8000B2BFE2 /* transfer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */; };
+		18CEA6A82106FC8000B2BFE2 /* transfer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */; };
+		18CEA6AB2106FCBD00B2BFE2 /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */; };
+		18CEA6AC2106FCBD00B2BFE2 /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */; };
+		18CEA6AF2106FCDF00B2BFE2 /* redPacket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */; };
+		18CEA6B02106FCDF00B2BFE2 /* redPacket@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */; };
 		18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */; };
 		18D07A4020E9F1FB00DF1FDF /* AuthRedPacketResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */; };
 		18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */; };
@@ -903,7 +974,7 @@
 		18D07A8C20EB676900DF1FDF /* importAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8620EB676900DF1FDF /* importAccount@2x.png */; };
 		18D07A8F20EB67ED00DF1FDF /* backup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8D20EB67EC00DF1FDF /* backup@2x.png */; };
 		18D07A9020EB67ED00DF1FDF /* backup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A8E20EB67EC00DF1FDF /* backup@3x.png */; };
-		18D07A9220EB68C200DF1FDF /* PockSecureDecalre.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */; };
+		18D07A9220EB68C200DF1FDF /* PockSecureDeclare.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9120EB68C200DF1FDF /* PockSecureDeclare.rtf */; };
 		18D07A9520EB6BD500DF1FDF /* mainAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */; };
 		18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */; };
 		18DBBAC62064C4DB0050EE20 /* AskTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAC52064C4DB0050EE20 /* AskTitle.m */; };
@@ -964,6 +1035,13 @@
 		18EA95F820AED1020032A491 /* BaseLabel1.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95F720AED1020032A491 /* BaseLabel1.m */; };
 		18EA95FB20AED80B0032A491 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FA20AED80B0032A491 /* BaseTextField.m */; };
 		18EA95FE20AEDD920032A491 /* BaseLabel2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FD20AEDD920032A491 /* BaseLabel2.m */; };
+		18ED6CCD210FF1480042200F /* VipRegistAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CCC210FF1480042200F /* VipRegistAccountViewController.m */; };
+		18ED6CD0210FF1580042200F /* VipRegistAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CCF210FF1580042200F /* VipRegistAccountHeaderView.m */; };
+		18ED6CD5210FF1770042200F /* VipRegistAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CD4210FF1770042200F /* VipRegistAccountService.m */; };
+		18ED6CD8210FF1880042200F /* PayRegistAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CD7210FF1880042200F /* PayRegistAccountViewController.m */; };
+		18ED6CDB210FF1980042200F /* PayRegistAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CDA210FF1980042200F /* PayRegistAccountHeaderView.m */; };
+		18ED6CDE210FF1A50042200F /* PayRegistAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CDD210FF1A50042200F /* PayRegistAccountService.m */; };
+		18ED6CE321103E2F0042200F /* PaymentTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CE221103E2F0042200F /* PaymentTipView.m */; };
 		18EE05241FDF70E600134E5C /* PocketManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05161FDF70E600134E5C /* PocketManagementViewController.m */; };
 		18EE05421FDF8A3200134E5C /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05411FDF8A3200134E5C /* CreateAccountViewController.m */; };
 		18EE05531FDF8F2900134E5C /* CreateAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE05521FDF8F2900134E5C /* CreateAccountHeaderView.m */; };
@@ -978,10 +1056,6 @@
 		18F03FC5206780C400697D7F /* background_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FC4206780C400697D7F /* background_black.png */; };
 		18F03FCC206785CC00697D7F /* systemSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCA206785CB00697D7F /* systemSetting@2x.png */; };
 		18F03FCD206785CC00697D7F /* systemSetting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCB206785CC00697D7F /* systemSetting@3x.png */; };
-		18F03FD52067878C00697D7F /* redPacket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FCF2067878B00697D7F /* redPacket@2x.png */; };
-		18F03FD72067878C00697D7F /* redPacket@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FD12067878B00697D7F /* redPacket@3x.png */; };
-		18F03FD82067878C00697D7F /* transfer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FD22067878B00697D7F /* transfer@2x.png */; };
-		18F03FD92067878C00697D7F /* transfer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FD32067878B00697D7F /* transfer@3x.png */; };
 		18F03FE72067883600697D7F /* redPacket_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FDF2067883400697D7F /* redPacket_gray@2x.png */; };
 		18F03FEA2067883600697D7F /* redPacket_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FE22067883500697D7F /* redPacket_gray@3x.png */; };
 		18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F03FEE2067886C00697D7F /* recieve_gray.png */; };
@@ -1077,6 +1151,14 @@
 		1806FA2D200EE10800BDFEC4 /* SystemSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSettingViewController.m; sourceTree = "<group>"; };
 		1806FA2F200EE12A00BDFEC4 /* SystemSettingService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSettingService.h; sourceTree = "<group>"; };
 		1806FA30200EE12A00BDFEC4 /* SystemSettingService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSettingService.m; sourceTree = "<group>"; };
+		18074EB72109A4BA00A43559 /* PhoneLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhoneLoginViewController.h; sourceTree = "<group>"; };
+		18074EB82109A4BA00A43559 /* PhoneLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneLoginViewController.m; sourceTree = "<group>"; };
+		18074EBA2109A4ED00A43559 /* PhoneLoginMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhoneLoginMainView.h; sourceTree = "<group>"; };
+		18074EBB2109A4ED00A43559 /* PhoneLoginMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneLoginMainView.m; sourceTree = "<group>"; };
+		18074EBF2109A51900A43559 /* LoginMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginMainHeaderView.h; sourceTree = "<group>"; };
+		18074EC02109A51900A43559 /* LoginMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginMainHeaderView.m; sourceTree = "<group>"; };
+		18074EC72109B23600A43559 /* LoginEntranceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginEntranceViewController.h; sourceTree = "<group>"; };
+		18074EC82109B23600A43559 /* LoginEntranceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginEntranceViewController.m; sourceTree = "<group>"; };
 		1807EFA01FE8F8140010CF7F /* oval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oval@2x.png"; sourceTree = "<group>"; };
 		1807EFA11FE8F8140010CF7F /* oval@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oval@3x.png"; sourceTree = "<group>"; };
 		1808FCC1202AD18000625C37 /* PopUpAssestWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopUpAssestWindow.h; sourceTree = "<group>"; };
@@ -1426,6 +1508,10 @@
 		182B02EE1FF39A99006C9DFB /* WalletTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletTableManager.m; sourceTree = "<group>"; };
 		182B02F01FF39ABC006C9DFB /* AccountsTableManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountsTableManager.h; sourceTree = "<group>"; };
 		182B02F11FF39ABC006C9DFB /* AccountsTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountsTableManager.m; sourceTree = "<group>"; };
+		182B1DE72112A13A00F07222 /* AccountNotExistView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountNotExistView.h; sourceTree = "<group>"; };
+		182B1DE82112A13A00F07222 /* AccountNotExistView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountNotExistView.m; sourceTree = "<group>"; };
+		182B1DEC2112A55300F07222 /* flytomoon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flytomoon@2x.png"; sourceTree = "<group>"; };
+		182B1DED2112A55300F07222 /* flytomoon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flytomoon@3x.png"; sourceTree = "<group>"; };
 		182B8F8420AD1B9100C43AEC /* BaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
 		182B8F8520AD1B9100C43AEC /* BaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
 		182B8F8820AD3A6800C43AEC /* LEEBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEBubble.m; sourceTree = "<group>"; };
@@ -1566,6 +1652,20 @@
 		1838496A20BE5AD700B89549 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		1838496B20BE5AD700B89549 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
 		1838496C20BE5AD700B89549 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
+		18388D452119431400FF5C3E /* CreateAccountOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountOrderRequest.h; sourceTree = "<group>"; };
+		18388D462119431400FF5C3E /* CreateAccountOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountOrderRequest.m; sourceTree = "<group>"; };
+		18388D54211988CB00FF5C3E /* WechatPayRespModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatPayRespModel.h; sourceTree = "<group>"; };
+		18388D55211988CB00FF5C3E /* WechatPayRespModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatPayRespModel.m; sourceTree = "<group>"; };
+		18388D57211988EC00FF5C3E /* WechatPayRespResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatPayRespResult.h; sourceTree = "<group>"; };
+		18388D58211988EC00FF5C3E /* WechatPayRespResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatPayRespResult.m; sourceTree = "<group>"; };
+		18388D5A21198A7400FF5C3E /* AlipayRespResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipayRespResult.h; sourceTree = "<group>"; };
+		18388D5B21198A7400FF5C3E /* AlipayRespResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipayRespResult.m; sourceTree = "<group>"; };
+		18388D5D21198F7100FF5C3E /* CreateAccountResourceResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountResourceResult.h; sourceTree = "<group>"; };
+		18388D5E21198F7100FF5C3E /* CreateAccountResourceResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountResourceResult.m; sourceTree = "<group>"; };
+		18388D6021198FC300FF5C3E /* CreateAccountResourceRespModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountResourceRespModel.h; sourceTree = "<group>"; };
+		18388D6121198FC300FF5C3E /* CreateAccountResourceRespModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountResourceRespModel.m; sourceTree = "<group>"; };
+		18388D632119956200FF5C3E /* GetCreateAccountResourceRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCreateAccountResourceRequest.h; sourceTree = "<group>"; };
+		18388D642119956200FF5C3E /* GetCreateAccountResourceRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCreateAccountResourceRequest.m; sourceTree = "<group>"; };
 		183AE1E92019B502002041F9 /* EnterpriseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnterpriseListViewController.h; sourceTree = "<group>"; };
 		183AE1EA2019B502002041F9 /* EnterpriseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnterpriseListViewController.m; sourceTree = "<group>"; };
 		183AE1EC2019B518002041F9 /* EnterpriseListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnterpriseListService.h; sourceTree = "<group>"; };
@@ -1591,6 +1691,14 @@
 		183C5B9F1FCBEC9400DE6E88 /* pocketEOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocketEOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183C5BA31FCBEC9400DE6E88 /* pocketEOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pocketEOSUITests.m; sourceTree = "<group>"; };
 		183C5BA51FCBEC9400DE6E88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		183C6434211A8E6C001C9C4A /* AlipayResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipayResultModel.h; sourceTree = "<group>"; };
+		183C6435211A8E6C001C9C4A /* AlipayResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipayResultModel.m; sourceTree = "<group>"; };
+		183C6437211A9E05001C9C4A /* GetAccountOrderStatusRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAccountOrderStatusRequest.h; sourceTree = "<group>"; };
+		183C6438211A9E05001C9C4A /* GetAccountOrderStatusRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAccountOrderStatusRequest.m; sourceTree = "<group>"; };
+		183C643D211AA1EC001C9C4A /* AccountOrderStatusResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountOrderStatusResult.h; sourceTree = "<group>"; };
+		183C643E211AA1EC001C9C4A /* AccountOrderStatusResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountOrderStatusResult.m; sourceTree = "<group>"; };
+		183C6440211AA1F7001C9C4A /* AccountOrderStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountOrderStatus.h; sourceTree = "<group>"; };
+		183C6441211AA1F7001C9C4A /* AccountOrderStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountOrderStatus.m; sourceTree = "<group>"; };
 		183FF6DF20C0D6800058D010 /* PBKDF2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2.h; sourceTree = "<group>"; };
 		183FF6E020C0D6800058D010 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		183FF6E120C0D6800058D010 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
@@ -1751,6 +1859,8 @@
 		1850338E20EF536B0023B390 /* CountryAreaCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryAreaCode.json; sourceTree = "<group>"; };
 		1850339A20EF57A70023B390 /* CountryCodeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryCodeAreaViewController.h; sourceTree = "<group>"; };
 		1850339B20EF57A70023B390 /* CountryCodeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryCodeAreaViewController.m; sourceTree = "<group>"; };
+		18509BC4211301F600EF8749 /* network_error_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network_error_white@3x.png"; sourceTree = "<group>"; };
+		18509BC5211301F600EF8749 /* network_error_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network_error_white@2x.png"; sourceTree = "<group>"; };
 		1853DE1A20B26FD7003DC727 /* BBCreateAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBCreateAccountHeaderView.h; sourceTree = "<group>"; };
 		1853DE1B20B26FD7003DC727 /* BBCreateAccountHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBCreateAccountHeaderView.m; sourceTree = "<group>"; };
 		1853DE2520B29F2D003DC727 /* EOSMappingImportAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSMappingImportAccountViewController.h; sourceTree = "<group>"; };
@@ -1830,6 +1940,23 @@
 		1856A5762008A3F400D62FEB /* NewsBannerService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsBannerService.h; sourceTree = "<group>"; };
 		1856A5772008A3F400D62FEB /* NewsBannerService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsBannerService.m; sourceTree = "<group>"; };
 		1856B72420BC2039000845CB /* pocketEOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pocketEOS.entitlements; sourceTree = "<group>"; };
+		1856E66A210AB9C8008EFC88 /* AddAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
+		1856E66B210AB9C8008EFC88 /* AddAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
+		1856E670210AB9EA008EFC88 /* AddAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAccountTableViewCell.h; sourceTree = "<group>"; };
+		1856E671210AB9EA008EFC88 /* AddAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAccountTableViewCell.m; sourceTree = "<group>"; };
+		1856E673210ACA3D008EFC88 /* AddAccountMainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAccountMainService.h; sourceTree = "<group>"; };
+		1856E674210ACA3D008EFC88 /* AddAccountMainService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAccountMainService.m; sourceTree = "<group>"; };
+		1856E678210AF9F1008EFC88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImportAccountHeaderView.strings; sourceTree = "<group>"; };
+		1856E67A210AF9F3008EFC88 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ImportAccountHeaderView.strings"; sourceTree = "<group>"; };
+		1856E67E210B1E25008EFC88 /* AccountQRCodeManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountQRCodeManagementViewController.h; sourceTree = "<group>"; };
+		1856E67F210B1E25008EFC88 /* AccountQRCodeManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountQRCodeManagementViewController.m; sourceTree = "<group>"; };
+		1856E681210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountQRCodeManagementHeaderView.h; sourceTree = "<group>"; };
+		1856E682210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountQRCodeManagementHeaderView.m; sourceTree = "<group>"; };
+		1856E68A210EFEC5008EFC88 /* ImportOwnerPermisionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportOwnerPermisionViewController.h; sourceTree = "<group>"; };
+		1856E68B210EFEC5008EFC88 /* ImportOwnerPermisionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportOwnerPermisionViewController.m; sourceTree = "<group>"; };
+		1856E68D210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportOwnerPermisionHeaderView.h; sourceTree = "<group>"; };
+		1856E68E210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportOwnerPermisionHeaderView.m; sourceTree = "<group>"; };
+		1856E690210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportOwnerPermisionHeaderView.xib; sourceTree = "<group>"; };
 		185BA36920BB94DC00F63674 /* candyIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candyIcon@3x.png"; sourceTree = "<group>"; };
 		185BA36A20BB94DC00F63674 /* candyIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candyIcon@2x.png"; sourceTree = "<group>"; };
 		185BA37C20BB971600F63674 /* energy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "energy@3x.png"; sourceTree = "<group>"; };
@@ -1906,8 +2033,6 @@
 		185D187F1FE76EA40021AD18 /* scan_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_black@2x.png"; sourceTree = "<group>"; };
 		185D18821FE76F090021AD18 /* addressBook@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addressBook@3x.png"; sourceTree = "<group>"; };
 		185D18831FE76F090021AD18 /* addressBook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addressBook@2x.png"; sourceTree = "<group>"; };
-		185DD68A206CA75600BCFFCF /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
-		185DD68C206CA75600BCFFCF /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
 		185DD6B7206CA80400BCFFCF /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		185DD6B8206CA80400BCFFCF /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
 		185DD6B9206CA80400BCFFCF /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
@@ -2055,6 +2180,9 @@
 		1868572A1FE131F6002A683A /* BindSocialPlatformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindSocialPlatformViewController.m; sourceTree = "<group>"; };
 		1868572E1FE13216002A683A /* UnBindSocialPlatformViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnBindSocialPlatformViewController.h; sourceTree = "<group>"; };
 		1868572F1FE13216002A683A /* UnBindSocialPlatformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnBindSocialPlatformViewController.m; sourceTree = "<group>"; };
+		186A2B11211C59A400DDB681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountQRCodeManagementHeaderView.xib; sourceTree = "<group>"; };
+		186A2B14211C59A700DDB681 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountQRCodeManagementHeaderView.strings; sourceTree = "<group>"; };
+		186A2B16211C59A800DDB681 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountQRCodeManagementHeaderView.strings"; sourceTree = "<group>"; };
 		186C26BE20E9BC5E0076BE4A /* Auth_redpacket_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Auth_redpacket_request.h; sourceTree = "<group>"; };
 		186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Auth_redpacket_request.m; sourceTree = "<group>"; };
 		186F693E20F3661000FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AssestsMainHeaderView.xib; sourceTree = "<group>"; };
@@ -2179,17 +2307,12 @@
 		186F6A5920F4975300FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BBCreateAccountHeaderView.strings; sourceTree = "<group>"; };
 		186F6A5B20F4975400FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/BBCreateAccountHeaderView.strings"; sourceTree = "<group>"; };
 		186F6A5D20F4975B00FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImportAccountHeaderView.xib; sourceTree = "<group>"; };
-		186F6A6020F4975D00FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImportAccountHeaderView.strings; sourceTree = "<group>"; };
-		186F6A6220F4975E00FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ImportAccountHeaderView.strings"; sourceTree = "<group>"; };
 		186F6A6420F4976400FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BackupPocketView.xib; sourceTree = "<group>"; };
 		186F6A6720F4976700FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BackupPocketView.strings; sourceTree = "<group>"; };
 		186F6A6920F4976800FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/BackupPocketView.strings"; sourceTree = "<group>"; };
 		186F6A6B20F4976E00FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ChangePasswordView.xib; sourceTree = "<group>"; };
 		186F6A6E20F4977100FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ChangePasswordView.strings; sourceTree = "<group>"; };
 		186F6A7020F4977200FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChangePasswordView.strings"; sourceTree = "<group>"; };
-		186F6A7220F4977900FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountManagementHeaderView.xib; sourceTree = "<group>"; };
-		186F6A7520F4977E00FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountManagementHeaderView.strings; sourceTree = "<group>"; };
-		186F6A7720F4977F00FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountManagementHeaderView.strings"; sourceTree = "<group>"; };
 		186F6A7920F4978500FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExportPrivateKeyView.xib; sourceTree = "<group>"; };
 		186F6A7C20F4978700FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ExportPrivateKeyView.strings; sourceTree = "<group>"; };
 		186F6A7E20F4978800FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ExportPrivateKeyView.strings"; sourceTree = "<group>"; };
@@ -2495,6 +2618,40 @@
 		18B2913520899B470032EE27 /* RedPacketDetailSingleAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketDetailSingleAccount.m; sourceTree = "<group>"; };
 		18B44E58208730D700BF41BA /* ShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareModel.h; sourceTree = "<group>"; };
 		18B44E59208730D700BF41BA /* ShareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareModel.m; sourceTree = "<group>"; };
+		18BA1EEC21106767008558DE /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		18BA1EED21106767008558DE /* WXApiResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiResponseHandler.m; sourceTree = "<group>"; };
+		18BA1EEE21106767008558DE /* WXApiRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiRequestHandler.m; sourceTree = "<group>"; };
+		18BA1EEF21106767008558DE /* WXApiRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiRequestHandler.h; sourceTree = "<group>"; };
+		18BA1EF021106767008558DE /* WXApiResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiResponseHandler.h; sourceTree = "<group>"; };
+		18BA1EF121106767008558DE /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		18BA1EF721106BD7008558DE /* ThirdPayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdPayManager.h; sourceTree = "<group>"; };
+		18BA1EF821106BD7008558DE /* ThirdPayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdPayManager.m; sourceTree = "<group>"; };
+		18BA1EFA211168F1008558DE /* pocketeos_logo_and_title@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocketeos_logo_and_title@3x.png"; sourceTree = "<group>"; };
+		18BA1EFB211168F2008558DE /* wechat_pay_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_pay_icon@3x.png"; sourceTree = "<group>"; };
+		18BA1EFC211168F2008558DE /* import_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "import_account@2x.png"; sourceTree = "<group>"; };
+		18BA1EFD211168F2008558DE /* free_create_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_create_account@2x.png"; sourceTree = "<group>"; };
+		18BA1EFE211168F3008558DE /* warning_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning_red@3x.png"; sourceTree = "<group>"; };
+		18BA1EFF211168F3008558DE /* pocketeos_logo_and_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocketeos_logo_and_title@2x.png"; sourceTree = "<group>"; };
+		18BA1F00211168F3008558DE /* free_create_account@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_create_account@3x.png"; sourceTree = "<group>"; };
+		18BA1F01211168F4008558DE /* warning_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning_red@2x.png"; sourceTree = "<group>"; };
+		18BA1F02211168F4008558DE /* vip_create_account@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vip_create_account@3x.png"; sourceTree = "<group>"; };
+		18BA1F03211168F4008558DE /* import_account@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "import_account@3x.png"; sourceTree = "<group>"; };
+		18BA1F04211168F4008558DE /* pay_create_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_create_account@2x.png"; sourceTree = "<group>"; };
+		18BA1F05211168F5008558DE /* pay_create_account@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_create_account@3x.png"; sourceTree = "<group>"; };
+		18BA1F06211168F5008558DE /* wechat_white_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_white_icon@3x.png"; sourceTree = "<group>"; };
+		18BA1F07211168F5008558DE /* wechat_white_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_white_icon@2x.png"; sourceTree = "<group>"; };
+		18BA1F08211168F6008558DE /* vip_create_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vip_create_account@2x.png"; sourceTree = "<group>"; };
+		18BA1F09211168F6008558DE /* wechat_pay_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_pay_icon@2x.png"; sourceTree = "<group>"; };
+		18BA1F1A2111AD61008558DE /* alipay_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alipay_icon.png; sourceTree = "<group>"; };
+		18BA1F1C2111B6F2008558DE /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		18BA1F1D2111B6F3008558DE /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		18BA1F202111B738008558DE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		18BA1F222111B761008558DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		18BA1F242111B778008558DE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		18BA1F262111B789008558DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		18BA1F282111B79E008558DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		18BA1F2A2111B7BC008558DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		18BA1F2C2111B7CA008558DE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		18BCAF1620BFD8E600571577 /* BPVoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPVoteViewController.h; sourceTree = "<group>"; };
 		18BCAF1720BFD8E600571577 /* BPVoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPVoteViewController.m; sourceTree = "<group>"; };
 		18BCAF1920BFECAC00571577 /* thumb_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb_black@3x.png"; sourceTree = "<group>"; };
@@ -2539,6 +2696,33 @@
 		18C622BB1FD63C340043447F /* RecieveHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecieveHeaderView.m; sourceTree = "<group>"; };
 		18C622C01FD67E4A0043447F /* NavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationView.h; sourceTree = "<group>"; };
 		18C622C11FD67E4A0043447F /* NavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationView.m; sourceTree = "<group>"; };
+		18C7F743211AE01B006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PayRegistAccountHeaderView.xib; sourceTree = "<group>"; };
+		18C7F746211AE01E006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PayRegistAccountHeaderView.strings; sourceTree = "<group>"; };
+		18C7F748211AE020006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PayRegistAccountHeaderView.strings"; sourceTree = "<group>"; };
+		18C7F74A211AE038006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PaymentTipView.xib; sourceTree = "<group>"; };
+		18C7F74D211AE03B006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PaymentTipView.strings; sourceTree = "<group>"; };
+		18C7F74F211AE03D006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PaymentTipView.strings"; sourceTree = "<group>"; };
+		18C7F751211AE169006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/VipRegistAccountHeaderView.xib; sourceTree = "<group>"; };
+		18C7F754211AE16C006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VipRegistAccountHeaderView.strings; sourceTree = "<group>"; };
+		18C7F756211AE16E006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/VipRegistAccountHeaderView.strings"; sourceTree = "<group>"; };
+		18C7F75B211AEFFA006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountManagementHeaderView.xib; sourceTree = "<group>"; };
+		18C7F75E211AEFFC006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountManagementHeaderView.strings; sourceTree = "<group>"; };
+		18C7F760211AF001006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountManagementHeaderView.strings"; sourceTree = "<group>"; };
+		18C7F762211AF24E006AD456 /* InviteCodeRegisterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCodeRegisterRequest.h; sourceTree = "<group>"; };
+		18C7F763211AF24E006AD456 /* InviteCodeRegisterRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCodeRegisterRequest.m; sourceTree = "<group>"; };
+		18C7F766211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckWhetherHasFreeQuotaResuest.h; sourceTree = "<group>"; };
+		18C7F767211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckWhetherHasFreeQuotaResuest.m; sourceTree = "<group>"; };
+		18C7F76A211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckWhetherHasFreeQuotaResult.h; sourceTree = "<group>"; };
+		18C7F76B211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckWhetherHasFreeQuotaResult.m; sourceTree = "<group>"; };
+		18C7F76E211BD87B006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoginMainHeaderView.xib; sourceTree = "<group>"; };
+		18C7F771211BD87E006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginMainHeaderView.strings; sourceTree = "<group>"; };
+		18C7F773211BD87F006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoginMainHeaderView.strings"; sourceTree = "<group>"; };
+		18C7F775211BD887006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PhoneLoginMainView.xib; sourceTree = "<group>"; };
+		18C7F778211BD88A006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PhoneLoginMainView.strings; sourceTree = "<group>"; };
+		18C7F77A211BD88D006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PhoneLoginMainView.strings"; sourceTree = "<group>"; };
+		18C7F77C211C28CB006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountNotExistView.xib; sourceTree = "<group>"; };
+		18C7F783211C2A49006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountNotExistView.strings; sourceTree = "<group>"; };
+		18C7F785211C2A50006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountNotExistView.strings"; sourceTree = "<group>"; };
 		18CD043D2029DF8100D21DF4 /* Permission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Permission.h; sourceTree = "<group>"; };
 		18CD043E2029DF8100D21DF4 /* Permission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Permission.m; sourceTree = "<group>"; };
 		18CDFAF72029880000D21DF4 /* GetAccountRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAccountRequest.h; sourceTree = "<group>"; };
@@ -2558,7 +2742,6 @@
 		18CEA64D21057DCF00B2BFE2 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		18CEA64F21057DDB00B2BFE2 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		18CEA65121057DEB00B2BFE2 /* SecurityEnvSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecurityEnvSDK.framework; sourceTree = "<group>"; };
-		18CEA65321057DF200B2BFE2 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
 		18CEA65521057DFB00B2BFE2 /* UMCommonLog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMCommonLog.bundle; sourceTree = "<group>"; };
 		18CEA65721057E0300B2BFE2 /* UMCommonLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommonLog.framework; sourceTree = "<group>"; };
 		18CEA65921057EBD00B2BFE2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2595,6 +2778,12 @@
 		18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_select_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@3x.png"; sourceTree = "<group>"; };
+		18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@3x.png"; sourceTree = "<group>"; };
+		18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@2x.png"; sourceTree = "<group>"; };
+		18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
+		18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
+		18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@2x.png"; sourceTree = "<group>"; };
+		18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@3x.png"; sourceTree = "<group>"; };
 		18D07A3A20E9F0FE00DF1FDF /* ForwardRedPacketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketService.h; sourceTree = "<group>"; };
 		18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketService.m; sourceTree = "<group>"; };
 		18D07A3E20E9F1FB00DF1FDF /* AuthRedPacketResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthRedPacketResult.h; sourceTree = "<group>"; };
@@ -2621,7 +2810,7 @@
 		18D07A8620EB676900DF1FDF /* importAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "importAccount@2x.png"; sourceTree = "<group>"; };
 		18D07A8D20EB67EC00DF1FDF /* backup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@2x.png"; sourceTree = "<group>"; };
 		18D07A8E20EB67EC00DF1FDF /* backup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backup@3x.png"; sourceTree = "<group>"; };
-		18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PockSecureDecalre.rtf; sourceTree = "<group>"; };
+		18D07A9120EB68C200DF1FDF /* PockSecureDeclare.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PockSecureDeclare.rtf; sourceTree = "<group>"; };
 		18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@3x.png"; sourceTree = "<group>"; };
 		18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@2x.png"; sourceTree = "<group>"; };
 		18DBBAC42064C4DB0050EE20 /* AskTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskTitle.h; sourceTree = "<group>"; };
@@ -2723,6 +2912,20 @@
 		18EA95FA20AED80B0032A491 /* BaseTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextField.m; sourceTree = "<group>"; };
 		18EA95FC20AEDD920032A491 /* BaseLabel2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLabel2.h; sourceTree = "<group>"; };
 		18EA95FD20AEDD920032A491 /* BaseLabel2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseLabel2.m; sourceTree = "<group>"; };
+		18ED6CCB210FF1480042200F /* VipRegistAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipRegistAccountViewController.h; sourceTree = "<group>"; };
+		18ED6CCC210FF1480042200F /* VipRegistAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipRegistAccountViewController.m; sourceTree = "<group>"; };
+		18ED6CCE210FF1580042200F /* VipRegistAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipRegistAccountHeaderView.h; sourceTree = "<group>"; };
+		18ED6CCF210FF1580042200F /* VipRegistAccountHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipRegistAccountHeaderView.m; sourceTree = "<group>"; };
+		18ED6CD3210FF1770042200F /* VipRegistAccountService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipRegistAccountService.h; sourceTree = "<group>"; };
+		18ED6CD4210FF1770042200F /* VipRegistAccountService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipRegistAccountService.m; sourceTree = "<group>"; };
+		18ED6CD6210FF1880042200F /* PayRegistAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayRegistAccountViewController.h; sourceTree = "<group>"; };
+		18ED6CD7210FF1880042200F /* PayRegistAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayRegistAccountViewController.m; sourceTree = "<group>"; };
+		18ED6CD9210FF1980042200F /* PayRegistAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayRegistAccountHeaderView.h; sourceTree = "<group>"; };
+		18ED6CDA210FF1980042200F /* PayRegistAccountHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayRegistAccountHeaderView.m; sourceTree = "<group>"; };
+		18ED6CDC210FF1A50042200F /* PayRegistAccountService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayRegistAccountService.h; sourceTree = "<group>"; };
+		18ED6CDD210FF1A50042200F /* PayRegistAccountService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayRegistAccountService.m; sourceTree = "<group>"; };
+		18ED6CE121103E2F0042200F /* PaymentTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentTipView.h; sourceTree = "<group>"; };
+		18ED6CE221103E2F0042200F /* PaymentTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentTipView.m; sourceTree = "<group>"; };
 		18EE05151FDF70E600134E5C /* PocketManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManagementViewController.h; sourceTree = "<group>"; };
 		18EE05161FDF70E600134E5C /* PocketManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManagementViewController.m; sourceTree = "<group>"; };
 		18EE05401FDF8A3200134E5C /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
@@ -2744,10 +2947,6 @@
 		18F03FC4206780C400697D7F /* background_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_black.png; sourceTree = "<group>"; };
 		18F03FCA206785CB00697D7F /* systemSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "systemSetting@2x.png"; sourceTree = "<group>"; };
 		18F03FCB206785CC00697D7F /* systemSetting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "systemSetting@3x.png"; sourceTree = "<group>"; };
-		18F03FCF2067878B00697D7F /* redPacket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@2x.png"; sourceTree = "<group>"; };
-		18F03FD12067878B00697D7F /* redPacket@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@3x.png"; sourceTree = "<group>"; };
-		18F03FD22067878B00697D7F /* transfer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@2x.png"; sourceTree = "<group>"; };
-		18F03FD32067878B00697D7F /* transfer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@3x.png"; sourceTree = "<group>"; };
 		18F03FDF2067883400697D7F /* redPacket_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket_gray@2x.png"; sourceTree = "<group>"; };
 		18F03FE22067883500697D7F /* redPacket_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket_gray@3x.png"; sourceTree = "<group>"; };
 		18F03FEE2067886C00697D7F /* recieve_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recieve_gray.png; sourceTree = "<group>"; };
@@ -2849,13 +3048,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BA1F2D2111B7CA008558DE /* CoreMotion.framework in Frameworks */,
+				18BA1F2B2111B7BC008558DE /* Foundation.framework in Frameworks */,
+				18BA1F292111B79E008558DE /* UIKit.framework in Frameworks */,
+				18BA1F272111B78A008558DE /* CoreGraphics.framework in Frameworks */,
+				18BA1F252111B778008558DE /* CoreText.framework in Frameworks */,
+				18BA1F232111B762008558DE /* QuartzCore.framework in Frameworks */,
+				18BA1F212111B739008558DE /* libc++.tbd in Frameworks */,
 				18CEA65A21057EBD00B2BFE2 /* libsqlite3.tbd in Frameworks */,
 				18CEA64B2105781600B2BFE2 /* libz.tbd in Frameworks */,
+				18BA1F1F2111B6F3008558DE /* AlipaySDK.framework in Frameworks */,
 				1820076D206A719000D281EF /* Security.framework in Frameworks */,
 				18CEA65221057DEB00B2BFE2 /* SecurityEnvSDK.framework in Frameworks */,
 				1820075A2069F3E600D281EF /* libWeChatSDK.a in Frameworks */,
 				1820076C206A668E00D281EF /* TencentOpenAPI.framework in Frameworks */,
-				18CEA65421057DF200B2BFE2 /* UTDID.framework in Frameworks */,
 				1820074C2069E31300D281EF /* CFNetwork.framework in Frameworks */,
 				1820074A2069E30500D281EF /* CoreTelephony.framework in Frameworks */,
 				182007472069E2E300D281EF /* libc++.1.dylib in Frameworks */,
@@ -3595,6 +3801,27 @@
 				1836919C20FDD19B000EAD59 /* trash_gray@2x.png */,
 				1836919B20FDD19B000EAD59 /* trash_gray@3x.png */,
 				183577632101EA6200F075EA /* sparklined_placeholder_image.png */,
+				18BA1EFD211168F2008558DE /* free_create_account@2x.png */,
+				18BA1F00211168F3008558DE /* free_create_account@3x.png */,
+				18BA1EFF211168F3008558DE /* pocketeos_logo_and_title@2x.png */,
+				18BA1EFA211168F1008558DE /* pocketeos_logo_and_title@3x.png */,
+				18BA1EFC211168F2008558DE /* import_account@2x.png */,
+				18BA1F03211168F4008558DE /* import_account@3x.png */,
+				18BA1F04211168F4008558DE /* pay_create_account@2x.png */,
+				18BA1F05211168F5008558DE /* pay_create_account@3x.png */,
+				18BA1F08211168F6008558DE /* vip_create_account@2x.png */,
+				18BA1F02211168F4008558DE /* vip_create_account@3x.png */,
+				18BA1F01211168F4008558DE /* warning_red@2x.png */,
+				18BA1EFE211168F3008558DE /* warning_red@3x.png */,
+				18BA1F1A2111AD61008558DE /* alipay_icon.png */,
+				18BA1F09211168F6008558DE /* wechat_pay_icon@2x.png */,
+				18BA1EFB211168F2008558DE /* wechat_pay_icon@3x.png */,
+				18BA1F07211168F5008558DE /* wechat_white_icon@2x.png */,
+				18BA1F06211168F5008558DE /* wechat_white_icon@3x.png */,
+				182B1DEC2112A55300F07222 /* flytomoon@2x.png */,
+				182B1DED2112A55300F07222 /* flytomoon@3x.png */,
+				18509BC5211301F600EF8749 /* network_error_white@2x.png */,
+				18509BC4211301F600EF8749 /* network_error_white@3x.png */,
 			);
 			path = 201807;
 			sourceTree = "<group>";
@@ -3635,6 +3862,15 @@
 		182B02EB1FF3962B006C9DFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18BA1F2C2111B7CA008558DE /* CoreMotion.framework */,
+				18BA1F2A2111B7BC008558DE /* Foundation.framework */,
+				18BA1F282111B79E008558DE /* UIKit.framework */,
+				18BA1F262111B789008558DE /* CoreGraphics.framework */,
+				18BA1F242111B778008558DE /* CoreText.framework */,
+				18BA1F222111B761008558DE /* QuartzCore.framework */,
+				18BA1F202111B738008558DE /* libc++.tbd */,
+				18BA1F1C2111B6F2008558DE /* AlipaySDK.bundle */,
+				18BA1F1D2111B6F3008558DE /* AlipaySDK.framework */,
 				18CEA65921057EBD00B2BFE2 /* libsqlite3.tbd */,
 				18CEA64A2105781600B2BFE2 /* libz.tbd */,
 				18200769206A668D00D281EF /* TencentOpenApi_IOS_Bundle.bundle */,
@@ -3838,6 +4074,10 @@
 				1835772E2100A72C00F075EA /* GetTokenInfoResult.m */,
 				183577302100A73800F075EA /* TokenInfo.h */,
 				183577312100A73800F075EA /* TokenInfo.m */,
+				183C643D211AA1EC001C9C4A /* AccountOrderStatusResult.h */,
+				183C643E211AA1EC001C9C4A /* AccountOrderStatusResult.m */,
+				183C6440211AA1F7001C9C4A /* AccountOrderStatus.h */,
+				183C6441211AA1F7001C9C4A /* AccountOrderStatus.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3933,6 +4173,34 @@
 				1838496C20BE5AD700B89549 /* CWLateralSlideConfiguration.m */,
 			);
 			path = CWLateralSlide;
+			sourceTree = "<group>";
+		};
+		18388D3D211940A900FF5C3E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18388D54211988CB00FF5C3E /* WechatPayRespModel.h */,
+				18388D55211988CB00FF5C3E /* WechatPayRespModel.m */,
+				18388D57211988EC00FF5C3E /* WechatPayRespResult.h */,
+				18388D58211988EC00FF5C3E /* WechatPayRespResult.m */,
+				18388D5A21198A7400FF5C3E /* AlipayRespResult.h */,
+				18388D5B21198A7400FF5C3E /* AlipayRespResult.m */,
+				18388D5D21198F7100FF5C3E /* CreateAccountResourceResult.h */,
+				18388D5E21198F7100FF5C3E /* CreateAccountResourceResult.m */,
+				18388D6021198FC300FF5C3E /* CreateAccountResourceRespModel.h */,
+				18388D6121198FC300FF5C3E /* CreateAccountResourceRespModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18388D3E211940A900FF5C3E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				18388D632119956200FF5C3E /* GetCreateAccountResourceRequest.h */,
+				18388D642119956200FF5C3E /* GetCreateAccountResourceRequest.m */,
+				18388D452119431400FF5C3E /* CreateAccountOrderRequest.h */,
+				18388D462119431400FF5C3E /* CreateAccountOrderRequest.m */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		183AE1CF2019B4BA002041F9 /* PeRichList */ = {
@@ -4079,6 +4347,7 @@
 				187268321FDE315F00C898D1 /* SideBarModule */,
 				188C30341FFDDA2F00A357F3 /* LoginModule */,
 				182007512069F3E500D281EF /* SocialModule */,
+				18BA1EE8211066EB008558DE /* ThirdPayModule */,
 				1886076E1FCBF6DE00B00EE7 /* BaseFramwork */,
 				1886076D1FCBF6DE00B00EE7 /* Resource */,
 				18112F051FCD003E00BEA0D9 /* ThirdLib */,
@@ -4112,6 +4381,15 @@
 				183C5BA51FCBEC9400DE6E88 /* Info.plist */,
 			);
 			path = pocketEOSUITests;
+			sourceTree = "<group>";
+		};
+		183C6433211A8E53001C9C4A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				183C6434211A8E6C001C9C4A /* AlipayResultModel.h */,
+				183C6435211A8E6C001C9C4A /* AlipayResultModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		183FF8BC1FF34595006C25F1 /* Model */ = {
@@ -4802,6 +5080,109 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		1856E666210AB9B8008EFC88 /* AddAccount */ = {
+			isa = PBXGroup;
+			children = (
+				18C7F769211AFA7B006AD456 /* Model */,
+				18C7F765211AF908006AD456 /* Networking */,
+				1856E667210AB9B8008EFC88 /* View */,
+				1856E668210AB9B8008EFC88 /* Service */,
+				1856E669210AB9B8008EFC88 /* ViewController */,
+			);
+			path = AddAccount;
+			sourceTree = "<group>";
+		};
+		1856E667210AB9B8008EFC88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1856E670210AB9EA008EFC88 /* AddAccountTableViewCell.h */,
+				1856E671210AB9EA008EFC88 /* AddAccountTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1856E668210AB9B8008EFC88 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1856E673210ACA3D008EFC88 /* AddAccountMainService.h */,
+				1856E674210ACA3D008EFC88 /* AddAccountMainService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1856E669210AB9B8008EFC88 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1856E66A210AB9C8008EFC88 /* AddAccountViewController.h */,
+				1856E66B210AB9C8008EFC88 /* AddAccountViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1856E67B210B1E15008EFC88 /* AccountQRCodeManagement */ = {
+			isa = PBXGroup;
+			children = (
+				1856E67C210B1E15008EFC88 /* View */,
+				1856E67D210B1E15008EFC88 /* ViewController */,
+			);
+			path = AccountQRCodeManagement;
+			sourceTree = "<group>";
+		};
+		1856E67C210B1E15008EFC88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1856E681210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.h */,
+				1856E682210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m */,
+				186A2B12211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1856E67D210B1E15008EFC88 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1856E67E210B1E25008EFC88 /* AccountQRCodeManagementViewController.h */,
+				1856E67F210B1E25008EFC88 /* AccountQRCodeManagementViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1856E686210EFEAF008EFC88 /* ImportOwnerPermision */ = {
+			isa = PBXGroup;
+			children = (
+				1856E687210EFEAF008EFC88 /* Model */,
+				1856E688210EFEAF008EFC88 /* View */,
+				1856E689210EFEAF008EFC88 /* ViewController */,
+			);
+			path = ImportOwnerPermision;
+			sourceTree = "<group>";
+		};
+		1856E687210EFEAF008EFC88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1856E688210EFEAF008EFC88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1856E68D210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.h */,
+				1856E68E210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.m */,
+				1856E690210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1856E689210EFEAF008EFC88 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1856E68A210EFEC5008EFC88 /* ImportOwnerPermisionViewController.h */,
+				1856E68B210EFEC5008EFC88 /* ImportOwnerPermisionViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		185BBA991FF4881D00DE2AC1 /* DataBaseModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5346,7 +5727,7 @@
 			children = (
 				186857131FE0D938002A683A /* AccountManagementHeaderView.h */,
 				186857141FE0D938002A683A /* AccountManagementHeaderView.m */,
-				186F6A7320F4977900FFF881 /* AccountManagementHeaderView.xib */,
+				18C7F75C211AEFFA006AD456 /* AccountManagementHeaderView.xib */,
 				1868571A1FE10C13002A683A /* ExportPrivateKeyView.h */,
 				1868571B1FE10C13002A683A /* ExportPrivateKeyView.m */,
 				186F6A7A20F4978500FFF881 /* ExportPrivateKeyView.xib */,
@@ -5405,6 +5786,7 @@
 		187268321FDE315F00C898D1 /* SideBarModule */ = {
 			isa = PBXGroup;
 			children = (
+				1856E666210AB9B8008EFC88 /* AddAccount */,
 				18BCAF1420BFD8D500571577 /* BPVote */,
 				18B276F320B7A8590070F472 /* Specification */,
 				18AFBEF820B3080E00E880DD /* BackupAccount */,
@@ -5658,6 +6040,10 @@
 		187268521FDE315F00C898D1 /* pocketManagement */ = {
 			isa = PBXGroup;
 			children = (
+				18ED6CC3210FF1330042200F /* PayRegistAccount */,
+				18ED6CC7210FF1330042200F /* VipRegistAccount */,
+				1856E686210EFEAF008EFC88 /* ImportOwnerPermision */,
+				1856E67B210B1E15008EFC88 /* AccountQRCodeManagement */,
 				18771A221FDFCA5800B5BD0E /* PersonalSetting */,
 				188C30501FFE0AC600A357F3 /* CreatePocket */,
 				1832CC49200778C300C055B6 /* ImportPocket */,
@@ -6002,6 +6388,10 @@
 			children = (
 				1826AD2B2079C48E0046EE7C /* LoginMainViewController.h */,
 				1826AD2C2079C48F0046EE7C /* LoginMainViewController.m */,
+				18074EB72109A4BA00A43559 /* PhoneLoginViewController.h */,
+				18074EB82109A4BA00A43559 /* PhoneLoginViewController.m */,
+				18074EC72109B23600A43559 /* LoginEntranceViewController.h */,
+				18074EC82109B23600A43559 /* LoginEntranceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6034,6 +6424,12 @@
 				1826AD272079C3200046EE7C /* LoginView.h */,
 				1826AD262079C31F0046EE7C /* LoginView.m */,
 				186F6AAB20F497C300FFF881 /* LoginView.xib */,
+				18074EBA2109A4ED00A43559 /* PhoneLoginMainView.h */,
+				18074EBB2109A4ED00A43559 /* PhoneLoginMainView.m */,
+				18C7F776211BD887006AD456 /* PhoneLoginMainView.xib */,
+				18074EBF2109A51900A43559 /* LoginMainHeaderView.h */,
+				18074EC02109A51900A43559 /* LoginMainHeaderView.m */,
+				18C7F76F211BD87B006AD456 /* LoginMainHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6581,7 +6977,7 @@
 		18B276F820B7AC460070F472 /* rtf */ = {
 			isa = PBXGroup;
 			children = (
-				18D07A9120EB68C200DF1FDF /* PockSecureDecalre.rtf */,
+				18D07A9120EB68C200DF1FDF /* PockSecureDeclare.rtf */,
 				18B276FB20B7AF520070F472 /* AboutPocketEOS.rtf */,
 				18B276FC20B7AF520070F472 /* PocketEOSProtocol.rtf */,
 				18B276FD20B7AF530070F472 /* SpecificationBlackBoxMode.rtf */,
@@ -6590,6 +6986,62 @@
 				18AD2BC520D0CCFA00536084 /* BPVoteRules.rtf */,
 			);
 			path = rtf;
+			sourceTree = "<group>";
+		};
+		18BA1EE8211066EB008558DE /* ThirdPayModule */ = {
+			isa = PBXGroup;
+			children = (
+				18BA1EF521106BC5008558DE /* Common */,
+				18BA1EEA21106748008558DE /* Alipay */,
+				18BA1EE921106748008558DE /* WechatPay */,
+			);
+			path = ThirdPayModule;
+			sourceTree = "<group>";
+		};
+		18BA1EE921106748008558DE /* WechatPay */ = {
+			isa = PBXGroup;
+			children = (
+				18BA1EEB21106767008558DE /* Control */,
+			);
+			path = WechatPay;
+			sourceTree = "<group>";
+		};
+		18BA1EEA21106748008558DE /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				183C6433211A8E53001C9C4A /* Model */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
+		};
+		18BA1EEB21106767008558DE /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				18BA1EEC21106767008558DE /* WXApiManager.h */,
+				18BA1EF121106767008558DE /* WXApiManager.m */,
+				18BA1EEF21106767008558DE /* WXApiRequestHandler.h */,
+				18BA1EEE21106767008558DE /* WXApiRequestHandler.m */,
+				18BA1EF021106767008558DE /* WXApiResponseHandler.h */,
+				18BA1EED21106767008558DE /* WXApiResponseHandler.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		18BA1EF521106BC5008558DE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18BA1EF621106BC5008558DE /* Manager */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		18BA1EF621106BC5008558DE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				18BA1EF721106BD7008558DE /* ThirdPayManager.h */,
+				18BA1EF821106BD7008558DE /* ThirdPayManager.m */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		18BCAF1420BFD8D500571577 /* BPVote */ = {
@@ -6836,6 +7288,33 @@
 			path = NavigationView;
 			sourceTree = "<group>";
 		};
+		18C7F761211AF229006AD456 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				18C7F762211AF24E006AD456 /* InviteCodeRegisterRequest.h */,
+				18C7F763211AF24E006AD456 /* InviteCodeRegisterRequest.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		18C7F765211AF908006AD456 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				18C7F766211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.h */,
+				18C7F767211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		18C7F769211AFA7B006AD456 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C7F76A211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.h */,
+				18C7F76B211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18CDFB0020299ACC00D21DF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6852,7 +7331,6 @@
 			children = (
 				18CEA65721057E0300B2BFE2 /* UMCommonLog.framework */,
 				18CEA65521057DFB00B2BFE2 /* UMCommonLog.bundle */,
-				18CEA65321057DF200B2BFE2 /* UTDID.framework */,
 				18CEA65121057DEB00B2BFE2 /* SecurityEnvSDK.framework */,
 				18CEA64F21057DDB00B2BFE2 /* UMAnalytics.framework */,
 				18CEA64D21057DCF00B2BFE2 /* UMCommon.framework */,
@@ -7122,6 +7600,8 @@
 				18372D332063414B004D19D0 /* GetRateRequest.m */,
 				183577272100A56300F075EA /* Get_token_info_request.h */,
 				183577282100A56300F075EA /* Get_token_info_request.m */,
+				183C6437211A9E05001C9C4A /* GetAccountOrderStatusRequest.h */,
+				183C6438211A9E05001C9C4A /* GetAccountOrderStatusRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -7147,6 +7627,9 @@
 				186F693F20F3661000FFF881 /* AssestsMainHeaderView.xib */,
 				180FDF8720219D5700BE593F /* AssestsMainTableViewCell.h */,
 				180FDF8820219D5700BE593F /* AssestsMainTableViewCell.m */,
+				182B1DE72112A13A00F07222 /* AccountNotExistView.h */,
+				182B1DE82112A13A00F07222 /* AccountNotExistView.m */,
+				18C7F77D211C28CB006AD456 /* AccountNotExistView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7330,9 +7813,7 @@
 			children = (
 				187B63D8206B347C00D0AE86 /* feedBack@2x.png */,
 				187B63DA206B347D00D0AE86 /* feedBack@3x.png */,
-				185DD68C206CA75600BCFFCF /* recieve@3x.png */,
 				187B63DC206B347D00D0AE86 /* right_icon_blue@2x.png */,
-				185DD68A206CA75600BCFFCF /* recieve@2x.png */,
 				187B63D9206B347C00D0AE86 /* right_icon_blue@3x.png */,
 				187B63DB206B347D00D0AE86 /* transaction_history.png */,
 				18CEA66D2105D98800B2BFE2 /* assest_select@2x.png */,
@@ -7373,14 +7854,16 @@
 				18F03FDF2067883400697D7F /* redPacket_gray@2x.png */,
 				18F03FE22067883500697D7F /* redPacket_gray@3x.png */,
 				18F03FEE2067886C00697D7F /* recieve_gray.png */,
-				18F03FCF2067878B00697D7F /* redPacket@2x.png */,
-				18F03FD12067878B00697D7F /* redPacket@3x.png */,
-				18F03FD22067878B00697D7F /* transfer@2x.png */,
-				18F03FD32067878B00697D7F /* transfer@3x.png */,
+				18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */,
+				18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */,
 				1833486E1FCE5DAE00884107 /* recieve_icon@2x.png */,
 				183348731FCE5DAE00884107 /* recieve_icon@3x.png */,
 				183348711FCE5DAE00884107 /* transfer_icon@2x.png */,
 				183348721FCE5DAE00884107 /* transfer_icon@3x.png */,
+				18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */,
+				18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */,
+				18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */,
+				18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */,
 				1836746620E5D75800F04D1E /* redpacket_icon@2x.png */,
 				1836746520E5D75800F04D1E /* redpacket_icon@3x.png */,
 				18F03FC12067803F00697D7F /* background_blue@2x.png */,
@@ -7557,6 +8040,88 @@
 				18291ECD20EC63A700D19CB9 /* account_icon@3x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		18ED6CC3210FF1330042200F /* PayRegistAccount */ = {
+			isa = PBXGroup;
+			children = (
+				18388D3D211940A900FF5C3E /* Model */,
+				18388D3E211940A900FF5C3E /* Networking */,
+				18ED6CC4210FF1330042200F /* View */,
+				18ED6CC5210FF1330042200F /* Service */,
+				18ED6CC6210FF1330042200F /* ViewController */,
+			);
+			path = PayRegistAccount;
+			sourceTree = "<group>";
+		};
+		18ED6CC4210FF1330042200F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CD9210FF1980042200F /* PayRegistAccountHeaderView.h */,
+				18ED6CDA210FF1980042200F /* PayRegistAccountHeaderView.m */,
+				18C7F744211AE01B006AD456 /* PayRegistAccountHeaderView.xib */,
+				18ED6CE121103E2F0042200F /* PaymentTipView.h */,
+				18ED6CE221103E2F0042200F /* PaymentTipView.m */,
+				18C7F74B211AE038006AD456 /* PaymentTipView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18ED6CC5210FF1330042200F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CDC210FF1A50042200F /* PayRegistAccountService.h */,
+				18ED6CDD210FF1A50042200F /* PayRegistAccountService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18ED6CC6210FF1330042200F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CD6210FF1880042200F /* PayRegistAccountViewController.h */,
+				18ED6CD7210FF1880042200F /* PayRegistAccountViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18ED6CC7210FF1330042200F /* VipRegistAccount */ = {
+			isa = PBXGroup;
+			children = (
+				18C7F761211AF229006AD456 /* Networking */,
+				18ED6CC8210FF1330042200F /* View */,
+				18ED6CC9210FF1330042200F /* Service */,
+				18ED6CCA210FF1330042200F /* ViewController */,
+			);
+			path = VipRegistAccount;
+			sourceTree = "<group>";
+		};
+		18ED6CC8210FF1330042200F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CCE210FF1580042200F /* VipRegistAccountHeaderView.h */,
+				18ED6CCF210FF1580042200F /* VipRegistAccountHeaderView.m */,
+				18C7F752211AE169006AD456 /* VipRegistAccountHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18ED6CC9210FF1330042200F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CD3210FF1770042200F /* VipRegistAccountService.h */,
+				18ED6CD4210FF1770042200F /* VipRegistAccountService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18ED6CCA210FF1330042200F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18ED6CCB210FF1480042200F /* VipRegistAccountViewController.h */,
+				18ED6CCC210FF1480042200F /* VipRegistAccountViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		18EE050B1FDF70E500134E5C /* ChangePassword */ = {
@@ -8123,14 +8688,18 @@
 				183FF6F920C10EF20058D010 /* paid_answer@2x.png in Resources */,
 				1860444120D36B3300BEE917 /* slider_gray_BB@3x.png in Resources */,
 				185D18591FE762000021AD18 /* qq@3x.png in Resources */,
+				18BA1F0A211168F7008558DE /* pocketeos_logo_and_title@3x.png in Resources */,
 				189EB992207B5E630088C6FC /* Localizable.strings in Resources */,
+				18CEA6AF2106FCDF00B2BFE2 /* redPacket@2x.png in Resources */,
 				187D9BF52080C02F0059BD2A /* wechat_moments@2x.png in Resources */,
+				18BA1F10211168F7008558DE /* free_create_account@3x.png in Resources */,
 				183FF6F320C0FD700058D010 /* wechat_login@3x.png in Resources */,
 				186F6A1D20F4967D00FFF881 /* ConfirmPasswordView.xib in Resources */,
 				18AD2BD820D11CE900536084 /* cancle__circle_white@2x.png in Resources */,
 				186F6A0820F4964900FFF881 /* WalletQRCodeView.xib in Resources */,
 				18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */,
-				18D07A9220EB68C200DF1FDF /* PockSecureDecalre.rtf in Resources */,
+				18D07A9220EB68C200DF1FDF /* PockSecureDeclare.rtf in Resources */,
+				18BA1F0C211168F7008558DE /* import_account@2x.png in Resources */,
 				183FF74420C159740058D010 /* pocket_BB@3x.png in Resources */,
 				18DBD276204244D1001E2DDF /* walletQRCodeBoder@3x.png in Resources */,
 				18DBD281204258B0001E2DDF /* wallet_default_avatar@3x.png in Resources */,
@@ -8138,9 +8707,11 @@
 				185BA39220BB9AED00F63674 /* versionUpdate_BB@3x.png in Resources */,
 				184566C820C1861C0005F216 /* nomoredata_BB@3x.png in Resources */,
 				186F6A2B20F496FA00FFF881 /* PersonalSettingHeaderView.xib in Resources */,
+				18C7F75A211AEFFA006AD456 /* AccountManagementHeaderView.xib in Resources */,
 				189E3EBE201C5B980022AF19 /* RSKImageCropperStrings.bundle in Resources */,
 				185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */,
 				185D18171FE7596E0021AD18 /* pERichList@2x.png in Resources */,
+				18BA1F1E2111B6F3008558DE /* AlipaySDK.bundle in Resources */,
 				187D9BF22080C02F0059BD2A /* qq_Zone@2x.png in Resources */,
 				185BA39520BB9AED00F63674 /* messageCenter_BB@3x .png in Resources */,
 				1820076B206A668E00D281EF /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -8177,6 +8748,7 @@
 				18AD2BBE20D0C9C400536084 /* edit_blue@2x.png in Resources */,
 				186817A320FD8D5200FEE7B5 /* search_icon@2x.png in Resources */,
 				187D9BF12080C02F0059BD2A /* qq_friends@3x.png in Resources */,
+				18BA1F14211168F7008558DE /* pay_create_account@2x.png in Resources */,
 				1826AD372079EBF40046EE7C /* BindSocialPlatformHeaderView.xib in Resources */,
 				185D183B1FE75ECA0021AD18 /* rectangle_selected@3x.png in Resources */,
 				185BA39420BB9AED00F63674 /* systemSetting_BB@2x.png in Resources */,
@@ -8188,8 +8760,6 @@
 				1860443B20D36B2C00BEE917 /* slider_gray@3x.png in Resources */,
 				18CEA67A2105D99C00B2BFE2 /* richList_select@3x.png in Resources */,
 				18CEA67C2105D99C00B2BFE2 /* richList_unSelect@3x.png in Resources */,
-				18F03FD52067878C00697D7F /* redPacket@2x.png in Resources */,
-				186F6A7120F4977900FFF881 /* AccountManagementHeaderView.xib in Resources */,
 				184EA62620ABCFDB00169CD9 /* background_black@2x.png in Resources */,
 				186F69AD20F495AC00FFF881 /* RichlistDetailHeaderView.xib in Resources */,
 				1850338F20EF536C0023B390 /* CountryAreaCode.json in Resources */,
@@ -8199,7 +8769,6 @@
 				186F695220F494A100FFF881 /* BBLoginChooseWalletFooterView.xib in Resources */,
 				18CEA6992105DC4600B2BFE2 /* news_unSelect_BB@2x.png in Resources */,
 				18CEA6A32105DC5200B2BFE2 /* application_select_BB@2x.png in Resources */,
-				18F03FD82067878C00697D7F /* transfer@2x.png in Resources */,
 				18CEA6742105D98900B2BFE2 /* assest_select@3x.png in Resources */,
 				18FDFFC72024523100AEB4FA /* scan_net@2x.png in Resources */,
 				186F698A20F4956400FFF881 /* ForwardRedPacketHeaderView.xib in Resources */,
@@ -8207,8 +8776,10 @@
 				185BA37F20BB971700F63674 /* energy@2x.png in Resources */,
 				185D18551FE762000021AD18 /*  qq.png in Resources */,
 				186F69EC20F4960900FFF881 /* BPVoteHeaderView.xib in Resources */,
+				18BA1F17211168F7008558DE /* wechat_white_icon@2x.png in Resources */,
 				18AD2BBC20D0C9C400536084 /* edit_blue@3x.png in Resources */,
 				1817DF1320EF0A0E0037D784 /* backup_BB@3x.png in Resources */,
+				18BA1F0E211168F7008558DE /* warning_red@3x.png in Resources */,
 				1833488F1FCE69B200884107 /* 2.png in Resources */,
 				181275DF20B6DF58005EDD91 /* volume-marquee@3x.png in Resources */,
 				185D18581FE762000021AD18 /* email@2x.png in Resources */,
@@ -8219,8 +8790,10 @@
 				1884A8E4204D380700C72631 /* feedBackAsk@3x.png in Resources */,
 				1868177420FC8BCB00FEE7B5 /* addAssets@3x.png in Resources */,
 				183FF6F420C0FD700058D010 /* wechat_login@2x.png in Resources */,
+				18CEA6A72106FC8000B2BFE2 /* transfer@3x.png in Resources */,
 				186F69D020F495E400FFF881 /* EnterpriseDetailHeaderView.xib in Resources */,
 				185BA39820BB9AED00F63674 /* feedBack_BB@3x.png in Resources */,
+				1856E691210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib in Resources */,
 				186F6A6A20F4976E00FFF881 /* ChangePasswordView.xib in Resources */,
 				1830A94E202BF796009ACDD8 /* oct_avatar@3x.png in Resources */,
 				186F6A4720F4972C00FFF881 /* ImportPocketHeaderView.xib in Resources */,
@@ -8259,6 +8832,7 @@
 				183FF74520C159740058D010 /* pocket_BB@2x.png in Resources */,
 				185D181B1FE759C40021AD18 /* downImg@3x.png in Resources */,
 				186F693D20F3661000FFF881 /* AssestsMainHeaderView.xib in Resources */,
+				182B1DEF2112A55400F07222 /* flytomoon@3x.png in Resources */,
 				18CEA69A2105DC4600B2BFE2 /* news_select_BB@2x.png in Resources */,
 				185D18431FE75FC30021AD18 /* share@2x.png in Resources */,
 				185D181A1FE759C40021AD18 /* downImg@2x.png in Resources */,
@@ -8271,6 +8845,7 @@
 				1836746720E5D75800F04D1E /* redpacket_icon@3x.png in Resources */,
 				1838495E20BE43AA00B89549 /* recieve_white@3x.png in Resources */,
 				1854FF69200320E300B8F253 /* slider_transparent@2x.png in Resources */,
+				18509BC6211301F600EF8749 /* network_error_white@3x.png in Resources */,
 				1825DC542005AA820057320C /* slider_white@3x.png in Resources */,
 				182A66161FD11FE1007FD541 /* scan@2x.png in Resources */,
 				185D185E1FE763B10021AD18 /* wechat_big@3x.png in Resources */,
@@ -8279,6 +8854,7 @@
 				185D181F1FE75B270021AD18 /* pocket@3x.png in Resources */,
 				18F03FBF20677C3F00697D7F /* protectAccount@2x.png in Resources */,
 				185D18841FE76F090021AD18 /* addressBook@3x.png in Resources */,
+				18CEA6B02106FCDF00B2BFE2 /* redPacket@3x.png in Resources */,
 				18CEA6722105D98900B2BFE2 /* assest_unSelect@3x.png in Resources */,
 				187268611FDE31D400C898D1 /* TransactionRecordsHeaderView.xib in Resources */,
 				185BA41B20BBE03D00F63674 /* candyIntegrals@2x.png in Resources */,
@@ -8298,11 +8874,12 @@
 				1872F13B202D6FD6005B5915 /* back_white@2x.png in Resources */,
 				181275DE20B6DF58005EDD91 /* volume-marquee@2x.png in Resources */,
 				181691A220BF83B600BF49A8 /* nomoredata@2x.png in Resources */,
-				18F03FD92067878C00697D7F /* transfer@3x.png in Resources */,
+				182B1DEE2112A55400F07222 /* flytomoon@2x.png in Resources */,
 				1860443D20D36B2C00BEE917 /* unStakeEOS_blue@2x.png in Resources */,
-				185DD692206CA75600BCFFCF /* recieve@3x.png in Resources */,
 				186F6A7F20F4978E00FFF881 /* BandwidthManageHeaderView.xib in Resources */,
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
+				18CEA6AB2106FCBD00B2BFE2 /* recieve@2x.png in Resources */,
+				18C7F742211AE01B006AD456 /* PayRegistAccountHeaderView.xib in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
@@ -8321,11 +8898,14 @@
 				185D183C1FE75ECA0021AD18 /* rectangle_UnSelected@3x.png in Resources */,
 				18112F751FCD016000BEA0D9 /* IQKeyboardManager.bundle in Resources */,
 				1817DF1220EF0A0E0037D784 /* changePassword_BB@2x.png in Resources */,
+				18C7F77B211C28CB006AD456 /* AccountNotExistView.xib in Resources */,
+				18BA1F16211168F7008558DE /* wechat_white_icon@3x.png in Resources */,
 				1868177120FC87F400FEE7B5 /* pocketManagement_icon@3x.png in Resources */,
 				186F696020F4951200FFF881 /* AssestsDetailHeaderView.xib in Resources */,
 				18CEA6A42105DC5200B2BFE2 /* application_unSelect_BB@3x.png in Resources */,
 				186F69FA20F4963200FFF881 /* BackupAccountHeaderView.xib in Resources */,
 				185D182B1FE75C2E0021AD18 /* messageCenter@3x.png in Resources */,
+				18CEA6AC2106FCBD00B2BFE2 /* recieve@3x.png in Resources */,
 				186F6A0120F4964000FFF881 /* FeedbackHeaderView.xib in Resources */,
 				1817DF1920EF0B270037D784 /* bpvote_BB@2x.png in Resources */,
 				184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */,
@@ -8334,17 +8914,20 @@
 				18AD2BC820D0CCFA00536084 /* BP_account_will_be_locked.rtf in Resources */,
 				182A66191FD11FF5007FD541 /* setting@3x.png in Resources */,
 				186F696E20F4953B00FFF881 /* TransferHeaderView.xib in Resources */,
+				18BA1F13211168F7008558DE /* import_account@3x.png in Resources */,
 				186F697C20F4955100FFF881 /* RecieveQRCodeView.xib in Resources */,
 				18B2770020B7AF530070F472 /* SpecificationBlackBoxMode.rtf in Resources */,
 				186F6A9420F497A500FFF881 /* TradeRamHeaderView.xib in Resources */,
 				18D07A8720EB676900DF1FDF /* importAccount@3x.png in Resources */,
 				185D18541FE762000021AD18 /* wechat@2x.png in Resources */,
 				185D18341FE75CDC0021AD18 /* versionUpdate@2x.png in Resources */,
+				18509BC7211301F600EF8749 /* network_error_white@2x.png in Resources */,
 				185D18421FE75FC30021AD18 /* share@3x.png in Resources */,
 				18BE63FE20EF81AB00238492 /* inviteFriend_icon@3x.png in Resources */,
 				1860444020D36B3300BEE917 /* slider_gray_BB@2x.png in Resources */,
 				1828F9262068D2EA00513CD1 /* right_arrow_gray@3x.png in Resources */,
 				185D18801FE76EA40021AD18 /* scan_black@3x.png in Resources */,
+				18C7F774211BD887006AD456 /* PhoneLoginMainView.xib in Resources */,
 				185BA39B20BB9AED00F63674 /* candyIcon_BB@3x.png in Resources */,
 				1838496020BE43AA00B89549 /* shield@3x.png in Resources */,
 				185D18601FE763B10021AD18 /* wechat_big@2x.png in Resources */,
@@ -8354,12 +8937,14 @@
 				1884A8E3204D380700C72631 /* feedBackAsk@2x.png in Resources */,
 				18291F1F20ECAC3400D19CB9 /* transactionrecord_icon@3x.png in Resources */,
 				18291F1A20ECA97300D19CB9 /* bpvote@2x.png in Resources */,
+				18C7F76D211BD87B006AD456 /* LoginMainHeaderView.xib in Resources */,
 				187B63E0206B347D00D0AE86 /* transaction_history.png in Resources */,
 				18CEA69B2105DC4600B2BFE2 /* news_select_BB@3x.png in Resources */,
 				18D07A9520EB6BD500DF1FDF /* mainAccount@3x.png in Resources */,
 				18D07A8820EB676900DF1FDF /* changePassword@2x.png in Resources */,
 				183FF73F20C156CA0058D010 /* login_Header_BB@3x.png in Resources */,
 				1836919E20FDD19B000EAD59 /* trash_gray@2x.png in Resources */,
+				18CEA6A82106FC8000B2BFE2 /* transfer@2x.png in Resources */,
 				1814140E1FCFA2BA00334C60 /* SVProgressHUD.bundle in Resources */,
 				18F03FEA2067883600697D7F /* redPacket_gray@3x.png in Resources */,
 				187B63E1206B347D00D0AE86 /* right_icon_blue@2x.png in Resources */,
@@ -8374,6 +8959,7 @@
 				186F6A2420F4968A00FFF881 /* LoginPasswordView.xib in Resources */,
 				18AD2BBD20D0C9C400536084 /* vote_account_bg_blue@3x.png in Resources */,
 				18291F4D20EE40C900D19CB9 /* QRCode_green@3x.png in Resources */,
+				18BA1F11211168F7008558DE /* warning_red@2x.png in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
 				18AD2BD720D11CE900536084 /* cancle__circle_white@3x.png in Resources */,
@@ -8384,12 +8970,12 @@
 				186F69BB20F495C600FFF881 /* ApplicationMainHeaderBottomView.xib in Resources */,
 				182A66171FD11FE1007FD541 /* scan@3x.png in Resources */,
 				18DBD27F204258B0001E2DDF /* account_default_avatar@2x.png in Resources */,
-				185DD690206CA75600BCFFCF /* recieve@2x.png in Resources */,
 				186F6A8620F4979500FFF881 /* BandwidthManageTableViewCell.xib in Resources */,
 				186F699820F4958300FFF881 /* UnStakeEOSHeaderView.xib in Resources */,
 				18AD2BBF20D0C9C400536084 /* vote_account_avatar_white@3x.png in Resources */,
 				185D18651FE766240021AD18 /* folder@2x.png in Resources */,
 				1836919D20FDD19B000EAD59 /* trash_gray@3x.png in Resources */,
+				18BA1F18211168F7008558DE /* vip_create_account@2x.png in Resources */,
 				185D18131FE7583D0021AD18 /* enterprise@2x.png in Resources */,
 				185D18161FE7596E0021AD18 /* pERichlist@3x.png in Resources */,
 				185D18811FE76EA40021AD18 /* scan_black@2x.png in Resources */,
@@ -8405,8 +8991,11 @@
 				186F69D720F495ED00FFF881 /* AskQuestionHeaderView.xib in Resources */,
 				1817DF0F20EF0A0E0037D784 /* importAccount_BB@3x.png in Resources */,
 				18CEA6922105DC3B00B2BFE2 /* assest_Select_BB@2x.png in Resources */,
+				18BA1F0F211168F7008558DE /* pocketeos_logo_and_title@2x.png in Resources */,
 				18CEA6712105D98900B2BFE2 /* assest_select@2x.png in Resources */,
+				18BA1F0D211168F7008558DE /* free_create_account@2x.png in Resources */,
 				18AD2BC320D0C9C400536084 /* vote_account_bg_blue@2x.png in Resources */,
+				18BA1F12211168F7008558DE /* vip_create_account@3x.png in Resources */,
 				185D183A1FE75ECA0021AD18 /* rectangle_selected@2x.png in Resources */,
 				182A66131FD11FDA007FD541 /* notify@2x.png in Resources */,
 				188C30411FFDE25C00A357F3 /* lockBackground@2x.png in Resources */,
@@ -8414,6 +9003,7 @@
 				183577362100CC5E00F075EA /* AddAssestsHeaderView.xib in Resources */,
 				18E080682068D72F0032B09C /* wechat_share@3x.png in Resources */,
 				185D183D1FE75ECA0021AD18 /* rectangle_UnSelected@2x.png in Resources */,
+				186A2B10211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib in Resources */,
 				186F6A5C20F4975B00FFF881 /* ImportAccountHeaderView.xib in Resources */,
 				18D07A8B20EB676900DF1FDF /* changePassword@3x.png in Resources */,
 				186F6AA220F497B900FFF881 /* CandyMainHeaderView.xib in Resources */,
@@ -8428,6 +9018,7 @@
 				185D18781FE7671A0021AD18 /* recommended@2x.png in Resources */,
 				1807EFA31FE8F8140010CF7F /* oval@3x.png in Resources */,
 				18AD2BC720D0CCFA00536084 /* BPVoteRules.rtf in Resources */,
+				18C7F750211AE169006AD456 /* VipRegistAccountHeaderView.xib in Resources */,
 				1860443C20D36B2C00BEE917 /* slider_gray@2x.png in Resources */,
 				18DBD275204244D1001E2DDF /* walletQRCodeBoder@2x.png in Resources */,
 				18F03FE72067883600697D7F /* redPacket_gray@2x.png in Resources */,
@@ -8435,6 +9026,8 @@
 				18F03FF320678BE900697D7F /* QRCode_small_white@3x.png in Resources */,
 				185D18611FE763B10021AD18 /* qq_big@3x.png in Resources */,
 				183FF6F220C0FD700058D010 /* qq_login@3x.png in Resources */,
+				18BA1F19211168F7008558DE /* wechat_pay_icon@2x.png in Resources */,
+				18BA1F1B2111AD61008558DE /* alipay_icon.png in Resources */,
 				18E080652068D72F0032B09C /* qq_share@3x.png in Resources */,
 				1860443A20D36B2C00BEE917 /* unStakeEOS_blue@3x.png in Resources */,
 				1816915920BECC9F00BF49A8 /* candyBackground_blue.png in Resources */,
@@ -8465,7 +9058,6 @@
 				186F6A4020F4972100FFF881 /* CreatePocketHeaderView.xib in Resources */,
 				186F69C920F495DA00FFF881 /* ApplicationDetailHeaderView.xib in Resources */,
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
-				18F03FD72067878C00697D7F /* redPacket@3x.png in Resources */,
 				186F6A1620F4966300FFF881 /* VersionUpdateHeaderView.xib in Resources */,
 				18F03FF220678BE900697D7F /* QRCode_small_white@2x.png in Resources */,
 				1828F90F20687C1F00513CD1 /* eye_close@3x.png in Resources */,
@@ -8474,6 +9066,7 @@
 				1854FF68200320E300B8F253 /* slider_transparent@3x.png in Resources */,
 				18E72DFC1FCC0C8800D09CA3 /* Assets.xcassets in Resources */,
 				1830A950202BF796009ACDD8 /* eos_avatar@3x.png in Resources */,
+				18C7F749211AE038006AD456 /* PaymentTipView.xib in Resources */,
 				182A66121FD11FDA007FD541 /* notify@3x.png in Resources */,
 				183348781FCE5DAE00884107 /* transfer_icon@3x.png in Resources */,
 				188F7A1E20CA89FA00911034 /* BPCandidateHeaderView.xib in Resources */,
@@ -8484,8 +9077,10 @@
 				185BA37E20BB971700F63674 /* energy@3x.png in Resources */,
 				18CEA6932105DC3B00B2BFE2 /* assest_Select_BB@3x.png in Resources */,
 				187D9BF42080C02F0059BD2A /* wechat_friends@3x.png in Resources */,
+				18BA1F15211168F7008558DE /* pay_create_account@3x.png in Resources */,
 				18FDFFBF2024521100AEB4FA /* scan_1@2x.png in Resources */,
 				18DBD27920424F0C001E2DDF /* wallet_QRCode_btn@3x.png in Resources */,
+				18BA1F0B211168F7008558DE /* wechat_pay_icon@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8559,9 +9154,12 @@
 				1856A4F12008887200D62FEB /* UIView+MJExtension.m in Sources */,
 				18AD2BDB20D13D0D00536084 /* CompleteBPVoteRequest.m in Sources */,
 				18A2F4661FF0A20A00B6CE43 /* FMTokenizers.m in Sources */,
+				18074EC92109B23600A43559 /* LoginEntranceViewController.m in Sources */,
 				185DD6CF206CA80400BCFFCF /* NSObject+MJCoding.m in Sources */,
 				185DD6CD206CA80400BCFFCF /* NSObject+MJKeyValue.m in Sources */,
 				18DBBB1C206523A00050EE20 /* PGDatePickManager.m in Sources */,
+				18388D652119956200FF5C3E /* GetCreateAccountResourceRequest.m in Sources */,
+				18ED6CCD210FF1480042200F /* VipRegistAccountViewController.m in Sources */,
 				1826AD3A2079F1A90046EE7C /* UnBindSocialPlatformHeaderView.m in Sources */,
 				18466D8B2010794F002E675A /* MessageCenterViewController.m in Sources */,
 				187268651FDE61C200C898D1 /* SideBarViewController.m in Sources */,
@@ -8591,6 +9189,7 @@
 				186050F5202809AD00C87DDF /* QuestionListTableViewCell.m in Sources */,
 				18FA76F02062575800545E73 /* Abi_json_to_binRequest.m in Sources */,
 				184141AD2020559200A789ED /* GetVersionInfoRequest.m in Sources */,
+				1856E675210ACA3D008EFC88 /* AddAccountMainService.m in Sources */,
 				18DBBB16206523A00050EE20 /* PGDatePicker+TimeAndSecond.m in Sources */,
 				18233E12206238000087D60B /* rmd160.c in Sources */,
 				189832512091C6DD00377A36 /* NSData+Hash.m in Sources */,
@@ -8652,6 +9251,7 @@
 				18C622BC1FD63C340043447F /* RecieveHeaderView.m in Sources */,
 				18291F2420ECE5A400D19CB9 /* BaseResult.m in Sources */,
 				1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */,
+				18388D472119431400FF5C3E /* CreateAccountOrderRequest.m in Sources */,
 				183226FB20A2A76600BF6D6F /* DAppDetailViewController.m in Sources */,
 				18D07A7E20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m in Sources */,
 				1826AD3F2079F54A0046EE7C /* PersonalSettingHeaderView.m in Sources */,
@@ -8676,6 +9276,7 @@
 				1811306C1FCD020A00BEA0D9 /* UIButton+AFNetworking.m in Sources */,
 				1863294F1FE22CCB00E57F05 /* SliderVerifyView.m in Sources */,
 				1826AD302079D9ED0046EE7C /* PersonalSettingDetailHeaderView.m in Sources */,
+				18ED6CDB210FF1980042200F /* PayRegistAccountHeaderView.m in Sources */,
 				18372D582063E344004D19D0 /* RecieveService.m in Sources */,
 				181130121FCD01B800BEA0D9 /* SDWebImageManager.m in Sources */,
 				183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */,
@@ -8691,6 +9292,7 @@
 				18EE05531FDF8F2900134E5C /* CreateAccountHeaderView.m in Sources */,
 				18DBBB0E206523A00050EE20 /* PGDatePicker+Common.m in Sources */,
 				185DD6CE206CA80400BCFFCF /* MJProperty.m in Sources */,
+				18388D59211988EC00FF5C3E /* WechatPayRespResult.m in Sources */,
 				180FDF8A20219D5700BE593F /* AssestsMainTableViewCell.m in Sources */,
 				1841419C202029B400A789ED /* RichlistDetailService.m in Sources */,
 				18F054D320CBBBFB001B0A29 /* BPCandidateService.m in Sources */,
@@ -8704,6 +9306,7 @@
 				1811306B1FCD020A00BEA0D9 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				1808FCD7202AE9AE00625C37 /* TransactionRecordTableViewCell.m in Sources */,
 				1856A4E22008887200D62FEB /* MJRefreshHeader.m in Sources */,
+				18C7F768211AF924006AD456 /* CheckWhetherHasFreeQuotaResuest.m in Sources */,
 				189CECA120CFE70300F81AD8 /* GetNowVoteWeightRequest.m in Sources */,
 				18CEA6672105D22500B2BFE2 /* RootNavigationController.m in Sources */,
 				18112F681FCD016000BEA0D9 /* IQUIScrollView+Additions.m in Sources */,
@@ -8726,6 +9329,7 @@
 				18A99A8220E6613F00E32A29 /* TAAbstractDotView.m in Sources */,
 				1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */,
 				1812758B20B672C8005EDD91 /* CandyEquityResult.m in Sources */,
+				18074EBC2109A4ED00A43559 /* PhoneLoginMainView.m in Sources */,
 				1853DE4420B2D27A003DC727 /* CandyMainCollectionViewCell.m in Sources */,
 				188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */,
 				18423A0F1FFF583F006AB986 /* SGQRCodeScanManager.m in Sources */,
@@ -8807,9 +9411,11 @@
 				18DBBB15206523A00050EE20 /* PGDatePicker+Time.m in Sources */,
 				185DD6D3206CA80400BCFFCF /* NSString+MJExtension.m in Sources */,
 				18DBBB0C206523A00050EE20 /* NSCalendar+PGCurrent.m in Sources */,
+				18BA1EF921106BD7008558DE /* ThirdPayManager.m in Sources */,
 				189E3EC2201C5B980022AF19 /* RSKTouchView.m in Sources */,
 				189CEC7020CE7B7F00F81AD8 /* RegisterAccountToVoteSystem_Abi_json_to_bin_request.m in Sources */,
 				1808FCC6202AD1A000625C37 /* PopUpAccountsWindow.m in Sources */,
+				18C7F76C211AFA93006AD456 /* CheckWhetherHasFreeQuotaResult.m in Sources */,
 				1811301C1FCD01B800BEA0D9 /* UIView+WebCache.m in Sources */,
 				1811301A1FCD01B800BEA0D9 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18466DA42010A049002E675A /* NSBundle+PYSearchExtension.m in Sources */,
@@ -8821,6 +9427,7 @@
 				186564E42011E86C0044BBC3 /* NSString+Hash.m in Sources */,
 				189E3EBF201C5B980022AF19 /* RSKImageCropViewController.m in Sources */,
 				188F7A0D20CA5A7E00911034 /* LanguageSettingViewController.m in Sources */,
+				1856E683210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m in Sources */,
 				18A2F46A1FF0A20A00B6CE43 /* FMDatabasePool.m in Sources */,
 				1832CC4120074EFB00C055B6 /* AskQuestionTableViewCell.m in Sources */,
 				1856A4E02008887200D62FEB /* MJRefreshComponent.m in Sources */,
@@ -8832,6 +9439,7 @@
 				1854FF652003115F00B8F253 /* UIImage+ExFoundation.m in Sources */,
 				1825DC7120061BC90057320C /* AskQuestionHeaderView.m in Sources */,
 				1826AD49207A158D0046EE7C /* BindPhoneNumberHeaderView.m in Sources */,
+				183C6439211A9E05001C9C4A /* GetAccountOrderStatusRequest.m in Sources */,
 				18C622A11FD639250043447F /* TransferHeaderView.m in Sources */,
 				18DBD28920428F20001E2DDF /* ChangePasswordView.m in Sources */,
 				188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */,
@@ -8844,6 +9452,7 @@
 				18C622B11FD63B960043447F /* RedPacketHeaderView.m in Sources */,
 				185BBA9C1FF4883100DE2AC1 /* Wallet.m in Sources */,
 				182CDF4B201EFF4C002B87B6 /* MessageFeedbackService.m in Sources */,
+				183C6442211AA1F7001C9C4A /* AccountOrderStatus.m in Sources */,
 				18AFBEFE20B3082900E880DD /* BackupAccountViewController.m in Sources */,
 				1856A4E42008887200D62FEB /* MJRefreshAutoNormalFooter.m in Sources */,
 				18DBBB10206523A00050EE20 /* PGDatePicker+DateAndTime.m in Sources */,
@@ -8857,7 +9466,9 @@
 				187D9BE62080BA0E0059BD2A /* SocialShareModel.m in Sources */,
 				18423A0C1FFF583F006AB986 /* SGQRCodeAlbumManager.m in Sources */,
 				183AE1F42019B539002041F9 /* PeRichListViewController.m in Sources */,
+				18388D56211988CB00FF5C3E /* WechatPayRespModel.m in Sources */,
 				1811306E1FCD020A00BEA0D9 /* UIProgressView+AFNetworking.m in Sources */,
+				18ED6CD5210FF1770042200F /* VipRegistAccountService.m in Sources */,
 				18466D8620107288002E675A /* VersionUpdateHeaderView.m in Sources */,
 				185DD6CC206CA80400BCFFCF /* MJPropertyType.m in Sources */,
 				244769FC20DD493900B7283C /* PriceModel.m in Sources */,
@@ -8896,6 +9507,7 @@
 				1850339C20EF57A70023B390 /* CountryCodeAreaViewController.m in Sources */,
 				182B8FA020AD758200C43AEC /* BaseTableViewCell.m in Sources */,
 				1853DE2A20B29F45003DC727 /* EOSMappingImportAccountHeaderView.m in Sources */,
+				18ED6CD8210FF1880042200F /* PayRegistAccountViewController.m in Sources */,
 				18112F6A1FCD016000BEA0D9 /* IQUIView+Hierarchy.m in Sources */,
 				181130041FCD01B800BEA0D9 /* MKAnnotationView+WebCache.m in Sources */,
 				18112F0C1FCD00B700BEA0D9 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
@@ -8937,8 +9549,10 @@
 				181130141FCD01B800BEA0D9 /* SDWebImageWebPCoder.m in Sources */,
 				18AD2BD020D0F04700536084 /* EOSMappingResult.m in Sources */,
 				18EA95F220AEB7520032A491 /* BaseTextView.m in Sources */,
+				182B1DE92112A13A00F07222 /* AccountNotExistView.m in Sources */,
 				18AFBF0120B3096100E880DD /* BackupAccountHeaderView.m in Sources */,
 				181EC31520C4DC17001994D3 /* ApplicationHeaderViewModel.m in Sources */,
+				1856E672210AB9EA008EFC88 /* AddAccountTableViewCell.m in Sources */,
 				184D61751FD4F36300EA26B1 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				18EA95FE20AEDD920032A491 /* BaseLabel2.m in Sources */,
 				1836919A20FDD0C4000EAD59 /* CustomAssestsTableViewCell.m in Sources */,
@@ -8958,6 +9572,8 @@
 				1831F3AD20170FD3002CE94D /* Account.m in Sources */,
 				189CEC7620CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m in Sources */,
 				1853DE4E20B2E2B3003DC727 /* CandyTaskModel.m in Sources */,
+				1856E66C210AB9C8008EFC88 /* AddAccountViewController.m in Sources */,
+				18388D5F21198F7100FF5C3E /* CreateAccountResourceResult.m in Sources */,
 				1831F3A02016E515002CE94D /* BackupEosAccountRequest.m in Sources */,
 				1864C0F51FE3B00F00031547 /* ApplicationDetailHeaderView.m in Sources */,
 				18112F6C1FCD016000BEA0D9 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -8973,6 +9589,7 @@
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
 				181130341FCD01DF00BEA0D9 /* AFURLSessionManager.m in Sources */,
 				1812BB6020B5004800C70801 /* BaseSlimLineView.m in Sources */,
+				18074EB92109A4BA00A43559 /* PhoneLoginViewController.m in Sources */,
 				189CEC8520CFB60600F81AD8 /* MyVoteInfo.m in Sources */,
 				18466DA72010A049002E675A /* PYSearchSuggestionViewController.m in Sources */,
 				18FA76DD20623F3100545E73 /* NSObject+Extension.m in Sources */,
@@ -8997,6 +9614,7 @@
 				1831F3A320170AEA002CE94D /* AssestsMainService.m in Sources */,
 				18A99A8120E6613F00E32A29 /* TAAnimatedDotView.m in Sources */,
 				18F054C720CBA7AE001B0A29 /* BPCandidateFooterView.m in Sources */,
+				18ED6CE321103E2F0042200F /* PaymentTipView.m in Sources */,
 				18DBBB0F206523A00050EE20 /* PGDatePicker+Date.m in Sources */,
 				182B02EA1FF39528006C9DFB /* DataBaseManager.m in Sources */,
 				188DECE820A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.m in Sources */,
@@ -9008,9 +9626,11 @@
 				24FB2CA820DBF86800AC73A5 /* BandwidthManageHeaderView.m in Sources */,
 				1836919420FDC703000EAD59 /* CustomAssestsService.m in Sources */,
 				184D61C61FD5418500EA26B1 /* PopUpWindow.m in Sources */,
+				18388D6221198FC300FF5C3E /* CreateAccountResourceRespModel.m in Sources */,
 				1826AD292079C3200046EE7C /* LoginView.m in Sources */,
 				18FA76C920623C6D00545E73 /* TypeChainId.m in Sources */,
 				188F7A1C20CA89F000911034 /* BPCandidateHeaderView.m in Sources */,
+				1856E68C210EFEC5008EFC88 /* ImportOwnerPermisionViewController.m in Sources */,
 				181130701FCD020A00BEA0D9 /* UIWebView+AFNetworking.m in Sources */,
 				1853DE3F20B2BB93003DC727 /* CandyMainService.m in Sources */,
 				184142532020A41400A789ED /* NewsBannerRequest.m in Sources */,
@@ -9028,15 +9648,18 @@
 				1808FCCD202ADBCC00625C37 /* GetTransactionRecordsRequest.m in Sources */,
 				181EC30A20C4C43E001994D3 /* ApplicationMainHeaderBottomView.m in Sources */,
 				18A2F46B1FF0A20A00B6CE43 /* FMDatabaseQueue.m in Sources */,
+				18BA1EF221106767008558DE /* WXApiResponseHandler.m in Sources */,
 				1843CB16207C55A400EDC158 /* DAConfig.m in Sources */,
 				18DBD270204242DE001E2DDF /* WalletQRCodeView.m in Sources */,
 				18FE3B2420DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m in Sources */,
 				1861BA6F1FFCC7E900404058 /* IndexTipView.m in Sources */,
 				1808FCDD202B028D00625C37 /* TransactionsResult.m in Sources */,
+				18BA1EF421106767008558DE /* WXApiManager.m in Sources */,
 				18CDFB0620299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m in Sources */,
 				1812759120B69B4D005EDD91 /* CandyScoreRequest.m in Sources */,
 				1825DC652005BDEF0057320C /* QuestionListHeaderView.m in Sources */,
 				18A99A8B20E6616E00E32A29 /* JavascriptWebViewController.m in Sources */,
+				18BA1EF321106767008558DE /* WXApiRequestHandler.m in Sources */,
 				18FA76CC20623C6D00545E73 /* EOS_Key_Encode.m in Sources */,
 				1860443020D368AB00BEE917 /* UnStakeEOSViewController.m in Sources */,
 				18423A311FFF8ABA006AB986 /* MGSwipeButton.m in Sources */,
@@ -9062,10 +9685,12 @@
 				188F7A0A20CA350E00911034 /* BPRecommendAgentService.m in Sources */,
 				1860510B2028456B00C87DDF /* WkDelegateController.m in Sources */,
 				181130CC1FCD381800BEA0D9 /* AssestsMainHeaderView.m in Sources */,
+				18ED6CD0210FF1580042200F /* VipRegistAccountHeaderView.m in Sources */,
 				181130321FCD01DF00BEA0D9 /* AFURLRequestSerialization.m in Sources */,
 				1856A4DF2008887200D62FEB /* MJRefreshBackFooter.m in Sources */,
 				18E72DFF1FCC0C8800D09CA3 /* main.m in Sources */,
 				1886079F1FCC012F00B00EE7 /* UIColor+AppConfigColor.m in Sources */,
+				18074EC12109A51900A43559 /* LoginMainHeaderView.m in Sources */,
 				18E72E211FCC116200D09CA3 /* NewsMainViewController.m in Sources */,
 				18FE3B2120DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m in Sources */,
 				1832CC3E200718F400C055B6 /* AddOptionTableViewCell.m in Sources */,
@@ -9075,10 +9700,12 @@
 				18452B902074C91F00FAE7CE /* UITabBar+CustomBadge.m in Sources */,
 				1856A4AC2008539E00D62FEB /* ImportPocketHeaderView.m in Sources */,
 				1838496E20BE5AD700B89549 /* UIViewController+CWLateralSlide.m in Sources */,
+				18388D5C21198A7400FF5C3E /* AlipayRespResult.m in Sources */,
 				1856A4ED2008887200D62FEB /* MJRefreshConst.m in Sources */,
 				1878BCA420843341002A76F5 /* AssestsShareDetailView.m in Sources */,
 				189CEC7920CF592300F81AD8 /* BPVoteService.m in Sources */,
 				1856A4EF2008887200D62FEB /* UIScrollView+MJExtension.m in Sources */,
+				183C6436211A8E6C001C9C4A /* AlipayResultModel.m in Sources */,
 				18725DC5200C4F7900AA1889 /* WebViewJavascriptBridge.m in Sources */,
 				18CEA66C2105D25400B2BFE2 /* XYTransition.m in Sources */,
 				181130691FCD020A00BEA0D9 /* AFImageDownloader.m in Sources */,
@@ -9090,6 +9717,7 @@
 				182CDF3C201EFED5002B87B6 /* MessageFeedbackViewController.m in Sources */,
 				1838496F20BE5AD700B89549 /* CWLateralSlideAnimator.m in Sources */,
 				180FDF7C20215DD700BE593F /* GetWalletAccountsRequest.m in Sources */,
+				183C643F211AA1EC001C9C4A /* AccountOrderStatusResult.m in Sources */,
 				18FA76E42062484C00545E73 /* BlockChainInfo.m in Sources */,
 				18423A101FFF583F006AB986 /* SGQRCodeScanningView.m in Sources */,
 				181130201FCD01C900BEA0D9 /* NullSafe.m in Sources */,
@@ -9107,7 +9735,9 @@
 				1862E7A320DC7C9F00F26629 /* StorageManageHeaderView.m in Sources */,
 				24FB2CB220DBF9CE00AC73A5 /* BandwidthManageCellModel.m in Sources */,
 				186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */,
+				1856E68F210EFED5008EFC88 /* ImportOwnerPermisionHeaderView.m in Sources */,
 				1862E78220DB9FA000F26629 /* EOSResourceManageViewController.m in Sources */,
+				1856E680210B1E25008EFC88 /* AccountQRCodeManagementViewController.m in Sources */,
 				18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */,
 				1878BCAC20845798002A76F5 /* SendRedpacketRequest.m in Sources */,
 				18BE640220EF836A00238492 /* CommonWKWebViewController.m in Sources */,
@@ -9119,7 +9749,9 @@
 				24FB2C9A20DBF78000AC73A5 /* StorageService.m in Sources */,
 				18FA76CB20623C6D00545E73 /* Sha256.m in Sources */,
 				189CEC7F20CFB31D00F81AD8 /* GetMyVoteInfoRequest.m in Sources */,
+				18C7F764211AF24E006AD456 /* InviteCodeRegisterRequest.m in Sources */,
 				183AE1F12019B52E002041F9 /* PeRichListService.m in Sources */,
+				18ED6CDE210FF1A50042200F /* PayRegistAccountService.m in Sources */,
 				1835772F2100A72C00F075EA /* GetTokenInfoResult.m in Sources */,
 				185BA3BA20BBB3CE00F63674 /* BaseConfirmButton.m in Sources */,
 				18771A281FDFCA6E00B5BD0E /* PersonalSettingViewController.m in Sources */,
@@ -9179,6 +9811,16 @@
 				183577432100CCA000F075EA /* zh-Hans */,
 			);
 			name = CustomAssestsHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		186A2B12211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				186A2B11211C59A400DDB681 /* Base */,
+				186A2B14211C59A700DDB681 /* en */,
+				186A2B16211C59A800DDB681 /* zh-Hans */,
+			);
+			name = AccountQRCodeManagementHeaderView.xib;
 			sourceTree = "<group>";
 		};
 		186F693F20F3661000FFF881 /* AssestsMainHeaderView.xib */ = {
@@ -9595,8 +10237,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				186F6A5D20F4975B00FFF881 /* Base */,
-				186F6A6020F4975D00FFF881 /* en */,
-				186F6A6220F4975E00FFF881 /* zh-Hans */,
+				1856E678210AF9F1008EFC88 /* en */,
+				1856E67A210AF9F3008EFC88 /* zh-Hans */,
 			);
 			name = ImportAccountHeaderView.xib;
 			sourceTree = "<group>";
@@ -9619,16 +10261,6 @@
 				186F6A7020F4977200FFF881 /* zh-Hans */,
 			);
 			name = ChangePasswordView.xib;
-			sourceTree = "<group>";
-		};
-		186F6A7320F4977900FFF881 /* AccountManagementHeaderView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				186F6A7220F4977900FFF881 /* Base */,
-				186F6A7520F4977E00FFF881 /* en */,
-				186F6A7720F4977F00FFF881 /* zh-Hans */,
-			);
-			name = AccountManagementHeaderView.xib;
 			sourceTree = "<group>";
 		};
 		186F6A7A20F4978500FFF881 /* ExportPrivateKeyView.xib */ = {
@@ -9737,6 +10369,76 @@
 				189EB995207B5E670088C6FC /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		18C7F744211AE01B006AD456 /* PayRegistAccountHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F743211AE01B006AD456 /* Base */,
+				18C7F746211AE01E006AD456 /* en */,
+				18C7F748211AE020006AD456 /* zh-Hans */,
+			);
+			name = PayRegistAccountHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F74B211AE038006AD456 /* PaymentTipView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F74A211AE038006AD456 /* Base */,
+				18C7F74D211AE03B006AD456 /* en */,
+				18C7F74F211AE03D006AD456 /* zh-Hans */,
+			);
+			name = PaymentTipView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F752211AE169006AD456 /* VipRegistAccountHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F751211AE169006AD456 /* Base */,
+				18C7F754211AE16C006AD456 /* en */,
+				18C7F756211AE16E006AD456 /* zh-Hans */,
+			);
+			name = VipRegistAccountHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F75C211AEFFA006AD456 /* AccountManagementHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F75B211AEFFA006AD456 /* Base */,
+				18C7F75E211AEFFC006AD456 /* en */,
+				18C7F760211AF001006AD456 /* zh-Hans */,
+			);
+			name = AccountManagementHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F76F211BD87B006AD456 /* LoginMainHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F76E211BD87B006AD456 /* Base */,
+				18C7F771211BD87E006AD456 /* en */,
+				18C7F773211BD87F006AD456 /* zh-Hans */,
+			);
+			name = LoginMainHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F776211BD887006AD456 /* PhoneLoginMainView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F775211BD887006AD456 /* Base */,
+				18C7F778211BD88A006AD456 /* en */,
+				18C7F77A211BD88D006AD456 /* zh-Hans */,
+			);
+			name = PhoneLoginMainView.xib;
+			sourceTree = "<group>";
+		};
+		18C7F77D211C28CB006AD456 /* AccountNotExistView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18C7F77C211C28CB006AD456 /* Base */,
+				18C7F783211C2A49006AD456 /* en */,
+				18C7F785211C2A50006AD456 /* zh-Hans */,
+			);
+			name = AccountNotExistView.xib;
 			sourceTree = "<group>";
 		};
 		18CEA643210233A500B2BFE2 /* PocketManagementHeaderView.xib */ = {

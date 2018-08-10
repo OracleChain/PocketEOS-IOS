@@ -10,16 +10,16 @@
 
 @protocol ImportAccountHeaderViewDelegate<NSObject>
 
-- (void)importWithQRCodeBtnDidClick:(UIButton *)sender;
 - (void)importBtnDidClick:(UIButton *)sender;
-
+- (void)agreeTermBtnDidClick:(UIButton *)sender;
 @end
 
 @interface ImportAccountHeaderView : BaseView
 @property (weak, nonatomic) IBOutlet UITextField *accountNameTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *private_ownerKey_TF;
 @property (weak, nonatomic) IBOutlet UITextField *private_activeKey_tf;
+@property (weak, nonatomic) IBOutlet UITextField *private_ownerKey_TF;
+@property (weak, nonatomic) IBOutlet UIButton *agreeTermBtn;
 
 @property(nonatomic, weak) id<ImportAccountHeaderViewDelegate> delegate;
 

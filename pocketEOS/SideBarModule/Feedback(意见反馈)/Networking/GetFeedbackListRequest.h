@@ -19,4 +19,6 @@
  */
 @property(nonatomic, strong) NSNumber *offset;
 
+@property(nonatomic , strong) NSNumber *uid;
+
 @end

@@ -85,11 +85,18 @@ typedef NS_ENUM(NSInteger, AddAssestsViewControllerCurrentAction) {
     return _searchSuggestiontTabelView;
 }
 
-
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-     self.mainService.get_recommand_token_request.accountName = self.accountName;
+    self.mainService.get_recommand_token_request.accountName = self.accountName;
     [self loadNewData];
+    [MobClick beginLogPageView:@"添加资产"]; //("Pagename"为页面名称，可自定义)
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"添加资产"];
 }
 
 - (void)viewDidLoad {

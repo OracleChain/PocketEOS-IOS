@@ -131,6 +131,7 @@
 }
 
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    [MobClick event:[NSString stringWithFormat:@"DApp_banner_%ld", index+1]];
     EnterpriseDetailViewController *vc = [[EnterpriseDetailViewController alloc] init];
     Enterprise *model = self.mainService.bannerDataArray[index];
     vc.model = model;
@@ -154,7 +155,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
-    
     if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
         QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

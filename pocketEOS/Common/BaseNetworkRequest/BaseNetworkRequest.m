@@ -151,6 +151,12 @@
     id parameters = [self parameters];
     NSLog(@"REQUEST_APIPATH = %@", REQUEST_APIPATH);
     NSLog(@"parameters = %@", parameters);
+    // 设置超时时间
+    [self.networkingManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    self.networkingManager.requestSerializer.timeoutInterval = 30.f;
+    [self.networkingManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    
+    
     self.sessionDataTask = [self.networkingManager GET:REQUEST_APIPATH parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject:%@", responseObject);
@@ -423,7 +429,7 @@
             success(weakSelf.networkingManager, responseObject);
         }
         [SVProgressHUD dismiss];
-        NSLog(@"responseObject %@", responseObject);
+//        NSLog(@"responseObject %@", responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
          NSLog(@"error ==%@", [error userInfo][@"com.alamofire.serialization.response.error.string"]);

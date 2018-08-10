@@ -3,7 +3,7 @@
 "ErJ-cW-hew.normalTitle" = "Switch";
 
 /* Class = "UILabel"; text = "发起收款"; ObjectID = "Jlu-D2-2df"; */
-"Jlu-D2-2df.text" = "make_collections";
+"Jlu-D2-2df.text" = "Recieve";
 
 /* Class = "UILabel"; text = "转账给他"; ObjectID = "Kfo-ik-BVT"; */
 "Kfo-ik-BVT.text" = "Send";

@@ -24,6 +24,7 @@
     tap.delegate = self;
     [self addGestureRecognizer:tap];
 }
+
 - (void)dismiss{
     if (self.delegate && [self.delegate respondsToSelector:@selector(backgroundViewDidClick)]) {
         [self.delegate backgroundViewDidClick];
