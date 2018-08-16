@@ -39,4 +39,12 @@
 
 + (NSData *)getBytesForSignature:(TypeChainId *)chainId andParams:(NSDictionary *)paramsDic andCapacity:(int)capacity;
 
+
+
+// ExcuteMultipleActions
++ (NSData *)getBytesForSignatureExcuteMultipleActions:(TypeChainId *)chainId andParams:(NSDictionary *)paramsDic andCapacity:(int)capacity;
+
+
+
+
 @end

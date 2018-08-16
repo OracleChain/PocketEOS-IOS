@@ -57,6 +57,14 @@
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         self.webView.scrollView.delegate = self;
+        
+        // 顶部出现空白
+        if (@available(iOS 11.0, *)) {
+            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+
+        }
         if (@available(iOS 9.0, *)) {
             self.webView.customUserAgent = @"PocketEosIos";
         } else {
@@ -137,7 +145,7 @@
         [btn setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
-        btn.frame = CGRectMake(0, 0, 30, 40);
+        btn.frame = CGRectMake(0, 0, 50, 40);
         _closeItem.customView = btn;
     }
     return _closeItem;
@@ -177,7 +185,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [MobClick event:@"DAppDidClick" label: VALIDATE_STRING(self.model.applyName)];
-//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
+    // 解决顶部出现空白
+    self.automaticallyAdjustsScrollViewInsets=NO;//自动滚动调整，默认为YES
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
@@ -268,7 +279,6 @@
 - (void)push{
     self.abi_json_to_binRequest.code = self.dappTransferResult.contract;
     self.mainService.code = self.dappTransferResult.contract;
-    
     self.abi_json_to_binRequest.action = self.dappTransferResult.action;
     self.mainService.action = self.dappTransferResult.action;
     self.abi_json_to_binRequest.args = [self.dappTransferResult.message mj_JSONObject];

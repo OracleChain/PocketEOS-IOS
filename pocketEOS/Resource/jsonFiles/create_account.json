@@ -1,0 +1,62 @@
+{
+  "type": "actions_QRCode",
+  "actions": [{
+      "account": "eosio",
+      "name": "newaccount",
+      "authorization": [{
+        "actor": "eosio",
+        "permission": "active"
+      }],
+      "data": {
+        "active": {
+          "accounts": [],
+          "keys": [{
+            "key": "EOS71JQbZbcyN1C7SMu7mJcjSaMSWvfzUPHHPHR58QSybq5Y2ybbE",
+            "weight": 1
+          }],
+          "threshold": 1,
+          "waits": []
+        },
+        "creator": "eosio",
+        "name": "feishen11111",
+        "owner": {
+          "accounts": [],
+          "keys": [{
+            "key": "EOS7JatpyTJ9FMtBvDGUxDZVY4qA8PEvBpt7ZP5QCjvMvV66BhVS2",
+            "weight": 1
+          }],
+          "threshold": 1,
+          "waits": []
+        }
+      }
+    },
+    {
+      "account": "eosio",
+      "name": "delegatebw",
+      "authorization": [{
+        "actor": "eosio",
+        "permission": "active"
+      }],
+      "data": {
+        "from": "eosio",
+        "receiver": "feishen11111",
+        "stake_cpu_quantity": "1.0000 SYS",
+        "stake_net_quantity": "2.0000 SYS",
+        "transfer": 0
+      }
+    },
+    {
+      "account": "eosio",
+      "name": "buyram",
+      "authorization": [{
+        "actor": "eosio",
+        "permission": "active"
+      }],
+     "data": {
+        "payer": "eosio",
+        "quant": "3.0000 SYS",
+        "receiver": "feishen11111"
+     }
+    }
+  ]
+}

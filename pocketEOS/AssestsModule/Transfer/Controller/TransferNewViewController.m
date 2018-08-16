@@ -379,8 +379,7 @@
 
 // loginPasswordViewDelegate
 - (void)cancleBtnDidClick:(UIButton *)sender{
-    [self.loginPasswordView removeFromSuperview];
-    self.loginPasswordView = nil;
+    [self removeLoginPasswordView];
 }
 
 - (void)confirmBtnDidClick:(UIButton *)sender{
@@ -395,7 +394,19 @@
         return;
     }
     self.transferAbi_json_to_bin_request.code = self.currentToken.contract_name;
-    self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f %@", self.headerView.amountTF.text.doubleValue, self.currentToken.token_symbol];
+    
+    if ([self.currentToken.balance isEqualToString:@"0"] || ( self.currentToken.balance.doubleValue  < self.headerView.amountTF.text.doubleValue)) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"余额不足", nil)];
+        [self removeLoginPasswordView];
+        return;
+    }else{
+        if ([NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance] == 3) {
+            self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.3f %@", self.headerView.amountTF.text.doubleValue, self.currentToken.token_symbol];
+        }else if ([NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance] == 4){
+            self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f %@", self.headerView.amountTF.text.doubleValue, self.currentToken.token_symbol];
+        }
+    }
+    
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = self.currentAccountName;
     self.transferAbi_json_to_bin_request.to = self.headerView.nameTF.text;
@@ -421,8 +432,7 @@
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
         [weakSelf.mainService pushTransaction];
-        [weakSelf.loginPasswordView removeFromSuperview];
-        weakSelf.loginPasswordView = nil;
+        [weakSelf removeLoginPasswordView];
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
@@ -573,5 +583,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
 }
 
+
+- (void)removeLoginPasswordView{
+    [self.loginPasswordView removeFromSuperview];
+    self.loginPasswordView = nil;
+}
 @end
 

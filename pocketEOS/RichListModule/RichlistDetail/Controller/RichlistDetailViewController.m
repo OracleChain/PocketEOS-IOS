@@ -174,6 +174,7 @@
         self.headerView.userNameLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(nameStr), NSLocalizedString(@"的钱包", nil)];
         [self.headerView.avatarImg sd_setImageWithURL:String_To_URL(self.model.avatar) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
         self.mainService.getWalletAccountsRequest.uid = self.model.uid;
+        self.mainService.getWalletAccountsRequest.fuid = CURRENT_WALLET_UID;
         [self.mainService getWalletAccountsRequest:^(WalletAccountsResult *result, BOOL isSuccess) {
             [weakSelf.mainTableView.mj_header endRefreshing];
             if (isSuccess) {

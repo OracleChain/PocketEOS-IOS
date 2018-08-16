@@ -23,6 +23,7 @@
 
 @property(nonatomic , assign) BOOL isSwitchOn;
 @property(nonatomic, strong) ExportPrivateKeyView *exportPrivateKeyView;
+@property (weak, nonatomic) IBOutlet BaseTextView *bottomTipTextView;
 
 @end
 
@@ -66,6 +67,8 @@
     .LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"shield_BB"])
     .LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"shield"]);
 
+    self.tipTextView.text = NSLocalizedString(@"确认没有被人窥视或拍照打开右侧按钮查看您的私钥", nil);
+    self.bottomTipTextView.text = NSLocalizedString(@"我们建议您将私钥用纸笔抄下来，并放在安全且不会被遗忘的地方。您也可以通过复制私钥的方式进行备份，但将私钥存储在电子设备中可能会带来额外的危险，如数据丢失、数据被盗等。", nil);
     
 }
 

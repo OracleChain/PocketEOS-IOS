@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,7 +35,7 @@
                             </constraints>
                         </imageView>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9N-L0-8CU">
-                            <rect key="frame" x="264" y="68" width="53" height="30"/>
+                            <rect key="frame" x="264" y="67.5" width="53" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="51" id="HK6-tf-NhU"/>
                                 <constraint firstAttribute="height" constant="30" id="ago-lh-HfX"/>
@@ -54,9 +54,9 @@
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="确认没有被人窥视或拍照打开右侧按钮查看您的私钥" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxk-Uz-eGH">
-                            <rect key="frame" x="54" y="57.5" width="177" height="60"/>
+                            <rect key="frame" x="54" y="47.5" width="177" height="80"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="idw-LL-hub"/>
+                                <constraint firstAttribute="height" constant="80" id="idw-LL-hub"/>
                             </constraints>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -76,7 +76,7 @@
                         <constraint firstItem="Vlr-Xy-OcE" firstAttribute="leading" secondItem="ghO-zD-qRK" secondAttribute="leading" constant="20" id="wwh-bj-0Vb"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-UO-spw" customClass="BaseTextView">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-UO-spw" userLabel="bottomTipTextView" customClass="BaseTextView">
                     <rect key="frame" x="20" y="227.5" width="335" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -123,6 +123,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backupImageView" destination="Vlr-Xy-OcE" id="2BB-Wl-LjK"/>
+                <outlet property="bottomTipTextView" destination="1Ls-UO-spw" id="I5r-rD-Hnf"/>
                 <outlet property="contentBackgroundView" destination="ghO-zD-qRK" id="GDV-L3-113"/>
                 <outlet property="tipTextView" destination="Mxk-Uz-eGH" id="WVb-xK-gDr"/>
             </connections>

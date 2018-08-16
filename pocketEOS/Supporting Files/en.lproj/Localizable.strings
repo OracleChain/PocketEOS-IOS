@@ -417,7 +417,7 @@
  */
 "滑动销毁钱包"="Slide to Burn Your Wallet Away";
 "将滑块滑动到右侧指定位置内即可销毁"="Slide to the specific postion and Burn your wallet.";
-"个人设置"="Me";
+"个人中心"="Me";
 "未绑定微信"="WeChat not bind";
 "未绑定QQ"="QQ not bind";
 "已绑定"="bind success";
@@ -661,3 +661,39 @@
  */
 "元"="";
 "账号已存在"="Account already exist";
+"警告"="Warning";
+"离开本页面将导致私钥丢失，由此造成的损失将由您自行承担!"="Depart will lose private keys，and yourself should bear the loss !";
+"继续操作"="Stay In";
+"确认离开"="Depart";
+
+/*
+ ImportAccountHeaderView.m
+ */
+"输入Owner私钥"="Please input your private key";
+"输入Active私钥"="Please input your private key";
+
+/*
+ ExcuteActionsViewController.m
+ */
+"签名内容"="Signature";
+"签名成功"="Sign Success";
+"确认签名"="Sign";
+"您钱包中暂无操作账号"="The required account is not in your wallet";
+
+/*
+ ExcuteActionsContentTableViewCell.m
+ */
+"合约名字"="Contract Account";
+"动作"="Action";
+"操作账号"="Signature Account";
+"内容"="Data";
+
+/*
+ BackupAccountHeaderView.m
+ */
+"确认没有被人窥视或拍照打开右侧按钮查看您的私钥"="Make sure your screen is not be peed at or took photo of \nThen you could switch on to see your private key.";
+"我们建议您将私钥用纸笔抄下来，并放在安全且不会被遗忘的地方。您也可以通过复制私钥的方式进行备份，但将私钥存储在电子设备中可能会带来额外的危险，如数据丢失、数据被盗等。"="We recommend writing down your private key and keep it safely. \nYou could copy it anyway，but the eletronic backup may cause additonal risks, like data corruption, hacker and so on.";
+
+
+
+

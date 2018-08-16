@@ -11,4 +11,5 @@
 
 @interface GetWalletAccountsRequest : BaseNetworkRequest
 @property(nonatomic, strong) NSString *uid;
+@property(nonatomic, strong) NSString *fuid;
 @end

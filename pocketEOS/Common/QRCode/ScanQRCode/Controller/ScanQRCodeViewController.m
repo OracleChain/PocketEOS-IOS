@@ -19,6 +19,7 @@
 #import "TransferModel.h"
 #import "Get_token_info_service.h"
 #import "RecieveTokenModel.h"
+#import "ExcuteActionsViewController.h"
 
 static const CGFloat kBorderW = 100;
 static const CGFloat kMargin = 30;
@@ -157,6 +158,11 @@ static const CGFloat kMargin = 30;
         vc.recieveTokenModel = model;
         vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([scannedResult containsString:@"actions_QRCode"]){
+        // excute actions
+        ExcuteActionsViewController *vc = [[ExcuteActionsViewController alloc] init];
+        vc.actionsResultDict = scannedResult;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"scannedResult" message: VALIDATE_STRING(scannedResult) delegate:self cancelButtonTitle:@"cancle" otherButtonTitles: nil];
         [alert show];
@@ -291,5 +297,7 @@ static const CGFloat kMargin = 30;
 -(void)rightBtnDidClick{
     [self myAlbum];
 }
+
+
 
 @end

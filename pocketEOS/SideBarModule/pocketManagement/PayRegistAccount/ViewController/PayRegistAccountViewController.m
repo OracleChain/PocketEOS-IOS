@@ -7,8 +7,7 @@
 //
 
 typedef NS_ENUM(NSInteger, PaymentWay) {
-    PaymentWayNone = 0,
-    PaymentWayAlipay ,
+    PaymentWayAlipay =0,
     PaymentWayWechat
 };
 
@@ -32,6 +31,10 @@ typedef NS_ENUM(NSInteger, PaymentWay) {
 #import "WechatPayRespModel.h"
 #import "AlipayRespResult.h"
 #import "AlipayResultModel.h"
+#import "GetAccountOrderStatusRequest.h"
+#import "AccountOrderStatus.h"
+#import "AccountOrderStatusResult.h"
+
 
 
 NSString * const AlipayDidFinishNotification = @"AlipayDidFinishNotification";
@@ -49,6 +52,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 @property(nonatomic , strong) EosPrivateKey *ownerPrivateKey;
 @property(nonatomic , strong) EosPrivateKey *activePrivateKey;
 @property(nonatomic , strong) CreateAccountResourceResult *createAccountResourceResult;
+@property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
 @end
 
 @implementation PayRegistAccountViewController
@@ -103,6 +107,13 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     return _payRegistAccountService;
 }
 
+- (GetAccountOrderStatusRequest *)getAccountOrderStatusRequest{
+    if (!_getAccountOrderStatusRequest) {
+        _getAccountOrderStatusRequest = [[GetAccountOrderStatusRequest alloc] init];
+    }
+    return _getAccountOrderStatusRequest;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
@@ -138,6 +149,35 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     self.headerView.privateKeyBeDiffrentModeBtn.selected = YES;
 }
 
+- (void)continuPayBtnDidClick{
+    [self.view addSubview:self.paymentTipView];
+    self.paymentTipView.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",self.createAccountResourceResult.data.cnyCost.floatValue / 100, NSLocalizedString(@"元", nil)];
+}
+
+
+- (void)payCompletedBtnDidClick{
+    // request order
+    WS(weakSelf);
+    self.getAccountOrderStatusRequest.accountName = self.headerView.accountNameTF.text;
+    self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    [self.getAccountOrderStatusRequest getDataSusscess:^(id DAO, id data) {
+//        public static Integer statusUnGetMoney = 0;//为付款
+//        public static Integer statusOk = 1;//创建成功
+//        public static Integer statusWait = 2;//等待创建-已经收到宽
+//        public static Integer statusDiscarded = 3;//
+//        public static Integer statusCreateByOthers = 4;//被其他用户抢占
+        AccountOrderStatusResult *result = [AccountOrderStatusResult mj_objectWithKeyValues:data];
+        if ([result.code isEqualToNumber:@0]) {
+            if ([result.data.createStatus isEqualToNumber:@1] || [result.data.createStatus isEqualToNumber:@2]) {
+                [weakSelf storeAccountInfoToLocalDatabase];
+            }else{
+                [TOASTVIEW showWithText:result.data.message];
+            }
+        }
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
 
 - (void)createBtnDidClick:(UIButton *)sender{
     if (IsStrEmpty(self.headerView.accountNameTF.text) ) {
@@ -180,7 +220,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
-    [self.loginPasswordView removeFromSuperview];
+    [self removeLoginPasswordView];
 }
 
 -(void)confirmBtnDidClick:(UIButton *)sender{
@@ -221,19 +261,22 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 - (void)confirmPayBtnDidClick:(UIButton *)sender{
     [self configCreateAccountOrderRequestParams];
     
-    if (self.paymentWay == PaymentWayNone) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"请选择付款方式", nil)];
-    }else if (self.paymentWay == PaymentWayAlipay){
+    if (self.paymentWay == PaymentWayAlipay){
         // open alipay
+        [self showTwoBtnView];
         [self doAPPay];
         [self removePaymentTipView];
-        
     }else if (self.paymentWay == PaymentWayWechat){
         // open wechatPay
+        [self showTwoBtnView];
         [self bizPay];
         [self removePaymentTipView];
     }
-    
+}
+
+- (void)showTwoBtnView{
+    self.headerView.confirmPayBtn.hidden = YES;
+    self.headerView.twoBtnBaseView.hidden = NO;
 }
 
 - (void)bizPay {
@@ -379,11 +422,32 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 
 // NavigationViewDelegate
 -(void)leftBtnDidClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    WS(weakSelf);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"警告", nil) message:NSLocalizedString(@"离开本页面将导致私钥丢失，由此造成的损失将由您自行承担!", nil) preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"继续操作", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"点击了取消");
+    }];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"确认离开", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [alert addAction:action1];
+    [alert addAction:action2];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+  
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)removeLoginPasswordView{
+    [self.loginPasswordView removeFromSuperview];
+    self.loginPasswordView = nil;
 }
 
 @end

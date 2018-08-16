@@ -15,6 +15,8 @@
 }
 
 -(id)parameters{
-    return @{@"uid" : VALIDATE_STRING(self.uid)};
+    return @{@"uid" : VALIDATE_STRING(self.uid),
+             @"fuid" : VALIDATE_STRING(self.fuid)
+             };
 }
 @end

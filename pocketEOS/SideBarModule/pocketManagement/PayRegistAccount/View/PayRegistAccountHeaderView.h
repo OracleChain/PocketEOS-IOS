@@ -15,6 +15,8 @@
 - (void)privateKeyBeSameModeBtnDidClick:(UIButton *)sender;
 - (void)privateKeyBeDiffrentModeBtnDidClick:(UIButton *)sender;
 - (void)createBtnDidClick:(UIButton *)sender;
+- (void)continuPayBtnDidClick;
+- (void)payCompletedBtnDidClick;
 @end
 
 
@@ -31,6 +33,14 @@
  双私钥模式 (推荐资深用户使用)
  */
 @property (weak, nonatomic) IBOutlet UIButton *privateKeyBeDiffrentModeBtn;
+@property (weak, nonatomic) IBOutlet BaseConfirmButton *confirmPayBtn;
+
+@property (weak, nonatomic) IBOutlet BaseConfirmButton *continuPayBtn;
+
+@property (weak, nonatomic) IBOutlet BaseConfirmButton *payCompletedBtn;
+@property (weak, nonatomic) IBOutlet UIView *twoBtnBaseView;
+
+
 
 @property(nonatomic, weak) id<PayRegistAccountHeaderViewDelegate> delegate;
 

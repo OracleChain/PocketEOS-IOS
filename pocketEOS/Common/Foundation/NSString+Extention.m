@@ -117,4 +117,18 @@
     NSLog(@"CacheSize:%@",string);
     return string;
 }
+
+/**
+ 获取小数字符串的精度
+ */
++ (NSUInteger)getDecimalStringPercisionWithDecimalStr:(NSString *)decimalStr{
+    NSArray *tmpArr = [decimalStr componentsSeparatedByString:@"."];
+    NSString *tmpStr ;
+    if (tmpArr.count > 1) {
+        tmpStr = tmpArr[1];
+    }
+//    %.4f
+    return tmpStr.length;
+}
+
 @end

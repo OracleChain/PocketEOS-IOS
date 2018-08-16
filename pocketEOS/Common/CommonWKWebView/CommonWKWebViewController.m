@@ -32,6 +32,16 @@
         self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) configuration:configuration];
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
+        
+        
+        // 顶部出现空白
+        if (@available(iOS 11.0, *)) {
+            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+            
+        }
+        
         if (@available(iOS 9.0, *)) {
             self.webView.customUserAgent = @"PocketEosIos";
         } else {
@@ -62,6 +72,11 @@
 //    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 //    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
 //    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
+    
+    // 解决顶部出现空白
+    self.automaticallyAdjustsScrollViewInsets=NO;//自动滚动调整，默认为YES
+    
+    
     
     [self.view addSubview:self.webView];
     self.view.backgroundColor = HEXCOLOR(0xFFFFFF);

@@ -597,6 +597,7 @@
 
 //AccountNotExistViewDelegate
 - (void)checkAccountStatusBtnDidClick{
+    [SVProgressHUD showWithStatus:nil];
     [self loadNewData];
 }
 

@@ -213,5 +213,66 @@
     return [writer toBytes];
 }
 
+// ExcuteMultipleActions
++ (NSData *)getBytesForSignatureExcuteMultipleActions:(TypeChainId *)chainId andParams:(NSDictionary *)paramsDic andCapacity:(int)capacity{
+    EosByteWriter *writer = [[EosByteWriter alloc] initWithCapacity:capacity];
+    if (chainId) {
+        [writer putBytes:chainId ];
+    }
+    [writer putIntLE: (int)[NSDate getTimeStampUTCWithTimeString:[paramsDic objectForKey:@"expiration"]]];
+    
+    long  max_net_usage_words=0, max_kcpu_usage=0, delay_sec =0; // uint16_t
+    
+    [writer putShortLE: (short)([[[JKBigInteger alloc] initWithString:[paramsDic objectForKey:@"ref_block_num"] ] intValue] & 0xFFFF) ];// uint16
+    [writer putIntLE:[[[JKBigInteger alloc] initWithString:[paramsDic objectForKey:@"ref_block_prefix"] ] intValue] & 0xFFFFFFFF];// uint32
+    
+    // fc::unsigned_int
+    [writer putVariableUInt:max_net_usage_words];
+    [writer putVariableUInt:max_kcpu_usage];
+    [writer putVariableUInt:delay_sec];
+    
+    // putCollection 系列,
+    //context_free_actions
+    [writer putVariableUInt:0];
+    
+    // actions
+    NSArray *actions = paramsDic[@"actions"];
+    [writer putVariableUInt:actions.count];
+    
+    for (int i = 0; i < actions.count; i++) {
+        NSMutableDictionary *actionDic = actions[i];
+        [writer putLongLE:[NSObject string_to_long:actionDic[@"account"]]];
+        [writer putLongLE:[NSObject string_to_long:actionDic[@"name"]]];
+        
+        
+        // authorizationArray
+        NSArray *authorizationArr = [actionDic objectForKey:@"authorization"];
+        [writer putVariableUInt:authorizationArr.count];
+        NSDictionary *authorizationDic = authorizationArr[0];
+        [writer putLongLE:[NSObject string_to_long:authorizationDic[@"actor"]]];
+        [writer putLongLE:[NSObject string_to_long:authorizationDic[@"permission"]]];
+        
+        NSString *data = [actionDic objectForKey:@"data"];
+        if (NULL != data) {
+            NSData *dataAsBytes = [NSObject convertHexStrToData:data];
+            [writer putVariableUInt:dataAsBytes.length];
+            [writer putBytes:dataAsBytes];
+        }else{
+            [writer putVariableUInt:0];
+        }
+        
+    }
+    
+    
+    //transaction_extensions :: add transaction_extensions in transaction, although it deos not support yet.
+    [writer putVariableUInt:0];
+    
+    TypeChainId *chainId1 = [[TypeChainId alloc] init];
+    [writer putBytes:[chainId1 chainId]];
+    
+    return [writer toBytes];
+}
+
+
 @end
 

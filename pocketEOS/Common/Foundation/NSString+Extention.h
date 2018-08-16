@@ -54,4 +54,12 @@
 
 //NSFileManager计算文件/文件夹大小
 - (NSString *)fileSize;
+
+
+
+/**
+ 获取小数字符串的精度
+ */
++ (NSUInteger)getDecimalStringPercisionWithDecimalStr:(NSString *)decimalStr;
+
 @end

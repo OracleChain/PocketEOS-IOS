@@ -11,11 +11,11 @@
 /* Class = "UIButton"; normalTitle = "暂不导入owner权限"; ObjectID = "N5W-Xs-yWO"; */
 "N5W-Xs-yWO.normalTitle" = "暂不导入owner权限";
 
-/* Class = "UITextField"; placeholder = "输入Owner私钥"; ObjectID = "PeK-6E-GwQ"; */
-"PeK-6E-GwQ.placeholder" = "输入Owner私钥";
+/* Class = "UITextView"; placeholder = "输入Owner私钥"; ObjectID = "uRR-sm-7H4"; */
+"uRR-sm-7H4.placeholder" = "输入Owner私钥";
 
-/* Class = "UITextField"; placeholder = "输入Active私钥"; ObjectID = "YZ3-EG-Glv"; */
-"YZ3-EG-Glv.placeholder" = "输入Active私钥";
+/* Class = "UITextView"; placeholder = "输入Active私钥"; ObjectID = "EBf-P3-pdK"; */
+"EBf-P3-pdK.placeholder" = "输入Active私钥";
 
 /* Class = "UILabel"; text = "Active私钥"; ObjectID = "hP7-xV-Xlj"; */
 "hP7-xV-Xlj.text" = "Active私钥";

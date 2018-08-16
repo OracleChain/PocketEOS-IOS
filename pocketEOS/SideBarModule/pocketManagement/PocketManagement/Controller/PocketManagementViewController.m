@@ -158,7 +158,7 @@
 
 -(void)rightBtnDidClick{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = @"PockSecureDeclare";
+    vc.rtfFileName = NSLocalizedString(@"安全说明", nil);
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -8,9 +8,20 @@
 
 #import "ImportAccountHeaderView.h"
 
+@interface ImportAccountHeaderView()
+
+
+@end
 
 
 @implementation ImportAccountHeaderView
+
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    self.private_activeKey_tf.placeholder = NSLocalizedString(@"输入Active私钥", nil);
+    self.private_ownerKey_TF.placeholder = NSLocalizedString(@"输入Owner私钥", nil);
+    
+}
 
 - (IBAction)import:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(importBtnDidClick:)]) {

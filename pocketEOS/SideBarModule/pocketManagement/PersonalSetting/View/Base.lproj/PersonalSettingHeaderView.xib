@@ -195,7 +195,7 @@
                         <constraint firstAttribute="bottom" secondItem="tpU-ZW-MeK" secondAttribute="bottom" constant="10" id="znE-5Q-1Sy"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JN6-Fe-OQl" userLabel="baseView4">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JN6-Fe-OQl" userLabel="baseView4">
                     <rect key="frame" x="0.0" y="195" width="375" height="56"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziY-Dm-xVG">

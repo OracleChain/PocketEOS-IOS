@@ -33,6 +33,21 @@
     }
 }
 
+
+- (IBAction)continuPayBtnClick:(BaseConfirmButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(continuPayBtnDidClick)]) {
+        [self.delegate continuPayBtnDidClick];
+    }
+}
+
+
+- (IBAction)payCompletedBtnClick:(BaseConfirmButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(payCompletedBtnDidClick)]) {
+        [self.delegate payCompletedBtnDidClick];
+    }
+}
+
+
 - (IBAction)privateKeyBeSameModeBtn:(UIButton *)sender {
     sender.selected = !sender.isSelected;
     if (self.delegate && [self.delegate respondsToSelector:@selector(privateKeyBeSameModeBtnDidClick:)]) {
@@ -49,7 +64,7 @@
 
 
 - (void)updateViewWithResourceModel:(CreateAccountResourceRespModel *)model{
-    self.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",model.cnyCost.floatValue / 100, NSLocalizedString(@"元", nil)];
+    self.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",model.cnyCost.floatValue / 100, NSLocalizedString(@"", nil)];
     self.cpuDetailLabel.text = model.cpu;
     self.netDetailLabel.text = model.net;
     self.ramDetailLabel.text = model.ram;

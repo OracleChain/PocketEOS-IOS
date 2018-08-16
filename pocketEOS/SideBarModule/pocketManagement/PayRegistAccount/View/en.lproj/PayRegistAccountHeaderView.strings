@@ -26,5 +26,15 @@
 /* Class = "UIButton"; normalTitle = "确认付款"; ObjectID = "tWO-aq-uDX"; */
 "tWO-aq-uDX.normalTitle" = "Confirm to pay";
 
+/* Class = "UIButton"; normalTitle = "继续支付"; ObjectID = "jOY-Hw-nv5"; */
+"jOY-Hw-nv5.normalTitle" = "To Pay";
+
+/* Class = "UIButton"; normalTitle = "完成支付"; ObjectID = "I9l-Cz-uya"; */
+"I9l-Cz-uya.normalTitle" = "Payed";
+
 /* Class = "UIButton"; normalTitle = "双私钥模式 (推荐资深用户使用)"; ObjectID = "uOa-mf-sPp"; */
 "uOa-mf-sPp.normalTitle" = "Dual private key (Recommended)";
+
+
+
+

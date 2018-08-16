@@ -12,6 +12,8 @@
 
 @property(nonatomic , copy) NSString *accountName;
 
+
+//statusOk = 1; statusWait = 2; statusDiscarded = 3; statusCreateByOthers = 4; orderNotExist=5;
 @property(nonatomic , strong) NSNumber *createStatus;
 
 @property(nonatomic , copy) NSString *message;
