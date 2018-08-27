@@ -17,6 +17,7 @@
 #import "PocketManagementHeaderView.h"
 #import "AddAccountViewController.h"
 #import "PersonalSettingViewController.h"
+#import "ImportAccountsRequest.h"
 
 @interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate, PocketManagementHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -24,6 +25,7 @@
 @property(nonatomic, strong) ChangePasswordView *changePasswordView;
 @property (nonatomic ,retain)UIDocumentInteractionController *documentController;
 @property(nonatomic, strong) PocketManagementHeaderView *headerView;
+@property(nonatomic , strong) ImportAccountsRequest *importAccountsRequest;
 @end
 
 @implementation PocketManagementViewController
@@ -72,6 +74,13 @@
     return _mainService;
 }
 
+- (ImportAccountsRequest *)importAccountsRequest{
+    if (!_importAccountsRequest) {
+        _importAccountsRequest = [[ImportAccountsRequest alloc] init];
+    }
+    return _importAccountsRequest;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self buildDataSource];
@@ -95,6 +104,7 @@
     self.mainTableView.mj_header.hidden = YES;
     self.mainTableView.mj_footer.hidden = YES;
     [self buildDataSource];
+    [self importAccountsToServer];
 }
 
 - (void)buildDataSource{ 
@@ -103,6 +113,16 @@
         if (isSuccess) {
             [weakSelf.mainTableView reloadData];
         }
+    }];
+}
+
+- (void)importAccountsToServer{
+    NSArray *array = [[AccountsTableManager accountTable] selectAllNativeAccountName];
+    self.importAccountsRequest.accountList = array;
+    [self.importAccountsRequest postOuterDataSuccess:^(id DAO, id data) {
+        NSLog(@"%@", data);
+    } failure:^(id DAO, NSError *error) {
+        NSLog(@"%@", error);
     }];
 }
 

@@ -275,6 +275,9 @@
 		183348921FCE770100884107 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 183348911FCE770100884107 /* CALayer+XibConfiguration.m */; };
 		183348D31FCE7F3E00884107 /* PocketEOS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183348D11FCE7F3E00884107 /* PocketEOS@2x.png */; };
 		183348D41FCE7F3E00884107 /* PocketEOS@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183348D21FCE7F3E00884107 /* PocketEOS@3x.png */; };
+		18351656212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18351655212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.m */; };
+		18351659212FFCD300F074E7 /* DappExcuteActionsDataSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18351658212FFCD300F074E7 /* DappExcuteActionsDataSourceService.m */; };
+		1835165C2130055700F074E7 /* DAppExcuteActionsContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835165B2130055700F074E7 /* DAppExcuteActionsContentCell.m */; };
 		1835771D21003F0900F075EA /* Delete_user_custom_token_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835771C21003F0900F075EA /* Delete_user_custom_token_request.m */; };
 		1835772621007F6200F075EA /* RecommandTokensResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835772521007F6200F075EA /* RecommandTokensResult.m */; };
 		183577292100A56300F075EA /* Get_token_info_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 183577282100A56300F075EA /* Get_token_info_request.m */; };
@@ -576,6 +579,8 @@
 		186050F22027FF7C00C87DDF /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 186050F12027FF7C00C87DDF /* Question.m */; };
 		186050F5202809AD00C87DDF /* QuestionListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186050F4202809AD00C87DDF /* QuestionListTableViewCell.m */; };
 		1860510B2028456B00C87DDF /* WkDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1860510A2028456B00C87DDF /* WkDelegateController.m */; };
+		1860C60B2133A04500E39056 /* DAppExcuteMutipleActionsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1860C60A2133A04500E39056 /* DAppExcuteMutipleActionsResult.m */; };
+		1860C60D2133A9BD00E39056 /* TransferToMoreAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 1860C60C2133A9BD00E39056 /* TransferToMoreAccount.json */; };
 		1861BA6C1FFCB74900404058 /* StringConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861BA6B1FFCB74900404058 /* StringConstant.m */; };
 		1861BA6F1FFCC7E900404058 /* IndexTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861BA6E1FFCC7E900404058 /* IndexTipView.m */; };
 		1862E76220DB43EB00F26629 /* CreateEOSAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862E76120DB43EB00F26629 /* CreateEOSAccountRequest.m */; };
@@ -1078,6 +1083,16 @@
 		18F054E520CBC92A001B0A29 /* BPVoteAmountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F054E420CBC92A001B0A29 /* BPVoteAmountHeaderView.m */; };
 		18F054EA20CBE8AB001B0A29 /* GetBPCandidateListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F054E920CBE8AB001B0A29 /* GetBPCandidateListRequest.m */; };
 		18F054ED20CBEBF2001B0A29 /* BPCandidateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F054EC20CBEBF2001B0A29 /* BPCandidateModel.m */; };
+		18F576C2212BE37200AE54E9 /* TransferRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576C1212BE37200AE54E9 /* TransferRecordsViewController.m */; };
+		18F576C5212BE4A100AE54E9 /* TransferRecordsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576C4212BE4A100AE54E9 /* TransferRecordsHeaderView.m */; };
+		18F576C8212BE58600AE54E9 /* TransferRecordsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576C7212BE58600AE54E9 /* TransferRecordsService.m */; };
+		18F576CB212BE9F900AE54E9 /* TransferRecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576CA212BE9F900AE54E9 /* TransferRecordsTableViewCell.m */; };
+		18F576CD212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F576CC212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib */; };
+		18F576D5212C087800AE54E9 /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576D4212C087800AE54E9 /* TransferDetailsViewController.m */; };
+		18F576D8212C094C00AE54E9 /* TransferDetailsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576D7212C094C00AE54E9 /* TransferDetailsService.m */; };
+		18F576DB212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F576DA212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m */; };
+		18F5771D212D42DD00AE54E9 /* RedPacketRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5771C212D42DD00AE54E9 /* RedPacketRecordsViewController.m */; };
+		18F57720212D5D5300AE54E9 /* ImportAccountsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5771F212D5D5300AE54E9 /* ImportAccountsRequest.m */; };
 		18FA76C820623C6D00545E73 /* EcDsa.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA76BE20623C6C00545E73 /* EcDsa.m */; };
 		18FA76C920623C6D00545E73 /* TypeChainId.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA76BF20623C6C00545E73 /* TypeChainId.m */; };
 		18FA76CA20623C6D00545E73 /* EosPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA76C020623C6D00545E73 /* EosPrivateKey.m */; };
@@ -1604,6 +1619,12 @@
 		183348911FCE770100884107 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		183348D11FCE7F3E00884107 /* PocketEOS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PocketEOS@2x.png"; sourceTree = "<group>"; };
 		183348D21FCE7F3E00884107 /* PocketEOS@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PocketEOS@3x.png"; sourceTree = "<group>"; };
+		18351654212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DAppExcuteMutipleActionsBaseView.h; sourceTree = "<group>"; };
+		18351655212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DAppExcuteMutipleActionsBaseView.m; sourceTree = "<group>"; };
+		18351657212FFCD300F074E7 /* DappExcuteActionsDataSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappExcuteActionsDataSourceService.h; sourceTree = "<group>"; };
+		18351658212FFCD300F074E7 /* DappExcuteActionsDataSourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappExcuteActionsDataSourceService.m; sourceTree = "<group>"; };
+		1835165A2130055700F074E7 /* DAppExcuteActionsContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DAppExcuteActionsContentCell.h; sourceTree = "<group>"; };
+		1835165B2130055700F074E7 /* DAppExcuteActionsContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DAppExcuteActionsContentCell.m; sourceTree = "<group>"; };
 		1835771B21003F0900F075EA /* Delete_user_custom_token_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Delete_user_custom_token_request.h; sourceTree = "<group>"; };
 		1835771C21003F0900F075EA /* Delete_user_custom_token_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Delete_user_custom_token_request.m; sourceTree = "<group>"; };
 		1835772421007F6200F075EA /* RecommandTokensResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommandTokensResult.h; sourceTree = "<group>"; };
@@ -2103,6 +2124,9 @@
 		186050F4202809AD00C87DDF /* QuestionListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionListTableViewCell.m; sourceTree = "<group>"; };
 		186051092028456B00C87DDF /* WkDelegateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WkDelegateController.h; sourceTree = "<group>"; };
 		1860510A2028456B00C87DDF /* WkDelegateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WkDelegateController.m; sourceTree = "<group>"; };
+		1860C6092133A04500E39056 /* DAppExcuteMutipleActionsResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DAppExcuteMutipleActionsResult.h; sourceTree = "<group>"; };
+		1860C60A2133A04500E39056 /* DAppExcuteMutipleActionsResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DAppExcuteMutipleActionsResult.m; sourceTree = "<group>"; };
+		1860C60C2133A9BD00E39056 /* TransferToMoreAccount.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TransferToMoreAccount.json; sourceTree = "<group>"; };
 		1861BA6A1FFCB74900404058 /* StringConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringConstant.h; sourceTree = "<group>"; };
 		1861BA6B1FFCB74900404058 /* StringConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringConstant.m; sourceTree = "<group>"; };
 		1861BA6D1FFCC7E900404058 /* IndexTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexTipView.h; sourceTree = "<group>"; };
@@ -2994,6 +3018,25 @@
 		18F054E920CBE8AB001B0A29 /* GetBPCandidateListRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetBPCandidateListRequest.m; sourceTree = "<group>"; };
 		18F054EB20CBEBF2001B0A29 /* BPCandidateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPCandidateModel.h; sourceTree = "<group>"; };
 		18F054EC20CBEBF2001B0A29 /* BPCandidateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPCandidateModel.m; sourceTree = "<group>"; };
+		18F576C0212BE37200AE54E9 /* TransferRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferRecordsViewController.h; sourceTree = "<group>"; };
+		18F576C1212BE37200AE54E9 /* TransferRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferRecordsViewController.m; sourceTree = "<group>"; };
+		18F576C3212BE4A100AE54E9 /* TransferRecordsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferRecordsHeaderView.h; sourceTree = "<group>"; };
+		18F576C4212BE4A100AE54E9 /* TransferRecordsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferRecordsHeaderView.m; sourceTree = "<group>"; };
+		18F576C6212BE58600AE54E9 /* TransferRecordsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferRecordsService.h; sourceTree = "<group>"; };
+		18F576C7212BE58600AE54E9 /* TransferRecordsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferRecordsService.m; sourceTree = "<group>"; };
+		18F576C9212BE9F900AE54E9 /* TransferRecordsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferRecordsTableViewCell.h; sourceTree = "<group>"; };
+		18F576CA212BE9F900AE54E9 /* TransferRecordsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferRecordsTableViewCell.m; sourceTree = "<group>"; };
+		18F576CC212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferRecordsHeaderView.xib; sourceTree = "<group>"; };
+		18F576D3212C087800AE54E9 /* TransferDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
+		18F576D4212C087800AE54E9 /* TransferDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
+		18F576D6212C094C00AE54E9 /* TransferDetailsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferDetailsService.h; sourceTree = "<group>"; };
+		18F576D7212C094C00AE54E9 /* TransferDetailsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsService.m; sourceTree = "<group>"; };
+		18F576D9212C0D5F00AE54E9 /* TransferDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferDetailsTableViewCell.h; sourceTree = "<group>"; };
+		18F576DA212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsTableViewCell.m; sourceTree = "<group>"; };
+		18F5771B212D42DD00AE54E9 /* RedPacketRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketRecordsViewController.h; sourceTree = "<group>"; };
+		18F5771C212D42DD00AE54E9 /* RedPacketRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketRecordsViewController.m; sourceTree = "<group>"; };
+		18F5771E212D5D5300AE54E9 /* ImportAccountsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportAccountsRequest.h; sourceTree = "<group>"; };
+		18F5771F212D5D5300AE54E9 /* ImportAccountsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportAccountsRequest.m; sourceTree = "<group>"; };
 		18FA76BC20623C6C00545E73 /* EOS_Key_Encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EOS_Key_Encode.h; sourceTree = "<group>"; };
 		18FA76BD20623C6C00545E73 /* Sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sha256.h; sourceTree = "<group>"; };
 		18FA76BE20623C6C00545E73 /* EcDsa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EcDsa.m; sourceTree = "<group>"; };
@@ -4214,6 +4257,53 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		1835164F212FE51800F074E7 /* DAppExcuteMutipleActions */ = {
+			isa = PBXGroup;
+			children = (
+				18351650212FE51800F074E7 /* Model */,
+				18351651212FE51800F074E7 /* View */,
+				18351652212FE51800F074E7 /* Service */,
+				18351653212FE51800F074E7 /* ViewController */,
+			);
+			path = DAppExcuteMutipleActions;
+			sourceTree = "<group>";
+		};
+		18351650212FE51800F074E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1860C6092133A04500E39056 /* DAppExcuteMutipleActionsResult.h */,
+				1860C60A2133A04500E39056 /* DAppExcuteMutipleActionsResult.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18351651212FE51800F074E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18351654212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.h */,
+				18351655212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.m */,
+				1835165A2130055700F074E7 /* DAppExcuteActionsContentCell.h */,
+				1835165B2130055700F074E7 /* DAppExcuteActionsContentCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18351652212FE51800F074E7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18351657212FFCD300F074E7 /* DappExcuteActionsDataSourceService.h */,
+				18351658212FFCD300F074E7 /* DappExcuteActionsDataSourceService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18351653212FE51800F074E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		18372D522063C9FF004D19D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -4825,6 +4915,7 @@
 			children = (
 				1850338E20EF536B0023B390 /* CountryAreaCode.json */,
 				18C9E8C12122887200BC2AEA /* create_account.json */,
+				1860C60C2133A9BD00E39056 /* TransferToMoreAccount.json */,
 			);
 			path = jsonFiles;
 			sourceTree = "<group>";
@@ -5865,6 +5956,8 @@
 		187268321FDE315F00C898D1 /* SideBarModule */ = {
 			isa = PBXGroup;
 			children = (
+				18F576CE212C086700AE54E9 /* TransferDetails */,
+				18F576BB212BE35D00AE54E9 /* TransferRecords */,
 				1856E666210AB9B8008EFC88 /* AddAccount */,
 				18BCAF1420BFD8D500571577 /* BPVote */,
 				18B276F320B7A8590070F472 /* Specification */,
@@ -7603,6 +7696,7 @@
 		18E72E011FCC0EBD00D09CA3 /* ApplicationModule */ = {
 			isa = PBXGroup;
 			children = (
+				1835164F212FE51800F074E7 /* DAppExcuteMutipleActions */,
 				18E72E141FCC0FF300D09CA3 /* ApplicationMain */,
 				183226F720A2A74D00BF6D6F /* DappDetail */,
 				1864C0E91FE3AF8500031547 /* ApplicationDetail */,
@@ -7622,6 +7716,7 @@
 				18C6228D1FD637DE0043447F /* Transfer */,
 				18C622971FD637DE0043447F /* Recieve */,
 				18C622921FD637DE0043447F /* RedPacket */,
+				18F57716212D42B900AE54E9 /* RedPacketRecords */,
 				18563F531FD7A4F700CF05FC /* ForwardRedPacket */,
 				18D07A4B20EA39EA00DF1FDF /* RedPacketDetail */,
 				18563F651FD7E94D00CF05FC /* ChangeAccount */,
@@ -8377,6 +8472,8 @@
 			children = (
 				18F03FB92067609000697D7F /* AccountPravicyProtectionRequest.h */,
 				18F03FBA2067609000697D7F /* AccountPravicyProtectionRequest.m */,
+				18F5771E212D5D5300AE54E9 /* ImportAccountsRequest.h */,
+				18F5771F212D5D5300AE54E9 /* ImportAccountsRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -8450,6 +8547,140 @@
 			children = (
 				18F054E020CBC902001B0A29 /* BPVoteAmountViewController.h */,
 				18F054E120CBC902001B0A29 /* BPVoteAmountViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18F576BB212BE35D00AE54E9 /* TransferRecords */ = {
+			isa = PBXGroup;
+			children = (
+				18F576BC212BE35D00AE54E9 /* Model */,
+				18F576BD212BE35D00AE54E9 /* View */,
+				18F576BE212BE35D00AE54E9 /* Service */,
+				18F576BF212BE35D00AE54E9 /* ViewController */,
+			);
+			path = TransferRecords;
+			sourceTree = "<group>";
+		};
+		18F576BC212BE35D00AE54E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18F576BD212BE35D00AE54E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18F576C3212BE4A100AE54E9 /* TransferRecordsHeaderView.h */,
+				18F576C4212BE4A100AE54E9 /* TransferRecordsHeaderView.m */,
+				18F576CC212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib */,
+				18F576C9212BE9F900AE54E9 /* TransferRecordsTableViewCell.h */,
+				18F576CA212BE9F900AE54E9 /* TransferRecordsTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18F576BE212BE35D00AE54E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18F576C6212BE58600AE54E9 /* TransferRecordsService.h */,
+				18F576C7212BE58600AE54E9 /* TransferRecordsService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18F576BF212BE35D00AE54E9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18F576C0212BE37200AE54E9 /* TransferRecordsViewController.h */,
+				18F576C1212BE37200AE54E9 /* TransferRecordsViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18F576CE212C086700AE54E9 /* TransferDetails */ = {
+			isa = PBXGroup;
+			children = (
+				18F576CF212C086700AE54E9 /* Model */,
+				18F576D0212C086700AE54E9 /* View */,
+				18F576D1212C086700AE54E9 /* Service */,
+				18F576D2212C086700AE54E9 /* ViewController */,
+			);
+			path = TransferDetails;
+			sourceTree = "<group>";
+		};
+		18F576CF212C086700AE54E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18F576D0212C086700AE54E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18F576D9212C0D5F00AE54E9 /* TransferDetailsTableViewCell.h */,
+				18F576DA212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18F576D1212C086700AE54E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18F576D6212C094C00AE54E9 /* TransferDetailsService.h */,
+				18F576D7212C094C00AE54E9 /* TransferDetailsService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18F576D2212C086700AE54E9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18F576D3212C087800AE54E9 /* TransferDetailsViewController.h */,
+				18F576D4212C087800AE54E9 /* TransferDetailsViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18F57716212D42B900AE54E9 /* RedPacketRecords */ = {
+			isa = PBXGroup;
+			children = (
+				18F57717212D42B900AE54E9 /* Model */,
+				18F57718212D42B900AE54E9 /* View */,
+				18F57719212D42B900AE54E9 /* Service */,
+				18F5771A212D42B900AE54E9 /* ViewController */,
+			);
+			path = RedPacketRecords;
+			sourceTree = "<group>";
+		};
+		18F57717212D42B900AE54E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18F57718212D42B900AE54E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18F57719212D42B900AE54E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18F5771A212D42B900AE54E9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18F5771B212D42DD00AE54E9 /* RedPacketRecordsViewController.h */,
+				18F5771C212D42DD00AE54E9 /* RedPacketRecordsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -8975,6 +9206,7 @@
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
+				18F576CD212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib in Resources */,
 				185D181E1FE75B270021AD18 /* pocket@2x.png in Resources */,
 				18291F4C20EE40C900D19CB9 /* QRCode_green@2x.png in Resources */,
 				1872F133202D6F0C005B5915 /* addFollow@3x.png in Resources */,
@@ -9053,6 +9285,7 @@
 				18291F4D20EE40C900D19CB9 /* QRCode_green@3x.png in Resources */,
 				18BA1F11211168F7008558DE /* warning_red@2x.png in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
+				1860C60D2133A9BD00E39056 /* TransferToMoreAccount.json in Resources */,
 				185D18851FE76F090021AD18 /* addressBook@2x.png in Resources */,
 				18AD2BD720D11CE900536084 /* cancle__circle_white@3x.png in Resources */,
 				18466DA52010A049002E675A /* PYSearch.bundle in Resources */,
@@ -9285,6 +9518,7 @@
 				184141AD2020559200A789ED /* GetVersionInfoRequest.m in Sources */,
 				1856E675210ACA3D008EFC88 /* AddAccountMainService.m in Sources */,
 				18DBBB16206523A00050EE20 /* PGDatePicker+TimeAndSecond.m in Sources */,
+				18F57720212D5D5300AE54E9 /* ImportAccountsRequest.m in Sources */,
 				18233E12206238000087D60B /* rmd160.c in Sources */,
 				189832512091C6DD00377A36 /* NSData+Hash.m in Sources */,
 				181275DA20B6DDA3005EDD91 /* CQMarqueeView.m in Sources */,
@@ -9314,6 +9548,7 @@
 				1868179F20FD8CCC00FEE7B5 /* AddAssestsService.m in Sources */,
 				1838497120BE5AD700B89549 /* CWLateralSlideConfiguration.m in Sources */,
 				18EA95F820AED1020032A491 /* BaseLabel1.m in Sources */,
+				18F576D8212C094C00AE54E9 /* TransferDetailsService.m in Sources */,
 				1864FA851FF23218005F636D /* RichListCell.m in Sources */,
 				188607A01FCC012F00B00EE7 /* UIColor+SNFoundation.m in Sources */,
 				182CDF51201EFFB4002B87B6 /* FeedbackTableViewCell.m in Sources */,
@@ -9338,6 +9573,7 @@
 				18372D3A206342C3004D19D0 /* Rate.m in Sources */,
 				183AE1FF2019CF06002041F9 /* GetAssetCategoryAllRequest.m in Sources */,
 				182B8FA320AD7F5800C43AEC /* BaseCollectionViewCell.m in Sources */,
+				18F5771D212D42DD00AE54E9 /* RedPacketRecordsViewController.m in Sources */,
 				18CD043F2029DF8100D21DF4 /* Permission.m in Sources */,
 				18423A201FFF5C6C006AB986 /* ScanQRCodeSuccessViewController.m in Sources */,
 				188C305D1FFE0EF400A357F3 /* BindPhoneNumberViewController.m in Sources */,
@@ -9368,6 +9604,7 @@
 				1886079B1FCC012F00B00EE7 /* NSDate+ExFoundation.m in Sources */,
 				18DBBB17206523A00050EE20 /* PGDatePicker+Year.m in Sources */,
 				183FF9131FF382C4006C25F1 /* ApplicationsResult.m in Sources */,
+				18F576CB212BE9F900AE54E9 /* TransferRecordsTableViewCell.m in Sources */,
 				181130161FCD01B800BEA0D9 /* UIImage+ForceDecode.m in Sources */,
 				18563F6C1FD7E98F00CF05FC /* ChangeAccountViewController.m in Sources */,
 				1811306C1FCD020A00BEA0D9 /* UIButton+AFNetworking.m in Sources */,
@@ -9432,6 +9669,7 @@
 				18074EBC2109A4ED00A43559 /* PhoneLoginMainView.m in Sources */,
 				1853DE4420B2D27A003DC727 /* CandyMainCollectionViewCell.m in Sources */,
 				188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */,
+				18F576DB212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m in Sources */,
 				18423A0F1FFF583F006AB986 /* SGQRCodeScanManager.m in Sources */,
 				181130151FCD01B800BEA0D9 /* UIButton+WebCache.m in Sources */,
 				186050EF2027FEE700C87DDF /* QuestionListDetailResult.m in Sources */,
@@ -9504,6 +9742,7 @@
 				185DD6D2206CA80400BCFFCF /* NSObject+MJClass.m in Sources */,
 				189CEC7320CE7BB600F81AD8 /* Approve_Abi_json_to_bin_request.m in Sources */,
 				1838497020BE5AD700B89549 /* CWDrawerTransition.m in Sources */,
+				1835165C2130055700F074E7 /* DAppExcuteActionsContentCell.m in Sources */,
 				18D07A5520EA3A2300DF1FDF /* RedPacketDetailHeaderView.m in Sources */,
 				180FDFD02021EAC800BE593F /* SetMainAccountRequest.m in Sources */,
 				1878B56F1FD90EF400D63037 /* AssestsDetailHeaderView.m in Sources */,
@@ -9534,6 +9773,7 @@
 				1856A4E02008887200D62FEB /* MJRefreshComponent.m in Sources */,
 				182CDF45201EFF1B002B87B6 /* GetFeedbackListRequest.m in Sources */,
 				24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */,
+				18F576C5212BE4A100AE54E9 /* TransferRecordsHeaderView.m in Sources */,
 				1864C0EF1FE3AFD900031547 /* ApplicationDetailViewController.m in Sources */,
 				181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */,
 				18291F5220EE522600D19CB9 /* GetUserInfoRequest.m in Sources */,
@@ -9608,6 +9848,7 @@
 				182B8FA020AD758200C43AEC /* BaseTableViewCell.m in Sources */,
 				1853DE2A20B29F45003DC727 /* EOSMappingImportAccountHeaderView.m in Sources */,
 				18ED6CD8210FF1880042200F /* PayRegistAccountViewController.m in Sources */,
+				18F576C8212BE58600AE54E9 /* TransferRecordsService.m in Sources */,
 				18112F6A1FCD016000BEA0D9 /* IQUIView+Hierarchy.m in Sources */,
 				181130041FCD01B800BEA0D9 /* MKAnnotationView+WebCache.m in Sources */,
 				18112F0C1FCD00B700BEA0D9 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
@@ -9689,6 +9930,7 @@
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
 				181130341FCD01DF00BEA0D9 /* AFURLSessionManager.m in Sources */,
 				1812BB6020B5004800C70801 /* BaseSlimLineView.m in Sources */,
+				18F576D5212C087800AE54E9 /* TransferDetailsViewController.m in Sources */,
 				18074EB92109A4BA00A43559 /* PhoneLoginViewController.m in Sources */,
 				189CEC8520CFB60600F81AD8 /* MyVoteInfo.m in Sources */,
 				18466DA72010A049002E675A /* PYSearchSuggestionViewController.m in Sources */,
@@ -9696,11 +9938,13 @@
 				18EE05421FDF8A3200134E5C /* CreateAccountViewController.m in Sources */,
 				1825DC6B2005F4FB0057320C /* LineView.m in Sources */,
 				186050E92027EC0200C87DDF /* QuestionDetailViewController.m in Sources */,
+				1860C60B2133A04500E39056 /* DAppExcuteMutipleActionsResult.m in Sources */,
 				18372D552063CA11004D19D0 /* NumberFormatter.m in Sources */,
 				18DBBB2C206525F10050EE20 /* PGPickerColumnCell.m in Sources */,
 				1856A4EA2008887200D62FEB /* MJRefreshNormalHeader.m in Sources */,
 				1808FCD4202ADDCC00625C37 /* TransactionRecordsResult.m in Sources */,
 				18466DA92010A049002E675A /* UIColor+PYSearchExtension.m in Sources */,
+				18F576C2212BE37200AE54E9 /* TransferRecordsViewController.m in Sources */,
 				18FA76D820623C8A00545E73 /* JKBigDecimal.m in Sources */,
 				18EA95FB20AED80B0032A491 /* BaseTextField.m in Sources */,
 				18A99A8A20E6616E00E32A29 /* QuoteLocalHtmlTool.m in Sources */,
@@ -9753,6 +9997,7 @@
 				18DBD270204242DE001E2DDF /* WalletQRCodeView.m in Sources */,
 				18FE3B2420DCE24B005454BC /* Sell_ram_abi_json_to_bin_request.m in Sources */,
 				1861BA6F1FFCC7E900404058 /* IndexTipView.m in Sources */,
+				18351656212FE83800F074E7 /* DAppExcuteMutipleActionsBaseView.m in Sources */,
 				1808FCDD202B028D00625C37 /* TransactionsResult.m in Sources */,
 				18BA1EF421106767008558DE /* WXApiManager.m in Sources */,
 				18CDFB0620299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m in Sources */,
@@ -9776,6 +10021,7 @@
 				182CDF52201EFFB4002B87B6 /* FeedbackHeaderView.m in Sources */,
 				18A99A8420E6613F00E32A29 /* SDCollectionViewCell.m in Sources */,
 				185DD6D4206CA80400BCFFCF /* MJPropertyKey.m in Sources */,
+				18351659212FFCD300F074E7 /* DappExcuteActionsDataSourceService.m in Sources */,
 				18A99A8320E6613F00E32A29 /* SDCycleScrollView.m in Sources */,
 				1862E7EF20DC93A800F26629 /* ModifyApproveViewController.m in Sources */,
 				18CDFAF92029880000D21DF4 /* GetAccountRequest.m in Sources */,

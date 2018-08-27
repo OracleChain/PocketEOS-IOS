@@ -14,9 +14,6 @@
 
 @interface TransferNewViewController : BaseViewController
 
-// 默认选择的账号
-@property(nonatomic, copy) NSString *currentAccountName;
-
 @property(nonatomic, strong) TransferModel *transferModel;
 
 @property(nonatomic , strong) RecieveTokenModel *recieveTokenModel;

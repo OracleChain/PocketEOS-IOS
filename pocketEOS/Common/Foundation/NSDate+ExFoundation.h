@@ -74,5 +74,7 @@
 // 获取给定的时间 的 utc 时间的时间戳
 + (int)getTimeStampUTCWithTimeString:(NSString *)timeString;
 
++(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate;
+
 
 @end

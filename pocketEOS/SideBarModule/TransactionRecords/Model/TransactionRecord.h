@@ -55,4 +55,12 @@
  ref_block_num
  */
 @property(nonatomic, strong) NSNumber *blockNum;
+
+@property(nonatomic, copy) NSString *time;
+
+@property(nonatomic , copy) NSString *trxid;
+
+@property(nonatomic , copy) NSString *cpu_usage_us;
+
+@property(nonatomic , copy) NSString *net_usage_words;
 @end

@@ -8,20 +8,24 @@
 
 #define JS_CONTRACT_METHOD_PUSH @"push"
 #define JS_CONTRACT_METHOD_PUSHACTION @"pushAction"
-
+#define JS_CONTRACT_METHOD_PUSHACTIONS @"pushActions"
 
 #import "DAppDetailViewController.h"
 #import "WkDelegateController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "TransferService.h"
-#import "CDZPicker.h"
 #import "SelectAccountView.h"
 #import "TransferAbi_json_to_bin_request.h"
 #import "Abi_json_to_binRequest.h"
 #import "DappTransferModel.h"
 #import "DappTransferResult.h"
+#import "DAppExcuteMutipleActionsBaseView.h"
+#import "DappExcuteActionsDataSourceService.h"
+#import "DAppExcuteMutipleActionsResult.h"
+#import "ExcuteMultipleActionsService.h"
 
-@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate>
+
+@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate>
 @property WebViewJavascriptBridge* bridge;
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
@@ -34,10 +38,14 @@
 @property(nonatomic , strong) Abi_json_to_binRequest *abi_json_to_binRequest;
 @property (nonatomic , strong) DappTransferResult *dappTransferResult;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
+@property(nonatomic , strong) DAppExcuteMutipleActionsResult *dAppExcuteMutipleActionsResult;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @property (nonatomic , strong) UIBarButtonItem *backItem;
 @property (nonatomic , strong) UIBarButtonItem *closeItem;
 
+@property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
+@property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
+@property(nonatomic , strong) DAppExcuteMutipleActionsBaseView *dAppExcuteMutipleActionsBaseView;
 @end
 
 @implementation DAppDetailViewController
@@ -152,8 +160,29 @@
 }
 
 
+- (DAppExcuteMutipleActionsBaseView *)dAppExcuteMutipleActionsBaseView{
+    if (!_dAppExcuteMutipleActionsBaseView) {
+        _dAppExcuteMutipleActionsBaseView = [[DAppExcuteMutipleActionsBaseView alloc] init];
+        _dAppExcuteMutipleActionsBaseView.frame = CGRectMake(0, SCREEN_HEIGHT-430, SCREEN_WIDTH, 430 );
+        _dAppExcuteMutipleActionsBaseView.delegate = self;
+    }
+    return _dAppExcuteMutipleActionsBaseView;
+}
 
+- (DappExcuteActionsDataSourceService *)dappExcuteActionsDataSourceService{
+    if (!_dappExcuteActionsDataSourceService) {
+        _dappExcuteActionsDataSourceService = [[DappExcuteActionsDataSourceService alloc] init];
+    }
+    return _dappExcuteActionsDataSourceService;
+}
 
+- (ExcuteMultipleActionsService *)excuteMultipleActionsService{
+    if (!_excuteMultipleActionsService) {
+        _excuteMultipleActionsService = [[ExcuteMultipleActionsService alloc] init];
+        _excuteMultipleActionsService.delegate = self;
+    }
+    return _excuteMultipleActionsService;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -164,6 +193,7 @@
     }
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushAction"];
     [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"push"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushActions"];
     if (IsStrEmpty(self.webView.title)) {
         [self.webView reload];
     }
@@ -179,7 +209,9 @@
     }
     // 因此这里要记得移除handlers
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushAction('%@','%@')"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushActions('%@','%@')"];
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"push('%@','%@','%@','%@','%@')"];
+    
 }
 
 - (void)viewDidLoad {
@@ -220,7 +252,22 @@
         [weakSelf passWalletInfoToJS];
     });
     
+    [self buildExcuteActionsDataSource];
 }
+
+
+//DAppExcuteMutipleActionsBaseViewDelegate
+- (void)excuteMutipleActionsConfirmBtnDidClick{
+    // 验证密码输入是否正确
+    Wallet *current_wallet = CURRENT_WALLET;
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.dAppExcuteMutipleActionsBaseView.passwordTF.text]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
+        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+        return;
+    }
+    [self pushActions];
+}
+
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil)message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -246,18 +293,31 @@
     NSLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
     self.WKScriptMessageName = (NSString *)message.name;
     self.WKScriptMessageBody = (NSDictionary *)message.body;
-    self.dappTransferResult = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
-    self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[self.dappTransferResult.message mj_JSONObject ] ];
     if ([self.WKScriptMessageName isEqualToString:@"pushAction"] || [self.WKScriptMessageName isEqualToString:@"push"]) {
+        self.dappTransferResult = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
+        self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[self.dappTransferResult.message mj_JSONObject ] ];
         [self.view addSubview:self.loginPasswordView];
+    }else if ([self.WKScriptMessageName isEqualToString:@"pushActions"]){
+        self.dAppExcuteMutipleActionsResult = [DAppExcuteMutipleActionsResult mj_objectWithKeyValues:self.WKScriptMessageBody];
+        [self buildExcuteActionsDataSource];
     }
 }
 
+- (void)buildExcuteActionsDataSource{
+    WS(weakSelf);
+    [self.dappExcuteActionsDataSourceService buildDataSource:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            [weakSelf.view addSubview:weakSelf.dAppExcuteMutipleActionsBaseView];
+            [weakSelf.dAppExcuteMutipleActionsBaseView updateViewWithArray:weakSelf.dappExcuteActionsDataSourceService.dataSourceArray];
+        }
+    }];
+    
+}
 
 
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
-    [self.loginPasswordView removeFromSuperview];
+    [self removeLoginPasswordView];
     [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Cancel"];
 }
 
@@ -273,6 +333,8 @@
         [self push];
     }else if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSHACTION]){
         [self pushAction];
+    }else if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSHACTIONS]){
+        [self pushActions];
     }
 }
 
@@ -298,8 +360,7 @@
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
         [weakSelf.mainService pushTransaction];
-        [weakSelf.loginPasswordView removeFromSuperview];
-        weakSelf.loginPasswordView = nil;
+        [weakSelf removeLoginPasswordView];
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
@@ -344,12 +405,21 @@
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
         [weakSelf.mainService pushTransaction];
-        [weakSelf.loginPasswordView removeFromSuperview];
-        weakSelf.loginPasswordView = nil;
+        [weakSelf removeLoginPasswordView];
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
     
+}
+
+- (void)pushActions{
+    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
+    if (accountInfo) {
+        [self.excuteMultipleActionsService excuteMultipleActionsWithSender:accountInfo.account_name andExcuteActionsArray:self.dappExcuteActionsDataSourceService.dataSourceArray andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)] andPassword: self.dAppExcuteMutipleActionsBaseView.passwordTF.text];//self.loginPasswordView.inputPasswordTF.text
+    }else{
+        [TOASTVIEW showWithText: NSLocalizedString(@"您钱包中暂无操作账号~", nil)];
+    }
+   [self removeLoginPasswordView];
 }
 
 // TransferServiceDelegate
@@ -361,6 +431,21 @@
         [TOASTVIEW showWithText: result.message];
         [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
     }
+}
+
+//ExcuteMultipleActionsServiceDelegate
+- (void)excuteMultipleActionsDidFinish:(TransactionResult *)result{
+    if ([result.code isEqualToNumber:@0 ]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"签名成功", nil)];
+        [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
+        self.dAppExcuteMutipleActionsBaseView = nil;
+        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+    }else{
+        [TOASTVIEW showWithText: result.message];
+        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
+    }
+    [self removeLoginPasswordView];
+    [SVProgressHUD dismiss];
 }
 
 // pushActionResultFeedback
@@ -454,6 +539,14 @@
 - (void)closeNative {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)removeLoginPasswordView{
+    if (self.loginPasswordView) {
+        [self.loginPasswordView removeFromSuperview];
+        self.loginPasswordView = nil;
+    }
+}
+
 
 @end
 

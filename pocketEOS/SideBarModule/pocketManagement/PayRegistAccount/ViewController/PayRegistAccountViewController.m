@@ -159,7 +159,12 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     // request order
     WS(weakSelf);
     self.getAccountOrderStatusRequest.accountName = self.headerView.accountNameTF.text;
-    self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    
+    if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+        self.getAccountOrderStatusRequest.uid = @"6f1a8e0eb24afb7ddc829f96f9f74e9d";
+    }else{
+        self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    }
     [self.getAccountOrderStatusRequest getDataSusscess:^(id DAO, id data) {
 //        public static Integer statusUnGetMoney = 0;//为付款
 //        public static Integer statusOk = 1;//创建成功
@@ -239,6 +244,8 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 //PaymentTipViewDelegate
 - (void)backgroundViewDidClick{
     [self removePaymentTipView];
+    [TOASTVIEW showWithText: NSLocalizedString(@"取消", nil)];
+    [self removeLoginPasswordView];
 }
 
 - (void)removePaymentTipView{
@@ -280,30 +287,36 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 }
 
 - (void)bizPay {
-    self.payRegistAccountService.createAccountOrderRequest.payChannel = @"0";//微信支付
-    [ThirdPayManager sharedManager].thirdPayType = kWechatPay;
-    [SVProgressHUD showWithStatus:nil];
-    [self.payRegistAccountService createAccountOrderByWechatPay:^(WechatPayRespResult *result, BOOL isSuccess) {
-        if (isSuccess) {
-            //调起微信支付
-            PayReq* req = [[PayReq alloc] init];
-            req.partnerId = result.data.partnerId;
-            req.prepayId = result.data.prepayId;
-            req.nonceStr = result.data.nonceStr;
-            req.timeStamp = result.data.timestamp.intValue;
-            req.package = result.data.exPackage;
-            req.sign = result.data.sign;
-    
-//            req.partnerId           = @"1509617931";
-//            req.prepayId            = @"wx06115858391917fde79dcedc1461487879";
-//            req.nonceStr            = @"34e6bfcd358e25ac1db0a4241b95651";
-//            NSString *stampStr = @"1533797472";
-//            req.timeStamp           = stampStr.intValue;
-//            req.package             = @"Sign=WXPay";
-//            req.sign                = @"F4624EF0D3F83189696BFE9E4B60339A";
-            [WXApi sendReq:req];
-        }
-    }];
+    BOOL result = [WXApi isWXAppInstalled];
+    if (result) {
+        self.payRegistAccountService.createAccountOrderRequest.payChannel = @"0";//微信支付
+        [ThirdPayManager sharedManager].thirdPayType = kWechatPay;
+        [SVProgressHUD showWithStatus:nil];
+        [self.payRegistAccountService createAccountOrderByWechatPay:^(WechatPayRespResult *result, BOOL isSuccess) {
+            if (isSuccess) {
+                //调起微信支付
+                PayReq* req = [[PayReq alloc] init];
+                req.partnerId = result.data.partnerId;
+                req.prepayId = result.data.prepayId;
+                req.nonceStr = result.data.nonceStr;
+                req.timeStamp = result.data.timestamp.intValue;
+                req.package = result.data.exPackage;
+                req.sign = result.data.sign;
+                
+                //            req.partnerId           = @"1509617931";
+                //            req.prepayId            = @"wx06115858391917fde79dcedc1461487879";
+                //            req.nonceStr            = @"34e6bfcd358e25ac1db0a4241b95651";
+                //            NSString *stampStr = @"1533797472";
+                //            req.timeStamp           = stampStr.intValue;
+                //            req.package             = @"Sign=WXPay";
+                //            req.sign                = @"F4624EF0D3F83189696BFE9E4B60339A";
+                [WXApi sendReq:req];
+            }
+        }];
+        
+    }else{
+        [TOASTVIEW showWithText: NSLocalizedString(@"请先安装微信应用", nil)];
+    }
 }
 
 - (void)doAPPay

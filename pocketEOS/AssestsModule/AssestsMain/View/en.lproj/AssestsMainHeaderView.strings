@@ -2,7 +2,7 @@
 /* Class = "UILabel"; text = "总资产(￥)"; ObjectID = "6w9-Qs-9bF"; */
 "6w9-Qs-9bF.text" = "Assets(￥)";
 
-/* Class = "UILabel"; text = "发红包"; ObjectID = "7Kr-wK-xk3"; */
+/* Class = "UILabel"; text = "红包"; ObjectID = "7Kr-wK-xk3"; */
 "7Kr-wK-xk3.text" = "Red Packets";
 
 /* Class = "UILabel"; text = "RAM交易"; ObjectID = "Rxb-4s-whr"; */

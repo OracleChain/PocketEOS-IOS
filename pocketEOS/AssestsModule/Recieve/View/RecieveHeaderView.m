@@ -16,13 +16,8 @@
     self.generateQRCodeBtn.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
     .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
-    
 }
-- (IBAction)selectAccount:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectAccountBtnDidClick:)]) {
-        [self.delegate selectAccountBtnDidClick: sender];
-    }
-}
+
 - (IBAction)selectAssests:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(selectAssestsBtnDidClick:)]) {
         [self.delegate selectAssestsBtnDidClick: sender];

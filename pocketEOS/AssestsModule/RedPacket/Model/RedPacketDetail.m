@@ -16,7 +16,8 @@
              @"residueAmount" : @"statistics.residueAmount",
              @"packetCount" : @"statistics.packetCount",
              @"amount" : @"statistics.amount",
-             @"isSend" : @"statistics.isSend"
+             @"isSend" : @"statistics.isSend",
+             @"type" : @"redPacketOrderRedisDtos[0].type"
              };
 }
 

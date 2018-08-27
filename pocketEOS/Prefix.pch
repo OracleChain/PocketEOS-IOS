@@ -96,6 +96,7 @@
 #import "DAConfig.h"
 #import "NSBundle+DAUtils.h"
 
+#import "CDZPicker.h"
 
 /*
  友盟

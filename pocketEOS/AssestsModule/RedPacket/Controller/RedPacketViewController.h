@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RedPacketViewController : BaseViewController
-// 默认选择的账号
-@property(nonatomic, copy) NSString *accountName;
+
+
 @end

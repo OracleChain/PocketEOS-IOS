@@ -9,25 +9,22 @@
 #import "RecieveViewController.h"
 #import "RecieveHeaderView.h"
 #import "NavigationView.h"
-#import "PopUpWindow.h"
 #import "RecieveQRCodeView.h"
 #import "Assest.h"
 #import "SGQRCode.h"
 #import "TransactionRecordsService.h"
-#import "TransactionRecordTableViewCell.h"
 #import "TransactionRecord.h"
 #import "GetRateResult.h"
 #import "Rate.h"
 #import "TransferService.h"
 #import "TokenInfo.h"
 #import "Get_token_info_service.h"
+#import "TransferRecordsViewController.h"
 
-@interface RecieveViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RecieveHeaderViewDelegate, PopUpWindowDelegate, UITextFieldDelegate>
+@interface RecieveViewController ()<UIGestureRecognizerDelegate , NavigationViewDelegate, RecieveHeaderViewDelegate, UITextFieldDelegate>
 @property(nonatomic, strong) NavigationView *navView;
-@property(nonatomic, strong) PopUpWindow *popUpWindow;
 @property(nonatomic, strong) RecieveHeaderView *headerView;
 @property(nonatomic, strong) RecieveQRCodeView *recieveQRCodeView;
-@property(nonatomic, strong) NSString *currentAccountName;
 @property(nonatomic, strong) NSString *currentAssestsType;
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
 @property(nonatomic, strong) GetRateResult *getRateResult;
@@ -38,26 +35,18 @@
 
 @implementation RecieveViewController
 
-
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产收款", nil)rightBtnImgName:@"" delegate:self];
+         _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产收款", nil) rightBtnTitleName:NSLocalizedString(@"收款记录", nil) delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
-}
-- (PopUpWindow *)popUpWindow{
-    if (!_popUpWindow) {
-        _popUpWindow = [[PopUpWindow alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 50 ))];
-        _popUpWindow.delegate = self;
-    }
-    return _popUpWindow;
 }
 
 - (RecieveHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"RecieveHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 323);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 210);
         _headerView.delegate = self;
         _headerView.amountTF.delegate = self;
     }
@@ -85,13 +74,13 @@
     }
     return _transferService;
 }
+
 - (Get_token_info_service *)get_token_info_service{
     if (!_get_token_info_service) {
         _get_token_info_service = [[Get_token_info_service alloc] init];
     }
     return _get_token_info_service;
 }
-
 
 - (NSMutableArray *)get_token_info_service_data_array{
     if (!_get_token_info_service_data_array) {
@@ -117,21 +106,10 @@
             
         }
     }
-    // 设置默认的转账账号及资产
-    self.headerView.accountChooserLabel.text = self.accountName;
+    // 设置默认资产
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
-    self.currentAccountName = self.accountName;
     [self requestRate];
-    [self requestTransactionHistory];
     [MobClick beginLogPageView:@"pe收款"]; //("Pagename"为页面名称，可自定义)
-}
-
-- (void)requestTransactionHistory{
-    self.transactionRecordsService.getTransactionRecordsRequest.to = self.currentToken.account_name;
-    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
-    [self loadNewData];
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -144,11 +122,8 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.mainTableView];
-    [self.mainTableView setTableHeaderView:self.headerView];
-    [self.mainTableView.mj_header beginRefreshing];
-    [self loadAllBlocks];
-    
+    [self.view addSubview:self.headerView];
+    self.view.lee_theme.LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
 }
 
@@ -158,13 +133,13 @@
     [self.transferService get_rate:^(GetRateResult *result, BOOL isSuccess) {
         if (isSuccess) {
             weakSelf.getRateResult = result;
-            [weakSelf textFieldChange:nil];
+//            [weakSelf textFieldChange:nil];
         }
     }];
 }
 
 - (void)requestTokenInfoDataArray{
-    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    self.get_token_info_service.get_token_info_request.accountName = CURRENT_ACCOUNT_NAME;
     WS(weakSelf);
     [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
         if (isSuccess) {
@@ -173,49 +148,14 @@
                 weakSelf.currentToken = weakSelf.get_token_info_service_data_array[0];
                 weakSelf.currentAssestsType = weakSelf.currentToken.token_symbol;
                 weakSelf.headerView.assestChooserLabel.text = weakSelf.currentToken.token_symbol;
-                weakSelf.headerView.accountChooserLabel.text = weakSelf.currentAccountName;
+                
                 [weakSelf requestRate];
-                [weakSelf requestTransactionHistory];
             }else{
                 [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
                 return;
             }
         }
     }];
-}
-
-
-
-- (void)loadAllBlocks{
-    WS(weakSelf);
-    [self.popUpWindow setOnBottomViewDidClick:^{
-        
-        [weakSelf removePopUpWindow];
-    }];
-}
-
-// UITableViewDelegate && DataSource
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TransactionRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
-    if (!cell) {
-        cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
-    }
-    TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
-    cell.currentAccountName = self.currentAccountName;
-    cell.model = model;
-    return cell;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.transactionRecordsService.dataSourceArray.count;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 72;
 }
 
 - (void)textFieldChange:(NSNotification *)notification {
@@ -244,43 +184,52 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-// headerViewDelegate
-- (void)selectAccountBtnDidClick:(UIButton *)sender {
-    [self.view addSubview:self.popUpWindow];
-    NSMutableArray *accountArr =  [[AccountsTableManager accountTable] selectAccountTable];
-    _popUpWindow.type = PopUpWindowTypeAccount;
-    for (AccountInfo *model in accountArr) {
-        if ([model.account_name isEqualToString:self.currentAccountName]) {
-            model.selected = YES;
-        }
-    }
-    [_popUpWindow updateViewWithArray:accountArr title:@""];
+-(void)rightBtnDidClick{
+    TransferRecordsViewController *vc = [[TransferRecordsViewController alloc] init];
+    vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
+    vc.currentToken = self.currentToken;
+    vc.to = CURRENT_ACCOUNT_NAME;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+// headerViewDelegate
 - (void)selectAssestsBtnDidClick:(UIButton *)sender {
-    [self.view addSubview:self.popUpWindow];
+    WS(weakSelf);
+    [self.view endEditing:YES];
     NSMutableArray *assestsArr = [NSMutableArray array];
-    for (TokenInfo *token in self.get_token_info_service_data_array) {
-        Assest *assest = [[Assest alloc] init];
-        assest.assetName = token.token_symbol;
-        [assestsArr addObject: assest];
-    }
-    _popUpWindow.type = PopUpWindowTypeAssest;
-    for (Assest *model in assestsArr) {
-        if ([model.assetName isEqualToString:self.currentAssestsType]) {
-            model.selected = YES;
+    CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    for (int i = 0 ; i < self.get_token_info_service_data_array.count; i++) {
+        TokenInfo *token = self.get_token_info_service_data_array[i];
+        if ([token.token_symbol isEqualToString:self.currentToken.token_symbol]) {
+            builder.defaultIndex = i;
         }
+        [assestsArr addObject: token.token_symbol];
     }
-    [_popUpWindow updateViewWithArray:assestsArr title:@""];
+    
+    
+    [CDZPicker showSinglePickerInView:self.view withBuilder:builder strings:assestsArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
+        weakSelf.currentAssestsType = VALIDATE_STRING(strings[0]);
+        weakSelf.headerView.assestChooserLabel.text = weakSelf.currentAssestsType;
+        for (TokenInfo *token in self.get_token_info_service_data_array) {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                weakSelf.currentToken = token;
+            }
+        }
+        [weakSelf requestRate];
+    }cancel:^{
+        NSLog(@"user cancled");
+    }];
 }
+
 
 - (void)createQRCodeBtnDidClick:(UIButton *)sender{
+    [self.view endEditing:YES];
     [self.view addSubview:self.recieveQRCodeView];
     self.recieveQRCodeView.amountLabel.text = self.headerView.amountTF.text;
     self.recieveQRCodeView.assestTypeLabel.text = [NSString stringWithFormat:@"/ %@", self.currentAssestsType];
 
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:VALIDATE_STRING(self.currentAccountName)  forKey:@"account_name"];
+    [dic setObject:VALIDATE_STRING(CURRENT_ACCOUNT_NAME)  forKey:@"account_name"];
     [dic setObject:VALIDATE_STRING(self.currentAssestsType)  forKey:@"token"];
     [dic setObject:VALIDATE_STRING(self.headerView.amountTF.text)  forKey:@"quantity"];
     [dic setObject:VALIDATE_STRING(self.currentToken.contract_name)  forKey:@"contract"];
@@ -291,84 +240,8 @@
     self.recieveQRCodeView.recieveAssestsQRCodeImg.image = [SGQRCodeGenerateManager generateWithLogoQRCodeData:QRCodeJsonStr logoImageName:@"account_default_blue" logoScaleToSuperView:0.2];
 }
 
-- (void)removePopUpWindow{
-    [self.popUpWindow removeFromSuperview];
-}
-
 - (void)removeRecieveQRCodeView{
     [self.recieveQRCodeView removeFromSuperview];
-}
-
-
-// PopUpWindowDelegate
-- (void )popUpWindowdidSelectItem:(id)sender{
-    if ([sender isKindOfClass: [Assest class]]) {
-        self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
-        self.currentAssestsType = [(Assest *)sender assetName];
-        for (TokenInfo *token in self.get_token_info_service_data_array) {
-            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
-                self.currentToken = token;
-            }
-        }
-        [self requestRate];
-        [self requestTransactionHistory];
-    }else if ([sender isKindOfClass: [AccountInfo class] ]){
-        self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
-        self.currentAccountName = [(AccountInfo *)sender account_name];
-        [self requestTokenInfoDataArray];
-    }
-}
-
-
-
-#pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载
-#pragma mark - 数据处理相关
-#pragma mark 下拉刷新数据
-- (void)loadNewData
-{
-    WS(weakSelf);
-    [self.mainTableView.mj_footer resetNoMoreData];
-    [self.transactionRecordsService buildDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-        if (isSuccess) {
-            // 刷新表格
-            [weakSelf.mainTableView reloadData];
-            if ([dataCount isEqualToNumber:@0]) {
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_header endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-            }else{
-                // 拿到当前的下拉刷新控件，结束刷新状态
-                [weakSelf.mainTableView.mj_header endRefreshing];
-            }
-        }else{
-            [weakSelf.mainTableView.mj_header endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-        }
-    }];
-}
-
-#pragma mark 上拉加载更多数据
-- (void)loadMoreData
-{
-    WS(weakSelf);
-    [self.transactionRecordsService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-        if (isSuccess) {
-            // 刷新表格
-            [weakSelf.mainTableView reloadData];
-            if ([dataCount isEqualToNumber:@0]) {
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-            }else{
-                // 拿到当前的下拉刷新控件，结束刷新状态
-                [weakSelf.mainTableView.mj_footer endRefreshing];
-            }
-        }else{
-            [weakSelf.mainTableView.mj_header endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshing];
-        }
-    }];
 }
 
 -(void)dealloc{

@@ -59,7 +59,6 @@
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
 @property(nonatomic, strong) AssestsMainService *mainService;
 @property(nonatomic, strong) Get_token_info_service *get_token_info_service;
-@property(nonatomic, strong) NSString *currentAccountName;
 @property(nonatomic , strong) AdvertisementView *advertisementView;
 @property(nonatomic , strong) AccountNotExistView *accountNotExistView;
 @property(nonatomic , strong) AccountResult *currentAccountResult;
@@ -77,6 +76,11 @@
 - (CustomNavigationView *)navView{
     if (!_navView) {
         _navView = [[CustomNavigationView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT))];
+        if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+            _navView.rightBtn2.hidden = YES;
+        }else{
+            _navView.rightBtn2.hidden = NO;
+        }
     }
     return _navView;
 }
@@ -171,7 +175,7 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     Wallet *wallet = CURRENT_WALLET;
     [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
-    self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(self.currentAccountName) ] ;
+    self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -196,14 +200,16 @@
     if (accountArray.count == 1) {
         // 当前只有一个账号
         AccountInfo *model = accountArray[0];
-        self.currentAccountName = model.account_name;
-        self.headerView.userAccountLabel.text = self.currentAccountName;
+        [[NSUserDefaults standardUserDefaults] setObject:model.account_name  forKey:Current_Account_name];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.headerView.userAccountLabel.text = CURRENT_ACCOUNT_NAME;
     }else{
         for (AccountInfo *model in accountArray) {
             if ([model.is_main_account isEqualToString:@"1"]) {
                 AccountInfo *mainAccount = model;
-                self.currentAccountName = mainAccount.account_name;
-                self.headerView.userAccountLabel.text = self.currentAccountName;
+                [[NSUserDefaults standardUserDefaults] setObject:mainAccount.account_name  forKey:Current_Account_name];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                self.headerView.userAccountLabel.text = CURRENT_ACCOUNT_NAME;
             }
         }
     }
@@ -225,10 +231,10 @@
 // 构建数据源
 - (void)buidDataSource{
     WS(weakSelf);
-    if (IsNilOrNull(self.currentAccountName)) {
+    if (IsNilOrNull(CURRENT_ACCOUNT_NAME)) {
         return;
     }
-    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    self.get_token_info_service.get_token_info_request.accountName = CURRENT_ACCOUNT_NAME;
     
     self.get_token_info_service.get_token_info_request.ids = self.ids;
     [self.get_token_info_service get_token_info:^(GetTokenInfoResult *result, BOOL isSuccess) {
@@ -238,7 +244,7 @@
             if ([result.code isEqualToNumber:@0] && [result.message isEqualToString:@"ok"]) {
                 if (result.data.count == 0) {
                     [weakSelf.view addSubview:weakSelf.accountNotExistView];
-                    weakSelf.accountNotExistView.tipLabel.text = [NSString stringWithFormat:@"%@ %@", weakSelf.currentAccountName, NSLocalizedString(@"等待主网确认", nil)];
+                    weakSelf.accountNotExistView.tipLabel.text = [NSString stringWithFormat:@"%@ %@", CURRENT_ACCOUNT_NAME, NSLocalizedString(@"等待主网确认", nil)];
                 }else{
                     [weakSelf removeAccountNotExistView];
                     [weakSelf.mainTableView reloadData];
@@ -258,7 +264,7 @@
     [self.navView setRightBtn1DidClickBlock:^{
         PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
         vc.delegate = weakSelf;
-        vc.mainService.currentAccountName = weakSelf.currentAccountName;
+        vc.mainService.currentAccountName = CURRENT_ACCOUNT_NAME;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -317,21 +323,18 @@
     // 改变后的导航栏 block
     [self.navView setChangedBtn1DidClickBlock:^{
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
-        vc.currentAccountName = weakSelf.currentAccountName;
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.navView setChangedBtn2DidClickBlock:^{
         RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.navView setChangedBtn3DidClickBlock:^{
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     [self.headerView setChangeAccountBtnDidClickBlock:^{
@@ -345,21 +348,18 @@
     
     [self.headerView setTransferBtnDidClickBlock:^{
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
-        vc.currentAccountName = weakSelf.currentAccountName;
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setRecieveBtnDidClickBlock:^{
         RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setRedPacketBtnDidClickBlock:^{
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -369,14 +369,14 @@
         model.url = @"http://static.pocketeos.top:3001";
         model.applyName = @"Ram Ex";
         vc.model = model;
-        vc.choosedAccountName = weakSelf.currentAccountName;
+        vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
         AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
         AccountInfo *model = [[AccountInfo alloc] init];
-        model.account_name = weakSelf.currentAccountName;
+        model.account_name = CURRENT_ACCOUNT_NAME;
         vc.model = model;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
@@ -389,7 +389,7 @@
     
     [self.headerView setAddAssestsImgDidTapBlock:^{
         AddAssestsViewController *vc = [[AddAssestsViewController alloc] init];
-        vc.accountName = weakSelf.currentAccountName;
+        vc.accountName = CURRENT_ACCOUNT_NAME;
         vc.delegate = weakSelf;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
@@ -455,7 +455,7 @@
     AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
     TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
     vc.model = model;
-    vc.accountName = self.currentAccountName;
+    vc.accountName = CURRENT_ACCOUNT_NAME;
     vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -484,7 +484,8 @@
 
 //ChangeAccountViewControllerDelegate, PocketManagementViewControllerDelegate
 -(void)changeAccountCellDidClick:(NSString *)name{
-    self.currentAccountName = name;
+    [[NSUserDefaults standardUserDefaults] setObject:VALIDATE_STRING(name)  forKey:Current_Account_name];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.ids removeAllObjects];
     [self loadNewData];
 }
@@ -496,8 +497,12 @@
 
 - (void)checkAccountOrderStatus{
     WS(weakSelf);
-    self.getAccountOrderStatusRequest.accountName = self.currentAccountName;
-    self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    self.getAccountOrderStatusRequest.accountName = CURRENT_ACCOUNT_NAME;
+    if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+        self.getAccountOrderStatusRequest.uid = @"6f1a8e0eb24afb7ddc829f96f9f74e9d";
+    }else{
+        self.getAccountOrderStatusRequest.uid = CURRENT_WALLET_UID;
+    }
     [self.getAccountOrderStatusRequest getDataSusscess:^(id DAO, id data) {
         AccountOrderStatusResult *result = [AccountOrderStatusResult mj_objectWithKeyValues:data];
         if ([result.code isEqualToNumber:@0]) {

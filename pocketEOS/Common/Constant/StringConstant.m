@@ -10,7 +10,8 @@
 
 @implementation StringConstant
 
- NSString *const Current_wallet_uid = @"Current_wallet_uid";
+NSString *const Current_wallet_uid = @"Current_wallet_uid";
+NSString *const Current_Account_name = @"Current_Account_name";
 NSString *const Total_assets_visibel = @"Total_assets_visibel";
 
 @end

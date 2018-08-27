@@ -22,7 +22,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     tap.delegate = self;
     [self addGestureRecognizer:tap];
-    
+    [self.inputPasswordTF becomeFirstResponder];
 }
 
 - (void)dismiss{

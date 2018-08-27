@@ -18,11 +18,13 @@
 @end
 
 @interface RedPacketHeaderView : BaseView
-@property (weak, nonatomic) IBOutlet UILabel *accountChooserLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *assestChooserLabel;
 @property (weak, nonatomic) IBOutlet UITextField *amountTF;
 @property (weak, nonatomic) IBOutlet UITextField *redPacketCountTF;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
+// 备注
+@property (weak, nonatomic) IBOutlet UITextView *memoTV;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UIButton *sendRedpacketBtn;
 

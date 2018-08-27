@@ -14,7 +14,7 @@
 #import "RedPacketViewController.h"
 #import "TendencyChartView.h"
 #import "TransactionRecordsService.h"
-#import "TransactionRecordTableViewCell.h"
+#import "TransferRecordsTableViewCell.h"
 #import "TransactionRecord.h"
 #import "GetSparklinesRequest.h"
 #import "AssestsShareDetailView.h"
@@ -23,6 +23,8 @@
 #import "SocialManager.h"
 #import "AssestDetailFooterView.h"
 #import "TransferModel.h"
+#import "TransferRecordsTableViewCell.h"
+#import "TransferDetailsViewController.h"
 
 @interface AssestsDetailViewController ()< UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, AssestsDetailHeaderViewDelegate, SocialSharePanelViewDelegate, AssestDetailFooterViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -44,7 +46,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产", nil)rightBtnImgName:@"share" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:self.model.token_symbol rightBtnImgName:@"share" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _navView.rightBtn.hidden = NO;
@@ -223,26 +225,26 @@
 }
 
 - (void)configHeaderView{
-    self.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ CNY", [NumberFormatter displayStringFromNumber:@( self.model.asset_price_cny.doubleValue)]];
+    self.headerView.amountLabel.text = [NSString stringWithFormat:@"￥%@", [NumberFormatter displayStringFromNumber:@( self.model.asset_price_cny.doubleValue)]];
     if ([self.model.asset_price_change_in_24h hasPrefix:@"-"]) {
         //        HEXCOLOR(0x1E903C) HEXCOLOR(0xB0B0B0)
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%   24h", self.model.asset_price_change_in_24h]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%(今日)", self.model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0xB51515)
                            range:NSMakeRange(0, self.model.asset_price_change_in_24h.length + 1)];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0xB51515)
-                           range:NSMakeRange(self.model.asset_price_change_in_24h.length+1, 6)];
+                           range:NSMakeRange(self.model.asset_price_change_in_24h.length+1, 4)];
         self.headerView.fluctuateLabel.attributedText = attrString;
     }else{
         //B51515
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%   24h", self.model.asset_price_change_in_24h]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%(今日)", self.model.asset_price_change_in_24h]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
                            range:NSMakeRange(0, self.model.asset_price_change_in_24h.length + 2)];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
-                           range:NSMakeRange(self.model.asset_price_change_in_24h.length + 2, 6)];
+                           range:NSMakeRange(self.model.asset_price_change_in_24h.length + 2, 4)];
         
         self.headerView.fluctuateLabel.attributedText = attrString;
     }
@@ -273,9 +275,9 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TransactionRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    TransferRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
     if (!cell) {
-        cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        cell = [[TransferRecordsTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
     model = self.transactionRecordsService.dataSourceArray[indexPath.row];
@@ -289,7 +291,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
+    TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
+    TransferDetailsViewController *vc = [[TransferDetailsViewController alloc] init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -358,13 +363,11 @@
 - (void)assestsDetailFooterViewDidClick:(UIButton *)sender{
     if (sender.tag == 1000) {
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
-        vc.currentAccountName = self.accountName;
         vc.currentAssestsType = self.currentAssestsType;
         vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1001){
         RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.accountName = self.accountName;
         TransferModel *model = [[TransferModel alloc] init];
         model.account_name = self.accountName;
         model.coin = self.currentAssestsType;
@@ -373,7 +376,6 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1002){
         RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        vc.accountName = self.accountName;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -148,7 +148,7 @@ static const NSInteger CDZToolBarHeight = 44;
     [self.containerView addSubview:self.confirmButton];
     [self.containerView addSubview:self.cancelButton];
     [self.containerView addSubview:self.lineView];
-    NSInteger defaultIndex =  (self.builder.defaultIndex < self.numberOfComponents && self.builder.defaultIndex > 0) ? self.builder.defaultIndex : 0;
+    NSInteger defaultIndex =  (self.builder.defaultIndex < self.componets.count && self.builder.defaultIndex > 0) ? self.builder.defaultIndex : 0;
     [self.pickerView selectRow:defaultIndex inComponent:0 animated:NO];
 }
 

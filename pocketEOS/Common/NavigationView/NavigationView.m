@@ -42,6 +42,7 @@
         [_rightBtn addTarget:self action:@selector(rightBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [_rightBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
         [_rightBtn.titleLabel setTextAlignment:(NSTextAlignmentRight)];
+        [_rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
         _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         _rightBtn.lee_theme
         .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A), UIControlStateNormal)
@@ -72,7 +73,8 @@
         self.titleImg.sd_layout.centerXEqualToView(self).bottomSpaceToView(self, 10).widthIs(120).heightIs(20);
         
         [self addSubview:self.rightBtn];
-        self.rightBtn.sd_layout.rightSpaceToView(self, 0).bottomSpaceToView(self, 5).widthIs(70).heightIs(30);
+        self.rightBtn.sd_layout.rightSpaceToView(self, MARGIN_20).bottomSpaceToView(self, 5).widthIs(120).heightIs(30);
+        
     }
     return self;
 }

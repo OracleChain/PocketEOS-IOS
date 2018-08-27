@@ -9,7 +9,6 @@
 #import "TransferNewViewController.h"
 #import "TransferHeaderView.h"
 #import "NavigationView.h"
-#import "PopUpWindow.h"
 #import "Assest.h"
 #import "ScanQRCodeViewController.h"
 #import "ChangeAccountViewController.h"
@@ -26,10 +25,10 @@
 #import "WalletAccount.h"
 #import "TransferAbi_json_to_bin_request.h"
 #import "Get_token_info_service.h"
+#import "TransferRecordsViewController.h"
 
-@interface TransferNewViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransferHeaderViewDelegate, PopUpWindowDelegate, ChangeAccountViewControllerDelegate, UITextFieldDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
+@interface TransferNewViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransferHeaderViewDelegate, ChangeAccountViewControllerDelegate, UITextFieldDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
-@property(nonatomic, strong) PopUpWindow *popUpWindow;
 @property(nonatomic, strong) TransferHeaderView *headerView;
 @property(nonatomic, strong) TransferService *mainService;
 @property(nonatomic, strong) Get_token_info_service *get_token_info_service;
@@ -46,24 +45,16 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产转账", nil)rightBtnImgName:@"scan_black" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"资产转账", nil) rightBtnTitleName:NSLocalizedString(@"转账记录", nil) delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
-        _navView.rightBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"scan_black"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"scan"], UIControlStateNormal);
     }
     return _navView;
-}
-- (PopUpWindow *)popUpWindow{
-    if (!_popUpWindow) {
-        _popUpWindow = [[PopUpWindow alloc] initWithFrame:(CGRectMake(0, NAVIGATIONBAR_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 50 ))];
-        _popUpWindow.delegate = self;
-    }
-    return _popUpWindow;
 }
 
 - (TransferHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"TransferHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 580);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 430);
         _headerView.delegate = self;
         _headerView.amountTF.delegate = self;
         _headerView.nameTF.delegate = self;
@@ -79,6 +70,7 @@
     }
     return _mainService;
 }
+
 - (Get_token_info_service *)get_token_info_service{
     if (!_get_token_info_service) {
         _get_token_info_service = [[Get_token_info_service alloc] init];
@@ -135,11 +127,10 @@
         }else if (self.recieveTokenModel){
             self.headerView.nameTF.text = self.recieveTokenModel.account_name;
             self.headerView.amountTF.text = self.recieveTokenModel.quantity;
-            self.currentAssestsType = self.recieveTokenModel.token;
             self.headerView.memoTV.text = self.recieveTokenModel.memo;
+            self.currentAssestsType = self.recieveTokenModel.token;
         }
         self.headerView.assestChooserLabel.text = self.currentAssestsType;
-        [self getMainAccount];
         for (TokenInfo *token in self.get_token_info_service_data_array) {
             if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
                 self.currentToken = token;
@@ -151,36 +142,13 @@
         self.currentToken = self.get_token_info_service_data_array[0];
         self.currentAssestsType = self.currentToken.token_symbol;
         self.headerView.assestChooserLabel.text = self.currentToken.token_symbol;
-        self.headerView.accountChooserLabel.text = self.currentAccountName;
         }else{
             [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
             return;
         }
     }
     [self requestRate];
-    [self configHeaderView];
-    [self requestTransactionHistory];
     [MobClick beginLogPageView:@"pe转账"]; //("Pagename"为页面名称，可自定义)
-}
-
-
-- (void)getMainAccount{
-    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    if (accountArray.count == 1) {
-        // 当前只有一个账号
-        AccountInfo *model = accountArray[0];
-        self.currentAccountName = model.account_name;
-        self.headerView.accountChooserLabel.text = self.currentAccountName;
-    }else{
-        for (AccountInfo *model in accountArray) {
-            if ([model.is_main_account isEqualToString:@"1"]) {
-                AccountInfo *mainAccount = model;
-                self.currentAccountName = mainAccount.account_name;
-                self.headerView.accountChooserLabel.text = self.currentAccountName;
-            }
-        }
-    }
-    [self requestTokenInfoDataArray];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -192,21 +160,12 @@
     [super viewDidLoad];
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.mainTableView];
-    [self.mainTableView setTableHeaderView:self.headerView];
+    [self.view addSubview:self.headerView];
+    self.view.lee_theme.LeeConfigBackgroundColor(@"baseHeaderView_background_color");
     
     [self requestRichList];
-    
-    [self loadAllBlocks];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.nameTF];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
-}
-
-- (void)requestTransactionHistory{
-    self.transactionRecordsService.getTransactionRecordsRequest.from = self.currentAccountName;
-    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName": VALIDATE_STRING(self.currentToken.token_symbol)  , @"contractName": VALIDATE_STRING(self.currentToken.contract_name) }, nil];
-    [self loadNewData];
-
 }
 
 - (void)requestRichList{
@@ -224,13 +183,13 @@
     [self.mainService get_rate:^(GetRateResult *result, BOOL isSuccess) {
         if (isSuccess) {
             weakSelf.getRateResult = result;
-            [weakSelf textFieldChange:nil];
+            [weakSelf configHeaderView];
         }
     }];
 }
 
 - (void)requestTokenInfoDataArray{
-    self.get_token_info_service.get_token_info_request.accountName = self.currentAccountName;
+    self.get_token_info_service.get_token_info_request.accountName = CURRENT_ACCOUNT_NAME;
     WS(weakSelf);
     [self.get_token_info_service get_token_info:^(id service, BOOL isSuccess) {
         if (isSuccess) {
@@ -239,10 +198,7 @@
                 weakSelf.currentToken = weakSelf.get_token_info_service_data_array[0];
                 weakSelf.currentAssestsType = weakSelf.currentToken.token_symbol;
                 weakSelf.headerView.assestChooserLabel.text = weakSelf.currentToken.token_symbol;
-                weakSelf.headerView.accountChooserLabel.text = weakSelf.currentAccountName;
                 [weakSelf requestRate];
-                [weakSelf requestTransactionHistory];
-                [weakSelf configHeaderView];
             }else{
                 [TOASTVIEW showWithText: NSLocalizedString(@"当前账号未添加资产", nil)];
                 return;
@@ -252,44 +208,11 @@
 }
 
 - (void)configHeaderView{
+    self.headerView.assestChooserLabel.text = self.currentAssestsType;
     self.headerView.assest_balanceLabel.text = [NSString stringWithFormat:@"%@ %@", [NumberFormatter displayStringFromNumber:@(self.currentToken.balance.doubleValue)], self.currentToken.token_symbol];
     self.headerView.assest_balance_ConvertLabel.text = [NSString stringWithFormat:@"≈%@CNY", [NumberFormatter displayStringFromNumber:[NSNumber numberWithDouble:self.currentToken.balance_cny.doubleValue]]];
-    self.headerView.amount_ConvertLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
+//    self.headerView.amount_ConvertLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
 }
-
-
-
-- (void)loadAllBlocks{
-    WS(weakSelf);
-    [self.popUpWindow setOnBottomViewDidClick:^{
-        
-        [weakSelf removePopUpWindow];
-    }];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TransactionRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
-    if (!cell) {
-        cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
-    }
-    TransactionRecord *model = self.transactionRecordsService.dataSourceArray[indexPath.row];
-    cell.currentAccountName = self.currentAccountName;
-    cell.model = model;
-    return cell;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.transactionRecordsService.dataSourceArray.count;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 72;
-}
-
 
 - (void)textFieldChange:(NSNotification *)notification {
     BOOL isCanSubmit = (self.headerView.nameTF.text.length != 0 && self.headerView.amountTF.text.length != 0);
@@ -315,34 +238,39 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
-- (void)selectAccountBtnDidClick:(UIButton *)sender {
-    [self.view addSubview:self.popUpWindow];
-    NSMutableArray *accountArr =  [[AccountsTableManager accountTable] selectAccountTable];
-    _popUpWindow.type = PopUpWindowTypeAccount;
-    for (AccountInfo *model in accountArr) {
-        if ([model.account_name isEqualToString:self.currentAccountName]) {
-            model.selected = YES;
-        }
-    }
-    [_popUpWindow updateViewWithArray:accountArr title:@""];
+-(void)rightBtnDidClick{
+    TransferRecordsViewController *vc = [[TransferRecordsViewController alloc] init];
+    vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
+    vc.currentToken = self.currentToken;
+    vc.from = CURRENT_ACCOUNT_NAME;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectAssestsBtnDidClick:(UIButton *)sender {
-    [self.view addSubview:self.popUpWindow];
+    WS(weakSelf);
+    [self.view endEditing:YES];
     NSMutableArray *assestsArr = [NSMutableArray array];
-    for (TokenInfo *token in self.get_token_info_service_data_array) {
-        Assest *assest = [[Assest alloc] init];
-        assest.assetName = token.token_symbol;
-        [assestsArr addObject: assest];
-    }
-    _popUpWindow.type = PopUpWindowTypeAssest;
-    for (Assest *model in assestsArr) {
-        if ([model.assetName isEqualToString:self.currentAssestsType]) {
-            model.selected = YES;
+    CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    for (int i = 0 ; i < self.get_token_info_service_data_array.count; i++) {
+        TokenInfo *token = self.get_token_info_service_data_array[i];
+        if ([token.token_symbol isEqualToString:self.currentToken.token_symbol]) {
+            builder.defaultIndex = i;
         }
+        [assestsArr addObject: token.token_symbol];
     }
-    [_popUpWindow updateViewWithArray:assestsArr title:@""];
+    
+    [CDZPicker showSinglePickerInView:self.view withBuilder:builder strings:assestsArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
+        weakSelf.currentAssestsType = VALIDATE_STRING(strings[0]);
+        weakSelf.headerView.assestChooserLabel.text = weakSelf.currentAssestsType;
+        for (TokenInfo *token in self.get_token_info_service_data_array) {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                weakSelf.currentToken = token;
+            }
+        }
+        [weakSelf requestRate];
+    }cancel:^{
+        NSLog(@"user cancled");
+    }];
 }
 
 - (void)contactBtnDidClick:(UIButton *)sender {
@@ -408,7 +336,7 @@
     }
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
-    self.transferAbi_json_to_bin_request.from = self.currentAccountName;
+    self.transferAbi_json_to_bin_request.from = CURRENT_ACCOUNT_NAME;
     self.transferAbi_json_to_bin_request.to = self.headerView.nameTF.text;
     self.transferAbi_json_to_bin_request.memo = self.headerView.memoTV.text;
     WS(weakSelf);
@@ -421,12 +349,12 @@
             return ;
         }
         NSLog(@"approve_abi_to_json_request_success: --binargs: %@",data[@"data"][@"binargs"] );
-        AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:weakSelf.currentAccountName];
+        AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:CURRENT_ACCOUNT_NAME];
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         
         weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.code = weakSelf.currentToken.contract_name;
-        weakSelf.mainService.sender = weakSelf.currentAccountName;
+        weakSelf.mainService.sender = CURRENT_ACCOUNT_NAME;
 #pragma mark -- [@"data"]
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
@@ -436,10 +364,7 @@
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
-    
-    
 }
-
 
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
@@ -449,134 +374,6 @@
     }else{
         [TOASTVIEW showWithText: result.message];
     }
-}
-
-- (void)removePopUpWindow{
-    [self.popUpWindow removeFromSuperview];
-}
-
-// PopUpWindowDelegate
-- (void )popUpWindowdidSelectItem:(id)sender{
-    if ([sender isKindOfClass: [Assest class]]) {
-        self.headerView.assestChooserLabel.text = [(Assest *)sender assetName];
-        self.currentAssestsType = [(Assest *)sender assetName];
-        for (TokenInfo *token in self.get_token_info_service_data_array) {
-            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
-                self.currentToken = token;
-            }
-        }
-        [self requestRate];
-        [self requestTransactionHistory];
-        [self configHeaderView];
-    }else if ([sender isKindOfClass:[AccountInfo class]]){
-        self.headerView.accountChooserLabel.text = [(AccountInfo *)sender account_name];
-        self.currentAccountName = [(AccountInfo *)sender account_name];
-        [self requestTokenInfoDataArray];
-    }
-}
-
-
-
-- (void)rightBtnDidClick {
-    // 1. 获取摄像设备
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if (device) {
-        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        if (status == AVAuthorizationStatusNotDetermined) {
-            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                
-                if (granted) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
-                        [self.navigationController pushViewController:vc animated:YES];
-                    });
-                    // 用户第一次同意了访问相机权限
-                    NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
-                }else {
-                    // 用户第一次拒绝了访问相机权限
-                    NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
-                }
-                
-                
-            }];
-        }else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
-            ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            
-            [alertC addAction:alertA];
-            [self presentViewController:alertC animated:YES completion:nil];
-            
-        } else if (status == AVAuthorizationStatusRestricted) {
-            NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
-        }
-        
-        
-    }else {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        
-        [alertC addAction:alertA];
-        [self presentViewController:alertC animated:YES completion:nil];
-    }
-}
-
-
-#pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载
-#pragma mark - 数据处理相关
-#pragma mark 下拉刷新数据
-- (void)loadNewData
-{
-    WS(weakSelf);
-    [self.mainTableView.mj_footer resetNoMoreData];
-    [self.transactionRecordsService buildDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-        if (isSuccess) {
-            // 刷新表格
-            [weakSelf.mainTableView reloadData];
-            if ([dataCount isEqualToNumber:@0]) {
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_header endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-            }else{
-                // 拿到当前的下拉刷新控件，结束刷新状态
-                [weakSelf.mainTableView.mj_header endRefreshing];
-                
-            }
-        }else{
-            [weakSelf.mainTableView.mj_header endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-        }
-    }];
-}
-
-#pragma mark 上拉加载更多数据
-- (void)loadMoreData
-{
-    WS(weakSelf);
-    [self.transactionRecordsService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-        if (isSuccess) {
-            // 刷新表格
-            [weakSelf.mainTableView reloadData];
-            if ([dataCount isEqualToNumber:@0]) {
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-            }else{
-                // 拿到当前的下拉刷新控件，结束刷新状态
-                [weakSelf.mainTableView.mj_footer endRefreshing];
-            }
-        }else{
-            [weakSelf.mainTableView.mj_header endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshing];
-        }
-    }];
 }
 
 -(void)dealloc{

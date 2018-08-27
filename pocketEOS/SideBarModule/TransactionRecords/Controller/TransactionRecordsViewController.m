@@ -14,7 +14,8 @@
 #import "TransactionRecordsService.h"
 #import "TransactionRecordTableViewCell.h"
 #import "AccountInfo.h"
-
+#import "TransferRecordsTableViewCell.h"
+#import "TransferDetailsViewController.h"
 
 @interface TransactionRecordsViewController ()
 <UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, TransactionRecordsHeaderViewDelegate, PopUpWindowDelegate>
@@ -80,7 +81,6 @@
     [self.view addSubview:self.mainTableView];
     [self.mainTableView.mj_header beginRefreshing];
     
-    [self loadAllBlocks];
     NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
     for (AccountInfo *model in accountArray) {
         if ([model.is_main_account isEqualToString:@"1"]) {
@@ -88,24 +88,15 @@
             self.currentAccountName = mainAccount.account_name;
         }
     }
+    
     self.headerView.accountLabel.text = self.currentAccountName;
-    self.mainService.getTransactionRecordsRequest.from = self.currentAccountName;
-    self.mainService.getTransactionRecordsRequest.to = self.currentAccountName;
-    self.mainService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN }, @{@"symbolName":@"OCT"  , @"contractName": ContractName_OCTOTHEMOON },nil];
-}
-
-- (void)loadAllBlocks{
-    WS(weakSelf);
-    [self.popUpWindow setOnBottomViewDidClick:^{
-        
-        [weakSelf removePopUpWindow];
-    }];
+    [self requestTransactionHistory];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TransactionRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    TransferRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
     if (!cell) {
-        cell = [[TransactionRecordTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        cell = [[TransferRecordsTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     TransactionRecord *model = self.mainService.dataSourceArray[indexPath.row];
     cell.currentAccountName = self.currentAccountName;
@@ -118,11 +109,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
+    TransactionRecord *model = self.mainService.dataSourceArray[indexPath.row];
+    TransferDetailsViewController *vc = [[TransferDetailsViewController alloc] init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 72;
+    return 70;
 }
 
 - (void)leftBtnDidClick {
@@ -130,35 +124,32 @@
 }
 
 - (void)selectAccountBtnDidClick:(UIButton *)sender {
-    [self.view addSubview:self.popUpWindow];
-    NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
-    self.popUpWindow.type = PopUpWindowTypeAccount;
-    for (AccountInfo *model in accountArr) {
-        if ([model.account_name isEqualToString:self.currentAccountName]) {
-            model.selected = YES;
-        }
-    }
-    [_popUpWindow updateViewWithArray:accountArr title:@""];
     
+    NSArray *accountArr = [[AccountsTableManager accountTable] selectAllNativeAccountName];
     
+//    for (AccountInfo *model in accountArr) {
+//        if ([model.account_name isEqualToString:self.currentAccountName]) {
+//            model.selected = YES;
+//        }
+//    }
+    WS(weakSelf);
+    [CDZPicker showSinglePickerInView:self.view withBuilder:[CDZPickerBuilder new] strings:accountArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
+        weakSelf.currentAccountName = VALIDATE_STRING(strings[0]);
+        weakSelf.headerView.accountLabel.text = weakSelf.currentAccountName;
+        [weakSelf requestTransactionHistory];
+    }cancel:^{
+        NSLog(@"user cancled");
+    }];
     
 }
 
-//PopUpWindowDelegate
--(void)popUpWindowdidSelectItem:(id)sender{
-    AccountInfo *accountInfo = sender;
-    self.headerView.accountLabel.text = accountInfo.account_name;
-    self.currentAccountName = accountInfo.account_name;
+
+- (void)requestTransactionHistory{
+    self.headerView.accountLabel.text = self.currentAccountName;
     self.mainService.getTransactionRecordsRequest.from = self.currentAccountName;
     self.mainService.getTransactionRecordsRequest.to = self.currentAccountName;
     self.mainService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":@"EOS"  , @"contractName": ContractName_EOSIOTOKEN }, @{@"symbolName":@"OCT"  , @"contractName": ContractName_OCTOTHEMOON },nil];
-    [self removePopUpWindow];
     [self loadNewData];
-}
-
-
-- (void)removePopUpWindow{
-    [self.popUpWindow removeFromSuperview];
 }
 
 #pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载
@@ -186,7 +177,7 @@
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];
-           [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:NSLocalizedString(@"暂无数据", nil)toView:weakSelf.mainTableView andViewController:weakSelf];
+            [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:NSLocalizedString(@"暂无数据", nil)toView:weakSelf.mainTableView andViewController:weakSelf];
         }
     }];
 }

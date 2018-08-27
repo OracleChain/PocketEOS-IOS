@@ -152,5 +152,16 @@
     return a;
 }
 
-
++(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate
+{
+    NSDateFormatter *dtFormat = [[NSDateFormatter alloc] init];
+    [dtFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    [dtFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSDate *aDate = [dtFormat dateFromString:strDate];
+    
+    [dtFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [dtFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    
+    return [dtFormat stringFromDate:aDate];
+}
 @end

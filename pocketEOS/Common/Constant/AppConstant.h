@@ -21,6 +21,12 @@
  */
 #define CURRENT_WALLET_UID [[NSUserDefaults standardUserDefaults] objectForKey:Current_wallet_uid]
 
+/**
+ 当前 账号名
+ */
+#define CURRENT_ACCOUNT_NAME [[NSUserDefaults standardUserDefaults] objectForKey:Current_Account_name]
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////Begin: Device Macro definition///////////////////////////

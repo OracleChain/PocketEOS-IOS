@@ -9,16 +9,13 @@
 #import "RedPacketHeaderView.h"
 #import "UITextView+Placeholder.h"
 
+@interface RedPacketHeaderView()
+@property (weak, nonatomic) IBOutlet UIView *memoBaseView;
+
+@end
+
 
 @implementation RedPacketHeaderView
-
-
-- (IBAction)selectAccount:(UIButton *)sender {
-    [sender setSelected: !sender.isSelected];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(selectAccountBtnDidClick:)]) {
-        [self.delegate selectAccountBtnDidClick: sender];
-    }
-}
 
 - (IBAction)selectAssests:(UIButton *)sender {
     [sender setSelected: !sender.isSelected];
@@ -38,13 +35,21 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    self.descriptionTextView.placeholder = NSLocalizedString(@"请在此输入memo", nil);
-     self.tipLabel.font = [UIFont boldSystemFontOfSize:24];
-    self.descriptionTextView.lee_theme
-    .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xF8F8F8))
-    .LeeAddBackgroundColor(BLACKBOX_MODE, HEX_RGB_Alpha(0xFFFFFF, 0.1))
-    .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
-    .LeeAddTextColor(BLACKBOX_MODE, RGBA(255, 255, 255, 0.6));
+    self.tipLabel.font = [UIFont boldSystemFontOfSize:24];
+    
+    self.memoBaseView.lee_theme
+    .LeeConfigBackgroundColor(@"baseView_background_color");
+    
+    
+    self.memoTV.placeholder = NSLocalizedString(@"请在此输入memo", nil);
+    self.memoTV.lee_theme
+    .LeeConfigTextColor(@"common_font_color_1");
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.memoTV.placeholderColor = HEX_RGB_Alpha(0x666666, 1);
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        self.memoTV.placeholderColor = HEXCOLOR(0xFFFFFF);
+    }
 }
 
 @end

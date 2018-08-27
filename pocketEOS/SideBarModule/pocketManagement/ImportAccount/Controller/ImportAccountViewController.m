@@ -260,10 +260,8 @@
         }
     }];
     
-    BackupAccountViewController *vc = [[BackupAccountViewController alloc] init];
-    vc.accountName = self.headerView.accountNameTF.text ;
-    [self.navigationController pushViewController:vc animated:YES];
-//    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
 }
 
 

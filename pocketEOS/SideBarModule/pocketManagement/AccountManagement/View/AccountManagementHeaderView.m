@@ -96,9 +96,9 @@
 
 - (void)updateViewWithRemoteAccountInfo:(AccountInfo *)remoteAccount{
     // owner_public_key
+    self.ownerTipLabel.hidden = NO;
+    self.ownerRightIconImg.hidden = NO;
     if (!remoteAccount.account_owner_public_key) {
-        self.ownerTipLabel.hidden = NO;
-        self.ownerRightIconImg.hidden = NO;
         self.ownerTipLabel.textColor = HEXCOLOR(0xE8554A);
         self.ownerTipLabel.text = [NSString stringWithFormat:@"%@%@", remoteAccount.account_name,NSLocalizedString(@"未创建成功", nil)];
         self.ownerRightIconImg.image = [UIImage imageNamed:@"warning_red"];

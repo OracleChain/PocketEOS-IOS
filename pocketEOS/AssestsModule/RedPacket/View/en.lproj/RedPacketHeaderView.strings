@@ -5,7 +5,7 @@
 /* Class = "UITextField"; placeholder = "填写个数"; ObjectID = "OSV-qz-4kQ"; */
 "OSV-qz-4kQ.placeholder" = "Input how much red packets wanna to send";
 
-/* Class = "UITextField"; placeholder = "填写金额"; ObjectID = "cAW-Ja-83f"; */
+/* Class = "UITextField"; placeholder = "填写数额"; ObjectID = "cAW-Ja-83f"; */
 "cAW-Ja-83f.placeholder" = "Input the amount";
 
 /* Class = "UILabel"; text = "资产数量"; ObjectID = "e3C-RV-3Nq"; */

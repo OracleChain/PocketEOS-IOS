@@ -2148,6 +2148,13 @@ NSInteger const kIQPreviousNextButtonToolbarTag     =   -1005;
 
         [barButton.invocation invoke];
     }
+    
+    //发送通知
+    //DAppExcuteMutipleActionsBaseView.passwordTF
+    if (currentTextFieldView.tag==50001) {
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dAppExcuteMutipleActionsBaseViewpasswordTF" object:nil userInfo:nil]];
+    }
+    
 }
 
 #pragma mark - Customised textField/textView support.

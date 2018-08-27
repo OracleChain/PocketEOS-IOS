@@ -21,6 +21,7 @@
 #import "SocialManager.h"
 #import "SocialShareModel.h"
 #import "ShareModel.h"
+#import "RedPacketDetail.h"
 
 @interface RedPacketDetailViewController ()<RedPacketDetailHeaderViewDelegate, SocialSharePanelViewDelegate>
 @property(nonatomic , strong) NavigationView *navView;
@@ -31,13 +32,14 @@
 @property(nonatomic , strong) UIView *shareBaseView;
 @property(nonatomic , strong) SocialSharePanelView *socialSharePanelView;
 @property(nonatomic , strong) NSArray *platformNameArr;
+@property(nonatomic , strong) RedPacketDetail *redPacketDetailResult;
 @end
 
 @implementation RedPacketDetailViewController
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:NSLocalizedString(@"发红包", nil)rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back_white" title:NSLocalizedString(@"红包", nil)rightBtnImgName:@"" delegate:self];
         _navView.backgroundColor = RGB(214, 62, 67);
         _navView.titleLabel.textColor = [UIColor whiteColor];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal);
@@ -173,7 +175,7 @@
     self.redpacketService.getRedPacketDetailRequest.redPacket_id = self.redPacketModel.redPacket_id;
     [self.redpacketService getRedPacketDetail:^(RedPacketDetail *result, BOOL isSuccess) {
         if (isSuccess) {
-            
+            weakSelf.redPacketDetailResult = result;
             weakSelf.redpacketService.dataSourceArray = [NSMutableArray arrayWithArray:result.redPacketOrderRedisDtos];
             [weakSelf.mainTableView reloadData];
             if (weakSelf.redPacketModel.isSend) {
@@ -259,7 +261,7 @@
     ShareModel *model = [[ShareModel alloc] init];
     model.title = NSLocalizedString(@"天降大红包，没时间解释了，快抢!", nil);
     model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
-    model.detailDescription = NSLocalizedString(@"我下血本送上的区块链红包，无需消费、可以兑现，还犹豫什么？手慢无哦！", nil);
+    model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"我下血本为您送上", nil), self.redPacketDetailResult.amount,  self.redPacketModel.coin, NSLocalizedString(@"的大红包，无需消费，直接到达EOS账号，还在犹豫什么？", nil) ];
     model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.redPacketModel.verifystring];
     NSLog(@"model.webPageUrl : %@", model.webPageUrl);
     if ([platformName isEqualToString:@"wechat_friends"]) {

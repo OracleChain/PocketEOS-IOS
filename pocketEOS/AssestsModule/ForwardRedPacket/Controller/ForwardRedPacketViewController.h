@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "RedPacketModel.h"
+#import "GetRateResult.h"
+#import "Rate.h"
 
 @interface ForwardRedPacketViewController : BaseViewController
 @property(nonatomic , strong) RedPacketModel *redPacketModel;
+@property(nonatomic, strong) GetRateResult *getRateResult;
 @end

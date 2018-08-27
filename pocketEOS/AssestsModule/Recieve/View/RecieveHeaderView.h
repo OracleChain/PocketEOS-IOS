@@ -17,7 +17,7 @@
 @end
 
 @interface RecieveHeaderView : BaseView
-@property (weak, nonatomic) IBOutlet UILabel *accountChooserLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *assestChooserLabel;
 @property (weak, nonatomic) IBOutlet UITextField *amountTF;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
