@@ -12,6 +12,7 @@
 
 - (NSString *)requestUrlPath{
     return [NSString stringWithFormat:@"%@/select_user_red_packet", REQUEST_REDPACKET_BASEURL];
+//    return @"http://192.168.3.186:8089/api_oc_redpacket/select_user_red_packet";
 }
 
 -(id)parameters{

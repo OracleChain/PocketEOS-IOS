@@ -55,12 +55,14 @@
  */
 @property(nonatomic, copy) NSString *redPacket_id;
 
-
 /**
  红包id校验字段 isSend为false没有该字段
  */
 @property(nonatomic, copy) NSString *verifyString;
 
-
+/**
+ 状态 当issend为true时,0: 正常可以领取，1:等待主网确认,3:已经领取完毕,4:已经退回,5:失败红包，当issend为false时,0:等待发放，1发放成功
+ */
+@property(nonatomic , strong) NSNumber *status;
 
 @end

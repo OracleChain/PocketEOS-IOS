@@ -11,6 +11,7 @@
 		18017048207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18017044207EF1A300E4DA07 /* NSURLProtocol+WKWebVIew.m */; };
 		18017049207EF1A400E4DA07 /* HybridNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18017046207EF1A300E4DA07 /* HybridNSURLProtocol.m */; };
 		1801704C207F352100E4DA07 /* CacheTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801704B207F352100E4DA07 /* CacheTableManager.m */; };
+		1801994A2133F905005296BB /* RedPacketRecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180199492133F905005296BB /* RedPacketRecordsTableViewCell.m */; };
 		1806D0F7206E58540023D83B /* SocialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F6206E58540023D83B /* SocialModel.m */; };
 		1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F9206E5A010023D83B /* BindWechatRequest.m */; };
 		1806D0FD206E5A0C0023D83B /* BindQQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0FC206E5A0C0023D83B /* BindQQRequest.m */; };
@@ -447,7 +448,6 @@
 		1854FF69200320E300B8F253 /* slider_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1854FF67200320E300B8F253 /* slider_transparent@2x.png */; };
 		18563F521FD799EA00CF05FC /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18563F511FD799EA00CF05FC /* UITextView+Placeholder.m */; };
 		18563F5F1FD7A52800CF05FC /* ForwardRedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18563F5E1FD7A52800CF05FC /* ForwardRedPacketViewController.m */; };
-		18563F621FD7A56600CF05FC /* ForwardRedPacketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18563F611FD7A56600CF05FC /* ForwardRedPacketHeaderView.m */; };
 		18563F6C1FD7E98F00CF05FC /* ChangeAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18563F6B1FD7E98F00CF05FC /* ChangeAccountViewController.m */; };
 		1856A4AC2008539E00D62FEB /* ImportPocketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856A4AB2008539E00D62FEB /* ImportPocketHeaderView.m */; };
 		1856A4DE2008887200D62FEB /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856A4B22008887100D62FEB /* MJRefreshAutoFooter.m */; };
@@ -647,7 +647,6 @@
 		186F697520F4954700FFF881 /* RecieveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F697720F4954700FFF881 /* RecieveHeaderView.xib */; };
 		186F697C20F4955100FFF881 /* RecieveQRCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F697E20F4955100FFF881 /* RecieveQRCodeView.xib */; };
 		186F698320F4955900FFF881 /* RedPacketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F698520F4955900FFF881 /* RedPacketHeaderView.xib */; };
-		186F698A20F4956400FFF881 /* ForwardRedPacketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F698C20F4956400FFF881 /* ForwardRedPacketHeaderView.xib */; };
 		186F699120F4957600FFF881 /* RedPacketDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F699320F4957600FFF881 /* RedPacketDetailHeaderView.xib */; };
 		186F699820F4958300FFF881 /* UnStakeEOSHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F699A20F4958300FFF881 /* UnStakeEOSHeaderView.xib */; };
 		186F699F20F4959200FFF881 /* AdvertisementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F69A120F4959200FFF881 /* AdvertisementView.xib */; };
@@ -755,6 +754,8 @@
 		188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30401FFDE25C00A357F3 /* lockBackground@3x.png */; };
 		188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */; };
 		188C305D1FFE0EF400A357F3 /* BindPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C305B1FFE0EF400A357F3 /* BindPhoneNumberViewController.m */; };
+		188D196D2134FEA6006D59AC /* ForwardRedPacketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */; };
+		188D196F2134FEBE006D59AC /* ForwardRedPacketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */; };
 		188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECE420A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m */; };
 		188DECE820A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECE720A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.m */; };
 		188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECEA20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m */; };
@@ -1159,6 +1160,8 @@
 		18017047207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
 		1801704A207F352100E4DA07 /* CacheTableManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheTableManager.h; sourceTree = "<group>"; };
 		1801704B207F352100E4DA07 /* CacheTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTableManager.m; sourceTree = "<group>"; };
+		180199482133F905005296BB /* RedPacketRecordsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketRecordsTableViewCell.h; sourceTree = "<group>"; };
+		180199492133F905005296BB /* RedPacketRecordsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketRecordsTableViewCell.m; sourceTree = "<group>"; };
 		1806D0F5206E58540023D83B /* SocialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialModel.h; sourceTree = "<group>"; };
 		1806D0F6206E58540023D83B /* SocialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialModel.m; sourceTree = "<group>"; };
 		1806D0F8206E5A010023D83B /* BindWechatRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindWechatRequest.h; sourceTree = "<group>"; };
@@ -1931,8 +1934,6 @@
 		18563F511FD799EA00CF05FC /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		18563F5D1FD7A52800CF05FC /* ForwardRedPacketViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketViewController.h; sourceTree = "<group>"; };
 		18563F5E1FD7A52800CF05FC /* ForwardRedPacketViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketViewController.m; sourceTree = "<group>"; };
-		18563F601FD7A56600CF05FC /* ForwardRedPacketHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketHeaderView.h; sourceTree = "<group>"; };
-		18563F611FD7A56600CF05FC /* ForwardRedPacketHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketHeaderView.m; sourceTree = "<group>"; };
 		18563F6A1FD7E98F00CF05FC /* ChangeAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeAccountViewController.h; sourceTree = "<group>"; };
 		18563F6B1FD7E98F00CF05FC /* ChangeAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeAccountViewController.m; sourceTree = "<group>"; };
 		1856A4AA2008539E00D62FEB /* ImportPocketHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportPocketHeaderView.h; sourceTree = "<group>"; };
@@ -2259,9 +2260,6 @@
 		186F698420F4955900FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RedPacketHeaderView.xib; sourceTree = "<group>"; };
 		186F698720F4955C00FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RedPacketHeaderView.strings; sourceTree = "<group>"; };
 		186F698920F4955D00FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedPacketHeaderView.strings"; sourceTree = "<group>"; };
-		186F698B20F4956400FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForwardRedPacketHeaderView.xib; sourceTree = "<group>"; };
-		186F698E20F4956500FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ForwardRedPacketHeaderView.strings; sourceTree = "<group>"; };
-		186F699020F4956700FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ForwardRedPacketHeaderView.strings"; sourceTree = "<group>"; };
 		186F699220F4957600FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RedPacketDetailHeaderView.xib; sourceTree = "<group>"; };
 		186F699520F4957900FFF881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RedPacketDetailHeaderView.strings; sourceTree = "<group>"; };
 		186F699720F4957A00FFF881 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedPacketDetailHeaderView.strings"; sourceTree = "<group>"; };
@@ -2490,6 +2488,9 @@
 		188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePocketViewController.m; sourceTree = "<group>"; };
 		188C305A1FFE0EF400A357F3 /* BindPhoneNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindPhoneNumberViewController.h; sourceTree = "<group>"; };
 		188C305B1FFE0EF400A357F3 /* BindPhoneNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindPhoneNumberViewController.m; sourceTree = "<group>"; };
+		188D196B2134FEA6006D59AC /* ForwardRedPacketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketHeaderView.h; sourceTree = "<group>"; };
+		188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketHeaderView.m; sourceTree = "<group>"; };
+		188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForwardRedPacketHeaderView.xib; sourceTree = "<group>"; };
 		188DECE320A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApproveAbi_json_to_bin_request.h; sourceTree = "<group>"; };
 		188DECE420A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApproveAbi_json_to_bin_request.m; sourceTree = "<group>"; };
 		188DECE620A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferAbi_json_to_bin_request.h; sourceTree = "<group>"; };
@@ -5104,9 +5105,9 @@
 		18563F571FD7A4F700CF05FC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18563F601FD7A56600CF05FC /* ForwardRedPacketHeaderView.h */,
-				18563F611FD7A56600CF05FC /* ForwardRedPacketHeaderView.m */,
-				186F698C20F4956400FFF881 /* ForwardRedPacketHeaderView.xib */,
+				188D196B2134FEA6006D59AC /* ForwardRedPacketHeaderView.h */,
+				188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */,
+				188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */,
 				18D07A4620EA034200DF1FDF /* ForwardRedPacketFooterView.h */,
 				18D07A4720EA034200DF1FDF /* ForwardRedPacketFooterView.m */,
 				18D07A4920EA034A00DF1FDF /* ForwardRedPacketFooterView.xib */,
@@ -8665,6 +8666,8 @@
 		18F57718212D42B900AE54E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				180199482133F905005296BB /* RedPacketRecordsTableViewCell.h */,
+				180199492133F905005296BB /* RedPacketRecordsTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9094,7 +9097,6 @@
 				18CEA6A32105DC5200B2BFE2 /* application_select_BB@2x.png in Resources */,
 				18CEA6742105D98900B2BFE2 /* assest_select@3x.png in Resources */,
 				18FDFFC72024523100AEB4FA /* scan_net@2x.png in Resources */,
-				186F698A20F4956400FFF881 /* ForwardRedPacketHeaderView.xib in Resources */,
 				185BA38220BB978500F63674 /* paid_answer_BB@3x.png in Resources */,
 				185BA37F20BB971700F63674 /* energy@2x.png in Resources */,
 				185D18551FE762000021AD18 /*  qq.png in Resources */,
@@ -9369,6 +9371,7 @@
 				18F03FC22067804000697D7F /* background_blue@3x.png in Resources */,
 				18CEA6732105D98900B2BFE2 /* assest_unSelect@2x.png in Resources */,
 				18DBBB30206525F10050EE20 /* README.md in Resources */,
+				188D196F2134FEBE006D59AC /* ForwardRedPacketHeaderView.xib in Resources */,
 				18B276FF20B7AF530070F472 /* PocketEOSProtocol.rtf in Resources */,
 				185D18451FE75FC30021AD18 /* back@2x.png in Resources */,
 				18DBD280204258B0001E2DDF /* wallet_default_avatar@2x.png in Resources */,
@@ -9553,6 +9556,7 @@
 				188607A01FCC012F00B00EE7 /* UIColor+SNFoundation.m in Sources */,
 				182CDF51201EFFB4002B87B6 /* FeedbackTableViewCell.m in Sources */,
 				18291F4920EE399400D19CB9 /* ScrollMenuView.m in Sources */,
+				188D196D2134FEA6006D59AC /* ForwardRedPacketHeaderView.m in Sources */,
 				1860443320D368C100BEE917 /* UnStakeEOSHeaderView.m in Sources */,
 				1812758520B66B38005EDD91 /* Candy_equity_list_request.m in Sources */,
 				18112F731FCD016000BEA0D9 /* IQToolbar.m in Sources */,
@@ -9576,6 +9580,7 @@
 				18F5771D212D42DD00AE54E9 /* RedPacketRecordsViewController.m in Sources */,
 				18CD043F2029DF8100D21DF4 /* Permission.m in Sources */,
 				18423A201FFF5C6C006AB986 /* ScanQRCodeSuccessViewController.m in Sources */,
+				1801994A2133F905005296BB /* RedPacketRecordsTableViewCell.m in Sources */,
 				188C305D1FFE0EF400A357F3 /* BindPhoneNumberViewController.m in Sources */,
 				18112F671FCD016000BEA0D9 /* IQNSArray+Sort.m in Sources */,
 				1878BCA920845759002A76F5 /* RedpacketService.m in Sources */,
@@ -9863,7 +9868,6 @@
 				186C26C020E9BC5E0076BE4A /* Auth_redpacket_request.m in Sources */,
 				1872685D1FDE31BA00C898D1 /* TransactionRecordsHeaderView.m in Sources */,
 				18112F691FCD016000BEA0D9 /* IQUITextFieldView+Additions.m in Sources */,
-				18563F621FD7A56600CF05FC /* ForwardRedPacketHeaderView.m in Sources */,
 				1863297F1FE255A500E57F05 /* SWWButton.m in Sources */,
 				1862E78D20DBA79200F26629 /* EOSResource.m in Sources */,
 				181130311FCD01DF00BEA0D9 /* AFSecurityPolicy.m in Sources */,
@@ -10277,16 +10281,6 @@
 				186F698920F4955D00FFF881 /* zh-Hans */,
 			);
 			name = RedPacketHeaderView.xib;
-			sourceTree = "<group>";
-		};
-		186F698C20F4956400FFF881 /* ForwardRedPacketHeaderView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				186F698B20F4956400FFF881 /* Base */,
-				186F698E20F4956500FFF881 /* en */,
-				186F699020F4956700FFF881 /* zh-Hans */,
-			);
-			name = ForwardRedPacketHeaderView.xib;
 			sourceTree = "<group>";
 		};
 		186F699320F4957600FFF881 /* RedPacketDetailHeaderView.xib */ = {

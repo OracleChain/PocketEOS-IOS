@@ -171,14 +171,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
-    self.currentAccountName = self.accountName;
-    self.currentAssestsType = self.model.token_symbol;
-    self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
-    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
-    self.currentContractName = self.model.contract_name;
-     self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":VALIDATE_STRING(self.model.token_symbol)  , @"contractName": VALIDATE_STRING(self.model.contract_name) }, nil];
-    [self loadNewData];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -193,6 +186,10 @@
     [self.mainTableView setTableHeaderView:self.headerView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT- TABBAR_HEIGHT);
     [self.view addSubview:self.footerView];
+    self.currentAccountName = self.accountName;
+    self.currentAssestsType = self.model.token_symbol;
+    self.currentContractName = self.model.contract_name;
+    [self requestTransactionHistory];
     [self configHeaderView];
    
 //    NSValue *value0 = [NSValue valueWithCGPoint:(CGPointMake(0, 40))];
@@ -222,6 +219,13 @@
 //    [self.headerView.tendencyChartView animation];
     
     
+}
+
+- (void)requestTransactionHistory{
+    self.transactionRecordsService.getTransactionRecordsRequest.from = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.to = self.accountName;
+    self.transactionRecordsService.getTransactionRecordsRequest.symbols = [NSMutableArray arrayWithObjects:@{@"symbolName":VALIDATE_STRING(self.model.token_symbol)  , @"contractName": VALIDATE_STRING(self.model.contract_name) }, nil];
+    [self loadNewData];
 }
 
 - (void)configHeaderView{

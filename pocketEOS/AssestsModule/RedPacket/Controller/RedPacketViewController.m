@@ -284,7 +284,6 @@
         model.transactionId = result.transaction_id;
         model.redPacket_id = self.redPacket.redpacket_id;
         vc.redPacketModel = model;
-        vc.getRateResult = self.getRateResult;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{

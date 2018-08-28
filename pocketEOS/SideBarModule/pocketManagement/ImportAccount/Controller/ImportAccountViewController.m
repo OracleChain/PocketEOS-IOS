@@ -100,6 +100,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView addSubview:self.headerView];
+    [self.headerView.accountNameTF becomeFirstResponder];
 }
 
 

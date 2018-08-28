@@ -12,6 +12,7 @@
 #import "RedPacketDetailViewController.h"
 #import "RedPacketModel.h"
 #import "RedPacketRecord.h"
+#import "RedPacketRecordsTableViewCell.h"
 
 
 @interface RedPacketRecordsViewController ()<TransferRecordsHeaderViewDelegate>
