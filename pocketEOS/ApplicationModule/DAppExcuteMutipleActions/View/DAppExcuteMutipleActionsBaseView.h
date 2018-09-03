@@ -10,6 +10,7 @@
 
 @protocol DAppExcuteMutipleActionsBaseViewDelegate<NSObject>
 - (void)excuteMutipleActionsConfirmBtnDidClick;
+- (void)excuteMutipleActionsCloseBtnDidClick;
 @end
 
 

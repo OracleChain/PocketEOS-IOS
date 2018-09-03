@@ -69,4 +69,5 @@ typedef NS_OPTIONS(NSUInteger, PushTransactionType) {
 - (void)get_rate:(CompleteBlock)complete;
 
 
+@property(nonatomic, copy) NSString *ref_block_num;
 @end

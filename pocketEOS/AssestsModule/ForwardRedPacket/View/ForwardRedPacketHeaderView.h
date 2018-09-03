@@ -18,10 +18,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImgView;
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *memoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *amountTipLabel;
+@property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+
 
 @property(nonatomic, weak) id<ForwardRedPacketHeaderViewDelegate> delegate;
 

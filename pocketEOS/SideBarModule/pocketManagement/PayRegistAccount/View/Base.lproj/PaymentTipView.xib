@@ -46,7 +46,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select__BB_wallet_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="TM6-EH-oKm">
+                                <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circleWithRight_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="TM6-EH-oKm">
                                     <rect key="frame" x="335" y="10" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="ODm-aW-soZ"/>
@@ -94,7 +94,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unSelect__BB_wallet_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="1pp-J5-hVV">
+                                <imageView userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circleWithoutRight_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="1pp-J5-hVV">
                                     <rect key="frame" x="335" y="10" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="Gvc-vL-XX8"/>
@@ -206,8 +206,8 @@
     </objects>
     <resources>
         <image name="alipay_icon.png" width="60" height="60"/>
-        <image name="select__BB_wallet_icon.png" width="17" height="17"/>
-        <image name="unSelect__BB_wallet_icon.png" width="18" height="18"/>
+        <image name="circleWithRight_blue.png" width="54" height="54"/>
+        <image name="circleWithoutRight_gray.png" width="54" height="54"/>
         <image name="wechat_pay_icon.png" width="22" height="20"/>
     </resources>
 </document>

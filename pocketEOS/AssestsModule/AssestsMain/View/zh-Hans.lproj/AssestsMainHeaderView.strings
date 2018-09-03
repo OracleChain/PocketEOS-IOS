@@ -3,10 +3,10 @@
 "6w9-Qs-9bF.text" = "总资产(￥)";
 
 /* Class = "UILabel"; text = "发起收款"; ObjectID = "BFN-RU-aex"; */
-"BFN-RU-aex.text" = "收款";
+"BFN-RU-aex.text" = "资产收款";
 
 /* Class = "UILabel"; text = "红包"; ObjectID = "Qa0-DQ-L5O"; */
-"Qa0-DQ-L5O.text" = "红包";
+"Qa0-DQ-L5O.text" = "发红包";
 
 /* Class = "UILabel"; text = "发起转账"; ObjectID = "T9L-La-SPP"; */
-"T9L-La-SPP.text" = "转账";
+"T9L-La-SPP.text" = "发起转账";

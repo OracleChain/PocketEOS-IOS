@@ -26,6 +26,9 @@
 // 测试环境/lian
 //#define REQUEST_BASEURL @"http://192.168.3.205:8888"
 
+// tmp interface
+//#define REQUEST_APIPATH [NSString stringWithFormat: @"/lottery%@", [self requestUrlPath]]
+
 // java interface
 #define REQUEST_APIPATH [NSString stringWithFormat: @"/api_oc_blockchain-v1.3.0%@", [self requestUrlPath]]
 

@@ -46,6 +46,7 @@
 @property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
 @property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
 @property(nonatomic , strong) DAppExcuteMutipleActionsBaseView *dAppExcuteMutipleActionsBaseView;
+@property(nonatomic , assign) BOOL allowZoom;
 @end
 
 @implementation DAppDetailViewController
@@ -78,7 +79,7 @@
         } else {
             // Fallback on earlier versions
         }
-        
+        self.allowZoom = YES;
     }
     return _webView;
 }
@@ -163,7 +164,7 @@
 - (DAppExcuteMutipleActionsBaseView *)dAppExcuteMutipleActionsBaseView{
     if (!_dAppExcuteMutipleActionsBaseView) {
         _dAppExcuteMutipleActionsBaseView = [[DAppExcuteMutipleActionsBaseView alloc] init];
-        _dAppExcuteMutipleActionsBaseView.frame = CGRectMake(0, SCREEN_HEIGHT-430, SCREEN_WIDTH, 430 );
+        _dAppExcuteMutipleActionsBaseView.frame = CGRectMake(0, SCREEN_HEIGHT-380, SCREEN_WIDTH, 380 );
         _dAppExcuteMutipleActionsBaseView.delegate = self;
     }
     return _dAppExcuteMutipleActionsBaseView;
@@ -232,9 +233,11 @@
         [self loadWebView];
     }
     self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
+
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    self.allowZoom = NO;
     [self passEosAccountNameToJS];
     [self passWalletInfoToJS];
     WS(weakSelf);
@@ -252,7 +255,6 @@
         [weakSelf passWalletInfoToJS];
     });
     
-    [self buildExcuteActionsDataSource];
 }
 
 
@@ -268,6 +270,10 @@
     [self pushActions];
 }
 
+- (void)excuteMutipleActionsCloseBtnDidClick{
+    [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
+    self.dAppExcuteMutipleActionsBaseView = nil;
+}
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil)message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -305,6 +311,7 @@
 
 - (void)buildExcuteActionsDataSource{
     WS(weakSelf);
+    self.dappExcuteActionsDataSourceService.actionsResultDict = self.dAppExcuteMutipleActionsResult.actionsDetails;
     [self.dappExcuteActionsDataSourceService buildDataSource:^(id service, BOOL isSuccess) {
         if (isSuccess) {
             [weakSelf.view addSubview:weakSelf.dAppExcuteMutipleActionsBaseView];
@@ -439,10 +446,10 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"签名成功", nil)];
         [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
         self.dAppExcuteMutipleActionsBaseView = nil;
-        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
     }else{
         [TOASTVIEW showWithText: result.message];
-        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
+        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
     }
     [self removeLoginPasswordView];
     [SVProgressHUD dismiss];
@@ -467,7 +474,6 @@
 - (void)passWalletInfoToJS{
     Wallet *wallet = CURRENT_WALLET;
     NSMutableDictionary *walletDict = [[NSMutableDictionary alloc] init];
-    [walletDict setValue:wallet.wallet_phone forKey:@"phone"];
     [walletDict setValue:self.choosedAccountName forKey:@"account"];
     [walletDict setValue:wallet.wallet_uid forKey:@"uid"];
     [walletDict setValue:wallet.wallet_name forKey:@"wallet_name"];

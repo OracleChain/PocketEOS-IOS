@@ -16,6 +16,13 @@
 @property(nonatomic, strong) Follow *model;
 
 
+
+/**
+ pe 富豪榜钱包
+ */
+@property(nonatomic, strong) Follow *walletModel;
+
+
 /**
  网络解析的 account
  */

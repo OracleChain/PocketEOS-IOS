@@ -42,7 +42,7 @@
 
 @property(nonatomic, strong) JSContext *context;
 @property(nonatomic, copy) NSString *ref_block_prefix;
-@property(nonatomic, copy) NSString *ref_block_num;
+
 @property(nonatomic , strong) NSData *chain_Id;
 @property(nonatomic, copy) NSString *expiration;
 @property(nonatomic, copy) NSString *required_Publickey;

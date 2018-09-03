@@ -45,7 +45,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"红包", nil) rightBtnTitleName:NSLocalizedString(@"红包记录", nil) delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"发红包", nil) rightBtnTitleName:NSLocalizedString(@"红包记录", nil) delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     }
     return _navView;
@@ -148,7 +148,7 @@
     if (isCanSubmit) {
         [self.headerView.sendRedpacketBtn setBackgroundColor: HEXCOLOR(0xD82919)];
     } else {
-        [self.headerView.sendRedpacketBtn setBackgroundColor: HEXCOLOR(0xCCCCCC)];
+        [self.headerView.sendRedpacketBtn setBackgroundColor: HEXCOLOR(0xB3E05447)];
     }
     self.headerView.sendRedpacketBtn.enabled = isCanSubmit;
     
@@ -164,6 +164,7 @@
 }
 
 -(void)rightBtnDidClick{
+    [MobClick event:@"红包-红包记录"];
     RedPacketRecordsViewController *vc = [[RedPacketRecordsViewController alloc] init];
     vc.currentAssestsType = self.currentAssestsType;
     [self.navigationController pushViewController:vc animated:YES];
@@ -217,6 +218,7 @@
     self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.doubleValue);
     self.mainService.sendRedpacketRequest.packetCount = @(self.headerView.redPacketCountTF.text.integerValue);
     self.mainService.sendRedpacketRequest.type = self.currentAssestsType;
+    self.mainService.sendRedpacketRequest.remark = IsStrEmpty(self.headerView.memoTV.text) ?  @"" :  self.headerView.memoTV.text ;
     
     WS(weakSelf);
     [self.mainService sendRedPacket:^(RedPacket *result, BOOL isSuccess) {
@@ -246,7 +248,7 @@
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = CURRENT_ACCOUNT_NAME;
     self.transferAbi_json_to_bin_request.to = RedPacketReciever;
-    self.transferAbi_json_to_bin_request.memo = self.headerView.memoTV.text;
+    self.transferAbi_json_to_bin_request.memo = IsStrEmpty(self.headerView.memoTV.text) ?  [NSString stringWithFormat:@"%@,", self.redPacket.redpacket_id] : [NSString stringWithFormat:@"%@,%@", self.redPacket.redpacket_id, self.headerView.memoTV.text] ;
     WS(weakSelf);
     [self.transferAbi_json_to_bin_request postOuterDataSuccess:^(id DAO, id data) {
 #pragma mark -- [@"data"]
@@ -271,20 +273,31 @@
 
 // TransferServiceDelegate
 - (void)pushTransactionDidFinish:(TransactionResult *)result{
-    if ([result.code isEqualToNumber:@0 ]) {
+    WS(weakSelf);
+    if ([result.code isEqualToNumber:@0]) {
         NSLog(NSLocalizedString(@"转账到eosredpacket成功!", nil));
-        ForwardRedPacketViewController *vc = [[ForwardRedPacketViewController alloc] init];
-        RedPacketModel *model = [[RedPacketModel alloc] init];
-        model.from = CURRENT_ACCOUNT_NAME;
-        model.amount = self.headerView.amountTF.text;
-        model.count = self.headerView.redPacketCountTF.text;
-        model.coin = self.currentAssestsType;
-        model.memo =  IsStrEmpty(self.headerView.memoTV.text) ? self.headerView.memoTV.text : @"";
-        model.amount = self.headerView.amountTF.text;
-        model.transactionId = result.transaction_id;
-        model.redPacket_id = self.redPacket.redpacket_id;
-        vc.redPacketModel = model;
-        [self.navigationController pushViewController:vc animated:YES];
+        self.mainService.payOrderRequest.userId = CURRENT_WALLET_UID;
+        self.mainService.payOrderRequest.outTradeNo = self.redPacket.redpacket_id;
+        self.mainService.payOrderRequest.trxId = result.transaction_id;
+        self.mainService.payOrderRequest.memo = IsStrEmpty(self.headerView.memoTV.text) ?  [NSString stringWithFormat:@"%@,", self.redPacket.redpacket_id] : [NSString stringWithFormat:@"%@,%@", self.redPacket.redpacket_id, self.headerView.memoTV.text];
+        self.mainService.payOrderRequest.blockNum = self.transferService.ref_block_num;
+        self.mainService.payOrderRequest.prepayId = self.redPacket.prepayId;
+        
+        [self.mainService payOrder:^(id service, BOOL isSuccess) {
+            
+            ForwardRedPacketViewController *vc = [[ForwardRedPacketViewController alloc] init];
+            RedPacketModel *model = [[RedPacketModel alloc] init];
+            model.from = CURRENT_ACCOUNT_NAME;
+            model.amount = weakSelf.headerView.amountTF.text;
+            model.count = weakSelf.headerView.redPacketCountTF.text;
+            model.coin = weakSelf.currentAssestsType;
+            model.memo = weakSelf.headerView.memoTV.text ;
+            model.amount = weakSelf.headerView.amountTF.text;
+            model.transactionId = result.transaction_id;
+            model.redPacket_id = weakSelf.redPacket.redpacket_id;
+            vc.redPacketModel = model;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
         
     }else{
         [TOASTVIEW showWithText: result.message];

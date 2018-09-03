@@ -118,6 +118,8 @@
 // 隐藏自带的导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"pe转账"]; //("Pagename"为页面名称，可自定义)
+    
     // 设置默认的转账账号及资产
     if (self.transferModel || self.recieveTokenModel) {
         if (self.transferModel) {
@@ -148,7 +150,7 @@
         }
     }
     [self requestRate];
-    [MobClick beginLogPageView:@"pe转账"]; //("Pagename"为页面名称，可自定义)
+    [self textFieldChange: nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -239,6 +241,7 @@
 }
 
 -(void)rightBtnDidClick{
+    [MobClick event:@"发送-转账记录"];
     TransferRecordsViewController *vc = [[TransferRecordsViewController alloc] init];
     vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
     vc.currentToken = self.currentToken;

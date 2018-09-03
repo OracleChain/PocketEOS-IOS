@@ -164,7 +164,6 @@
         self.headerView.generateQRCodeBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
     } else {
-       
         self.headerView.generateQRCodeBtn.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xCCCCCC))
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
@@ -185,6 +184,7 @@
 }
 
 -(void)rightBtnDidClick{
+    [MobClick event:@"收款-转账记录"];
     TransferRecordsViewController *vc = [[TransferRecordsViewController alloc] init];
     vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
     vc.currentToken = self.currentToken;

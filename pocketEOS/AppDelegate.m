@@ -89,6 +89,7 @@ void uncaughtExceptionHandler(NSException*exception){
  **/
 - (void)integrateUMengSDK{
     [UMConfigure setEncryptEnabled:NO];//打开加密传输
+    
 #ifdef DEBUG
     // Debug模式的代码...
     [UMConfigure setLogEnabled:YES];//设置日志, 调试模式
@@ -96,6 +97,7 @@ void uncaughtExceptionHandler(NSException*exception){
     // Release模式的代码...
     [UMConfigure setLogEnabled:NO];//设置日志, 上线模式
 #endif
+    
     [UMConfigure initWithAppkey:YOUMENG_AppKey channel:@"pgyer"];// 蒲公英pgyer
     NSString* deviceID = [UMConfigure deviceIDForIntegration];
     NSLog(@"集成测试的deviceID:%@",deviceID);

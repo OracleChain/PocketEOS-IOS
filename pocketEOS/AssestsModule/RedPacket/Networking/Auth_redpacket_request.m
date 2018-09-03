@@ -10,13 +10,13 @@
 
 @implementation Auth_redpacket_request
 - (NSString *)requestUrlPath{
-    return [NSString stringWithFormat:@"%@/auth_message", REQUEST_REDPACKET_BASEURL];
+    return [NSString stringWithFormat:@"%@/getOrderInfo", REQUEST_REDPACKET_BASEURL];
+//    return @"http://47.105.99.78/api_oc_redpacket/getOrderInfo";
 }
 
 -(id)parameters{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:VALIDATE_STRING(self.redPacket_id) forKey:@"id"];
-    [params setObject:VALIDATE_STRING(self.transactionId) forKey:@"transactionId"];
     return [params clearEmptyObject];
 }
 

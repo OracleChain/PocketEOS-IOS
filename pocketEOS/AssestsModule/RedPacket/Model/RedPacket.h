@@ -17,5 +17,5 @@
 @property(nonatomic , copy) NSString *redpacket_id;
 @property(nonatomic , copy) NSString *verifyString;
 @property(nonatomic , copy) NSString *endTime;
-
+@property(nonatomic , copy) NSString *prepayId;
 @end

@@ -12,6 +12,13 @@
 		18017049207EF1A400E4DA07 /* HybridNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 18017046207EF1A300E4DA07 /* HybridNSURLProtocol.m */; };
 		1801704C207F352100E4DA07 /* CacheTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801704B207F352100E4DA07 /* CacheTableManager.m */; };
 		1801994A2133F905005296BB /* RedPacketRecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180199492133F905005296BB /* RedPacketRecordsTableViewCell.m */; };
+		18041E81213D142100A8D870 /* recieve_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7C213D141F00A8D870 /* recieve_white@2x.png */; };
+		18041E82213D142100A8D870 /* redpacket_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */; };
+		18041E83213D142100A8D870 /* redpacket_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7E213D142000A8D870 /* redpacket_icon@3x.png */; };
+		18041E84213D142100A8D870 /* recieve_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7F213D142000A8D870 /* recieve_white@3x.png */; };
+		18041E85213D142100A8D870 /* transfer_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E80213D142000A8D870 /* transfer_icon.png */; };
+		18041E88213D153300A8D870 /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E86213D153200A8D870 /* recieve@3x.png */; };
+		18041E89213D153300A8D870 /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E87213D153200A8D870 /* recieve@2x.png */; };
 		1806D0F7206E58540023D83B /* SocialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F6206E58540023D83B /* SocialModel.m */; };
 		1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F9206E5A010023D83B /* BindWechatRequest.m */; };
 		1806D0FD206E5A0C0023D83B /* BindQQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0FC206E5A0C0023D83B /* BindQQRequest.m */; };
@@ -269,8 +276,6 @@
 		1832F938211D7B0A0089C394 /* ExcuteActionsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832F937211D7B0A0089C394 /* ExcuteActionsResult.m */; };
 		1832F93C211D81A40089C394 /* ExcuteActionsDataSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832F93B211D81A40089C394 /* ExcuteActionsDataSourceService.m */; };
 		183348741FCE5DAE00884107 /* recieve_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1833486E1FCE5DAE00884107 /* recieve_icon@2x.png */; };
-		183348771FCE5DAE00884107 /* transfer_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183348711FCE5DAE00884107 /* transfer_icon@2x.png */; };
-		183348781FCE5DAE00884107 /* transfer_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183348721FCE5DAE00884107 /* transfer_icon@3x.png */; };
 		183348791FCE5DAE00884107 /* recieve_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 183348731FCE5DAE00884107 /* recieve_icon@3x.png */; };
 		1833488F1FCE69B200884107 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1833488E1FCE69B200884107 /* 2.png */; };
 		183348921FCE770100884107 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 183348911FCE770100884107 /* CALayer+XibConfiguration.m */; };
@@ -291,8 +296,6 @@
 		1835775C2101C84E00F075EA /* CustomTokensResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835775B2101C84E00F075EA /* CustomTokensResult.m */; };
 		1835775F2101CABD00F075EA /* CustomToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835775E2101CABD00F075EA /* CustomToken.m */; };
 		183577642101EA6300F075EA /* sparklined_placeholder_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 183577632101EA6200F075EA /* sparklined_placeholder_image.png */; };
-		1836746720E5D75800F04D1E /* redpacket_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1836746520E5D75800F04D1E /* redpacket_icon@3x.png */; };
-		1836746820E5D75800F04D1E /* redpacket_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1836746620E5D75800F04D1E /* redpacket_icon@2x.png */; };
 		1836919420FDC703000EAD59 /* CustomAssestsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836919320FDC703000EAD59 /* CustomAssestsService.m */; };
 		1836919720FDCC9C000EAD59 /* AddAssestsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836919620FDCC9C000EAD59 /* AddAssestsTableViewCell.m */; };
 		1836919A20FDD0C4000EAD59 /* CustomAssestsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836919920FDD0C4000EAD59 /* CustomAssestsTableViewCell.m */; };
@@ -391,6 +394,13 @@
 		18423A2C1FFF77E4006AB986 /* PocketManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A2B1FFF77E4006AB986 /* PocketManagementTableViewCell.m */; };
 		18423A311FFF8ABA006AB986 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A2D1FFF8ABA006AB986 /* MGSwipeButton.m */; };
 		18423A321FFF8ABA006AB986 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A2E1FFF8ABA006AB986 /* MGSwipeTableCell.m */; };
+		1842E79D2138F0F90090F8EA /* circleWithoutRight_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E79B2138F0F80090F8EA /* circleWithoutRight_gray.png */; };
+		1842E79E2138F0F90090F8EA /* circleWithRight_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E79C2138F0F80090F8EA /* circleWithRight_blue.png */; };
+		1842E7A021395EC70090F8EA /* countrycode.json in Resources */ = {isa = PBXBuildFile; fileRef = 1842E79F21395EC70090F8EA /* countrycode.json */; };
+		1842E7A721397DB90090F8EA /* redPacket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E7A121397DB60090F8EA /* redPacket@2x.png */; };
+		1842E7A821397DB90090F8EA /* transfer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E7A221397DB70090F8EA /* transfer@2x.png */; };
+		1842E7A921397DB90090F8EA /* redPacket@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E7A321397DB70090F8EA /* redPacket@3x.png */; };
+		1842E7AB21397DB90090F8EA /* transfer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1842E7A521397DB80090F8EA /* transfer@3x.png */; };
 		1843CB15207C55A400EDC158 /* NSBundle+DAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CB11207C55A300EDC158 /* NSBundle+DAUtils.m */; };
 		1843CB16207C55A400EDC158 /* DAConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CB12207C55A400EDC158 /* DAConfig.m */; };
 		18452B902074C91F00FAE7CE /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18452B8C2074C91F00FAE7CE /* UITabBar+CustomBadge.m */; };
@@ -613,6 +623,13 @@
 		186564E42011E86C0044BBC3 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 186564E32011E86B0044BBC3 /* NSString+Hash.m */; };
 		186564E8201228920044BBC3 /* CreateAccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 186564E7201228920044BBC3 /* CreateAccountRequest.m */; };
 		186564EB201228D80044BBC3 /* CreateAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 186564EA201228D80044BBC3 /* CreateAccountService.m */; };
+		1865C2ED21367AC500FE18C0 /* RedPacketResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865C2EC21367AC500FE18C0 /* RedPacketResult.m */; };
+		1865C3672136C65600FE18C0 /* assestsSparkLinePlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3652136C65500FE18C0 /* assestsSparkLinePlaceholder@2x.png */; };
+		1865C3682136C65600FE18C0 /* assestsSparkLinePlaceholder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3662136C65600FE18C0 /* assestsSparkLinePlaceholder@3x.png */; };
+		1865C3A82137C70F00FE18C0 /* dapp_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3A72137C70E00FE18C0 /* dapp_close.png */; };
+		1865C3A92137E5B100FE18C0 /* ForwardRedPacketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3AB2137E5B100FE18C0 /* ForwardRedPacketHeaderView.xib */; };
+		1865C3B02137E5BD00FE18C0 /* RedPacketPrepareDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3B22137E5BD00FE18C0 /* RedPacketPrepareDetailView.xib */; };
+		1865C3B72137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865C3B92137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib */; };
 		1868176C20FC878400FEE7B5 /* ramTrade@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868176A20FC878300FEE7B5 /* ramTrade@3x.png */; };
 		1868176D20FC878400FEE7B5 /* ramTrade@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868176B20FC878300FEE7B5 /* ramTrade@2x.png */; };
 		1868177020FC87F400FEE7B5 /* pocketManagement_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868176E20FC87F300FEE7B5 /* pocketManagement_icon@2x.png */; };
@@ -755,7 +772,9 @@
 		188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */; };
 		188C305D1FFE0EF400A357F3 /* BindPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C305B1FFE0EF400A357F3 /* BindPhoneNumberViewController.m */; };
 		188D196D2134FEA6006D59AC /* ForwardRedPacketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */; };
-		188D196F2134FEBE006D59AC /* ForwardRedPacketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */; };
+		188D1972213539EA006D59AC /* RedPacketPrepareDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D1971213539EA006D59AC /* RedPacketPrepareDetailView.m */; };
+		188D197721353A11006D59AC /* RedPacketPrepareFailedDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D197621353A11006D59AC /* RedPacketPrepareFailedDetailView.m */; };
+		188D197C21354A4C006D59AC /* PayOrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D197B21354A4C006D59AC /* PayOrderRequest.m */; };
 		188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECE420A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m */; };
 		188DECE820A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECE720A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.m */; };
 		188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DECEA20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m */; };
@@ -965,12 +984,6 @@
 		18CEA6A22105DC5200B2BFE2 /* application_unSelect_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */; };
 		18CEA6A32105DC5200B2BFE2 /* application_select_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */; };
 		18CEA6A42105DC5200B2BFE2 /* application_unSelect_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */; };
-		18CEA6A72106FC8000B2BFE2 /* transfer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */; };
-		18CEA6A82106FC8000B2BFE2 /* transfer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */; };
-		18CEA6AB2106FCBD00B2BFE2 /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */; };
-		18CEA6AC2106FCBD00B2BFE2 /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */; };
-		18CEA6AF2106FCDF00B2BFE2 /* redPacket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */; };
-		18CEA6B02106FCDF00B2BFE2 /* redPacket@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */; };
 		18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */; };
 		18D07A4020E9F1FB00DF1FDF /* AuthRedPacketResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */; };
 		18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */; };
@@ -1162,6 +1175,13 @@
 		1801704B207F352100E4DA07 /* CacheTableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTableManager.m; sourceTree = "<group>"; };
 		180199482133F905005296BB /* RedPacketRecordsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketRecordsTableViewCell.h; sourceTree = "<group>"; };
 		180199492133F905005296BB /* RedPacketRecordsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketRecordsTableViewCell.m; sourceTree = "<group>"; };
+		18041E7C213D141F00A8D870 /* recieve_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recieve_white@2x.png"; path = "../../../../../Documents/PocketUI/PocketEOS-UI/资产详情页优化/切图/recieve_white@2x.png"; sourceTree = "<group>"; };
+		18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@2x.png"; sourceTree = "<group>"; };
+		18041E7E213D142000A8D870 /* redpacket_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@3x.png"; sourceTree = "<group>"; };
+		18041E7F213D142000A8D870 /* recieve_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recieve_white@3x.png"; path = "../../../../../Documents/PocketUI/PocketEOS-UI/资产详情页优化/切图/recieve_white@3x.png"; sourceTree = "<group>"; };
+		18041E80213D142000A8D870 /* transfer_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transfer_icon.png; sourceTree = "<group>"; };
+		18041E86213D153200A8D870 /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
+		18041E87213D153200A8D870 /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
 		1806D0F5206E58540023D83B /* SocialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialModel.h; sourceTree = "<group>"; };
 		1806D0F6206E58540023D83B /* SocialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialModel.m; sourceTree = "<group>"; };
 		1806D0F8206E5A010023D83B /* BindWechatRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindWechatRequest.h; sourceTree = "<group>"; };
@@ -1614,8 +1634,6 @@
 		1832F93A211D81A40089C394 /* ExcuteActionsDataSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExcuteActionsDataSourceService.h; sourceTree = "<group>"; };
 		1832F93B211D81A40089C394 /* ExcuteActionsDataSourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExcuteActionsDataSourceService.m; sourceTree = "<group>"; };
 		1833486E1FCE5DAE00884107 /* recieve_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve_icon@2x.png"; sourceTree = "<group>"; };
-		183348711FCE5DAE00884107 /* transfer_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@2x.png"; sourceTree = "<group>"; };
-		183348721FCE5DAE00884107 /* transfer_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@3x.png"; sourceTree = "<group>"; };
 		183348731FCE5DAE00884107 /* recieve_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve_icon@3x.png"; sourceTree = "<group>"; };
 		1833488E1FCE69B200884107 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		183348901FCE770100884107 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
@@ -1655,8 +1673,6 @@
 		1835775D2101CABD00F075EA /* CustomToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomToken.h; sourceTree = "<group>"; };
 		1835775E2101CABD00F075EA /* CustomToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomToken.m; sourceTree = "<group>"; };
 		183577632101EA6200F075EA /* sparklined_placeholder_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sparklined_placeholder_image.png; sourceTree = "<group>"; };
-		1836746520E5D75800F04D1E /* redpacket_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@3x.png"; sourceTree = "<group>"; };
-		1836746620E5D75800F04D1E /* redpacket_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@2x.png"; sourceTree = "<group>"; };
 		1836919220FDC703000EAD59 /* CustomAssestsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAssestsService.h; sourceTree = "<group>"; };
 		1836919320FDC703000EAD59 /* CustomAssestsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAssestsService.m; sourceTree = "<group>"; };
 		1836919520FDCC9C000EAD59 /* AddAssestsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAssestsTableViewCell.h; sourceTree = "<group>"; };
@@ -1836,6 +1852,13 @@
 		18423A2E1FFF8ABA006AB986 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		18423A2F1FFF8ABA006AB986 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		18423A301FFF8ABA006AB986 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		1842E79B2138F0F80090F8EA /* circleWithoutRight_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleWithoutRight_gray.png; sourceTree = "<group>"; };
+		1842E79C2138F0F80090F8EA /* circleWithRight_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleWithRight_blue.png; sourceTree = "<group>"; };
+		1842E79F21395EC70090F8EA /* countrycode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countrycode.json; sourceTree = "<group>"; };
+		1842E7A121397DB60090F8EA /* redPacket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@2x.png"; sourceTree = "<group>"; };
+		1842E7A221397DB70090F8EA /* transfer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@2x.png"; sourceTree = "<group>"; };
+		1842E7A321397DB70090F8EA /* redPacket@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@3x.png"; sourceTree = "<group>"; };
+		1842E7A521397DB80090F8EA /* transfer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@3x.png"; sourceTree = "<group>"; };
 		1843CB11207C55A300EDC158 /* NSBundle+DAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+DAUtils.m"; sourceTree = "<group>"; };
 		1843CB12207C55A400EDC158 /* DAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAConfig.m; sourceTree = "<group>"; };
 		1843CB13207C55A400EDC158 /* NSBundle+DAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DAUtils.h"; sourceTree = "<group>"; };
@@ -2190,6 +2213,20 @@
 		186564E7201228920044BBC3 /* CreateAccountRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountRequest.m; sourceTree = "<group>"; };
 		186564E9201228D80044BBC3 /* CreateAccountService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountService.h; sourceTree = "<group>"; };
 		186564EA201228D80044BBC3 /* CreateAccountService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountService.m; sourceTree = "<group>"; };
+		1865C2EB21367AC500FE18C0 /* RedPacketResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketResult.h; sourceTree = "<group>"; };
+		1865C2EC21367AC500FE18C0 /* RedPacketResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketResult.m; sourceTree = "<group>"; };
+		1865C3652136C65500FE18C0 /* assestsSparkLinePlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assestsSparkLinePlaceholder@2x.png"; sourceTree = "<group>"; };
+		1865C3662136C65600FE18C0 /* assestsSparkLinePlaceholder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assestsSparkLinePlaceholder@3x.png"; sourceTree = "<group>"; };
+		1865C3A72137C70E00FE18C0 /* dapp_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dapp_close.png; sourceTree = "<group>"; };
+		1865C3AA2137E5B100FE18C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForwardRedPacketHeaderView.xib; sourceTree = "<group>"; };
+		1865C3AD2137E5B300FE18C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ForwardRedPacketHeaderView.strings; sourceTree = "<group>"; };
+		1865C3AF2137E5B400FE18C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ForwardRedPacketHeaderView.strings"; sourceTree = "<group>"; };
+		1865C3B12137E5BD00FE18C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RedPacketPrepareDetailView.xib; sourceTree = "<group>"; };
+		1865C3B42137E5C000FE18C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RedPacketPrepareDetailView.strings; sourceTree = "<group>"; };
+		1865C3B62137E5C100FE18C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedPacketPrepareDetailView.strings"; sourceTree = "<group>"; };
+		1865C3B82137E5C700FE18C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RedPacketPrepareFailedDetailView.xib; sourceTree = "<group>"; };
+		1865C3BB2137E5CA00FE18C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RedPacketPrepareFailedDetailView.strings; sourceTree = "<group>"; };
+		1865C3BD2137E5CB00FE18C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedPacketPrepareFailedDetailView.strings"; sourceTree = "<group>"; };
 		1868176A20FC878300FEE7B5 /* ramTrade@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ramTrade@3x.png"; sourceTree = "<group>"; };
 		1868176B20FC878300FEE7B5 /* ramTrade@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ramTrade@2x.png"; sourceTree = "<group>"; };
 		1868176E20FC87F300FEE7B5 /* pocketManagement_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pocketManagement_icon@2x.png"; sourceTree = "<group>"; };
@@ -2490,7 +2527,12 @@
 		188C305B1FFE0EF400A357F3 /* BindPhoneNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindPhoneNumberViewController.m; sourceTree = "<group>"; };
 		188D196B2134FEA6006D59AC /* ForwardRedPacketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketHeaderView.h; sourceTree = "<group>"; };
 		188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketHeaderView.m; sourceTree = "<group>"; };
-		188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForwardRedPacketHeaderView.xib; sourceTree = "<group>"; };
+		188D1970213539EA006D59AC /* RedPacketPrepareDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketPrepareDetailView.h; sourceTree = "<group>"; };
+		188D1971213539EA006D59AC /* RedPacketPrepareDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketPrepareDetailView.m; sourceTree = "<group>"; };
+		188D197521353A11006D59AC /* RedPacketPrepareFailedDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketPrepareFailedDetailView.h; sourceTree = "<group>"; };
+		188D197621353A11006D59AC /* RedPacketPrepareFailedDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketPrepareFailedDetailView.m; sourceTree = "<group>"; };
+		188D197A21354A4C006D59AC /* PayOrderRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayOrderRequest.h; sourceTree = "<group>"; };
+		188D197B21354A4C006D59AC /* PayOrderRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayOrderRequest.m; sourceTree = "<group>"; };
 		188DECE320A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApproveAbi_json_to_bin_request.h; sourceTree = "<group>"; };
 		188DECE420A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApproveAbi_json_to_bin_request.m; sourceTree = "<group>"; };
 		188DECE620A93EEE00ACD2A3 /* TransferAbi_json_to_bin_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferAbi_json_to_bin_request.h; sourceTree = "<group>"; };
@@ -2829,12 +2871,6 @@
 		18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_select_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@3x.png"; sourceTree = "<group>"; };
-		18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@3x.png"; sourceTree = "<group>"; };
-		18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer@2x.png"; sourceTree = "<group>"; };
-		18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
-		18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
-		18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@2x.png"; sourceTree = "<group>"; };
-		18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPacket@3x.png"; sourceTree = "<group>"; };
 		18D07A3A20E9F0FE00DF1FDF /* ForwardRedPacketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketService.h; sourceTree = "<group>"; };
 		18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketService.m; sourceTree = "<group>"; };
 		18D07A3E20E9F1FB00DF1FDF /* AuthRedPacketResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthRedPacketResult.h; sourceTree = "<group>"; };
@@ -3843,6 +3879,7 @@
 		18291F1C20ECAC2900D19CB9 /* 201807 */ = {
 			isa = PBXGroup;
 			children = (
+				1865C3A72137C70E00FE18C0 /* dapp_close.png */,
 				18291F1E20ECAC3400D19CB9 /* transactionrecord_icon@2x.png */,
 				18291F1D20ECAC3300D19CB9 /* transactionrecord_icon@3x.png */,
 				18291F4A20EE40C900D19CB9 /* QRCode_green@2x.png */,
@@ -3892,6 +3929,10 @@
 				182B1DED2112A55300F07222 /* flytomoon@3x.png */,
 				18509BC5211301F600EF8749 /* network_error_white@2x.png */,
 				18509BC4211301F600EF8749 /* network_error_white@3x.png */,
+				1865C3652136C65500FE18C0 /* assestsSparkLinePlaceholder@2x.png */,
+				1865C3662136C65600FE18C0 /* assestsSparkLinePlaceholder@3x.png */,
+				1842E79B2138F0F80090F8EA /* circleWithoutRight_gray.png */,
+				1842E79C2138F0F80090F8EA /* circleWithRight_blue.png */,
 			);
 			path = 201807;
 			sourceTree = "<group>";
@@ -4914,6 +4955,7 @@
 		1850338D20EF53660023B390 /* jsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1842E79F21395EC70090F8EA /* countrycode.json */,
 				1850338E20EF536B0023B390 /* CountryAreaCode.json */,
 				18C9E8C12122887200BC2AEA /* create_account.json */,
 				1860C60C2133A9BD00E39056 /* TransferToMoreAccount.json */,
@@ -5107,10 +5149,16 @@
 			children = (
 				188D196B2134FEA6006D59AC /* ForwardRedPacketHeaderView.h */,
 				188D196C2134FEA6006D59AC /* ForwardRedPacketHeaderView.m */,
-				188D196E2134FEBD006D59AC /* ForwardRedPacketHeaderView.xib */,
+				1865C3AB2137E5B100FE18C0 /* ForwardRedPacketHeaderView.xib */,
 				18D07A4620EA034200DF1FDF /* ForwardRedPacketFooterView.h */,
 				18D07A4720EA034200DF1FDF /* ForwardRedPacketFooterView.m */,
 				18D07A4920EA034A00DF1FDF /* ForwardRedPacketFooterView.xib */,
+				188D1970213539EA006D59AC /* RedPacketPrepareDetailView.h */,
+				188D1971213539EA006D59AC /* RedPacketPrepareDetailView.m */,
+				1865C3B22137E5BD00FE18C0 /* RedPacketPrepareDetailView.xib */,
+				188D197521353A11006D59AC /* RedPacketPrepareFailedDetailView.h */,
+				188D197621353A11006D59AC /* RedPacketPrepareFailedDetailView.m */,
+				1865C3B92137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6316,6 +6364,8 @@
 			children = (
 				187D9BDE2080A9100059BD2A /* RedPacketModel.h */,
 				187D9BDF2080A9100059BD2A /* RedPacketModel.m */,
+				1865C2EB21367AC500FE18C0 /* RedPacketResult.h */,
+				1865C2EC21367AC500FE18C0 /* RedPacketResult.m */,
 				185BCFC12085A47000C4A558 /* RedPacket.h */,
 				185BCFC22085A47000C4A558 /* RedPacket.m */,
 				18B2912820898E910032EE27 /* RedPacketRecordResult.h */,
@@ -7378,6 +7428,8 @@
 				18B2912F2089942D0032EE27 /* GetRedPacketDetailRequest.m */,
 				186C26BE20E9BC5E0076BE4A /* Auth_redpacket_request.h */,
 				186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */,
+				188D197A21354A4C006D59AC /* PayOrderRequest.h */,
+				188D197B21354A4C006D59AC /* PayOrderRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -8037,18 +8089,19 @@
 				18F03FDF2067883400697D7F /* redPacket_gray@2x.png */,
 				18F03FE22067883500697D7F /* redPacket_gray@3x.png */,
 				18F03FEE2067886C00697D7F /* recieve_gray.png */,
-				18CEA6A62106FC8000B2BFE2 /* transfer@2x.png */,
-				18CEA6A52106FC8000B2BFE2 /* transfer@3x.png */,
 				1833486E1FCE5DAE00884107 /* recieve_icon@2x.png */,
 				183348731FCE5DAE00884107 /* recieve_icon@3x.png */,
-				183348711FCE5DAE00884107 /* transfer_icon@2x.png */,
-				183348721FCE5DAE00884107 /* transfer_icon@3x.png */,
-				18CEA6A92106FCBC00B2BFE2 /* recieve@2x.png */,
-				18CEA6AA2106FCBD00B2BFE2 /* recieve@3x.png */,
-				18CEA6AD2106FCDE00B2BFE2 /* redPacket@2x.png */,
-				18CEA6AE2106FCDF00B2BFE2 /* redPacket@3x.png */,
-				1836746620E5D75800F04D1E /* redpacket_icon@2x.png */,
-				1836746520E5D75800F04D1E /* redpacket_icon@3x.png */,
+				1842E7A121397DB60090F8EA /* redPacket@2x.png */,
+				1842E7A321397DB70090F8EA /* redPacket@3x.png */,
+				1842E7A221397DB70090F8EA /* transfer@2x.png */,
+				1842E7A521397DB80090F8EA /* transfer@3x.png */,
+				18041E87213D153200A8D870 /* recieve@2x.png */,
+				18041E86213D153200A8D870 /* recieve@3x.png */,
+				18041E7C213D141F00A8D870 /* recieve_white@2x.png */,
+				18041E7F213D142000A8D870 /* recieve_white@3x.png */,
+				18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */,
+				18041E7E213D142000A8D870 /* redpacket_icon@3x.png */,
+				18041E80213D142000A8D870 /* transfer_icon.png */,
 				18F03FC12067803F00697D7F /* background_blue@2x.png */,
 				18F03FC02067803F00697D7F /* background_blue@3x.png */,
 				184EA62420ABCFDB00169CD9 /* background_black@2x.png */,
@@ -9007,7 +9060,6 @@
 				18291F4F20EE423B00D19CB9 /* copy_orange.png in Resources */,
 				183348791FCE5DAE00884107 /* recieve_icon@3x.png in Resources */,
 				18C9E8C22122887200BC2AEA /* create_account.json in Resources */,
-				1836746820E5D75800F04D1E /* redpacket_icon@2x.png in Resources */,
 				185BA36D20BB94DD00F63674 /* candyIcon@3x.png in Resources */,
 				186F69DE20F495F700FFF881 /* AskQuestionTipView.xib in Resources */,
 				181130D11FCD468100BEA0D9 /* tip@3x.png in Resources */,
@@ -9016,7 +9068,6 @@
 				185D18591FE762000021AD18 /* qq@3x.png in Resources */,
 				18BA1F0A211168F7008558DE /* pocketeos_logo_and_title@3x.png in Resources */,
 				189EB992207B5E630088C6FC /* Localizable.strings in Resources */,
-				18CEA6AF2106FCDF00B2BFE2 /* redPacket@2x.png in Resources */,
 				187D9BF52080C02F0059BD2A /* wechat_moments@2x.png in Resources */,
 				18BA1F10211168F7008558DE /* free_create_account@3x.png in Resources */,
 				183FF6F320C0FD700058D010 /* wechat_login@3x.png in Resources */,
@@ -9035,6 +9086,7 @@
 				186F6A2B20F496FA00FFF881 /* PersonalSettingHeaderView.xib in Resources */,
 				18C7F75A211AEFFA006AD456 /* AccountManagementHeaderView.xib in Resources */,
 				189E3EBE201C5B980022AF19 /* RSKImageCropperStrings.bundle in Resources */,
+				1842E7AB21397DB90090F8EA /* transfer@3x.png in Resources */,
 				185BA3B620BBB16500F63674 /* slider_blue@2x.png in Resources */,
 				185D18171FE7596E0021AD18 /* pERichList@2x.png in Resources */,
 				18BA1F1E2111B6F3008558DE /* AlipaySDK.bundle in Resources */,
@@ -9061,6 +9113,7 @@
 				18423A0B1FFF583F006AB986 /* SGQRCode.bundle in Resources */,
 				183FF74720C159740058D010 /* transaction_history_BB@3x.png in Resources */,
 				187D9BF32080C02F0059BD2A /* wechat_friends@2x.png in Resources */,
+				1842E79D2138F0F90090F8EA /* circleWithoutRight_gray.png in Resources */,
 				1838496120BE43AA00B89549 /* recieve_white@2x.png in Resources */,
 				184566CD20C18C290005F216 /* shield_BB@3x.png in Resources */,
 				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
@@ -9080,10 +9133,12 @@
 				185BA39420BB9AED00F63674 /* systemSetting_BB@2x.png in Resources */,
 				1868176C20FC878400FEE7B5 /* ramTrade@3x.png in Resources */,
 				185D182A1FE75C2E0021AD18 /* messageCenter@2x.png in Resources */,
+				1842E7A921397DB90090F8EA /* redPacket@3x.png in Resources */,
 				186F694420F4945E00FFF881 /* BBLoginHeaderView.xib in Resources */,
 				18F03FC5206780C400697D7F /* background_black.png in Resources */,
 				185BA3CF20BBC2E700F63674 /* select__BB_wallet_icon@3x.png in Resources */,
 				1860443B20D36B2C00BEE917 /* slider_gray@3x.png in Resources */,
+				18041E88213D153300A8D870 /* recieve@3x.png in Resources */,
 				18CEA67A2105D99C00B2BFE2 /* richList_select@3x.png in Resources */,
 				18CEA67C2105D99C00B2BFE2 /* richList_unSelect@3x.png in Resources */,
 				184EA62620ABCFDB00169CD9 /* background_black@2x.png in Resources */,
@@ -9115,7 +9170,6 @@
 				1884A8E4204D380700C72631 /* feedBackAsk@3x.png in Resources */,
 				1868177420FC8BCB00FEE7B5 /* addAssets@3x.png in Resources */,
 				183FF6F420C0FD700058D010 /* wechat_login@2x.png in Resources */,
-				18CEA6A72106FC8000B2BFE2 /* transfer@3x.png in Resources */,
 				186F69D020F495E400FFF881 /* EnterpriseDetailHeaderView.xib in Resources */,
 				185BA39820BB9AED00F63674 /* feedBack_BB@3x.png in Resources */,
 				1856E691210EFEE0008EFC88 /* ImportOwnerPermisionHeaderView.xib in Resources */,
@@ -9157,6 +9211,7 @@
 				183FF74520C159740058D010 /* pocket_BB@2x.png in Resources */,
 				185D181B1FE759C40021AD18 /* downImg@3x.png in Resources */,
 				186F693D20F3661000FFF881 /* AssestsMainHeaderView.xib in Resources */,
+				18041E89213D153300A8D870 /* recieve@2x.png in Resources */,
 				182B1DEF2112A55400F07222 /* flytomoon@3x.png in Resources */,
 				18CEA69A2105DC4600B2BFE2 /* news_select_BB@2x.png in Resources */,
 				185D18431FE75FC30021AD18 /* share@2x.png in Resources */,
@@ -9167,10 +9222,10 @@
 				18DBD28620426521001E2DDF /* account_default_blue@2x.png in Resources */,
 				185BA36E20BB94DD00F63674 /* candyIcon@2x.png in Resources */,
 				186F694B20F4948700FFF881 /* BBLoginCreateWalletView.xib in Resources */,
-				1836746720E5D75800F04D1E /* redpacket_icon@3x.png in Resources */,
 				1838495E20BE43AA00B89549 /* recieve_white@3x.png in Resources */,
 				1854FF69200320E300B8F253 /* slider_transparent@2x.png in Resources */,
 				18509BC6211301F600EF8749 /* network_error_white@3x.png in Resources */,
+				1865C3682136C65600FE18C0 /* assestsSparkLinePlaceholder@3x.png in Resources */,
 				1825DC542005AA820057320C /* slider_white@3x.png in Resources */,
 				182A66161FD11FE1007FD541 /* scan@2x.png in Resources */,
 				185D185E1FE763B10021AD18 /* wechat_big@3x.png in Resources */,
@@ -9179,7 +9234,6 @@
 				185D181F1FE75B270021AD18 /* pocket@3x.png in Resources */,
 				18F03FBF20677C3F00697D7F /* protectAccount@2x.png in Resources */,
 				185D18841FE76F090021AD18 /* addressBook@3x.png in Resources */,
-				18CEA6B02106FCDF00B2BFE2 /* redPacket@3x.png in Resources */,
 				18CEA6722105D98900B2BFE2 /* assest_unSelect@3x.png in Resources */,
 				187268611FDE31D400C898D1 /* TransactionRecordsHeaderView.xib in Resources */,
 				185BA41B20BBE03D00F63674 /* candyIntegrals@2x.png in Resources */,
@@ -9203,7 +9257,6 @@
 				1860443D20D36B2C00BEE917 /* unStakeEOS_blue@2x.png in Resources */,
 				186F6A7F20F4978E00FFF881 /* BandwidthManageHeaderView.xib in Resources */,
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
-				18CEA6AB2106FCBD00B2BFE2 /* recieve@2x.png in Resources */,
 				18C7F742211AE01B006AD456 /* PayRegistAccountHeaderView.xib in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
 				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
@@ -9222,6 +9275,7 @@
 				183FF74620C159740058D010 /* transaction_history_BB@2x.png in Resources */,
 				186F69F320F4961F00FFF881 /* BPCandidateFooterView.xib in Resources */,
 				185D183C1FE75ECA0021AD18 /* rectangle_UnSelected@3x.png in Resources */,
+				1842E7A821397DB90090F8EA /* transfer@2x.png in Resources */,
 				18112F751FCD016000BEA0D9 /* IQKeyboardManager.bundle in Resources */,
 				1817DF1220EF0A0E0037D784 /* changePassword_BB@2x.png in Resources */,
 				18C7F77B211C28CB006AD456 /* AccountNotExistView.xib in Resources */,
@@ -9231,7 +9285,6 @@
 				18CEA6A42105DC5200B2BFE2 /* application_unSelect_BB@3x.png in Resources */,
 				186F69FA20F4963200FFF881 /* BackupAccountHeaderView.xib in Resources */,
 				185D182B1FE75C2E0021AD18 /* messageCenter@3x.png in Resources */,
-				18CEA6AC2106FCBD00B2BFE2 /* recieve@3x.png in Resources */,
 				186F6A0120F4964000FFF881 /* FeedbackHeaderView.xib in Resources */,
 				1817DF1920EF0B270037D784 /* bpvote_BB@2x.png in Resources */,
 				184566C920C1861C0005F216 /* nomoredata_BB@2x.png in Resources */,
@@ -9256,6 +9309,7 @@
 				18C7F774211BD887006AD456 /* PhoneLoginMainView.xib in Resources */,
 				185BA39B20BB9AED00F63674 /* candyIcon_BB@3x.png in Resources */,
 				1838496020BE43AA00B89549 /* shield@3x.png in Resources */,
+				1842E7A721397DB90090F8EA /* redPacket@2x.png in Resources */,
 				185D18601FE763B10021AD18 /* wechat_big@2x.png in Resources */,
 				1868176D20FC878400FEE7B5 /* ramTrade@2x.png in Resources */,
 				1828F91D2068C70300513CD1 /* news_list_cell_time@3x.png in Resources */,
@@ -9270,7 +9324,6 @@
 				18D07A8820EB676900DF1FDF /* changePassword@2x.png in Resources */,
 				183FF73F20C156CA0058D010 /* login_Header_BB@3x.png in Resources */,
 				1836919E20FDD19B000EAD59 /* trash_gray@2x.png in Resources */,
-				18CEA6A82106FC8000B2BFE2 /* transfer@2x.png in Resources */,
 				1814140E1FCFA2BA00334C60 /* SVProgressHUD.bundle in Resources */,
 				18F03FEA2067883600697D7F /* redPacket_gray@3x.png in Resources */,
 				187B63E1206B347D00D0AE86 /* right_icon_blue@2x.png in Resources */,
@@ -9280,11 +9333,11 @@
 				186F6A3920F4971500FFF881 /* UnBindSocialPlatformHeaderView.xib in Resources */,
 				187D9BF62080C02F0059BD2A /* qq_Zone@3x.png in Resources */,
 				18DBBB19206523A00050EE20 /* PGDatePicker.bundle in Resources */,
-				183348771FCE5DAE00884107 /* transfer_icon@2x.png in Resources */,
 				18CEA6A22105DC5200B2BFE2 /* application_unSelect_BB@2x.png in Resources */,
 				186F6A2420F4968A00FFF881 /* LoginPasswordView.xib in Resources */,
 				18AD2BBD20D0C9C400536084 /* vote_account_bg_blue@3x.png in Resources */,
 				18291F4D20EE40C900D19CB9 /* QRCode_green@3x.png in Resources */,
+				18041E83213D142100A8D870 /* redpacket_icon@3x.png in Resources */,
 				18BA1F11211168F7008558DE /* warning_red@2x.png in Resources */,
 				1816919F20BF80EC00BF49A8 /* vote_box@3x.png in Resources */,
 				1860C60D2133A9BD00E39056 /* TransferToMoreAccount.json in Resources */,
@@ -9310,6 +9363,7 @@
 				18A2F46D1FF0A20A00B6CE43 /* Info.plist in Resources */,
 				1860444520D39E6800BEE917 /* unstake_alpha@3x.png in Resources */,
 				185BA41C20BBE03D00F63674 /* candyIntegrals@3x.png in Resources */,
+				18041E82213D142100A8D870 /* redpacket_icon@2x.png in Resources */,
 				185D184D1FE760D10021AD18 /* QRCodeBackground@3x.png in Resources */,
 				186F6A3220F4970300FFF881 /* PersonalSettingDetailHeaderView.xib in Resources */,
 				1872F13C202D6FD6005B5915 /* back_white@3x.png in Resources */,
@@ -9317,6 +9371,7 @@
 				187B63DD206B347D00D0AE86 /* feedBack@2x.png in Resources */,
 				186F69D720F495ED00FFF881 /* AskQuestionHeaderView.xib in Resources */,
 				1817DF0F20EF0A0E0037D784 /* importAccount_BB@3x.png in Resources */,
+				1842E7A021395EC70090F8EA /* countrycode.json in Resources */,
 				18CEA6922105DC3B00B2BFE2 /* assest_Select_BB@2x.png in Resources */,
 				18BA1F0F211168F7008558DE /* pocketeos_logo_and_title@2x.png in Resources */,
 				18CEA6712105D98900B2BFE2 /* assest_select@2x.png in Resources */,
@@ -9333,12 +9388,14 @@
 				186A2B10211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib in Resources */,
 				186F6A5C20F4975B00FFF881 /* ImportAccountHeaderView.xib in Resources */,
 				18D07A8B20EB676900DF1FDF /* changePassword@3x.png in Resources */,
+				1865C3B02137E5BD00FE18C0 /* RedPacketPrepareDetailView.xib in Resources */,
 				186F6AA220F497B900FFF881 /* CandyMainHeaderView.xib in Resources */,
 				186F699120F4957600FFF881 /* RedPacketDetailHeaderView.xib in Resources */,
 				1817DF1420EF0A0E0037D784 /* backup_BB@2x.png in Resources */,
 				188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */,
 				18D07A8C20EB676900DF1FDF /* importAccount@2x.png in Resources */,
 				186817A220FD8D5200FEE7B5 /* search_icon@3x.png in Resources */,
+				1865C3A82137C70F00FE18C0 /* dapp_close.png in Resources */,
 				181EC32220C58C20001994D3 /* server.cer in Resources */,
 				185BA3D120BBC2E700F63674 /* select__BB_wallet_icon@2x.png in Resources */,
 				186F6AA920F497C300FFF881 /* LoginView.xib in Resources */,
@@ -9362,16 +9419,18 @@
 				183FF73A20C14B980058D010 /* thumb_BB@2x.png in Resources */,
 				18CEA641210233A500B2BFE2 /* PocketManagementHeaderView.xib in Resources */,
 				18A99B0720E6644000E32A29 /* Eos.js in Resources */,
+				18041E84213D142100A8D870 /* recieve_white@3x.png in Resources */,
 				18D07A8F20EB67ED00DF1FDF /* backup@2x.png in Resources */,
 				18AD2BC420D0C9C400536084 /* vote_change_account@3x.png in Resources */,
 				181130D21FCD468100BEA0D9 /* tip@2x.png in Resources */,
 				18291F1820ECA97300D19CB9 /* candy_Icon@3x.png in Resources */,
 				18AD2BD420D11BB300536084 /* advertisement_BP_Vote@3x.png in Resources */,
 				18BE63FD20EF81AB00238492 /* inviteFriend_icon@2x.png in Resources */,
+				1865C3672136C65600FE18C0 /* assestsSparkLinePlaceholder@2x.png in Resources */,
 				18F03FC22067804000697D7F /* background_blue@3x.png in Resources */,
 				18CEA6732105D98900B2BFE2 /* assest_unSelect@2x.png in Resources */,
 				18DBBB30206525F10050EE20 /* README.md in Resources */,
-				188D196F2134FEBE006D59AC /* ForwardRedPacketHeaderView.xib in Resources */,
+				1865C3A92137E5B100FE18C0 /* ForwardRedPacketHeaderView.xib in Resources */,
 				18B276FF20B7AF530070F472 /* PocketEOSProtocol.rtf in Resources */,
 				185D18451FE75FC30021AD18 /* back@2x.png in Resources */,
 				18DBD280204258B0001E2DDF /* wallet_default_avatar@2x.png in Resources */,
@@ -9393,22 +9452,25 @@
 				18CEA6842105D9AC00B2BFE2 /* news_unSelect@3x.png in Resources */,
 				1854FF68200320E300B8F253 /* slider_transparent@3x.png in Resources */,
 				18E72DFC1FCC0C8800D09CA3 /* Assets.xcassets in Resources */,
+				1842E79E2138F0F90090F8EA /* circleWithRight_blue.png in Resources */,
 				1830A950202BF796009ACDD8 /* eos_avatar@3x.png in Resources */,
 				18C7F749211AE038006AD456 /* PaymentTipView.xib in Resources */,
 				182A66121FD11FDA007FD541 /* notify@3x.png in Resources */,
-				183348781FCE5DAE00884107 /* transfer_icon@3x.png in Resources */,
 				188F7A1E20CA89FA00911034 /* BPCandidateHeaderView.xib in Resources */,
 				18CEA6832105D9AC00B2BFE2 /* news_select@2x.png in Resources */,
 				18D07A8920EB676900DF1FDF /* createAccount@3x.png in Resources */,
 				1868177520FC8BCB00FEE7B5 /* addAssets@2x.png in Resources */,
 				1828F9252068D2EA00513CD1 /* right_arrow_gray@2x.png in Resources */,
 				185BA37E20BB971700F63674 /* energy@3x.png in Resources */,
+				18041E81213D142100A8D870 /* recieve_white@2x.png in Resources */,
 				18CEA6932105DC3B00B2BFE2 /* assest_Select_BB@3x.png in Resources */,
 				187D9BF42080C02F0059BD2A /* wechat_friends@3x.png in Resources */,
 				18BA1F15211168F7008558DE /* pay_create_account@3x.png in Resources */,
 				18FDFFBF2024521100AEB4FA /* scan_1@2x.png in Resources */,
 				18DBD27920424F0C001E2DDF /* wallet_QRCode_btn@3x.png in Resources */,
 				18BA1F0B211168F7008558DE /* wechat_pay_icon@3x.png in Resources */,
+				1865C3B72137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib in Resources */,
+				18041E85213D142100A8D870 /* transfer_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9567,6 +9629,7 @@
 				18423A321FFF8ABA006AB986 /* MGSwipeTableCell.m in Sources */,
 				18466D8320107278002E675A /* VersionUpdateService.m in Sources */,
 				18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */,
+				188D197721353A11006D59AC /* RedPacketPrepareFailedDetailView.m in Sources */,
 				1886077B1FCBF78C00B00EE7 /* BaseViewController.m in Sources */,
 				1856A4E92008887200D62FEB /* MJRefreshGifHeader.m in Sources */,
 				1864C0E41FE36A6D00031547 /* ApplicationCollectionViewCell.m in Sources */,
@@ -9941,6 +10004,7 @@
 				18FA76DD20623F3100545E73 /* NSObject+Extension.m in Sources */,
 				18EE05421FDF8A3200134E5C /* CreateAccountViewController.m in Sources */,
 				1825DC6B2005F4FB0057320C /* LineView.m in Sources */,
+				188D1972213539EA006D59AC /* RedPacketPrepareDetailView.m in Sources */,
 				186050E92027EC0200C87DDF /* QuestionDetailViewController.m in Sources */,
 				1860C60B2133A04500E39056 /* DAppExcuteMutipleActionsResult.m in Sources */,
 				18372D552063CA11004D19D0 /* NumberFormatter.m in Sources */,
@@ -9959,7 +10023,9 @@
 				1811300B1FCD01B800BEA0D9 /* SDWebImageCodersManager.m in Sources */,
 				187C6880208843C1003121E3 /* VersionUpdateTipView.m in Sources */,
 				187D9BE02080A9100059BD2A /* RedPacketModel.m in Sources */,
+				188D197C21354A4C006D59AC /* PayOrderRequest.m in Sources */,
 				1831F3A320170AEA002CE94D /* AssestsMainService.m in Sources */,
+				1865C2ED21367AC500FE18C0 /* RedPacketResult.m in Sources */,
 				18A99A8120E6613F00E32A29 /* TAAnimatedDotView.m in Sources */,
 				18F054C720CBA7AE001B0A29 /* BPCandidateFooterView.m in Sources */,
 				18ED6CE321103E2F0042200F /* PaymentTipView.m in Sources */,
@@ -10161,6 +10227,36 @@
 				183577432100CCA000F075EA /* zh-Hans */,
 			);
 			name = CustomAssestsHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		1865C3AB2137E5B100FE18C0 /* ForwardRedPacketHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1865C3AA2137E5B100FE18C0 /* Base */,
+				1865C3AD2137E5B300FE18C0 /* en */,
+				1865C3AF2137E5B400FE18C0 /* zh-Hans */,
+			);
+			name = ForwardRedPacketHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		1865C3B22137E5BD00FE18C0 /* RedPacketPrepareDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1865C3B12137E5BD00FE18C0 /* Base */,
+				1865C3B42137E5C000FE18C0 /* en */,
+				1865C3B62137E5C100FE18C0 /* zh-Hans */,
+			);
+			name = RedPacketPrepareDetailView.xib;
+			sourceTree = "<group>";
+		};
+		1865C3B92137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1865C3B82137E5C700FE18C0 /* Base */,
+				1865C3BB2137E5CA00FE18C0 /* en */,
+				1865C3BD2137E5CB00FE18C0 /* zh-Hans */,
+			);
+			name = RedPacketPrepareFailedDetailView.xib;
 			sourceTree = "<group>";
 		};
 		186A2B12211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib */ = {

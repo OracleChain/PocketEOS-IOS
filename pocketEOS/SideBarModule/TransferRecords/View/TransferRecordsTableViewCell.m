@@ -95,4 +95,10 @@
 
 }
 
+
+-(void)setRedPacketDetailSingleAccount:(RedPacketDetailSingleAccount *)redPacketDetailSingleAccount{
+    self.titleLabel.text = [redPacketDetailSingleAccount.account isEqualToString: RedPacketSpecialAccount_EOSIO] ? @"***" : redPacketDetailSingleAccount.account;
+    self.amountLabel.text = [NSString stringWithFormat:@"%@ %@", redPacketDetailSingleAccount.amount , redPacketDetailSingleAccount.type];
+    self.belongBlockLabel.text = redPacketDetailSingleAccount.createTime;
+}
 @end

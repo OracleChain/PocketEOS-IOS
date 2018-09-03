@@ -44,7 +44,7 @@
 
 - (void)buildDataSource:(CompleteBlock)complete{
     
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource: @"CountryAreaCode" ofType:@"json"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource: @"countrycode" ofType:@"json"];
     NSData * jsonData = [[NSData alloc] initWithContentsOfFile: jsonPath];
     NSArray *dataArray = [NSJSONSerialization JSONObjectWithData: jsonData options:NSJSONReadingMutableLeaves error:nil];
     [self handleDataWithResultArr:dataArray];

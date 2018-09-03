@@ -11,8 +11,6 @@
 @implementation ForwardRedPacketHeaderView
 
 - (IBAction)continueSendRedPacket:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    
     if ([self.delegate respondsToSelector:@selector(continueSendRedPacketBtnDidClick:)]) {
         [self.delegate continueSendRedPacketBtnDidClick:sender];
     }

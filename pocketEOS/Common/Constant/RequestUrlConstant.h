@@ -20,6 +20,8 @@
 #define REQUEST_MESSAGE_PUSH_BASEURL @"https://push.pocketeos.top"
 
 #define REQUEST_PAY_CREATEACCOUNT_BASEURL @"http://pay.pocketeos.top/oulianeosaccount"
+#define REQUEST_TOKENPAY_BASEURL @"http://tokenpay.pocketeos.top/tokenpay"
+
 
 
 // 主网环境

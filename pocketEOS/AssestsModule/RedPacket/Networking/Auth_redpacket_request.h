@@ -10,5 +10,4 @@
 
 @interface Auth_redpacket_request : BaseNetworkRequest
 @property(nonatomic, copy) NSString *redPacket_id;
-@property(nonatomic , copy) NSString *transactionId;
 @end

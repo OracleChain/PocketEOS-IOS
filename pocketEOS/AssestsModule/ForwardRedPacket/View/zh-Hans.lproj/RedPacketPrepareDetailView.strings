@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "确认进度"; ObjectID = "8Ma-Hq-3vS"; */
+"8Ma-Hq-3vS.text" = "确认进度";
+
+/* Class = "UILabel"; text = "Tx ID"; ObjectID = "Lfm-n3-YxC"; */
+"Lfm-n3-YxC.text" = "Tx ID";
+
+/* Class = "UILabel"; text = "退回时间"; ObjectID = "TDx-uK-G4W"; */
+"TDx-uK-G4W.text" = "退回时间";
+
+/* Class = "UILabel"; text = "发起时间"; ObjectID = "Yq1-7Q-dfn"; */
+"Yq1-7Q-dfn.text" = "发起时间";
+
+/* Class = "UILabel"; text = "所在区块"; ObjectID = "hWC-8R-8gY"; */
+"hWC-8R-8gY.text" = "所在区块";
+
+/* Class = "UILabel"; text = "红包ID"; ObjectID = "s3N-tm-TDF"; */
+"s3N-tm-TDF.text" = "红包ID";

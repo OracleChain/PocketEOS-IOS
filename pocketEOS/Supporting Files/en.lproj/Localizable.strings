@@ -37,6 +37,7 @@
 "参考价格"="Reference Price";
 "24小时涨跌幅"="24h change";
 "总市值"="Total Market Value";
+"今日"="Today";
 
 
 /*
@@ -100,7 +101,7 @@
 "天降大红包，没时间解释了，快抢!"="Hurry Up! Get red packet for free!";
 "我下血本送上的区块链红包，无需消费、可以兑现，还犹豫什么？手慢无哦！"="Block chain red packet with large amout! Free and unconditional, Just Get It! Hurry up! ";
 "暂不支持~"="Don't support";
-"继续发送红包"="Send Red Packet to More Friends";
+"继续发红包"="Send Red Packet to More Friends";
 
 /*
  RedPacketViewController.m
@@ -131,7 +132,7 @@
 "领取的"="Received";
 "已经存入您的主账号"="Red Packet transferred to your Main Account.";
 "红包已抢完"="Better Luck Next Time";
-"继续发送红包"="Send Red Packet to More Friends";
+"继续发红包"="Send Red Packet to More Friends";
 
 /*
  ChangeAccountViewController.m
@@ -220,6 +221,7 @@
 "发出红包"="Send Red Packet";
 "发送给"="To";
 "接受自"="From";
+"来自"="From";
 "所在区块"="Block";
 "成功"="Success";
 
@@ -720,5 +722,26 @@
  TransferDetailsViewController.m
  */
 "转账详情"="Transfer Details";
+
+/*
+ Redpacket_new_version
+ */
+"我们正在努力寻找它的价格..."="The price is not found yet...";
+"红包准备中"="In production";
+"发送失败"="Discard by Mainnet";
+"无扣款"="Not debited";
+"已领完"="All opened";
+"收红包"="Get Red Packet";
+"已过期"="Time out";
+"已退回"="Refunded";
+"来自"="From";
+"红包准备中,请耐心等候"="In production, please check later!";
+"发生未知错误,快去联系小秘书!"="Unknown Error, Please check it with OracleChain Community Operator！";
+"红包发送失败"="Fail to send";
+"未被主网确认,款项未扣除"="Discard by Mainnet, not debited";
+"我下血本为您送上"="Envying red packets with ";
+"的大红包，无需消费,直接到达EOS账号,还在犹豫什么?"="no requirements to EOS account, just Open!";
+"未支付"="Unpaid";
+
 
 

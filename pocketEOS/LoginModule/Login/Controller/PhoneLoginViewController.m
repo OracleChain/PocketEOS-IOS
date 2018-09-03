@@ -20,7 +20,7 @@
 #import "BaseTabBarController.h"
 #import "AddAccountViewController.h"
 
-@interface PhoneLoginViewController ()<PhoneLoginMainViewDelegate>
+@interface PhoneLoginViewController ()<PhoneLoginMainViewDelegate, CountryCodeAreaViewControllerDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PhoneLoginMainView *headerView;
 @property(nonatomic, strong) LoginService *mainService;
@@ -161,6 +161,11 @@
 }
 
 
+//CountryCodeAreaViewControllerDelegate
+-(void)countryCodeAreaCellDidSelect:(AreaCodeModel *)model{
+    self.areaCodeModel = model;
+    self.headerView.areaCodeLabel.text = [NSString stringWithFormat:@"+%@", self.areaCodeModel.code];
+}
 
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];

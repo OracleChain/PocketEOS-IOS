@@ -13,6 +13,7 @@
 #import "RedPacketModel.h"
 #import "RedPacketRecord.h"
 #import "RedPacketRecordsTableViewCell.h"
+#import "ForwardRedPacketViewController.h"
 
 
 @interface RedPacketRecordsViewController ()<TransferRecordsHeaderViewDelegate>
@@ -49,19 +50,24 @@
     return _mainService;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestRedPacketRecords];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 40, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - 40);
     [self.view addSubview:self.mainTableView];
+    self.mainTableView.mj_footer.hidden = YES;
     
     self.headerView.assestChooserLabel.text = self.currentAssestsType;
-    [self requestRedPacketRecords];
 }
 
 - (void)requestRedPacketRecords{
-    self.mainService.getRedPacketRecordRequest.uid = CURRENT_WALLET_UID;
+
     self.mainService.getRedPacketRecordRequest.account = CURRENT_ACCOUNT_NAME;
     self.mainService.getRedPacketRecordRequest.type = self.currentAssestsType;
     [self loadNewData];
@@ -92,34 +98,12 @@
 
 // UITableViewDelegate && DataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    RedPacketRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
     if (!cell) {
-        cell = [[BaseTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        cell = [[RedPacketRecordsTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     RedPacketRecord *model = self.mainService.dataSourceArray[indexPath.row];
-    if (model.isSend == YES) {
-        //        [model.residueCount isEqualToNumber:@0] ? NSLocalizedString(@"全部被领取", nil): [NSString stringWithFormat: @"%@%ld%@", NSLocalizedString(@"已被", nil), model.packetCount.integerValue - model.residueCount.integerValue,NSLocalizedString(@"人领取", nil) ]
-        NSString *str;
-        if ([model.residueCount isEqualToNumber:@0]) {
-            str = NSLocalizedString(@"全部被领取", nil);
-        }else{
-            str = [NSString stringWithFormat: @"%@%ld%@", NSLocalizedString(@"已被", nil), model.packetCount.integerValue - model.residueCount.integerValue,NSLocalizedString(@"人领取", nil) ];
-        }
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@, %@",NSLocalizedString(@"发送", nil), model.amount, NSLocalizedString(@"个", nil),model.type, NSLocalizedString(@"给", nil),model.packetCount,NSLocalizedString(@"个人", nil), str];
-        
-    }else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"领取", nil), model.amount, NSLocalizedString(@"个", nil), model.type];
-    }
-    //    cell.textLabel.frame = CGRectMake(MARGIN_20, MARGIN_20, SCREEN_WIDTH-(MARGIN_20*2), 21);
-    cell.detailTextLabel.text =model.createTime;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-    cell.textLabel.textColor = HEXCOLOR(0x2A2A2A);
-    cell.detailTextLabel.textColor = HEXCOLOR(0xB0B0B0);
-    cell.bottomLineView.hidden = NO;
-    if (indexPath.row == self.mainService.dataSourceArray.count-1) {
-        cell.bottomLineView.hidden = YES;
-    }
+    cell.model = model;
     return cell;
 }
 
@@ -128,21 +112,36 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    RedPacketDetailViewController *vc = [[RedPacketDetailViewController alloc] init];
+    RedPacketRecord *record = self.mainService.dataSourceArray[indexPath.row];
+    
     RedPacketModel *model = [[RedPacketModel alloc] init];
     model.from = CURRENT_ACCOUNT_NAME;
-//    model.count = self.headerView.redPacketCountTF.text;
-//    model.memo =   self.headerView.memoTV.text;
-//    model.amount = self.headerView.amountTF.text;
-    
-    RedPacketRecord *record = self.mainService.dataSourceArray[indexPath.row];
+    model.count = record.packetCount.stringValue;
+    model.memo =   record.memo;
+    //    model.amount = self.headerView.amountTF.text;
     model.redPacket_id = record.redPacket_id;
     model.verifystring = record.verifyString;
     model.amount = record.amount;
     model.isSend = record.isSend;
     model.coin = record.type;
-    vc.redPacketModel = model;
-    [self.navigationController pushViewController:vc animated:YES];
+    model.status = record.status;
+    
+    if (record.isSend == YES) {
+        if (record.status.integerValue == 1) {//等待主网确认
+            ForwardRedPacketViewController *forwardRedPacketVC = [[ForwardRedPacketViewController alloc] init];
+            forwardRedPacketVC.redPacketModel = model;
+            [self.navigationController pushViewController:forwardRedPacketVC animated:YES];
+        }else if(record.status.integerValue == 0 || record.status.integerValue == 2 || record.status.integerValue == 3 || record.status.integerValue == 4 || record.status.integerValue == 5 ){
+            RedPacketDetailViewController *vc = [[RedPacketDetailViewController alloc] init];
+            vc.redPacketModel = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        RedPacketDetailViewController *vc = [[RedPacketDetailViewController alloc] init];
+        vc.redPacketModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+   
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -172,41 +171,19 @@
             if ([dataCount isEqualToNumber:@0]) {
                 [weakSelf.mainTableView.mj_header endRefreshing];
                 [weakSelf.mainTableView.mj_footer endRefreshing];
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:NSLocalizedString(@"暂无数据", nil)toView:weakSelf.mainTableView andViewController:weakSelf];
             }else{
                 // 拿到当前的下拉刷新控件，结束刷新状态
                 [weakSelf.mainTableView.mj_header endRefreshing];
-                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+                [IMAGE_TIP_LABEL_MANAGER removeImageAndTipLabelViewManager];
             }
         }else{
             [weakSelf.mainTableView.mj_header endRefreshing];
             [weakSelf.mainTableView.mj_footer endRefreshing];
-            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
+            [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:NSLocalizedString(@"暂无数据", nil)toView:weakSelf.mainTableView andViewController:weakSelf];
         }
     }];
 }
 
-#pragma mark 上拉加载更多数据
-//- (void)loadMoreData
-//{
-//    WS(weakSelf);
-//    [self.mainService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-//        if (isSuccess) {
-//            // 刷新表格
-//            [weakSelf.mainTableView reloadData];
-//            if ([dataCount isEqualToNumber:@0]) {
-//                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-//                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-//            }else{
-//                // 拿到当前的下拉刷新控件，结束刷新状态
-//                [weakSelf.mainTableView.mj_footer endRefreshing];
-//            }
-//        }else{
-//            [weakSelf.mainTableView.mj_header endRefreshing];
-//            [weakSelf.mainTableView.mj_footer endRefreshing];
-//        }
-//    }];
-//}
 
 @end

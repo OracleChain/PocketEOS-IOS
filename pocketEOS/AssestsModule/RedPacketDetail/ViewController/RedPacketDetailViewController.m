@@ -22,6 +22,8 @@
 #import "SocialShareModel.h"
 #import "ShareModel.h"
 #import "RedPacketDetail.h"
+#import "RedPacketRecordsTableViewCell.h"
+#import "TransferRecordsTableViewCell.h"
 
 @interface RedPacketDetailViewController ()<RedPacketDetailHeaderViewDelegate, SocialSharePanelViewDelegate>
 @property(nonatomic , strong) NavigationView *navView;
@@ -139,7 +141,15 @@
     return _shareBaseView;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+}
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -151,24 +161,28 @@
 
     if (self.redPacketModel.isSend) {
         // 发送
-        self.headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT , SCREEN_WIDTH, 410);
+        self.headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT , SCREEN_WIDTH, 370);
         self.navView.titleLabel.text = NSLocalizedString(@"发红包", nil);
+        
+        
+        
+        
     }else{
         // 领取
-        self.headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT , SCREEN_WIDTH, 410-81);
+        self.headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT , SCREEN_WIDTH, 300);
         self.navView.titleLabel.text = NSLocalizedString(@"领红包", nil);
         self.headerView.sendRedpacketBtn.hidden = YES;
         [self.headerView.amountLabel sd_clearAutoLayoutSettings];
-        [self.headerView.tipLabel sd_clearAutoLayoutSettings];
+
         self.headerView.amountLabel.sd_layout.topSpaceToView(self.headerView.memoLabel, MARGIN_15).leftSpaceToView(self.headerView, MARGIN_20).rightSpaceToView(self.headerView, MARGIN_15).heightIs(33);
         self.headerView.tipLabel.sd_layout.topSpaceToView(self.headerView.amountLabel, MARGIN_15).leftSpaceToView(self.headerView, MARGIN_20).rightSpaceToView(self.headerView, MARGIN_15).heightIs(13);
     }
-    
     
     [self getRate];
     [self buildDataSource];
     
 }
+
 
 - (void)buildDataSource{
     WS(weakSelf);
@@ -180,23 +194,37 @@
             [weakSelf.mainTableView reloadData];
             if (weakSelf.redPacketModel.isSend) {
                 // 发送
-                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@，%@%@%@", NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil), NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
-                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    领取记录"];
-                if ([result.residueCount isEqualToNumber:@0]) {
+                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@，%@ %@ %@",NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil),NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
+                
+                if (weakSelf.redPacketModel.status.integerValue == 0 ||weakSelf.redPacketModel.status.integerValue == 3 ) {////正常可以领取(包含领取完毕的红包)
+                    if ([result.residueCount isEqualToNumber:@0]) {
+                        weakSelf.headerView.sendRedpacketBtn.enabled = NO;
+                        [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xCCCCCC)];
+                        [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"红包已抢完", nil) forState:(UIControlStateNormal)];
+                    }else{
+                        weakSelf.headerView.sendRedpacketBtn.enabled = YES;
+                        [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xD82919)];
+                        [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"继续发红包", nil) forState:(UIControlStateNormal)];
+                    }
+                    
+                }else if (weakSelf.redPacketModel.status.integerValue == 5 ){////发送失败
                     weakSelf.headerView.sendRedpacketBtn.enabled = NO;
                     [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xCCCCCC)];
-                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"红包已抢完", nil) forState:(UIControlStateNormal)];
-                }else{
-                    weakSelf.headerView.sendRedpacketBtn.enabled = YES;
-                    [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xD82919)];
-                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"继续发送红包", nil) forState:(UIControlStateNormal)];
+                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"发送失败", nil) forState:(UIControlStateNormal)];
+                }else if (weakSelf.redPacketModel.status.integerValue == 4 ){////已经退回
+                    weakSelf.headerView.sendRedpacketBtn.enabled = NO;
+                    [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xCCCCCC)];
+                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"已退回", nil) forState:(UIControlStateNormal)];
+                }else if (weakSelf.redPacketModel.status.integerValue == 2 ){//已经过期但是还没退回
+                    weakSelf.headerView.sendRedpacketBtn.enabled = NO;
+                    [weakSelf.headerView.sendRedpacketBtn setBackgroundColor:HEXCOLOR(0xCCCCCC)];
+                    [weakSelf.headerView.sendRedpacketBtn setTitle:NSLocalizedString(@"已过期", nil) forState:(UIControlStateNormal)];
                 }
-                
             }else{
                 // 领取
                 weakSelf.headerView.amountLabel.text = [NSString stringWithFormat:@"%@ %@", weakSelf.redPacketModel.amount , weakSelf.redPacketModel.coin];
-                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@%@%@", NSLocalizedString(@"领取的", nil), weakSelf.redPacketModel.coin, NSLocalizedString(@"已经存入您的主账号", nil)];
-                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"    %@%ld/%@%@，%@%@%@",NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil),NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
+                weakSelf.headerView.tipLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"领取的", nil), weakSelf.redPacketModel.coin, NSLocalizedString(@"已经存入您的主账号", nil)];
+                weakSelf.headerView.recordLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@，%@ %@ %@",NSLocalizedString(@"已领取", nil), result.packetCount.integerValue - result.residueCount.integerValue , result.packetCount,NSLocalizedString(@"个", nil),NSLocalizedString(@"剩余", nil), result.residueAmount, weakSelf.redPacketModel.coin];
             }
             
         }
@@ -223,21 +251,12 @@
 
 // UITableViewDelegate && DataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    TransferRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
     if (!cell) {
-        cell = [[BaseTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
+        cell = [[TransferRecordsTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     RedPacketDetailSingleAccount *model = self.redpacketService.dataSourceArray[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@ %@", [model.account isEqualToString: RedPacketSpecialAccount_EOSIO] ? @"***" : model.account, NSLocalizedString(@"领取", nil), model.amount, model.type];
-    cell.detailTextLabel.text =model.createTime;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-    cell.textLabel.textColor = HEXCOLOR(0x2A2A2A);
-    cell.detailTextLabel.textColor = HEXCOLOR(0xB0B0B0);
-    cell.bottomLineView.hidden = NO;
-    if (indexPath.row == self.redpacketService.dataSourceArray.count-1) {
-        cell.bottomLineView.hidden = YES;
-    }
+    cell.redPacketDetailSingleAccount = model;
     return cell;
 }
 
@@ -274,45 +293,14 @@
         [TOASTVIEW showWithText:@"暂不支持~"];
     }
 }
+
 - (void)dismiss{
     [self.shareBaseView removeFromSuperview];
 }
 
-
-#pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载
-#pragma mark - 数据处理相关
-#pragma mark 下拉刷新数据
-//- (void)loadNewData
-//{
-//    WS(weakSelf);
-//    [self.mainTableView.mj_footer resetNoMoreData];
-//
-//    [self.mainService buildDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
-//        if (isSuccess) {
-//            // 刷新表格
-//            [weakSelf.mainTableView reloadData];
-//            if ([dataCount isEqualToNumber:@0]) {
-//                [weakSelf.mainTableView.mj_header endRefreshing];
-//                [weakSelf.mainTableView.mj_footer endRefreshing];
-//                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-//                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-//            }else{
-//                // 拿到当前的下拉刷新控件，结束刷新状态
-//                [weakSelf.mainTableView.mj_header endRefreshing];
-//                [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-//            }
-//        }else{
-//            [weakSelf.mainTableView.mj_header endRefreshing];
-//            [weakSelf.mainTableView.mj_footer endRefreshing];
-//            [weakSelf.mainTableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-//    }];
-//}
-
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (void)cancleShareAccountDetail{
     [self.shareBaseView removeFromSuperview];

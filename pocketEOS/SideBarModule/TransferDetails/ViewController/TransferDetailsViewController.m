@@ -68,7 +68,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
+    OptionModel *model = self.mainService.dataSourceArray[indexPath.row];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string =VALIDATE_STRING(model.detail);
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
+    
 }
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];

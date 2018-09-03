@@ -65,4 +65,7 @@
  */
 @property(nonatomic , strong) NSNumber *status;
 
+@property(nonatomic , copy) NSString *memo;
+
+@property(nonatomic , copy) NSString *fromAccount;
 @end

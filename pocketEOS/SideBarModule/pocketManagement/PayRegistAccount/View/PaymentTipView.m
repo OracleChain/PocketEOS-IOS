@@ -51,9 +51,9 @@
 - (IBAction)choosePaymentBtn:(UIButton *)sender {
     for (UIImageView *img in self.allRightIconImageViewArray) {
         if (img.tag == sender.tag) {
-            img.image = [UIImage imageNamed:@"select__BB_wallet_icon"];
+            img.image = [UIImage imageNamed:@"circleWithRight_blue"];
         }else{
-            img.image = [UIImage imageNamed:@"unSelect__BB_wallet_icon"];
+            img.image = [UIImage imageNamed:@"circleWithoutRight_gray"];
         }
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(choosePaymentBtnDidClick:)]) {

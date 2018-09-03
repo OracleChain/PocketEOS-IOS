@@ -364,9 +364,10 @@
     }];
     
     [self.headerView setRamTradeBtnDidClickBlock:^{
+        [MobClick event:@"RAM交易"];
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         Application *model = [[Application alloc] init];
-        model.url = @"http://static.pocketeos.top:3001";
+        model.url = @"http://static.pocketeos.top:3002";
         model.applyName = @"Ram Ex";
         vc.model = model;
         vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
@@ -374,6 +375,7 @@
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
+        [MobClick event:@"首页（资产页）-点击账号名（查看账号）"];
         AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
         AccountInfo *model = [[AccountInfo alloc] init];
         model.account_name = CURRENT_ACCOUNT_NAME;

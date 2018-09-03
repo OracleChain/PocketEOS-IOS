@@ -178,7 +178,7 @@
 
 -(void)rightBtnDidClick{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = NSLocalizedString(@"安全说明", nil);
+    vc.rtfFileName = @"PockSecureDeclare";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -193,6 +193,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 - (void)backupWalletBtnDidClick{
     [self.view addSubview:self.backupPocketView];
     Wallet *wallet = CURRENT_WALLET;

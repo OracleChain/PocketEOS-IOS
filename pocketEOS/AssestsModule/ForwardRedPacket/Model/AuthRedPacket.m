@@ -10,4 +10,11 @@
 
 @implementation AuthRedPacket
 
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{
+             @"redpacket_id" : @"id"
+             
+             };
+}
+
 @end

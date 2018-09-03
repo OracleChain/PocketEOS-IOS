@@ -71,6 +71,15 @@
     [self.activeReferenceBaseView addSubview:self.activeTipLabel];
     self.activeTipLabel.sd_layout.rightSpaceToView(self.activeRightIconImg, 5).centerYEqualToView(self.activeReferenceBaseView).widthIs(200).heightIs(21);
     
+    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(copyActivePublicKeyToPasteboard:)];
+    self.activePublicKeyLabel.userInteractionEnabled = YES;
+    [self.activePublicKeyLabel addGestureRecognizer:longPressGesture];
+    
+    UILongPressGestureRecognizer *longPressGesture1 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(copyOwnerPublicKeyToPasteboard:)];
+    self.ownerPublicKeyLabel.userInteractionEnabled = YES;
+    [self.ownerPublicKeyLabel addGestureRecognizer:longPressGesture1];
+    
 }
 
 -(void)setLocalAccount:(AccountInfo *)localAccount{
@@ -145,6 +154,18 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(ownerTipLabelDidTap)]) {
         [self.delegate ownerTipLabelDidTap];
     }
+}
+
+- (void)copyActivePublicKeyToPasteboard:(UILongPressGestureRecognizer *)sender{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = [(UILabel *)sender.view text];
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
+}
+
+- (void)copyOwnerPublicKeyToPasteboard:(UILongPressGestureRecognizer *)sender{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = [(UILabel *)sender.view text];
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
 }
 @end
 

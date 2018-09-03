@@ -120,7 +120,7 @@
       
         self.rightIconImgName = @"right_icon_blue";
         [self.contentView addSubview:self.rightIconImageView];
-        self.rightIconImageView.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, MARGIN_20).widthIs(13).heightIs(10);
+        self.rightIconImageView.sd_layout.rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, MARGIN_20).widthIs(16).heightIs(16);
         
         [self.contentView addSubview:self.detailLabel];
         self.detailLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_10).topSpaceToView(self.titleLabel, 6).heightIs(15).widthIs(200);
@@ -166,9 +166,9 @@
     _tipLabel.text = NSLocalizedString(@"账号详情", nil);
     
     if (model.selected == YES) {
-        self.rightIconImageView.hidden = NO;
+        self.rightIconImageView.image = [UIImage imageNamed:@"circleWithRight_blue"];
     }else{
-        self.rightIconImageView.hidden = YES;
+        self.rightIconImageView.image = [UIImage imageNamed:@"circleWithoutRight_gray"];
     }
 }
 

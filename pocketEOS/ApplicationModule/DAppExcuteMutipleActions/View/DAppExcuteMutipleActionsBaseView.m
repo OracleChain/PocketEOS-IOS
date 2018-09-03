@@ -43,7 +43,9 @@
 - (UIButton *)closeBtn{
     if (!_closeBtn) {
         _closeBtn = [[UIButton alloc] init];
-        [_closeBtn setImage:[UIImage imageNamed:@"2"] forState:(UIControlStateNormal)];
+        [_closeBtn setImage:[UIImage imageNamed:@"dapp_close"] forState:(UIControlStateNormal)];
+        [_closeBtn addTarget:self action:@selector(closeBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        
     }
     return _closeBtn;
 }
@@ -100,8 +102,6 @@
         _pageControl.currentPage = 0;
         _pageControl.currentPageIndicatorTintColor = HEXCOLOR(0x4D7BFE);
         [_pageControl addTarget:self action:@selector(pageControlValueChange:) forControlEvents:UIControlEventValueChanged];
-        // 单页时隐藏
-        _pageControl.hidesForSinglePage = YES;
         _pageControl.enabled = NO;
     }
     return _pageControl;
@@ -115,6 +115,7 @@
         _passwordTF.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor;
         _passwordTF.layer.borderWidth = 1;
         _passwordTF.delegate = self;
+        _passwordTF.secureTextEntry = YES;
         _passwordTF.tag = 50001;//设置一个项目中唯一的tag值
     }
     return _passwordTF;
@@ -167,7 +168,7 @@
     }
     
     [self addSubview:self.pageControl];
-    self.pageControl.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self.contentBaseView, 0).rightSpaceToView(self, 0).heightIs(47.5);
+    self.pageControl.sd_layout.leftSpaceToView(self, 0).topSpaceToView(self.mainScrollView, 0).rightSpaceToView(self, 0).heightIs(47.5);
     
     [self addSubview:self.passwordTF];
     self.passwordTF.sd_layout.leftSpaceToView(self, MARGIN_20).topSpaceToView(self.pageControl, MARGIN_10).rightSpaceToView(self, MARGIN_20).heightIs(40);
@@ -205,12 +206,19 @@
 }
 
 
+- (void)closeBtnClick{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(excuteMutipleActionsCloseBtnDidClick)]) {
+        [self.delegate excuteMutipleActionsCloseBtnDidClick];
+    }
+}
+
+
 - (void)confirmBtnClick{
     WS(weakSelf);
     if (_confirmBtnTouchCount == 0) {
         [self.passwordTF becomeFirstResponder];
         [UIView animateWithDuration:0.5 animations:^{
-            weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-430  - 40, SCREEN_WIDTH, 430 + 40);
+            weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-380  - 40, SCREEN_WIDTH, 380 + 40);
         }];
         weakSelf.confirmBtn.hidden = YES;
     }else{
@@ -224,7 +232,7 @@
     WS(weakSelf);
     [self endEditing:YES];
     [UIView animateWithDuration:0.5 animations:^{
-        weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-430-80, SCREEN_WIDTH, 430+80);
+        weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-380-80, SCREEN_WIDTH, 380+80);
     }];
     weakSelf.confirmBtn.hidden = NO;
     _confirmBtnTouchCount++;
@@ -236,7 +244,7 @@
     WS(weakSelf);
     [self endEditing:YES];
     [UIView animateWithDuration:0.5 animations:^{
-        weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-430-80, SCREEN_WIDTH, 430+80);
+        weakSelf.frame = CGRectMake(0, SCREEN_HEIGHT-380-80, SCREEN_WIDTH, 380+80);
     }];
     weakSelf.confirmBtn.hidden = NO;
     _confirmBtnTouchCount++;

@@ -54,4 +54,6 @@
 @property(nonatomic , strong) NSMutableArray *redPacketOrderRedisDtos;
 
 @property(nonatomic , copy) NSString *type;
+
+@property(nonatomic , strong) NSNumber *status;
 @end

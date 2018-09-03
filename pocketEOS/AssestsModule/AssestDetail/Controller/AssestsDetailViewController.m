@@ -232,7 +232,7 @@
     self.headerView.amountLabel.text = [NSString stringWithFormat:@"￥%@", [NumberFormatter displayStringFromNumber:@( self.model.asset_price_cny.doubleValue)]];
     if ([self.model.asset_price_change_in_24h hasPrefix:@"-"]) {
         //        HEXCOLOR(0x1E903C) HEXCOLOR(0xB0B0B0)
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%(今日)", self.model.asset_price_change_in_24h]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@%%(%@)", self.model.asset_price_change_in_24h, NSLocalizedString(@"今日", nil)]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0xB51515)
                            range:NSMakeRange(0, self.model.asset_price_change_in_24h.length + 1)];
@@ -242,7 +242,7 @@
         self.headerView.fluctuateLabel.attributedText = attrString;
     }else{
         //B51515
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%(今日)", self.model.asset_price_change_in_24h]];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"+%@%%(%@)", self.model.asset_price_change_in_24h , NSLocalizedString(@"今日", nil)]];
         [attrString addAttribute:NSForegroundColorAttributeName
                            value:HEXCOLOR(0x1E903C)
                            range:NSMakeRange(0, self.model.asset_price_change_in_24h.length + 2)];
@@ -252,8 +252,11 @@
         
         self.headerView.fluctuateLabel.attributedText = attrString;
     }
-
-    self.headerView.totalLabel.text = [NSString stringWithFormat:@"%@(24h)%@CNY", NSLocalizedString(@"额", nil),self.model.asset_market_cap_cny];
+    if (self.model.asset_market_cap_cny.integerValue == 0 ) {
+        self.headerView.totalLabel.text = NSLocalizedString(@"我们正在努力寻找它的价格...", nil);
+    }else{
+        self.headerView.totalLabel.text = [NSString stringWithFormat:@"%@(24h)%@CNY", NSLocalizedString(@"额", nil),self.model.asset_market_cap_cny];
+    }
     self.headerView.accountLabel.text = self.accountName;
     
     self.headerView.Assest_balance_Label.text = [NSString stringWithFormat:@"%@ %@", [NumberFormatter displayStringFromNumber:@(self.model.balance.doubleValue)], self.model.token_symbol];
@@ -272,7 +275,7 @@
             [weakSelf.sparklinesImageView removeFromSuperview];
         }
         [weakSelf.headerView.tendencyChartView addSubview:weakSelf.sparklinesImageView];
-        [weakSelf.sparklinesImageView sd_setImageWithURL:String_To_URL(tendencyUrlStr) placeholderImage:[UIImage imageNamed:@"sparklined_placeholder_image"] options:(SDWebImageCacheMemoryOnly)];
+        [weakSelf.sparklinesImageView sd_setImageWithURL:String_To_URL(tendencyUrlStr) placeholderImage:[UIImage imageNamed:@"assestsSparkLinePlaceholder"] options:(SDWebImageCacheMemoryOnly)];
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];

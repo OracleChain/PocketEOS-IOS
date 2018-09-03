@@ -58,6 +58,12 @@
     [_avatarImg sd_setImageWithURL: String_To_URL(model.avatar) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
 }
 
+-(void)setWalletModel:(Follow *)walletModel{
+    _titleLabel.text = [NSString stringWithFormat: @"%@%@", VALIDATE_STRING(walletModel.displayName), NSLocalizedString(@"的钱包", nil)];
+    _titleLabel.text = walletModel.displayName;
+    [_avatarImg sd_setImageWithURL: String_To_URL(walletModel.avatar) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
+}
+
 -(void)setWalletAccount:(WalletAccount *)walletAccount{
     _walletAccount = walletAccount;
     _titleLabel.text = walletAccount.eosAccountName;

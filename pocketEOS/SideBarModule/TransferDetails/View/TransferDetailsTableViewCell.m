@@ -31,6 +31,8 @@
         _detailLabel = [[BaseLabel alloc] init];
         _detailLabel.font = [UIFont systemFontOfSize:14];
         _detailLabel.textAlignment = NSTextAlignmentRight;
+        
+        
     }
     return _detailLabel;
 }
@@ -56,5 +58,6 @@
     self.titleLabel.text = VALIDATE_STRING(model.optionName);
     self.detailLabel.text = model.detail.length > 0 ? model.detail : @" ";
 }
+
 
 @end

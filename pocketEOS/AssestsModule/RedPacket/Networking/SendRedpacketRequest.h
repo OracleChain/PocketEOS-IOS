@@ -36,4 +36,10 @@
  */
 @property(nonatomic, copy) NSString *type;
 
+
+/**
+ memo
+ */
+@property(nonatomic, copy) NSString *remark;
+
 @end

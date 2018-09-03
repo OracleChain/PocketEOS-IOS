@@ -11,6 +11,7 @@
 @implementation GetRedPacketDetailRequest
 - (NSString *)requestUrlPath{
     return [NSString stringWithFormat:@"%@/selectRedPacketRecord", REQUEST_REDPACKET_BASEURL];
+//    return @"http://47.105.99.78/api_oc_redpacket/selectRedPacketRecord";
 }
 
 -(id)parameters{

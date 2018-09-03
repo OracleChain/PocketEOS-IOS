@@ -19,4 +19,5 @@
 @property(nonatomic , copy) NSString *coin;
 @property(nonatomic , copy) NSString *memo;
 @property(nonatomic , assign) BOOL isSend;
+@property(nonatomic , strong) NSNumber *status;
 @end

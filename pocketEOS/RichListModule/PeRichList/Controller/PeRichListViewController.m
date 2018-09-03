@@ -47,7 +47,7 @@
         cell = [[RichListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     Follow *model = self.mainService.dataSourceArray[indexPath.section];
-    cell.model = model;
+    cell.walletModel = model;
     return cell;
 }
 
@@ -75,7 +75,7 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Follow *model = self.mainService.dataSourceArray[indexPath.row];
+    Follow *model = self.mainService.dataSourceArray[indexPath.section];
     model.followType = @1;
     RichlistDetailViewController *vc = [[RichlistDetailViewController alloc] init];
     vc.model = model;

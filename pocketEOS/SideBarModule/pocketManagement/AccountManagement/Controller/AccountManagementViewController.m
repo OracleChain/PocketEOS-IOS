@@ -159,6 +159,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self configHeaderView];
+    [MobClick beginLogPageView:@"钱包管理-账号详情"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"钱包管理-账号详情"];
+    
 }
 
 - (void)viewDidLoad {
@@ -265,12 +272,14 @@
     }else if([str isEqualToString:NSLocalizedString(@"保护隐私", nil)]){
         NSLog(@"保护隐私");
     }else if([str isEqualToString:NSLocalizedString(@"EOS资源管理", nil)]){
+        [MobClick event:@"钱包管理-账号详情-资源管理"];
         EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
         vc.currentAccountName = self.model.account_name;
         [self.navigationController pushViewController:vc animated:YES];
     }else if([str isEqualToString:NSLocalizedString(@"导出私钥", nil)]){
         [self exportPrivateKeyBtnDidClick:nil];
     }else if([str isEqualToString:NSLocalizedString(@"EOS一键赎回", nil)]){
+        [MobClick event:@"钱包管理-账号详情-一键赎回"];
         [self unStakeBtnClick];
     }
 }

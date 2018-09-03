@@ -70,7 +70,7 @@
                         <action selector="import:" destination="iN0-l3-epB" eventType="touchUpInside" id="4Fa-u9-RhE"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入Owner私钥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-Ae-5G4" customClass="BaseLabel1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner私钥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-Ae-5G4" customClass="BaseLabel1">
                     <rect key="frame" x="20" y="208" width="335" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="CSW-9v-GWT"/>

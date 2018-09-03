@@ -18,6 +18,7 @@
 @property(nonatomic , strong) BaseSlimLineView *line1;
 @property(nonatomic , strong) BaseSlimLineView *line2;
 @property(nonatomic , strong) BaseSlimLineView *line3;
+@property(nonatomic , strong) BaseSlimLineView *line4;
 
 @property(nonatomic , strong) BaseLabel *contractDetailLabel;
 @property(nonatomic , strong) BaseLabel *actionDetailLabel;
@@ -87,6 +88,12 @@
     return _line3;
 }
 
+- (BaseSlimLineView *)line4{
+    if (!_line4) {
+        _line4 = [[BaseSlimLineView alloc] init];
+    }
+    return _line4;
+}
 
 - (BaseLabel *)contractDetailLabel{
     if (!_contractDetailLabel) {
@@ -167,8 +174,10 @@
         self.contentLabel.sd_layout.leftSpaceToView(self, MARGIN_20).topSpaceToView(self.line3, 0).heightIs(DAppExcuteActionsContentCellItemHeight).widthIs(100);
         
         [self addSubview:self.contentDetailTextView];
-        self.contentDetailTextView.sd_layout.leftSpaceToView(self.contentLabel, MARGIN_20).rightSpaceToView(self, MARGIN_20).topSpaceToView(self.line3, 12).heightIs(103.5);
+        self.contentDetailTextView.sd_layout.leftSpaceToView(self.contentLabel, MARGIN_20).rightSpaceToView(self, MARGIN_20).topSpaceToView(self.line3, 12).heightIs(80);
         
+        [self addSubview:self.line4];
+        self.line4.sd_layout.leftSpaceToView(self, MARGIN_20).rightSpaceToView(self, 0).topSpaceToView(self.contentDetailTextView, 11).heightIs(DEFAULT_LINE_HEIGHT);
     }
     return self;
 }

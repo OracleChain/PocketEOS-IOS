@@ -78,7 +78,7 @@
 
 - (void)setModel:(RedPacketRecord *)model{
 
-    if (model.isSend) {
+    if (model.isSend) {//发送
         NSInteger isRod = model.packetCount.integerValue - model.residueCount.integerValue;
         self.amountLabel.textColor = LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE ? HEXCOLOR(0xFFFFFF ) : HEXCOLOR(0x140F26 );
         if (model.status.integerValue == 0 || model.status.integerValue == 3 ) {
@@ -102,7 +102,15 @@
             self.detailLabel.text = @"";
         }else if (model.status.integerValue == 4){//已经退回
             self.titleLabel.text = NSLocalizedString(@"发红包", nil);
+            self.detailLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@", NSLocalizedString(@"已退回", nil), (long)isRod, model.packetCount, NSLocalizedString(@"个", nil)];
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@ %@",  model.amount, model.type];
+        }else if (model.status.integerValue == 2){//已经过期但是还没退回
+            self.titleLabel.text = NSLocalizedString(@"发红包", nil);
             self.detailLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@", NSLocalizedString(@"已过期", nil), (long)isRod, model.packetCount, NSLocalizedString(@"个", nil)];
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@ %@",  model.amount, model.type];
+        }else if (model.status.integerValue == -1){//待支付
+            self.titleLabel.text = NSLocalizedString(@"发红包", nil);
+            self.detailLabel.text = [NSString stringWithFormat:@"%@%ld/%@%@", NSLocalizedString(@"未支付", nil), (long)isRod, model.packetCount, NSLocalizedString(@"个", nil)];
             self.amountLabel.text = [NSString stringWithFormat:@"-%@ %@",  model.amount, model.type];
         }
         
@@ -111,7 +119,7 @@
         self.titleLabel.text = NSLocalizedString(@"收红包", nil);
         self.amountLabel.text = [NSString stringWithFormat:@"+%@ %@",  model.amount, model.type];
         self.amountLabel.textColor = HEXCOLOR(0xE903C);
-        self.detailLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"接受自", nil), @"oraclechain4"];
+        self.detailLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"来自", nil), model.fromAccount];
     }
     
     self.timeLabel.text = model.createTime;

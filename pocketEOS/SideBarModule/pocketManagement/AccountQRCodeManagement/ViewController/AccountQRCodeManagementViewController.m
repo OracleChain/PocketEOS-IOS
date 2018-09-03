@@ -123,6 +123,7 @@
 
 //AccountQRCodeManagementHeaderViewDelegate
 - (void)copyNameBtnClick{
+    [MobClick event:@"首页（资产页）-点击账号名（查看账号）-复制账号"];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string =VALIDATE_STRING(self.model.account_name);
     [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];

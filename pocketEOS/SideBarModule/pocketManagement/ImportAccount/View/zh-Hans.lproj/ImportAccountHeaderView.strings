@@ -20,5 +20,5 @@
 /* Class = "UILabel"; text = "Active私钥"; ObjectID = "hP7-xV-Xlj"; */
 "hP7-xV-Xlj.text" = "Active私钥";
 
-/* Class = "UILabel"; text = "输入Owner私钥"; ObjectID = "mpg-Ae-5G4"; */
-"mpg-Ae-5G4.text" = "输入Owner私钥";
+/* Class = "UILabel"; text = "Owner私钥"; ObjectID = "mpg-Ae-5G4"; */
+"mpg-Ae-5G4.text" = "Owner私钥";

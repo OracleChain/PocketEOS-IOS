@@ -110,6 +110,7 @@
 }
 
 - (IBAction)transactionRecordBtn:(UIButton *)sender {
+    [MobClick event:@"侧边栏-交易记录"];
     if (self.delegate && [self.delegate respondsToSelector:@selector(transactionRecordBtnDidClick:)]) {
         [self.delegate transactionRecordBtnDidClick:sender];
     }

@@ -18,9 +18,9 @@
         NSMutableArray *arr = [NSMutableArray array];
         NSArray *imageArr = @[@"transfer_icon", @"recieve_white" , @"redpacket_icon"];
         if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE)  {
-            arr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"转账", nil), NSLocalizedString(@"收款", nil), nil];
+            arr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"发起转账", nil), NSLocalizedString(@"资产收款", nil), nil];
         }else if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE){
-            arr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"转账", nil), NSLocalizedString(@"收款", nil), NSLocalizedString(@"红包", nil), nil];
+            arr = [NSMutableArray arrayWithObjects:NSLocalizedString(@"发起转账", nil), NSLocalizedString(@"资产收款", nil), NSLocalizedString(@"发红包", nil), nil];
         }
         CGFloat itemWidth = SCREEN_WIDTH/arr.count;
         CGFloat itemheight = TABBAR_HEIGHT;
@@ -34,14 +34,16 @@
             UIImageView *img = [[UIImageView alloc] init];
             [img sd_setImageWithURL:String_To_URL(VALIDATE_STRING(imageArr[i])) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
             img.image = [UIImage imageNamed:imageArr[i]];
-            img.frame = CGRectMake(itemWidth/2-40 , 13, MARGIN_20, MARGIN_20);
+            img.frame = CGRectMake(itemWidth/2-40 ,18, 16, 16);
             
             UILabel *label = [[UILabel alloc] init];
             label.text = arr[i];
-            label.textAlignment = NSTextAlignmentCenter;
             label.textColor = HEXCOLOR(0xFFFFFF);
             label.font = [UIFont systemFontOfSize:14];
-            label.frame = CGRectMake(itemWidth/2-13 , 13, 60, MARGIN_20);
+            label.frame = CGRectMake((itemWidth/2) - 40 + 16 + 11 , 16, 60, MARGIN_20);
+            label.textAlignment = NSTextAlignmentLeft;
+            
+
             
             UIButton *btn = [[UIButton alloc] init];
             btn.tag = 1000 + i;
@@ -49,9 +51,16 @@
             [btn addTarget:self action:@selector(assestsFooterViewClick:) forControlEvents:(UIControlEventTouchUpInside)];
             btn.frame = baseView.bounds;
             
+            UIView *line = [[UIView alloc] init];
+            line.backgroundColor = HEXCOLOR(0xFFFFFF);
+            line.alpha = 0.26;
+            line.frame = CGRectMake(itemWidth - 1, 0, DEFAULT_LINE_HEIGHT, itemheight);
+
+
             [baseView addSubview:img];
             [baseView addSubview:label];
             [baseView addSubview:btn];
+            [baseView addSubview:line];
         }
         
         
