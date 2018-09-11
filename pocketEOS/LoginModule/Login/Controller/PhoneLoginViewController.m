@@ -124,7 +124,9 @@
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                     // update wallet table
-                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET wallet_img = '%@' ,wallet_name = '%@' ,wallet_weixin = '%@'  ,wallet_qq = '%@'  ,wallet_phone = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , result.data.wallet_img, result.data.wallet_name, result.data.wallet_weixin, result.data.wallet_qq, result.data.wallet_phone, CURRENT_WALLET_UID]];
+                    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET wallet_img = '%@' ,wallet_name = '%@' ,wallet_weixin = '%@'  ,wallet_qq = '%@'  ,wallet_phone = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , result.data.wallet_img, result.data.wallet_name, result.data.wallet_weixin, result.data.wallet_qq, result.data.wallet_phone, CURRENT_WALLET_UID];
+                    NSLog(@"executeUpdate sql %@", sql);
+                    [[WalletTableManager walletTable] executeUpdate:sql];
                     
                 }else{
                     // 如果本地没有当前账号对应的钱包
@@ -134,10 +136,13 @@
                         if (phoneNum.length > 4) {
                             model.wallet_name = [phoneNum substringFromIndex:phoneNum.length - 4];
                         }else{
-                            model.wallet_name = phoneNum;
+                            model.wallet_name = result.data.wallet_uid;
                         }
                         model.wallet_name = model.wallet_name;
                         model.wallet_uid = result.data.wallet_uid;
+                        model.wallet_avatar = result.data.wallet_avatar;
+                        model.wallet_weixin = result.data.wallet_weixin;
+                        model.wallet_qq = result.data.wallet_qq;
                         model.wallet_phone = phoneNum;
                         model.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
                         [[WalletTableManager walletTable] addRecord: model];

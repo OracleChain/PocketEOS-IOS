@@ -359,8 +359,18 @@
     }];
     
     [self.headerView setRedPacketBtnDidClickBlock:^{
-        RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        BOOL result = NO;
+        for (TokenInfo *token in weakSelf.get_token_info_service.dataSourceArray) {
+            if ([token.token_symbol isEqualToString:@"OCT"] || [token.token_symbol isEqualToString:@"EOS"]) {
+                result = YES;
+            }
+        }
+        if (result) {
+            RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [TOASTVIEW showWithText: NSLocalizedString(@"请关注EOS或者OCT即可发送红包", nil)];
+        }
     }];
     
     [self.headerView setRamTradeBtnDidClickBlock:^{
@@ -375,7 +385,7 @@
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
-        [MobClick event:@"首页（资产页）-点击账号名（查看账号）"];
+        [MobClick event:@"首页资产页点击账号名查看账号"];
         AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
         AccountInfo *model = [[AccountInfo alloc] init];
         model.account_name = CURRENT_ACCOUNT_NAME;
@@ -386,7 +396,6 @@
     [self.headerView setAvatarImgDidTapBlock:^{
         PersonalSettingViewController *vc = [[PersonalSettingViewController alloc] init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
- 
     }];
     
     [self.headerView setAddAssestsImgDidTapBlock:^{
@@ -546,7 +555,7 @@
     CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
     Wallet *wallet = CURRENT_WALLET;
     NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
-    vc.urlStr = @"http://activity.pocketeos.top:3501";
+    vc.urlStr = @"http://static.pocketeos.top:3501";
     NSArray *cookieArr = [cookie componentsSeparatedByString:@";"];
     NSString *PE_cookieStr;
     if (cookieArr.count > 0) {

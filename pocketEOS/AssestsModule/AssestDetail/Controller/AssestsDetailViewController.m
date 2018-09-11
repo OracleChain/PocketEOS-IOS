@@ -382,8 +382,12 @@
         vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 1002){
-        RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([self.model.token_symbol isEqualToString:@"OCT"]  || [self.model.token_symbol isEqualToString:@"EOS"]) {
+            RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            [TOASTVIEW showWithText:NSLocalizedString(@"暂不支持该TOKEN红包", nil)];
+        }
     }
 }
 

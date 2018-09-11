@@ -58,7 +58,7 @@
         top4BaseView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT, SCREEN_WIDTH, 104);
         bottomView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT+104, SCREEN_WIDTH, 206);
     }else{
-        bottomView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT, SCREEN_WIDTH, 206);
+        bottomView.frame = CGRectMake(0, CYCLESCROLLVIEW_HEIGHT, SCREEN_WIDTH, 206-9.5);
     }
     [self addSubview:bottomView];
 }

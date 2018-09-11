@@ -20,5 +20,8 @@
 @interface PaymentTipView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *payAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountChooseLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *alipayRightIconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *wechatPayRightIconImageView;
+
 @property(nonatomic, weak) id<PaymentTipViewDelegate> delegate;
 @end

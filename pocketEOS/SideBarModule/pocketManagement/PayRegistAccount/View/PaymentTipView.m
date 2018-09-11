@@ -10,8 +10,6 @@
 
 @interface PaymentTipView()<UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
-@property (weak, nonatomic) IBOutlet UIImageView *alipayRightIconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *wechatPayRightIconImageView;
 @property(nonatomic , strong) NSMutableArray *allRightIconImageViewArray;
 @end
 

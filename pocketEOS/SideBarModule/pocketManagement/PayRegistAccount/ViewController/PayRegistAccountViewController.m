@@ -154,8 +154,14 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 - (void)continuPayBtnDidClick{
     [self.view addSubview:self.paymentTipView];
     self.paymentTipView.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",self.createAccountResourceResult.data.cnyCost.floatValue / 100, NSLocalizedString(@"元", nil)];
-    self.paymentWay = PaymentWayAlipay;//default
-    [self configCreateAccountOrderRequestParams];
+    if (self.paymentWay == PaymentWayAlipay) {
+        self.paymentTipView.alipayRightIconImageView.image = [UIImage imageNamed:@"circleWithRight_blue"];
+        self.paymentTipView.wechatPayRightIconImageView.image = [UIImage imageNamed:@"circleWithoutRight_gray"];
+    }else if (self.paymentWay == PaymentWayWechat){
+        self.paymentTipView.alipayRightIconImageView.image = [UIImage imageNamed:@"circleWithoutRight_gray"];
+        self.paymentTipView.wechatPayRightIconImageView.image = [UIImage imageNamed:@"circleWithRight_blue"];
+    }
+    
 }
 
 
@@ -242,8 +248,9 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     [SVProgressHUD show];
     [self.loginPasswordView removeFromSuperview];
     [self.view addSubview:self.paymentTipView];
+    self.paymentWay = PaymentWayAlipay;
     self.paymentTipView.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",self.createAccountResourceResult.data.cnyCost.floatValue / 100, NSLocalizedString(@"元", nil)];
-    self.paymentWay = PaymentWayAlipay;//default
+    
 }
 
 //PaymentTipViewDelegate
@@ -271,8 +278,6 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 }
 
 - (void)confirmPayBtnDidClick:(UIButton *)sender{
-    
-    
     if (self.paymentWay == PaymentWayAlipay){
         // open alipay
         [self showTwoBtnView];
@@ -348,6 +353,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 - (void)createAllKeys{
     self.ownerPrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
     self.activePrivateKey = [[EosPrivateKey alloc] initEosPrivateKey];
+    NSLog(@"ownerPrivateKey:\n %@ \n ownerPublicKey:\n %@\n activePrivateKey:\n%@\n activePublicKey:\n %@\n", self.ownerPrivateKey.eosPrivateKey , self.ownerPrivateKey.eosPublicKey , self.activePrivateKey.eosPrivateKey, self.activePrivateKey.eosPublicKey);
 }
 
 - (void)configCreateAccountOrderRequestParams{
@@ -377,15 +383,15 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     model.account_img = ACCOUNT_DEFALUT_AVATAR_IMG_URL_STR;
     
     if (self.headerView.privateKeyBeSameModeBtn.selected == YES) {
+        model.account_owner_public_key = self.ownerPrivateKey.eosPublicKey;
         model.account_active_public_key = self.ownerPrivateKey.eosPublicKey;
-        model.account_owner_public_key = self.ownerPrivateKey.eosPublicKey;
+        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
         model.account_active_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
-        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
     }else{
-        model.account_active_public_key = self.activePrivateKey.eosPublicKey;
         model.account_owner_public_key = self.ownerPrivateKey.eosPublicKey;
-        model.account_active_private_key = [AESCrypt encrypt:self.activePrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
+        model.account_active_public_key = self.activePrivateKey.eosPublicKey;
         model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
+        model.account_active_private_key = [AESCrypt encrypt:self.activePrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
     }
     
     
@@ -414,9 +420,6 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    
-    NSLog(@"{ownerPrivateKey:\n%@\neosPublicKey:%@\nactivePrivateKey:%@\neosPublicKey:%@\n}", self.ownerPrivateKey.eosPrivateKey, self.ownerPrivateKey.eosPublicKey, self.activePrivateKey.eosPrivateKey, self.activePrivateKey.eosPublicKey);
-    
 }
 
 - (void)wechatPayDidFinish:(NSNotification *)noti{
@@ -451,8 +454,6 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    
-    NSLog(@"{ownerPrivateKey:%@\neosPublicKey:%@\nactivePrivateKey:%@\neosPublicKey:%@\n}", self.ownerPrivateKey.eosPrivateKey, self.ownerPrivateKey.eosPublicKey, self.activePrivateKey.eosPrivateKey, self.activePrivateKey.eosPublicKey);
 }
 
 

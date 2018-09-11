@@ -184,7 +184,7 @@
 }
 
 -(void)rightBtnDidClick{
-    [MobClick event:@"收款-转账记录"];
+    [MobClick event:@"收款_转账记录"];
     TransferRecordsViewController *vc = [[TransferRecordsViewController alloc] init];
     vc.get_token_info_service_data_array = self.get_token_info_service_data_array;
     vc.currentToken = self.currentToken;
@@ -206,7 +206,9 @@
         [assestsArr addObject: token.token_symbol];
     }
     
-    
+    if (assestsArr.count == 0) {
+        return;
+    }
     [CDZPicker showSinglePickerInView:self.view withBuilder:builder strings:assestsArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
         weakSelf.currentAssestsType = VALIDATE_STRING(strings[0]);
         weakSelf.headerView.assestChooserLabel.text = weakSelf.currentAssestsType;

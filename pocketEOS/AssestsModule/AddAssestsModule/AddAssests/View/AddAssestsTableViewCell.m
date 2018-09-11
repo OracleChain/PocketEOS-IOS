@@ -76,7 +76,14 @@
     [_avatarImg sd_setImageWithURL: String_To_URL(model.iconUrl) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     _titleLabel.text = model.assetName;
     _detailLabel.text = model.contractName;
+    
     _assestsSwitch.on = model.isFollow;
+    
+    if ([model.assetName isEqualToString:@"EOS"] || [model.assetName isEqualToString:@"OCT"]  ) {
+        _assestsSwitch.enabled = NO;
+    }else{
+        _assestsSwitch.enabled = YES;
+    }
 }
 
 - (void)assestsSwitchStatusChange{

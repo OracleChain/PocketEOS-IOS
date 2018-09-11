@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet BaseView *line3;
 @property (weak, nonatomic) IBOutlet BaseView *enterpriseBaseView;
 
+@property (weak, nonatomic) IBOutlet BaseLabel *starAppTipLabel;
 
 @end
 
@@ -41,7 +42,6 @@
     self.starImg.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.starDetailView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-    
 }
 
 - (void)updateViewWithArray:(NSArray *)array{

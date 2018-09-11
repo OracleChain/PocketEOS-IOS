@@ -681,7 +681,7 @@
  ExcuteActionsViewController.m
  */
 "签名内容"="Signature";
-"签名成功"="Sign Success";
+"签名成功"="Signed";
 "确认签名"="Sign";
 "您钱包中暂无操作账号"="The required account is not in your wallet";
 
@@ -743,5 +743,7 @@
 "的大红包，无需消费,直接到达EOS账号,还在犹豫什么?"="no requirements to EOS account, just Open!";
 "未支付"="Unpaid";
 
-
+"该资产无法取消关注"="Could not remove this token";
+"请关注EOS或者OCT即可发送红包"="Add EOS and OCT before send RedPackets";
+"暂不支持该TOKEN红包"="Don't support this token for redpacket yet";
 

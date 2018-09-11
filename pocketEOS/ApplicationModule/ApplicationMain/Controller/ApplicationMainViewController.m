@@ -56,12 +56,12 @@
 - (UICollectionView *)mainCollectionView{
     if(!_mainCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
+        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 80)];
         
         if (self.mainService.top4DataArray.count > 0) {
             layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + CYCLESCROLLVIEW_HEIGHT);
         }else{
-            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206 + CYCLESCROLLVIEW_HEIGHT );
+            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206-9.5 + CYCLESCROLLVIEW_HEIGHT );
         }
         
         layout.minimumLineSpacing = 1;

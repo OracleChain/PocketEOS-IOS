@@ -152,7 +152,7 @@
         .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x000000), UIControlStateNormal)
         .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
         [btn setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(closeNative) forControlEvents:UIControlEventTouchUpInside];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
         btn.frame = CGRectMake(0, 0, 50, 40);
         _closeItem.customView = btn;
@@ -503,6 +503,7 @@
         weakSelf.choosedAccountName = VALIDATE_STRING(strings[0]);
     }cancel:^{
         [weakSelf.selectAccountView removeFromSuperview];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
 }
@@ -519,8 +520,14 @@
 
 - (void)loadWebView{
     //       xgame http://47.74.145.111 self.model.url
-    //        http://www.cheerfifa.com //  http://192.168.3.151:8081
-    [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(self.model.url)]];
+    NSString *requestStr;
+    if ([NSBundle isChineseLanguage]) {
+        requestStr = [NSString stringWithFormat:@"%@?language=Chinese",self.model.url];
+    }else{
+        requestStr = [NSString stringWithFormat:@"%@?language=English",self.model.url];
+    }
+    NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
+    [self.webView loadRequest: finalRequest];
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
     self.webView.scrollView.delegate = self;

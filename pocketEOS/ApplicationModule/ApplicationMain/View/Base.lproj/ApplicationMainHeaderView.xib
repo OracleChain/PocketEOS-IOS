@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -43,14 +43,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Z-aj-YMP" userLabel="starLabelBase View" customClass="BaseView">
                     <rect key="frame" x="0.0" y="264" width="375" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本周明星Dapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-ss-pgo" customClass="BaseLabel">
-                            <rect key="frame" x="20" y="0.0" width="98" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本周明星Dapp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-ss-pgo" customClass="BaseLabel">
+                            <rect key="frame" x="40" y="0.0" width="100" height="50"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommended.png" translatesAutoresizingMaskIntoConstraints="NO" id="eCf-EW-JAP">
-                            <rect key="frame" x="124" y="19.5" width="12" height="12"/>
+                            <rect key="frame" x="20" y="19.5" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="Dau-WT-iKj"/>
                                 <constraint firstAttribute="width" constant="12" id="Iay-8O-Rh9"/>
@@ -68,11 +68,11 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="x17-zD-x2u" secondAttribute="trailing" id="6yO-nF-FZ1"/>
                         <constraint firstItem="eCf-EW-JAP" firstAttribute="centerY" secondItem="Z9Z-aj-YMP" secondAttribute="centerY" id="8HI-M5-YdI"/>
-                        <constraint firstItem="eCf-EW-JAP" firstAttribute="leading" secondItem="Hiy-ss-pgo" secondAttribute="trailing" constant="6" id="9gU-It-gE5"/>
+                        <constraint firstItem="Hiy-ss-pgo" firstAttribute="leading" secondItem="eCf-EW-JAP" secondAttribute="trailing" constant="8" id="Jjk-1q-RIr"/>
                         <constraint firstAttribute="bottom" secondItem="Hiy-ss-pgo" secondAttribute="bottom" id="RTq-PK-jf4"/>
                         <constraint firstItem="Hiy-ss-pgo" firstAttribute="top" secondItem="Z9Z-aj-YMP" secondAttribute="top" id="Snz-PN-EAo"/>
-                        <constraint firstItem="Hiy-ss-pgo" firstAttribute="leading" secondItem="Z9Z-aj-YMP" secondAttribute="leading" constant="20" id="Va9-aM-lFs"/>
                         <constraint firstItem="x17-zD-x2u" firstAttribute="leading" secondItem="Z9Z-aj-YMP" secondAttribute="leading" id="gDK-5n-3US"/>
+                        <constraint firstItem="eCf-EW-JAP" firstAttribute="leading" secondItem="Z9Z-aj-YMP" secondAttribute="leading" constant="20" id="njz-5L-hUh"/>
                         <constraint firstAttribute="height" constant="50" id="vSp-Nw-ZmE"/>
                         <constraint firstAttribute="bottom" secondItem="x17-zD-x2u" secondAttribute="bottom" id="x5d-TT-c64"/>
                     </constraints>
@@ -216,6 +216,7 @@
                 <outlet property="line1" destination="hXU-I2-cM3" id="dwf-yg-6h1"/>
                 <outlet property="line2" destination="LnC-We-OJU" id="14u-zE-zyV"/>
                 <outlet property="line3" destination="mCj-7q-sGI" id="UDY-kS-xUz"/>
+                <outlet property="starAppTipLabel" destination="Hiy-ss-pgo" id="oRj-yk-Xbn"/>
                 <outlet property="starDappBaseView" destination="rkk-Go-VXG" id="f3c-hP-0Ki"/>
                 <outlet property="starDetailView" destination="ihJ-Bs-bAi" id="gMG-av-HD9"/>
                 <outlet property="starImg" destination="Hhc-0e-v1C" id="BZ8-ix-PTB"/>

@@ -36,8 +36,10 @@
     double totalBalanceCnyValue =0;
     for (TokenInfo *model in dataArray) {
         totalBalanceCnyValue += model.balance_cny.doubleValue;
+        self.userAccountLabel.text = [NSString stringWithFormat:@"%@", model.account_name] ;
     }
     self.totalAssetsLabel.text = [NSString stringWithFormat:@"≈%.4f", totalBalanceCnyValue];
-   
+    
+    
 }
 @end

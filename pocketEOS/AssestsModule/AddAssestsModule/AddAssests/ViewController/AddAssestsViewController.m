@@ -123,15 +123,20 @@ typedef NS_ENUM(NSInteger, AddAssestsViewControllerCurrentAction) {
     [cell setAssestsSwitchStatusDidChangeBlock:^(RecommandToken *token, UISwitch *assestsSwitch) {
         NSLog(@"%@, %d", token.assetName, assestsSwitch.isOn);
         NSLog(@"%@", weakSelf.mainService.followAssetIdsDataArray);
-        if (assestsSwitch.isOn) {
-            if (![weakSelf.mainService.followAssetIdsDataArray containsObject: @(token.recommandToken_ID.integerValue)]) {
-                
-                [weakSelf.mainService.followAssetIdsDataArray addObject:@(token.recommandToken_ID.integerValue)];
-            }
+        if ([token.assetName isEqualToString:@"OCT"] || [token.assetName isEqualToString:@"EOS"]) {
+            [TOASTVIEW showWithText: NSLocalizedString(@"该资产无法取消关注", nil)];
         }else{
-            if ([weakSelf.mainService.followAssetIdsDataArray containsObject:@(token.recommandToken_ID.integerValue)]) {
-                [weakSelf.mainService.followAssetIdsDataArray removeObject:@(token.recommandToken_ID.integerValue)];
+            if (assestsSwitch.isOn) {
+                if (![weakSelf.mainService.followAssetIdsDataArray containsObject: @(token.recommandToken_ID.integerValue)]) {
+                    
+                    [weakSelf.mainService.followAssetIdsDataArray addObject:@(token.recommandToken_ID.integerValue)];
+                }
+            }else{
+                if ([weakSelf.mainService.followAssetIdsDataArray containsObject:@(token.recommandToken_ID.integerValue)]) {
+                    [weakSelf.mainService.followAssetIdsDataArray removeObject:@(token.recommandToken_ID.integerValue)];
+                }
             }
+            
         }
         
     }];
@@ -152,6 +157,15 @@ typedef NS_ENUM(NSInteger, AddAssestsViewControllerCurrentAction) {
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    RecommandToken *model;
+    if (self.addAssestsViewControllerCurrentAction == AddAssestsViewControllerActionSearchAssests) {
+        model = self.mainService.searchTokenResultDataArray[indexPath.row];
+    }else{
+        model = self.mainService.dataSourceArray[indexPath.row];
+    }
+    if ([model.assetName isEqualToString:@"OCT"] || [model.assetName isEqualToString:@"EOS"]) {
+        [TOASTVIEW showWithText: NSLocalizedString(@"该资产无法取消关注", nil)];
+    }
 }
 
 //AddAssestsHeaderViewDelegate

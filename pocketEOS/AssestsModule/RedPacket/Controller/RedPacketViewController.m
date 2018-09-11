@@ -164,7 +164,7 @@
 }
 
 -(void)rightBtnDidClick{
-    [MobClick event:@"红包-红包记录"];
+    [MobClick event:@"红包_红包记录"];
     RedPacketRecordsViewController *vc = [[RedPacketRecordsViewController alloc] init];
     vc.currentAssestsType = self.currentAssestsType;
     [self.navigationController pushViewController:vc animated:YES];
