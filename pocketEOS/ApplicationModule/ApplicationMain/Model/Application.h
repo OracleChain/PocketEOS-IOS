@@ -41,7 +41,8 @@
  */
 @property(nonatomic, copy) NSString *introReason;
 
-
 @property(nonatomic , copy) NSString *url;
+
+@property(nonatomic , assign) BOOL isScatter;
 
 @end

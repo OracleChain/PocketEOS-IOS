@@ -25,6 +25,7 @@
 #import "CDZPicker.h"
 #import "SelectAccountView.h"
 #import "ApplicationHeaderView.h"
+#import "ScatterMainViewController.h"
 
 
 @interface ApplicationMainViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, ApplicationMainHeaderViewDelegate, SDCycleScrollViewDelegate, SelectAccountViewDelegate, ApplicationHeaderViewDelegate>
@@ -155,17 +156,24 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
-    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+//    
+//    ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    
+    if (model.isScatter) {
+        ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
-        
+        if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
+            QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
-    
-    
+
    
 }
 
@@ -223,13 +231,18 @@
 -(void)starApplicationBtnDidClick:(UIButton *)sender{
     if (self.mainService.starDataArray.count > 0) {
         Application *model = self.mainService.starDataArray[0];
-        if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-            QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+        if (model.isScatter) {
+            ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-            vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
+                QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }

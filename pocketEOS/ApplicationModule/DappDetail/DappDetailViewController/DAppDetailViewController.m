@@ -6,9 +6,25 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
-#define JS_CONTRACT_METHOD_PUSH @"push"
-#define JS_CONTRACT_METHOD_PUSHACTION @"pushAction"
-#define JS_CONTRACT_METHOD_PUSHACTIONS @"pushActions"
+#define JS_INTERACTION_METHOD_PUSH @"push"
+#define JS_INTERACTION_METHOD_PUSHACTION @"pushAction"
+#define JS_INTERACTION_METHOD_PUSHACTIONS @"pushActions"
+#define JS_INTERACTION_METHOD_PUSHMESSAGE @"pushMessage"
+
+#define JS_INTERACTION_METHOD_walletLanguage @"walletLanguage"
+#define JS_INTERACTION_METHOD_getEosAccount @"getEosAccount"
+#define JS_INTERACTION_METHOD_getWalletWithAccount @"getWalletWithAccount"
+#define JS_INTERACTION_METHOD_getEosBalance @"getEosBalance"
+#define JS_INTERACTION_METHOD_getEosAccountInfo @"getEosAccountInfo"
+#define JS_INTERACTION_METHOD_getTransactionById @"getTransactionById"
+#define JS_INTERACTION_METHOD_pushActions @"pushActions"
+#define JS_INTERACTION_METHOD_pushTransfer @"pushTransfer"
+#define JS_INTERACTION_METHOD_getAppInfo @"getAppInfo"
+#define JS_INTERACTION_METHOD_unknown @"unknown"
+
+
+#define JS_METHODNAME_CALLBACKRESULT @"callbackResult"
+#define JS_METHODNAME_PUSHACTIONRESULT @"pushActionResult"
 
 #import "DAppDetailViewController.h"
 #import "WkDelegateController.h"
@@ -23,7 +39,10 @@
 #import "DappExcuteActionsDataSourceService.h"
 #import "DAppExcuteMutipleActionsResult.h"
 #import "ExcuteMultipleActionsService.h"
-
+#import "DappPushMessageModel.h"
+#import "DappDetailService.h"
+#import "GetEosBalanceModel.h"
+#import "GetTransactionByIdModel.h"
 
 @interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate>
 @property WebViewJavascriptBridge* bridge;
@@ -39,12 +58,14 @@
 @property (nonatomic , strong) DappTransferResult *dappTransferResult;
 @property(nonatomic , strong) DappTransferModel *dappTransferModel;
 @property(nonatomic , strong) DAppExcuteMutipleActionsResult *dAppExcuteMutipleActionsResult;
+@property(nonatomic , strong) DappPushMessageModel *dappPushMessageModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @property (nonatomic , strong) UIBarButtonItem *backItem;
 @property (nonatomic , strong) UIBarButtonItem *closeItem;
 
 @property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
 @property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
+@property(nonatomic , strong) DappDetailService *dappDetailService;
 @property(nonatomic , strong) DAppExcuteMutipleActionsBaseView *dAppExcuteMutipleActionsBaseView;
 @property(nonatomic , assign) BOOL allowZoom;
 @end
@@ -185,6 +206,14 @@
     return _excuteMultipleActionsService;
 }
 
+- (DappDetailService *)dappDetailService{
+    if (!_dappDetailService) {
+        _dappDetailService = [[DappDetailService alloc] init];
+        _dappDetailService.choosedAccountName = self.choosedAccountName;
+    }
+    return _dappDetailService;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -192,9 +221,12 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushAction"];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"push"];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"pushActions"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTION];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSH];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTIONS];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHMESSAGE];
+    
+    
     if (IsStrEmpty(self.webView.title)) {
         [self.webView reload];
     }
@@ -212,7 +244,7 @@
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushAction('%@','%@')"];
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushActions('%@','%@')"];
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"push('%@','%@','%@','%@','%@')"];
-    
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushMessage('%@','%@','%@')"];
 }
 
 - (void)viewDidLoad {
@@ -264,7 +296,12 @@
     Wallet *current_wallet = CURRENT_WALLET;
     if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.dAppExcuteMutipleActionsBaseView.passwordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
-        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+        if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+            [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:Password is invalid. Please check it."] mj_JSONString]];
+        }else{
+            [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+            
+        }
         return;
     }
     [self pushActions];
@@ -273,6 +310,13 @@
 - (void)excuteMutipleActionsCloseBtnDidClick{
     [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
     self.dAppExcuteMutipleActionsBaseView = nil;
+    
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:CANCLE"] mj_JSONString]];
+    }else{
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:CANCLE"];
+        
+    }
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
@@ -299,19 +343,47 @@
     NSLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
     self.WKScriptMessageName = (NSString *)message.name;
     self.WKScriptMessageBody = (NSDictionary *)message.body;
-    if ([self.WKScriptMessageName isEqualToString:@"pushAction"] || [self.WKScriptMessageName isEqualToString:@"push"]) {
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHACTION] || [self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSH]) {
         self.dappTransferResult = [DappTransferResult mj_objectWithKeyValues:self.WKScriptMessageBody];
         self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues:[self.dappTransferResult.message mj_JSONObject ] ];
         [self.view addSubview:self.loginPasswordView];
-    }else if ([self.WKScriptMessageName isEqualToString:@"pushActions"]){
+    }else if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHACTIONS]){
         self.dAppExcuteMutipleActionsResult = [DAppExcuteMutipleActionsResult mj_objectWithKeyValues:self.WKScriptMessageBody];
         [self buildExcuteActionsDataSource];
+    }else if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]){
+        self.dappPushMessageModel = [DappPushMessageModel mj_objectWithKeyValues:self.WKScriptMessageBody];
+            
+        if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getEosAccount]) {
+            [self js_pushMessage_method_getEosAccount];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getAppInfo]){
+            [self js_pushMessage_method_getAppInfo];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_walletLanguage]){
+            [self js_pushMessage_method_walletLanguage];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getWalletWithAccount]){
+            [self js_pushMessage_method_getWalletWithAccount];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getEosBalance]){
+            [self js_pushMessage_method_getEosBalance];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getEosAccountInfo]){
+            [self js_pushMessage_method_getEosAccountInfo];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_getTransactionById]){
+            [self js_pushMessage_method_getTransactionById];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_pushActions]){
+            [self js_pushMessage_method_pushActions];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_pushTransfer]){
+            [self js_pushMessage_method_pushTransfer];
+        }
+        
     }
 }
 
 - (void)buildExcuteActionsDataSource{
     WS(weakSelf);
-    self.dappExcuteActionsDataSourceService.actionsResultDict = self.dAppExcuteMutipleActionsResult.actionsDetails;
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        self.dappExcuteActionsDataSourceService.actionsResultDict = self.dappPushMessageModel.params;
+    }else if([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHACTIONS]){
+        self.dappExcuteActionsDataSourceService.actionsResultDict = self.dAppExcuteMutipleActionsResult.actionsDetails;
+    }
+    
     [self.dappExcuteActionsDataSourceService buildDataSource:^(id service, BOOL isSuccess) {
         if (isSuccess) {
             [weakSelf.view addSubview:weakSelf.dAppExcuteMutipleActionsBaseView];
@@ -325,7 +397,12 @@
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
     [self removeLoginPasswordView];
-    [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Cancel"];
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:CANCLE"] mj_JSONString]];
+    }else{
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:CANCLE"];
+        
+    }
 }
 
 -(void)confirmBtnDidClick:(UIButton *)sender{
@@ -333,15 +410,21 @@
     Wallet *current_wallet = CURRENT_WALLET;
     if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.loginPasswordView.inputPasswordTF.text]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
-        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+        if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+            [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:Password is invalid. Please check it."] mj_JSONString]];
+        }else{
+            [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
+        }
         return;
     }
-    if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSH]) {
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSH]) {
         [self push];
-    }else if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSHACTION]){
+    }else if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHACTION]){
         [self pushAction];
-    }else if ([self.WKScriptMessageName isEqualToString:JS_CONTRACT_METHOD_PUSHACTIONS]){
+    }else if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHACTIONS]){
         [self pushActions];
+    }else if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]){
+        [self pushAction];
     }
 }
 
@@ -377,19 +460,8 @@
 
 // adapt old version
 - (void)pushAction{
-    
-    if ([self.dappTransferModel.quantity containsString:@"EOS"]) {
-        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
-        self.mainService.code = ContractName_EOSIOTOKEN;
-    }else if ([self.dappTransferModel.quantity containsString:@"OCT"]){
-        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;//octoneos
-        self.mainService.code = ContractName_OCTOTHEMOON;
-    }else{
-        [TOASTVIEW showWithText:@"Symbols not find!Please check it!"];
-        return;
-    }
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
-    
+    self.transferAbi_json_to_bin_request.code = self.dappTransferModel.contract;
     self.transferAbi_json_to_bin_request.quantity = self.dappTransferModel.quantity;
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = self.dappTransferModel.from;
@@ -408,6 +480,7 @@
         weakSelf.mainService.available_keys = @[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)];
         weakSelf.mainService.action = ContractAction_TRANSFER;
         weakSelf.mainService.sender = weakSelf.choosedAccountName;
+        weakSelf.mainService.code = weakSelf.dappTransferModel.contract;
         weakSelf.mainService.binargs = data[@"data"][@"binargs"];
         weakSelf.mainService.pushTransactionType = PushTransactionTypeTransfer;
         weakSelf.mainService.password = weakSelf.loginPasswordView.inputPasswordTF.text;
@@ -432,11 +505,17 @@
 // TransferServiceDelegate
 -(void)pushTransactionDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
-        //        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
-        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        
+        
     }else{
         [TOASTVIEW showWithText: result.message];
-        [self feedbackToJsWithSerialNumber:self.dappTransferResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:[NSString stringWithFormat:@"ERROR:%@", result.message]];
+    }
+    
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING([[self handlePushActionResultWithTransactionResult:result andSerialNumber:self.dappPushMessageModel.serialNumber] mj_JSONString])];
     }
 }
 
@@ -446,18 +525,58 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"签名成功", nil)];
         [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
         self.dAppExcuteMutipleActionsBaseView = nil;
-        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
     }else{
         [TOASTVIEW showWithText: result.message];
-        [self feedbackToJsWithSerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage: [NSString stringWithFormat:@"ERROR:%@", result.message]];
+        
+        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:[NSString stringWithFormat:@"ERROR:%@", result.message]];
     }
     [self removeLoginPasswordView];
     [SVProgressHUD dismiss];
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING([[self handlePushActionResultWithTransactionResult:result andSerialNumber:self.dappPushMessageModel.serialNumber] mj_JSONString])];
+    }
 }
 
-// pushActionResultFeedback
-- (void)feedbackToJsWithSerialNumber:(NSString *)serialNumber andMessage:(NSString *)message{
-    NSString *jsStr = [NSString stringWithFormat:@"pushActionResult('%@', '%@')", serialNumber, message];
+- (NSMutableDictionary *)handlePushActionResultWithTransactionResult:(TransactionResult *)result andSerialNumber:(NSString *)serialNumber{
+    NSMutableDictionary *resultDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+    if ([result.code isEqualToNumber:@0]) {
+        [dataDict setValue: VALIDATE_STRING(self.dappPushMessageModel.serialNumber) forKey:@"serialNumber"];
+        [dataDict setValue: VALIDATE_STRING(result.transaction_id) forKey:@"txid"];
+        if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+            [dataDict setValue: VALIDATE_STRING(self.excuteMultipleActionsService.ref_block_num) forKey:@"block_num"];
+        }else{
+            [dataDict setValue: VALIDATE_STRING(self.mainService.ref_block_num) forKey:@"block_num"];
+        }
+        [resultDict setValue:VALIDATE_NUMBER(result.code) forKey:@"code"];
+        [resultDict setValue:VALIDATE_STRING(result.message) forKey:@"message"];
+        [resultDict setValue:dataDict forKey:@"data"];
+    }else{
+        [dataDict setValue: VALIDATE_STRING(result.message) forKey:@"errorMsg"];
+        [dataDict setValue: VALIDATE_STRING(self.dappPushMessageModel.serialNumber) forKey:@"serialNumber"];
+        [resultDict setValue:VALIDATE_NUMBER(result.code) forKey:@"code"];
+        [resultDict setValue:VALIDATE_STRING(result.message) forKey:@"message"];
+        [resultDict setValue:dataDict forKey:@"data"];
+
+    }
+    return resultDict;
+}
+
+- (NSMutableDictionary *)handleResponseToJsErrorInfoWithErrorMessage:(NSString *)errorMessage{
+    NSMutableDictionary *resultDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] init];
+    [dataDict setValue: VALIDATE_STRING(self.dappPushMessageModel.serialNumber) forKey:@"serialNumber"];
+    [dataDict setValue: VALIDATE_STRING(errorMessage) forKey:@"errorMsg"];
+    [resultDict setValue:VALIDATE_NUMBER(@1) forKey:@"code"];
+    [resultDict setValue:VALIDATE_STRING(errorMessage) forKey:@"message"];
+    [resultDict setValue:dataDict forKey:@"data"];
+    return resultDict;
+}
+
+// pushMessageResultResponse callbackResult
+- (void)responseToJsWithJSMethodName:(NSString *)jsMethodName SerialNumber:(NSString *)serialNumber andMessage:(NSString *)message{
+    NSString *jsStr = [NSString stringWithFormat:@"%@('%@', '%@')", jsMethodName,serialNumber, message];
     [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         NSLog(@"%@----%@",result, error);
     }];
@@ -468,6 +587,7 @@
     [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         //TODO
         NSLog(@"%@ ",response);
+        
     }];
 }
 
@@ -484,6 +604,83 @@
         NSLog(@"%@ ",response);
     }];
 }
+
+// JS_INTERACTION_METHOD_PUSHMESSAGE_method
+- (void)js_pushMessage_method_getAppInfo{
+    WS(weakSelf);
+    [self.dappDetailService getAppInfo:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_walletLanguage{
+    WS(weakSelf);
+    [self.dappDetailService walletLanguage:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_getEosAccount{
+    WS(weakSelf);
+    [self.dappDetailService getEosAccount:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_getWalletWithAccount{
+    WS(weakSelf);
+    [self.dappDetailService getWalletWithAccount:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_getEosBalance{
+    WS(weakSelf);
+    GetEosBalanceModel *model = [GetEosBalanceModel mj_objectWithKeyValues:self.dappPushMessageModel.params];
+    self.dappDetailService.code = model.contract;
+    self.dappDetailService.scope = model.account;
+    self.dappDetailService.table = @"accounts";
+    
+    [self.dappDetailService getEosBalance:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_getEosAccountInfo{
+    WS(weakSelf);
+    [self.dappDetailService getEosAccountInfo:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_getTransactionById{
+    WS(weakSelf);
+    GetTransactionByIdModel *model = [GetTransactionByIdModel mj_objectWithKeyValues:self.dappPushMessageModel.params];
+    self.dappDetailService.transactionIdStr = model.txid;
+    [self.dappDetailService getTransactionById:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_pushActions{
+    self.dAppExcuteMutipleActionsResult = [DAppExcuteMutipleActionsResult mj_objectWithKeyValues:[self.dappPushMessageModel.params mj_JSONObject]];
+    [self buildExcuteActionsDataSource];
+}
+
+- (void)js_pushMessage_method_pushTransfer{
+    self.dappTransferModel = (DappTransferModel *)[DappTransferModel mj_objectWithKeyValues: [self.dappPushMessageModel.params mj_JSONObject] ];
+    [self.view addSubview:self.loginPasswordView];
+}
+
+- (void)js_pushMessage_method_unknown{
+    WS(weakSelf);
+    [self.dappDetailService unknownMethod:^(id service, BOOL isSuccess) {
+        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+
+
 
 //SelectAccountViewDelegate
 - (void)selectAccountBtnDidClick:(UIButton *)sender{
@@ -519,13 +716,15 @@
 }
 
 - (void)loadWebView{
-    //       xgame http://47.74.145.111 self.model.url
     NSString *requestStr;
-    if ([NSBundle isChineseLanguage]) {
-        requestStr = [NSString stringWithFormat:@"%@?language=Chinese",self.model.url];
-    }else{
-        requestStr = [NSString stringWithFormat:@"%@?language=English",self.model.url];
-    }
+//    self.model.url = @"http://oct.xpet.io/index.html?identity=684";//%@?identity=684&language=Chinese
+//    self.model.url = @"https://dice.eosbet.io/?ref=jintianyaook";
+//    if ([NSBundle isChineseLanguage]) {
+//        requestStr = [NSString stringWithFormat:@"%@?language=Chinese",self.model.url];
+//    }else{
+//        requestStr = [NSString stringWithFormat:@"%@?language=English",self.model.url];
+//    }
+    requestStr = [NSString stringWithFormat:@"%@",self.model.url];
     NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
     [self.webView loadRequest: finalRequest];
     self.webView.UIDelegate = self;

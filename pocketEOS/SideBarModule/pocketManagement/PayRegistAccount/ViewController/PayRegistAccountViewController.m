@@ -53,6 +53,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 @property(nonatomic , strong) EosPrivateKey *activePrivateKey;
 @property(nonatomic , strong) CreateAccountResourceResult *createAccountResourceResult;
 @property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
+@property(nonatomic , assign) BOOL willPay;
 @end
 
 @implementation PayRegistAccountViewController
@@ -196,7 +197,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 
 - (void)createBtnDidClick:(UIButton *)sender{
     if (IsStrEmpty(self.headerView.accountNameTF.text) ) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请保证输入信息的完整~", nil)];
         return;
     }
 
@@ -210,6 +211,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
         return;
     }
     [self checkAccountExist];
+    self.willPay = YES;
 }
 
 - (void)checkAccountExist{
@@ -461,20 +463,25 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 // NavigationViewDelegate
 -(void)leftBtnDidClick{
     WS(weakSelf);
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"警告", nil) message:NSLocalizedString(@"离开本页面将导致私钥丢失，由此造成的损失将由您自行承担!", nil) preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"继续操作", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击了取消");
-    }];
-    
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"确认离开", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
-    
-    [alert addAction:action1];
-    [alert addAction:action2];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    if (self.willPay) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"警告", nil) message:NSLocalizedString(@"离开本页面将导致私钥丢失，由此造成的损失将由您自行承担!", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"确认离开", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"继续操作", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"继续操作");
+        }];
+        
+        [alert addAction:action1];
+        [alert addAction:action2];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 
   
 }

@@ -38,6 +38,8 @@
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , strong) TokenInfo *currentToken;
+@property(nonatomic , copy) NSString *assest_price_cny;
+
 @end
 
 @implementation TransferNewViewController
@@ -126,6 +128,7 @@
             self.headerView.nameTF.text = self.transferModel.account_name;
             self.headerView.amountTF.text = self.transferModel.money;
             self.currentAssestsType = self.transferModel.coin;
+            [self requestTokenInfoDataArray];
         }else if (self.recieveTokenModel){
             self.headerView.nameTF.text = self.recieveTokenModel.account_name;
             self.headerView.amountTF.text = self.recieveTokenModel.quantity;
@@ -150,7 +153,6 @@
         }
     }
     [self requestRate];
-    [self textFieldChange: nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -180,15 +182,16 @@
 }
 
 - (void)requestRate{
-    WS(weakSelf);
-    self.mainService.getRateRequest.coinmarket_id = VALIDATE_STRING(self.currentToken.coinmarket_id);
-    [self.mainService get_rate:^(GetRateResult *result, BOOL isSuccess) {
-        if (isSuccess) {
-            weakSelf.getRateResult = result;
-            [weakSelf configHeaderView];
-            [weakSelf textFieldChange:nil];
+    for (TokenInfo *token in self.get_token_info_service_data_array) {
+        {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                self.assest_price_cny = token.asset_price_cny;
+                [self configHeaderView];
+                [self textFieldChange:nil];
+            }
         }
-    }];
+    }
+
 }
 
 - (void)requestTokenInfoDataArray{
@@ -232,7 +235,7 @@
     if (IsStrEmpty(self.currentToken.coinmarket_id)  ) {
         self.headerView.amount_ConvertLabel.text = [NSString stringWithFormat:@"≈0CNY"];
     }else{
-        self.headerView.amount_ConvertLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
+        self.headerView.amount_ConvertLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.assest_price_cny.doubleValue)]];
         
     }
 }

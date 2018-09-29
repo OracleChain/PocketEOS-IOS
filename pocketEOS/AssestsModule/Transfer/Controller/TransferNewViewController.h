@@ -21,5 +21,7 @@
 @property(nonatomic, copy) NSString *currentAssestsType;
 
 @property(nonatomic , strong) NSMutableArray *get_token_info_service_data_array;
+
+@property(nonatomic , copy) NSString *fromPage;
 @end
 

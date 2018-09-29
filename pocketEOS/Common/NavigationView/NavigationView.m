@@ -43,7 +43,7 @@
         [_rightBtn setTitleColor:HEXCOLOR(0x2A2A2A) forState:(UIControlStateNormal)];
         [_rightBtn.titleLabel setTextAlignment:(NSTextAlignmentRight)];
         [_rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _rightBtn.lee_theme
         .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A), UIControlStateNormal)
         .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);

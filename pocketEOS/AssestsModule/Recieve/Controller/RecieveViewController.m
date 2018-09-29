@@ -31,6 +31,7 @@
 @property(nonatomic, strong) TransferService *transferService;
 @property(nonatomic, strong) Get_token_info_service *get_token_info_service;
 @property(nonatomic , strong) TokenInfo *currentToken;
+@property(nonatomic , copy) NSString *assest_price_cny;
 @end
 
 @implementation RecieveViewController
@@ -129,13 +130,16 @@
 
 - (void)requestRate{
     WS(weakSelf);
-    self.transferService.getRateRequest.coinmarket_id = VALIDATE_STRING(self.currentToken.coinmarket_id);
-    [self.transferService get_rate:^(GetRateResult *result, BOOL isSuccess) {
-        if (isSuccess) {
-            weakSelf.getRateResult = result;
-//            [weakSelf textFieldChange:nil];
+    for (TokenInfo *token in self.get_token_info_service_data_array) {
+        {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                self.assest_price_cny = token.asset_price_cny;
+                [self textFieldChange:nil];
+            }
         }
-    }];
+    }
+
+    
 }
 
 - (void)requestTokenInfoDataArray{
@@ -172,7 +176,7 @@
     if (IsStrEmpty(self.currentToken.coinmarket_id)  ) {
         self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈0CNY"];
     }else{
-        self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
+        self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.assest_price_cny.doubleValue)]];
         
     }
 }

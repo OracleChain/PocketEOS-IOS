@@ -16,7 +16,6 @@
 		18041E82213D142100A8D870 /* redpacket_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */; };
 		18041E83213D142100A8D870 /* redpacket_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7E213D142000A8D870 /* redpacket_icon@3x.png */; };
 		18041E84213D142100A8D870 /* recieve_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7F213D142000A8D870 /* recieve_white@3x.png */; };
-		18041E85213D142100A8D870 /* transfer_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E80213D142000A8D870 /* transfer_icon.png */; };
 		18041E88213D153300A8D870 /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E86213D153200A8D870 /* recieve@3x.png */; };
 		18041E89213D153300A8D870 /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E87213D153200A8D870 /* recieve@2x.png */; };
 		1806D0F7206E58540023D83B /* SocialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F6206E58540023D83B /* SocialModel.m */; };
@@ -340,6 +339,10 @@
 		183C6439211A9E05001C9C4A /* GetAccountOrderStatusRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C6438211A9E05001C9C4A /* GetAccountOrderStatusRequest.m */; };
 		183C643F211AA1EC001C9C4A /* AccountOrderStatusResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C643E211AA1EC001C9C4A /* AccountOrderStatusResult.m */; };
 		183C6442211AA1F7001C9C4A /* AccountOrderStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C6441211AA1F7001C9C4A /* AccountOrderStatus.m */; };
+		183F0441214FBF2E008C45B3 /* ScatterAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F0440214FBF2E008C45B3 /* ScatterAction.m */; };
+		183F04442150DA11008C45B3 /* Abi_bin_to_jsonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F04432150DA11008C45B3 /* Abi_bin_to_jsonRequest.m */; };
+		183F04472150DB62008C45B3 /* Abi_bin_to_json_Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F04462150DB62008C45B3 /* Abi_bin_to_json_Result.m */; };
+		183F044A2150DB7A008C45B3 /* Abi_bin_to_json.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F04492150DB7A008C45B3 /* Abi_bin_to_json.m */; };
 		183FF6E920C0D6820058D010 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E120C0D6800058D010 /* PBKDF2.m */; };
 		183FF6EA20C0D6820058D010 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E220C0D6810058D010 /* AESCrypt.m */; };
 		183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6E620C0D6810058D010 /* NSObject+Extension.m */; };
@@ -381,13 +384,6 @@
 		184142652020A99000A789ED /* EnterpriseDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 184142642020A99000A789ED /* EnterpriseDetailService.m */; };
 		184142682020A99F00A789ED /* EnterpriseDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184142672020A99F00A789ED /* EnterpriseDetailHeaderView.m */; };
 		1841426E2020B11000A789ED /* GetEnterpriseDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841426D2020B11000A789ED /* GetEnterpriseDetailRequest.m */; };
-		18423A0A1FFF583F006AB986 /* UIImage+ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 184239FD1FFF583F006AB986 /* UIImage+ImageSize.m */; };
-		18423A0B1FFF583F006AB986 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184239FE1FFF583F006AB986 /* SGQRCode.bundle */; };
-		18423A0C1FFF583F006AB986 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A011FFF583F006AB986 /* SGQRCodeAlbumManager.m */; };
-		18423A0D1FFF583F006AB986 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A031FFF583F006AB986 /* SGQRCodeGenerateManager.m */; };
-		18423A0E1FFF583F006AB986 /* SGQRCodeHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A051FFF583F006AB986 /* SGQRCodeHelperTool.m */; };
-		18423A0F1FFF583F006AB986 /* SGQRCodeScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A071FFF583F006AB986 /* SGQRCodeScanManager.m */; };
-		18423A101FFF583F006AB986 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A091FFF583F006AB986 /* SGQRCodeScanningView.m */; };
 		18423A181FFF5997006AB986 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A171FFF5997006AB986 /* ScanQRCodeViewController.m */; };
 		18423A1B1FFF59D7006AB986 /* GenerateQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A1A1FFF59D7006AB986 /* GenerateQRCodeViewController.m */; };
 		18423A201FFF5C6C006AB986 /* ScanQRCodeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18423A1F1FFF5C6C006AB986 /* ScanQRCodeSuccessViewController.m */; };
@@ -652,6 +648,20 @@
 		1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572A1FE131F6002A683A /* BindSocialPlatformViewController.m */; };
 		186857311FE13216002A683A /* UnBindSocialPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868572F1FE13216002A683A /* UnBindSocialPlatformViewController.m */; };
 		186A2B10211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186A2B12211C59A400DDB681 /* AccountQRCodeManagementHeaderView.xib */; };
+		186BDBC82150F8E0001190A7 /* ScatterMainService.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBC72150F8E0001190A7 /* ScatterMainService.m */; };
+		186BDBCB215343DF001190A7 /* QRCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBCA215343DF001190A7 /* QRCodeModel.m */; };
+		186BDBCE2153471F001190A7 /* ExcuteActionsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBCD2153471F001190A7 /* ExcuteActionsHeaderView.m */; };
+		186BDBD121537A7E001190A7 /* WWJRegularJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBCF21537A7D001190A7 /* WWJRegularJudge.m */; };
+		186BDBD421538670001190A7 /* CandyTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBD321538670001190A7 /* CandyTopView.m */; };
+		186BDC1521538A9A001190A7 /* CandyTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC1721538A9A001190A7 /* CandyTopView.xib */; };
+		186BDC25215395D0001190A7 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC1E215395D0001190A7 /* SGQRCode.bundle */; };
+		186BDC26215395D0001190A7 /* SGQRCodeObtainConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */; };
+		186BDC27215395D0001190A7 /* SGQRCodeObtain.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC23215395D0001190A7 /* SGQRCodeObtain.m */; };
+		186BDC28215395D0001190A7 /* SGQRCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC24215395D0001190A7 /* SGQRCodeScanView.m */; };
+		186BDC2B21539FA0001190A7 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */; };
+		186BDC852153A96E001190A7 /* transfer_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC832153A96D001190A7 /* transfer_icon@2x.png */; };
+		186BDC862153A96E001190A7 /* transfer_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC842153A96E001190A7 /* transfer_icon@3x.png */; };
+		186BDC9C2154C3C2001190A7 /* NotifyDappServerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC9B2154C3C2001190A7 /* NotifyDappServerResult.m */; };
 		186C26C020E9BC5E0076BE4A /* Auth_redpacket_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */; };
 		186F693D20F3661000FFF881 /* AssestsMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F693F20F3661000FFF881 /* AssestsMainHeaderView.xib */; };
 		186F694420F4945E00FFF881 /* BBLoginHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186F694620F4945E00FFF881 /* BBLoginHeaderView.xib */; };
@@ -984,6 +994,18 @@
 		18CEA6A22105DC5200B2BFE2 /* application_unSelect_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */; };
 		18CEA6A32105DC5200B2BFE2 /* application_select_BB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */; };
 		18CEA6A42105DC5200B2BFE2 /* application_unSelect_BB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */; };
+		18D02EF1214F7FFD006D2776 /* ScatterMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EF0214F7FFD006D2776 /* ScatterMainViewController.m */; };
+		18D02F05214F809E006D2776 /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EF3214F809B006D2776 /* PSWebSocket.m */; };
+		18D02F06214F809E006D2776 /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EF4214F809C006D2776 /* PSWebSocketInflater.m */; };
+		18D02F07214F809E006D2776 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EF8214F809C006D2776 /* PSWebSocketNetworkThread.m */; };
+		18D02F08214F809E006D2776 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EFA214F809C006D2776 /* PSWebSocketUTF8Decoder.m */; };
+		18D02F09214F809E006D2776 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EFC214F809D006D2776 /* PSWebSocketServer.m */; };
+		18D02F0A214F809E006D2776 /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02EFE214F809D006D2776 /* PSWebSocketBuffer.m */; };
+		18D02F0B214F809E006D2776 /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F00214F809D006D2776 /* PSWebSocketDriver.m */; };
+		18D02F0C214F809E006D2776 /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F04214F809E006D2776 /* PSWebSocketDeflater.m */; };
+		18D02F11214F8ED7006D2776 /* ScatterResult_type_requestSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F0D214F8ED7006D2776 /* ScatterResult_type_requestSignature.m */; };
+		18D02F12214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F0E214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.m */; };
+		18D02F52214F91AB006D2776 /* libSystem.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D02F51214F91AB006D2776 /* libSystem.tbd */; };
 		18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */; };
 		18D07A4020E9F1FB00DF1FDF /* AuthRedPacketResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A3F20E9F1FB00DF1FDF /* AuthRedPacketResult.m */; };
 		18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D07A4220E9F20500DF1FDF /* AuthRedPacket.m */; };
@@ -1005,6 +1027,15 @@
 		18D07A9220EB68C200DF1FDF /* PockSecureDeclare.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9120EB68C200DF1FDF /* PockSecureDeclare.rtf */; };
 		18D07A9520EB6BD500DF1FDF /* mainAccount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */; };
 		18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */; };
+		18D475B6215CD6C400F3BF22 /* GetEosBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475B5215CD6C400F3BF22 /* GetEosBalanceModel.m */; };
+		18D475B9215CD6EA00F3BF22 /* GetTransactionByIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475B8215CD6EA00F3BF22 /* GetTransactionByIdModel.m */; };
+		18D475BC215DD6AE00F3BF22 /* SimpleWalletLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475BB215DD6AE00F3BF22 /* SimpleWalletLoginModel.m */; };
+		18D475BF215DD72900F3BF22 /* SimpleWalletTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475BE215DD72900F3BF22 /* SimpleWalletTransferModel.m */; };
+		18D475C6215DDDC200F3BF22 /* SimpleWalletLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475C5215DDDC200F3BF22 /* SimpleWalletLoginViewController.m */; };
+		18D475C9215DDDD000F3BF22 /* SimpleWalletTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475C8215DDDD000F3BF22 /* SimpleWalletTransferViewController.m */; };
+		18D475E0215F24E700F3BF22 /* SimpleWalletLoginHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475DF215F24E700F3BF22 /* SimpleWalletLoginHeaderView.m */; };
+		18D475E5215F252100F3BF22 /* SimpleWalletTransferHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D475E4215F252100F3BF22 /* SimpleWalletTransferHeaderView.m */; };
+		18D475E8215F830F00F3BF22 /* SimpleWalletLoginHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D475EA215F830F00F3BF22 /* SimpleWalletLoginHeaderView.xib */; };
 		18DBBAC62064C4DB0050EE20 /* AskTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAC52064C4DB0050EE20 /* AskTitle.m */; };
 		18DBBACA2064E74F0050EE20 /* AskQuestion_abi_to_json_request.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAC92064E74F0050EE20 /* AskQuestion_abi_to_json_request.m */; };
 		18DBBB0B206523A00050EE20 /* NSBundle+PGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBBAE32065239F0050EE20 /* NSBundle+PGDatePicker.m */; };
@@ -1063,6 +1094,12 @@
 		18EA95F820AED1020032A491 /* BaseLabel1.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95F720AED1020032A491 /* BaseLabel1.m */; };
 		18EA95FB20AED80B0032A491 /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FA20AED80B0032A491 /* BaseTextField.m */; };
 		18EA95FE20AEDD920032A491 /* BaseLabel2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EA95FD20AEDD920032A491 /* BaseLabel2.m */; };
+		18ECBCBC215A28FF00BAE3C2 /* CommonDialogHasTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCBB215A28FF00BAE3C2 /* CommonDialogHasTitleView.m */; };
+		18ECBCBF215A292500BAE3C2 /* CommonDialogWithoutTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCBE215A292500BAE3C2 /* CommonDialogWithoutTitleView.m */; };
+		18ECBCC2215B340700BAE3C2 /* DappPushMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCC1215B340700BAE3C2 /* DappPushMessageModel.m */; };
+		18ECBCC6215B5D3600BAE3C2 /* DappDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCC5215B5D3600BAE3C2 /* DappDetailService.m */; };
+		18ECBCC9215B6A6100BAE3C2 /* GetTransactionByIdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCC8215B6A6100BAE3C2 /* GetTransactionByIdRequest.m */; };
+		18ECBCCC215B76F500BAE3C2 /* BalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ECBCCB215B76F500BAE3C2 /* BalanceModel.m */; };
 		18ED6CCD210FF1480042200F /* VipRegistAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CCC210FF1480042200F /* VipRegistAccountViewController.m */; };
 		18ED6CD0210FF1580042200F /* VipRegistAccountHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CCF210FF1580042200F /* VipRegistAccountHeaderView.m */; };
 		18ED6CD5210FF1770042200F /* VipRegistAccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED6CD4210FF1770042200F /* VipRegistAccountService.m */; };
@@ -1145,6 +1182,7 @@
 		24FB2CA820DBF86800AC73A5 /* BandwidthManageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CA720DBF86800AC73A5 /* BandwidthManageHeaderView.m */; };
 		24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CAC20DBF99700AC73A5 /* BandwidthManageTableViewCell.m */; };
 		24FB2CB220DBF9CE00AC73A5 /* BandwidthManageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2CB120DBF9CE00AC73A5 /* BandwidthManageCellModel.m */; };
+		913F529E95F17E3A43092DAE /* libPods-pocketEOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5C5F1FD55B2E025CB8582 /* libPods-pocketEOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1179,7 +1217,6 @@
 		18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@2x.png"; sourceTree = "<group>"; };
 		18041E7E213D142000A8D870 /* redpacket_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redpacket_icon@3x.png"; sourceTree = "<group>"; };
 		18041E7F213D142000A8D870 /* recieve_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recieve_white@3x.png"; path = "../../../../../Documents/PocketUI/PocketEOS-UI/资产详情页优化/切图/recieve_white@3x.png"; sourceTree = "<group>"; };
-		18041E80213D142000A8D870 /* transfer_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transfer_icon.png; sourceTree = "<group>"; };
 		18041E86213D153200A8D870 /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
 		18041E87213D153200A8D870 /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
 		1806D0F5206E58540023D83B /* SocialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialModel.h; sourceTree = "<group>"; };
@@ -1758,6 +1795,14 @@
 		183C643E211AA1EC001C9C4A /* AccountOrderStatusResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountOrderStatusResult.m; sourceTree = "<group>"; };
 		183C6440211AA1F7001C9C4A /* AccountOrderStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountOrderStatus.h; sourceTree = "<group>"; };
 		183C6441211AA1F7001C9C4A /* AccountOrderStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountOrderStatus.m; sourceTree = "<group>"; };
+		183F043F214FBF2E008C45B3 /* ScatterAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScatterAction.h; sourceTree = "<group>"; };
+		183F0440214FBF2E008C45B3 /* ScatterAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScatterAction.m; sourceTree = "<group>"; };
+		183F04422150DA11008C45B3 /* Abi_bin_to_jsonRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Abi_bin_to_jsonRequest.h; sourceTree = "<group>"; };
+		183F04432150DA11008C45B3 /* Abi_bin_to_jsonRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Abi_bin_to_jsonRequest.m; sourceTree = "<group>"; };
+		183F04452150DB62008C45B3 /* Abi_bin_to_json_Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Abi_bin_to_json_Result.h; sourceTree = "<group>"; };
+		183F04462150DB62008C45B3 /* Abi_bin_to_json_Result.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Abi_bin_to_json_Result.m; sourceTree = "<group>"; };
+		183F04482150DB7A008C45B3 /* Abi_bin_to_json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Abi_bin_to_json.h; sourceTree = "<group>"; };
+		183F04492150DB7A008C45B3 /* Abi_bin_to_json.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Abi_bin_to_json.m; sourceTree = "<group>"; };
 		183FF6DF20C0D6800058D010 /* PBKDF2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2.h; sourceTree = "<group>"; };
 		183FF6E020C0D6800058D010 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		183FF6E120C0D6800058D010 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
@@ -1826,20 +1871,6 @@
 		184142672020A99F00A789ED /* EnterpriseDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnterpriseDetailHeaderView.m; sourceTree = "<group>"; };
 		1841426C2020B11000A789ED /* GetEnterpriseDetailRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetEnterpriseDetailRequest.h; sourceTree = "<group>"; };
 		1841426D2020B11000A789ED /* GetEnterpriseDetailRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetEnterpriseDetailRequest.m; sourceTree = "<group>"; };
-		184239FC1FFF583F006AB986 /* UIImage+ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageSize.h"; sourceTree = "<group>"; };
-		184239FD1FFF583F006AB986 /* UIImage+ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageSize.m"; sourceTree = "<group>"; };
-		184239FE1FFF583F006AB986 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
-		184239FF1FFF583F006AB986 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
-		18423A001FFF583F006AB986 /* SGQRCodeAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeAlbumManager.h; sourceTree = "<group>"; };
-		18423A011FFF583F006AB986 /* SGQRCodeAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeAlbumManager.m; sourceTree = "<group>"; };
-		18423A021FFF583F006AB986 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
-		18423A031FFF583F006AB986 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
-		18423A041FFF583F006AB986 /* SGQRCodeHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeHelperTool.h; sourceTree = "<group>"; };
-		18423A051FFF583F006AB986 /* SGQRCodeHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeHelperTool.m; sourceTree = "<group>"; };
-		18423A061FFF583F006AB986 /* SGQRCodeScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanManager.h; sourceTree = "<group>"; };
-		18423A071FFF583F006AB986 /* SGQRCodeScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanManager.m; sourceTree = "<group>"; };
-		18423A081FFF583F006AB986 /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
-		18423A091FFF583F006AB986 /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
 		18423A161FFF5997006AB986 /* ScanQRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanQRCodeViewController.h; sourceTree = "<group>"; };
 		18423A171FFF5997006AB986 /* ScanQRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeViewController.m; sourceTree = "<group>"; };
 		18423A191FFF59D7006AB986 /* GenerateQRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenerateQRCodeViewController.h; sourceTree = "<group>"; };
@@ -2264,6 +2295,33 @@
 		186A2B11211C59A400DDB681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountQRCodeManagementHeaderView.xib; sourceTree = "<group>"; };
 		186A2B14211C59A700DDB681 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountQRCodeManagementHeaderView.strings; sourceTree = "<group>"; };
 		186A2B16211C59A800DDB681 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountQRCodeManagementHeaderView.strings"; sourceTree = "<group>"; };
+		186BDBC62150F8E0001190A7 /* ScatterMainService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScatterMainService.h; sourceTree = "<group>"; };
+		186BDBC72150F8E0001190A7 /* ScatterMainService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScatterMainService.m; sourceTree = "<group>"; };
+		186BDBC9215343DF001190A7 /* QRCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeModel.h; sourceTree = "<group>"; };
+		186BDBCA215343DF001190A7 /* QRCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeModel.m; sourceTree = "<group>"; };
+		186BDBCC2153471F001190A7 /* ExcuteActionsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExcuteActionsHeaderView.h; sourceTree = "<group>"; };
+		186BDBCD2153471F001190A7 /* ExcuteActionsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExcuteActionsHeaderView.m; sourceTree = "<group>"; };
+		186BDBCF21537A7D001190A7 /* WWJRegularJudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWJRegularJudge.m; sourceTree = "<group>"; };
+		186BDBD021537A7E001190A7 /* WWJRegularJudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWJRegularJudge.h; sourceTree = "<group>"; };
+		186BDBD221538670001190A7 /* CandyTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyTopView.h; sourceTree = "<group>"; };
+		186BDBD321538670001190A7 /* CandyTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyTopView.m; sourceTree = "<group>"; };
+		186BDC1621538A9A001190A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CandyTopView.xib; sourceTree = "<group>"; };
+		186BDC1921538AA2001190A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CandyTopView.strings; sourceTree = "<group>"; };
+		186BDC1B21538AA4001190A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CandyTopView.strings"; sourceTree = "<group>"; };
+		186BDC1D215395D0001190A7 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
+		186BDC1E215395D0001190A7 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtainConfigure.m; sourceTree = "<group>"; };
+		186BDC20215395D0001190A7 /* SGQRCodeObtain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtain.h; sourceTree = "<group>"; };
+		186BDC21215395D0001190A7 /* SGQRCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanView.h; sourceTree = "<group>"; };
+		186BDC22215395D0001190A7 /* SGQRCodeObtainConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtainConfigure.h; sourceTree = "<group>"; };
+		186BDC23215395D0001190A7 /* SGQRCodeObtain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtain.m; sourceTree = "<group>"; };
+		186BDC24215395D0001190A7 /* SGQRCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanView.m; sourceTree = "<group>"; };
+		186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		186BDC2A21539FA0001190A7 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
+		186BDC832153A96D001190A7 /* transfer_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@2x.png"; sourceTree = "<group>"; };
+		186BDC842153A96E001190A7 /* transfer_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@3x.png"; sourceTree = "<group>"; };
+		186BDC9A2154C3C2001190A7 /* NotifyDappServerResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyDappServerResult.h; sourceTree = "<group>"; };
+		186BDC9B2154C3C2001190A7 /* NotifyDappServerResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotifyDappServerResult.m; sourceTree = "<group>"; };
 		186C26BE20E9BC5E0076BE4A /* Auth_redpacket_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Auth_redpacket_request.h; sourceTree = "<group>"; };
 		186C26BF20E9BC5E0076BE4A /* Auth_redpacket_request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Auth_redpacket_request.m; sourceTree = "<group>"; };
 		186F693E20F3661000FFF881 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AssestsMainHeaderView.xib; sourceTree = "<group>"; };
@@ -2871,6 +2929,31 @@
 		18CEA69E2105DC5000B2BFE2 /* application_unSelect_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA69F2105DC5100B2BFE2 /* application_select_BB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_select_BB@2x.png"; sourceTree = "<group>"; };
 		18CEA6A02105DC5100B2BFE2 /* application_unSelect_BB@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "application_unSelect_BB@3x.png"; sourceTree = "<group>"; };
+		18D02EEF214F7FFD006D2776 /* ScatterMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScatterMainViewController.h; sourceTree = "<group>"; };
+		18D02EF0214F7FFD006D2776 /* ScatterMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScatterMainViewController.m; sourceTree = "<group>"; };
+		18D02EF3214F809B006D2776 /* PSWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocket.m; sourceTree = "<group>"; };
+		18D02EF4214F809C006D2776 /* PSWebSocketInflater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketInflater.m; sourceTree = "<group>"; };
+		18D02EF5214F809C006D2776 /* PSWebSocketInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketInternal.h; sourceTree = "<group>"; };
+		18D02EF6214F809C006D2776 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketTypes.h; sourceTree = "<group>"; };
+		18D02EF7214F809C006D2776 /* PSWebSocketInflater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketInflater.h; sourceTree = "<group>"; };
+		18D02EF8214F809C006D2776 /* PSWebSocketNetworkThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketNetworkThread.m; sourceTree = "<group>"; };
+		18D02EF9214F809C006D2776 /* PSWebSocketDeflater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketDeflater.h; sourceTree = "<group>"; };
+		18D02EFA214F809C006D2776 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
+		18D02EFB214F809C006D2776 /* PSWebSocketNetworkThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketNetworkThread.h; sourceTree = "<group>"; };
+		18D02EFC214F809D006D2776 /* PSWebSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketServer.m; sourceTree = "<group>"; };
+		18D02EFD214F809D006D2776 /* PSWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocket.h; sourceTree = "<group>"; };
+		18D02EFE214F809D006D2776 /* PSWebSocketBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketBuffer.m; sourceTree = "<group>"; };
+		18D02EFF214F809D006D2776 /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketBuffer.h; sourceTree = "<group>"; };
+		18D02F00214F809D006D2776 /* PSWebSocketDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketDriver.m; sourceTree = "<group>"; };
+		18D02F01214F809D006D2776 /* PSWebSocketDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketDriver.h; sourceTree = "<group>"; };
+		18D02F02214F809D006D2776 /* PSWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketServer.h; sourceTree = "<group>"; };
+		18D02F03214F809E006D2776 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
+		18D02F04214F809E006D2776 /* PSWebSocketDeflater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWebSocketDeflater.m; sourceTree = "<group>"; };
+		18D02F0D214F8ED7006D2776 /* ScatterResult_type_requestSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScatterResult_type_requestSignature.m; sourceTree = "<group>"; };
+		18D02F0E214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScatterResult_type_identityFromPermissions.m; sourceTree = "<group>"; };
+		18D02F0F214F8ED7006D2776 /* ScatterResult_type_requestSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScatterResult_type_requestSignature.h; sourceTree = "<group>"; };
+		18D02F10214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScatterResult_type_identityFromPermissions.h; sourceTree = "<group>"; };
+		18D02F51214F91AB006D2776 /* libSystem.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libSystem.tbd; path = usr/lib/libSystem.tbd; sourceTree = SDKROOT; };
 		18D07A3A20E9F0FE00DF1FDF /* ForwardRedPacketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardRedPacketService.h; sourceTree = "<group>"; };
 		18D07A3B20E9F0FE00DF1FDF /* ForwardRedPacketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForwardRedPacketService.m; sourceTree = "<group>"; };
 		18D07A3E20E9F1FB00DF1FDF /* AuthRedPacketResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthRedPacketResult.h; sourceTree = "<group>"; };
@@ -2900,6 +2983,25 @@
 		18D07A9120EB68C200DF1FDF /* PockSecureDeclare.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PockSecureDeclare.rtf; sourceTree = "<group>"; };
 		18D07A9320EB6BD500DF1FDF /* mainAccount@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@3x.png"; sourceTree = "<group>"; };
 		18D07A9420EB6BD500DF1FDF /* mainAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainAccount@2x.png"; sourceTree = "<group>"; };
+		18D475B4215CD6C400F3BF22 /* GetEosBalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetEosBalanceModel.h; sourceTree = "<group>"; };
+		18D475B5215CD6C400F3BF22 /* GetEosBalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetEosBalanceModel.m; sourceTree = "<group>"; };
+		18D475B7215CD6EA00F3BF22 /* GetTransactionByIdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetTransactionByIdModel.h; sourceTree = "<group>"; };
+		18D475B8215CD6EA00F3BF22 /* GetTransactionByIdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetTransactionByIdModel.m; sourceTree = "<group>"; };
+		18D475BA215DD6AE00F3BF22 /* SimpleWalletLoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletLoginModel.h; sourceTree = "<group>"; };
+		18D475BB215DD6AE00F3BF22 /* SimpleWalletLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletLoginModel.m; sourceTree = "<group>"; };
+		18D475BD215DD72900F3BF22 /* SimpleWalletTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletTransferModel.h; sourceTree = "<group>"; };
+		18D475BE215DD72900F3BF22 /* SimpleWalletTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletTransferModel.m; sourceTree = "<group>"; };
+		18D475C4215DDDC200F3BF22 /* SimpleWalletLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletLoginViewController.h; sourceTree = "<group>"; };
+		18D475C5215DDDC200F3BF22 /* SimpleWalletLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletLoginViewController.m; sourceTree = "<group>"; };
+		18D475C7215DDDD000F3BF22 /* SimpleWalletTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletTransferViewController.h; sourceTree = "<group>"; };
+		18D475C8215DDDD000F3BF22 /* SimpleWalletTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletTransferViewController.m; sourceTree = "<group>"; };
+		18D475DE215F24E700F3BF22 /* SimpleWalletLoginHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletLoginHeaderView.h; sourceTree = "<group>"; };
+		18D475DF215F24E700F3BF22 /* SimpleWalletLoginHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletLoginHeaderView.m; sourceTree = "<group>"; };
+		18D475E3215F252100F3BF22 /* SimpleWalletTransferHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleWalletTransferHeaderView.h; sourceTree = "<group>"; };
+		18D475E4215F252100F3BF22 /* SimpleWalletTransferHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWalletTransferHeaderView.m; sourceTree = "<group>"; };
+		18D475E9215F830F00F3BF22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SimpleWalletLoginHeaderView.xib; sourceTree = "<group>"; };
+		18D475EC215F831200F3BF22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SimpleWalletLoginHeaderView.strings; sourceTree = "<group>"; };
+		18D475EE215F831400F3BF22 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SimpleWalletLoginHeaderView.strings"; sourceTree = "<group>"; };
 		18DBBAC42064C4DB0050EE20 /* AskTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskTitle.h; sourceTree = "<group>"; };
 		18DBBAC52064C4DB0050EE20 /* AskTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskTitle.m; sourceTree = "<group>"; };
 		18DBBAC82064E74F0050EE20 /* AskQuestion_abi_to_json_request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskQuestion_abi_to_json_request.h; sourceTree = "<group>"; };
@@ -2999,6 +3101,18 @@
 		18EA95FA20AED80B0032A491 /* BaseTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTextField.m; sourceTree = "<group>"; };
 		18EA95FC20AEDD920032A491 /* BaseLabel2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLabel2.h; sourceTree = "<group>"; };
 		18EA95FD20AEDD920032A491 /* BaseLabel2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseLabel2.m; sourceTree = "<group>"; };
+		18ECBCBA215A28FF00BAE3C2 /* CommonDialogHasTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDialogHasTitleView.h; sourceTree = "<group>"; };
+		18ECBCBB215A28FF00BAE3C2 /* CommonDialogHasTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonDialogHasTitleView.m; sourceTree = "<group>"; };
+		18ECBCBD215A292500BAE3C2 /* CommonDialogWithoutTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDialogWithoutTitleView.h; sourceTree = "<group>"; };
+		18ECBCBE215A292500BAE3C2 /* CommonDialogWithoutTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonDialogWithoutTitleView.m; sourceTree = "<group>"; };
+		18ECBCC0215B340700BAE3C2 /* DappPushMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappPushMessageModel.h; sourceTree = "<group>"; };
+		18ECBCC1215B340700BAE3C2 /* DappPushMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappPushMessageModel.m; sourceTree = "<group>"; };
+		18ECBCC4215B5D3600BAE3C2 /* DappDetailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappDetailService.h; sourceTree = "<group>"; };
+		18ECBCC5215B5D3600BAE3C2 /* DappDetailService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappDetailService.m; sourceTree = "<group>"; };
+		18ECBCC7215B6A6100BAE3C2 /* GetTransactionByIdRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetTransactionByIdRequest.h; sourceTree = "<group>"; };
+		18ECBCC8215B6A6100BAE3C2 /* GetTransactionByIdRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetTransactionByIdRequest.m; sourceTree = "<group>"; };
+		18ECBCCA215B76F500BAE3C2 /* BalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceModel.h; sourceTree = "<group>"; };
+		18ECBCCB215B76F500BAE3C2 /* BalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceModel.m; sourceTree = "<group>"; };
 		18ED6CCB210FF1480042200F /* VipRegistAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipRegistAccountViewController.h; sourceTree = "<group>"; };
 		18ED6CCC210FF1480042200F /* VipRegistAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VipRegistAccountViewController.m; sourceTree = "<group>"; };
 		18ED6CCE210FF1580042200F /* VipRegistAccountHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VipRegistAccountHeaderView.h; sourceTree = "<group>"; };
@@ -3147,6 +3261,9 @@
 		24FB2CB820DBFE7200AC73A5 /* PageSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageSegmentView.m; sourceTree = "<group>"; };
 		24FB2CB920DBFE7200AC73A5 /* BodyScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyScrollView.h; sourceTree = "<group>"; };
 		24FB2CBA20DBFE7200AC73A5 /* UIViewAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		AFAE409D652850E019785CE8 /* Pods-pocketEOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pocketEOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pocketEOS/Pods-pocketEOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D9B5C5F1FD55B2E025CB8582 /* libPods-pocketEOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pocketEOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9EE9F0D161AD0B85DB36F92 /* Pods-pocketEOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pocketEOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-pocketEOS/Pods-pocketEOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3154,6 +3271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D02F52214F91AB006D2776 /* libSystem.tbd in Frameworks */,
 				18BA1F2D2111B7CA008558DE /* CoreMotion.framework in Frameworks */,
 				18BA1F2B2111B7BC008558DE /* Foundation.framework in Frameworks */,
 				18BA1F292111B79E008558DE /* UIKit.framework in Frameworks */,
@@ -3177,6 +3295,7 @@
 				182007432069E27000D281EF /* libz.1.dylib in Frameworks */,
 				182007412069E1F100D281EF /* SystemConfiguration.framework in Frameworks */,
 				18CEA65021057DDB00B2BFE2 /* UMAnalytics.framework in Frameworks */,
+				913F529E95F17E3A43092DAE /* libPods-pocketEOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3304,6 +3423,7 @@
 		18112F051FCD003E00BEA0D9 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				18D02EF2214F8063006D2776 /* PocketSocketWebSocket */,
 				18CEA64C21057DC600B2BFE2 /* YouMeng */,
 				1862E7A620DC850E00F26629 /* UIScrollViewTouch */,
 				1838496220BE5AD700B89549 /* CWLateralSlide */,
@@ -3314,8 +3434,8 @@
 				18DBBB1F206525F10050EE20 /* PGPickerView */,
 				18466D952010A049002E675A /* PYSearch */,
 				18725DBC200C4F7900AA1889 /* WebViewJavascriptBridge */,
-				184239FA1FFF583E006AB986 /* SGQRCode */,
 				18A2F44D1FF0A20A00B6CE43 /* FMDB */,
+				186BDC1C215395D0001190A7 /* SGQRCode */,
 				18112F061FCD00B700BEA0D9 /* SDAutoLayout */,
 				18112F421FCD016000BEA0D9 /* IQKeyboardManager */,
 				18112FCA1FCD01B800BEA0D9 /* SDWebImage */,
@@ -3973,6 +4093,7 @@
 		182B02EB1FF3962B006C9DFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18D02F51214F91AB006D2776 /* libSystem.tbd */,
 				18BA1F2C2111B7CA008558DE /* CoreMotion.framework */,
 				18BA1F2A2111B7BC008558DE /* Foundation.framework */,
 				18BA1F282111B79E008558DE /* UIKit.framework */,
@@ -3994,6 +4115,7 @@
 				182007422069E27000D281EF /* libz.1.dylib */,
 				182007402069E1E600D281EF /* SystemConfiguration.framework */,
 				182B02EC1FF3962B006C9DFB /* libsqlite3.0.tbd */,
+				D9B5C5F1FD55B2E025CB8582 /* libPods-pocketEOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4196,6 +4318,7 @@
 		183226F720A2A74D00BF6D6F /* DappDetail */ = {
 			isa = PBXGroup;
 			children = (
+				18ECBCC3215B572700BAE3C2 /* Service */,
 				183226F820A2A74D00BF6D6F /* DappDetailViewController */,
 				1850315C20BD223D007610A2 /* Model */,
 			);
@@ -4284,6 +4407,8 @@
 				1832F934211D72600089C394 /* ExcuteActions.m */,
 				1832F936211D7B0A0089C394 /* ExcuteActionsResult.h */,
 				1832F937211D7B0A0089C394 /* ExcuteActionsResult.m */,
+				186BDC9A2154C3C2001190A7 /* NotifyDappServerResult.h */,
+				186BDC9B2154C3C2001190A7 /* NotifyDappServerResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4520,6 +4645,8 @@
 			children = (
 				183BB21D2123B3D400FA85AF /* ExcuteActionsContentTableViewCell.h */,
 				183BB21E2123B3D400FA85AF /* ExcuteActionsContentTableViewCell.m */,
+				186BDBCC2153471F001190A7 /* ExcuteActionsHeaderView.h */,
+				186BDBCD2153471F001190A7 /* ExcuteActionsHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4532,6 +4659,7 @@
 				183C5BA21FCBEC9400DE6E88 /* pocketEOSUITests */,
 				183C5B7D1FCBEC9400DE6E88 /* Products */,
 				182B02EB1FF3962B006C9DFB /* Frameworks */,
+				53412B9DAEB04F48933308B8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4562,6 +4690,7 @@
 				1886076D1FCBF6DE00B00EE7 /* Resource */,
 				18112F051FCD003E00BEA0D9 /* ThirdLib */,
 				1886076B1FCBF6D300B00EE7 /* Common */,
+				18D475C0215DDB8F00F3BF22 /* SimpleWalletModule */,
 				182B02E31FF394EE006C9DFB /* DataBaseModule */,
 				180A15A7200D9D4C0049F518 /* SecureModule */,
 				1886076C1FCBF6DE00B00EE7 /* Supporting Files */,
@@ -4747,35 +4876,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		184239FA1FFF583E006AB986 /* SGQRCode */ = {
-			isa = PBXGroup;
-			children = (
-				184239FB1FFF583E006AB986 /* Category */,
-				184239FE1FFF583F006AB986 /* SGQRCode.bundle */,
-				184239FF1FFF583F006AB986 /* SGQRCode.h */,
-				18423A001FFF583F006AB986 /* SGQRCodeAlbumManager.h */,
-				18423A011FFF583F006AB986 /* SGQRCodeAlbumManager.m */,
-				18423A021FFF583F006AB986 /* SGQRCodeGenerateManager.h */,
-				18423A031FFF583F006AB986 /* SGQRCodeGenerateManager.m */,
-				18423A041FFF583F006AB986 /* SGQRCodeHelperTool.h */,
-				18423A051FFF583F006AB986 /* SGQRCodeHelperTool.m */,
-				18423A061FFF583F006AB986 /* SGQRCodeScanManager.h */,
-				18423A071FFF583F006AB986 /* SGQRCodeScanManager.m */,
-				18423A081FFF583F006AB986 /* SGQRCodeScanningView.h */,
-				18423A091FFF583F006AB986 /* SGQRCodeScanningView.m */,
-			);
-			path = SGQRCode;
-			sourceTree = "<group>";
-		};
-		184239FB1FFF583E006AB986 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				184239FC1FFF583F006AB986 /* UIImage+ImageSize.h */,
-				184239FD1FFF583F006AB986 /* UIImage+ImageSize.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 		18423A111FFF597E006AB986 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -4948,6 +5048,12 @@
 				1850315E20BD2253007610A2 /* DappTransferModel.m */,
 				1850316020BD2B87007610A2 /* DappTransferResult.h */,
 				1850316120BD2B87007610A2 /* DappTransferResult.m */,
+				18ECBCC0215B340700BAE3C2 /* DappPushMessageModel.h */,
+				18ECBCC1215B340700BAE3C2 /* DappPushMessageModel.m */,
+				18D475B4215CD6C400F3BF22 /* GetEosBalanceModel.h */,
+				18D475B5215CD6C400F3BF22 /* GetEosBalanceModel.m */,
+				18D475B7215CD6EA00F3BF22 /* GetTransactionByIdModel.h */,
+				18D475B8215CD6EA00F3BF22 /* GetTransactionByIdModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5079,6 +5185,9 @@
 				1853DE4320B2D27A003DC727 /* CandyMainCollectionViewCell.m */,
 				1853DE4920B2DD52003DC727 /* CandyMainTableViewCell.h */,
 				1853DE4A20B2DD52003DC727 /* CandyMainTableViewCell.m */,
+				186BDBD221538670001190A7 /* CandyTopView.h */,
+				186BDBD321538670001190A7 /* CandyTopView.m */,
+				186BDC1721538A9A001190A7 /* CandyTopView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5767,6 +5876,8 @@
 		186564B42011CD580044BBC3 /* RegularExpression */ = {
 			isa = PBXGroup;
 			children = (
+				186BDBD021537A7E001190A7 /* WWJRegularJudge.h */,
+				186BDBCF21537A7D001190A7 /* WWJRegularJudge.m */,
 				186564B52011CD630044BBC3 /* RegularExpression.h */,
 				186564B62011CD630044BBC3 /* RegularExpression.m */,
 			);
@@ -5952,6 +6063,24 @@
 				186F6A7A20F4978500FFF881 /* ExportPrivateKeyView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		186BDC1C215395D0001190A7 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				186BDC2A21539FA0001190A7 /* SGQRCodeGenerateManager.h */,
+				186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */,
+				186BDC1D215395D0001190A7 /* SGQRCode.h */,
+				186BDC1E215395D0001190A7 /* SGQRCode.bundle */,
+				186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */,
+				186BDC20215395D0001190A7 /* SGQRCodeObtain.h */,
+				186BDC21215395D0001190A7 /* SGQRCodeScanView.h */,
+				186BDC22215395D0001190A7 /* SGQRCodeObtainConfigure.h */,
+				186BDC23215395D0001190A7 /* SGQRCodeObtain.m */,
+				186BDC24215395D0001190A7 /* SGQRCodeScanView.m */,
+			);
+			name = SGQRCode;
+			path = "../../../../Downloads/SGQRCode-master 2/SGQRCode";
 			sourceTree = "<group>";
 		};
 		18725DBC200C4F7900AA1889 /* WebViewJavascriptBridge */ = {
@@ -6464,6 +6593,7 @@
 		1886076B1FCBF6D300B00EE7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				18ECBCB6215A1A1900BAE3C2 /* CommonDialogView */,
 				18BE63FF20EF835200238492 /* CommonWKWebView */,
 				18F054CD20CBB8D1001B0A29 /* Model */,
 				1816919820BF7E7A00BF49A8 /* CommonView */,
@@ -7373,6 +7503,8 @@
 				18FA76F22062578A00545E73 /* GetRequiredPublicKeyRequest.m */,
 				18FA76F4206257A000545E73 /* PushTransactionRequest.h */,
 				18FA76F5206257A000545E73 /* PushTransactionRequest.m */,
+				183F04422150DA11008C45B3 /* Abi_bin_to_jsonRequest.h */,
+				183F04432150DA11008C45B3 /* Abi_bin_to_jsonRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -7589,6 +7721,72 @@
 			path = XYTransition;
 			sourceTree = "<group>";
 		};
+		18D02EEB214F7FDA006D2776 /* ScatterModule */ = {
+			isa = PBXGroup;
+			children = (
+				18D02EEC214F7FDA006D2776 /* Model */,
+				18D02EED214F7FDA006D2776 /* Service */,
+				18D02EEE214F7FDA006D2776 /* ViewController */,
+			);
+			path = ScatterModule;
+			sourceTree = "<group>";
+		};
+		18D02EEC214F7FDA006D2776 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18D02F10214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.h */,
+				18D02F0E214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.m */,
+				18D02F0F214F8ED7006D2776 /* ScatterResult_type_requestSignature.h */,
+				18D02F0D214F8ED7006D2776 /* ScatterResult_type_requestSignature.m */,
+				183F043F214FBF2E008C45B3 /* ScatterAction.h */,
+				183F0440214FBF2E008C45B3 /* ScatterAction.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D02EED214F7FDA006D2776 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				186BDBC62150F8E0001190A7 /* ScatterMainService.h */,
+				186BDBC72150F8E0001190A7 /* ScatterMainService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18D02EEE214F7FDA006D2776 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18D02EEF214F7FFD006D2776 /* ScatterMainViewController.h */,
+				18D02EF0214F7FFD006D2776 /* ScatterMainViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18D02EF2214F8063006D2776 /* PocketSocketWebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				18D02EFD214F809D006D2776 /* PSWebSocket.h */,
+				18D02EF3214F809B006D2776 /* PSWebSocket.m */,
+				18D02EFF214F809D006D2776 /* PSWebSocketBuffer.h */,
+				18D02EFE214F809D006D2776 /* PSWebSocketBuffer.m */,
+				18D02EF9214F809C006D2776 /* PSWebSocketDeflater.h */,
+				18D02F04214F809E006D2776 /* PSWebSocketDeflater.m */,
+				18D02F01214F809D006D2776 /* PSWebSocketDriver.h */,
+				18D02F00214F809D006D2776 /* PSWebSocketDriver.m */,
+				18D02EF7214F809C006D2776 /* PSWebSocketInflater.h */,
+				18D02EF4214F809C006D2776 /* PSWebSocketInflater.m */,
+				18D02EF5214F809C006D2776 /* PSWebSocketInternal.h */,
+				18D02EFB214F809C006D2776 /* PSWebSocketNetworkThread.h */,
+				18D02EF8214F809C006D2776 /* PSWebSocketNetworkThread.m */,
+				18D02F02214F809D006D2776 /* PSWebSocketServer.h */,
+				18D02EFC214F809D006D2776 /* PSWebSocketServer.m */,
+				18D02EF6214F809C006D2776 /* PSWebSocketTypes.h */,
+				18D02F03214F809E006D2776 /* PSWebSocketUTF8Decoder.h */,
+				18D02EFA214F809C006D2776 /* PSWebSocketUTF8Decoder.m */,
+			);
+			path = PocketSocketWebSocket;
+			sourceTree = "<group>";
+		};
 		18D07A3D20E9F1DE00DF1FDF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -7651,6 +7849,58 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		18D475C0215DDB8F00F3BF22 /* SimpleWalletModule */ = {
+			isa = PBXGroup;
+			children = (
+				18D475CA215DDDE500F3BF22 /* View */,
+				18D475C2215DDD9300F3BF22 /* Model */,
+				18D475C3215DDD9300F3BF22 /* Service */,
+				18D475C1215DDD9300F3BF22 /* ViewController */,
+			);
+			path = SimpleWalletModule;
+			sourceTree = "<group>";
+		};
+		18D475C1215DDD9300F3BF22 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18D475C4215DDDC200F3BF22 /* SimpleWalletLoginViewController.h */,
+				18D475C5215DDDC200F3BF22 /* SimpleWalletLoginViewController.m */,
+				18D475C7215DDDD000F3BF22 /* SimpleWalletTransferViewController.h */,
+				18D475C8215DDDD000F3BF22 /* SimpleWalletTransferViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18D475C2215DDD9300F3BF22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18D475BA215DD6AE00F3BF22 /* SimpleWalletLoginModel.h */,
+				18D475BB215DD6AE00F3BF22 /* SimpleWalletLoginModel.m */,
+				18D475BD215DD72900F3BF22 /* SimpleWalletTransferModel.h */,
+				18D475BE215DD72900F3BF22 /* SimpleWalletTransferModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18D475C3215DDD9300F3BF22 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		18D475CA215DDDE500F3BF22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18D475DE215F24E700F3BF22 /* SimpleWalletLoginHeaderView.h */,
+				18D475DF215F24E700F3BF22 /* SimpleWalletLoginHeaderView.m */,
+				18D475EA215F830F00F3BF22 /* SimpleWalletLoginHeaderView.xib */,
+				18D475E3215F252100F3BF22 /* SimpleWalletTransferHeaderView.h */,
+				18D475E4215F252100F3BF22 /* SimpleWalletTransferHeaderView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		18DBBAC72064E7240050EE20 /* Networking */ = {
@@ -7749,6 +7999,7 @@
 		18E72E011FCC0EBD00D09CA3 /* ApplicationModule */ = {
 			isa = PBXGroup;
 			children = (
+				18D02EEB214F7FDA006D2776 /* ScatterModule */,
 				1835164F212FE51800F074E7 /* DAppExcuteMutipleActions */,
 				18E72E141FCC0FF300D09CA3 /* ApplicationMain */,
 				183226F720A2A74D00BF6D6F /* DappDetail */,
@@ -7837,6 +8088,8 @@
 				183577282100A56300F075EA /* Get_token_info_request.m */,
 				183C6437211A9E05001C9C4A /* GetAccountOrderStatusRequest.h */,
 				183C6438211A9E05001C9C4A /* GetAccountOrderStatusRequest.m */,
+				18ECBCC7215B6A6100BAE3C2 /* GetTransactionByIdRequest.h */,
+				18ECBCC8215B6A6100BAE3C2 /* GetTransactionByIdRequest.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -8095,13 +8348,14 @@
 				1842E7A321397DB70090F8EA /* redPacket@3x.png */,
 				1842E7A221397DB70090F8EA /* transfer@2x.png */,
 				1842E7A521397DB80090F8EA /* transfer@3x.png */,
+				186BDC832153A96D001190A7 /* transfer_icon@2x.png */,
+				186BDC842153A96E001190A7 /* transfer_icon@3x.png */,
 				18041E87213D153200A8D870 /* recieve@2x.png */,
 				18041E86213D153200A8D870 /* recieve@3x.png */,
 				18041E7C213D141F00A8D870 /* recieve_white@2x.png */,
 				18041E7F213D142000A8D870 /* recieve_white@3x.png */,
 				18041E7D213D141F00A8D870 /* redpacket_icon@2x.png */,
 				18041E7E213D142000A8D870 /* redpacket_icon@3x.png */,
-				18041E80213D142000A8D870 /* transfer_icon.png */,
 				18F03FC12067803F00697D7F /* background_blue@2x.png */,
 				18F03FC02067803F00697D7F /* background_blue@3x.png */,
 				184EA62420ABCFDB00169CD9 /* background_black@2x.png */,
@@ -8276,6 +8530,26 @@
 				18291ECD20EC63A700D19CB9 /* account_icon@3x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		18ECBCB6215A1A1900BAE3C2 /* CommonDialogView */ = {
+			isa = PBXGroup;
+			children = (
+				18ECBCBA215A28FF00BAE3C2 /* CommonDialogHasTitleView.h */,
+				18ECBCBB215A28FF00BAE3C2 /* CommonDialogHasTitleView.m */,
+				18ECBCBD215A292500BAE3C2 /* CommonDialogWithoutTitleView.h */,
+				18ECBCBE215A292500BAE3C2 /* CommonDialogWithoutTitleView.m */,
+			);
+			path = CommonDialogView;
+			sourceTree = "<group>";
+		};
+		18ECBCC3215B572700BAE3C2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18ECBCC4215B5D3600BAE3C2 /* DappDetailService.h */,
+				18ECBCC5215B5D3600BAE3C2 /* DappDetailService.m */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		18ED6CC3210FF1330042200F /* PayRegistAccount */ = {
@@ -8537,6 +8811,8 @@
 			children = (
 				18F054CE20CBB8DE001B0A29 /* OptionModel.h */,
 				18F054CF20CBB8DE001B0A29 /* OptionModel.m */,
+				186BDBC9215343DF001190A7 /* QRCodeModel.h */,
+				186BDBCA215343DF001190A7 /* QRCodeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8777,6 +9053,10 @@
 				18C9E8B5212137C200BC2AEA /* Abi_json_to_bin_Result.m */,
 				18C9E8B7212137DF00BC2AEA /* Abi_json_to_bin.h */,
 				18C9E8B8212137DF00BC2AEA /* Abi_json_to_bin.m */,
+				183F04452150DB62008C45B3 /* Abi_bin_to_json_Result.h */,
+				183F04462150DB62008C45B3 /* Abi_bin_to_json_Result.m */,
+				183F04482150DB7A008C45B3 /* Abi_bin_to_json.h */,
+				183F04492150DB7A008C45B3 /* Abi_bin_to_json.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8815,6 +9095,8 @@
 				244769FB20DD493900B7283C /* PriceModel.m */,
 				244769FD20DD494800B7283C /* PriceResult.h */,
 				244769FE20DD494800B7283C /* PriceResult.m */,
+				18ECBCCA215B76F500BAE3C2 /* BalanceModel.h */,
+				18ECBCCB215B76F500BAE3C2 /* BalanceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8922,6 +9204,15 @@
 			path = PageSegmentView;
 			sourceTree = "<group>";
 		};
+		53412B9DAEB04F48933308B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFAE409D652850E019785CE8 /* Pods-pocketEOS.debug.xcconfig */,
+				E9EE9F0D161AD0B85DB36F92 /* Pods-pocketEOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8929,6 +9220,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 183C5BA81FCBEC9400DE6E88 /* Build configuration list for PBXNativeTarget "pocketEOS" */;
 			buildPhases = (
+				01728EB83A18A8A9BB49C1B0 /* [CP] Check Pods Manifest.lock */,
 				183C5B781FCBEC9400DE6E88 /* Sources */,
 				183C5B791FCBEC9400DE6E88 /* Frameworks */,
 				183C5B7A1FCBEC9400DE6E88 /* Resources */,
@@ -9037,6 +9329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186BDC25215395D0001190A7 /* SGQRCode.bundle in Resources */,
 				183FF73B20C14B980058D010 /* thumb_BB@3x.png in Resources */,
 				18A99B0620E6644000E32A29 /* Javascript.html in Resources */,
 				18AD2BBB20D0C9C400536084 /* tip_info@3x.png in Resources */,
@@ -9047,6 +9340,7 @@
 				18CEA68C2105D9BE00B2BFE2 /* application_unSelect@3x.png in Resources */,
 				18CEA65621057DFB00B2BFE2 /* UMCommonLog.bundle in Resources */,
 				1816919E20BF80EC00BF49A8 /* vote_box@2x.png in Resources */,
+				186BDC852153A96E001190A7 /* transfer_icon@2x.png in Resources */,
 				18CEA6792105D99C00B2BFE2 /* richList_unSelect@2x.png in Resources */,
 				183FF6F820C10EF20058D010 /* paid_answer@3x.png in Resources */,
 				186F6A8D20F4979D00FFF881 /* ModifyApproveHeaderView.xib in Resources */,
@@ -9110,7 +9404,6 @@
 				18BCAF2020BFF0A600571577 /* vote_box_BB.png in Resources */,
 				185BA39720BB9AED00F63674 /* feedBack_BB@2x.png in Resources */,
 				18FDFFC32024522000AEB4FA /* scan_3@2x.png in Resources */,
-				18423A0B1FFF583F006AB986 /* SGQRCode.bundle in Resources */,
 				183FF74720C159740058D010 /* transaction_history_BB@3x.png in Resources */,
 				187D9BF32080C02F0059BD2A /* wechat_friends@2x.png in Resources */,
 				1842E79D2138F0F90090F8EA /* circleWithoutRight_gray.png in Resources */,
@@ -9119,6 +9412,7 @@
 				18BCAF1E20BFEFF500571577 /* thumb_white.png in Resources */,
 				185D18491FE7602E0021AD18 /* bankCard@3x.png in Resources */,
 				186F695920F494D200FFF881 /* EOSMappingImportAccountHeaderView.xib in Resources */,
+				186BDC862153A96E001190A7 /* transfer_icon@3x.png in Resources */,
 				18F03FCD206785CC00697D7F /* systemSetting@3x.png in Resources */,
 				18E080672068D72F0032B09C /* wechat_share@2x.png in Resources */,
 				185D18571FE762000021AD18 /* wechat@3x.png in Resources */,
@@ -9178,6 +9472,7 @@
 				186F6A4720F4972C00FFF881 /* ImportPocketHeaderView.xib in Resources */,
 				1816915620BEC1B900BF49A8 /* right_arrow_white@2x.png in Resources */,
 				185D18331FE75CDC0021AD18 /* versionUpdate@3x.png in Resources */,
+				186BDC1521538A9A001190A7 /* CandyTopView.xib in Resources */,
 				18AD2BC120D0C9C400536084 /* vote_change_account@2x.png in Resources */,
 				183FF6F520C0FD700058D010 /* qq_login@2x.png in Resources */,
 				18291ECE20EC63A800D19CB9 /* account_icon@2x.png in Resources */,
@@ -9259,6 +9554,7 @@
 				185BA39A20BB9AED00F63674 /* candyIcon_BB@2x.png in Resources */,
 				18C7F742211AE01B006AD456 /* PayRegistAccountHeaderView.xib in Resources */,
 				187B63DF206B347D00D0AE86 /* feedBack@3x.png in Resources */,
+				18D475E8215F830F00F3BF22 /* SimpleWalletLoginHeaderView.xib in Resources */,
 				1817DF1520EF0A0E0037D784 /* createAccount_BB@2x.png in Resources */,
 				18F03FEF2067886C00697D7F /* recieve_gray.png in Resources */,
 				18F576CD212BEC2F00AE54E9 /* TransferRecordsHeaderView.xib in Resources */,
@@ -9470,7 +9766,6 @@
 				18DBD27920424F0C001E2DDF /* wallet_QRCode_btn@3x.png in Resources */,
 				18BA1F0B211168F7008558DE /* wechat_pay_icon@3x.png in Resources */,
 				1865C3B72137E5C700FE18C0 /* RedPacketPrepareFailedDetailView.xib in Resources */,
-				18041E85213D142100A8D870 /* transfer_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9490,6 +9785,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01728EB83A18A8A9BB49C1B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pocketEOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		183C5B781FCBEC9400DE6E88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -9503,6 +9819,7 @@
 				2473F13020DF74E300BE3D22 /* NSString+DecimalsCalculation.m in Sources */,
 				24C59BE120DC029D008E81A4 /* BodyScrollView.m in Sources */,
 				24C59BE020DC028B008E81A4 /* PageSegmentView.m in Sources */,
+				18ECBCC2215B340700BAE3C2 /* DappPushMessageModel.m in Sources */,
 				183AE1F92019B8FE002041F9 /* EnterpriseListRequest.m in Sources */,
 				1886079D1FCC012F00B00EE7 /* NSMutableAttributedString+ExFoundation.m in Sources */,
 				18BE612620FF2B4C00BAD50C /* RecommandToken.m in Sources */,
@@ -9511,6 +9828,7 @@
 				182CDEB7201EBBAA002B87B6 /* GetMessageListRequest.m in Sources */,
 				1806D0F7206E58540023D83B /* SocialModel.m in Sources */,
 				184142652020A99000A789ED /* EnterpriseDetailService.m in Sources */,
+				18D02F11214F8ED7006D2776 /* ScatterResult_type_requestSignature.m in Sources */,
 				180EA18220D274AB007B8927 /* RtfBrowserWithoutThemeViewController.m in Sources */,
 				184D619A1FD4F62200EA26B1 /* RichlistHeaderView.m in Sources */,
 				18C9E8B9212137DF00BC2AEA /* Abi_json_to_bin.m in Sources */,
@@ -9540,6 +9858,7 @@
 				18154F26201AB72C00F73D14 /* PersonalSettingService.m in Sources */,
 				183FF8CC1FF34D41006C25F1 /* NewsService.m in Sources */,
 				1868177820FC93C600FEE7B5 /* PocketManagementHeaderView.m in Sources */,
+				183F0441214FBF2E008C45B3 /* ScatterAction.m in Sources */,
 				188DECF320A97E7F00ACD2A3 /* BBLoginViewController.m in Sources */,
 				18C9E8C02121753B00BC2AEA /* ExcuteMutipleActionsGetRequiredPublicKeyRequest.m in Sources */,
 				181130BA1FCD0EC200BEA0D9 /* AssestsDetailViewController.m in Sources */,
@@ -9569,6 +9888,7 @@
 				1853DE1C20B26FD7003DC727 /* BBCreateAccountHeaderView.m in Sources */,
 				18D07A5A20EA563200DF1FDF /* RedPacketDetailService.m in Sources */,
 				18BE612A20FF3B3300BAD50C /* Add_user_token_request.m in Sources */,
+				18D475B6215CD6C400F3BF22 /* GetEosBalanceModel.m in Sources */,
 				18E72E241FCC116F00D09CA3 /* ApplicationMainViewController.m in Sources */,
 				18291F5520EE548E00D19CB9 /* UserInfoResult.m in Sources */,
 				1856A4EE2008887200D62FEB /* NSBundle+MJRefresh.m in Sources */,
@@ -9577,7 +9897,6 @@
 				183FF6ED20C0D6820058D010 /* Base64.m in Sources */,
 				186050F22027FF7C00C87DDF /* Question.m in Sources */,
 				18D07A4320E9F20500DF1FDF /* AuthRedPacket.m in Sources */,
-				18423A0E1FFF583F006AB986 /* SGQRCodeHelperTool.m in Sources */,
 				186050F5202809AD00C87DDF /* QuestionListTableViewCell.m in Sources */,
 				18FA76F02062575800545E73 /* Abi_json_to_binRequest.m in Sources */,
 				184141AD2020559200A789ED /* GetVersionInfoRequest.m in Sources */,
@@ -9594,11 +9913,13 @@
 				1850316220BD2B87007610A2 /* DappTransferResult.m in Sources */,
 				1832F93C211D81A40089C394 /* ExcuteActionsDataSourceService.m in Sources */,
 				183AE2022019D0BF002041F9 /* Assest.m in Sources */,
+				18D02F09214F809E006D2776 /* PSWebSocketServer.m in Sources */,
 				181414101FCFA2BA00334C60 /* SVRadialGradientLayer.m in Sources */,
 				1850338620EF4CE50023B390 /* AreaCodeModel.m in Sources */,
 				1812BB6320B5005D00C70801 /* BaseBoldLineView.m in Sources */,
 				1841419F202029E400A789ED /* RichlistDetailHeaderView.m in Sources */,
 				1862E79820DBBF3200F26629 /* EOSResourceCellModel.m in Sources */,
+				18ECBCCC215B76F500BAE3C2 /* BalanceModel.m in Sources */,
 				18017048207EF1A400E4DA07 /* NSURLProtocol+WKWebVIew.m in Sources */,
 				18EA95EF20AEB73A0032A491 /* BaseLabel.m in Sources */,
 				180FDF86202189E600BE593F /* Assests.m in Sources */,
@@ -9631,6 +9952,7 @@
 				18D07A3C20E9F0FE00DF1FDF /* ForwardRedPacketService.m in Sources */,
 				188D197721353A11006D59AC /* RedPacketPrepareFailedDetailView.m in Sources */,
 				1886077B1FCBF78C00B00EE7 /* BaseViewController.m in Sources */,
+				186BDBCB215343DF001190A7 /* QRCodeModel.m in Sources */,
 				1856A4E92008887200D62FEB /* MJRefreshGifHeader.m in Sources */,
 				1864C0E41FE36A6D00031547 /* ApplicationCollectionViewCell.m in Sources */,
 				18112F0D1FCD00B700BEA0D9 /* UIView+SDAutoLayout.m in Sources */,
@@ -9652,9 +9974,11 @@
 				18291F2420ECE5A400D19CB9 /* BaseResult.m in Sources */,
 				1862E79E20DBC80B00F26629 /* TradeRamHeaderView.m in Sources */,
 				18388D472119431400FF5C3E /* CreateAccountOrderRequest.m in Sources */,
+				18ECBCC6215B5D3600BAE3C2 /* DappDetailService.m in Sources */,
 				183226FB20A2A76600BF6D6F /* DAppDetailViewController.m in Sources */,
 				18D07A7E20EB5AF900DF1FDF /* PocketManagementServiceTableViewCell.m in Sources */,
 				1826AD3F2079F54A0046EE7C /* PersonalSettingHeaderView.m in Sources */,
+				18D02F0C214F809E006D2776 /* PSWebSocketDeflater.m in Sources */,
 				185BA41820BBCD1700F63674 /* Choose_BB_walletBtn.m in Sources */,
 				189DB8CE207DE4AB00DEF338 /* GetSparklinesRequest.m in Sources */,
 				18CDFAFF20298E3800D21DF4 /* GetAccount.m in Sources */,
@@ -9682,6 +10006,7 @@
 				18ED6CDB210FF1980042200F /* PayRegistAccountHeaderView.m in Sources */,
 				18372D582063E344004D19D0 /* RecieveService.m in Sources */,
 				181130121FCD01B800BEA0D9 /* SDWebImageManager.m in Sources */,
+				186BDBD421538670001190A7 /* CandyTopView.m in Sources */,
 				183FF6EB20C0D6820058D010 /* NSObject+Extension.m in Sources */,
 				1862E76220DB43EB00F26629 /* CreateEOSAccountRequest.m in Sources */,
 				1862E79B20DBC7E400F26629 /* TradeRamViewController.m in Sources */,
@@ -9731,6 +10056,7 @@
 				1884128E20C91409005D752C /* BPVoteHeaderView.m in Sources */,
 				1806D100206E5A300023D83B /* UnbindWechatRequest.m in Sources */,
 				18C9E8B6212137C200BC2AEA /* Abi_json_to_bin_Result.m in Sources */,
+				186BDC26215395D0001190A7 /* SGQRCodeObtainConfigure.m in Sources */,
 				18A99A8220E6613F00E32A29 /* TAAbstractDotView.m in Sources */,
 				1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */,
 				1812758B20B672C8005EDD91 /* CandyEquityResult.m in Sources */,
@@ -9738,10 +10064,10 @@
 				1853DE4420B2D27A003DC727 /* CandyMainCollectionViewCell.m in Sources */,
 				188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */,
 				18F576DB212C0D5F00AE54E9 /* TransferDetailsTableViewCell.m in Sources */,
-				18423A0F1FFF583F006AB986 /* SGQRCodeScanManager.m in Sources */,
 				181130151FCD01B800BEA0D9 /* UIButton+WebCache.m in Sources */,
 				186050EF2027FEE700C87DDF /* QuestionListDetailResult.m in Sources */,
 				188607751FCBF73B00B00EE7 /* BaseTabBarController.m in Sources */,
+				186BDBC82150F8E0001190A7 /* ScatterMainService.m in Sources */,
 				1835771D21003F0900F075EA /* Delete_user_custom_token_request.m in Sources */,
 				1806FA2E200EE10800BDFEC4 /* SystemSettingViewController.m in Sources */,
 				185DD6D5206CA80400BCFFCF /* MJFoundation.m in Sources */,
@@ -9756,12 +10082,16 @@
 				1850338320EF4BC80023B390 /* AreaCodeService.m in Sources */,
 				18FA76C820623C6D00545E73 /* EcDsa.m in Sources */,
 				189CEC6A20CE414200F81AD8 /* BPCandidateResult.m in Sources */,
+				18D02F12214F8ED7006D2776 /* ScatterResult_type_identityFromPermissions.m in Sources */,
 				181130071FCD01B800BEA0D9 /* SDImageCache.m in Sources */,
+				18D02F08214F809E006D2776 /* PSWebSocketUTF8Decoder.m in Sources */,
 				18A2F4671FF0A20A00B6CE43 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
+				18D02F06214F809E006D2776 /* PSWebSocketInflater.m in Sources */,
 				18725DCF200C504300AA1889 /* NewsDetailViewController.m in Sources */,
 				1831F3A620170B63002CE94D /* GetAccountAssetRequest.m in Sources */,
 				18B29133208996BA0032EE27 /* RedPacketDetail.m in Sources */,
 				1825DC6E20061BB30057320C /* AskQuestionViewController.m in Sources */,
+				18D02F0B214F809E006D2776 /* PSWebSocketDriver.m in Sources */,
 				1856A4E52008887200D62FEB /* MJRefreshAutoStateFooter.m in Sources */,
 				18F054EA20CBE8AB001B0A29 /* GetBPCandidateListRequest.m in Sources */,
 				188F7A1920CA87A600911034 /* BPCandidateListViewController.m in Sources */,
@@ -9777,6 +10107,7 @@
 				1886079C1FCC012F00B00EE7 /* NSDictionary+ExFoundation.m in Sources */,
 				189CEC8B20CFB6C600F81AD8 /* MyVoteProduce.m in Sources */,
 				18BCAF2320BFFC2200571577 /* BaseTableViewCell1.m in Sources */,
+				183F044A2150DB7A008C45B3 /* Abi_bin_to_json.m in Sources */,
 				18466DAA2010A049002E675A /* UIView+PYSearchExtension.m in Sources */,
 				18154F29201ABB5F00F73D14 /* UpdateUserNameRequest.m in Sources */,
 				1831F3AA20170FAB002CE94D /* AccountResult.m in Sources */,
@@ -9805,6 +10136,7 @@
 				1841426E2020B11000A789ED /* GetEnterpriseDetailRequest.m in Sources */,
 				18F054CC20CBAFB8001B0A29 /* BPCandidateTableViewCell.m in Sources */,
 				18466DA82010A049002E675A /* PYSearchViewController.m in Sources */,
+				18D02F0A214F809E006D2776 /* PSWebSocketBuffer.m in Sources */,
 				18233E13206238000087D60B /* sha3.c in Sources */,
 				1864C0E81FE36C5200031547 /* Application.m in Sources */,
 				185DD6D2206CA80400BCFFCF /* NSObject+MJClass.m in Sources */,
@@ -9837,10 +10169,12 @@
 				188F7A0D20CA5A7E00911034 /* LanguageSettingViewController.m in Sources */,
 				1856E683210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m in Sources */,
 				18A2F46A1FF0A20A00B6CE43 /* FMDatabasePool.m in Sources */,
+				183F04442150DA11008C45B3 /* Abi_bin_to_jsonRequest.m in Sources */,
 				1832CC4120074EFB00C055B6 /* AskQuestionTableViewCell.m in Sources */,
 				1856A4E02008887200D62FEB /* MJRefreshComponent.m in Sources */,
 				182CDF45201EFF1B002B87B6 /* GetFeedbackListRequest.m in Sources */,
 				24FB2CAE20DBF99700AC73A5 /* BandwidthManageTableViewCell.m in Sources */,
+				183F04472150DB62008C45B3 /* Abi_bin_to_json_Result.m in Sources */,
 				18F576C5212BE4A100AE54E9 /* TransferRecordsHeaderView.m in Sources */,
 				1864C0EF1FE3AFD900031547 /* ApplicationDetailViewController.m in Sources */,
 				181EC30F20C4C9B2001994D3 /* ApplicationTop4View.m in Sources */,
@@ -9851,6 +10185,7 @@
 				183C6439211A9E05001C9C4A /* GetAccountOrderStatusRequest.m in Sources */,
 				18C622A11FD639250043447F /* TransferHeaderView.m in Sources */,
 				18DBD28920428F20001E2DDF /* ChangePasswordView.m in Sources */,
+				18D475C9215DDDD000F3BF22 /* SimpleWalletTransferViewController.m in Sources */,
 				188DECE520A92AF600ACD2A3 /* ApproveAbi_json_to_bin_request.m in Sources */,
 				181130BD1FCD13E600BEA0D9 /* CustomNavigationView.m in Sources */,
 				1811300A1FCD01B800BEA0D9 /* SDWebImageCoderHelper.m in Sources */,
@@ -9872,7 +10207,7 @@
 				18B276F720B7A86C0070F472 /* RtfBrowserViewController.m in Sources */,
 				186857281FE1293A002A683A /* LoginPasswordView.m in Sources */,
 				187D9BE62080BA0E0059BD2A /* SocialShareModel.m in Sources */,
-				18423A0C1FFF583F006AB986 /* SGQRCodeAlbumManager.m in Sources */,
+				18D02EF1214F7FFD006D2776 /* ScatterMainViewController.m in Sources */,
 				183AE1F42019B539002041F9 /* PeRichListViewController.m in Sources */,
 				18388D56211988CB00FF5C3E /* WechatPayRespModel.m in Sources */,
 				1811306E1FCD020A00BEA0D9 /* UIProgressView+AFNetworking.m in Sources */,
@@ -9890,6 +10225,7 @@
 				18A2F4651FF0A20A00B6CE43 /* FMDatabase+FTS3.m in Sources */,
 				1811300F1FCD01B800BEA0D9 /* SDWebImageFrame.m in Sources */,
 				1884128020C8D7FD005D752C /* DeviceType.m in Sources */,
+				18D475C6215DDDC200F3BF22 /* SimpleWalletLoginViewController.m in Sources */,
 				18BE612D20FF47F700BAD50C /* Get_user_custom_token_request.m in Sources */,
 				1811300E1FCD01B800BEA0D9 /* SDWebImageDownloaderOperation.m in Sources */,
 				18E72E001FCC0C8800D09CA3 /* AppDelegate.m in Sources */,
@@ -9908,6 +10244,7 @@
 				183FF8B21FF33DB7006C25F1 /* RichListResult.m in Sources */,
 				18BCAF1820BFD8E600571577 /* BPVoteViewController.m in Sources */,
 				183348921FCE770100884107 /* CALayer+XibConfiguration.m in Sources */,
+				18ECBCBC215A28FF00BAE3C2 /* CommonDialogHasTitleView.m in Sources */,
 				188DECEB20A9737600ACD2A3 /* AnswerQuestion_abi_json_to_bin_request.m in Sources */,
 				189E3EBD201C5B980022AF19 /* CGGeometry+RSKImageCropper.m in Sources */,
 				188F79AE20CA160000911034 /* BPVoteFooterView.m in Sources */,
@@ -9921,7 +10258,6 @@
 				181130041FCD01B800BEA0D9 /* MKAnnotationView+WebCache.m in Sources */,
 				18112F0C1FCD00B700BEA0D9 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				180FDF8020215F3600BE593F /* WalletAccountsResult.m in Sources */,
-				18423A0A1FFF583F006AB986 /* UIImage+ImageSize.m in Sources */,
 				182B8F8F20AD3A8800C43AEC /* LEETheme.m in Sources */,
 				188F7A1020CA5B0400911034 /* LanguageSettingService.m in Sources */,
 				1835775F2101CABD00F075EA /* CustomToken.m in Sources */,
@@ -9934,6 +10270,7 @@
 				1863297F1FE255A500E57F05 /* SWWButton.m in Sources */,
 				1862E78D20DBA79200F26629 /* EOSResource.m in Sources */,
 				181130311FCD01DF00BEA0D9 /* AFSecurityPolicy.m in Sources */,
+				18D02F07214F809E006D2776 /* PSWebSocketNetworkThread.m in Sources */,
 				1856A5782008A3F400D62FEB /* NewsBannerService.m in Sources */,
 				181130101FCD01B800BEA0D9 /* SDWebImageGIFCoder.m in Sources */,
 				18017043207EF18700E4DA07 /* JWCacheURLProtocol.m in Sources */,
@@ -9949,9 +10286,11 @@
 				18FA76CD20623C6D00545E73 /* EosByteWriter.m in Sources */,
 				1868572C1FE131F6002A683A /* BindSocialPlatformViewController.m in Sources */,
 				18A2F4691FF0A20A00B6CE43 /* FMDatabaseAdditions.m in Sources */,
+				18ECBCC9215B6A6100BAE3C2 /* GetTransactionByIdRequest.m in Sources */,
 				1825DC682005C1020057320C /* SegmentControlView.m in Sources */,
 				189E3EC0201C5B980022AF19 /* RSKImageScrollView.m in Sources */,
 				1841134E200476F000CD6F3F /* NewsMainHeaderView.m in Sources */,
+				18D02F05214F809E006D2776 /* PSWebSocket.m in Sources */,
 				181130051FCD01B800BEA0D9 /* NSData+ImageContentType.m in Sources */,
 				182CDF3F201EFEEA002B87B6 /* MessageFeedbackResult.m in Sources */,
 				181130141FCD01B800BEA0D9 /* SDWebImageWebPCoder.m in Sources */,
@@ -9986,12 +10325,15 @@
 				1864C0F51FE3B00F00031547 /* ApplicationDetailHeaderView.m in Sources */,
 				18112F6C1FCD016000BEA0D9 /* IQUIWindow+Hierarchy.m in Sources */,
 				180FDF8320215F4600BE593F /* WalletAccount.m in Sources */,
+				186BDC2B21539FA0001190A7 /* SGQRCodeGenerateManager.m in Sources */,
+				18D475E5215F252100F3BF22 /* SimpleWalletTransferHeaderView.m in Sources */,
 				18466D9120107981002E675A /* MessageCenterService.m in Sources */,
 				1835774621017E8F00F075EA /* TransferNewViewController.m in Sources */,
 				182CDEBA201EBCFA002B87B6 /* MessageCenterResult.m in Sources */,
 				185DD6D1206CA80400BCFFCF /* NSObject+MJProperty.m in Sources */,
 				18466DEE2010C4DF002E675A /* CDZPicker.m in Sources */,
 				1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */,
+				186BDC27215395D0001190A7 /* SGQRCodeObtain.m in Sources */,
 				186564B72011CD630044BBC3 /* RegularExpression.m in Sources */,
 				183FF8BF1FF345C7006C25F1 /* News.m in Sources */,
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -10002,6 +10344,7 @@
 				189CEC8520CFB60600F81AD8 /* MyVoteInfo.m in Sources */,
 				18466DA72010A049002E675A /* PYSearchSuggestionViewController.m in Sources */,
 				18FA76DD20623F3100545E73 /* NSObject+Extension.m in Sources */,
+				18ECBCBF215A292500BAE3C2 /* CommonDialogWithoutTitleView.m in Sources */,
 				18EE05421FDF8A3200134E5C /* CreateAccountViewController.m in Sources */,
 				1825DC6B2005F4FB0057320C /* LineView.m in Sources */,
 				188D1972213539EA006D59AC /* RedPacketPrepareDetailView.m in Sources */,
@@ -10071,6 +10414,7 @@
 				1808FCDD202B028D00625C37 /* TransactionsResult.m in Sources */,
 				18BA1EF421106767008558DE /* WXApiManager.m in Sources */,
 				18CDFB0620299BEE00D21DF4 /* AccountPrivateKeyQRCodeModel.m in Sources */,
+				18D475E0215F24E700F3BF22 /* SimpleWalletLoginHeaderView.m in Sources */,
 				1812759120B69B4D005EDD91 /* CandyScoreRequest.m in Sources */,
 				1825DC652005BDEF0057320C /* QuestionListHeaderView.m in Sources */,
 				18A99A8B20E6616E00E32A29 /* JavascriptWebViewController.m in Sources */,
@@ -10086,6 +10430,7 @@
 				180FDFCC2021B9E500BE593F /* PocketManagementService.m in Sources */,
 				18233E14206238000087D60B /* uECC.c in Sources */,
 				1816919B20BF7E9400BF49A8 /* ImageAndTipLabelViewManager.m in Sources */,
+				186BDC9C2154C3C2001190A7 /* NotifyDappServerResult.m in Sources */,
 				1812BB5D20B3AD3800C70801 /* AssestDetailFooterView.m in Sources */,
 				18372D312063371B004D19D0 /* TransactionResult.m in Sources */,
 				182CDF52201EFFB4002B87B6 /* FeedbackHeaderView.m in Sources */,
@@ -10101,6 +10446,9 @@
 				188F7A0A20CA350E00911034 /* BPRecommendAgentService.m in Sources */,
 				1860510B2028456B00C87DDF /* WkDelegateController.m in Sources */,
 				181130CC1FCD381800BEA0D9 /* AssestsMainHeaderView.m in Sources */,
+				186BDBD121537A7E001190A7 /* WWJRegularJudge.m in Sources */,
+				18D475BC215DD6AE00F3BF22 /* SimpleWalletLoginModel.m in Sources */,
+				18D475B9215CD6EA00F3BF22 /* GetTransactionByIdModel.m in Sources */,
 				18ED6CD0210FF1580042200F /* VipRegistAccountHeaderView.m in Sources */,
 				181130321FCD01DF00BEA0D9 /* AFURLRequestSerialization.m in Sources */,
 				1856A4DF2008887200D62FEB /* MJRefreshBackFooter.m in Sources */,
@@ -10111,7 +10459,6 @@
 				18FE3B2120DCE236005454BC /* Buy_ram_abi_json_to_bin_request.m in Sources */,
 				1832CC3E200718F400C055B6 /* AddOptionTableViewCell.m in Sources */,
 				18466DA62010A049002E675A /* PYSearchConst.m in Sources */,
-				18423A0D1FFF583F006AB986 /* SGQRCodeGenerateManager.m in Sources */,
 				2473F11720DF1FC400BE3D22 /* BaseTopView.m in Sources */,
 				18452B902074C91F00FAE7CE /* UITabBar+CustomBadge.m in Sources */,
 				1856A4AC2008539E00D62FEB /* ImportPocketHeaderView.m in Sources */,
@@ -10135,7 +10482,7 @@
 				180FDF7C20215DD700BE593F /* GetWalletAccountsRequest.m in Sources */,
 				183C643F211AA1EC001C9C4A /* AccountOrderStatusResult.m in Sources */,
 				18FA76E42062484C00545E73 /* BlockChainInfo.m in Sources */,
-				18423A101FFF583F006AB986 /* SGQRCodeScanningView.m in Sources */,
+				186BDC28215395D0001190A7 /* SGQRCodeScanView.m in Sources */,
 				181130201FCD01C900BEA0D9 /* NullSafe.m in Sources */,
 				1856A4F02008887200D62FEB /* UIScrollView+MJRefresh.m in Sources */,
 				189E3EC3201C5B980022AF19 /* UIApplication+RSKImageCropper.m in Sources */,
@@ -10165,12 +10512,14 @@
 				24FB2C9A20DBF78000AC73A5 /* StorageService.m in Sources */,
 				18FA76CB20623C6D00545E73 /* Sha256.m in Sources */,
 				189CEC7F20CFB31D00F81AD8 /* GetMyVoteInfoRequest.m in Sources */,
+				186BDBCE2153471F001190A7 /* ExcuteActionsHeaderView.m in Sources */,
 				18C7F764211AF24E006AD456 /* InviteCodeRegisterRequest.m in Sources */,
 				183AE1F12019B52E002041F9 /* PeRichListService.m in Sources */,
 				18ED6CDE210FF1A50042200F /* PayRegistAccountService.m in Sources */,
 				1835772F2100A72C00F075EA /* GetTokenInfoResult.m in Sources */,
 				185BA3BA20BBB3CE00F63674 /* BaseConfirmButton.m in Sources */,
 				18771A281FDFCA6E00B5BD0E /* PersonalSettingViewController.m in Sources */,
+				18D475BF215DD72900F3BF22 /* SimpleWalletTransferModel.m in Sources */,
 				1836919720FDCC9C000EAD59 /* AddAssestsTableViewCell.m in Sources */,
 				1814140D1FCFA2BA00334C60 /* SVProgressAnimatedView.m in Sources */,
 			);
@@ -10267,6 +10616,16 @@
 				186A2B16211C59A800DDB681 /* zh-Hans */,
 			);
 			name = AccountQRCodeManagementHeaderView.xib;
+			sourceTree = "<group>";
+		};
+		186BDC1721538A9A001190A7 /* CandyTopView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				186BDC1621538A9A001190A7 /* Base */,
+				186BDC1921538AA2001190A7 /* en */,
+				186BDC1B21538AA4001190A7 /* zh-Hans */,
+			);
+			name = CandyTopView.xib;
 			sourceTree = "<group>";
 		};
 		186F693F20F3661000FFF881 /* AssestsMainHeaderView.xib */ = {
@@ -10887,6 +11246,16 @@
 			name = PocketManagementHeaderView.xib;
 			sourceTree = "<group>";
 		};
+		18D475EA215F830F00F3BF22 /* SimpleWalletLoginHeaderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18D475E9215F830F00F3BF22 /* Base */,
+				18D475EC215F831200F3BF22 /* en */,
+				18D475EE215F831400F3BF22 /* zh-Hans */,
+			);
+			name = SimpleWalletLoginHeaderView.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -10998,6 +11367,7 @@
 		};
 		183C5BA91FCBEC9400DE6E88 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFAE409D652850E019785CE8 /* Pods-pocketEOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -11036,6 +11406,7 @@
 		};
 		183C5BAA1FCBEC9400DE6E88 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9EE9F0D161AD0B85DB36F92 /* Pods-pocketEOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

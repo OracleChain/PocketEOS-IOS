@@ -8,12 +8,15 @@
 
 #import "CommonWKWebViewController.h"
 #import "WkDelegateController.h"
-#import <JavaScriptCore/JavaScriptCore.h>
+
 
 @interface CommonWKWebViewController ()<WKNavigationDelegate, WKUIDelegate>
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
+@property (nonatomic , strong) UIBarButtonItem *backItem;
+@property (nonatomic , strong) UIBarButtonItem *closeItem;
+
 @end
 
 @implementation CommonWKWebViewController
@@ -52,6 +55,43 @@
     return _webView;
 }
 
+-(UIBarButtonItem *)backItem{
+    if (!_backItem) {
+        _backItem = [[UIBarButtonItem alloc] init];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+        btn.lee_theme
+        .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x000000), UIControlStateNormal)
+        .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
+        [btn setTitle:NSLocalizedString(@"返回", nil) forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
+        //左对齐
+        //让返回按钮内容继续向左边偏移15，如果不设置的话，就会发现返回按钮离屏幕的左边的距离有点儿大，不美观
+        btn.frame = CGRectMake(0, -40, 50, 40);
+        _backItem.customView = btn;
+    }
+    return _backItem;
+}
+
+-(UIBarButtonItem *)closeItem{
+    if (!_closeItem) {
+        _closeItem = [[UIBarButtonItem alloc] init];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.lee_theme
+        .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x000000), UIControlStateNormal)
+        .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
+        [btn setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(closeNative) forControlEvents:UIControlEventTouchUpInside];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
+        btn.frame = CGRectMake(0, 0, 50, 40);
+        _closeItem.customView = btn;
+    }
+    return _closeItem;
+}
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -68,34 +108,21 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-//    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-//    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
-    
     // 解决顶部出现空白
     self.automaticallyAdjustsScrollViewInsets=NO;//自动滚动调整，默认为YES
-    
-    
-    
+
     [self.view addSubview:self.webView];
     self.view.backgroundColor = HEXCOLOR(0xFFFFFF);
-    
-    // 方式二
-    UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] init];
-    backButtonItem.title = @"返回";
-    self.navigationItem.backBarButtonItem = backButtonItem;
-    self.navigationController.navigationBar.tintColor = HEXCOLOR(0x2A2A2A);
-    
-//    NSURLRequest *originalRequest = [NSURLRequest requestWithURL:String_To_URL(self.urlStr)];
-//    [self.webView loadRequest: originalRequest];
-    
+
     NSString *requestStr = [NSString stringWithFormat:@"%@%@",self.urlStr,self.parameterStr];
     NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
     [self.webView loadRequest: finalRequest];
     
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
+    
+    self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
+
 }
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{
@@ -142,4 +169,20 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+- (void)backNative {
+    if([self.webView canGoBack]) {
+        //如果有则返回
+        [self.webView goBack];
+        //同时设置返回按钮和关闭按钮为导航栏左边的按钮
+        self.navigationItem.leftBarButtonItems = @[self.backItem, self.closeItem];
+    }else{
+        [self closeNative];
+    }
+}
+
+- (void)closeNative {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

@@ -76,7 +76,7 @@
 
 - (void)importEOSMappingAccountBtnDidClick{
     if (IsStrEmpty(self.headerView.privateKeyTF.text) ) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+        [TOASTVIEW showWithText:NSLocalizedString(@"请保证输入信息的完整~", nil)];
         return;
     }else{
         private_active_Key_is_validate = [EOS_Key_Encode validateWif:self.headerView.privateKeyTF.text];

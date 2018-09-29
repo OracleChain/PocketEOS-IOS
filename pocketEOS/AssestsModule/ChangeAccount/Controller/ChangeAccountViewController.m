@@ -60,7 +60,10 @@
         cell.accountInfo = accountInfo;
     }else if (self.changeAccountDataArrayType == ChangeAccountDataArrayTypeNetworking){
         WalletAccount *walletAccount = self.dataArray[indexPath.row];
+        
+        
         cell.walletAccount = walletAccount;
+        
     }
     return cell;
 }

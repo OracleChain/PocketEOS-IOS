@@ -4,4 +4,10 @@
    <FileRef
       location = "container:pocketEOS.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:pocketEOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

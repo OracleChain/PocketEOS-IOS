@@ -32,9 +32,21 @@
     ExcuteActionsResult *result = [ExcuteActionsResult mj_objectWithKeyValues: resultDict];
     if ([result.type isEqualToString:@"actions_QRCode"]) {
         self.dataSourceArray = [NSMutableArray arrayWithArray:result.actions];
-        complete(self , YES);
+        complete(result , YES);
     }else{
         complete(nil , NO);
     }
+}
+
+- (void)notifyDappServerExcuteActionsResultWithNotifyDappServerResult:(NotifyDappServerResult *)result{
+    NSString *notifyUrl = [NSString stringWithFormat:@"%@?result=%@&txID=%@&serialNumber=%@",result.callback,  result.result , result.txID, result.serialNumber];
+    AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: @"https://api.pocketeos.top"]];
+    [outerNetworkingManager GET:VALIDATE_STRING(notifyUrl) parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+    
 }
 @end

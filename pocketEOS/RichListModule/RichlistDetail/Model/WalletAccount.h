@@ -13,4 +13,6 @@
 
 @property(nonatomic, strong) NSNumber *isMainAccount;
 
+
+@property(nonatomic , assign) BOOL selected;
 @end

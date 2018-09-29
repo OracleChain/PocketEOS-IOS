@@ -25,6 +25,7 @@
 #import "RedPacketRecord.h"
 #import "TransferAbi_json_to_bin_request.h"
 #import "RedPacketRecordsViewController.h"
+#import "TokenInfo.h"
 
 @interface RedPacketViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, RedPacketHeaderViewDelegate, TransferServiceDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -38,6 +39,7 @@
 @property(nonatomic , strong) TransferService *transferService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
+@property(nonatomic , copy) NSString *assest_price_cny;
 @end
 
 @implementation RedPacketViewController
@@ -127,19 +129,16 @@
 }
 
 - (void)requestRate{
-    WS(weakSelf);
-    if ([self.currentAssestsType isEqualToString:@"EOS"]) {
-        self.getRateRequest.coinmarket_id = @"eos";
-    }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
-        self.getRateRequest.coinmarket_id = @"oraclechain";
-    }
-    [self.getRateRequest postDataSuccess:^(id DAO, id data) {
-        if ([data isKindOfClass:[NSDictionary class]]) {
-            weakSelf.getRateResult = [GetRateResult mj_objectWithKeyValues:data];
+
+    for (TokenInfo *token in self.get_token_info_service_data_array) {
+        {
+            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                self.assest_price_cny = token.asset_price_cny;
+                [self textFieldChange:nil];
+            }
         }
-    } failure:^(id DAO, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    }
+
 }
 
 
@@ -152,9 +151,9 @@
     }
     self.headerView.sendRedpacketBtn.enabled = isCanSubmit;
     
-    if ([self.headerView.amountTF isFirstResponder]) {
-        self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.getRateResult.data.price_cny.doubleValue)]];
-    }
+    
+    self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.assest_price_cny.doubleValue)]];
+    
     
 }
 

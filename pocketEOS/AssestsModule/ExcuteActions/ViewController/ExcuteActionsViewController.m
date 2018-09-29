@@ -13,6 +13,7 @@
 #import "ExcuteActionsDataSourceService.h"
 #import "ExcuteMultipleActionsService.h"
 #import "ExcuteActionsContentTableViewCell.h"
+#import "NotifyDappServerResult.h"
 
 @interface ExcuteActionsViewController ()<ExcuteMultipleActionsServiceDelegate, LoginPasswordViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -21,6 +22,7 @@
 @property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , copy) NSString *choosedAccountName;
+@property(nonatomic , strong) ExcuteActionsResult *excuteActionsResult;
 @end
 
 @implementation ExcuteActionsViewController
@@ -97,8 +99,9 @@
 - (void)buildDataSource{
     WS(weakSelf);
     self.excuteActionsDataSourceService.actionsResultDict = self.actionsResultDict;
-    [self.excuteActionsDataSourceService buildDataSource:^(id service, BOOL isSuccess) {
+    [self.excuteActionsDataSourceService buildDataSource:^(ExcuteActionsResult *result, BOOL isSuccess) {
         if (isSuccess) {
+            weakSelf.excuteActionsResult = result;
             [weakSelf.mainTableView reloadData];
         }
     }];
@@ -175,14 +178,24 @@
 
 // ExcuteMultipleActionsServiceDelegate
 -(void)excuteMultipleActionsDidFinish:(TransactionResult *)result{
+    NotifyDappServerResult *notiResult = [[NotifyDappServerResult alloc ] init];
+    
     if ([result.code isEqualToNumber:@0 ]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"签名成功", nil)];
         [self.navigationController popToRootViewControllerAnimated:YES];
+        notiResult.result = @"1";
+        notiResult.txID = result.transaction_id;
     }else{
         [TOASTVIEW showWithText: result.message];
+        notiResult.result = @"0";
+        notiResult.txID = result.transaction_id;
     }
     [self removeLoginPasswordView];
     [SVProgressHUD dismiss];
+    
+    
+    notiResult.serialNumber = self.excuteActionsResult.serialNumber;
+    [self.excuteActionsDataSourceService notifyDappServerExcuteActionsResultWithNotifyDappServerResult:notiResult];
 }
 
 - (void)removeLoginPasswordView{
@@ -193,6 +206,9 @@
 }
 
 -(void)leftBtnDidClick{
+    NotifyDappServerResult *notiResult = [[NotifyDappServerResult alloc] init];
+    notiResult.result = @"0";
+    [self.excuteActionsDataSourceService notifyDappServerExcuteActionsResultWithNotifyDappServerResult:notiResult];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

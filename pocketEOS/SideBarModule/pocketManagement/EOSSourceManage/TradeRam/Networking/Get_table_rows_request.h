@@ -10,4 +10,8 @@
 
 @interface Get_table_rows_request : BaseHttpsNetworkRequest
 
+@property(nonatomic , copy) NSString *code;
+@property(nonatomic , copy) NSString *scope;
+@property(nonatomic , copy) NSString *table;
+
 @end

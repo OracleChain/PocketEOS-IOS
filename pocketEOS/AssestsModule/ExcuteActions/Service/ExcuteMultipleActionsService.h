@@ -9,6 +9,8 @@
 #import "BaseService.h"
 #import "ExcuteActions.h"
 #import "TransactionResult.h"
+#import "ScatterResult_type_requestSignature.h"
+
 
 @protocol ExcuteMultipleActionsServiceDelegate<NSObject>
 - (void)excuteMultipleActionsDidFinish:(TransactionResult *)result;
@@ -23,5 +25,13 @@
 // excuteMultipleActions
 - (void)excuteMultipleActionsWithSender:(NSString *)sender andExcuteActionsArray:(NSArray <ExcuteActions *>*)excuteActionsArray andAvailable_keysArray:(NSArray *)available_keysArray andPassword:(NSString *)password;
 
+
+// excuteMultipleActions -- For Scatter-JS
+- (NSString *)excuteMultipleActionsForScatterWithScatterResult:(ScatterResult_type_requestSignature *)scatterResult andAvailable_keysArray:(NSArray *)available_keysArray andPassword:(NSString *)password;
+
+
+
+
+@property(nonatomic, copy) NSString *ref_block_num;
 
 @end

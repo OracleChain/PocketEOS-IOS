@@ -54,6 +54,7 @@
 #import "UIImage+ExFoundation.h"
 #import "NSMutableAttributedString+ExFoundation.h"
 #import "RegularExpression.h"
+#import "WWJRegularJudge.h"
 #import "QuoteLocalHtmlTool.h"
 #import "NSString+Hash.h"
 #import "NSString+Extention.h"
@@ -66,8 +67,10 @@
 #import "DeviceType.h"
 #import "WalletUtil.h"
 #import "OptionModel.h"
+#import "QRCodeModel.h"
 #import "BaseResult.h"
 #import "RtfBrowserViewController.h"
+
 
 
 /**

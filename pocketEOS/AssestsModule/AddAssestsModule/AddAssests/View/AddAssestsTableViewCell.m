@@ -45,6 +45,7 @@
 - (UISwitch *)assestsSwitch{
     if (!_assestsSwitch) {
         _assestsSwitch = [[UISwitch alloc] init];
+        _assestsSwitch.onTintColor = HEXCOLOR(0x4090FE);
         [_assestsSwitch addTarget:self action:@selector(assestsSwitchStatusChange) forControlEvents:(UIControlEventValueChanged)];
     }
     return _assestsSwitch;

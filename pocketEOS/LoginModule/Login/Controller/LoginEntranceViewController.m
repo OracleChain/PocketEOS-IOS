@@ -122,7 +122,7 @@
 
 - (void)privacyPolicyLabelDidTap{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = @"PocketEOSPrivacyPolicy";
+    vc.rtfFileName = @"PocketEOSProtocol";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

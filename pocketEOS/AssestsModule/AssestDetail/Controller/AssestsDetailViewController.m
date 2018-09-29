@@ -266,9 +266,9 @@
     WS(weakSelf);
     [self.getSparklinesRequest getDataSusscess:^(id DAO, id data) {
         NSString *tendencyUrlStr ;
-        if ([weakSelf.model.token_symbol isEqualToString:@"EOS"]) {
+        if ([weakSelf.model.token_symbol isEqualToString:@"EOS"] && [weakSelf.model.contract_name isEqualToString:ContractName_EOSIOTOKEN]) {
             tendencyUrlStr = data[@"data"][@"sparkline_eos_png"];
-        }else if ([weakSelf.model.token_symbol isEqualToString:@"OCT"]){
+        }else if ([weakSelf.model.token_symbol isEqualToString:@"OCT"] && [weakSelf.model.contract_name isEqualToString:ContractName_OCTOTHEMOON]){
             tendencyUrlStr = data[@"data"][@"sparkline_oct_png"];
         }
         if (!IsNilOrNull(weakSelf.sparklinesImageView)) {

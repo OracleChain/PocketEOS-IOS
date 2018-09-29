@@ -15,7 +15,7 @@
 }
 
 -(id)parameters{
-    return @{@"json":[NSNumber numberWithBool:YES],@"code":@"eosio",@"scope":@"eosio",@"table":@"rammarket",@"table_key":@"",@"lower_bound":@"",@"upper_bound":@"",@"limit":@10};
+    return @{@"json":[NSNumber numberWithBool:YES],@"code":VALIDATE_STRING(self.code),@"scope":VALIDATE_STRING(self.scope),@"table":VALIDATE_STRING(self.table),@"table_key":@"",@"lower_bound":@"",@"upper_bound":@"",@"limit":@10};
 }
 
 @end

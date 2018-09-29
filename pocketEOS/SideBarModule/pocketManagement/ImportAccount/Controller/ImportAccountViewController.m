@@ -108,14 +108,14 @@
 - (void)importBtnDidClick:(UIButton *)sender{
     if (self.headerView.agreeTermBtn.isSelected == YES) {
         if (IsStrEmpty(self.headerView.accountNameTF.text)  ||IsStrEmpty(self.headerView.private_activeKey_tf.text)) {
-            [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请保证输入信息的完整~", nil)];
             return;
         }else{
             [self.view addSubview:self.loginPasswordView];
         }
     }else{
         if (IsStrEmpty(self.headerView.accountNameTF.text)  ||IsStrEmpty(self.headerView.private_activeKey_tf.text)  || IsStrEmpty(self.headerView.private_ownerKey_TF.text)) {
-            [TOASTVIEW showWithText:NSLocalizedString(@"输入框不能为空!", nil)];
+            [TOASTVIEW showWithText:NSLocalizedString(@"请保证输入信息的完整~", nil)];
             return;
         }else{
             [self.view addSubview:self.loginPasswordView];

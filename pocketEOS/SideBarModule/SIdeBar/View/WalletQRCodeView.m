@@ -57,6 +57,7 @@
     tap.delegate = self;
     [self addGestureRecognizer:tap];
     
+    self.upBackgroundView.userInteractionEnabled = NO;
     
     [self.socialSharePanelBackgroundView addSubview:self.socialSharePanelView];
 }

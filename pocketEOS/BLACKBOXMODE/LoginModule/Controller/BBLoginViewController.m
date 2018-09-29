@@ -112,6 +112,12 @@
             [btn setTitleColor:HEX_RGB(0x1C1D2E) forState:(UIControlStateNormal)];
             [btn setTitle:wallet.wallet_name forState:(UIControlStateNormal)];
             btn.tag = wallet.ID.integerValue;
+            if (i == 0) {
+                btn.selected = YES;
+                self.choosed_wallet_id = [NSString stringWithFormat:@"%ld", (long)btn.tag];
+            }else{
+                btn.selected = NO;
+            }
             [btn addTarget:self action:@selector(chooseWalletBtnDicClick:) forControlEvents:(UIControlEventTouchUpInside)];
             [backgroundCellView addSubview:btn];
             [self.select_BB_walelt_Btn_Array addObject:btn];
@@ -134,6 +140,21 @@
         _select_BB_walelt_Btn_Array = [[NSMutableArray alloc] init];
     }
     return _select_BB_walelt_Btn_Array;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!IsNilOrNull(self.chooseWalletBackgroundView)) {
+        [self.chooseWalletBackgroundView removeFromSuperview];
+        self.chooseWalletBackgroundView = nil;
+        [self.chooseWalletFooterView removeFromSuperview];
+        self.chooseWalletFooterView = nil;
+        
+        NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
+        if (localWalletsArr.count > 0) {
+            [self.mainScrollView1 addSubview:self.chooseWalletBackgroundView];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -195,11 +216,11 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"两次输入的密码不一致!", nil)];
         return;
     }
-    // 查重本地钱包名不可重复
+    // 查重该钱包名称已在您本地存在,请更换尝试~
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     for (Wallet *model in localWalletsArr) {
         if ([model.wallet_name isEqualToString:self.createWalletView.walletNameTF.text]) {
-            [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包名不可重复!", nil)];
+            [TOASTVIEW showWithText:NSLocalizedString(@"该钱包名称已在您本地存在,请更换尝试~!", nil)];
             return;
         }
     }
@@ -225,7 +246,9 @@
 }
 - (void)privacyPolicyBtnDidClick:(UIButton *)sender{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = @"PocketEOSPrivacyPolicy";
+    vc.rtfFileName = @"PocketEOSProtocol";
+   
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -269,6 +292,7 @@
 - (void)explainBtnDidClick{
     RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
     vc.rtfFileName = @"SpecificationBlackBoxMode";
+    vc.title = @"黑匣子模式";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

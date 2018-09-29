@@ -454,6 +454,7 @@
     [params setObject: VALIDATE_STRING([AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text])  forKey:@"owner_private_key"];
     [params setObject:@"account_priviate_key_QRCode" forKey:@"type"];
     NSString *jsonStr = [params mj_JSONString];
+    
     self.exportPrivateKeyView.QRCodeimg.image = [SGQRCodeGenerateManager generateWithLogoQRCodeData:jsonStr logoImageName:@"account_default_blue" logoScaleToSuperView:0.2];
 }
 

@@ -64,11 +64,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // 设置语言
     if (indexPath.row == 0) {
-        [DAConfig setUserLanguage:@"zh-Hans"];
+        if ([NSBundle isChineseLanguage]) {
+            [TOASTVIEW showWithText: NSLocalizedString(@"当前语言已经是中文！", nil)];
+            return;
+        }else{
+            [DAConfig setUserLanguage:@"zh-Hans"];
+            [self changeLanguage];
+        }
     } else if (indexPath.row == 1) {
-        [DAConfig setUserLanguage:@"en"];
+        if (![NSBundle isChineseLanguage]) {
+            [TOASTVIEW showWithText: NSLocalizedString(@"当前语言已经是英文！", nil)];
+            return;
+        }else{
+            [DAConfig setUserLanguage:@"en"];
+            [self changeLanguage];
+        }
+        
     }
     
+}
+
+- (void)changeLanguage{
     dispatch_async(dispatch_get_main_queue(), ^{
         for (UIView *view in WINDOW.subviews) {
             [view removeFromSuperview];

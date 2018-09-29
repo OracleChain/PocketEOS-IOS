@@ -62,6 +62,7 @@
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         self.avatarImg.hidden = YES;
         self.QRCodeButton.hidden = YES;
+        self.nameLabel.hidden = YES;
         self.voteBaseView.sd_layout.leftEqualToView(self.candyBaseView).topEqualToView(self.candyBaseView).rightEqualToView(self.candyBaseView).bottomEqualToView(self.candyBaseView);
 
     }

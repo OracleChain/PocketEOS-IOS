@@ -12,11 +12,13 @@
 #import "VersionUpdateTipView.h"
 #import "VersionUpdateModel.h"
 #import "GetVersionInfoRequest.h"
+#import "CommonDialogHasTitleView.h"
 
-@interface VersionUpdateViewController ()< UIGestureRecognizerDelegate, NavigationViewDelegate, VersionUpdateHeaderViewDelegate, VersionUpdateTipViewDelegate>
+@interface VersionUpdateViewController ()< UIGestureRecognizerDelegate, NavigationViewDelegate, VersionUpdateHeaderViewDelegate, VersionUpdateTipViewDelegate, CommonDialogHasTitleViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) VersionUpdateHeaderView *headerView;
 @property(nonatomic , strong) VersionUpdateTipView *versionUpdateTipView;
+@property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
 @property(nonatomic , strong) GetVersionInfoRequest *getVersionInfoRequest;
 @property(nonatomic , strong) VersionUpdateModel *versionUpdateModel;
 @end
@@ -49,6 +51,16 @@
     return _versionUpdateTipView;
 }
 
+- (CommonDialogHasTitleView *)commonDialogHasTitleView{
+    if (!_commonDialogHasTitleView) {
+        _commonDialogHasTitleView = [[CommonDialogHasTitleView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _commonDialogHasTitleView.delegate = self;
+    }
+    return _commonDialogHasTitleView;
+}
+
+
+
 - (GetVersionInfoRequest *)getVersionInfoRequest{
     if (!_getVersionInfoRequest) {
         _getVersionInfoRequest = [[GetVersionInfoRequest alloc] init];
@@ -78,7 +90,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
     // 当前版本号
-    NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
+    NSDictionary *infoDic= [[NSBundle mainBundle] infoDictionary];
     self.headerView.versionLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"版本", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]  ];
     [self buildDataSource];
     self.view.lee_theme
@@ -103,8 +115,12 @@
 }
 
 - (void)versionIntroduceBtnDidClick:(UIButton *)sender{
-    [self.view addSubview:self.versionUpdateTipView];
-    [self.versionUpdateTipView setModel:self.versionUpdateModel];
+    [self.view addSubview:self.commonDialogHasTitleView];
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"版本介绍", nil);
+    model.detail = self.versionUpdateModel.versionDetail;
+    [self.commonDialogHasTitleView setModel:model];
 }
 
 - (void)checkNewVersionBtnDidClick:(UIButton *)sender{
@@ -128,6 +144,12 @@
 - (void)updateBtnDidClick:(UIButton *)sender{
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
 }
+
+//CommonDialogHasTitleViewDelegate
+- (void)commonDialogHasTitleViewBtnDidClick:(UIButton *)sender{
+    [self.commonDialogHasTitleView removeFromSuperview];
+}
+
 
 - (NSInteger)queryVersionNumberInBundle{
     

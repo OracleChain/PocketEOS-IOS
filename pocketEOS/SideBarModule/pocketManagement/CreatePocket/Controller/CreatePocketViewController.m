@@ -102,11 +102,11 @@
         return;
     }
     
-    // 查重本地钱包名不可重复
+    // 查重该钱包名称已在您本地存在,请更换尝试~
     NSArray *localWalletsArr = [[WalletTableManager walletTable] selectAllLocalWallet];
     for (Wallet *model in localWalletsArr) {
         if ([model.wallet_name isEqualToString:self.headerView.nameTF.text]) {
-            [TOASTVIEW showWithText:NSLocalizedString(@"本地钱包名不可重复!", nil)];
+            [TOASTVIEW showWithText:NSLocalizedString(@"该钱包名称已在您本地存在,请更换尝试~!", nil)];
             return;
         }
     }

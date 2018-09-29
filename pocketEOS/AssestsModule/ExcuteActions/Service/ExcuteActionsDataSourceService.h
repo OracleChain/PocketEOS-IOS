@@ -7,9 +7,14 @@
 //
 
 #import "BaseService.h"
+#import "NotifyDappServerResult.h"
 
 @interface ExcuteActionsDataSourceService : BaseService
 
 @property(nonatomic , copy) NSString *actionsResultDict;
+
+
+
+- (void)notifyDappServerExcuteActionsResultWithNotifyDappServerResult:(NotifyDappServerResult *)result;
 
 @end

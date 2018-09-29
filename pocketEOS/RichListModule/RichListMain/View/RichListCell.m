@@ -68,7 +68,7 @@
     _walletAccount = walletAccount;
     _titleLabel.text = walletAccount.eosAccountName;
     [_avatarImg sd_setImageWithURL: String_To_URL(walletAccount.eosAccountName) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
-    
+
 }
 
 -(void)setAccountInfo:(AccountInfo *)accountInfo{

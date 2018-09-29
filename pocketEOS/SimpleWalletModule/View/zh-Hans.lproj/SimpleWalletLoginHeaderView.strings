@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "获取您的账号信息"; ObjectID = "3Xd-CB-4CY"; */
+"3Xd-CB-4CY.text" = "获取您的账号信息";
+
+/* Class = "UILabel"; text = "签名将获得以下授权："; ObjectID = "AXP-ID-Y0W"; */
+"AXP-ID-Y0W.text" = "签名将获得以下授权：";
+
+/* Class = "UILabel"; text = "EOS账号"; ObjectID = "bEL-0w-RtT"; */
+"bEL-0w-RtT.text" = "EOS账号";
+
+/* Class = "UILabel"; text = "授权代表您信任该Dapp，PE不对由此造成的损失负责"; ObjectID = "kam-kR-NeW"; */
+"kam-kR-NeW.text" = "授权代表您信任该Dapp，PE不对由此造成的损失负责";
+
+/* Class = "UIButton"; normalTitle = "确认授权"; ObjectID = "vts-DM-7Ws"; */
+"vts-DM-7Ws.normalTitle" = "确认授权";

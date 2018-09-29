@@ -127,6 +127,8 @@
 #pragma mark -- 单向验证 :: 下面还有一处请求需要改单项验证
     [self.networkingManager setSecurityPolicy:[self customSecurityPolicy]];
     
+    [self.networkingManager.requestSerializer setValue:@"ios" forHTTPHeaderField:@"system_version"];
+    
     //客服端利用p12验证服务器 , 双向验证
 //    [self checkCredential:self.networkingManager];
     self.networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];

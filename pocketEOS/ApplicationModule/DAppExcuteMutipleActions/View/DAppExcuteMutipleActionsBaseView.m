@@ -117,6 +117,7 @@
         _passwordTF.delegate = self;
         _passwordTF.secureTextEntry = YES;
         _passwordTF.tag = 50001;//设置一个项目中唯一的tag值
+        _passwordTF.enabled = NO;
     }
     return _passwordTF;
 }
@@ -125,7 +126,8 @@
     if (!_confirmBtn) {
         _confirmBtn = [[UIButton alloc] init];
         [_confirmBtn setTitle:NSLocalizedString(@"确认签名", nil) forState:(UIControlStateNormal)];
-        [_confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_confirmBtn addTarget:self action:@selector(excuteMutipleActionsConfirmBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        _confirmBtn.enabled = NO;
     }
     return _confirmBtn;
 }
@@ -177,15 +179,18 @@
     self.confirmBtn.sd_layout.leftSpaceToView(self, 0).bottomSpaceToView(self, 0).rightSpaceToView(self, 0).heightIs(46);
     _confirmBtnTouchCount = 0;
     
+    
     if (self.actionsArray.count==1) {
         self.confirmBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
         self.confirmBtn.enabled = YES;
+        self.passwordTF.enabled = YES;
     }else{
         self.confirmBtn.lee_theme
         .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xD8D8D8))
         .LeeAddBackgroundColor(BLACKBOX_MODE, HEXCOLOR(0xA3A3A3));
         self.confirmBtn.enabled = NO;
+        self.passwordTF.enabled = NO;
     }
    
 }
@@ -198,6 +203,7 @@
         self.confirmBtn.lee_theme
         .LeeConfigBackgroundColor(@"confirmButtonNormalStateBackgroundColor");
         self.confirmBtn.enabled = YES;
+        self.passwordTF.enabled = YES;
     }
 }
 
@@ -213,7 +219,7 @@
 }
 
 
-- (void)confirmBtnClick{
+- (void)excuteMutipleActionsConfirmBtnClick{
     WS(weakSelf);
     if (_confirmBtnTouchCount == 0) {
         [self.passwordTF becomeFirstResponder];

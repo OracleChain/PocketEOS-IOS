@@ -139,7 +139,15 @@
         if (![result.code isEqualToNumber:@0]) {
             [TOASTVIEW showWithText: VALIDATE_STRING(result.message)];
         }else{
-            NSMutableArray *resultArr = result.data;
+            NSMutableArray *tmpArr = result.data;
+            NSMutableArray *resultArr = [NSMutableArray array];
+            for (Application *app in tmpArr) {
+                if (!app.isScatter) {
+                    [resultArr addObject:app];
+                }
+            }
+
+            
             [mgr clearAllCacheTableWithCacheTableName:APPLICATION_BODY_CACHE_TABLE];
             FMDatabase *database = [mgr openLocalDatabase];
             BOOL isOpen = [database open];

@@ -189,7 +189,8 @@
     if (contentJsonResultStr.length>2) {
         finalStr = [contentJsonResultStr substringWithRange:NSMakeRange(1, contentJsonResultStr.length-2)];
     }
-    self.contentDetailLabel.text = finalStr;
+    
+    self.contentDetailLabel.text = finalStr.length > 0 ? finalStr : @" ";
 }
 
 @end

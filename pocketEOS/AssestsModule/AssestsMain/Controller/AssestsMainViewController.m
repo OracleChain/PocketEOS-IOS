@@ -52,6 +52,8 @@
 #import "GetAccountOrderStatusRequest.h"
 #import "AccountOrderStatus.h"
 #import "AccountOrderStatusResult.h"
+#import "ScatterMainViewController.h"
+
 
 @interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
 
@@ -174,7 +176,11 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     Wallet *wallet = CURRENT_WALLET;
-    [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+    if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+        [_navView.leftBtn sd_setImageWithURL:nil forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"setting"]];
+    }else{
+        [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+    }
     self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
 }
 
@@ -347,8 +353,15 @@
     }];
     
     [self.headerView setTransferBtnDidClickBlock:^{
+//        ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
+//        Application *model = [[Application alloc] init];
+//        model.url = @"http://api.oraclechain.io:1443";
+//        vc.model = model;
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+        vc.fromPage = @"AssestsMainViewController";
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -367,6 +380,7 @@
         }
         if (result) {
             RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+            vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }else{
             [TOASTVIEW showWithText: NSLocalizedString(@"请关注EOS或者OCT即可发送红包", nil)];
@@ -378,7 +392,10 @@
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         Application *model = [[Application alloc] init];
         model.url = @"http://static.pocketeos.top:3002";
-        model.applyName = @"Ram Ex";
+//        https://www.xpet.io/index.html?identity=684
+//        model.url = @"http://oct.xpet.io/index.html?identity=684";
+//        model.url = @"http://10.0.0.133:8080";
+        model.applyName = @"EOS内存市场";
         vc.model = model;
         vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
         [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -452,12 +469,14 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.originNavView.frame = CGRectMake(0, -NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
             self.navView.changedNavView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
+            self.inviteFriendBtn.hidden = YES;
         }];
     }else{
         // 显示 headerview
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.changedNavView.frame = CGRectMake(0, -NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
             self.navView.originNavView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
+            self.inviteFriendBtn.hidden = NO;
         }];
     }
 }
@@ -568,7 +587,7 @@
         finalCookie = @"1";
     }
     vc.parameterStr =[NSString stringWithFormat:@"/#/index?phone=%@&validateCode=1&inviteCode=1&uid=%@&cookie=%@", wallet.wallet_phone, wallet.wallet_uid, finalCookie];
-    vc.title = @"邀请好友";
+    vc.title = @"邀请计划";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

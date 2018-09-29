@@ -89,6 +89,8 @@
     if (cookie != nil) {
         [self.networkingManager.requestSerializer setValue:cookie forHTTPHeaderField:@"Set-Cookie"];
     }
+    
+    [self.networkingManager.requestSerializer setValue:@"ios" forHTTPHeaderField:@"system_version"];
 
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         [self.networkingManager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];

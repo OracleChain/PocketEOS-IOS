@@ -235,6 +235,11 @@ typedef NS_ENUM(NSInteger, AddAssestsViewControllerCurrentAction) {
     self.mainService.search_token_request.key = VALIDATE_STRING(searchText);
     [self.mainService search_token:^(id service, BOOL isSuccess) {
         if (isSuccess) {
+            if (self.mainService.searchTokenResultDataArray.count == 0) {
+                [IMAGE_TIP_LABEL_MANAGER showImageAddTipLabelViewWithSocial_Mode_ImageName:@"nomoredata" andBlackbox_Mode_ImageName:@"nomoredata_BB" andTitleStr:NSLocalizedString(@"暂无数据", nil)toView:weakSelf.searchSuggestiontTabelView andViewController:weakSelf];
+            }else{
+                [IMAGE_TIP_LABEL_MANAGER removeImageAndTipLabelViewManager];
+            }
             [weakSelf.searchSuggestiontTabelView reloadData];
         }
     }];

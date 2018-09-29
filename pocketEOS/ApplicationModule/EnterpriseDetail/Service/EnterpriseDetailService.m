@@ -36,12 +36,21 @@
         if ([data isKindOfClass:[NSDictionary class]]) {
             ApplicationsResult *result = [ApplicationsResult mj_objectWithKeyValues:data];
             if (result.data.count > 0) {
-                Application *model = result.data[0];
+                NSMutableArray *tmpArr = result.data;
+                NSMutableArray *resultArr = [NSMutableArray array];
+                for (Application *app in tmpArr) {
+                    if (!app.isScatter) {
+                        [resultArr addObject:app];
+                    }
+                }
+                
+                
+                Application *model = resultArr[0];
                 [weakSelf.recommandApplicationDataArray addObject:model];
-                if (result.data.count > 1) {
-                    [weakSelf.dataSourceArray addObjectsFromArray: [result.data subarrayWithRange:(NSMakeRange(1, result.data.count - 1))]];
+                if (resultArr.count > 1) {
+                    [weakSelf.dataSourceArray addObjectsFromArray: [tmpArr subarrayWithRange:(NSMakeRange(1, resultArr.count - 1))]];
                 }else{
-                    [weakSelf.dataSourceArray addObjectsFromArray:result.data];
+                    [weakSelf.dataSourceArray addObjectsFromArray:resultArr];
                 }
                 complete(weakSelf, YES);
             }

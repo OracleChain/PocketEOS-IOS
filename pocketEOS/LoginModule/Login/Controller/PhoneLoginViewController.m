@@ -20,7 +20,7 @@
 #import "BaseTabBarController.h"
 #import "AddAccountViewController.h"
 
-@interface PhoneLoginViewController ()<PhoneLoginMainViewDelegate, CountryCodeAreaViewControllerDelegate>
+@interface PhoneLoginViewController ()<PhoneLoginMainViewDelegate, CountryCodeAreaViewControllerDelegate, UITextFieldDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PhoneLoginMainView *headerView;
 @property(nonatomic, strong) LoginService *mainService;
@@ -40,6 +40,7 @@
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"PhoneLoginMainView" owner:nil options:nil] firstObject];
         _headerView.delegate = self;
+        _headerView.phoneTF.delegate = self;
         _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     return _headerView;
@@ -158,6 +159,17 @@
         }
     }];
 }
+
+//UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.headerView.phoneTF) {
+        return [WWJRegularJudge isMatchTelephoneFormat:self.headerView.phoneTF range:range string:string];
+    }
+    return YES;
+}
+
+
+
 
 - (void)areaCodeBtnDidClick{
     CountryCodeAreaViewController *vc = [[CountryCodeAreaViewController alloc] init];

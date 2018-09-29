@@ -173,13 +173,13 @@
 "钱包名称不能为空!"="wallet name can't be nil!";
 "密码不能为空!"="password can't be nil!";
 "两次输入的密码不一致!"="Password is not consistent.";
-"本地钱包名不可重复!"="local wallet name can't repeat!";
+"该钱包名称已在您本地存在,请更换尝试~!"="local wallet name can't repeat!";
 
 /*
  EOSMappingImportAccountViewController.m
  */
 "映射账号录入"="I have Private Key(s) from EOS mapping.";
-"输入框不能为空!"="input box can't be nil!";
+"请保证输入信息的完整~"="input box can't be nil!";
 "私钥格式有误!"="private key format error!";
 "本地钱包已存在该账号!"="local wallet has this account already!";
 "账号导入成功!"="account import success!";
@@ -427,7 +427,7 @@
 "已绑定"="bind success";
 "我的相册"="My album";
 "拍照"="Take photo";
-"名字"="Name";
+"修改名字"="Name";
 
 /*
  UnBindSocialPlatformViewController.m
@@ -640,7 +640,7 @@
  VipRegistAccountViewController.m
 */
 "请选择私钥模式"="Choose private key mode please";
-"VIP注册"="VIP Regist";
+"VIP创建"="VIP Regist";
 
 /*
  AddAccountViewController.m
@@ -747,3 +747,14 @@
 "请关注EOS或者OCT即可发送红包"="Add EOS and OCT before send RedPackets";
 "暂不支持该TOKEN红包"="Don't support this token for redpacket yet";
 
+
+"授权成功"="Authorized!";
+"账户授权"="Account Authorize";
+"金额"="Amount";
+"付款账号"="Payer";
+"收款账号"="Reciever";
+"转账授权"="Transfer Authorize";
+"取消授权"="Cancel Authorizing";
+"失败"="Failed!";
+"授权代表您信任该Dapp，PE不对由此造成的损失负责"="Don't authorize unless you turst the dapp, and PE is liability exemption.";
+"确认授权"="Authorize";

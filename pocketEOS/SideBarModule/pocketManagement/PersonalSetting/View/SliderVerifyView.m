@@ -17,10 +17,7 @@
     // 终点滑块的随机数起点, x
     int destinationRandomOrigin_X;
 }
-/**
- 起点滑块
- */
-@property(nonatomic, strong) UIImageView *orignalImg;
+
 
 /**
  终点滑块

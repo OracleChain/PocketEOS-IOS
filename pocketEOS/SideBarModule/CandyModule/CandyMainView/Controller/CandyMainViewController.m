@@ -9,6 +9,7 @@
 #import "CandyMainViewController.h"
 #import "NavigationView.h"
 #import "CandyMainHeaderView.h"
+#import "CandyTopView.h"
 #import "CandyMainTableViewCell.h"
 #import "FeedbackTableViewCell.h"
 #import "CandyTaskModel.h"
@@ -20,6 +21,7 @@
 @property(nonatomic, strong) UIImageView *backgroundView;
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic , strong) CandyMainHeaderView *headerView;
+@property(nonatomic , strong) CandyTopView *topView;
 @property(nonatomic , strong) CandyMainService *mainService;
 @property(nonatomic , strong) CandyScoreRequest *candyScoreRequest;
 @end
@@ -47,9 +49,17 @@
 - (CandyMainHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"CandyMainHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 383);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 255);
     }
     return _headerView;
+}
+
+- (CandyTopView *)topView{
+    if (!_topView) {
+        _topView = [[[NSBundle mainBundle] loadNibNamed:@"CandyTopView" owner:nil options:nil] firstObject];
+        _topView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 128);
+    }
+    return _topView;
 }
 
 - (CandyMainService *)mainService{
@@ -84,8 +94,10 @@
     
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.navView];
+    [self.view addSubview:self.topView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT + 128, SCREEN_WIDTH, SCREEN_HEIGHT-128-NAVIGATIONBAR_HEIGHT);
     self.mainTableView.backgroundColor = [UIColor clearColor];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mainTableView.mj_header.hidden = YES;
@@ -98,7 +110,7 @@
 - (void)buildDataSource{
     WS(weakSelf);
     Wallet *wallet = CURRENT_WALLET;
-    [self.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
+    [self.topView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     
     [self.mainTableView.mj_header endRefreshing];
     [self.mainTableView.mj_footer resetNoMoreData];
@@ -122,7 +134,7 @@
     WS(weakSelf);
     self.candyScoreRequest.uid = CURRENT_WALLET_UID;
     [self.candyScoreRequest getDataSusscess:^(id DAO, id data) {
-        weakSelf.headerView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
+        weakSelf.topView.myPointsLabel.text = [NSString stringWithFormat:@"+%@", VALIDATE_NUMBER(data[@"data"][@"scoreNum"])];
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@",error);
     }];

@@ -182,8 +182,9 @@
 
 -(void)nameBtnDidClick:(UIButton *)sender{
     PersonnalSettingDetailViewController *vc = [[PersonnalSettingDetailViewController alloc] init];
-    vc.titleStr = NSLocalizedString(@"名字", nil);
-    vc.itemName = NSLocalizedString(@"名字", nil);
+    vc.titleStr = NSLocalizedString(@"修改名字", nil);
+//    vc.itemName = NSLocalizedString(@"修改名字", nil);
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -336,6 +337,11 @@
 // LoginPasswordViewDelegate
 -(void)cancleBtnDidClick:(UIButton *)sender{
     [self.loginPasswordView removeFromSuperview];
+    
+    [UIView animateWithDuration:1 animations:^{
+        [self.sliderVerifyView.orignalImg setCenter:CGPointMake(4 + 50/2 , 24 )];
+    }];
+//    [self.sliderVerifyView.orignalImg setTranslation:CGPointMake(0, 0) inView:self];
 }
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确

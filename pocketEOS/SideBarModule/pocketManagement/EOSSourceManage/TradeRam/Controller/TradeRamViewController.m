@@ -140,6 +140,9 @@
 
 - (void)buildDataSource{
     WS(weakSelf);
+    self.get_table_rows_request.code = ContractName_EOSIO;
+    self.get_table_rows_request.scope = ContractName_EOSIO;
+    self.get_table_rows_request.table = @"rammarket";
     [self.get_table_rows_request postOuterDataSuccess:^(id DAO, id data) {
         PriceResult *result = [PriceResult mj_objectWithKeyValues:data];
         NSString *quote_balanceStr = result.data.quote_balance;

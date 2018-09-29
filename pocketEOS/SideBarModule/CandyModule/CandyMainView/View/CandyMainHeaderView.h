@@ -12,8 +12,6 @@
 @interface CandyMainHeaderView : UIView
 @property(nonatomic , strong) NSMutableArray *dataArray;
 @property(nonatomic, strong) UICollectionView *mainCollectionView;
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImgView;
-@property (weak, nonatomic) IBOutlet UILabel *myPointsLabel;
 
 @property(nonatomic , copy) void(^onCandyMainCollectionCellDidSelectItemBlock)(CandyEquityModel *);
 @end
