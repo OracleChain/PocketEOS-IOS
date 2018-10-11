@@ -6,9 +6,30 @@
 //  Copyright © 2018 oraclechain. All rights reserved.
 //
 
+#define JS_INTERACTION_METHOD_PUSH @"push"
+#define JS_INTERACTION_METHOD_PUSHACTION @"pushAction"
+#define JS_INTERACTION_METHOD_PUSHACTIONS @"pushActions"
+#define JS_INTERACTION_METHOD_PUSHMESSAGE @"pushMessage"
+
+#define JS_INTERACTION_METHOD_walletLanguage @"walletLanguage"
+#define JS_INTERACTION_METHOD_getEosAccount @"getEosAccount"
+#define JS_INTERACTION_METHOD_getWalletWithAccount @"getWalletWithAccount"
+#define JS_INTERACTION_METHOD_getEosBalance @"getEosBalance"
+#define JS_INTERACTION_METHOD_getEosAccountInfo @"getEosAccountInfo"
+#define JS_INTERACTION_METHOD_getTransactionById @"getTransactionById"
+#define JS_INTERACTION_METHOD_pushActions @"pushActions"
+#define JS_INTERACTION_METHOD_pushTransfer @"pushTransfer"
+#define JS_INTERACTION_METHOD_getAppInfo @"getAppInfo"
+#define JS_INTERACTION_METHOD_unknown @"unknown"
+
+
+#define JS_METHODNAME_CALLBACKRESULT @"callbackResult"
+#define JS_METHODNAME_PUSHACTIONRESULT @"pushActionResult"
+
+
 #import "ScatterMainViewController.h"
-#import "PSWebSocketServer.h"
 #import "SelectAccountView.h"
+#import "WkDelegateController.h"
 #import "ScatterResult_type_identityFromPermissions.h"
 #import "ScatterResult_type_requestSignature.h"
 #import "ExcuteMultipleActionsService.h"
@@ -18,9 +39,8 @@
 #import "Abi_bin_to_json_Result.h"
 #import "Abi_bin_to_json.h"
 
-@interface ScatterMainViewController ()<WKNavigationDelegate, WKUIDelegate, SelectAccountViewDelegate, PSWebSocketServerDelegate, DAppExcuteMutipleActionsBaseViewDelegate>
-@property (nonatomic, strong) PSWebSocketServer *server;
-@property(nonatomic , strong) PSWebSocket *webSocket;
+
+@interface ScatterMainViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate, SelectAccountViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, WKURLSchemeHandler>
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
@@ -46,13 +66,19 @@
         WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
         
         self.userContentController =[[WKUserContentController alloc]init];
+        
+        WKUserScript *script = [[WKUserScript alloc] initWithSource:[self getInjectJS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [self.userContentController addUserScript:script];
+        
+        
         configuration.userContentController = self.userContentController;
+        
         
         self.sharedProcessPool = [[WKProcessPool alloc]init];
         configuration.processPool = self.sharedProcessPool;
         
         self.webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT) configuration:configuration];
-//        self.webView.UIDelegate = self;
+        self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         
         // 顶部出现空白
@@ -63,7 +89,7 @@
             
         }
         if (@available(iOS 9.0, *)) {
-            self.webView.customUserAgent = @"PocketEosIos";
+            self.webView.customUserAgent = @"PocketEosIos"; //tokenpocket
         } else {
             // Fallback on earlier versions
         }
@@ -115,17 +141,6 @@
     return _closeItem;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-//    [self.server stop];
-}
-
 - (DappExcuteActionsDataSourceService *)dappExcuteActionsDataSourceService{
     if (!_dappExcuteActionsDataSourceService) {
         _dappExcuteActionsDataSourceService = [[DappExcuteActionsDataSourceService alloc] init];
@@ -158,6 +173,38 @@
     return _abi_bin_to_jsonRequest;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTION];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSH];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTIONS];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHMESSAGE];
+    
+    
+    if (IsStrEmpty(self.webView.title)) {
+        [self.webView reload];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+    // 因此这里要记得移除handlers
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushAction('%@','%@')"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushActions('%@','%@')"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"push('%@','%@','%@','%@','%@')"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"pushMessage('%@','%@','%@')"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [MobClick event:@"DAppDidClick" label: VALIDATE_STRING(self.model.applyName)];
@@ -175,27 +222,9 @@
     [self.view addSubview: self.selectAccountView];
 }
 
-#pragma mark - PSWebSocketServerDelegate
-
-- (void)serverDidStart:(PSWebSocketServer *)server {
-    NSLog(@"%s", __func__);
-    [self loadWebView];
-}
-
-- (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
-    NSLog(@"%s %@ ", __func__, error);
-    //    [NSException raise:NSInternalInconsistencyException format:error.localizedDescription];
-}
-- (void)serverDidStop:(PSWebSocketServer *)server {
-    NSLog(@"%s", __func__);
-//    [NSException raise:NSInternalInconsistencyException format:@"Server stopped unexpected."];
-}
-
-- (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
-    NSLog(@"%s", __func__);
-}
-- (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
-    self.webSocket = webSocket;
+-(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    
+    NSLog(@"name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n",message.name,message.body,message.frameInfo);
     NSLog(@"ReceiveMessage: %@", message);
     NSString *recivedMessage = message;
     NSString *handledMessage =  [recivedMessage stringByReplacingOccurrencesOfString:@"42/scatter," withString:@""];
@@ -204,49 +233,46 @@
     NSString *responseStr;
     if ([result[0] containsString:@"pair"]) {
         NSString *test = @"42/scatter,[\"paired\",true]";
-        [webSocket send:test];
+
     }else if ([result[0] containsString:@"api"]){
         if ([result1_tojsonStr containsString:@"identityFromPermissions"] || [result1_tojsonStr containsString:@"authenticate"]
             || [result1_tojsonStr containsString:@"getOrRequestIdentity"] || [result1_tojsonStr containsString:@"requestAddNetwork"]) {
             ScatterResult_type_identityFromPermissions *scatterResult = [ScatterResult_type_identityFromPermissions mj_objectWithKeyValues:result[1]];
-            
+
             AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-            
+
             NSMutableDictionary *finalDict = [NSMutableDictionary dictionary];
             NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
             [resultDict setObject:[scatterResult.scatterResult_appkey sha256] forKey:@"hash"];
             [resultDict setObject:VALIDATE_STRING(accountInfo.account_active_public_key)  forKey:@"publicKey"];
             [resultDict setObject:@"PocketEOS" forKey:@"name"];
             [resultDict setObject: [NSNumber numberWithBool:NO] forKey:@"kyc"];
-            
+
             NSMutableDictionary *accountDict = [NSMutableDictionary dictionary];
             [accountDict setObject:VALIDATE_STRING(self.choosedAccountName) forKey:@"name"];
             [accountDict setObject:@"active" forKey:@"authority"];
             [accountDict setObject:VALIDATE_STRING(accountInfo.account_active_public_key) forKey:@"publicKey"];
             [accountDict setObject:@"eos" forKey:@"blockchain"];
-            
+
             [resultDict setObject:@[accountDict] forKey:@"accounts"];
-            
+
             [finalDict setObject:resultDict forKey:@"result"];
             [finalDict setObject:scatterResult.scatterResult_id forKey:@"id"];
-            
+
             NSArray *finalArr = @[@"api", finalDict];
             responseStr = [NSString stringWithFormat:@"42/scatter,%@", [finalArr mj_JSONString]];
-            
-            [webSocket send:responseStr];
-            
+
+
+
         }else if ([result1_tojsonStr containsString:@"requestSignature"]){
             self.requestSignature_scatterResult = [ScatterResult_type_requestSignature mj_objectWithKeyValues:result[1]];
             [self buildDataSource];
-            
+
         }
-        
+
         NSLog(@"responseStr: %@", responseStr);
     }
-    
 }
-
-
 
 - (void)buildDataSource{
     WS(weakSelf);
@@ -358,7 +384,7 @@
     NSString *responseStr;
     responseStr = [NSString stringWithFormat:@"42/scatter,%@", [finalArr mj_JSONString]];
     
-    [self.webSocket send:responseStr];
+    
     NSLog(@"responseStr: %@", responseStr);
     [self removeExcuteMutipleActionsBaseView];
 }
@@ -378,9 +404,19 @@
     NSString *responseStr;
     responseStr = [NSString stringWithFormat:@"42/scatter,%@", [finalArr mj_JSONString]];
     
-    [self.webSocket send:responseStr];
+    
     NSLog(@"responseStr: %@", responseStr);
 }
+
+
+// pushMessageResultResponse callbackResult
+- (void)responseToJsWithJSMethodName:(NSString *)jsMethodName SerialNumber:(NSString *)serialNumber andMessage:(NSString *)message{
+    NSString *jsStr = [NSString stringWithFormat:@"%@('%@', '%@')", jsMethodName,serialNumber, message];
+    [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@----%@",result, error);
+    }];
+}
+
 
 - (void)excuteMutipleActionsCloseBtnDidClick{
     [self removeExcuteMutipleActionsBaseView];
@@ -393,25 +429,12 @@
 }
 
 
-- (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"%s", __func__);
-    
-}
-
-- (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"%s", __func__);
-}
-
-
 #pragma mark -- WKWebViewDelegate
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{
     [webView reload];
     NSLog(@"reload");
 }
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    NSLog(@"%s", __FUNCTION__);
-}
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
     [TOASTVIEW showWithText: [error localizedDescription]];
@@ -425,31 +448,6 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
-
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-    //    DLOG(@"msg = %@ frmae = %@",message,frame);
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(NO);
-    }])];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(YES);
-    }])];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = defaultText;
-    }];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(alertController.textFields[0].text?:@"");
-    }])];
-    
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
 
 //SelectAccountViewDelegate
 - (void)selectAccountBtnDidClick:(UIButton *)sender{
@@ -481,24 +479,18 @@
         return;
     } else{
         [self.selectAccountView removeFromSuperview];
-        self.server = [PSWebSocketServer serverWithHost:@"127.0.0.1" port:50005];
-        self.server.delegate = self;
-        [self.server start];
+        [self loadWebView];
     }
 }
 
 - (void)loadWebView{
-    //       xgame http://47.74.145.111 self.model.url http://api.oraclechain.io:1443
+    //https://dapp.newdex.io/    https://game.wizards.one/#/ https://app.deosgames.com/en/slots/deos  https://pixelmaster.io/ https://www.xpet.io/
     NSString *requestStr;
-    requestStr = @"https://dice.eosbet.io/?ref=jintianyaook";
-//    if ([NSBundle isChineseLanguage]) {
-//        requestStr = [NSString stringWithFormat:@"%@?language=Chinese",model.url];
-//    }else{
-//        requestStr = [NSString stringWithFormat:@"%@?language=English",model.url];
-//    }
+    requestStr = @"https://dapp.newdex.io/";
+//    requestStr = [NSString stringWithFormat:@"%@",self.model.url];
     NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
     [self.webView loadRequest: finalRequest];
-//    self.webView.UIDelegate = self;
+    self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
     [self.view addSubview:self.webView];
 }
@@ -523,6 +515,16 @@
 }
 
 
+- (NSString *)getInjectJS{
+    //compress_xinxin testScatterSONG
+    NSString *JSfilePath = [[NSBundle mainBundle]pathForResource:@"compress_xinxin" ofType:@"js"];
+    NSString *content = [NSString stringWithContentsOfFile:JSfilePath encoding:NSUTF8StringEncoding error:nil];
+    NSString *final = [@"var script = document.createElement('script');"
+                       "script.type = 'text/javascript';"
+                       "script.text = \""
+                       stringByAppendingString:content];
+    return final;
+}
 
 
 @end

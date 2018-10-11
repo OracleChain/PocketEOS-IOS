@@ -13,11 +13,24 @@
 #import "GetTransactionByIdRequest.h"
 #import "Get_table_rows_request.h"
 #import "BalanceModel.h"
+#import "ScatterResult_type_requestSignature.h"
+#import "Abi_bin_to_jsonRequest.h"
+#import "ExcuteActions.h"
+#import "Abi_bin_to_json_Result.h"
+#import "DappExcuteActionsDataSourceService.h"
+
 
 @interface DappDetailService()
 @property(nonatomic, strong) GetAccountRequest *getAccountRequest;
 @property(nonatomic , strong) GetTransactionByIdRequest *getTransactionByIdRequest;
 @property (nonatomic , strong) Get_table_rows_request *get_table_rows_request;
+
+@property(nonatomic , strong) NSMutableArray *finalExcuteActionsArray; // excuteActions add binargs Array
+@property(nonatomic , assign) NSInteger abi_bin_to_json_request_count;
+@property(nonatomic , strong) Abi_bin_to_jsonRequest *abi_bin_to_jsonRequest;
+@property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
+
+
 @end
 
 
@@ -44,6 +57,28 @@
     }
     return _get_table_rows_request;
 }
+
+- (NSMutableArray *)finalExcuteActionsArray{
+    if (!_finalExcuteActionsArray) {
+        _finalExcuteActionsArray = [[NSMutableArray alloc] init];
+    }
+    return _finalExcuteActionsArray;
+}
+
+- (DappExcuteActionsDataSourceService *)dappExcuteActionsDataSourceService{
+    if (!_dappExcuteActionsDataSourceService) {
+        _dappExcuteActionsDataSourceService = [[DappExcuteActionsDataSourceService alloc] init];
+    }
+    return _dappExcuteActionsDataSourceService;
+}
+
+- (Abi_bin_to_jsonRequest *)abi_bin_to_jsonRequest{
+    if (!_abi_bin_to_jsonRequest) {
+        _abi_bin_to_jsonRequest = [[Abi_bin_to_jsonRequest alloc] init];
+    }
+    return _abi_bin_to_jsonRequest;
+}
+
 
 - (void)getAppInfo:(CompleteBlock)complete{
     NSMutableDictionary *resultDict = [[NSMutableDictionary alloc] init];
@@ -158,6 +193,116 @@
     complete([resultDict mj_JSONString], YES );
 }
 
+// scatter
+- (void)requestScatterSignature:(CompleteBlock)complete{
+    
+    self.requestSignature_scatterResult = [ScatterResult_type_requestSignature mj_objectWithKeyValues:self.scatter_request_signatureStr];
+    [self buildAbi_bin_to_jsonDataSource];
+    complete(@"hahaha", YES );
+}
+
+
+
+- (void)buildAbi_bin_to_jsonDataSource{
+    WS(weakSelf);
+    self.abi_bin_to_json_request_count = 0;
+    NSMutableArray *tmp = [NSMutableArray array];
+    NSArray *actionsArray = self.requestSignature_scatterResult.actions;
+    for (int i = 0 ; i < actionsArray.count; i++) {
+        NSDictionary *dict = actionsArray[i];
+        ExcuteActions *action = [ExcuteActions mj_objectWithKeyValues:dict];
+        action.tag = [NSString stringWithFormat:@"action%d", i];
+        
+        self.abi_bin_to_jsonRequest.code = action.account;
+        self.abi_bin_to_jsonRequest.action = action.name;
+        self.abi_bin_to_jsonRequest.binargs = dict[@"data"];
+        
+        AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] init];
+        [outerNetworkingManager.requestSerializer setValue: @"application/json" forHTTPHeaderField: @"Accept"];
+        [outerNetworkingManager.requestSerializer setValue: @"application/json" forHTTPHeaderField: @"Content-Type"];
+        outerNetworkingManager.requestSerializer=[AFJSONRequestSerializer serializer];
+        [outerNetworkingManager.requestSerializer setValue: action.tag forHTTPHeaderField: @"From"];
+        
+        [outerNetworkingManager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/plain",@"text/json", @"text/javascript", nil]];
+        NSString *url = @"http://api.pocketeos.top/api_oc_blockchain-v1.3.0/abi_bin_to_json";
+        //        NSString *url = @"http://10.0.0.11:8080/lottery/abi_json_to_bin";
+        [outerNetworkingManager POST: url parameters: [self.abi_bin_to_jsonRequest parameters] progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSString *HTTPHeaderFieldFromValue = [outerNetworkingManager.requestSerializer valueForHTTPHeaderField:@"From"];
+            NSLog(@"responseObject: %@,HTTPHeaderFieldFromValue: %@", responseObject, HTTPHeaderFieldFromValue);
+            Abi_bin_to_json_Result *abi_bin_to_json_result = [Abi_bin_to_json_Result mj_objectWithKeyValues:responseObject];
+            
+            if ([abi_bin_to_json_result.code isEqualToNumber:@0]) {
+                if ([HTTPHeaderFieldFromValue isEqualToString:action.tag]) {
+                    action.data = abi_bin_to_json_result.data.args;
+                    weakSelf.abi_bin_to_json_request_count ++;
+                    [tmp addObject:action];
+                    
+                    if (weakSelf.abi_bin_to_json_request_count == actionsArray.count) {
+                        weakSelf.finalExcuteActionsArray =  (NSMutableArray *)[tmp sortedArrayUsingComparator:^NSComparisonResult(ExcuteActions  *obj1, ExcuteActions *obj2) {
+                            return [obj1.tag compare:obj2.tag options:(NSCaseInsensitiveSearch)];
+                        }];
+                        
+                        [weakSelf buildExcuteActionsDataSource];
+                    }
+                }
+            }else{
+                NSLog(@"%@",abi_bin_to_json_result.message );
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+        
+    }
+
+}
+
+- (void)buildExcuteActionsDataSource{
+    WS(weakSelf);
+    NSMutableArray *actionsArr = [NSMutableArray array];
+    for (int i = 0 ; i < self.finalExcuteActionsArray.count; i++) {
+        ExcuteActions *action = self.finalExcuteActionsArray[i];
+        NSMutableDictionary *actionDict = [NSMutableDictionary dictionary];
+        [actionDict setObject:VALIDATE_STRING(action.account) forKey:@"account"];
+        [actionDict setObject:VALIDATE_STRING(action.name) forKey:@"name"];
+        [actionDict setObject:IsNilOrNull(action.data) ? @{} : action.data forKey:@"data"];
+        [actionDict setObject:IsNilOrNull(action.authorization) ? @[] : action.authorization forKey:@"authorization"];
+        [actionsArr addObject:actionDict];
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@"Scatter_ExcuteActions" forKey:@"type"];
+    [dict setObject:VALIDATE_ARRAY(actionsArr) forKey:@"actions"];
+    
+    self.dappExcuteActionsDataSourceService.actionsResultDict = [dict mj_JSONString];
+    [self.dappExcuteActionsDataSourceService buildDataSource:^(id service, BOOL isSuccess) {
+        if (isSuccess) {
+            for (ExcuteActions *action in weakSelf.dappExcuteActionsDataSourceService.dataSourceArray) {
+                NSLog(@"scatterBuildExcuteActionsDataSourceAction :%@", [action mj_JSONString]);
+            }
+            
+            
+            NSLog(@"%@", weakSelf.requestSignature_scatterResult.mj_JSONString);
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(scatterBuildExcuteActionsDataSourceDidSuccess:)]) {
+                [weakSelf.delegate scatterBuildExcuteActionsDataSourceDidSuccess:weakSelf.dappExcuteActionsDataSourceService.dataSourceArray];
+            }
+//            [weakSelf.view addSubview:weakSelf.dAppExcuteMutipleActionsBaseView];
+//            [weakSelf.dAppExcuteMutipleActionsBaseView updateViewWithArray:weakSelf.dappExcuteActionsDataSourceService.dataSourceArray];
+        }
+    }];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 - (NSString *)queryAppVersionInBundle{
     
@@ -167,4 +312,5 @@
 //    NSString *versionStr = [currentVersionStr stringByReplacingOccurrencesOfString:@"." withString:@""];
     return currentVersionStr;
 }
+
 @end

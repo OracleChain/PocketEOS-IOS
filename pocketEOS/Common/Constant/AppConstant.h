@@ -26,6 +26,12 @@
  */
 #define CURRENT_ACCOUNT_NAME [[NSUserDefaults standardUserDefaults] objectForKey:Current_Account_name]
 
+/**
+ 当前 token_info_array
+ */
+#define CURRENT_TOKEN_INFO_ARRAY [ArchiveUtil unarchiveTokenInfoArray]
+
+#define LOCAL_CURRENT_TOKEN_INFO_ARRAY_FILENAME @"token_info_serviceDataSourceArray.archive"
 
 
 ////////////////////////////////////////////////////////////////////////////////////

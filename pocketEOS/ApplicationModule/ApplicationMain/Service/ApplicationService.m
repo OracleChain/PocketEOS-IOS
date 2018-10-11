@@ -140,12 +140,12 @@
             [TOASTVIEW showWithText: VALIDATE_STRING(result.message)];
         }else{
             NSMutableArray *tmpArr = result.data;
-            NSMutableArray *resultArr = [NSMutableArray array];
-            for (Application *app in tmpArr) {
-                if (!app.isScatter) {
-                    [resultArr addObject:app];
-                }
-            }
+            NSMutableArray *resultArr = [NSMutableArray arrayWithArray:tmpArr];
+//            for (Application *app in tmpArr) {
+//                if (!app.isScatter) {
+//                }
+//            }
+//            [resultArr addObject:app];
 
             
             [mgr clearAllCacheTableWithCacheTableName:APPLICATION_BODY_CACHE_TABLE];

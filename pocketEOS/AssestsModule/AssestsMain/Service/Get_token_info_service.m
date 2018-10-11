@@ -29,7 +29,7 @@
         [weakSelf.dataSourceArray addObjectsFromArray:weakSelf.responseArray];
         complete(result, YES);
     } failure:^(id DAO, NSError *error) {
-        complete(nil , YES);
+        complete(nil , NO);
     }];
 }
 

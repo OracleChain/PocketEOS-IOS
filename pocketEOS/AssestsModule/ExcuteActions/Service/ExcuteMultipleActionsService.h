@@ -29,7 +29,7 @@
 // excuteMultipleActions -- For Scatter-JS
 - (NSString *)excuteMultipleActionsForScatterWithScatterResult:(ScatterResult_type_requestSignature *)scatterResult andAvailable_keysArray:(NSArray *)available_keysArray andPassword:(NSString *)password;
 
-
+- (NSString *)excuteSignatureMessageForScatterWithActor:(NSString *)actor signatureMessage:(NSString *)messageStr andPassword:(NSString *)password;
 
 
 @property(nonatomic, copy) NSString *ref_block_num;

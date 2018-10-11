@@ -47,6 +47,10 @@
 "收款"="Receive";
 "红包"="Red Packets";
 "发红包"="Red Packets";
+"发起转账"="Send";
+"发起收款"="Receive";
+"发送红包"="Red Packets";
+
 
 /*
  AssestsMainViewController.m
@@ -758,3 +762,6 @@
 "失败"="Failed!";
 "授权代表您信任该Dapp，PE不对由此造成的损失负责"="Don't authorize unless you turst the dapp, and PE is liability exemption.";
 "确认授权"="Authorize";
+"密码"="Password";
+"请输入钱包密码"="Set the wallet password";
+"请求授权账户和本地账户不同,请谨慎操作"="Auth account is different form local account, be extremely careful!";

@@ -219,6 +219,7 @@
         [TOASTVIEW showWithText:NSLocalizedString(@"未找到账号的私钥!", nil)];
         return;
     }
+    NSLog(@"xpetwif:%@",wif );
     const int8_t *private_key = [[EOS_Key_Encode getRandomBytesDataWithWif:wif] bytes];
     //     [NSObject out_Int8_t:private_key andLength:32];
     if (!private_key) {
@@ -318,8 +319,8 @@
     
     [transacDic setObject:VALIDATE_ARRAY(actionsArr) forKey:@"actions"];
     
-    
-    Sha256 *sha256 = [[Sha256 alloc] initWithData:[EosByteWriter getBytesForSignatureExcuteMultipleActions:[NSObject convertHexStrToData:scatterResult.chainId] andParams: transacDic andCapacity:255]];
+    Sha256 *sha256 = [[Sha256 alloc] initWithData:[EosByteWriter getBytesForSignatureExcuteMultipleActions:[NSObject convertHexStrToData:@"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"] andParams: transacDic andCapacity:255]]; // chainId 写死
+//    Sha256 *sha256 = [[Sha256 alloc] initWithData:[EosByteWriter getBytesForSignatureExcuteMultipleActions:[NSObject convertHexStrToData:scatterResult.chainId] andParams: transacDic andCapacity:255]];
     int8_t signature[uECC_BYTES*2];
     int recId = uECC_sign_forbc(private_key, sha256.mHashBytesData.bytes, signature);
     if (recId == -1 ) {
@@ -349,6 +350,51 @@
     }
     
 }
+
+
+- (NSString *)excuteSignatureMessageForScatterWithActor:(NSString *)actor signatureMessage:(NSString *)messageStr andPassword:(NSString *)password{
+    
+    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:actor];
+    const int8_t *private_key = [[EOS_Key_Encode getRandomBytesDataWithWif:[AESCrypt decrypt:accountInfo.account_active_private_key password:password]] bytes];
+//    const int8_t *private_key = [[EOS_Key_Encode getRandomBytesDataWithWif:@"5JLHReCKAn88SdEDtDt8DzMweDdD7eiaoc6w72jWFuVR4piNh5y"] bytes];
+    //     [NSObject out_Int8_t:private_key andLength:32];
+    if (!private_key) {
+        [TOASTVIEW showWithText:@"private_key can't be nil!"];
+        return nil;
+    }
+    
+    Sha256 *sha256 = [[Sha256 alloc] initWithData:[messageStr dataUsingEncoding:NSUTF8StringEncoding]];
+    int8_t signature[uECC_BYTES*2];
+    int recId = uECC_sign_forbc(private_key, sha256.mHashBytesData.bytes, signature);
+    if (recId == -1 ) {
+        printf("could not find recid. Was this data signed with this key?\n");
+        return nil;
+    }else{
+        unsigned char bin[65+4] = { 0 };
+        unsigned char *rmdhash = NULL;
+        int binlen = 65+4;
+        int headerBytes = recId + 27 + 4;
+        bin[0] = (unsigned char)headerBytes;
+        memcpy(bin + 1, signature, uECC_BYTES * 2);
+        
+        unsigned char temp[67] = { 0 };
+        memcpy(temp, bin, 65);
+        memcpy(temp + 65, "K1", 2);
+        
+        rmdhash = RMD(temp, 67);
+        memcpy(bin + 1 +  uECC_BYTES * 2, rmdhash, 4);
+        
+        char sigbin[100] = { 0 };
+        size_t sigbinlen = 100;
+        b58enc(sigbin, &sigbinlen, bin, binlen);
+        
+        NSString *signatureStr = [NSString stringWithFormat:@"SIG_K1_%@", [NSString stringWithUTF8String:sigbin]];
+        NSLog(@"signatureStr %@", signatureStr);
+        return signatureStr;
+    }
+    
+}
+
 
 
 @end

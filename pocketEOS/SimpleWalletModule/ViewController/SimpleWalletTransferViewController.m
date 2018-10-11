@@ -72,6 +72,7 @@
     [self.mainScrollView addSubview:self.headerView];
     
     self.simpleWalletTransferModel = [SimpleWalletTransferModel mj_objectWithKeyValues:self.scannedResult];
+    NSLog(@"simpleWalletTransferModel %@", [self.simpleWalletTransferModel mj_JSONString]);
     self.headerView.model = self.simpleWalletTransferModel;
     
     
@@ -108,7 +109,7 @@
     [dataDict setObject:VALIDATE_STRING(self.simpleWalletTransferModel.from) forKey:@"from"];
     [dataDict setObject:VALIDATE_STRING(self.simpleWalletTransferModel.to) forKey:@"to"];
     [dataDict setObject:[NSString stringWithFormat:@"%@ %@", [NSString stringWithFormat:@"%.*f", self.simpleWalletTransferModel.precision.intValue, self.simpleWalletTransferModel.amount.doubleValue], self.simpleWalletTransferModel.symbol] forKey:@"quantity"];
-    [dataDict setObject:VALIDATE_STRING(self.simpleWalletTransferModel.desc) forKey:@"memo"];
+    [dataDict setObject:VALIDATE_STRING(self.simpleWalletTransferModel.dappData) forKey:@"memo"];
     
     [actionDict setObject:VALIDATE_STRING(self.simpleWalletTransferModel.contract) forKey:@"account"];
     [actionDict setObject:VALIDATE_STRING(@"transfer") forKey:@"name"];

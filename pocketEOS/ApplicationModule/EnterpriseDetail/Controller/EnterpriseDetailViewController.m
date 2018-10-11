@@ -100,20 +100,17 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
-    if (model.isScatter) {
-        ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
+   
+    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
+        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-            QuestionListViewController *vc = [[QuestionListViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else{
-            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-            vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }
+        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
+    
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -133,10 +130,7 @@
 - (void)recommandBtnDidClick:(UIButton *)sender{
     if (self.mainService.recommandApplicationDataArray.count > 0) {
         Application *model = self.mainService.recommandApplicationDataArray[0];
-        if (model.isScatter) {
-            ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else{
+     
             if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
                 QuestionListViewController *vc = [[QuestionListViewController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
@@ -146,7 +140,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }
-        }
+        
         
         
         

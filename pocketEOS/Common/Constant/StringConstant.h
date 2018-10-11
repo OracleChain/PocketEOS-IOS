@@ -12,4 +12,5 @@
 extern NSString *const Current_wallet_uid;
 extern NSString *const Current_Account_name;
 extern NSString *const Total_assets_visibel;
+extern NSString *const Current_token_info_array;
 @end

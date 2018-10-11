@@ -53,6 +53,7 @@
 #import "AccountOrderStatus.h"
 #import "AccountOrderStatusResult.h"
 #import "ScatterMainViewController.h"
+#import "ExcuteMultipleActionsService.h"
 
 
 @interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
@@ -229,9 +230,10 @@
     
     // 配置开屏广告
 //    [self configAdvertisement];
-    [self addinviteFriendBtn];
+//    [self addinviteFriendBtn];
     [self checkNewVersion];
-    [self checkNetworkStatus];
+
+    
 }
 
 // 构建数据源
@@ -255,8 +257,18 @@
                     [weakSelf removeAccountNotExistView];
                     [weakSelf.mainTableView reloadData];
                     [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+                    //沙盒ducument目录
+                    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                    //完整的文件路径
+                    NSString *path = [docPath stringByAppendingPathComponent:LOCAL_CURRENT_TOKEN_INFO_ARRAY_FILENAME];
+                    
+                   BOOL success = [NSKeyedArchiver archiveRootObject:weakSelf.get_token_info_service.dataSourceArray toFile:path];
                 }
             }
+        
+        
+            
+        
     }];
 }
 
@@ -391,10 +403,12 @@
         [MobClick event:@"RAM交易"];
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         Application *model = [[Application alloc] init];
-        model.url = @"http://static.pocketeos.top:3002";
+//        model.url = @"http://static.pocketeos.top:3002";
 //        https://www.xpet.io/index.html?identity=684
 //        model.url = @"http://oct.xpet.io/index.html?identity=684";
-//        model.url = @"http://10.0.0.133:8080";
+//        model.url = @"https://dapp.newdex.io/";
+//        model.url = @"https://dice.eosbet.io/";
+        model.url = @"http://10.0.0.133:8080";
         model.applyName = @"EOS内存市场";
         vc.model = model;
         vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
@@ -546,6 +560,11 @@
         }
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
+        NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
+        weakSelf.get_token_info_service.dataSourceArray = [NSMutableArray arrayWithArray:tmpArr];
+        [weakSelf.mainTableView reloadData];
+        [weakSelf.headerView updateViewWithDataArray:weakSelf.get_token_info_service.dataSourceArray];
+        [weakSelf checkNetworkStatus];
     }];
 }
 
@@ -603,6 +622,7 @@
         }
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
+        
     }];
 }
 

@@ -28,4 +28,6 @@
 
 @property(nonatomic , strong) NSMutableDictionary *transaction;
 
+@property(nonatomic , copy) NSString *requestSignatureMessage;
+
 @end

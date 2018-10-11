@@ -18,6 +18,7 @@
 		18041E84213D142100A8D870 /* recieve_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E7F213D142000A8D870 /* recieve_white@3x.png */; };
 		18041E88213D153300A8D870 /* recieve@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E86213D153200A8D870 /* recieve@3x.png */; };
 		18041E89213D153300A8D870 /* recieve@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18041E87213D153200A8D870 /* recieve@2x.png */; };
+		180421C8216C6EE700034FCF /* testScatterSONG.js in Resources */ = {isa = PBXBuildFile; fileRef = 180421C7216C6EE700034FCF /* testScatterSONG.js */; };
 		1806D0F7206E58540023D83B /* SocialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F6206E58540023D83B /* SocialModel.m */; };
 		1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0F9206E5A010023D83B /* BindWechatRequest.m */; };
 		1806D0FD206E5A0C0023D83B /* BindQQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806D0FC206E5A0C0023D83B /* BindQQRequest.m */; };
@@ -777,6 +778,10 @@
 		1886079D1FCC012F00B00EE7 /* NSMutableAttributedString+ExFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1886078D1FCC012F00B00EE7 /* NSMutableAttributedString+ExFoundation.m */; };
 		1886079F1FCC012F00B00EE7 /* UIColor+AppConfigColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 188607911FCC012F00B00EE7 /* UIColor+AppConfigColor.m */; };
 		188607A01FCC012F00B00EE7 /* UIColor+SNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 188607931FCC012F00B00EE7 /* UIColor+SNFoundation.m */; };
+		1888681F216CB6B4008E4491 /* ArchiveUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888681E216CB6B4008E4491 /* ArchiveUtil.m */; };
+		18886823216DC634008E4491 /* AccountAuthorizationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886822216DC634008E4491 /* AccountAuthorizationView.m */; };
+		18886826216DCECC008E4491 /* SignatureForMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886825216DCECC008E4491 /* SignatureForMessageModel.m */; };
+		18886828216DF561008E4491 /* scatter_pe.js in Resources */ = {isa = PBXBuildFile; fileRef = 18886827216DF561008E4491 /* scatter_pe.js */; };
 		188C30411FFDE25C00A357F3 /* lockBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C303F1FFDE25C00A357F3 /* lockBackground@2x.png */; };
 		188C30421FFDE25C00A357F3 /* lockBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188C30401FFDE25C00A357F3 /* lockBackground@3x.png */; };
 		188C30581FFE0AFE00A357F3 /* CreatePocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C30561FFE0AFE00A357F3 /* CreatePocketViewController.m */; };
@@ -1219,6 +1224,7 @@
 		18041E7F213D142000A8D870 /* recieve_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recieve_white@3x.png"; path = "../../../../../Documents/PocketUI/PocketEOS-UI/资产详情页优化/切图/recieve_white@3x.png"; sourceTree = "<group>"; };
 		18041E86213D153200A8D870 /* recieve@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@3x.png"; sourceTree = "<group>"; };
 		18041E87213D153200A8D870 /* recieve@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recieve@2x.png"; sourceTree = "<group>"; };
+		180421C7216C6EE700034FCF /* testScatterSONG.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testScatterSONG.js; sourceTree = "<group>"; };
 		1806D0F5206E58540023D83B /* SocialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialModel.h; sourceTree = "<group>"; };
 		1806D0F6206E58540023D83B /* SocialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialModel.m; sourceTree = "<group>"; };
 		1806D0F8206E5A010023D83B /* BindWechatRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindWechatRequest.h; sourceTree = "<group>"; };
@@ -2577,6 +2583,13 @@
 		188607921FCC012F00B00EE7 /* UIColor+SNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SNFoundation.h"; sourceTree = "<group>"; };
 		188607931FCC012F00B00EE7 /* UIColor+SNFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SNFoundation.m"; sourceTree = "<group>"; };
 		1886479F1FCC080F003566A9 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		1888681D216CB6B4008E4491 /* ArchiveUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArchiveUtil.h; sourceTree = "<group>"; };
+		1888681E216CB6B4008E4491 /* ArchiveUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArchiveUtil.m; sourceTree = "<group>"; };
+		18886821216DC634008E4491 /* AccountAuthorizationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountAuthorizationView.h; sourceTree = "<group>"; };
+		18886822216DC634008E4491 /* AccountAuthorizationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountAuthorizationView.m; sourceTree = "<group>"; };
+		18886824216DCECC008E4491 /* SignatureForMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignatureForMessageModel.h; sourceTree = "<group>"; };
+		18886825216DCECC008E4491 /* SignatureForMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignatureForMessageModel.m; sourceTree = "<group>"; };
+		18886827216DF561008E4491 /* scatter_pe.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scatter_pe.js; sourceTree = "<group>"; };
 		188C303F1FFDE25C00A357F3 /* lockBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lockBackground@2x.png"; sourceTree = "<group>"; };
 		188C30401FFDE25C00A357F3 /* lockBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lockBackground@3x.png"; sourceTree = "<group>"; };
 		188C30551FFE0AFE00A357F3 /* CreatePocketViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePocketViewController.h; sourceTree = "<group>"; };
@@ -3327,6 +3340,15 @@
 				18017044207EF1A300E4DA07 /* NSURLProtocol+WKWebVIew.m */,
 			);
 			path = JWNetAutoCache;
+			sourceTree = "<group>";
+		};
+		180421C6216C6EDF00034FCF /* JSFiles */ = {
+			isa = PBXGroup;
+			children = (
+				18886827216DF561008E4491 /* scatter_pe.js */,
+				180421C7216C6EE700034FCF /* testScatterSONG.js */,
+			);
+			path = JSFiles;
 			sourceTree = "<group>";
 		};
 		180483C920B984B200DE10CA /* AESCrypt */ = {
@@ -4318,6 +4340,7 @@
 		183226F720A2A74D00BF6D6F /* DappDetail */ = {
 			isa = PBXGroup;
 			children = (
+				18886820216DC5F2008E4491 /* View */,
 				18ECBCC3215B572700BAE3C2 /* Service */,
 				183226F820A2A74D00BF6D6F /* DappDetailViewController */,
 				1850315C20BD223D007610A2 /* Model */,
@@ -4480,6 +4503,8 @@
 				1884127F20C8D7FD005D752C /* DeviceType.m */,
 				1837D76A20E3C93C005A9E98 /* WalletUtil.h */,
 				1837D76B20E3C93C005A9E98 /* WalletUtil.m */,
+				1888681D216CB6B4008E4491 /* ArchiveUtil.h */,
+				1888681E216CB6B4008E4491 /* ArchiveUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5054,6 +5079,8 @@
 				18D475B5215CD6C400F3BF22 /* GetEosBalanceModel.m */,
 				18D475B7215CD6EA00F3BF22 /* GetTransactionByIdModel.h */,
 				18D475B8215CD6EA00F3BF22 /* GetTransactionByIdModel.m */,
+				18886824216DCECC008E4491 /* SignatureForMessageModel.h */,
+				18886825216DCECC008E4491 /* SignatureForMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6632,6 +6659,7 @@
 		1886076D1FCBF6DE00B00EE7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				180421C6216C6EDF00034FCF /* JSFiles */,
 				1850338D20EF53660023B390 /* jsonFiles */,
 				18291F1C20ECAC2900D19CB9 /* 201807 */,
 				18AD2BB020D0C9B000536084 /* BPVote */,
@@ -6712,6 +6740,15 @@
 				18FA76DC20623F3100545E73 /* NSObject+Extension.m */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		18886820216DC5F2008E4491 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18886821216DC634008E4491 /* AccountAuthorizationView.h */,
+				18886822216DC634008E4491 /* AccountAuthorizationView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		188C30341FFDDA2F00A357F3 /* LoginModule */ = {
@@ -9371,6 +9408,7 @@
 				18D07A9620EB6BD500DF1FDF /* mainAccount@2x.png in Resources */,
 				18D07A9220EB68C200DF1FDF /* PockSecureDeclare.rtf in Resources */,
 				18BA1F0C211168F7008558DE /* import_account@2x.png in Resources */,
+				180421C8216C6EE700034FCF /* testScatterSONG.js in Resources */,
 				183FF74420C159740058D010 /* pocket_BB@3x.png in Resources */,
 				18DBD276204244D1001E2DDF /* walletQRCodeBoder@3x.png in Resources */,
 				18DBD281204258B0001E2DDF /* wallet_default_avatar@3x.png in Resources */,
@@ -9743,6 +9781,7 @@
 				18DBD28520426521001E2DDF /* account_default_blue@3x.png in Resources */,
 				186F6A1620F4966300FFF881 /* VersionUpdateHeaderView.xib in Resources */,
 				18F03FF220678BE900697D7F /* QRCode_small_white@2x.png in Resources */,
+				18886828216DF561008E4491 /* scatter_pe.js in Resources */,
 				1828F90F20687C1F00513CD1 /* eye_close@3x.png in Resources */,
 				1807EFA21FE8F8140010CF7F /* oval@2x.png in Resources */,
 				18CEA6842105D9AC00B2BFE2 /* news_unSelect@3x.png in Resources */,
@@ -10024,6 +10063,7 @@
 				180FDF8A20219D5700BE593F /* AssestsMainTableViewCell.m in Sources */,
 				1841419C202029B400A789ED /* RichlistDetailService.m in Sources */,
 				18F054D320CBBBFB001B0A29 /* BPCandidateService.m in Sources */,
+				18886823216DC634008E4491 /* AccountAuthorizationView.m in Sources */,
 				1814140C1FCFA2BA00334C60 /* SVIndefiniteAnimatedView.m in Sources */,
 				181275D920B6DDA3005EDD91 /* UIView+frameAdjust.m in Sources */,
 				18563F521FD799EA00CF05FC /* UITextView+Placeholder.m in Sources */,
@@ -10068,6 +10108,7 @@
 				186050EF2027FEE700C87DDF /* QuestionListDetailResult.m in Sources */,
 				188607751FCBF73B00B00EE7 /* BaseTabBarController.m in Sources */,
 				186BDBC82150F8E0001190A7 /* ScatterMainService.m in Sources */,
+				18886826216DCECC008E4491 /* SignatureForMessageModel.m in Sources */,
 				1835771D21003F0900F075EA /* Delete_user_custom_token_request.m in Sources */,
 				1806FA2E200EE10800BDFEC4 /* SystemSettingViewController.m in Sources */,
 				185DD6D5206CA80400BCFFCF /* MJFoundation.m in Sources */,
@@ -10091,6 +10132,7 @@
 				1831F3A620170B63002CE94D /* GetAccountAssetRequest.m in Sources */,
 				18B29133208996BA0032EE27 /* RedPacketDetail.m in Sources */,
 				1825DC6E20061BB30057320C /* AskQuestionViewController.m in Sources */,
+				1888681F216CB6B4008E4491 /* ArchiveUtil.m in Sources */,
 				18D02F0B214F809E006D2776 /* PSWebSocketDriver.m in Sources */,
 				1856A4E52008887200D62FEB /* MJRefreshAutoStateFooter.m in Sources */,
 				18F054EA20CBE8AB001B0A29 /* GetBPCandidateListRequest.m in Sources */,

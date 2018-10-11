@@ -66,6 +66,7 @@
 #import "ThirdPayManager.h"
 #import "DeviceType.h"
 #import "WalletUtil.h"
+#import "ArchiveUtil.h"
 #import "OptionModel.h"
 #import "QRCodeModel.h"
 #import "BaseResult.h"

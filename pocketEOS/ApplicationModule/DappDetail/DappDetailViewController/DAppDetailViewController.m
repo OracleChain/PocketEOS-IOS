@@ -22,6 +22,9 @@
 #define JS_INTERACTION_METHOD_getAppInfo @"getAppInfo"
 #define JS_INTERACTION_METHOD_unknown @"unknown"
 
+#define JS_INTERACTION_METHOD_requestSignature @"requestSignature"
+#define JS_INTERACTION_METHOD_requestMsgSignature @"requestMsgSignature"
+
 
 #define JS_METHODNAME_CALLBACKRESULT @"callbackResult"
 #define JS_METHODNAME_PUSHACTIONRESULT @"pushActionResult"
@@ -43,8 +46,13 @@
 #import "DappDetailService.h"
 #import "GetEosBalanceModel.h"
 #import "GetTransactionByIdModel.h"
+#import "DAppExcuteMutipleActionsBaseView.h"
+#import "SignatureForMessageModel.h"
+#import "AccountAuthorizationView.h"
 
-@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate>
+
+
+@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate, DappDetailServiceDelegate, AccountAuthorizationViewDelegate>
 @property WebViewJavascriptBridge* bridge;
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
@@ -68,6 +76,11 @@
 @property(nonatomic , strong) DappDetailService *dappDetailService;
 @property(nonatomic , strong) DAppExcuteMutipleActionsBaseView *dAppExcuteMutipleActionsBaseView;
 @property(nonatomic , assign) BOOL allowZoom;
+
+@property(nonatomic , strong) SignatureForMessageModel *signatureForMessageModel;
+
+@property(nonatomic , strong) AccountAuthorizationView *accountAuthorizationView;
+@property (nonatomic,strong) UIProgressView *progressView;
 @end
 
 @implementation DAppDetailViewController
@@ -79,6 +92,11 @@
         
         self.userContentController =[[WKUserContentController alloc]init];
         configuration.userContentController = self.userContentController;
+        
+//        if (self.model.isScatter) {
+            WKUserScript *userScript = [[WKUserScript alloc] initWithSource:[self getInjectJS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];// forMainFrameOnly:NO(全局窗口)，yes（只限主窗口）
+            [self.userContentController addUserScript:userScript];
+//        }
         
         self.sharedProcessPool = [[WKProcessPool alloc]init];
         configuration.processPool = self.sharedProcessPool;
@@ -209,9 +227,28 @@
 - (DappDetailService *)dappDetailService{
     if (!_dappDetailService) {
         _dappDetailService = [[DappDetailService alloc] init];
+        _dappDetailService.delegate = self;
         _dappDetailService.choosedAccountName = self.choosedAccountName;
     }
     return _dappDetailService;
+}
+
+- (AccountAuthorizationView *)accountAuthorizationView{
+    if (!_accountAuthorizationView) {
+        _accountAuthorizationView = [[AccountAuthorizationView alloc] init];
+        _accountAuthorizationView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT );
+        _accountAuthorizationView.delegate = self;
+    }
+    return _accountAuthorizationView;
+}
+
+- (UIProgressView *)progressView{
+    if (!_progressView) {
+        _progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 2)];
+        self.progressView.progressTintColor = HEXCOLOR(0xFF0B78E3);
+        
+    }
+    return _progressView;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -263,9 +300,12 @@
         [self.view addSubview:self.selectAccountView];
     }else{
         [self loadWebView];
+        [self.view addSubview:self.progressView];
     }
     self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
-
+    
+    // 给webview添加监听
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
@@ -304,12 +344,25 @@
         }
         return;
     }
-    [self pushActions];
+    
+    if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+        
+        if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_requestSignature]) {
+            [self generateScatterSignature];
+            
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_requestMsgSignature]){
+            [self generateSignatureForMessage];
+        }
+    }else{
+        [self pushActions];
+        
+    }
+    
+
 }
 
 - (void)excuteMutipleActionsCloseBtnDidClick{
-    [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
-    self.dAppExcuteMutipleActionsBaseView = nil;
+    [self removeDAppExcuteMutipleActionsBaseView];
     
     if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
         [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:CANCLE"] mj_JSONString]];
@@ -371,6 +424,12 @@
             [self js_pushMessage_method_pushActions];
         }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_pushTransfer]){
             [self js_pushMessage_method_pushTransfer];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_requestSignature]){
+            [self js_pushMessage_method_requestSignature];
+        }else if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_requestMsgSignature]){
+            [self generateSignatureForMessage];
+        }else{
+            [self js_pushMessage_method_unknown];
         }
         
     }
@@ -391,6 +450,13 @@
         }
     }];
     
+}
+
+//DappDetailServiceDelegate
+- (void)scatterBuildExcuteActionsDataSourceDidSuccess:(NSArray *)scatterActions{
+    
+    [self.view addSubview:self.dAppExcuteMutipleActionsBaseView];
+    [self.dAppExcuteMutipleActionsBaseView updateViewWithArray:scatterActions];
 }
 
 
@@ -495,27 +561,111 @@
 - (void)pushActions{
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
     if (accountInfo) {
-        [self.excuteMultipleActionsService excuteMultipleActionsWithSender:accountInfo.account_name andExcuteActionsArray:self.dappExcuteActionsDataSourceService.dataSourceArray andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)] andPassword: self.dAppExcuteMutipleActionsBaseView.passwordTF.text];//self.loginPasswordView.inputPasswordTF.text
+  
+            [self.excuteMultipleActionsService excuteMultipleActionsWithSender:accountInfo.account_name andExcuteActionsArray:self.dappExcuteActionsDataSourceService.dataSourceArray andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)] andPassword: self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
+
     }else{
         [TOASTVIEW showWithText: NSLocalizedString(@"您钱包中暂无操作账号~", nil)];
     }
    [self removeLoginPasswordView];
 }
 
-// TransferServiceDelegate
--(void)pushTransactionDidFinish:(TransactionResult *)result{
-    if ([result.code isEqualToNumber:@0 ]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
-        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
-        
-        
-    }else{
-        [TOASTVIEW showWithText: result.message];
-        [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:[NSString stringWithFormat:@"ERROR:%@", result.message]];
+
+- (void)generateScatterSignature{
+    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
+    NSString *signatureStr = [self.excuteMultipleActionsService excuteMultipleActionsForScatterWithScatterResult:self.dappDetailService.requestSignature_scatterResult andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_active_public_key), VALIDATE_STRING(accountInfo.account_owner_public_key) ] andPassword:self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
+    [self handleEccSignature:signatureStr];
+}
+
+//AccountAuthorizationViewDelegate
+- (void)accountAuthorizationViewConfirmBtnDidClick{
+    // 验证密码输入是否正确
+    Wallet *current_wallet = CURRENT_WALLET;
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.accountAuthorizationView.passwordTF.text]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
+        if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
+            [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:Password is invalid. Please check it."] mj_JSONString]];
+        }
+        return;
     }
     
+    
+    NSString *signatureStr = [self.excuteMultipleActionsService excuteSignatureMessageForScatterWithActor:self.choosedAccountName signatureMessage:self.signatureForMessageModel.data andPassword: self.accountAuthorizationView.passwordTF.text];
+    NSMutableDictionary *finalDict = [NSMutableDictionary dictionary];
+    [finalDict setObject:@0 forKey:@"code"];
+    [finalDict setObject:VALIDATE_STRING(signatureStr) forKey:@"data"];
+    [finalDict setObject:@"Signed" forKey:@"message"];
+    NSLog(@"ScatterResponseToJSfinalJson %@", [finalDict mj_JSONString]);
+    
+    [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage:[finalDict mj_JSONString]];
+    
+    [self removeAccountAuthorizationView];
+}
+
+
+- (void)generateSignatureForMessage{
+    
+    self.signatureForMessageModel = [SignatureForMessageModel mj_objectWithKeyValues:self.dappPushMessageModel.params];
+    NSString *accountName = [[self.signatureForMessageModel.data componentsSeparatedByString:@" "] firstObject];
+    
+     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
+    if (![accountInfo.account_active_public_key isEqualToString:self.signatureForMessageModel.publicKey]) {
+        
+        NSMutableDictionary *resultDict = [[NSMutableDictionary alloc] init];
+        [resultDict setValue: NSLocalizedString(@"请求授权账户和本地账户不同,请谨慎操作", nil)  forKey:@"data"];
+        [resultDict setValue: @1 forKey:@"code"];
+        [resultDict setValue:@"error" forKey:@"message"];
+        
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [resultDict mj_JSONString]];
+        return;
+    }
+    
+    
+    
+    [self.view addSubview: self.accountAuthorizationView];
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = self.choosedAccountName;
+    model.detail = self.signatureForMessageModel.whatfor;
+    
+    [self.accountAuthorizationView updateViewWithModel:model];
+}
+
+
+
+- (void)handleEccSignature:(NSString *)signatureStr{
+    NSMutableDictionary *finalDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *signDataDict = [NSMutableDictionary dictionary];
+    [signDataDict setObject:[NSDictionary dictionary] forKey:@"returnedFields"];
+    [signDataDict setObject:@[VALIDATE_STRING(signatureStr)] forKey:@"signatures"];
+    
+    [dataDict setObject:signDataDict forKey:@"signData"];
+    [dataDict setObject:self.dappPushMessageModel.serialNumber forKey:@"serialNumber"];
+    [finalDict setObject:dataDict forKey:@"data"];
+    [finalDict setObject:@"签名成功" forKey:@"message"];
+    [finalDict setObject:@0 forKey:@"code"];
+    
+    NSLog(@"ScatterResponseToJSfinalJson %@", [finalDict mj_JSONString]);
+    [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage:[finalDict mj_JSONString]];
+    [self removeDAppExcuteMutipleActionsBaseView];
+    
+}
+
+
+// TransferServiceDelegate
+-(void)pushTransactionDidFinish:(TransactionResult *)result{
+    
     if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
-        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING([[self handlePushActionResultWithTransactionResult:result andSerialNumber:self.dappPushMessageModel.serialNumber] mj_JSONString])];
+        [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage:VALIDATE_STRING([[self handlePushActionResultWithTransactionResult:result andSerialNumber:self.dappPushMessageModel.serialNumber] mj_JSONString])];
+    }else{
+        
+        if ([result.code isEqualToNumber:@0 ]) {
+            [TOASTVIEW showWithText:NSLocalizedString(@"交易成功!", nil)];
+            [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
+        }else{
+            [TOASTVIEW showWithText: result.message];
+            [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:[NSString stringWithFormat:@"ERROR:%@", result.message]];
+        }
     }
 }
 
@@ -523,8 +673,7 @@
 - (void)excuteMultipleActionsDidFinish:(TransactionResult *)result{
     if ([result.code isEqualToNumber:@0 ]) {
         [TOASTVIEW showWithText:NSLocalizedString(@"签名成功", nil)];
-        [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
-        self.dAppExcuteMutipleActionsBaseView = nil;
+        [self removeDAppExcuteMutipleActionsBaseView];
         [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:VALIDATE_STRING(result.transaction_id)];
     }else{
         [TOASTVIEW showWithText: result.message];
@@ -545,7 +694,11 @@
         [dataDict setValue: VALIDATE_STRING(self.dappPushMessageModel.serialNumber) forKey:@"serialNumber"];
         [dataDict setValue: VALIDATE_STRING(result.transaction_id) forKey:@"txid"];
         if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
-            [dataDict setValue: VALIDATE_STRING(self.excuteMultipleActionsService.ref_block_num) forKey:@"block_num"];
+            if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_pushTransfer]) {
+                [dataDict setValue: VALIDATE_STRING(self.mainService.ref_block_num) forKey:@"block_num"];
+            }else{
+                [dataDict setValue: VALIDATE_STRING(self.excuteMultipleActionsService.ref_block_num) forKey:@"block_num"];
+            }
         }else{
             [dataDict setValue: VALIDATE_STRING(self.mainService.ref_block_num) forKey:@"block_num"];
         }
@@ -577,6 +730,7 @@
 // pushMessageResultResponse callbackResult
 - (void)responseToJsWithJSMethodName:(NSString *)jsMethodName SerialNumber:(NSString *)serialNumber andMessage:(NSString *)message{
     NSString *jsStr = [NSString stringWithFormat:@"%@('%@', '%@')", jsMethodName,serialNumber, message];
+    NSLog(@"responseToJs %@", jsStr);
     [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         NSLog(@"%@----%@",result, error);
     }];
@@ -584,6 +738,7 @@
 
 - (void)passEosAccountNameToJS{
     NSString *js = [NSString stringWithFormat:@"getEosAccount('%@')", self.choosedAccountName];
+    NSLog(@"responseToJs%@", js);
     [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         //TODO
         NSLog(@"%@ ",response);
@@ -672,6 +827,33 @@
     [self.view addSubview:self.loginPasswordView];
 }
 
+
+
+#pragma mark--- scatter
+/**
+ scatter
+ */
+- (void)js_pushMessage_method_requestSignature{
+    WS(weakSelf);
+    self.dappDetailService.scatter_request_signatureStr = self.dappPushMessageModel.params;
+    [self.dappDetailService requestScatterSignature:^(id service, BOOL isSuccess) {
+        
+//        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+- (void)js_pushMessage_method_requestMsgSignature{
+    WS(weakSelf);
+    self.dappDetailService.scatter_request_signatureStr = self.dappPushMessageModel.params;
+    [self.dappDetailService requestScatterSignature:^(id service, BOOL isSuccess) {
+        
+        //        [weakSelf responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:weakSelf.dappPushMessageModel.serialNumber andMessage:(NSString *)service];
+    }];
+}
+
+
+#pragma mark --- scatter end
+
 - (void)js_pushMessage_method_unknown{
     WS(weakSelf);
     [self.dappDetailService unknownMethod:^(id service, BOOL isSuccess) {
@@ -712,18 +894,12 @@
     } else{
         [self.selectAccountView removeFromSuperview];
         [self loadWebView];
+        [self.view addSubview:self.progressView];
     }
 }
 
 - (void)loadWebView{
     NSString *requestStr;
-//    self.model.url = @"http://oct.xpet.io/index.html?identity=684";//%@?identity=684&language=Chinese
-//    self.model.url = @"https://dice.eosbet.io/?ref=jintianyaook";
-//    if ([NSBundle isChineseLanguage]) {
-//        requestStr = [NSString stringWithFormat:@"%@?language=Chinese",self.model.url];
-//    }else{
-//        requestStr = [NSString stringWithFormat:@"%@?language=English",self.model.url];
-//    }
     requestStr = [NSString stringWithFormat:@"%@",self.model.url];
     NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
     [self.webView loadRequest: finalRequest];
@@ -758,6 +934,55 @@
         self.loginPasswordView = nil;
     }
 }
+
+- (void)removeDAppExcuteMutipleActionsBaseView{
+    if (self.dAppExcuteMutipleActionsBaseView) {
+        [self.dAppExcuteMutipleActionsBaseView removeFromSuperview];
+        self.dAppExcuteMutipleActionsBaseView = nil;
+    }
+}
+
+- (void)removeAccountAuthorizationView{
+    if (self.accountAuthorizationView) {
+        [self.accountAuthorizationView removeFromSuperview];
+        self.accountAuthorizationView = nil;
+    }
+}
+
+- (NSString *)getInjectJS{
+    //compress_xinxin testScatterSONG
+    NSString *JSfilePath = [[NSBundle mainBundle]pathForResource:@"scatter_pe" ofType:@"js"];
+    NSString *content = [NSString stringWithContentsOfFile:JSfilePath encoding:NSUTF8StringEncoding error:nil];
+    NSString *final = [@"var script = document.createElement('script');"
+                       "script.type = 'text/javascript';"
+                       "script.text = \""
+                       stringByAppendingString:content];
+    return final;
+}
+
+// 监听事件处理
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqual:@"estimatedProgress"] && object == self.webView) {
+        [self.progressView setAlpha:1.0f];
+        [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
+        if (self.webView.estimatedProgress  >= 1.0f) {
+            [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                [self.progressView setAlpha:0.0f];
+            } completion:^(BOOL finished) {
+                [self.progressView setProgress:0.0f animated:YES];
+            }];
+        }
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)dealloc{
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    [self.webView setNavigationDelegate:nil];
+    [self.webView setUIDelegate:nil];
+}
+
 
 
 @end

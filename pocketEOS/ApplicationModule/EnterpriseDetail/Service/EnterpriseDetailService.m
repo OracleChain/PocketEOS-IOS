@@ -37,12 +37,12 @@
             ApplicationsResult *result = [ApplicationsResult mj_objectWithKeyValues:data];
             if (result.data.count > 0) {
                 NSMutableArray *tmpArr = result.data;
-                NSMutableArray *resultArr = [NSMutableArray array];
-                for (Application *app in tmpArr) {
-                    if (!app.isScatter) {
-                        [resultArr addObject:app];
-                    }
-                }
+                NSMutableArray *resultArr = [NSMutableArray arrayWithArray:tmpArr];
+//                for (Application *app in tmpArr) {
+//                    if (!app.isScatter) {
+//                        [resultArr addObject:app];
+//                    }
+//                }
                 
                 
                 Application *model = resultArr[0];

@@ -9,5 +9,5 @@
 #import "TokenInfo.h"
 
 @implementation TokenInfo
-
+MJCodingImplementation
 @end

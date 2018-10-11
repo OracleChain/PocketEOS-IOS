@@ -130,8 +130,9 @@
 
 - (void)requestRate{
     WS(weakSelf);
-    for (TokenInfo *token in self.get_token_info_service_data_array) {
-        {
+    NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
+    for (TokenInfo *token in tmpArr) {
+        {//self.get_token_info_service_data_array
             if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
                 self.assest_price_cny = token.asset_price_cny;
                 [self textFieldChange:nil];
