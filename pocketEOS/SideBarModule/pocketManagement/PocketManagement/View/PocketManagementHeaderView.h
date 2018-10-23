@@ -10,7 +10,7 @@
 
 @protocol PocketManagementHeaderViewDelegate<NSObject>
 - (void)createAccountBtnDidClick;
-- (void)personalCenterBtnDidClick;
+- (void)assestsCollectionBtnDidClick;
 - (void)changePasswordBtnDidClick;
 - (void)backupWalletBtnDidClick;
 @end

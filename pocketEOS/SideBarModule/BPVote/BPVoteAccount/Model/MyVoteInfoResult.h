@@ -15,5 +15,5 @@
 @property(nonatomic, strong) NSNumber *code;
 @property(nonatomic, strong) NSString *msg;
 @property(nonatomic , strong) MyVoteInfo *info;
-@property(nonatomic , strong) MyVoteProducers *producers;
+@property(nonatomic , strong) NSMutableArray *producers;
 @end

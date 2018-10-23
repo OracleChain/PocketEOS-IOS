@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TokenInfo : NSObject<NSCoding>
+@interface TokenInfo : OptionModel<NSCoding>
 
 /**
  contract_name

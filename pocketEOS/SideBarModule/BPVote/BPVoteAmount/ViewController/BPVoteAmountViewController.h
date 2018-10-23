@@ -12,7 +12,7 @@
 
 @interface BPVoteAmountViewController : BaseViewController
 
-@property(nonatomic , strong) NSMutableArray *choosedBPDataArray;
+@property(nonatomic , strong) NSMutableArray *choosedBPNameDataArray;
 
 @property(nonatomic , strong) Account *model;
 

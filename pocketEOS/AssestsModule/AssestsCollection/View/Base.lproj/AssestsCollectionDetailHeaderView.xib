@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AssestsCollectionDetailHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="assestsCollectionHeaderBackgroundImage1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lll-rh-bC8">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="156" id="JLU-8N-IAc"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gZ-YP-qfD" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="217.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="Dee-eX-Ge7"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共4笔交易" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzL-jH-Rs7" customClass="BaseLabel">
+                    <rect key="frame" x="20" y="170" width="335" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="eZh-xd-0dg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易中断会造成归集失败，请谨慎操作" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-BV-bfj" customClass="BaseLabel1">
+                    <rect key="frame" x="20" y="191" width="335" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="CCi-qM-kIA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="1gZ-YP-qfD" secondAttribute="trailing" id="2ae-Ya-bo4"/>
+                <constraint firstItem="1gZ-YP-qfD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="40Y-xg-XHH"/>
+                <constraint firstItem="Upt-BV-bfj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="KCe-j2-I24"/>
+                <constraint firstAttribute="bottom" secondItem="1gZ-YP-qfD" secondAttribute="bottom" id="KVI-cs-QOa"/>
+                <constraint firstItem="Upt-BV-bfj" firstAttribute="top" secondItem="vzL-jH-Rs7" secondAttribute="bottom" constant="5" id="WsH-vB-dgU"/>
+                <constraint firstItem="vzL-jH-Rs7" firstAttribute="top" secondItem="Lll-rh-bC8" secondAttribute="bottom" constant="14" id="XKK-NL-J8J"/>
+                <constraint firstItem="Lll-rh-bC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bNA-Xl-gnT"/>
+                <constraint firstItem="Lll-rh-bC8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cIg-Jp-YZK"/>
+                <constraint firstAttribute="trailing" secondItem="vzL-jH-Rs7" secondAttribute="trailing" constant="20" id="gxp-3V-ziX"/>
+                <constraint firstAttribute="trailing" secondItem="Upt-BV-bfj" secondAttribute="trailing" constant="20" id="hDQ-9t-OZX"/>
+                <constraint firstAttribute="trailing" secondItem="Lll-rh-bC8" secondAttribute="trailing" id="uP7-L3-DbW"/>
+                <constraint firstItem="vzL-jH-Rs7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="wtc-Sw-hf9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="vzL-jH-Rs7" id="cvl-qj-0dM"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="assestsCollectionHeaderBackgroundImage1.png" width="303" height="158"/>
+    </resources>
+</document>

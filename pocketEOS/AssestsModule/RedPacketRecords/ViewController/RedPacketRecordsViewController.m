@@ -77,6 +77,7 @@
     WS(weakSelf);
     NSArray *assestsArr = @[@"EOS" , @"OCT"];
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    builder.cancelText = NSLocalizedString(@"选择您的Token", nil);
     for (int i = 0 ; i < assestsArr.count; i++) {
         NSString *assest = assestsArr[i];
         if ([assest isEqualToString:self.currentAssestsType]) {

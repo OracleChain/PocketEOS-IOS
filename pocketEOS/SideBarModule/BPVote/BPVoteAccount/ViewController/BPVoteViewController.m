@@ -19,6 +19,7 @@
 #import "MyVoteInfo.h"
 #import "MyVoteProduce.h"
 #import "MyVoteInfoResult.h"
+#import "BPCandidateModel.h"
 
 @interface BPVoteViewController ()<NavigationViewDelegate, BPVoteHeaderViewDelegate, BPVoteFooterViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, strong) NavigationView *navView;
@@ -119,6 +120,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     [self.mainTableView setTableHeaderView:self.headerView];
     [self.view addSubview:self.footerView];
    
@@ -185,7 +187,7 @@
     cell.textLabel.textColor = HEXCOLOR(0xFFFFFF);
     cell.detailTextLabel.textColor = HEXCOLOR(0xFFFFFF);
     cell.bottomLineView.backgroundColor = HEX_RGB_Alpha(0xFFFFFF, 0.1);
-    MyVoteProduce *model = self.mainService.dataSourceArray[indexPath.row];
+    BPCandidateModel *model = self.mainService.dataSourceArray[indexPath.row];
     cell.textLabel.text = model.owner;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.4f亿票", self.myVoteInfoResult.info.last_vote_weight.doubleValue/ 1000000000000];
     return cell;
@@ -206,6 +208,7 @@
 
 - (void)changeAccountBtnDidClick:(UIButton *)sender{
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    builder.cancelText = NSLocalizedString(@"选择您的EOS账号", nil);
     builder.showMask = YES;
     WS(weakSelf);
     

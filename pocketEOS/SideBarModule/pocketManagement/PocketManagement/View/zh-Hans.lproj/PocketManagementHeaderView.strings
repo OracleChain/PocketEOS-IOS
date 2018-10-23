@@ -8,8 +8,8 @@
 /* Class = "UILabel"; text = "修改密码"; ObjectID = "Hc1-fd-WlN"; */
 "Hc1-fd-WlN.text" = "修改密码";
 
-/* Class = "UILabel"; text = "个人中心"; ObjectID = "sek-Rz-Are"; */
-"sek-Rz-Are.text" = "个人中心";
+/* Class = "UILabel"; text = "资产归集"; ObjectID = "sek-Rz-Are"; */
+"sek-Rz-Are.text" = "资产归集";
 
 /* Class = "UILabel"; text = "钱包设置"; ObjectID = "xg5-Ub-0xO"; */
 "xg5-Ub-0xO.text" = "钱包设置";

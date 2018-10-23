@@ -282,6 +282,7 @@
     model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
     model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"我下血本为您送上", nil), self.redPacketDetailResult.amount,  self.redPacketModel.coin, NSLocalizedString(@"的大红包，无需消费，直接到达EOS账号，还在犹豫什么？", nil) ];
     model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.redPacketModel.verifystring];
+    model.imageName = @"redpacket";
     NSLog(@"model.webPageUrl : %@", model.webPageUrl);
     if ([platformName isEqualToString:@"wechat_friends"]) {
        [[SocialManager socialManager] wechatShareToScene:0 withShareModel:model];

@@ -16,9 +16,8 @@
 #import "EnterpriseDetailService.h"
 #import "DAppDetailViewController.h"
 #import "QuestionListViewController.h"
-#import "ScatterMainViewController.h"
 
-@interface EnterpriseDetailViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, EnterpriseDetailHeaderViewDelegate>
+@interface EnterpriseDetailViewController ()<UIGestureRecognizerDelegate, NavigationViewDelegate, EnterpriseDetailHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) EnterpriseDetailHeaderView *headerView;
 @property(nonatomic, strong) EnterpriseDetailService *mainService;
@@ -35,6 +34,16 @@
     return _navView;
 }
 
+- (EnterpriseDetailHeaderView *)headerView{
+    if (!_headerView) {
+        _headerView = [[[NSBundle mainBundle] loadNibNamed:@"EnterpriseDetailHeaderView" owner:nil options:nil] firstObject];
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 338 + CYCLESCROLLVIEW_HEIGHT);
+        [_headerView updateViewWithModel:self.model];
+        _headerView.delegate = self;
+    }
+    return _headerView;
+}
+
 - (EnterpriseDetailService *)mainService{
     if (!_mainService) {
         _mainService = [[EnterpriseDetailService alloc] init];
@@ -42,34 +51,14 @@
     return _mainService;
 }
 
-
-- (UICollectionView *)mainCollectionView{
-    if(!_mainCollectionView){
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 66)];
-        layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 338 + CYCLESCROLLVIEW_HEIGHT );
-        layout.minimumLineSpacing = 1;
-        layout.minimumInteritemSpacing = 1;
-        
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
-        _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-        [_mainCollectionView setDataSource: self];
-        [_mainCollectionView setDelegate: self];
-        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
-        
-        
-    }
-    return _mainCollectionView;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.mainCollectionView];
-    [self.mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEUDENTIFIER1];
-    [self.mainCollectionView registerNib:[UINib nibWithNibName:@"EnterpriseDetailHeaderView" bundle: nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header3"];
+    [self.view addSubview:self.mainTableView];
+    [self.mainTableView setTableHeaderView:self.headerView];
+    self.mainTableView.mj_header.hidden = YES;
+    self.mainTableView.mj_footer.hidden = YES;
     
     WS(weakSelf);
     self.mainService.getEnterpriseDetailRequest.enterprise_id = self.model.enterprise_id;
@@ -78,29 +67,34 @@
             if (weakSelf.mainService.recommandApplicationDataArray.count> 0) {
                 [weakSelf.headerView upadteRecommandViewWithModel:weakSelf.mainService.recommandApplicationDataArray[0]];
             }
-            [weakSelf.mainCollectionView reloadData];
+            [weakSelf.mainTableView reloadData];
         }
     }];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.mainService.dataSourceArray.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ApplicationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: CELL_REUSEUDENTIFIER1 forIndexPath: indexPath];
-    Application *model = self.mainService.dataSourceArray[indexPath.item];
-    [cell updateViewWithModel:model];
-    return cell;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    Application *model = (Application *)self.mainService.dataSourceArray[indexPath.row];
+    return [self.mainTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ApplicationCollectionViewCell class]  contentViewWidth:SCREEN_WIDTH ];
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApplicationCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    if (!cell) {
+        cell = [[ApplicationCollectionViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
+    }
     Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
-   
+    cell.model = model;
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
+    
     if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
         QuestionListViewController *vc = [[QuestionListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -108,22 +102,9 @@
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
-        
     }
     
-}
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *reusableview = nil;
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        if (indexPath.section == 0) {
-           self.headerView = (EnterpriseDetailHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header3" forIndexPath:indexPath];
-            [self.headerView updateViewWithModel:self.model];
-            self.headerView.delegate = self;
-            return self.headerView;
-        }
-    }
-    return reusableview;
+    
 }
 
 //EnterpriseDetailHeaderViewDelegate

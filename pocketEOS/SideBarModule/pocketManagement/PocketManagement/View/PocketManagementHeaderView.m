@@ -28,7 +28,7 @@
     
     self.changePasswordImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"changePassword"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"changePassword_BB"]);
     
-    self.importAccountImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"importAccount"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"importAccount_BB"]);
+    self.importAccountImageView.lee_theme.LeeAddImage(SOCIAL_MODE, [UIImage imageNamed:@"assestsCollection-icon_black"]).LeeAddImage(BLACKBOX_MODE, [UIImage imageNamed:@"assestsCollection-icon_black"]);
     
 }
 
@@ -38,9 +38,15 @@
     }
 }
 
-- (IBAction)personalCenterBtnClick:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(personalCenterBtnDidClick)]) {
-        [self.delegate personalCenterBtnDidClick];
+- (IBAction)assestsCollectionBtnClick:(UIButton *)sender {
+    
+    if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"请移步至社交模式", nil)];
+        return;
+    }else{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(assestsCollectionBtnDidClick)]) {
+            [self.delegate assestsCollectionBtnDidClick];
+        }
     }
 }
 

@@ -18,6 +18,7 @@
 #import "AddAccountViewController.h"
 #import "PersonalSettingViewController.h"
 #import "ImportAccountsRequest.h"
+#import "AssestsCollectionViewController.h"
 
 @interface PocketManagementViewController ()<UIGestureRecognizerDelegate, UITableViewDelegate , UITableViewDataSource, NavigationViewDelegate, BackupPocketViewDelegate, UIDocumentInteractionControllerDelegate, ChangePasswordViewDelegate, PocketManagementHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -188,10 +189,11 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-- (void)personalCenterBtnDidClick{
-    PersonalSettingViewController *vc = [[PersonalSettingViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 
+- (void)assestsCollectionBtnDidClick{
+    
+    AssestsCollectionViewController *vc = [[AssestsCollectionViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backupWalletBtnDidClick{

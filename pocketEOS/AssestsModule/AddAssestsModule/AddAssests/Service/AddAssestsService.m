@@ -67,7 +67,7 @@
             weakSelf.dataSourceArray = [NSMutableArray arrayWithArray:weakSelf.responseArray];
         }
         
-        complete(@(result.assetCategoryList.count) , YES);
+        complete(@(weakSelf.responseArray.count) , YES);
         
     } failure:^(id DAO, NSError *error) {
         complete(nil, NO);
@@ -89,7 +89,7 @@
             [weakSelf.dataSourceArray addObjectsFromArray:weakSelf.responseArray];
         }
         
-        complete(@(result.assetCategoryList.count) , YES);
+        complete(@(weakSelf.responseArray.count) , YES);
         
     } failure:^(id DAO, NSError *error) {
         complete(nil, NO);

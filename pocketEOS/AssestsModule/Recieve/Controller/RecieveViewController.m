@@ -203,6 +203,7 @@
     [self.view endEditing:YES];
     NSMutableArray *assestsArr = [NSMutableArray array];
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    builder.cancelText = NSLocalizedString(@"选择您的Token", nil);
     for (int i = 0 ; i < self.get_token_info_service_data_array.count; i++) {
         TokenInfo *token = self.get_token_info_service_data_array[i];
         if ([token.token_symbol isEqualToString:self.currentToken.token_symbol]) {

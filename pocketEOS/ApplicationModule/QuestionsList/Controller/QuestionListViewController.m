@@ -191,6 +191,7 @@ NSString * const AskQuestionDidSuccessNotification = @"AskQuestionDidSuccessNoti
 //SelectAccountViewDelegate
 - (void)selectAccountBtnDidClick:(UIButton *)sender{
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    builder.cancelText = NSLocalizedString(@"选择您的EOS账号", nil);
     builder.showMask = YES;
     WS(weakSelf);
     

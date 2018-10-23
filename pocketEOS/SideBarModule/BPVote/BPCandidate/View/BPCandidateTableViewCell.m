@@ -77,10 +77,10 @@
 }
 
 -(void)setModel:(BPCandidateModel *)model{
-    [self.avatarImgView sd_setImageWithURL:String_To_URL(model.logo_256) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
+    [self.avatarImgView sd_setImageWithURL:String_To_URL(model.logo_256) placeholderImage:[UIImage imageNamed:@"eos_avatar"]];
     self.titleLabel.text = model.owner;
     self.detailLabel.text = [NSString stringWithFormat:@"%.2f%@", model.total_votes.doubleValue/ 1000000000000, NSLocalizedString(@"亿票", nil)];
-    if (model.isSelected) {
+    if (model.voted) {
         self.rectImg.image = [UIImage imageNamed:@"rectangle_selected"];
     }else{
         self.rectImg.image = [UIImage imageNamed:@"rectangle_UnSelected"];

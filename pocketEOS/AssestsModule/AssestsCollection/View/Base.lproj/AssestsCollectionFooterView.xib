@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AssestsCollectionFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaX-61-MWA" customClass="BaseConfirmButton">
+                    <rect key="frame" x="255" y="0.0" width="120" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="qMR-YE-xiV"/>
+                    </constraints>
+                    <state key="normal" title="确 定">
+                        <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="assestsCollectionFooterViewConfirmBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="eKy-VL-wPm"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IPr-AQ-6RH">
+                    <rect key="frame" x="0.0" y="0.0" width="255" height="49"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共归集" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZW-d1-c28">
+                            <rect key="frame" x="20" y="0.0" width="40" height="49"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozj-pd-Od7">
+                            <rect key="frame" x="68" y="0.0" width="0.0" height="49"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Ozj-pd-Od7" firstAttribute="top" secondItem="IPr-AQ-6RH" secondAttribute="top" id="1h1-9f-7Qi"/>
+                        <constraint firstAttribute="bottom" secondItem="oZW-d1-c28" secondAttribute="bottom" id="KjK-d5-pyq"/>
+                        <constraint firstAttribute="bottom" secondItem="Ozj-pd-Od7" secondAttribute="bottom" id="ZZr-XZ-BfR"/>
+                        <constraint firstItem="oZW-d1-c28" firstAttribute="top" secondItem="IPr-AQ-6RH" secondAttribute="top" id="nYl-gF-XtU"/>
+                        <constraint firstItem="oZW-d1-c28" firstAttribute="leading" secondItem="IPr-AQ-6RH" secondAttribute="leading" constant="20" id="tpW-hP-3AC"/>
+                        <constraint firstItem="Ozj-pd-Od7" firstAttribute="leading" secondItem="oZW-d1-c28" secondAttribute="trailing" constant="8" id="xQT-I9-K5O"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="oaX-61-MWA" secondAttribute="bottom" id="1jw-4l-c6g"/>
+                <constraint firstItem="oaX-61-MWA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6Iv-og-2e0"/>
+                <constraint firstAttribute="bottom" secondItem="IPr-AQ-6RH" secondAttribute="bottom" id="NEF-X2-jjW"/>
+                <constraint firstItem="IPr-AQ-6RH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oUd-2b-kM7"/>
+                <constraint firstItem="oaX-61-MWA" firstAttribute="leading" secondItem="IPr-AQ-6RH" secondAttribute="trailing" id="tAb-dX-lKM"/>
+                <constraint firstItem="IPr-AQ-6RH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="txx-ym-P0K"/>
+                <constraint firstAttribute="trailing" secondItem="oaX-61-MWA" secondAttribute="trailing" id="ujj-I0-wEp"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="totalAmountLabel" destination="Ozj-pd-Od7" id="3EU-mY-I0E"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseCollectionViewCell.h"
+#import "BaseTableViewCell.h"
 @class Application;
-@interface ApplicationCollectionViewCell : BaseCollectionViewCell
+@interface ApplicationCollectionViewCell : BaseTableViewCell
 
 @property(nonatomic, strong) UIImageView *img;
 @property(nonatomic, strong) BaseLabel *titleLabel;
 @property(nonatomic, strong) UILabel *descriptionLabel;
 
 - (void)updateViewWithModel:(Application *)model;
+
+@property(nonatomic , strong) Application *model;
 
 @end

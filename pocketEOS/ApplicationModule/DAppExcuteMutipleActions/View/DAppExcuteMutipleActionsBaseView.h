@@ -20,7 +20,7 @@
 
 @property(nonatomic , strong) NSMutableArray *actionsArray;
 
-@property(nonatomic , strong) UITextField *passwordTF;
+
 
 @property(nonatomic, weak) id<DAppExcuteMutipleActionsBaseViewDelegate> delegate;
 

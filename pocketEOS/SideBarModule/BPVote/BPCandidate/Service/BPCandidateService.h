@@ -13,4 +13,6 @@
 
 @property(nonatomic , strong) GetBPCandidateListRequest *getBPCandidateListRequest;
 - (void)buildNextPageDataSource:(CompleteBlock)complete;
+
+
 @end

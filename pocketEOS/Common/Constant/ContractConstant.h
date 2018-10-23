@@ -12,6 +12,12 @@
 
 
 /**
+ SymbolName
+ */
+#define SymbolName_EOS @"EOS"
+#define SymbolName_OCT @"OCT"
+
+/**
  SmartContractName
  */
 #define ContractName_EOSIOTOKEN @"eosio.token"

@@ -73,7 +73,7 @@
 - (BaseLabel1 *)accountNameLabel{
     if (!_accountNameLabel) {
         _accountNameLabel = [[BaseLabel1 alloc] init];
-        _accountNameLabel.text = NSLocalizedString(@"账户授权", nil);
+        _accountNameLabel.text = NSLocalizedString(@"账户", nil);
         _accountNameLabel.font = [UIFont systemFontOfSize:14];
     }
     return _accountNameLabel;
@@ -135,6 +135,7 @@
     if (!_confirmBtn) {
         _confirmBtn = [[UIButton alloc] init];
         [_confirmBtn setTitle:NSLocalizedString(@"确认授权", nil) forState:(UIControlStateNormal)];
+        [_confirmBtn setFont:[UIFont systemFontOfSize:15]];
         [_confirmBtn addTarget:self action:@selector(confirmAuthorizationBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
         _confirmBtn.backgroundColor = HEXCOLOR(0x0B78E3);
     }

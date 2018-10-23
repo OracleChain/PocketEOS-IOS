@@ -142,11 +142,11 @@
 }
 
 - (void)updateBtnDidClick:(UIButton *)sender{
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"http://pocketeos.com"]];
 }
 
 //CommonDialogHasTitleViewDelegate
-- (void)commonDialogHasTitleViewBtnDidClick:(UIButton *)sender{
+- (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
     [self.commonDialogHasTitleView removeFromSuperview];
 }
 

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ExcuteActions : NSObject
+@property(nonatomic , copy) NSString *actor;
+@property(nonatomic , copy) NSString *to;
 
 @property(nonatomic , copy) NSString *account;
 

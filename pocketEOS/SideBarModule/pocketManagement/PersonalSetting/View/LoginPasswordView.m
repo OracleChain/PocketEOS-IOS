@@ -27,6 +27,7 @@
 
 - (void)dismiss{
     [self removeFromSuperview];
+    self.inputPasswordTF.text = nil;
 }
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     if ([touch.view isEqual:self.upBackgroundView]) {

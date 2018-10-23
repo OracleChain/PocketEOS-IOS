@@ -11,4 +11,5 @@
 @interface GetBPCandidateListRequest : BaseNetworkRequest
 @property(nonatomic, strong) NSNumber *pageNum;
 @property(nonatomic, strong) NSNumber *pageSize;
+@property(nonatomic , copy) NSString *accountName;
 @end

@@ -11,13 +11,15 @@
 @implementation GetBPCandidateListRequest
 
 - (NSString *)requestUrlPath{
+    
     return [NSString stringWithFormat:@"%@/voteoraclechain/GetBpJson", REQUEST_BP_BASEURL];
 }
 
 - (id)parameters{
     return @{
              @"pageNum" : VALIDATE_STRING(self.pageNum),
-             @"pageSize" : VALIDATE_STRING(self.pageSize)
+             @"pageSize" : VALIDATE_STRING(self.pageSize),
+             @"accountName" : VALIDATE_STRING(self.accountName)
              };
 }
 

@@ -365,16 +365,16 @@
 - (void)excuteMutipleActionsConfirmBtnDidClick{
     // 验证密码输入是否正确
     Wallet *current_wallet = CURRENT_WALLET;
-    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.dAppExcuteMutipleActionsBaseView.passwordTF.text]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
-        return;
-    }
+//    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.dAppExcuteMutipleActionsBaseView.passwordTF.text]) {
+//        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
+//        return;
+//    }
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-    NSString *signatureStr = [self.excuteMultipleActionsService excuteMultipleActionsForScatterWithScatterResult:self.requestSignature_scatterResult andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_active_public_key), VALIDATE_STRING(accountInfo.account_owner_public_key) ] andPassword:self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
+//    NSString *signatureStr = [self.excuteMultipleActionsService excuteMultipleActionsForScatterWithScatterResult:self.requestSignature_scatterResult andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_active_public_key), VALIDATE_STRING(accountInfo.account_owner_public_key) ] andPassword:self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
     
     NSMutableDictionary *finalDict = [NSMutableDictionary dictionary];
     NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-    [resultDict setObject:@[signatureStr] forKey:@"signatures"];
+//    [resultDict setObject:@[signatureStr] forKey:@"signatures"];
     [resultDict setObject:[NSDictionary dictionary] forKey:@"returnedFields"];
     
     [finalDict setObject:resultDict forKey:@"result"];
@@ -452,6 +452,7 @@
 //SelectAccountViewDelegate
 - (void)selectAccountBtnDidClick:(UIButton *)sender{
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
+    builder.cancelText = NSLocalizedString(@"选择您的EOS账号", nil);
     builder.showMask = YES;
     builder.cancelTextColor = UIColor.redColor;
     WS(weakSelf);

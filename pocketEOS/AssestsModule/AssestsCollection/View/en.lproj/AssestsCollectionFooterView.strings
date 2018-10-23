@@ -1,0 +1,6 @@
+
+/* Class = "UILabel"; text = "共归集"; ObjectID = "oZW-d1-c28"; */
+"oZW-d1-c28.text" = "Collect";
+
+/* Class = "UIButton"; normalTitle = "确 定"; ObjectID = "oaX-61-MWA"; */
+"oaX-61-MWA.normalTitle" = "Confirm";

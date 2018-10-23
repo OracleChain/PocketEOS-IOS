@@ -355,6 +355,9 @@
 // loginPasswordViewDelegate
 - (void)cancleBtnDidClick:(UIButton *)sender{
     [self removePasswordView];
+    [UIView animateWithDuration:1 animations:^{
+        [self.sliderVerifyView.orignalImg setCenter:CGPointMake(4 + 50/2 , 24 )];
+    }];
     self.currentAction = nil;
 }
 
@@ -372,7 +375,7 @@
         AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
         NSString *privateKeyStr = [NSString stringWithFormat:@"OWNKEY:\n%@    \n\nACTIVEKEY：\n%@\n",  [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text],[AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text]];
         self.exportPrivateKeyView.contentTextView.text = privateKeyStr;
-        [self.loginPasswordView removeFromSuperview];
+        [self removePasswordView];
     }else if ([self.currentAction isEqualToString:@"DeleteAccount"]){
         // 删除账号
         NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];

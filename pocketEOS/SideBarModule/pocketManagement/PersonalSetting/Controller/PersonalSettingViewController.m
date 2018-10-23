@@ -341,7 +341,6 @@
     [UIView animateWithDuration:1 animations:^{
         [self.sliderVerifyView.orignalImg setCenter:CGPointMake(4 + 50/2 , 24 )];
     }];
-//    [self.sliderVerifyView.orignalImg setTranslation:CGPointMake(0, 0) inView:self];
 }
 -(void)confirmBtnDidClick:(UIButton *)sender{
     // 验证密码输入是否正确

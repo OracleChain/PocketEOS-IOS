@@ -17,5 +17,5 @@
 @property(nonatomic, strong) NSDictionary *data;
 @property(nonatomic , strong) NSString *error;
 @property(nonatomic , copy) NSString *transaction_id;
-
+@property(nonatomic , copy) NSString *tag;
 @end

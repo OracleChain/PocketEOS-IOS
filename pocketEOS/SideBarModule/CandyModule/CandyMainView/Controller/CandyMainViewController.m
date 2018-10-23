@@ -180,6 +180,19 @@
     return 70;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 40;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    BaseLabel1 *label = [[BaseLabel1 alloc] init];
+    label.text = NSLocalizedString(@"更多任务, 敬请期待", nil);
+    label.font = [UIFont systemFontOfSize:11];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.frame = CGRectMake(0, MARGIN_10, SCREEN_WIDTH, 15);
+    return label;
+}
+
 -(void)leftBtnDidClick{
     [self.navigationController popViewControllerAnimated:YES];
 }

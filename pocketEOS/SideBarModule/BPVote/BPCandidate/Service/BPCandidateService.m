@@ -24,6 +24,7 @@
     WS(weakSelf);
     self.getBPCandidateListRequest.pageNum = @0;
     self.getBPCandidateListRequest.pageSize = @(PER_PAGE_SIZE_15);
+    
     [self.getBPCandidateListRequest postOuterDataSuccess:^(id DAO, id data) {
         [weakSelf.responseArray removeAllObjects];
         [weakSelf.dataSourceArray removeAllObjects];
@@ -35,6 +36,9 @@
             BPCandidateDetailResult *result = [BPCandidateDetailResult mj_objectWithKeyValues:listResult.data];
             [weakSelf.responseArray addObjectsFromArray:VALIDATE_ARRAY(result.data)];
             weakSelf.dataSourceArray = [NSMutableArray arrayWithArray:weakSelf.responseArray];
+            
+            
+            
             complete(@(result.data.count), YES);
         }
     } failure:^(id DAO, NSError *error) {
@@ -58,6 +62,8 @@
             BPCandidateDetailResult *result = [BPCandidateDetailResult mj_objectWithKeyValues:listResult.data];
             [weakSelf.responseArray addObjectsFromArray:VALIDATE_ARRAY(result.data)];
             [weakSelf.dataSourceArray addObjectsFromArray:weakSelf.responseArray];
+            
+           
             complete(@(result.data.count), YES);
         }
         

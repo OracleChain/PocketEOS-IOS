@@ -32,6 +32,10 @@
 - (NSString *)excuteSignatureMessageForScatterWithActor:(NSString *)actor signatureMessage:(NSString *)messageStr andPassword:(NSString *)password;
 
 
+
 @property(nonatomic, copy) NSString *ref_block_num;
+
+@property(nonatomic , copy) NSString *tag;
+
 
 @end

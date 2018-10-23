@@ -33,7 +33,6 @@
 #import "WkDelegateController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "TransferService.h"
-#import "SelectAccountView.h"
 #import "TransferAbi_json_to_bin_request.h"
 #import "Abi_json_to_binRequest.h"
 #import "DappTransferModel.h"
@@ -49,18 +48,22 @@
 #import "DAppExcuteMutipleActionsBaseView.h"
 #import "SignatureForMessageModel.h"
 #import "AccountAuthorizationView.h"
+#import "DappWithoutPasswordView.h"
+#import "DappChangeAccountOnNavigationRightView.h"
 
 
-
-@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, SelectAccountViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate, DappDetailServiceDelegate, AccountAuthorizationViewDelegate>
+@interface DAppDetailViewController ()<UIGestureRecognizerDelegate,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler, WKDelegate , TransferServiceDelegate, LoginPasswordViewDelegate, UIScrollViewDelegate, DAppExcuteMutipleActionsBaseViewDelegate, ExcuteMultipleActionsServiceDelegate, DappDetailServiceDelegate, AccountAuthorizationViewDelegate, DappWithoutPasswordViewDelegate, DappChangeAccountOnNavigationRightViewDelegate, NavigationViewDelegate>
+@property(nonatomic, strong) NavigationView *navView;
 @property WebViewJavascriptBridge* bridge;
 @property(nonatomic, strong) WKWebView *webView;
 @property(nonatomic, strong) WKUserContentController *userContentController;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
+@property(nonatomic , strong) DappWithoutPasswordView *dappWithoutPasswordView;
+
 @property(nonatomic, strong) TransferService *mainService;
 @property(nonatomic, copy) NSString *WKScriptMessageName; // recieve WKScriptMessage.name
 @property(nonatomic, strong) NSDictionary *WKScriptMessageBody;// recieve WKScriptMessage.body
-@property(nonatomic, strong) SelectAccountView *selectAccountView;
+
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , strong) Abi_json_to_binRequest *abi_json_to_binRequest;
 @property (nonatomic , strong) DappTransferResult *dappTransferResult;
@@ -68,8 +71,9 @@
 @property(nonatomic , strong) DAppExcuteMutipleActionsResult *dAppExcuteMutipleActionsResult;
 @property(nonatomic , strong) DappPushMessageModel *dappPushMessageModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
-@property (nonatomic , strong) UIBarButtonItem *backItem;
-@property (nonatomic , strong) UIBarButtonItem *closeItem;
+@property (nonatomic , strong) UIButton *backItem;
+@property (nonatomic , strong) UIButton *closeItem;
+@property(nonatomic , strong) DappChangeAccountOnNavigationRightView *dappChangeAccountOnNavigationRightView;
 
 @property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
 @property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
@@ -81,22 +85,29 @@
 
 @property(nonatomic , strong) AccountAuthorizationView *accountAuthorizationView;
 @property (nonatomic,strong) UIProgressView *progressView;
+
 @end
 
 @implementation DAppDetailViewController
+
+- (NavigationView *)navView{
+    if (!_navView) {
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:nil rightBtnTitleName:nil delegate:self];
+        _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+    }
+    return _navView;
+}
+
 
 - (WKWebView *)webView{
     if (!_webView) {
         //配置环境
         WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
-        
         self.userContentController =[[WKUserContentController alloc]init];
         configuration.userContentController = self.userContentController;
-        
-//        if (self.model.isScatter) {
-            WKUserScript *userScript = [[WKUserScript alloc] initWithSource:[self getInjectJS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];// forMainFrameOnly:NO(全局窗口)，yes（只限主窗口）
-            [self.userContentController addUserScript:userScript];
-//        }
+        WKUserScript *userScript = [[WKUserScript alloc] initWithSource:[self getInjectJS] injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];// forMainFrameOnly:NO(全局窗口)，yes（只限主窗口）
+        [self.userContentController addUserScript:userScript];
+
         
         self.sharedProcessPool = [[WKProcessPool alloc]init];
         configuration.processPool = self.sharedProcessPool;
@@ -105,6 +116,12 @@
         self.webView.UIDelegate = self;
         self.webView.navigationDelegate = self;
         self.webView.scrollView.delegate = self;
+        
+        [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTION];
+        [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSH];
+        [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTIONS];
+        [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHMESSAGE];
+        
         
         // 顶部出现空白
         if (@available(iOS 11.0, *)) {
@@ -131,15 +148,6 @@
     return _mainService;
 }
 
-- (SelectAccountView *)selectAccountView{
-    if (!_selectAccountView) {
-        _selectAccountView = [[[NSBundle mainBundle] loadNibNamed:@"SelectAccountView" owner:nil options:nil] firstObject];
-        _selectAccountView.frame = self.view.bounds;
-        _selectAccountView.delegate = self;
-    }
-    return _selectAccountView;
-}
-
 - (LoginPasswordView *)loginPasswordView{
     if (!_loginPasswordView) {
         _loginPasswordView = [[[NSBundle mainBundle] loadNibNamed:@"LoginPasswordView" owner:nil options:nil] firstObject];
@@ -149,6 +157,14 @@
     return _loginPasswordView;
 }
 
+- (DappWithoutPasswordView *)dappWithoutPasswordView{
+    if (!_dappWithoutPasswordView) {
+        _dappWithoutPasswordView = [[[NSBundle mainBundle] loadNibNamed:@"DappWithoutPasswordView" owner:nil options:nil] firstObject];
+        _dappWithoutPasswordView.frame = self.view.bounds;
+        _dappWithoutPasswordView.delegate = self;
+    }
+    return _dappWithoutPasswordView;
+}
 
 - (TransferAbi_json_to_bin_request *)transferAbi_json_to_bin_request{
     if (!_transferAbi_json_to_bin_request) {
@@ -164,46 +180,51 @@
     return _abi_json_to_binRequest;
 }
 
--(UIBarButtonItem *)backItem{
+
+
+-(UIButton *)backItem{
     if (!_backItem) {
-        _backItem = [[UIBarButtonItem alloc] init];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
-        btn.lee_theme
+        _backItem = [[UIButton alloc] init];
+        _backItem.lee_theme
         .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x000000), UIControlStateNormal)
         .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
-        [btn setTitle:NSLocalizedString(@"返回", nil) forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
+        [_backItem setTitle:NSLocalizedString(@"返回", nil) forState:UIControlStateNormal];
+        [_backItem addTarget:self action:@selector(backNative) forControlEvents:UIControlEventTouchUpInside];
+        [_backItem.titleLabel setFont:[UIFont systemFontOfSize:17]];
         //左对齐
         //让返回按钮内容继续向左边偏移15，如果不设置的话，就会发现返回按钮离屏幕的左边的距离有点儿大，不美观
-        btn.frame = CGRectMake(0, -40, 50, 40);
-        _backItem.customView = btn;
+//        _backItem.frame = CGRectMake(30, 24, 40, 40);
     }
     return _backItem;
 }
 
--(UIBarButtonItem *)closeItem{
+-(UIButton *)closeItem{
     if (!_closeItem) {
-        _closeItem = [[UIBarButtonItem alloc] init];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.lee_theme
+        _closeItem = [[UIButton alloc] init];
+        _closeItem.lee_theme
         .LeeAddButtonTitleColor(SOCIAL_MODE, HEXCOLOR(0x000000), UIControlStateNormal)
         .LeeAddButtonTitleColor(BLACKBOX_MODE, HEXCOLOR(0xFFFFFF), UIControlStateNormal);
-        [btn setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(closeNative) forControlEvents:UIControlEventTouchUpInside];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:17]];
-        btn.frame = CGRectMake(0, 0, 50, 40);
-        _closeItem.customView = btn;
+        [_closeItem setTitle:NSLocalizedString(@"关闭", nil) forState:UIControlStateNormal];
+        [_closeItem addTarget:self action:@selector(closeNative) forControlEvents:UIControlEventTouchUpInside];
+        [_closeItem.titleLabel setFont:[UIFont systemFontOfSize:17]];
+//        _closeItem.frame = CGRectMake(80, 24, 50, 40);
+        
     }
     return _closeItem;
 }
 
+- (DappChangeAccountOnNavigationRightView *)dappChangeAccountOnNavigationRightView{
+    if (!_dappChangeAccountOnNavigationRightView) {
+        _dappChangeAccountOnNavigationRightView = [[DappChangeAccountOnNavigationRightView alloc] init];
+        _dappChangeAccountOnNavigationRightView.delegate = self;
+    }
+    return _dappChangeAccountOnNavigationRightView;
+}
 
 - (DAppExcuteMutipleActionsBaseView *)dAppExcuteMutipleActionsBaseView{
     if (!_dAppExcuteMutipleActionsBaseView) {
         _dAppExcuteMutipleActionsBaseView = [[DAppExcuteMutipleActionsBaseView alloc] init];
-        _dAppExcuteMutipleActionsBaseView.frame = CGRectMake(0, SCREEN_HEIGHT-380, SCREEN_WIDTH, 380 );
+        _dAppExcuteMutipleActionsBaseView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT );
         _dAppExcuteMutipleActionsBaseView.delegate = self;
     }
     return _dAppExcuteMutipleActionsBaseView;
@@ -251,6 +272,7 @@
     return _progressView;
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -258,10 +280,6 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTION];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSH];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHACTIONS];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:JS_INTERACTION_METHOD_PUSHMESSAGE];
     
     
     if (IsStrEmpty(self.webView.title)) {
@@ -291,19 +309,27 @@
     // 解决顶部出现空白
     self.automaticallyAdjustsScrollViewInsets=NO;//自动滚动调整，默认为YES
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-    self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
-    self.title = self.model.applyName;
-    if (IsStrEmpty(self.choosedAccountName)) {
-        [self.view addSubview:self.selectAccountView];
-    }else{
-        [self loadWebView];
-        [self.view addSubview:self.progressView];
-    }
-    self.navigationItem.leftBarButtonItems =@[self.backItem , self.closeItem];
+    [self.view addSubview:self.navView];
+    self.navView.lee_theme.LeeConfigTintColor(@"common_font_color_1");
+    self.navView.titleLabel.text = self.model.applyName;
+    [self.navView addSubview:self.backItem];
+   
+//    _backItem.frame = CGRectMake(30, 24, 40, 40);
+//
+//    _closeItem.frame = CGRectMake(80, 24, 50, 40)
+    self.backItem.sd_layout.leftSpaceToView(self.navView.leftBtn, 5).bottomSpaceToView(self.navView, 10).widthIs(40).heightIs(20);
     
+    
+    [self.navView addSubview:self.closeItem];
+    self.closeItem.sd_layout.leftSpaceToView(self.backItem, 5).bottomSpaceToView(self.navView, 10).widthIs(50).heightIs(20);
+    
+    [self.navView addSubview:self.dappChangeAccountOnNavigationRightView];
+    self.dappChangeAccountOnNavigationRightView.sd_layout.rightSpaceToView(self.navView, MARGIN_15).centerYEqualToView(self.navView.titleLabel).widthIs(65).heightIs(MARGIN_15);
+    self.dappChangeAccountOnNavigationRightView.accountNameLabel.text = CURRENT_ACCOUNT_NAME;
+    self.choosedAccountName = CURRENT_ACCOUNT_NAME;
+    
+    [self loadWebView];
+    [self.view addSubview:self.progressView];
     // 给webview添加监听
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
 }
@@ -332,19 +358,14 @@
 
 //DAppExcuteMutipleActionsBaseViewDelegate
 - (void)excuteMutipleActionsConfirmBtnDidClick{
-    // 验证密码输入是否正确
-    Wallet *current_wallet = CURRENT_WALLET;
-    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.dAppExcuteMutipleActionsBaseView.passwordTF.text]) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
-        if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
-            [self responseToJsWithJSMethodName:JS_METHODNAME_CALLBACKRESULT SerialNumber:self.dappPushMessageModel.serialNumber andMessage: [ [self handleResponseToJsErrorInfoWithErrorMessage:@"ERROR:Password is invalid. Please check it."] mj_JSONString]];
-        }else{
-            [self responseToJsWithJSMethodName:JS_METHODNAME_PUSHACTIONRESULT SerialNumber:self.dAppExcuteMutipleActionsResult.serialNumber andMessage:@"ERROR:Password is invalid. Please check it."];
-            
-        }
-        return;
+    if (self.dappWithoutPasswordView.savePasswordBtn.selected == YES) {
+        [self handleExcuteMutipleActions];
+    }else{
+        [self.view addSubview:self.dappWithoutPasswordView];
     }
-    
+}
+
+- (void)handleExcuteMutipleActions{
     if ([self.WKScriptMessageName isEqualToString:JS_INTERACTION_METHOD_PUSHMESSAGE]) {
         
         if ([self.dappPushMessageModel.methodName isEqualToString:JS_INTERACTION_METHOD_requestSignature]) {
@@ -355,11 +376,9 @@
         }
     }else{
         [self pushActions];
-        
     }
-    
-
 }
+
 
 - (void)excuteMutipleActionsCloseBtnDidClick{
     [self removeDAppExcuteMutipleActionsBaseView];
@@ -562,7 +581,7 @@
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
     if (accountInfo) {
   
-            [self.excuteMultipleActionsService excuteMultipleActionsWithSender:accountInfo.account_name andExcuteActionsArray:self.dappExcuteActionsDataSourceService.dataSourceArray andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)] andPassword: self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
+            [self.excuteMultipleActionsService excuteMultipleActionsWithSender:accountInfo.account_name andExcuteActionsArray:self.dappExcuteActionsDataSourceService.dataSourceArray andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_owner_public_key) , VALIDATE_STRING(accountInfo.account_active_public_key)] andPassword: self.dappWithoutPasswordView.passwordTF.text];
 
     }else{
         [TOASTVIEW showWithText: NSLocalizedString(@"您钱包中暂无操作账号~", nil)];
@@ -573,7 +592,7 @@
 
 - (void)generateScatterSignature{
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.choosedAccountName];
-    NSString *signatureStr = [self.excuteMultipleActionsService excuteMultipleActionsForScatterWithScatterResult:self.dappDetailService.requestSignature_scatterResult andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_active_public_key), VALIDATE_STRING(accountInfo.account_owner_public_key) ] andPassword:self.dAppExcuteMutipleActionsBaseView.passwordTF.text];
+    NSString *signatureStr = [self.excuteMultipleActionsService excuteMultipleActionsForScatterWithScatterResult:self.dappDetailService.requestSignature_scatterResult andAvailable_keysArray:@[VALIDATE_STRING(accountInfo.account_active_public_key), VALIDATE_STRING(accountInfo.account_owner_public_key) ] andPassword:self.dappWithoutPasswordView.passwordTF.text];
     [self handleEccSignature:signatureStr];
 }
 
@@ -864,11 +883,13 @@
 
 
 
-//SelectAccountViewDelegate
-- (void)selectAccountBtnDidClick:(UIButton *)sender{
+
+//DappChangeAccountOnNavigationRightViewDelegate
+- (void)dappChangeAccountOnNavigationRightViewDidClick{
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
     builder.showMask = YES;
     builder.cancelTextColor = UIColor.redColor;
+    builder.cancelText = NSLocalizedString(@"选择您的EOS账号", nil);
     WS(weakSelf);
     
     NSArray *accountNameArr = [[AccountsTableManager accountTable] selectAllNativeAccountName];
@@ -878,24 +899,17 @@
     }
     
     [CDZPicker showSinglePickerInView:self.view withBuilder:builder strings:[[AccountsTableManager accountTable] selectAllNativeAccountName] confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
-        weakSelf.selectAccountView.accountChooseLabel.text = [NSString stringWithFormat:@"%@" , strings[0]];
+        weakSelf.dappChangeAccountOnNavigationRightView.accountNameLabel.text = [NSString stringWithFormat:@"%@" , strings[0]];
         weakSelf.choosedAccountName = VALIDATE_STRING(strings[0]);
+        weakSelf.dappDetailService.choosedAccountName = weakSelf.choosedAccountName;
+        NSString *requestStr;
+        requestStr = [NSString stringWithFormat:@"%@",self.model.url];
+        NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
+        [weakSelf.webView loadRequest: finalRequest];
     }cancel:^{
-        [weakSelf.selectAccountView removeFromSuperview];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        
     }];
     
-}
-
-- (void)understandBtnDidClick:(UIButton *)sender{
-    if (IsStrEmpty(self.choosedAccountName)) {
-        [TOASTVIEW showWithText:NSLocalizedString(@"请选择您将选择的账号!", nil)];
-        return;
-    } else{
-        [self.selectAccountView removeFromSuperview];
-        [self loadWebView];
-        [self.view addSubview:self.progressView];
-    }
 }
 
 - (void)loadWebView{
@@ -917,8 +931,6 @@
     if([self.webView canGoBack]) {
         //如果有则返回
         [self.webView goBack];
-        //同时设置返回按钮和关闭按钮为导航栏左边的按钮
-        self.navigationItem.leftBarButtonItems = @[self.backItem, self.closeItem];
     }else{
         [self closeNative];
     }
@@ -979,8 +991,43 @@
 
 - (void)dealloc{
     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
-    [self.webView setNavigationDelegate:nil];
-    [self.webView setUIDelegate:nil];
+//    [self.webView setNavigationDelegate:nil];
+//    [self.webView setUIDelegate:nil];
+}
+
+
+
+//DappWithoutPasswordViewDelegate
+- (void)dappWithoutPasswordViewBackgroundViewDidClick{
+    [self removeDappWithoutPasswordView];
+}
+
+- (void)dappWithoutPasswordViewCancleDidClick{
+    [self removeDappWithoutPasswordView];
+}
+
+- (void)dappWithoutPasswordViewConfirmBtnDidClick{
+    if (IsStrEmpty(self.dappWithoutPasswordView.passwordTF.text)) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码不能为空", nil)];
+        return;
+    }
+    
+    [self handleExcuteMutipleActions];
+    [self removeDappWithoutPasswordView];
+    [self removeDAppExcuteMutipleActionsBaseView];
+}
+
+- (void)removeDappWithoutPasswordView{
+    if (self.dappWithoutPasswordView) {
+        
+        [self.dappWithoutPasswordView removeFromSuperview];
+        if (self.dappWithoutPasswordView.savePasswordBtn.selected == YES) {
+            
+        }else{
+            self.dappWithoutPasswordView = nil;
+        }
+    }
+    
 }
 
 

@@ -18,8 +18,9 @@
 #import "BindPhoneNumberViewController.h"
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
+#import <SafariServices/SafariServices.h>
 
-@interface LoginEntranceViewController ()<LoginMainHeaderViewDelegate>
+@interface LoginEntranceViewController ()<LoginMainHeaderViewDelegate, SFSafariViewControllerDelegate>
 @property(nonatomic, strong) LoginService *mainService;
 @property(nonatomic , strong) LoginMainHeaderView *loginView;
 @end
@@ -121,9 +122,15 @@
 }
 
 - (void)privacyPolicyLabelDidTap{
-    RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-    vc.rtfFileName = @"PocketEOSProtocol";
-    [self.navigationController pushViewController:vc animated:YES];
+    if (@available(iOS 9.0, *)) {
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://static.pocketeos.top:3503"] entersReaderIfAvailable:YES];
+        safariVC.delegate = self;
+        [self presentViewController:safariVC animated:YES completion:nil];
+    } else {
+            RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
+            vc.rtfFileName = @"PocketEOSProtocol";
+            [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

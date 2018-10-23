@@ -13,7 +13,7 @@
 
 @interface AssestsMainHeaderView()
 @property (weak, nonatomic) IBOutlet UIImageView *addAssestsImageView;
-@property (weak, nonatomic) IBOutlet UIView *topBackgroundView;
+
 @end
 
 @implementation AssestsMainHeaderView
@@ -39,7 +39,7 @@
         layer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
     }
     layer.locations = @[@(0.0f), @(1.0f)];
-    [self.topBackgroundView.layer addSublayer:layer];
+//    [self.topBackgroundView.layer addSublayer:layer];
 
     [self.totalAssetsLabel setFont:[UIFont boldSystemFontOfSize:36]];
     

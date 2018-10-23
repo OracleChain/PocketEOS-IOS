@@ -7,6 +7,8 @@
 //
 
 #define ITEMSIZE_WIDTH 75.0f
+#define ACTION_STARAPP_CLICK @"ACTION_STARAPP_CLICK"
+#define ACTION_CELL_ITEM_CLICK @"ACTION_CELL_ITEM_CLICK"
 
 #import "ApplicationMainViewController.h"
 #import "SideBarViewController.h"
@@ -15,7 +17,6 @@
 #import "ApplicationCollectionViewCell.h"
 #import "Application.h"
 #import "DAppDetailViewController.h"
-#import "ApplicationDetailViewController.h"
 #import "NavigationView.h"
 #import "ApplicationService.h"
 #import "QuestionListViewController.h"
@@ -25,16 +26,19 @@
 #import "CDZPicker.h"
 #import "SelectAccountView.h"
 #import "ApplicationHeaderView.h"
+#import "CommonDialogHasTitleView.h"
 
 
 
-
-@interface ApplicationMainViewController ()<UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, NavigationViewDelegate, ApplicationMainHeaderViewDelegate, SDCycleScrollViewDelegate, SelectAccountViewDelegate, ApplicationHeaderViewDelegate>
+@interface ApplicationMainViewController ()<UIGestureRecognizerDelegate, NavigationViewDelegate, ApplicationMainHeaderViewDelegate, SDCycleScrollViewDelegate, SelectAccountViewDelegate, ApplicationHeaderViewDelegate, CommonDialogHasTitleViewDelegate>
 
 @property(nonatomic, strong) ApplicationHeaderView *headerView;
 @property(nonatomic, strong) NavigationView *navView;
+
 @property(nonatomic, strong) ApplicationService *mainService;
-@property(nonatomic, strong) UICollectionView *mainCollectionView;
+@property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
+@property(nonatomic , copy) NSString *currentAction;
+@property(nonatomic , strong) Application *model;
 @end
 
 @implementation ApplicationMainViewController
@@ -48,6 +52,26 @@
     return _navView;
 }
 
+- (ApplicationHeaderView *)headerView{
+    if (!_headerView) {
+        _headerView = [[ApplicationHeaderView alloc] init];
+        if (self.mainService.top4DataArray.count > 0) {
+            _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 310 + CYCLESCROLLVIEW_HEIGHT);
+        }else{
+            _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 206-9.5 + CYCLESCROLLVIEW_HEIGHT );
+        }
+        _headerView.delegate = self;
+        ApplicationHeaderViewModel *model = [[ApplicationHeaderViewModel alloc] init];
+        model.top4DataArray = (NSMutableArray *)self.mainService.top4DataArray;
+        model.starDataArray = (NSMutableArray *)self.mainService.starDataArray;
+//        [self configBannerView];
+        [self.headerView updateViewWithModel:model];
+    }
+    return _headerView;
+}
+
+
+
 - (ApplicationService *)mainService{
     if (!_mainService) {
         _mainService = [[ApplicationService alloc] init];
@@ -55,32 +79,15 @@
     return _mainService;
 }
 
-- (UICollectionView *)mainCollectionView{
-    if(!_mainCollectionView){
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        [layout setItemSize: CGSizeMake(SCREEN_WIDTH / 2 - 1, 80)];
-        
-        if (self.mainService.top4DataArray.count > 0) {
-            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 310 + CYCLESCROLLVIEW_HEIGHT);
-        }else{
-            layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 206-9.5 + CYCLESCROLLVIEW_HEIGHT );
-        }
-        
-        layout.minimumLineSpacing = 1;
-        layout.minimumInteritemSpacing = 1;
-        
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATIONBAR_HEIGHT - TABBAR_HEIGHT) collectionViewLayout: layout];
-        _mainCollectionView.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
-        [_mainCollectionView setDataSource: self];
-        [_mainCollectionView setDelegate: self];
-        [_mainCollectionView setShowsVerticalScrollIndicator: NO];
-        
-        [_mainCollectionView registerClass: [ApplicationCollectionViewCell class] forCellWithReuseIdentifier: CELL_REUSEIDENTIFIER];
-        [_mainCollectionView registerClass:[ApplicationHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Cell_Header"];
-        
+
+- (CommonDialogHasTitleView *)commonDialogHasTitleView{
+    if (!_commonDialogHasTitleView) {
+        _commonDialogHasTitleView = [[CommonDialogHasTitleView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _commonDialogHasTitleView.delegate = self;
     }
-    return _mainCollectionView;
+    return _commonDialogHasTitleView;
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -93,13 +100,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:leftEdgeGesture];
     leftEdgeGesture.delegate = self;
     [self.view addSubview:self.navView];
+    [self.view addSubview:self.mainTableView];
+    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT- TABBAR_HEIGHT);
     
+    self.mainTableView.mj_footer.hidden = YES;
     [self buildDataSource];
 }
 
@@ -118,8 +128,9 @@
     }];
     
     dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
-        [weakSelf.view addSubview:weakSelf.mainCollectionView];
-        [weakSelf.mainCollectionView reloadData];
+        [weakSelf.mainTableView.mj_header endRefreshing];
+        [self.mainTableView setTableHeaderView:self.headerView];
+        [weakSelf.mainTableView reloadData];
         [weakSelf configBannerView];
     });
 }
@@ -132,6 +143,26 @@
     [weakSelf.headerView addSubview:cycleScrollView];
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.mainService.listDataArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    Application *model = (Application *)self.mainService.listDataArray[indexPath.row];
+    return [self.mainTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ApplicationCollectionViewCell class]  contentViewWidth:SCREEN_WIDTH ];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ApplicationCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_REUSEIDENTIFIER];
+    if (!cell) {
+        cell = [[ApplicationCollectionViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
+    }
+    Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
+    cell.model = model;
+    return cell;
+   
+}
+
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     [MobClick event:[NSString stringWithFormat:@"DApp_banner_%ld", index+1]];
     EnterpriseDetailViewController *vc = [[EnterpriseDetailViewController alloc] init];
@@ -140,56 +171,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.mainService.listDataArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ApplicationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: CELL_REUSEIDENTIFIER forIndexPath: indexPath];
-    Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
-    [cell updateViewWithModel:model];
-    return cell;
-}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
-
-    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self addCommonDialogHasTitleView];
+    self.currentAction = ACTION_CELL_ITEM_CLICK;
     
-
-   
+    Application *model = (Application *)self.mainService.listDataArray[indexPath.item];
+    
+    self.model = model;
 }
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-     UICollectionReusableView *reusableview = nil;
-    WS(weakSelf);
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        if (indexPath.section == 0) {
-            self.headerView = (ApplicationHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Cell_Header" forIndexPath:indexPath];
-            self.headerView.delegate = self;
-            
-            ApplicationHeaderViewModel *model = [[ApplicationHeaderViewModel alloc] init];
-            model.top4DataArray = (NSMutableArray *)weakSelf.mainService.top4DataArray;
-            model.starDataArray = (NSMutableArray *)weakSelf.mainService.starDataArray;
-            [weakSelf configBannerView];
-            [weakSelf.headerView updateViewWithModel:model];
-            return self.headerView;
-        }
-    }
-    return reusableview;
-}
-
 
 #pragma mark - 侧滑
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -223,22 +212,46 @@
 }
 
 -(void)starApplicationBtnDidClick:(UIButton *)sender{
-    if (self.mainService.starDataArray.count > 0) {
-        Application *model = self.mainService.starDataArray[0];
-    
-            if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-                QuestionListViewController *vc = [[QuestionListViewController alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-                vc.model = model;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        
-    }
+    [self addCommonDialogHasTitleView];
+    self.currentAction = ACTION_STARAPP_CLICK;
 }
 
 - (void)loadNewData{
+    [self buildDataSource];
+}
+
+
+//CommonDialogHasTitleViewDelegate
+- (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
+    if ([self.currentAction isEqualToString:ACTION_STARAPP_CLICK]) {
+        if (self.mainService.starDataArray.count > 0) {
+            Application *model = self.mainService.starDataArray[0];
+            [self handleCommonDialogHasTitleViewConfirmBtnDidClickResult:model];
+        }
+    }else if ([self.currentAction isEqualToString:ACTION_CELL_ITEM_CLICK]){
+        [self handleCommonDialogHasTitleViewConfirmBtnDidClickResult:self.model];
+    }
     
 }
+
+- (void)handleCommonDialogHasTitleViewConfirmBtnDidClickResult:(Application *)model{
+    if ([model.applyName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
+        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (void)addCommonDialogHasTitleView{
+    [self.view addSubview:self.commonDialogHasTitleView];
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"注意", nil);
+    model.detail = NSLocalizedString(@"您正在跳转至第三方Dapp,确认即同意第三方Dapp的用户协议与隐私政策，由其直接并单独向您承担责任", nil);
+    [self.commonDialogHasTitleView setModel:model];
+}
+
 @end

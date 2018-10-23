@@ -34,6 +34,7 @@
 #import "BaseLabel.h"
 #import "BaseLabel1.h"
 #import "BaseButton.h"
+#import "ExpandHitAreaButton.h"
 #import "BaseTableViewCell.h"
 #import "BaseTableViewCell1.h"
 #import "BaseTextView.h"
@@ -69,6 +70,7 @@
 #import "ArchiveUtil.h"
 #import "OptionModel.h"
 #import "QRCodeModel.h"
+#import "CommonTransferModel.h"
 #import "BaseResult.h"
 #import "RtfBrowserViewController.h"
 

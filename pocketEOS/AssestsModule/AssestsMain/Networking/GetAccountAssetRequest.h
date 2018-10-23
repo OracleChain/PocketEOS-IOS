@@ -7,7 +7,7 @@
 //
 
 #import "BaseNetworkRequest.h"
-
+//（老版本）/
 @interface GetAccountAssetRequest : BaseHttpsNetworkRequest
 
 /**

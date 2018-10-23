@@ -63,13 +63,6 @@
     return _loginPasswordView;
 }
 
-- (NSMutableArray *)choosedBPDataArray{
-    if (!_choosedBPDataArray) {
-        _choosedBPDataArray = [[NSMutableArray alloc] init];
-    }
-    return _choosedBPDataArray;
-}
-
 - (RegisterAccountToVoteSystem_Abi_json_to_bin_request *)registerAccountToVoteSystem_Abi_json_to_bin_request{
     if (!_registerAccountToVoteSystem_Abi_json_to_bin_request) {
         _registerAccountToVoteSystem_Abi_json_to_bin_request = [[RegisterAccountToVoteSystem_Abi_json_to_bin_request alloc] init];
@@ -169,14 +162,14 @@
     cell.textLabel.textColor = HEXCOLOR(0xFFFFFF);
     cell.detailTextLabel.textColor = HEXCOLOR(0xFFFFFF);
     cell.bottomLineView.backgroundColor = HEX_RGB_Alpha(0xFFFFFF, 0.1);
-    BPCandidateModel *model = self.choosedBPDataArray[indexPath.row];
-    cell.textLabel.text = model.owner;
+    NSString *bpName = self.choosedBPNameDataArray[indexPath.row];
+    cell.textLabel.text = bpName;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.4f%@", (self.model.eos_net_weight.doubleValue + self.model.eos_cpu_weight.doubleValue+ self.headerView.amountTF.text.doubleValue )* 10000 * self.nowVoteWeight.doubleValue / 1000000000000, NSLocalizedString(@"亿票", nil)];
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.choosedBPDataArray.count;
+    return self.choosedBPNameDataArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -265,7 +258,7 @@
 }
 
 - (void)approveToVoteSystem{
-    //    2.押入SYS用于投票
+    
     self.approve_Abi_json_to_bin_request.action = ContractAction_DELEGATEBW;
     self.approve_Abi_json_to_bin_request.code = ContractName_EOSIO;
     self.approve_Abi_json_to_bin_request.from = self.model.account_name;
@@ -302,8 +295,8 @@
     self.voteProducers_Abi_json_to_bin_request.voter = self.model.account_name;
     self.voteProducers_Abi_json_to_bin_request.proxy = @"";
     NSMutableArray *bpNameArr = [[NSMutableArray alloc] init];
-    for (BPCandidateModel *model in self.choosedBPDataArray) {
-        [bpNameArr addObject:model.owner];
+    for (NSString *bpName in self.choosedBPNameDataArray) {
+        [bpNameArr addObject:bpName];
     }
     // 排序
     NSArray *sortArr = [bpNameArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {

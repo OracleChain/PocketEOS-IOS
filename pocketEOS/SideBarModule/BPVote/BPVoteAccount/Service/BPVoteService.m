@@ -10,6 +10,7 @@
 #import "MyVoteInfo.h"
 #import "MyVoteProduce.h"
 #import "MyVoteInfoResult.h"
+#import "BPCandidateModel.h"
 
 @interface BPVoteService()
 
@@ -31,7 +32,7 @@
         [weakSelf.dataSourceArray removeAllObjects];
         
         MyVoteInfoResult *result = [MyVoteInfoResult mj_objectWithKeyValues:data];
-        [weakSelf.dataSourceArray addObjectsFromArray:[MyVoteProduce mj_objectArrayWithKeyValuesArray:result.producers]];
+        [weakSelf.dataSourceArray addObjectsFromArray:[BPCandidateModel mj_objectArrayWithKeyValuesArray:result.producers]];
         complete(result, YES);
     } failure:^(id DAO, NSError *error) {
         complete(nil, NO);

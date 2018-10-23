@@ -18,7 +18,7 @@
 @property(nonatomic , strong) UIView *lineView;
 @property(nonatomic , strong) UIButton *skipBtn;
 @property(nonatomic , strong) UIButton *updateBtn;
-
+@property(nonatomic , strong) UIView *midLineView;
 
 @end
 
@@ -65,7 +65,6 @@
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = NSLocalizedString(@"版本介绍", nil);
         _titleLabel.font = [UIFont systemFontOfSize:17];
         _titleLabel.textColor = HEXCOLOR(0x2A2A2A);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -84,7 +83,7 @@
 - (UIButton *)skipBtn{
     if (!_skipBtn) {
         _skipBtn = [[UIButton alloc] init];
-        [_skipBtn setTitle:NSLocalizedString(@"跳过", nil)forState:(UIControlStateNormal)];
+        [_skipBtn setTitle:NSLocalizedString(@"取消", nil)forState:(UIControlStateNormal)];
         [_skipBtn setTitleColor:HEXCOLOR(0x999999) forState:(UIControlStateNormal)];
         _skipBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_skipBtn addTarget:self action:@selector(skipBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -101,6 +100,14 @@
         [_updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _updateBtn;
+}
+
+- (UIView *)midLineView{
+    if (!_midLineView) {
+        _midLineView = [[UIView alloc] init];
+        _midLineView.backgroundColor = HEXCOLOR(0xEEEEEE);
+    }
+    return _midLineView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -132,30 +139,38 @@
     self.titleLabel.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.avatarImg, 17.7).heightIs(24).leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView);
 
     [self.contentBackgroundView addSubview:self.contentTextView];
-    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 8).heightIs(detailContentSize.height).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20);
+    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 8).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20).heightIs(66); // .heightIs(detailContentSize.height)
 
     [self.contentBackgroundView addSubview:self.lineView];
     self.lineView.sd_layout.leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView).topSpaceToView(self.contentTextView, 22).heightIs(DEFAULT_LINE_HEIGHT);
-
     
-    [self.contentBackgroundView addSubview:self.updateBtn];
-    self.updateBtn.sd_layout.leftSpaceToView(self.contentBackgroundView, 0).rightSpaceToView(self.contentBackgroundView, 0).topSpaceToView(self.lineView, DEFAULT_LINE_HEIGHT).heightIs(52.5);
+    [self.contentBackgroundView addSubview:self.midLineView];
+    self.midLineView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.lineView, 0).heightIs(52.5).widthIs(DEFAULT_LINE_HEIGHT);
 
+    [self.contentBackgroundView addSubview:self.skipBtn];
+    self.skipBtn.sd_layout.leftSpaceToView(self.contentBackgroundView, 0).rightSpaceToView(self.midLineView, 0).topSpaceToView(self.lineView, 0).heightIs(52.5);
+
+    [self.contentBackgroundView addSubview:self.updateBtn];
+    self.updateBtn.sd_layout.leftSpaceToView(self.midLineView, 0).rightSpaceToView(self.contentBackgroundView, 0).topSpaceToView(self.lineView, DEFAULT_LINE_HEIGHT).heightIs(52.5);
+
+    self.titleLabel.text = model.optionName;
     self.contentTextView.text = model.detail;
 
-    [self.contentBackgroundView setupAutoHeightWithBottomView: self.updateBtn bottomMargin: 0];
+    [self.contentBackgroundView setupAutoHeightWithBottomView: self.midLineView bottomMargin: 0];
 }
 
-//- (void)skipBtnClick:(UIButton *)sender{
+- (void)skipBtnClick:(UIButton *)sender{
+    [self dismiss];
 //    if (self.delegate && [self.delegate respondsToSelector:@selector(skipBtnDidClick:)]) {
 //        [self.delegate skipBtnDidClick:sender];
 //    }
-//}
+}
 
 - (void)updateBtnClick:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(commonDialogHasTitleViewBtnDidClick:)]) {
-        [self.delegate commonDialogHasTitleViewBtnDidClick:sender];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(commonDialogHasTitleViewConfirmBtnDidClick:)]) {
+        [self.delegate commonDialogHasTitleViewConfirmBtnDidClick:sender];
     }
+    [self dismiss];
 }
 
 - (void)dismiss{

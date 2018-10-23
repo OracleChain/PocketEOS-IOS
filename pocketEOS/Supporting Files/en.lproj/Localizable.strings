@@ -765,3 +765,17 @@
 "密码"="Password";
 "请输入钱包密码"="Set the wallet password";
 "请求授权账户和本地账户不同,请谨慎操作"="Auth account is different form local account, be extremely careful!";
+"请查看所有签名内容后再确认"="Please check all signature informations.";
+"1. 使用免密功能将通过本地缓存为您自动填充密码；\n 2. 退出Dapp后免密功能自动失效，下次需要重新开启；\n 3. PE不会保存您的密码。\n"=" 1. Password-free work with local cache; \n 2. Password-free expired when exit；\n 3. PE will not save your password.";
+"更多任务, 敬请期待"="More tasks coming soon!";
+"最多选取30个节点"="Cloud not vote more than 30 nodes";
+
+"选择您的EOS账号"="Select EOS account";
+"选择您的Token"="Selcet Token";
+"确认即同意第三方Dapp的用户协议与隐私政策"="The Dapp provided by third party. You should agree third party Terms and Private Policy to continue. PE takes no responsibility for this Dapp.";
+"笔交易"="transactions";
+"交易成功，共转出"="Done. Send";
+"交易失败"="Tx failed";
+"归集说明"="note";
+"资产归集"="Collection";
+"交易详情"="Trans Detail";

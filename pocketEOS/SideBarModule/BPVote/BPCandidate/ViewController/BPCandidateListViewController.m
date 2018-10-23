@@ -20,6 +20,8 @@
 @property(nonatomic , strong) BPCandidateFooterView *footerView;
 @property(nonatomic , strong) BPCandidateService *mainService;
 @property(nonatomic , strong) NSMutableArray *choosedBPDataArray;
+@property(nonatomic , strong) NSMutableArray *choosedBPNameDataArray;
+
 @end
 
 @implementation BPCandidateListViewController
@@ -43,13 +45,6 @@
     return _footerView;
 }
 
-- (NSMutableArray *)choosedBPDataArray{
-    if (!_choosedBPDataArray) {
-        _choosedBPDataArray = [[NSMutableArray alloc] init];
-    }
-    return _choosedBPDataArray;
-}
-
 - (BPCandidateService *)mainService{
     if (!_mainService) {
         _mainService = [[BPCandidateService alloc] init];
@@ -62,6 +57,21 @@
     }
     return _model;
 }
+
+- (NSMutableArray *)choosedBPDataArray{
+    if (!_choosedBPDataArray) {
+        _choosedBPDataArray = [NSMutableArray array];
+    }
+    return _choosedBPDataArray;
+}
+
+- (NSMutableArray *)choosedBPNameDataArray{
+    if (!_choosedBPNameDataArray) {
+        _choosedBPNameDataArray = [NSMutableArray array];
+    }
+    return _choosedBPNameDataArray;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -77,6 +87,13 @@
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     [self.view addSubview:self.footerView];
     [self.mainTableView.mj_header beginRefreshing];
+    
+    
+    for (BPCandidateModel *votedModel in self.myVoteInfoResult.producers){
+        [self.choosedBPNameDataArray addObject:votedModel.owner];
+    }
+    
+    [self configFooterView];
 }
 
 
@@ -86,6 +103,21 @@
         cell = [[BPCandidateTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     BPCandidateModel *model = self.mainService.dataSourceArray[indexPath.row];
+    
+    //NSArray或者NSMutableArray常见错误was mutated while being enumerated
+    //forin 循环中的便利内容不能被改变, 是因为如果改变其便利的内容会少一个, 而系统是不会允许这个发生的所以就会crash...但是当改变最后一个的内容时, 就不会crash, 是因为此时遍历已经结束, 结束之后对内容做修改是允许的
+//    NSArray *tmpArr = [NSArray arrayWithArray:self.choosedBPNameDataArray];
+//    for (NSString *bpName in tmpArr) {
+//        if ([bpName isEqualToString:model.owner]) {
+//            if (![self.choosedBPDataArray containsObject:model] ) {
+//                [self.choosedBPDataArray addObject:model];
+//                [self.choosedBPNameDataArray removeObject:bpName];
+//                model.isSelected = YES;
+//            }
+//        }
+//    }
+    
+    
     cell.model = model;
     [cell setOnAvatarViewClick:^{
         BPCandidateDetailViewController *vc = [[BPCandidateDetailViewController alloc] init];
@@ -105,34 +137,43 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BPCandidateModel *model = self.mainService.dataSourceArray[indexPath.row];
-    if ([self.choosedBPDataArray containsObject:model] ) {
-        [self.choosedBPDataArray removeObject:model];
-        model.isSelected = NO;
+    if (self.choosedBPNameDataArray.count == 30) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"最多选取30个节点", nil)];
     }else{
-        [self.choosedBPDataArray addObject:model];
-        model.isSelected = YES;
+        if (model.voted) {
+            if ([self.choosedBPNameDataArray containsObject:model.owner]) {
+                [self.choosedBPNameDataArray removeObject:model.owner];
+                model.voted = NO;
+            }
+        }else{
+            if (![self.choosedBPNameDataArray containsObject:model.owner]) {
+                [self.choosedBPNameDataArray addObject:model.owner];
+                model.voted = YES;
+            }
+        }
     }
     [self.mainTableView reloadData];
-    NSInteger remainCount = 30-self.choosedBPDataArray.count;
-    self.footerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld%@%ld%@", NSLocalizedString(@"已选择", nil),self.choosedBPDataArray.count, NSLocalizedString(@"个，还可以选择", nil), remainCount , NSLocalizedString(@"个", nil)];
-    
+    [self configFooterView];
+}
+
+- (void)configFooterView{
+    NSInteger remainCount = 30-self.choosedBPNameDataArray.count;
+    self.footerView.tipLabel.text = [NSString stringWithFormat:@"%@%ld%@%ld%@", NSLocalizedString(@"已选择", nil),self.choosedBPNameDataArray.count, NSLocalizedString(@"个，还可以选择", nil), remainCount , NSLocalizedString(@"个", nil)];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    BPCandidateModel *model = self.mainService.dataSourceArray[indexPath.row];
-//    return [self.mainTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[BPCandidateTableViewCell class]  contentViewWidth:SCREEN_WIDTH];
     return 80;
 }
 
 //BPCandidateFooterViewDelegate
 - (void)confirmBtnDidClick{
-    if (self.choosedBPDataArray.count == 0) {
+    if (self.choosedBPNameDataArray.count == 0) {
         [TOASTVIEW showWithText:@"至少选择一个投票节点!"];
         return ;
     }
     BPVoteAmountViewController *vc = [[BPVoteAmountViewController alloc] init];
     vc.model = self.model;
-    vc.choosedBPDataArray = self.choosedBPDataArray;
+    vc.choosedBPNameDataArray = self.choosedBPNameDataArray;
     vc.myVoteInfoResult = self.myVoteInfoResult;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -153,6 +194,7 @@
 - (void)loadNewData
 {
     WS(weakSelf);
+    self.mainService.getBPCandidateListRequest.accountName = self.model.account_name;
     [self.mainTableView.mj_footer resetNoMoreData];
     [self.mainService buildDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
         if (isSuccess) {
@@ -181,6 +223,7 @@
 - (void)loadMoreData
 {
     WS(weakSelf);
+    self.mainService.getBPCandidateListRequest.accountName = self.model.account_name;
     [self.mainService buildNextPageDataSource:^(NSNumber *dataCount, BOOL isSuccess) {
         if (isSuccess) {
             // 刷新表格

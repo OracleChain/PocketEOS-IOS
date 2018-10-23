@@ -9,10 +9,18 @@
 #import "MyVoteInfoResult.h"
 
 @implementation MyVoteInfoResult
+
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{
              @"info" : @"data.info",
              @"producers" : @"data.producers",
              };
 }
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{@"producers" : @"BPCandidateModel"};
+}
+
+
 @end
+

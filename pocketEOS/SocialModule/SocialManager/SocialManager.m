@@ -231,7 +231,7 @@
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = model.title;
     message.description = model.detailDescription;
-    [message setThumbImage:[UIImage imageNamed: @"redpacket"]];
+    [message setThumbImage:[UIImage imageNamed: model.imageName]];
     
     WXWebpageObject *webpageObject = [WXWebpageObject object];
     webpageObject.webpageUrl = model.webPageUrl;

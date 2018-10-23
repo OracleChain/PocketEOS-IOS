@@ -36,29 +36,33 @@
     return _descriptionLabel;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+       
         [self.contentView addSubview:self.img];
-        self.img.sd_layout.leftSpaceToView(self.contentView, 20).centerYEqualToView(self.contentView).widthIs(50).heightIs(50);
+        
+        self.img.sd_layout.leftSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, MARGIN_15).widthIs(45).heightIs(45);
         
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(_img, 10 ).rightSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, 22).heightIs(18);
+        self.titleLabel.sd_layout.leftSpaceToView(_img, 10 ).rightSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, 21).heightIs(15);
         
         [self.contentView addSubview:self.descriptionLabel];
-        self.descriptionLabel.sd_layout.leftSpaceToView(_img, 10).topSpaceToView(_titleLabel, 8).rightSpaceToView(self.contentView, 2).heightIs(13);
+        self.descriptionLabel.sd_layout.leftSpaceToView(_img, 10).topSpaceToView(_titleLabel, 6).rightSpaceToView(self.contentView, 2).autoHeightRatio(0);
         
+        [self.bottomLineView sd_clearAutoLayoutSettings];
+        self.bottomLineView.sd_layout.leftSpaceToView(self.contentView, 74).topSpaceToView(self.descriptionLabel, MARGIN_20).rightSpaceToView(self.contentView, 0).heightIs(DEFAULT_LINE_HEIGHT);
+        
+        [self setupAutoHeightWithBottomView:self.bottomLineView bottomMargin:0];
         
     }
     return self;
 }
 
-- (void)updateViewWithModel:(Application *)model{
+
+-(void)setModel:(Application *)model{
     [_img sd_setImageWithURL: String_To_URL(VALIDATE_STRING(model.applyIcon) )  placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     _titleLabel.text = model.applyName;
     _descriptionLabel.text = model.applyDetails;
 }
-
 
 @end

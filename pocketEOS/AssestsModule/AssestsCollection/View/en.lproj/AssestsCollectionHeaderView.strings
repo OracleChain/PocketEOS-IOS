@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "全选"; ObjectID = "9Tc-ak-Ex5"; */
+"9Tc-ak-Ex5.text" = "check all";
+
+/* Class = "UILabel"; text = "归集账号"; ObjectID = "hEG-Bu-lap"; */
+"hEG-Bu-lap.text" = "Collected accounts";
+
+/* Class = "UILabel"; text = "被归集的资产，将会转入该主账号"; ObjectID = "iX9-3p-Adi"; */
+"iX9-3p-Adi.text" = "Collected assets will transfer to Main Account";
+
+/* Class = "UILabel"; text = "归集资产"; ObjectID = "qdM-sC-3Rs"; */
+"qdM-sC-3Rs.text" = "Collected assets";

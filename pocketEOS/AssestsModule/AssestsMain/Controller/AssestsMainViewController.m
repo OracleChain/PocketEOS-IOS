@@ -52,9 +52,7 @@
 #import "GetAccountOrderStatusRequest.h"
 #import "AccountOrderStatus.h"
 #import "AccountOrderStatusResult.h"
-#import "ScatterMainViewController.h"
 #import "ExcuteMultipleActionsService.h"
-
 
 @interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
 
@@ -71,6 +69,7 @@
 @property(nonatomic , strong) VersionUpdateModel *versionUpdateModel;
 @property(nonatomic , strong) NSMutableArray *ids;
 @property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
+@property(nonatomic , strong) CAGradientLayer *gradientLayer;
 @end
 
 @implementation AssestsMainViewController
@@ -193,13 +192,30 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationItem.title = @"";
+    
+    
+    self.gradientLayer = [CAGradientLayer layer];
+    self.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 290 );
+    self.gradientLayer.startPoint = CGPointMake(1, 1);
+    self.gradientLayer.endPoint = CGPointMake(0, 0);
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x1667DF).CGColor, (__bridge id)HEXCOLOR(0x2E82FE).CGColor];
+    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
+    }
+    self.gradientLayer.locations = @[@(0.0f), @(1.0f)];
+    [self.view.layer addSublayer:self.gradientLayer];
+    
+    
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
     
     self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+   
     
     [self.mainTableView setTableHeaderView:self.headerView];
     [self loadAllBlocks];
@@ -234,6 +250,8 @@
     [self checkNewVersion];
 
     
+    
+    
 }
 
 // 构建数据源
@@ -265,6 +283,12 @@
                    BOOL success = [NSKeyedArchiver archiveRootObject:weakSelf.get_token_info_service.dataSourceArray toFile:path];
                 }
             }
+        [UIView animateWithDuration:0.5 animations:^{
+            weakSelf.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -250);
+        }];
+        
+        
+        
         
         
             
@@ -277,6 +301,8 @@
     // 默认的导航栏 block
     [self.navView setLeftBtnDidClickBlock:^{
         [weakSelf profileCenter];
+//        CandyCollectionViewController *vc = [[CandyCollectionViewController alloc] init];
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
    
     [self.navView setRightBtn1DidClickBlock:^{
@@ -365,11 +391,6 @@
     }];
     
     [self.headerView setTransferBtnDidClickBlock:^{
-//        ScatterMainViewController *vc = [[ScatterMainViewController alloc] init];
-//        Application *model = [[Application alloc] init];
-//        model.url = @"http://api.oraclechain.io:1443";
-//        vc.model = model;
-//        [weakSelf.navigationController pushViewController:vc animated:YES];
         
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
@@ -403,12 +424,10 @@
         [MobClick event:@"RAM交易"];
         DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
         Application *model = [[Application alloc] init];
-//        model.url = @"http://static.pocketeos.top:3002";
-//        https://www.xpet.io/index.html?identity=684
-//        model.url = @"http://oct.xpet.io/index.html?identity=684";
+        model.url = @"http://static.pocketeos.top:3002";
 //        model.url = @"https://dapp.newdex.io/";
-//        model.url = @"https://dice.eosbet.io/";
-        model.url = @"http://10.0.0.133:8080";
+//        model.url = @"https://eostoolkit.io/airgrab";
+//        model.url = @"https://eospool.tw/#/?vip= ocpetchannel";
         model.applyName = @"EOS内存市场";
         vc.model = model;
         vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
@@ -641,7 +660,7 @@
 }
 
 - (void)updateBtnDidClick:(UIButton *)sender{
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"https://pocketeos.com"]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"http://pocketeos.com"]];
 }
 
 //AddAssestsViewControllerDelegate

@@ -6,6 +6,7 @@
 //  Copyright © 2018年 oraclechain. All rights reserved.
 //
 
+
 #import "ExcuteMultipleActionsService.h"
 #import "BlockChainInfo.h"
 #import "GetBlockChainInfoRequest.h"
@@ -48,7 +49,7 @@
 @property(nonatomic, copy) NSString *expiration;
 @property(nonatomic, copy) NSString *required_Publickey;
 @property(nonatomic , assign) NSInteger abi_json_to_bin_request_count;
-
+@property(nonatomic , strong) id data;
 @end
 
 
@@ -107,6 +108,7 @@
 #pragma mark -- [@"data"]
             BlockChainInfo *model = [BlockChainInfo mj_objectWithKeyValues:data[@"data"]];// [@"data"]
             weakSelf.expiration = [[[NSDate dateFromString: model.head_block_time] dateByAddingTimeInterval: 30] formatterToISO8601];
+            self.expiration = [[[NSDate dateFromString: model.head_block_time] dateByAddingTimeInterval: 30] formatterToISO8601];
             weakSelf.ref_block_num = [NSString stringWithFormat:@"%@",model.head_block_num];
             
             NSString *js = @"function readUint32( tid, data, offset ){var hexNum= data.substring(2*offset+6,2*offset+8)+data.substring(2*offset+4,2*offset+6)+data.substring(2*offset+2,2*offset+4)+data.substring(2*offset,2*offset+2);var ret = parseInt(hexNum,16).toString(10);return(ret)}";
@@ -153,7 +155,7 @@
         [outerNetworkingManager POST: url parameters: [self.abi_json_to_binRequest parameters] progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSString *HTTPHeaderFieldFromValue = [outerNetworkingManager.requestSerializer valueForHTTPHeaderField:@"From"];
-            NSLog(@"responseObject: %@,HTTPHeaderFieldFromValue: %@", responseObject, HTTPHeaderFieldFromValue);
+            NSLog(@"abi_json_to_binRequest_success: %@,HTTPHeaderFieldFromValue: %@", responseObject, HTTPHeaderFieldFromValue);
             Abi_json_to_bin_Result *abi_json_to_bin_result = [Abi_json_to_bin_Result mj_objectWithKeyValues:responseObject];
            
             if ([abi_json_to_bin_result.code isEqualToNumber:@0]) {
@@ -195,6 +197,7 @@
     [self.getRequiredPublicKeyRequest postOuterDataSuccess:^(id DAO, id data) {
 #pragma mark -- [@"data"]
         if ([data[@"code"] isEqualToNumber:@0 ]) {
+            self.required_Publickey = data[@"data"][@"required_keys"][0];
             weakSelf.required_Publickey = data[@"data"][@"required_keys"][0];
             NSLog(@"get_required_keys_success: -- %@",data[@"data"][@"required_keys"][0]);//
             [weakSelf pushTransactionRequestOperation];
@@ -261,8 +264,10 @@
         NSLog(@"%@", [[self.pushTransactionRequest parameters] mj_JSONObject]);
         [SVProgressHUD showWithStatus:nil];
         [self.pushTransactionRequest postOuterDataSuccess:^(id DAO, id data) {
-            NSLog(@"success: -- %@",data );
+            NSLog(@"pushTransactionRequestSuccess: -- %@",data );
+            self.data = data;
             TransactionResult *result = [TransactionResult mj_objectWithKeyValues:data];
+            result.tag = weakSelf.tag;
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(excuteMultipleActionsDidFinish:)]) {
                 [weakSelf.delegate excuteMultipleActionsDidFinish:result];
             }
@@ -283,15 +288,15 @@
     self.required_Publickey = available_keysArray[0];
     
     AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:self.sender];
-    NSString *wif;
-    if ([accountInfo.account_owner_public_key isEqualToString:self.required_Publickey]) {
-        wif = [AESCrypt decrypt:accountInfo.account_owner_private_key password:self.password];
-    }else if ([accountInfo.account_active_public_key isEqualToString:self.required_Publickey]) {
-        wif = [AESCrypt decrypt:accountInfo.account_active_private_key password:self.password];
-    }else{
-        [TOASTVIEW showWithText:NSLocalizedString(@"未找到账号的私钥!", nil)];
-        return nil;
-    }
+    NSString *wif = [AESCrypt decrypt:accountInfo.account_active_private_key password:self.password];
+//    if ([accountInfo.account_owner_public_key isEqualToString:self.required_Publickey]) {
+//        wif = [AESCrypt decrypt:accountInfo.account_owner_private_key password:self.password];
+//    }else if ([accountInfo.account_active_public_key isEqualToString:self.required_Publickey]) {
+//        wif = [AESCrypt decrypt:accountInfo.account_active_private_key password:self.password];
+//    }else{
+//        [TOASTVIEW showWithText:NSLocalizedString(@"未找到账号的私钥!", nil)];
+//        return nil;
+//    }
     const int8_t *private_key = [[EOS_Key_Encode getRandomBytesDataWithWif:wif] bytes];
     //     [NSObject out_Int8_t:private_key andLength:32];
     if (!private_key) {
