@@ -58,7 +58,9 @@
 &emsp;2. clone our git repository.
 >`git clone --recurse-submodules https://github.com/OracleChain/PocketEOS-IOS.git`
 
-&emsp;3. command + R
+&emsp;3. import the project and change the configuration of backend server address according to your local PocketEOS-ShieldServer.
+
+&emsp;4. run `command + R`
 
 **DOWNLOAD & TRY/下载试用**
 
