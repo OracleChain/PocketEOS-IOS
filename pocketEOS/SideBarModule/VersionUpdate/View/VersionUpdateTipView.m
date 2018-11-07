@@ -14,6 +14,7 @@
 @property(nonatomic , strong) UITextView *contentTextView;
 @property(nonatomic , strong) UIImageView *avatarImg;
 @property(nonatomic , strong) UILabel *titleLabel;
+@property(nonatomic , strong) UILabel *versionNumberLabel;
 @property(nonatomic , strong) UIView *lineView;
 @property(nonatomic , strong) UIButton *skipBtn;
 @property(nonatomic , strong) UIButton *updateBtn;
@@ -36,7 +37,7 @@
         _contentBackgroundView = [[UIView alloc] init];
         _contentBackgroundView.backgroundColor = HEXCOLOR(0xFFFFFF);
         _contentBackgroundView.layer.masksToBounds = YES;
-        _contentBackgroundView.layer.cornerRadius = 6;
+        _contentBackgroundView.layer.cornerRadius = 8;
     }
     return _contentBackgroundView;
 }
@@ -54,7 +55,7 @@
 - (UIImageView *)avatarImg{
     if (!_avatarImg) {
         _avatarImg = [[UIImageView alloc] init];
-        _avatarImg.image = [UIImage imageNamed:@"account_default_blue"];
+        _avatarImg.image = [UIImage imageNamed:@"versionUpdate-pic"];
     }
     return _avatarImg;
 }
@@ -62,12 +63,22 @@
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = NSLocalizedString(@"版本更新", nil);
+        _titleLabel.text = NSLocalizedString(@"发现新版本", nil);
         _titleLabel.font = [UIFont systemFontOfSize:17];
-        _titleLabel.textColor = HEXCOLOR(0x2A2A2A);
+        _titleLabel.textColor = HEXCOLOR(0x0080FF);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
+}
+
+- (UILabel *)versionNumberLabel{
+    if (!_versionNumberLabel) {
+        _versionNumberLabel = [[UILabel alloc] init];
+        _versionNumberLabel.font = [UIFont systemFontOfSize:12];
+        _versionNumberLabel.textColor = HEXCOLOR(0x999999);
+        _versionNumberLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _versionNumberLabel;
 }
 
 - (UIView *)lineView{
@@ -83,7 +94,8 @@
         _skipBtn = [[UIButton alloc] init];
         [_skipBtn setTitle:NSLocalizedString(@"跳过", nil)forState:(UIControlStateNormal)];
         [_skipBtn setTitleColor:HEXCOLOR(0x999999) forState:(UIControlStateNormal)];
-        _skipBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_skipBtn setBackgroundColor:HEXCOLOR(0xFFFFFF)];
+        _skipBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [_skipBtn addTarget:self action:@selector(skipBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _skipBtn;
@@ -93,7 +105,9 @@
     if (!_updateBtn) {
         _updateBtn = [[UIButton alloc] init];
         [_updateBtn setTitle:NSLocalizedString(@"立即更新", nil)forState:(UIControlStateNormal)];
-        [_updateBtn setTitleColor:HEXCOLOR(0x4D7BFE) forState:(UIControlStateNormal)];
+        [_updateBtn setTitleColor:HEXCOLOR(0xFFFFFF) forState:(UIControlStateNormal)];
+        [_updateBtn setBackgroundColor:HEXCOLOR(0x4D7BFE)];
+        _updateBtn.sd_cornerRadius =@4;
         _updateBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
@@ -115,7 +129,7 @@
 }
 
 -(void)setModel:(VersionUpdateModel *)model{
-    CGFloat contentBackgroundViewHeight = 290;
+    CGFloat contentBackgroundViewHeight = 270;
     [self addSubview:self.contentBackgroundView];
     
     NSDictionary *attributes = @{
@@ -126,23 +140,27 @@
     self.contentBackgroundView.sd_layout.centerXEqualToView(self).centerYEqualToView(self).widthIs(contentBackgroundViewHeight);
     
     [self.contentBackgroundView addSubview:self.avatarImg];
-    self.avatarImg.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.contentBackgroundView, 30).widthIs(50).heightIs(57.3);
+    self.avatarImg.sd_layout.topSpaceToView(self.contentBackgroundView, 0).leftSpaceToView(self.contentBackgroundView, 0).rightSpaceToView(self.contentBackgroundView, 0).heightIs(110);
     
     [self.contentBackgroundView addSubview:self.titleLabel];
-    self.titleLabel.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.avatarImg, 17.7).heightIs(24).leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView);
+    self.titleLabel.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.avatarImg, MARGIN_20).heightIs(24).leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView);
+    
+    [self.contentBackgroundView addSubview:self.versionNumberLabel];
+    self.versionNumberLabel.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 2).heightIs(17).leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView);
     
     [self.contentBackgroundView addSubview:self.contentTextView];
-    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 8).heightIs(detailContentSize.height).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20);
+    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.versionNumberLabel, MARGIN_10).heightIs(detailContentSize.height).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20);
     
-    [self.contentBackgroundView addSubview:self.lineView];
-    self.lineView.sd_layout.leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView).topSpaceToView(self.contentTextView, 22).heightIs(DEFAULT_LINE_HEIGHT);
-    
-    [self.contentBackgroundView addSubview:self.skipBtn];
-    self.skipBtn.sd_layout.leftEqualToView(self.contentBackgroundView).topSpaceToView(self.lineView, DEFAULT_LINE_HEIGHT).widthIs(contentBackgroundViewHeight/2).heightIs(52.5);
+//    [self.contentBackgroundView addSubview:self.lineView];
+//    self.lineView.sd_layout.leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView).topSpaceToView(self.contentTextView, 22).heightIs(DEFAULT_LINE_HEIGHT);
     
     [self.contentBackgroundView addSubview:self.updateBtn];
-    self.updateBtn.sd_layout.rightEqualToView(self.contentBackgroundView).topSpaceToView(self.lineView, DEFAULT_LINE_HEIGHT).widthIs(contentBackgroundViewHeight/2).heightIs(52.5);
+    self.updateBtn.sd_layout.topSpaceToView(self.contentTextView, 27).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20).heightIs(39);
     
+    [self.contentBackgroundView addSubview:self.skipBtn];
+    self.skipBtn.sd_layout.topSpaceToView(self.updateBtn, 5).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20).heightIs(39);
+    
+    self.versionNumberLabel.text = model.versionName;
     self.contentTextView.text = model.versionDetail;
     
     [self.contentBackgroundView setupAutoHeightWithBottomView: self.skipBtn bottomMargin: 0];

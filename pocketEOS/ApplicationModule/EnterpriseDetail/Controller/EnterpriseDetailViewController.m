@@ -87,7 +87,7 @@
         cell = [[ApplicationCollectionViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:CELL_REUSEIDENTIFIER];
     }
     Application *model = (Application *)self.mainService.dataSourceArray[indexPath.item];
-    cell.model = model;
+//    cell.model = model;
     return cell;
     
 }

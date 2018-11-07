@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *checkVersionBaseView;
 
+
+
 @end
 
 
@@ -22,7 +24,7 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     self.lee_theme
-    .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
+    .LeeConfigBackgroundColor(@"baseView_background_color");
     
     self.versionIntoBaseView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFFFFFF))
@@ -30,6 +32,7 @@
     
     self.midLineView.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
+    
     
     self.checkVersionBaseView.lee_theme
     .LeeAddBackgroundColor(SOCIAL_MODE, HEXCOLOR(0xFFFFFF))
@@ -45,6 +48,7 @@
         [self.delegate checkNewVersionBtnDidClick:sender];
     }
 }
+
 
 
 @end

@@ -13,6 +13,8 @@
 #import "RtfBrowserViewController.h"
 #import "MessageFeedbackViewController.h"
 #import "LanguageSettingViewController.h"
+#import "AboutUsViewController.h"
+#import "ShareToFrirndsViewController.h"
 
 @interface SystemSettingViewController ()< UIGestureRecognizerDelegate, NavigationViewDelegate, UITableViewDelegate , UITableViewDataSource>
 @property(nonatomic, strong) NavigationView *navView;
@@ -33,13 +35,14 @@
     if (!_dataSourceDictionary) {
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             _dataSourceDictionary = @{
-                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil), NSLocalizedString(@"意见反馈", nil)]  ,
-                                      @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
+                                      @"firstSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil), NSLocalizedString(@"意见反馈", nil)]  ,
+                                      @"secondSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于我们", nil)],
+                                      @"thirdSection": @[NSLocalizedString(@"分享给好友", nil)]
                                       };//NSLocalizedString(@"语言", nil),
         }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
             _dataSourceDictionary = @{
-                                      @"topSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil)],
-                                      @"bottomSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于Pocket EOS", nil)]
+                                      @"firstSection" : @[NSLocalizedString(@"清空缓存", nil), NSLocalizedString(@"语言", nil)],
+                                      @"secondSection" : @[ NSLocalizedString(@"法律条款与隐私政策", nil), NSLocalizedString(@"关于我们", nil)]
                                       };//NSLocalizedString(@"语言", nil),
         }
     }
@@ -74,7 +77,7 @@
     cell.bottomLineView.hidden = NO;
     
     if (indexPath.section == 0) {
-        NSArray *topArr = [self.dataSourceDictionary objectForKey:@"topSection"];
+        NSArray *topArr = [self.dataSourceDictionary objectForKey:@"firstSection"];
         cell.textLabel.text = topArr[indexPath.row];
         if([cell.textLabel.text isEqualToString:NSLocalizedString(@"清空缓存", nil)]){
             NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)[0];
@@ -87,7 +90,13 @@
             cell.bottomLineView.hidden = YES;
         }
     }else if (indexPath.section == 1){
-        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"bottomSection"];
+        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"secondSection"];
+        cell.textLabel.text = bottomArr[indexPath.row];
+        if (indexPath.row == (bottomArr.count-1)) {
+            cell.bottomLineView.hidden = YES;
+        }
+    }else if (indexPath.section == 2){
+        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"thirdSection"];
         cell.textLabel.text = bottomArr[indexPath.row];
         if (indexPath.row == (bottomArr.count-1)) {
             cell.bottomLineView.hidden = YES;
@@ -98,11 +107,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        NSArray *topArr = [self.dataSourceDictionary objectForKey:@"topSection"];
-        return topArr.count;
+        NSArray *firstArr = [self.dataSourceDictionary objectForKey:@"firstSection"];
+        return firstArr.count;
     }else if (section ==  1){
-        NSArray *bottomArr = [self.dataSourceDictionary objectForKey:@"bottomSection"];
-        return bottomArr.count;
+        NSArray *secondArr = [self.dataSourceDictionary objectForKey:@"secondSection"];
+        return secondArr.count;
+    }else if (section ==  2){
+        NSArray *thirdArr = [self.dataSourceDictionary objectForKey:@"thirdSection"];
+        return thirdArr.count;
     }
     return 0;
 }
@@ -121,9 +133,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return  10;
+        return MARGIN_10;
     }else if (section == 1){
-        return 20;
+        return MARGIN_20;
+    }else if (section == 2){
+        return MARGIN_20;
     }
     return 0;
 }
@@ -156,10 +170,14 @@
         vc.rtfFileName = @"PocketEOSPrivacyPolicy";
         [self.navigationController pushViewController:vc animated:YES];
         
-    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"关于Pocket EOS", nil)]){
-        RtfBrowserViewController *vc = [[RtfBrowserViewController alloc] init];
-        vc.rtfFileName = @"AboutPocketEOS";
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"关于我们", nil)]){
+        AboutUsViewController *vc = [[AboutUsViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if([cell.textLabel.text isEqualToString:NSLocalizedString(@"分享给好友", nil)]){
+        ShareToFrirndsViewController *vc = [[ShareToFrirndsViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+
         
     }
 }

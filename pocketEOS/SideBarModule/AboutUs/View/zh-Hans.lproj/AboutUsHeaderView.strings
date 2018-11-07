@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "官方网站"; ObjectID = "6dG-S2-oNi"; */
+"6dG-S2-oNi.text" = "官方网站";
+
+/* Class = "UILabel"; text = "Pocket EOS"; ObjectID = "Br0-Vz-b7V"; */
+"Br0-Vz-b7V.text" = "Pocket EOS";
+
+/* Class = "UILabel"; text = "微信公众号"; ObjectID = "PHu-pn-vlh"; */
+"PHu-pn-vlh.text" = "微信公众号";
+
+/* Class = "UITextView"; text = "Pocket EOS是一款跨平台的移动端 EOS钱包应用，以“生活中的区块链，口袋里的 EOS”为核心设计理念，除了基本的区块链钱包功能外，还接入各类基于区块链的服务和DAPP，打造一站式 EOS生态平台，让区块链更贴近生活，更加好玩。"; ObjectID = "V29-13-nAx"; */
+"V29-13-nAx.text" = "Pocket EOS是一款跨平台的移动端 EOS钱包应用，以“生活中的区块链，口袋里的 EOS”为核心设计理念，除了基本的区块链钱包功能外，还接入各类基于区块链的服务和DAPP，打造一站式 EOS生态平台，让区块链更贴近生活，更加好玩。";
+
+/* Class = "UILabel"; text = "小秘书微信号"; ObjectID = "dO3-qN-m2a"; */
+"dO3-qN-m2a.text" = "小秘书微信号";
+
+/* Class = "UILabel"; text = "oraclechain3"; ObjectID = "h59-4k-gzz"; */
+"h59-4k-gzz.text" = "oraclechain3";
+
+/* Class = "UILabel"; text = "Oracle_Chain"; ObjectID = "wk9-ct-TW9"; */
+"wk9-ct-TW9.text" = "Oracle_Chain";

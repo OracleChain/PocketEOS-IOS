@@ -63,4 +63,7 @@
 @property(nonatomic , copy) NSString *cpu_usage_us;
 
 @property(nonatomic , copy) NSString *net_usage_words;
+
+// 合约
+@property(nonatomic , copy) NSString *contract;
 @end

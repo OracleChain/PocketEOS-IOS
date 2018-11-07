@@ -779,3 +779,36 @@
 "归集说明"="note";
 "资产归集"="Collection";
 "交易详情"="Trans Detail";
+"登录中"="Logging...";
+"微信登录"="By Wechat";
+"只有主账号,无法进行资产归集"="Could not collect for you have only one account.";
+"等你领"="waiting for you！";
+"恭喜发财, 大吉大利!"="Best wished!";
+"送上红包"="send red packets!";
+"可用余额不足"="Exceed your balance.";
+
+"抵押管理"="Bandwidth";
+"内存管理"="Ram";
+"账号救援"="Rescue";
+"借用"="Borrow";
+"抵押资源"="Stake";
+"赎回资源"="UnStake";
+"可用"="";
+"买入内存"="Buy";
+"卖出内存"="Sell";
+"输入EOS数量"="Input EOS amount";
+"可用"="Balance";
+"可赎回"="Unstaking";
+"确认抵押"="Confirm";
+"买入数量"="Amount to Buy";
+"卖出数量"="Amount to Sell";
+"输入RAM数量"="Input RAM amount";
+"确认卖出"="Sell";
+"确认买入"="Buy";
+"到浏览器中查看详情"="Open in Browser. ";
+"分享"="Share";
+"分享给好友"="Share";
+"立即升级"="Update now!";
+"关于我们"="About Us";
+
+"1.删除账号后您无法管理该账号、操作其中的资产或使用该账号登录Dapp  \n2.删除账号后，您无法通过PE重新找回该账号  \n3.如果您未备份私钥，删除账号有可能导致您的账号及其中的资产丢失  \n4.删除账号前，请确保您理解删除账号的意义，并已备份私钥"="1.You could not manage this accout and asset wthin it or launch dapp by this accout after block up.  \n2.Acoout COUlD NOT BE RETRIEVE. \n3.You will lose your asset if you have not backup your private keys.  \n4. Continue olny in the case you understand what you are doing and have backups.";

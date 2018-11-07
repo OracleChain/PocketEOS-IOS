@@ -19,4 +19,10 @@
 
 @property(nonatomic, weak) id<LoginMainHeaderViewDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIImageView *weChatLoginImage;
+@property (weak, nonatomic) IBOutlet UILabel *wechatLoginLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *wechatBaseView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *wechatLoggingIndicatorView;
+
 @end

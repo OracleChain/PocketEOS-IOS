@@ -76,5 +76,5 @@
 
 +(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate;
 
-
++ (NSDate *)getNowDateFromatAnDate:(NSDate *)anyDate ;
 @end

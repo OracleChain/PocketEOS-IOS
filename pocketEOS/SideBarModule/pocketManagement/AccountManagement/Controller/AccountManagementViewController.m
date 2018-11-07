@@ -24,8 +24,9 @@
 #import "GetAccount.h"
 #import "Permission.h"
 #import "ImportOwnerPermisionViewController.h"
+#import "CommonDialogHasPasswordTFView.h"
 
-@interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, AccountManagementHeaderViewDelegate>
+@interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, AccountManagementHeaderViewDelegate, CommonDialogHasPasswordTFViewDelegate>
 @property(nonatomic , strong) AccountManagementService *mainService;
 @property(nonatomic, strong) AccountManagementHeaderView *headerView;
 @property(nonatomic , strong) UIView *footerView;
@@ -40,7 +41,7 @@
 @property(nonatomic, strong) AskQuestionTipView *askQuestionTipView;
 @property(nonatomic, strong) AccountPravicyProtectionRequest *accountPravicyProtectionRequest;
 @property(nonatomic, strong) GetAccountRequest *getAccountRequest;
-
+@property(nonatomic , strong) CommonDialogHasPasswordTFView *commonDialogHasPasswordTFView;
 @end
 
 @implementation AccountManagementViewController
@@ -155,6 +156,19 @@
     }
     return _getAccountRequest;
 }
+
+
+
+- (CommonDialogHasPasswordTFView *)commonDialogHasPasswordTFView{
+    if (!_commonDialogHasPasswordTFView) {
+        _commonDialogHasPasswordTFView = [[CommonDialogHasPasswordTFView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _commonDialogHasPasswordTFView.delegate = self;
+        _commonDialogHasPasswordTFView.titleLabel.textColor = HEXCOLOR(0xFF3D3D);
+        _commonDialogHasPasswordTFView.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    }
+    return _commonDialogHasPasswordTFView;
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -375,49 +389,9 @@
         AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
         NSString *privateKeyStr = [NSString stringWithFormat:@"OWNKEY:\n%@    \n\nACTIVEKEY：\n%@\n",  [AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text],[AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text]];
         self.exportPrivateKeyView.contentTextView.text = privateKeyStr;
-        [self removePasswordView];
+        [self.loginPasswordView removeFromSuperview];
     }else if ([self.currentAction isEqualToString:@"DeleteAccount"]){
-        // 删除账号
-        NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
-        if (accountArr.count > 1) {
-            BOOL result = [[AccountsTableManager accountTable] executeUpdate: [NSString stringWithFormat:@"DELETE FROM '%@' WHERE account_name = '%@'", current_wallet.account_info_table_name,self.model.account_name]];
-            // 再默认设置一个主账号
-            NSMutableArray *newAccountsArr = [[AccountsTableManager accountTable] selectAccountTable];
-            AccountInfo *model = newAccountsArr[0];
-            //  通知服务器
-            self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
-            self.setMainAccountRequest.eosAccountName = model.account_name;
-            [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
-                BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
-                if ([result.code isEqualToNumber:@0]) {
-                    // 1.将所有的账号都设为 非主账号
-                    Wallet *wallet = CURRENT_WALLET;
-                    [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
-                    
-                    // update account table
-                    BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
-                    
-                    // update wallet table
-                    [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , model.account_name, CURRENT_WALLET_UID]];
-                    NSLog(@"设置主账号成功");
-                }else{
-                    [TOASTVIEW showWithText:result.message];
-                }
-                
-            } failure:^(id DAO, NSError *error) {
-                    
-            }];
-            
-                
-            if (result) {
-                [TOASTVIEW showWithText:NSLocalizedString(@"删除账号成功!", nil)];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }else{ 
-             [self.view addSubview:self.askQuestionTipView];
-             self.askQuestionTipView.titleLabel.text = NSLocalizedString(@"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~", nil);
-            
-        }
+     
         self.loginPasswordView.inputPasswordTF.text = nil;
     }
 }
@@ -425,6 +399,7 @@
 // AskQuestionTipViewDelegate
 - (void)askQuestionTipViewCancleBtnDidClick:(UIButton *)sender{
     [self.askQuestionTipView removeFromSuperview];
+    [self removeCommonDialogHasPasswordTFView];
 }
 
 - (void)askQuestionTipViewConfirmBtnDidClick:(UIButton *)sender{
@@ -445,7 +420,7 @@
 // SliderVerifyViewDelegate
 - (void)sliderVerifyDidSuccess{
     self.currentAction = @"DeleteAccount";
-    [self.view addSubview:self.loginPasswordView];
+    [self addCommonDialogHasPasswordView];
 }
 
 //ExportPrivateKeyViewDelegate
@@ -459,6 +434,8 @@
     NSString *jsonStr = [params mj_JSONString];
     
     self.exportPrivateKeyView.QRCodeimg.image = [SGQRCodeGenerateManager generateWithLogoQRCodeData:jsonStr logoImageName:@"account_default_blue" logoScaleToSuperView:0.2];
+    
+
 }
 
 - (void)copyBtnDidClick:(UIButton *)sender{
@@ -476,11 +453,95 @@
     self.loginPasswordView = nil;
 }
 
+- (void)removeCommonDialogHasPasswordTFView{
+    if (self.commonDialogHasPasswordTFView) {
+        [self.commonDialogHasPasswordTFView removeFromSuperview];
+        self.commonDialogHasPasswordTFView = nil;
+        
+    }
+    [UIView animateWithDuration:1 animations:^{
+        [self.sliderVerifyView.orignalImg setCenter:CGPointMake(4 + 50/2 , 24 )];
+    }];
+}
+
 //AccountManagementHeaderViewDelegate
 - (void)ownerTipLabelDidTap{
     ImportOwnerPermisionViewController *vc = [[ImportOwnerPermisionViewController alloc] init];
     vc.model = self.model;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (void)exportPrivateKeyViewShouldDismiss{
+    [self removeCommonDialogHasPasswordTFView];
+}
+
+
+- (void)addCommonDialogHasPasswordView{
+    [self.view addSubview:self.commonDialogHasPasswordTFView];
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"删除账号", nil);
+    model.detail = NSLocalizedString(@"1.删除账号后您无法管理该账号、操作其中的资产或使用该账号登录Dapp  \n2.删除账号后，您无法通过PE重新找回该账号  \n3.如果您未备份私钥，删除账号有可能导致您的账号及其中的资产丢失  \n4.删除账号前，请确保您理解删除账号的意义，并已备份私钥", nil);
+    [self.commonDialogHasPasswordTFView setModel:model];
+}
+
+//CommonDialogHasPasswordTFViewDelegate
+- (void)commonDialogHasPasswordTFViewSkipBtnDidClick:(UIButton *)sender{
+    [self removeCommonDialogHasPasswordTFView];
+   
+}
+
+- (void)commonDialogHasPasswordTFViewConfirmBtnDidClick:(UIButton *)sender{
+    // 验证密码输入是否正确
+    Wallet *current_wallet = CURRENT_WALLET;
+    if (![WalletUtil validateWalletPasswordWithSha256:current_wallet.wallet_shapwd password:self.commonDialogHasPasswordTFView.passwordTF.text]) {
+        [TOASTVIEW showWithText:NSLocalizedString(@"密码输入错误!", nil)];
+        [self removeCommonDialogHasPasswordTFView];
+        return;
+    }
+    
+    // 删除账号
+    NSArray *accountArr = [[AccountsTableManager accountTable] selectAccountTable];
+    if (accountArr.count > 1) {
+        BOOL result = [[AccountsTableManager accountTable] executeUpdate: [NSString stringWithFormat:@"DELETE FROM '%@' WHERE account_name = '%@'", current_wallet.account_info_table_name,self.model.account_name]];
+        // 再默认设置一个主账号
+        NSMutableArray *newAccountsArr = [[AccountsTableManager accountTable] selectAccountTable];
+        AccountInfo *model = newAccountsArr[0];
+        //  通知服务器
+        self.setMainAccountRequest.uid = CURRENT_WALLET_UID;
+        self.setMainAccountRequest.eosAccountName = model.account_name;
+        [self.setMainAccountRequest postDataSuccess:^(id DAO, id data) {
+            BaseResult *result = [BaseResult mj_objectWithKeyValues:data];
+            if ([result.code isEqualToNumber:@0]) {
+                // 1.将所有的账号都设为 非主账号
+                Wallet *wallet = CURRENT_WALLET;
+                [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET is_main_account = '0' ", wallet.account_info_table_name]];
+                
+                // update account table
+                BOOL result = [[AccountsTableManager accountTable] executeUpdate:[NSString stringWithFormat: @"UPDATE '%@' SET is_main_account = '1'  WHERE account_name = '%@'", wallet.account_info_table_name, model.account_name ]];
+                
+                // update wallet table
+                [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"UPDATE '%@' SET wallet_main_account = '%@' WHERE wallet_uid = '%@'" , WALLET_TABLE , model.account_name, CURRENT_WALLET_UID]];
+                NSLog(@"设置主账号成功");
+            }else{
+                [TOASTVIEW showWithText:result.message];
+            }
+            
+        } failure:^(id DAO, NSError *error) {
+            
+        }];
+        
+        
+        if (result) {
+            [TOASTVIEW showWithText:NSLocalizedString(@"删除账号成功!", nil)];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        [self.view addSubview:self.askQuestionTipView];
+        self.askQuestionTipView.titleLabel.text = NSLocalizedString(@"检测到您钱包下只有一个账号,继续将执行注销钱包操作!请谨慎~", nil);
+        
+    }
 }
 
 @end

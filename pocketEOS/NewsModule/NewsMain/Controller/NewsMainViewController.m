@@ -111,10 +111,15 @@
         if (isSuccess) {
             if (assestsArray.count > 0) {
                 weakSelf.allAssetsArray = assestsArray;
-                [weakSelf.newsMainHeaderView.scrollMenuView updateViewWithAssestsArray:assestsArray];
-                [weakSelf.scrollMenuView updateViewWithAssestsArray:assestsArray];
-                
-                
+                NSMutableArray *tmpArr = [NSMutableArray array];
+                for (int i = 0; i < assestsArray.count; i++) {
+                    Assest *assest = assestsArray[i];
+                    OptionModel *model = [[OptionModel alloc] init];
+                    model.optionName = assest.assetName;
+                    [tmpArr addObject:model];
+                }
+                [weakSelf.newsMainHeaderView.scrollMenuView updateViewWithOptionModelArray:tmpArr];
+                [weakSelf.scrollMenuView updateViewWithOptionModelArray:tmpArr];
             }
         }
     }];
@@ -127,8 +132,8 @@
     WS(weakSelf);
     [self.bannerService buildDataSource:^(id service, BOOL isSuccess) {
         if (weakSelf.bannerService.imageURLStringsGroup.count > 0) {
-            weakSelf.newsMainHeaderView.scrollView.imageURLStringsGroup = weakSelf.bannerService.imageURLStringsGroup;
-            
+//            weakSelf.newsMainHeaderView.scrollView.imageURLStringsGroup = weakSelf.bannerService.imageURLStringsGroup;
+            [weakSelf.newsMainHeaderView updateBannerViewWithModelArr:weakSelf.bannerService.dataSourceArray];
         }
         
     }];
@@ -225,6 +230,33 @@
         }];
     }
 }
+
+//NewsMainHeaderViewDelegate
+- (void)newsMainHeaderViewBannerImageViewDidSelect:(News *)model{
+    NSUInteger tmp = 0;
+    if (self.bannerService.dataSourceArray.count > 0) {
+        for (int i = 0; i < self.bannerService.dataSourceArray.count ; i++) {
+            News *news = self.bannerService.dataSourceArray[i];
+            if ([news.news_id isEqualToNumber:model.news_id]) {
+                tmp = i;
+            }
+        }
+    }
+        
+    [MobClick event:[NSString stringWithFormat:@"News_banner_%ld", tmp+1]];
+    if (model) {
+        NewsDetailViewController *vc = [[NewsDetailViewController alloc] init];
+        if ([model.newsUrl hasPrefix: @"http"]) {
+            vc.urlStr = model.newsUrl;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            [TOASTVIEW showWithText:NSLocalizedString(@"新闻地址有误!", nil)];
+        }
+    }
+    
+    
+}
+
 
 #pragma mark UITableView + 下拉刷新 隐藏时间 + 上拉加载
 #pragma mark - 数据处理相关

@@ -5,8 +5,8 @@
 /* Class = "UILabel"; text = "红包"; ObjectID = "7Kr-wK-xk3"; */
 "7Kr-wK-xk3.text" = "Red Packets";
 
-/* Class = "UILabel"; text = "RAM交易"; ObjectID = "Rxb-4s-whr"; */
-"Rxb-4s-whr.text" = "RAM Ex";
+/* Class = "UILabel"; text = "资源管理"; ObjectID = "Rxb-4s-whr"; */
+"Rxb-4s-whr.text" = "Resources";
 
 /* Class = "UILabel"; text = "转账"; ObjectID = "T9L-La-SPP"; */
 "T9L-La-SPP.text" = "Send";

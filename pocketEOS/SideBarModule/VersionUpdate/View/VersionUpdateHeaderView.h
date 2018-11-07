@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VersionUpdateModel.h"
 
 @protocol VersionUpdateHeaderViewDelegate<NSObject>
 - (void)versionIntroduceBtnDidClick:(UIButton *)sender;
@@ -18,4 +19,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property(nonatomic, weak) id<VersionUpdateHeaderViewDelegate> delegate;
+
+
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+
+
 @end

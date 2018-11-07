@@ -23,6 +23,9 @@
  */
 - (void)whenSelectOnPager:(NSUInteger)number;
 
+- (void)pageSegmentleftBtnDidClick;
+- (void)pageSegmentRightBtnDidClick;
+
 @end
 
 

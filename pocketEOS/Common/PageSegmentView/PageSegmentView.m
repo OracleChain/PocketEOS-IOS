@@ -59,8 +59,10 @@
         [itemButton.titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
         [itemButton.titleLabel setFont:[UIFont systemFontOfSize:self.tabButtonFontSize]];
         [itemButton setTitle:vc.title forState:UIControlStateNormal];
-        [itemButton setTitleColor:self.tabButtonTitleColorForNormal forState:UIControlStateNormal];
-        [itemButton setTitleColor:self.tabButtonTitleColorForSelected forState:UIControlStateSelected];
+        [itemButton setTitleColor:HEXCOLOR(0x666666) forState:UIControlStateNormal];
+        [itemButton setTitleColor:HEXCOLOR(0x2A2A2A) forState:UIControlStateSelected];
+        itemButton.font = [UIFont boldSystemFontOfSize:15];
+        
         [itemButton addTarget:self action:@selector(onTabButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         itemButton.tag = i + 1; // "tag = 0" 为父视图本身,所以tag+1
         itemButton.size = [self buttonTitleRealSize:itemButton];
@@ -107,13 +109,52 @@
             }
         }
     }
+    
+    
+    // add leftbtn
+    UIButton *leftBtn = [[UIButton alloc] init];
+    [leftBtn addTarget:self action:@selector(leftBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
+    leftBtn.frame = CGRectMake(5, 5, 30, 30);
+    
 
+    // add rightBtn
+    BaseView *rightView = [[BaseView alloc] init];
+    rightView.frame = CGRectMake(SCREEN_WIDTH-5-60, 5, 60, 30);
+    
+    [self addSubview:leftBtn];
+
+    UIImageView *img = [[UIImageView alloc] init];
+    img.image = [UIImage imageNamed:@"rescue-icon"];
+
+    BaseLabel *label = [[BaseLabel alloc] init];
+    label.text = NSLocalizedString(@"账号救援", nil);
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:10];
+
+    UIButton *btn = [[UIButton alloc] init];
+    [btn addTarget:self action:@selector(pageSegmentRightBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [btn setBackgroundColor:[UIColor clearColor]];
+    
+    [self addSubview:rightView];
+    
+    
+    [rightView addSubview:img];
+    img.sd_layout.centerXEqualToView(rightView).topSpaceToView(rightView, 5).widthIs(12).heightIs(12);
+
+    [rightView addSubview:label];
+    label.sd_layout.centerXEqualToView(rightView).topSpaceToView(img, 4).widthIs(60).heightIs(10);
+
+    [rightView addSubview:btn];
+    btn.frame = rightView.bounds;
+    
+    
     //tabView
     self.tabView.lee_theme.LeeConfigBackgroundColor(@"baseTopView_background_color");
     
 
     //bottomLine
-    self.bottomLine.backgroundColor = HEXCOLOR(0x4E7CFD);
+    self.bottomLine.backgroundColor = [UIColor redColor];
 
     _isBuildUI = YES;
 
@@ -122,6 +163,19 @@
 
     [self setNeedsLayout];
 }
+
+- (void)leftBtnDidClick:(UIButton *)sender{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pageSegmentleftBtnDidClick)]) {
+        [self.delegate pageSegmentleftBtnDidClick];
+    }
+}
+
+- (void)pageSegmentRightBtnClick{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pageSegmentRightBtnDidClick)]) {
+        [self.delegate pageSegmentRightBtnDidClick];
+    }
+}
+
 
 - (CGSize)buttonTitleRealSize:(UIButton *)button {
     CGSize size = CGSizeZero;
@@ -354,7 +408,7 @@
  */
 - (UIView *)tabView {
     if (!_tabView) {
-        self.tabView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0,self.tabViewWidth,_tabFrameHeight)];
+        self.tabView = [[UIScrollView alloc]initWithFrame:CGRectMake(100,0,self.tabViewWidth-100*2,_tabFrameHeight)];
         _tabView.delegate = self;
         _tabView.userInteractionEnabled = YES;
         _tabView.showsHorizontalScrollIndicator = NO;
@@ -369,7 +423,7 @@
 - (UIView *)selectedLine {
     if (!_selectedLine) {
         self.selectedLine = [[UIView alloc] initWithFrame:CGRectMake(0,self.tabView.height - 2,0,self.selectedLineHeight)];
-        _selectedLine.backgroundColor = _tabButtonTitleColorForSelected;
+        _selectedLine.backgroundColor = HEXCOLOR(0x4D7BFE);
         [self.tabView addSubview:_selectedLine];
     }
     return _selectedLine;
@@ -476,5 +530,7 @@
     }
     return _viewsArray;
 }
+
+
 
 @end

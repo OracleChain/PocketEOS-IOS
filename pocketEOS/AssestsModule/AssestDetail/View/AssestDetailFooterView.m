@@ -56,15 +56,12 @@
             line.alpha = 0.26;
             line.frame = CGRectMake(itemWidth - 1, 0, DEFAULT_LINE_HEIGHT, itemheight);
 
-
             [baseView addSubview:img];
             [baseView addSubview:label];
             [baseView addSubview:btn];
             [baseView addSubview:line];
         }
-        
-        
-        
+ 
     }
     return self;
 }

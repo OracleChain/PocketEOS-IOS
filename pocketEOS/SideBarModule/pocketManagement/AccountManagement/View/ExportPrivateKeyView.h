@@ -11,6 +11,8 @@
 @protocol ExportPrivateKeyViewDelegate<NSObject>
 - (void)genetateQRBtnDidClick:(UIButton *)sender;
 - (void)copyBtnDidClick:(UIButton *)sender;
+
+- (void)exportPrivateKeyViewShouldDismiss;
 @end
 
 @interface ExportPrivateKeyView : UIView

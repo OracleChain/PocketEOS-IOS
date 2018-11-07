@@ -15,6 +15,7 @@
 #import "ModifyApproveViewController.h"
 
 
+
 NSString * const TradeBandwidthDidSuccessNotification = @"TradeBandwidthDidSuccessNotification";
 
 @interface BandwidthManageViewController ()
@@ -40,6 +41,7 @@ NSString * const TradeBandwidthDidSuccessNotification = @"TradeBandwidthDidSucce
     }
     return _accountResult;
 }
+
 - (EOSResourceService *)eosResourceService{
     if (!_eosResourceService) {
         _eosResourceService = [[EOSResourceService alloc] init];

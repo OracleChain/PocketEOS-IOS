@@ -129,6 +129,19 @@
     
     [self.networkingManager.requestSerializer setValue:@"ios" forHTTPHeaderField:@"system_version"];
     
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [self.networkingManager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
+        
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [self.networkingManager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
+    }
+    
+    if ([NSBundle isChineseLanguage]) {
+        [self.networkingManager.requestSerializer setValue:@"chinese" forHTTPHeaderField:@"language"];
+    }else{
+        [self.networkingManager.requestSerializer setValue:@"english" forHTTPHeaderField:@"language"];
+    }
+    
     //客服端利用p12验证服务器 , 双向验证
 //    [self checkCredential:self.networkingManager];
     self.networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
@@ -236,6 +249,20 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     // request Json 序列化
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [manager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
+        
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [manager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
+    }
+    
+    if ([NSBundle isChineseLanguage]) {
+        [manager.requestSerializer setValue:@"chinese" forHTTPHeaderField:@"language"];
+    }else{
+        [manager.requestSerializer setValue:@"english" forHTTPHeaderField:@"language"];
+    }
+    
     [manager POST:REQUEST_APIPATH parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([self validateResponseData:responseObject HttpURLResponse:task.response]) {

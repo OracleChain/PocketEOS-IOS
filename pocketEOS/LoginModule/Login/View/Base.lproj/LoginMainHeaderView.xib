@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -95,12 +95,17 @@
                                                 <action selector="wechatLoginBtn:" destination="L9y-Ro-yXZ" eventType="touchUpInside" id="fiC-z1-BRE"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="DkW-Y2-kQx">
+                                            <rect key="frame" x="131.5" y="13" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.30196078430000001" green="0.4823529412" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstItem="DkW-Y2-kQx" firstAttribute="centerY" secondItem="aXI-8s-07X" secondAttribute="centerY" id="0e8-qC-eyo"/>
                                         <constraint firstAttribute="height" constant="46" id="431-eM-k6t"/>
                                         <constraint firstItem="0Fn-IN-JW4" firstAttribute="top" secondItem="mUx-Lt-bej" secondAttribute="top" id="FDR-YH-ZKL"/>
                                         <constraint firstItem="0Fn-IN-JW4" firstAttribute="centerX" secondItem="mUx-Lt-bej" secondAttribute="centerX" constant="20" id="OkC-n3-GGm"/>
+                                        <constraint firstItem="DkW-Y2-kQx" firstAttribute="centerX" secondItem="aXI-8s-07X" secondAttribute="centerX" id="P9W-Sg-rej"/>
                                         <constraint firstAttribute="trailing" secondItem="8aW-Fz-TTI" secondAttribute="trailing" id="VsA-mG-DMP"/>
                                         <constraint firstAttribute="bottom" secondItem="0Fn-IN-JW4" secondAttribute="bottom" id="YBt-TQ-Ris"/>
                                         <constraint firstItem="8aW-Fz-TTI" firstAttribute="top" secondItem="mUx-Lt-bej" secondAttribute="top" id="bbl-r2-ZJ3"/>
@@ -205,6 +210,10 @@
                 <outlet property="scrollView" destination="CLt-bJ-Mqh" id="1dc-cA-3uC"/>
                 <outlet property="titleLabel" destination="VMr-4p-rn1" id="8l2-df-XNW"/>
                 <outlet property="upBackgroundView" destination="MXW-uY-0DN" id="94V-AF-VBf"/>
+                <outlet property="weChatLoginImage" destination="aXI-8s-07X" id="4Oy-J5-6ir"/>
+                <outlet property="wechatBaseView" destination="mUx-Lt-bej" id="ODR-dP-w0M"/>
+                <outlet property="wechatLoggingIndicatorView" destination="DkW-Y2-kQx" id="9ez-aa-riy"/>
+                <outlet property="wechatLoginLabel" destination="0Fn-IN-JW4" id="25R-PD-LZu"/>
             </connections>
             <point key="canvasLocation" x="3.5" y="12.5"/>
         </view>

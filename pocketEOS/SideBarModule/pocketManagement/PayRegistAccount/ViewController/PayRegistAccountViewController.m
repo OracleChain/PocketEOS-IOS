@@ -54,6 +54,7 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
 @property(nonatomic , strong) CreateAccountResourceResult *createAccountResourceResult;
 @property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
 @property(nonatomic , assign) BOOL willPay;
+@property(nonatomic , copy) NSString *password;
 @end
 
 @implementation PayRegistAccountViewController
@@ -248,18 +249,19 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
         return;
     }
     [SVProgressHUD show];
-    [self.loginPasswordView removeFromSuperview];
+    self.password = self.loginPasswordView.inputPasswordTF.text;
     [self.view addSubview:self.paymentTipView];
     self.paymentWay = PaymentWayAlipay;
     self.paymentTipView.payAmountLabel.text = [NSString stringWithFormat:@"¥%.2f%@",self.createAccountResourceResult.data.cnyCost.floatValue / 100, NSLocalizedString(@"元", nil)];
     
+    [self removeLoginPasswordView];
 }
 
 //PaymentTipViewDelegate
 - (void)backgroundViewDidClick{
     [self removePaymentTipView];
     [TOASTVIEW showWithText: NSLocalizedString(@"取消", nil)];
-    [self removeLoginPasswordView];
+    [self.loginPasswordView removeFromSuperview];
 }
 
 - (void)removePaymentTipView{
@@ -387,13 +389,13 @@ NSString * const WechatPayDidFinishNotification = @"WechatPayDidFinishNotificati
     if (self.headerView.privateKeyBeSameModeBtn.selected == YES) {
         model.account_owner_public_key = self.ownerPrivateKey.eosPublicKey;
         model.account_active_public_key = self.ownerPrivateKey.eosPublicKey;
-        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
-        model.account_active_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
+        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.password];
+        model.account_active_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.password];
     }else{
         model.account_owner_public_key = self.ownerPrivateKey.eosPublicKey;
         model.account_active_public_key = self.activePrivateKey.eosPublicKey;
-        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
-        model.account_active_private_key = [AESCrypt encrypt:self.activePrivateKey.eosPrivateKey password:self.loginPasswordView.inputPasswordTF.text];
+        model.account_owner_private_key = [AESCrypt encrypt:self.ownerPrivateKey.eosPrivateKey password:self.password];
+        model.account_active_private_key = [AESCrypt encrypt:self.activePrivateKey.eosPrivateKey password:self.password];
     }
     
     

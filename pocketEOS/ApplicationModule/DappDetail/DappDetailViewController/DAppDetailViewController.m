@@ -72,8 +72,7 @@
 @property(nonatomic , strong) DappPushMessageModel *dappPushMessageModel;
 @property(nonatomic , strong) WKProcessPool *sharedProcessPool;
 @property (nonatomic , strong) UIButton *backItem;
-@property (nonatomic , strong) UIButton *closeItem;
-@property(nonatomic , strong) DappChangeAccountOnNavigationRightView *dappChangeAccountOnNavigationRightView;
+
 
 @property(nonatomic , strong) DappExcuteActionsDataSourceService *dappExcuteActionsDataSourceService;
 @property(nonatomic , strong) ExcuteMultipleActionsService *excuteMultipleActionsService;
@@ -304,14 +303,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [MobClick event:@"DAppDidClick" label: VALIDATE_STRING(self.model.applyName)];
+    [MobClick event:@"DAppDidClick" label: VALIDATE_STRING(self.model.dappName)];
     
     // 解决顶部出现空白
     self.automaticallyAdjustsScrollViewInsets=NO;//自动滚动调整，默认为YES
     
     [self.view addSubview:self.navView];
     self.navView.lee_theme.LeeConfigTintColor(@"common_font_color_1");
-    self.navView.titleLabel.text = self.model.applyName;
+    self.navView.titleLabel.text = self.model.dappName;
     [self.navView addSubview:self.backItem];
    
 //    _backItem.frame = CGRectMake(30, 24, 40, 40);
@@ -327,6 +326,8 @@
     self.dappChangeAccountOnNavigationRightView.sd_layout.rightSpaceToView(self.navView, MARGIN_15).centerYEqualToView(self.navView.titleLabel).widthIs(65).heightIs(MARGIN_15);
     self.dappChangeAccountOnNavigationRightView.accountNameLabel.text = CURRENT_ACCOUNT_NAME;
     self.choosedAccountName = CURRENT_ACCOUNT_NAME;
+    
+    [self.view bringSubviewToFront:self.navView];
     
     [self loadWebView];
     [self.view addSubview:self.progressView];
@@ -903,7 +904,7 @@
         weakSelf.choosedAccountName = VALIDATE_STRING(strings[0]);
         weakSelf.dappDetailService.choosedAccountName = weakSelf.choosedAccountName;
         NSString *requestStr;
-        requestStr = [NSString stringWithFormat:@"%@",self.model.url];
+        requestStr = [NSString stringWithFormat:@"%@",self.model.dappUrl];
         NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
         [weakSelf.webView loadRequest: finalRequest];
     }cancel:^{
@@ -914,7 +915,13 @@
 
 - (void)loadWebView{
     NSString *requestStr;
-    requestStr = [NSString stringWithFormat:@"%@",self.model.url];
+    
+    if ([self.model.dappUrl isEqualToString:@"https://eosflare.io"]) {
+        requestStr = [NSString stringWithFormat:@"%@/account/%@",self.model.dappUrl,self.choosedAccountName];
+    }else{
+        requestStr = [NSString stringWithFormat:@"%@",self.model.dappUrl];
+    }
+    
     NSURLRequest *finalRequest = [NSURLRequest requestWithURL:String_To_URL(requestStr)];
     [self.webView loadRequest: finalRequest];
     self.webView.UIDelegate = self;

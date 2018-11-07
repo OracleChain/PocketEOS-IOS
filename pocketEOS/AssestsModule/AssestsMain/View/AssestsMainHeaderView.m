@@ -13,6 +13,7 @@
 
 @interface AssestsMainHeaderView()
 @property (weak, nonatomic) IBOutlet UIImageView *addAssestsImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *resourceManageImageView;
 
 @end
 
@@ -117,6 +118,20 @@
         [self.totalAssestsVisibleBtn setImage:[UIImage imageNamed:@"eye_close"] forState:(UIControlStateNormal)];
         self.totalAssetsLabel.text = @"******";
     }
+    
+}
+
+- (void)updateViewWithEOSResourceResult:(EOSResourceResult *)model{
+    double cpuUsageRate = model.data.cpu_used.doubleValue / model.data.cpu_max.doubleValue;
+    double netUsageRate = model.data.net_used.doubleValue / model.data.net_max.doubleValue;
+    double ramUsageRate = model.data.ram_usage.doubleValue / model.data.ram_max.doubleValue;
+    if (cpuUsageRate > 0.9 || netUsageRate > 0.9 || ramUsageRate > 0.9) {
+        self.shortageImageView.hidden = NO;
+        
+    }else{
+        self.shortageImageView.hidden = YES;
+    }
+    
     
 }
 

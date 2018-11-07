@@ -40,6 +40,9 @@
     [self.get_account_assetsRequest postOuterDataSuccess:^(id DAO, id data) {
         Get_account_assetsResult *result = [Get_account_assetsResult mj_objectWithKeyValues:data];
         weakSelf.dataSourceArray = [NSMutableArray arrayWithArray:result.user_asset_list];
+        if (weakSelf.dataSourceArray.count == 0) {
+            [TOASTVIEW showWithText: NSLocalizedString(@"只有主账号,无法进行资产归集", nil)];
+        }
         complete(weakSelf, YES);
         
     } failure:^(id DAO, NSError *error) {

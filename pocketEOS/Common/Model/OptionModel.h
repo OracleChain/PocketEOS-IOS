@@ -19,4 +19,5 @@
 @property(nonatomic, assign) BOOL isSelected;
 @property (nonatomic , strong) NSString *detail;
 @property (nonatomic , assign) BOOL hasImage;
+@property(nonatomic , assign) BOOL canCopy;
 @end

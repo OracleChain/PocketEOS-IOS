@@ -17,6 +17,8 @@
 #define REQUEST_CONTRACT_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_BP_BASEURL @"https://api.pocketeos.top"
 #define REQUEST_TRANSACTION_RECORDS @"https://history.pocketeos.top"
+#define REQUEST_HISTORY_HTTP @"http://history.pocketeos.top"
+
 #define REQUEST_MESSAGE_PUSH_BASEURL @"https://push.pocketeos.top"
 
 #define REQUEST_PAY_CREATEACCOUNT_BASEURL @"http://pay.pocketeos.top/oulianeosaccount"

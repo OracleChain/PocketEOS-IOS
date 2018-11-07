@@ -10,9 +10,11 @@
 #import "SDCycleScrollView.h"
 #import "Assest.h"
 #import "ScrollMenuView.h"
+#import "News.h"
 
 @protocol NewsMainHeaderViewDelegate<NSObject>
 - (void)menuScrollViewItemBtnDidClick:(UIButton *)sender;
+- (void)newsMainHeaderViewBannerImageViewDidSelect:(News *)model;
 @end
 
 @interface NewsMainHeaderView : UIView
@@ -29,4 +31,7 @@
 
 @property(nonatomic , strong) NSMutableArray *assestsArray;
 
+
+
+- (void)updateBannerViewWithModelArr:(NSArray *)arr;
 @end

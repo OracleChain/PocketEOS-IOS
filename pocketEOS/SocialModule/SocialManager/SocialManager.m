@@ -175,12 +175,14 @@
         }else if (resp.errCode == -4){
             // 用户拒绝授权
             [SVProgressHUD dismiss];
-            
+            self.onWechatLoginFailed(resp);
         }else if (resp.errCode == -2){
             // 用户取消
             [SVProgressHUD dismiss];
+            self.onWechatLoginFailed(resp);
         }else{
             [SVProgressHUD dismiss];
+            self.onWechatLoginFailed(resp);
         }
     }else if ([resp isKindOfClass:[AddCardToWXCardPackageResp class]]) {
         [SVProgressHUD dismiss];

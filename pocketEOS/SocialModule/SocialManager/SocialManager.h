@@ -35,6 +35,8 @@ typedef enum {
 
 // wechat
 @property(nonatomic, copy) void(^onWechatLoginSuccess)(SocialModel *model);
+@property(nonatomic, copy) void(^onWechatLoginFailed)(BaseResp *resp);
+
 - (void)wechatLoginRequest;
 - (void)wechatShareToScene:(int)scene withShareModel:(ShareModel *)model;
 /**WXImageObject

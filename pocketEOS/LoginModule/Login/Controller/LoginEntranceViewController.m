@@ -65,6 +65,10 @@
 - (void)wechatLoginBtnDidClick:(UIButton *)sender{
     WS(weakSelf);
     [[SocialManager socialManager] wechatLoginRequest];
+    
+    self.loginView.weChatLoginImage.hidden = YES;
+    self.loginView.wechatLoggingIndicatorView.hidden = NO;
+    self.loginView.wechatLoginLabel.text = NSLocalizedString(@"登录中...", nil);
     [[SocialManager socialManager] setOnWechatLoginSuccess:^(SocialModel *model) {
         weakSelf.mainService.getUserInfoRequest.token = model.unionid;
         weakSelf.mainService.getUserInfoRequest.type = @1;
@@ -118,6 +122,11 @@
                 [TOASTVIEW showWithText:@"网络错误"];
             }
         }];
+    }];
+    [[SocialManager socialManager] setOnWechatLoginFailed:^(BaseResp *resp) {
+        weakSelf.loginView.weChatLoginImage.hidden = NO;
+        weakSelf.loginView.wechatLoggingIndicatorView.hidden = YES;
+        weakSelf.loginView.wechatLoginLabel.text = NSLocalizedString(@"微信登录", nil);
     }];
 }
 

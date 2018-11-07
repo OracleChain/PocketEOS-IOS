@@ -53,6 +53,8 @@
 #import "AccountOrderStatus.h"
 #import "AccountOrderStatusResult.h"
 #import "ExcuteMultipleActionsService.h"
+#import "EOSResourceManageViewController.h"
+#import "EOSResourceService.h"
 
 @interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
 
@@ -70,6 +72,7 @@
 @property(nonatomic , strong) NSMutableArray *ids;
 @property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
 @property(nonatomic , strong) CAGradientLayer *gradientLayer;
+@property(nonatomic , strong) EOSResourceService *eosResourceService;
 @end
 
 @implementation AssestsMainViewController
@@ -172,6 +175,14 @@
     return _getAccountOrderStatusRequest;
 }
 
+- (EOSResourceService *)eosResourceService{
+    if (!_eosResourceService) {
+        _eosResourceService = [[EOSResourceService alloc] init];
+    }
+    return _eosResourceService;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -182,6 +193,7 @@
         [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     }
     self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
+    [self buidDataSource];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -210,6 +222,12 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.stateLabel.textColor = HEXCOLOR(0xFFFFFF);
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    self.mainTableView.mj_header = header;
     
     self.mainTableView.mj_footer.hidden = YES;
     self.mainTableView.backgroundColor = [UIColor clearColor];
@@ -248,10 +266,8 @@
 //    [self configAdvertisement];
 //    [self addinviteFriendBtn];
     [self checkNewVersion];
-
     
-    
-    
+    [self getAccount];
 }
 
 // 构建数据源
@@ -281,18 +297,14 @@
                     NSString *path = [docPath stringByAppendingPathComponent:LOCAL_CURRENT_TOKEN_INFO_ARRAY_FILENAME];
                     
                    BOOL success = [NSKeyedArchiver archiveRootObject:weakSelf.get_token_info_service.dataSourceArray toFile:path];
+                    
+                    [weakSelf getAccount];
                 }
             }
         [UIView animateWithDuration:0.5 animations:^{
-            weakSelf.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -250);
+            weakSelf.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT +210);
         }];
-        
-        
-        
-        
-        
-            
-        
+ 
     }];
 }
 
@@ -301,8 +313,7 @@
     // 默认的导航栏 block
     [self.navView setLeftBtnDidClickBlock:^{
         [weakSelf profileCenter];
-//        CandyCollectionViewController *vc = [[CandyCollectionViewController alloc] init];
-//        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
     }];
    
     [self.navView setRightBtn1DidClickBlock:^{
@@ -368,6 +379,8 @@
     [self.navView setChangedBtn1DidClickBlock:^{
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+        vc.fromPage = @"AssestsMainViewController";
+        vc.currentAssestsType = SymbolName_EOS;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -395,6 +408,7 @@
         TransferNewViewController *vc = [[TransferNewViewController alloc] init];
         vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
         vc.fromPage = @"AssestsMainViewController";
+        vc.currentAssestsType = SymbolName_EOS;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -421,17 +435,19 @@
     }];
     
     [self.headerView setRamTradeBtnDidClickBlock:^{
-        [MobClick event:@"RAM交易"];
-        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-        Application *model = [[Application alloc] init];
-        model.url = @"http://static.pocketeos.top:3002";
-//        model.url = @"https://dapp.newdex.io/";
-//        model.url = @"https://eostoolkit.io/airgrab";
-//        model.url = @"https://eospool.tw/#/?vip= ocpetchannel";
-        model.applyName = @"EOS内存市场";
-        vc.model = model;
-        vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
+        EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
+        vc.currentAccountName = CURRENT_ACCOUNT_NAME;
         [weakSelf.navigationController pushViewController:vc animated:YES];
+    
+//        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+//        Application *model = [[Application alloc] init];
+//        model.url = @"http://static.pocketeos.top:3002";
+////        model.url = @"https://dapp.newdex.io/";
+////        model.url = @"https://coincreate.github.io/EOS_coincreate/coincreate_scatter.html";
+//        model.applyName = @"EOS内存市场";
+//        vc.model = model;
+//        vc.choosedAccountName = CURRENT_ACCOUNT_NAME;
+//        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
@@ -493,10 +509,12 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 //    CGPoint offset = scrollView.contentOffset;
-//    NSLog(@"%f, %f", offset.x, offset.y);
-//    if (offset.y >= 0) {
-//        scrollView.contentOffset = CGPointMake(0, 0);
-//    }
+//    NSLog(@"scrollViewDidScroll x:  %f, y:  %f", offset.x, offset.y);
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect = [self.headerView.assestHeaderButtonsBackgroundView convertRect: self.headerView.assestHeaderButtonsBackgroundView.bounds toView:window];
+    self.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH,NAVIGATIONBAR_HEIGHT + (rect.origin.y < NAVIGATIONBAR_HEIGHT ? NAVIGATIONBAR_HEIGHT : rect.origin.y ) + 100);
+    
     if (scrollView.contentOffset.y >= 300) {
         // 隐藏 headerview
         [UIView animateWithDuration:0.3 animations:^{
@@ -510,9 +528,11 @@
             self.navView.changedNavView.frame = CGRectMake(0, -NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
             self.navView.originNavView.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT);
             self.inviteFriendBtn.hidden = NO;
+            
         }];
     }
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
@@ -634,7 +654,7 @@
     [self.getVersionInfoRequest getDataSusscess:^(id DAO, id data) {
         weakSelf.versionUpdateModel = [VersionUpdateModel mj_objectWithKeyValues:data[@"data"]];
         if (weakSelf.versionUpdateModel.versionCode.integerValue > [weakSelf queryVersionNumberInBundle] ) {
-            [weakSelf.view addSubview:weakSelf.versionUpdateTipView];
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.versionUpdateTipView];
             [weakSelf.versionUpdateTipView setModel:weakSelf.versionUpdateModel];
         }else{
             
@@ -689,6 +709,19 @@
         [self.accountNotExistView removeFromSuperview];
         self.accountNotExistView = nil;
     }
+}
+
+
+- (void)getAccount{
+    WS(weakSelf);
+    self.eosResourceService.getAccountRequest.name = CURRENT_ACCOUNT_NAME;
+    [self.eosResourceService get_account:^(EOSResourceResult *result, BOOL isSuccess) {
+        if (isSuccess) {
+            [weakSelf.headerView updateViewWithEOSResourceResult:result];
+        }
+        
+    }];
+    
 }
 
 - (void)checkNetworkStatus{

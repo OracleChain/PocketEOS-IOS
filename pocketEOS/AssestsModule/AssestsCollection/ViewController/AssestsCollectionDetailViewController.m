@@ -89,7 +89,7 @@
     self.mainTableView.mj_footer.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.headerView.titleLabel.text = [NSString stringWithFormat:@"%@%lu", NSLocalizedString(@"共", nil), (unsigned long)self.transferModelArr.count, NSLocalizedString(@"笔交易", nil)];
+    self.headerView.titleLabel.text = [NSString stringWithFormat:@"%@%lu%@", NSLocalizedString(@"共", nil), (unsigned long)self.transferModelArr.count, NSLocalizedString(@"笔交易", nil)];
     
     
     [self.mainTableView reloadData];

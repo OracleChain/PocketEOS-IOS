@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Application.h"
-
+#import "DappModel.h"
+#import "DappChangeAccountOnNavigationRightView.h"
 
 
 @interface DAppDetailViewController : BaseViewController
-@property(nonatomic , strong) Application *model;
+@property(nonatomic , strong) DappModel *model;
 
 @property(nonatomic, strong) NSString *choosedAccountName;
+
+
+@property (nonatomic , strong) UIButton *closeItem;
+@property(nonatomic , strong) DappChangeAccountOnNavigationRightView *dappChangeAccountOnNavigationRightView;
 @end

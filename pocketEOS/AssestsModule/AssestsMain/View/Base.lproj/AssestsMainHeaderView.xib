@@ -157,14 +157,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAw-Cg-zUF" userLabel="ramTradeBaseView">
                             <rect key="frame" x="259" y="0.0" width="86" height="96"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ramTrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="ui0-Un-7SU">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resourceManage_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="ui0-Un-7SU">
                                     <rect key="frame" x="29" y="20" width="28" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="28" id="KfE-Ve-Nnn"/>
                                         <constraint firstAttribute="height" constant="28" id="jpT-8e-7Dm"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAM交易" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxb-4s-whr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资源管理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxb-4s-whr">
                                     <rect key="frame" x="0.0" y="66" width="86" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -176,6 +176,13 @@
                                         <action selector="ramTradeBtnDidClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Wd7-Wi-cqL"/>
                                     </connections>
                                 </button>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shortage_red.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mz6-vz-KVn">
+                                    <rect key="frame" x="45" y="15" width="26" height="12"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="12" id="AuI-bY-Z61"/>
+                                        <constraint firstAttribute="width" constant="26" id="EQX-KF-VoF"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="VY2-4v-FUO" firstAttribute="leading" secondItem="EAw-Cg-zUF" secondAttribute="leading" id="2Wx-en-HdZ"/>
@@ -185,7 +192,9 @@
                                 <constraint firstAttribute="trailing" secondItem="Rxb-4s-whr" secondAttribute="trailing" id="8Me-TK-mn3"/>
                                 <constraint firstItem="Rxb-4s-whr" firstAttribute="leading" secondItem="EAw-Cg-zUF" secondAttribute="leading" id="Jzz-pF-P9q"/>
                                 <constraint firstItem="ui0-Un-7SU" firstAttribute="centerX" secondItem="EAw-Cg-zUF" secondAttribute="centerX" id="Qzb-OC-9Ph"/>
+                                <constraint firstItem="Mz6-vz-KVn" firstAttribute="trailing" secondItem="ui0-Un-7SU" secondAttribute="trailing" constant="14" id="Zsf-ep-Bxa"/>
                                 <constraint firstItem="Rxb-4s-whr" firstAttribute="top" secondItem="ui0-Un-7SU" secondAttribute="bottom" constant="18" id="gO1-ST-Cm9"/>
+                                <constraint firstItem="Mz6-vz-KVn" firstAttribute="top" secondItem="ui0-Un-7SU" secondAttribute="top" constant="-5" id="igX-R7-eru"/>
                                 <constraint firstAttribute="bottom" secondItem="VY2-4v-FUO" secondAttribute="bottom" id="ykT-lf-KJj"/>
                             </constraints>
                         </view>
@@ -215,7 +224,7 @@
                             <size key="value" width="0.0" height="3"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowUIColor">
-                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
                             <real key="value" value="0.20000000000000001"/>
@@ -308,6 +317,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addAssestsImageView" destination="b8l-bp-hDh" id="r0Y-qs-RLi"/>
+                <outlet property="assestHeaderButtonsBackgroundView" destination="Dg1-hO-Q8x" id="PIM-ii-Ig7"/>
+                <outlet property="resourceManageImageView" destination="ui0-Un-7SU" id="xbm-6g-KEO"/>
+                <outlet property="shortageImageView" destination="Mz6-vz-KVn" id="BTC-uC-sIN"/>
                 <outlet property="totalAssestsVisibleBtn" destination="pYH-sY-JUc" id="pFt-Ca-ZEJ"/>
                 <outlet property="totalAssetsLabel" destination="Yqo-6x-K23" id="VpT-k3-4o0"/>
                 <outlet property="userAccountLabel" destination="YEZ-SM-uzb" id="uT4-Mc-GRx"/>
@@ -317,10 +329,11 @@
     </objects>
     <resources>
         <image name="addAssets.png" width="85" height="25"/>
-        <image name="ramTrade.png" width="28" height="28"/>
         <image name="recieve.png" width="29" height="28"/>
         <image name="redPacket.png" width="29" height="28"/>
+        <image name="resourceManage_icon.png" width="28" height="28"/>
         <image name="right_arrow_gray.png" width="7" height="14"/>
+        <image name="shortage_red.png" width="26" height="12"/>
         <image name="transfer.png" width="28" height="28"/>
     </resources>
 </document>

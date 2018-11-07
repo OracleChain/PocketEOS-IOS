@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol CommonDialogHasTitleViewDelegate<NSObject>
-- (void)skipBtnDidClick:(UIButton *)sender;
+- (void)commonDialogHasTitleViewSkipBtnDidClick:(UIButton *)sender;
 - (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender;
 @end
 

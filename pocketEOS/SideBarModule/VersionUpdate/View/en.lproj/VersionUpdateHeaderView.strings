@@ -1,6 +1,6 @@
 
-/* Class = "UILabel"; text = "版本介绍"; ObjectID = "1wJ-Iu-4p7"; */
-"1wJ-Iu-4p7.text" = "version_intro";
+/* Class = "UILabel"; text = "当前版本更新日志"; ObjectID = "1wJ-Iu-4p7"; */
+"1wJ-Iu-4p7.text" = "Update log for current version";
 
 /* Class = "UILabel"; text = "Pocket EOS"; ObjectID = "3Ey-Xv-xfh"; */
 "3Ey-Xv-xfh.text" = "Pocket EOS";

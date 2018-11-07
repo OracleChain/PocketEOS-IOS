@@ -18,6 +18,6 @@
 @interface ScrollMenuView : UIView
 
 @property(nonatomic, weak) id<ScrollMenuViewDelegate> delegate;
-- (void)updateViewWithAssestsArray:(NSArray<Assest *> *)assestsArray;
+- (void)updateViewWithOptionModelArray:(NSArray<OptionModel *> *)modelArray;
 @property(nonatomic , strong) BaseSlimLineView *bottomLineView;
 @end

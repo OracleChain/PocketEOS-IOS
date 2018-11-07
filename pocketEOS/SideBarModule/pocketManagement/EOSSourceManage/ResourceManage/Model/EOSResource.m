@@ -21,6 +21,12 @@
              @"net_max" : @"net_limit.max",
              @"net_weight" : @"total_resources.net_weight",
              @"ram_max" : @"total_resources.ram_bytes",
+             @"self_delegated_bandwidth_net" : @"self_delegated_bandwidth.net_weight",
+             @"self_delegated_bandwidth_cpu" : @"self_delegated_bandwidth.cpu_weight",
+             @"refund_request_cpu_amount" : @"refund_request.cpu_amount",
+             @"refund_request_net_amount" : @"refund_request.net_amount",
+             @"refund_request_time" : @"refund_request.request_time"
+             
              };
 }
 

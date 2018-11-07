@@ -55,6 +55,7 @@
             complete(result.data , YES);
         }
     } failure:^(id DAO, NSError *error) {
+//        [TOASTVIEW showWithText: NSLocalizedString(@"网络异常", nil)];
         complete(nil, NO);
     }];
 }

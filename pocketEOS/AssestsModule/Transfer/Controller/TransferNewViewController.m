@@ -37,7 +37,7 @@
 @property(nonatomic, strong) TransactionRecordsService *transactionRecordsService;
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
-@property(nonatomic , strong) TokenInfo *currentToken;
+
 @property(nonatomic , copy) NSString *assest_price_cny;
 
 @end
@@ -144,7 +144,11 @@
         
     }else{
         if (self.get_token_info_service_data_array.count > 0) {
-        self.currentToken = self.get_token_info_service_data_array[0];
+            for (TokenInfo *token in self.get_token_info_service_data_array) {
+                if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
+                    self.currentToken = token;
+                }
+            }
         self.currentAssestsType = self.currentToken.token_symbol;
         self.headerView.assestChooserLabel.text = self.currentToken.token_symbol;
         }else{
@@ -341,11 +345,9 @@
         [self removeLoginPasswordView];
         return;
     }else{
-        if ([NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance] == 3) {
-            self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.3f %@", self.headerView.amountTF.text.doubleValue, self.currentToken.token_symbol];
-        }else if ([NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance] == 4){
-            self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f %@", self.headerView.amountTF.text.doubleValue, self.currentToken.token_symbol];
-        }
+        
+        NSString *percision = [NSString stringWithFormat:@"%lu", [NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance]];
+        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%@ %@", [NSString stringWithFormat:@"%.*f", percision.intValue, self.headerView.amountTF.text.doubleValue], self.currentToken.token_symbol];
     }
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;

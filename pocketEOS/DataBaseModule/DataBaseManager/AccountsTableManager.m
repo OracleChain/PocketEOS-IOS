@@ -95,6 +95,14 @@
 
 
 - (BOOL)addRecord:(AccountInfo *)model{
+    
+    // 检查本地是否有对应的账号
+    AccountInfo *accountInfo = [[AccountsTableManager accountTable] selectAccountTableWithAccountName:model.account_name];
+    if (accountInfo) {
+        NSLog(@"本地钱包已存在该账号!");
+        return NO;
+    }
+    
     FMDatabase *database = [self openLocalDatabase];
     BOOL isOpen = [database open];
     if (isOpen) {

@@ -37,7 +37,7 @@
 - (VersionUpdateHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[[NSBundle mainBundle] loadNibNamed:@"VersionUpdateHeaderView" owner:nil options:nil] firstObject];
-        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 319.5);
+        _headerView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, 390);
         _headerView.delegate = self;
     }
     return _headerView;
@@ -85,13 +85,11 @@
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"版本更新"];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.navView];
-    [self.view addSubview:self.headerView];
-    // 当前版本号
-    NSDictionary *infoDic= [[NSBundle mainBundle] infoDictionary];
-    self.headerView.versionLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"版本", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]  ];
+    
     [self buildDataSource];
     self.view.lee_theme
     .LeeConfigBackgroundColor(@"baseHeaderView_background_color");
@@ -101,18 +99,29 @@
     WS(weakSelf);
     [self.getVersionInfoRequest getDataSusscess:^(id DAO, id data) {
         weakSelf.versionUpdateModel = [VersionUpdateModel mj_objectWithKeyValues:data[@"data"]];
-        if (weakSelf.versionUpdateModel.versionCode.integerValue > [weakSelf queryVersionNumberInBundle] ) {
-            weakSelf.headerView.tipLabel.text = NSLocalizedString(@"有新版・", nil);
-            weakSelf.headerView.tipLabel.textColor = HEX_RGB(0xF21717);
-        }else{
-            weakSelf.headerView.tipLabel.text = NSLocalizedString(@"无新版", nil);
-            weakSelf.headerView.tipLabel.textColor = HEX_RGB(0x999999);
-        }
+        [weakSelf configHeaderView];
         
     } failure:^(id DAO, NSError *error) {
         NSLog(@"%@", error);
     }];
 }
+
+- (void)configHeaderView{
+    [self.view addSubview:self.headerView];
+    // 当前版本号
+    NSDictionary *infoDic= [[NSBundle mainBundle] infoDictionary];
+    self.headerView.versionLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"版本", nil), [infoDic valueForKey:@"CFBundleShortVersionString"]  ];
+    if (self.versionUpdateModel.versionCode.integerValue > [self queryVersionNumberInBundle] ) {
+        self.headerView.tipLabel.text = NSLocalizedString(@"有新版・", nil);
+        self.headerView.tipLabel.textColor = HEX_RGB(0xF21717);
+    }else{
+        self.headerView.tipLabel.text = NSLocalizedString(@"无新版", nil);
+        self.headerView.tipLabel.textColor = HEX_RGB(0x999999);
+    }
+    self.headerView.contentTextView.text = self.versionUpdateModel.versionDetail;
+
+}
+
 
 - (void)versionIntroduceBtnDidClick:(UIButton *)sender{
     [self.view addSubview:self.commonDialogHasTitleView];
@@ -147,7 +156,7 @@
 
 //CommonDialogHasTitleViewDelegate
 - (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
-    [self.commonDialogHasTitleView removeFromSuperview];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"http://pocketeos.com"]];
 }
 
 

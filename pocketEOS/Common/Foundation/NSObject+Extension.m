@@ -170,7 +170,9 @@
  */
 + (CGSize)getStringRectInTextViewWithString:(NSString *)string InTextView:(UITextView *)textView withAttributesDict:(NSDictionary *)attributesDict{
     //实际textView显示时我们设定的宽
-    CGFloat contentWidth = CGRectGetWidth(textView.frame);
+//    CGFloat contentWidth = CGRectGetWidth(textView.frame);
+    CGFloat contentWidth = 290- (MARGIN_20 * 2);
+    
     //但事实上内容需要除去显示的边框值
     CGFloat broadWith    = (textView.contentInset.left + textView.contentInset.right
                             + textView.textContainerInset.left

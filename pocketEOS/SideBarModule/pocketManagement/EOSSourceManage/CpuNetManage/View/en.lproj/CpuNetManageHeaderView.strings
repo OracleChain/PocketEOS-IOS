@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "="; ObjectID = "7QP-R3-fb8"; */
+"7QP-R3-fb8.text" = "=";
+
+/* Class = "UILabel"; text = "EOS"; ObjectID = "8vP-Bp-l6W"; */
+"8vP-Bp-l6W.text" = "EOS";
+
+/* Class = "UILabel"; text = "EOS"; ObjectID = "AMZ-4a-2VQ"; */
+"AMZ-4a-2VQ.text" = "EOS";
+
+/* Class = "UITextField"; placeholder = "输入EOS数量"; ObjectID = "Dx0-R0-1zo"; */
+"Dx0-R0-1zo.placeholder" = "Input EOS amount";
+
+/* Class = "UILabel"; text = "已用NET"; ObjectID = "E3b-QM-n9X"; */
+"E3b-QM-n9X.text" = "NET Occupied";
+
+/* Class = "UILabel"; text = "CPU"; ObjectID = "F4F-RT-xSK"; */
+"F4F-RT-xSK.text" = "CPU";
+
+/* Class = "UILabel"; text = "共抵押"; ObjectID = "GmP-fA-NRK"; */
+"GmP-fA-NRK.text" = "Total Stake";
+
+/* Class = "UILabel"; text = "赎回倒计时"; ObjectID = "JZZ-dX-ydM"; */
+"JZZ-dX-ydM.text" = "Refunding Time";
+
+/* Class = "UILabel"; text = "NET额度"; ObjectID = "UCv-e6-3wB"; */
+"UCv-e6-3wB.text" = "NET ";
+
+/* Class = "UIButton"; normalTitle = "确认抵押"; ObjectID = "Wgf-ve-RnB"; */
+"Wgf-ve-RnB.normalTitle" = "Stake";
+
+/* Class = "UILabel"; text = "CPU额度"; ObjectID = "Y93-xB-2PM"; */
+"Y93-xB-2PM.text" = "CPU";
+
+/* Class = "UITextField"; placeholder = "输入EOS数量"; ObjectID = "atS-7G-mcn"; */
+"atS-7G-mcn.placeholder" = "Input EOS amount";
+
+/* Class = "UILabel"; text = "NET"; ObjectID = "f3S-Rw-bcq"; */
+"f3S-Rw-bcq.text" = "NET";
+
+/* Class = "UILabel"; text = "+"; ObjectID = "jbP-xd-k57"; */
+"jbP-xd-k57.text" = "+";
+
+/* Class = "UILabel"; text = "已用CPU"; ObjectID = "qT0-Gi-OUB"; */
+"qT0-Gi-OUB.text" = "CPU Occupied";

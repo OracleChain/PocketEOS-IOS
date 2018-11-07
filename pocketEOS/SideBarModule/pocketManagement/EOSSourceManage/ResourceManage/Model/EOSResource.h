@@ -73,4 +73,44 @@
 
 
 
+/**
+ self_delegated_bandwidth
+ */
+@property(nonatomic , strong) NSDictionary *self_delegated_bandwidth;
+
+/**
+ self_delegated_bandwidth_net
+ */
+@property(nonatomic , copy) NSString *self_delegated_bandwidth_net;
+
+/**
+ self_delegated_bandwidth_cpu
+ */
+@property(nonatomic , copy) NSString *self_delegated_bandwidth_cpu;
+
+
+
+@property(nonatomic , strong) NSDictionary *refund_request;
+
+
+/**
+ refund_request_cpu_amount
+ */
+@property(nonatomic , copy) NSString *refund_request_cpu_amount;
+
+/**
+ refund_request_net_amount
+ */
+@property(nonatomic , copy) NSString *refund_request_net_amount;
+
+/**
+ refund_request_time
+ */
+@property(nonatomic , copy) NSString *refund_request_time;
+
+
+
+@property(nonatomic , copy) NSString *core_liquid_balance;
+
+
 @end

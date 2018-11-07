@@ -9,7 +9,7 @@
 #import "ExportPrivateKeyView.h"
 
 
-@interface ExportPrivateKeyView()<UIGestureRecognizerDelegate>
+@interface ExportPrivateKeyView()<UIGestureRecognizerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *upBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *contentTextBaseView;
@@ -51,10 +51,17 @@
     self.contentTextView.lee_theme
     .LeeAddTextColor(SOCIAL_MODE, HEXCOLOR(0x2A2A2A))
     .LeeAddTextColor(BLACKBOX_MODE, HEXCOLOR(0x2A2A2A));
+    
+    self.contentTextView.delegate = self;
 }
+
 - (void)dismiss{
     [self removeFromSuperview];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(exportPrivateKeyViewShouldDismiss)]) {
+        [self.delegate exportPrivateKeyViewShouldDismiss];
+    }
 }
+
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     if ([touch.view isEqual:self.upBackgroundView]) {
         return NO;
@@ -84,5 +91,10 @@
     }
 }
 
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return NO;
+}
 
 @end

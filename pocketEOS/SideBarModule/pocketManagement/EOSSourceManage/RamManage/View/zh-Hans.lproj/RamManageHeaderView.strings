@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "确认买入"; ObjectID = "2Tl-ny-M6O"; */
+"2Tl-ny-M6O.normalTitle" = "确认买入";
+
+/* Class = "UILabel"; text = "现价"; ObjectID = "GOK-wh-oHN"; */
+"GOK-wh-oHN.text" = "现价";
+
+/* Class = "UILabel"; text = "EOS"; ObjectID = "UeQ-Yw-lPg"; */
+"UeQ-Yw-lPg.text" = "EOS";
+
+/* Class = "UILabel"; text = "内存"; ObjectID = "gYy-pT-1JG"; */
+"gYy-pT-1JG.text" = "内存";
+
+/* Class = "UILabel"; text = "买入数量"; ObjectID = "oBD-1R-LQm"; */
+"oBD-1R-LQm.text" = "买入数量";
+
+/* Class = "UITextField"; placeholder = "输入EOS数量"; ObjectID = "pw6-vR-7bP"; */
+"pw6-vR-7bP.placeholder" = "输入EOS数量";
+
+/* Class = "UILabel"; text = "可用：1000.00 EOS"; ObjectID = "yNd-jT-CDI"; */
+"yNd-jT-CDI.text" = "可用：1000.00 EOS";

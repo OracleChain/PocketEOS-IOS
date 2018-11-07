@@ -10,3 +10,7 @@
 
 /* Class = "UILabel"; text = "发起转账"; ObjectID = "T9L-La-SPP"; */
 "T9L-La-SPP.text" = "发起转账";
+
+
+/* Class = "UILabel"; text = "资源管理"; ObjectID = "Rxb-4s-whr"; */
+"Rxb-4s-whr.text" = "资源管理";

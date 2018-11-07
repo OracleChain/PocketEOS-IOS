@@ -15,6 +15,7 @@
 #import "UITabBar+CustomBadge.h"
 #import "XYTabBar.h"
 #import "RootNavigationController.h"
+#import "DiscoverMainViewController.h"
 
 @interface BaseTabBarController()<UITabBarControllerDelegate>
 @property (nonatomic,strong) NSMutableArray * VCS;//tabbar root VC
@@ -91,6 +92,7 @@
     _VCS = @[].mutableCopy;
     
     AssestsMainViewController *assestsMainVC = [[AssestsMainViewController alloc] init];
+    
     [self setupChildViewController:assestsMainVC title: NSLocalizedString(@"资产", nil)imageName:@"assest_unSelect" seleceImageName:@"assest_select" BB_imageName:@"assest_unSelect_BB" BB_seleceImageName:@"assest_Select_BB"];
     
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
@@ -105,7 +107,7 @@
     [self setupChildViewController:newsVC title:NSLocalizedString(@"新闻", nil) imageName:@"news_unSelect" seleceImageName:@"news_select" BB_imageName:@"news_unSelect_BB" BB_seleceImageName:@"news_select_BB"];
     
 
-    ApplicationMainViewController *dappVC = [[ApplicationMainViewController alloc]init];
+    DiscoverMainViewController *dappVC = [[DiscoverMainViewController alloc]init];
     [self setupChildViewController:dappVC title:NSLocalizedString(@"发现", nil)imageName:@"application_unSelect" seleceImageName:@"application_select" BB_imageName:@"application_unSelect_BB" BB_seleceImageName:@"application_select_BB"];
 
     self.viewControllers = _VCS;

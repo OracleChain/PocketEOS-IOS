@@ -185,6 +185,8 @@
 }
 
 - (void)configHeaderView{
+    Wallet *wallet = CURRENT_WALLET;
+    [self.headerView.avatarImgView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     self.headerView.accountLabel.text = self.redPacketModel.from;
     self.headerView.memoLabel.text = self.redPacketModel.memo;
     self.headerView.tipLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@%@，%@%@%@", nil), self.redPacketModel.count, NSLocalizedString(@"个红包", nil),NSLocalizedString(@"共", nil), self.redPacketModel.amount, self.redPacketModel.coin];
@@ -289,15 +291,16 @@
 
 - (void)SocialSharePanelViewDidTap:(UITapGestureRecognizer *)sender{
     if (self.authRedPacketResult.data.payStatus.integerValue == 1) {////支付成功 可以进行红包的发送
+        Wallet *wallet = CURRENT_WALLET;
         NSString *platformName = self.platformNameArr[sender.view.tag-1000];
         NSLog(@"%@", platformName);
         ShareModel *model = [[ShareModel alloc] init];
-        model.title = NSLocalizedString(@"天降大红包，没时间解释了，快抢!", nil);
-        model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
-        model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"我下血本为您送上", nil), self.redPacketModel.amount,  self.redPacketModel.coin, NSLocalizedString(@"的大红包，无需消费，直接到达EOS账号，还在犹豫什么？", nil) ];
+        model.title = [NSString stringWithFormat:@"%@ %@", wallet.wallet_name, NSLocalizedString(@"送上红包!", nil)];
+        model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", self.redPacketModel.amount,  self.redPacketModel.coin, NSLocalizedString(@"等你领!", nil) ,  NSLocalizedString(@"恭喜发财, 大吉大利!", nil) ];
+        
         // http://static.pocketeos.top:8003
         model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.authRedPacketResult.data.verifyString];
-        model.imageName = @"redpacket";
+        model.imageName = @"redpacket_share_icon";
         NSLog(@"model.webPageUrl :%@", model.webPageUrl);
         if ([platformName isEqualToString:@"wechat_friends"]) {
             [[SocialManager socialManager] wechatShareToScene:0 withShareModel:model];

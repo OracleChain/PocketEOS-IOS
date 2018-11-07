@@ -199,7 +199,9 @@
 //AssestsCollectionHeaderViewDelegate
 - (void)allSelectBtnDidClick{
     for (TokenInfo *model in self.assestsCollectionMainService.dataSourceArray) {
-        model.isSelected = self.headerView.allSelectBtn.isSelected;
+        if (model.balance.doubleValue != 0) {
+            model.isSelected = self.headerView.allSelectBtn.isSelected;
+        }
     }
     [self.mainTableView reloadData];
     [self configFooterView];

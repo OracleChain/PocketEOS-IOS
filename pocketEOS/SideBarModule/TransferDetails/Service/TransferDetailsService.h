@@ -12,6 +12,8 @@
 @interface TransferDetailsService : BaseService
 
 
+@property(nonatomic , strong) NSMutableDictionary *dataSourceDictionary;
+
 @property(nonatomic, strong) TransactionRecord *model;
 
 

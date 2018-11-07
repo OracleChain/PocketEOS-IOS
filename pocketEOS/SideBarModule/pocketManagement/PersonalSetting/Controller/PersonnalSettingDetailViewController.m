@@ -57,7 +57,7 @@
 
 -(void)rightBtnDidClick{
     WS(weakSelf);
-    if ([self.titleStr isEqualToString:NSLocalizedString(@"名字", nil)]) {
+    if ([self.titleStr isEqualToString:NSLocalizedString(@"修改名字", nil)]) {
         // 设置钱包名字
         self.mainService.updateUserNameRequest.userName = self.headerView.itemTF.text;
         [self.mainService.updateUserNameRequest postDataSuccess:^(id DAO, id data) {

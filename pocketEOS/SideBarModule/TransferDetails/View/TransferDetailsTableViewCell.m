@@ -39,15 +39,8 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, 16).heightIs(20);
-        
-        [self.titleLabel setSingleLineAutoResizeWithMaxWidth:150];
-        
-        [self.contentView addSubview:self.detailLabel];
-        self.detailLabel.sd_layout.leftSpaceToView(self.titleLabel , 50).rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, 16).autoHeightRatio(0);
-        
-         [self setupAutoHeightWithBottomView:self.detailLabel bottomMargin:MARGIN_15];
+        self.bottomLineView.hidden = YES;
+       
         
     }
     return self;
@@ -55,8 +48,37 @@
 
 
 -(void)setModel:(OptionModel *)model{
+    
+    [self.contentView addSubview:self.titleLabel];
+    self.titleLabel.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, 16).heightIs(20);
+    
+    [self.titleLabel setSingleLineAutoResizeWithMaxWidth:150];
+    
+    [self.contentView addSubview:self.detailLabel];
+    self.rightIconImageView.image = [UIImage imageNamed:@"copy-icon_gray"];
+    if (model.canCopy) {
+        [self.contentView addSubview:self.rightIconImageView];
+        self.rightIconImageView.sd_layout.rightSpaceToView(self.contentView, 16).centerYEqualToView(self.titleLabel).widthIs(14).heightIs(14);
+        
+        self.detailLabel.sd_layout.leftSpaceToView(self.titleLabel , 50).rightSpaceToView(self.rightIconImageView, MARGIN_10).topSpaceToView(self.contentView, 16).autoHeightRatio(0);
+        
+        
+    }else{
+        self.detailLabel.sd_layout.leftSpaceToView(self.titleLabel , 50).rightSpaceToView(self.contentView, MARGIN_20).topSpaceToView(self.contentView, 16).autoHeightRatio(0);
+        
+    }
+    
+    
+    
+    
+    
     self.titleLabel.text = VALIDATE_STRING(model.optionName);
     self.detailLabel.text = model.detail.length > 0 ? model.detail : @" ";
+    
+    
+    
+    
+    [self setupAutoHeightWithBottomView:self.detailLabel bottomMargin:MARGIN_15];
 }
 
 

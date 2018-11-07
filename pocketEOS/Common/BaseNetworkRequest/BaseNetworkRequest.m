@@ -97,9 +97,14 @@
         
     }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
         [self.networkingManager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
-        
-
     }
+    
+    if ([NSBundle isChineseLanguage]) {
+        [self.networkingManager.requestSerializer setValue:@"chinese" forHTTPHeaderField:@"language"];
+    }else{
+        [self.networkingManager.requestSerializer setValue:@"english" forHTTPHeaderField:@"language"];
+    }
+    
     self.networkingManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     
     return YES;
@@ -233,6 +238,9 @@
         //failure block
         if(IsNilOrNull(failure)){
             return;
+        }
+        if(error.code == -1001){
+            [TOASTVIEW showWithText:NSLocalizedString(@"请求超时, 请稍后再试!", nil)];
         }
         NSLog(@"%@", error);
         failure(task, error);
@@ -418,6 +426,21 @@
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", @"text/plain", nil];
     // request Json 序列化
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    
+    
+    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+        [manager.requestSerializer setValue:CURRENT_WALLET_UID forHTTPHeaderField:@"uid"];
+        
+    }else if(LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+        [manager.requestSerializer setValue:@"6f1a8e0eb24afb7ddc829f96f9f74e9d" forHTTPHeaderField:@"uid"];
+    }
+    
+    if ([NSBundle isChineseLanguage]) {
+        [manager.requestSerializer setValue:@"chinese" forHTTPHeaderField:@"language"];
+    }else{
+        [manager.requestSerializer setValue:@"english" forHTTPHeaderField:@"language"];
+    }
+    
     [manager POST:[self requestUrlPath] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@", responseObject);

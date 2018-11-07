@@ -156,6 +156,8 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView setTableHeaderView:self.headerView];
+    Wallet *wallet = CURRENT_WALLET;
+    [self.headerView.avatarImageView sd_setImageWithURL:String_To_URL(wallet.wallet_img) placeholderImage:[UIImage imageNamed:@"account_default_blue"]];
     self.headerView.accountNameLabel.text = self.redPacketModel.from;
     self.headerView.memoLabel.text = self.redPacketModel.memo;
 
@@ -276,13 +278,13 @@
 
 // SocialSharePanelViewDelegate
 - (void)SocialSharePanelViewDidTap:(UITapGestureRecognizer *)sender{
+    Wallet *wallet = CURRENT_WALLET;
     NSString *platformName = self.platformNameArr[sender.view.tag-1000];
     ShareModel *model = [[ShareModel alloc] init];
-    model.title = NSLocalizedString(@"天降大红包，没时间解释了，快抢!", nil);
-    model.imageName = @"https://pocketeos.oss-cn-beijing.aliyuncs.com/redpacket.png";
-    model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"我下血本为您送上", nil), self.redPacketDetailResult.amount,  self.redPacketModel.coin, NSLocalizedString(@"的大红包，无需消费，直接到达EOS账号，还在犹豫什么？", nil) ];
+    model.title = [NSString stringWithFormat:@"%@ %@", wallet.wallet_name, NSLocalizedString(@"送上红包", nil)];
+    model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", self.redPacketModel.amount,  self.redPacketModel.coin, NSLocalizedString(@"等你领!", nil) ,  NSLocalizedString(@"恭喜发财, 大吉大利!", nil) ];
     model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.redPacketModel.verifystring];
-    model.imageName = @"redpacket";
+    model.imageName = @"redpacket_share_icon";
     NSLog(@"model.webPageUrl : %@", model.webPageUrl);
     if ([platformName isEqualToString:@"wechat_friends"]) {
        [[SocialManager socialManager] wechatShareToScene:0 withShareModel:model];

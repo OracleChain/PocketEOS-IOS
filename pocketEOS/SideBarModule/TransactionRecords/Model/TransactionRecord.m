@@ -18,7 +18,8 @@
              @"to" : @"doc.data.to",
              @"quantity" : @"doc.data.quantity",
              @"memo" : @"doc.data.memo",
-             @"expiration" : @"doc.data.expiration"
+             @"expiration" : @"doc.data.expiration",
+             @"contract" : @"doc.account"
              };
 }
 @end

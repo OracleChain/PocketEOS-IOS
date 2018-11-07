@@ -42,6 +42,8 @@
 #import "BaseBoldLineView.h"
 #import "BaseConfirmButton.h"
 #import "BaseTextField.h"
+#import "BaseTextView_textColorLightGray.h"
+
 #import "LoginPasswordView.h"
 #import "ImageAndTipLabelViewManager.h"
 #import "RequestUrlConstant.h"
