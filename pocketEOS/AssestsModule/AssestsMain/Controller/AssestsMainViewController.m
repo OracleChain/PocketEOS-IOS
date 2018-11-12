@@ -441,7 +441,6 @@
     
 //        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
 //        Application *model = [[Application alloc] init];
-//        model.url = @"http://static.pocketeos.top:3002";
 ////        model.url = @"https://dapp.newdex.io/";
 ////        model.url = @"https://coincreate.github.io/EOS_coincreate/coincreate_scatter.html";
 //        model.applyName = @"EOS内存市场";
@@ -632,7 +631,7 @@
     CommonWKWebViewController *vc = [[CommonWKWebViewController alloc] init];
     Wallet *wallet = CURRENT_WALLET;
     NSString *cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"];
-    vc.urlStr = @"http://static.pocketeos.top:3501";
+    vc.urlStr = [NSString stringWithFormat:@"%@:3503",REQUEST_HTTP_STATIC_BASEURL ];
     NSArray *cookieArr = [cookie componentsSeparatedByString:@";"];
     NSString *PE_cookieStr;
     if (cookieArr.count > 0) {

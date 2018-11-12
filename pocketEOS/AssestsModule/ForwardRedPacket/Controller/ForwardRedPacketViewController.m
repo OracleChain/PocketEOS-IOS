@@ -299,7 +299,7 @@
         model.detailDescription = [NSString stringWithFormat:@"%@ %@ %@ %@", self.redPacketModel.amount,  self.redPacketModel.coin, NSLocalizedString(@"等你领!", nil) ,  NSLocalizedString(@"恭喜发财, 大吉大利!", nil) ];
         
         // http://static.pocketeos.top:8003
-        model.webPageUrl = [NSString stringWithFormat:@"http://static.pocketeos.top:8003?id=%@&verifystring=%@",self.redPacketModel.redPacket_id,self.authRedPacketResult.data.verifyString];
+        model.webPageUrl = [NSString stringWithFormat:@"%@:8003?id=%@&verifystring=%@", REQUEST_HTTP_STATIC_BASEURL,self.redPacketModel.redPacket_id,self.authRedPacketResult.data.verifyString];
         model.imageName = @"redpacket_share_icon";
         NSLog(@"model.webPageUrl :%@", model.webPageUrl);
         if ([platformName isEqualToString:@"wechat_friends"]) {

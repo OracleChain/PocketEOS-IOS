@@ -132,7 +132,8 @@
 
 - (void)privacyPolicyLabelDidTap{
     if (@available(iOS 9.0, *)) {
-        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://static.pocketeos.top:3503"] entersReaderIfAvailable:YES];
+        
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@:3503",REQUEST_HTTP_STATIC_BASEURL ]] entersReaderIfAvailable:YES];
         safariVC.delegate = self;
         [self presentViewController:safariVC animated:YES completion:nil];
     } else {

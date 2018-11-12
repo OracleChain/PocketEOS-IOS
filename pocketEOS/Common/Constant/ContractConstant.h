@@ -16,6 +16,7 @@
  */
 #define SymbolName_EOS @"EOS"
 #define SymbolName_OCT @"OCT"
+#define SymbolName_CET @"CET"
 
 /**
  SmartContractName
@@ -25,6 +26,7 @@
 #define ContractName_OCTOTHEMOON @"octtothemoon"
 #define ContractName_HELLOWORLDGO @"helloworldgo"
 #define ContractName_OCASKANS @"ocaskans"
+#define ContractName_EOSIOCHAINCE @"eosiochaince"
 
 
 /**

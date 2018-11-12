@@ -5,7 +5,7 @@
 //  Created by oraclechain on 2017/11/29.
 //  Copyright © 2017年 oraclechain. All rights reserved.
 //
-#define REQUEST_BASEURL @"https://api.pocketeos.top"
+
 
 #define REQUEST_APIPATH [NSString stringWithFormat: @"%@", [self requestUrlPath]]
 

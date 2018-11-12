@@ -174,7 +174,16 @@
 - (void)selectAssestsBtnDidClick:(UIButton *)sender {
     WS(weakSelf);
     [self.view endEditing:YES];
-    NSArray *assestsArr = @[@"EOS" , @"OCT"];
+    NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
+    
+    
+    NSMutableArray *assestsArr = [NSMutableArray arrayWithObjects:SymbolName_EOS, SymbolName_OCT  ,nil];
+    for (TokenInfo *tokenInfo in tmpArr) {
+        if ([tokenInfo.token_symbol isEqualToString:SymbolName_CET] && [tokenInfo.contract_name isEqualToString:ContractName_EOSIOCHAINCE]) {
+            [assestsArr addObject:SymbolName_CET];
+        }
+    }
+    
     [CDZPicker showSinglePickerInView:self.view withBuilder:[CDZPickerBuilder new] strings:assestsArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
         weakSelf.currentAssestsType = VALIDATE_STRING(strings[0]);
         weakSelf.headerView.assestChooserLabel.text = weakSelf.currentAssestsType;
@@ -234,14 +243,18 @@
 
 
 - (void)pushTransaction{
-    if ([self.currentAssestsType isEqualToString:@"EOS"]) {
+    if ([self.currentAssestsType isEqualToString:SymbolName_EOS]) {
         self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
         self.transferService.code = ContractName_EOSIOTOKEN;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f EOS", self.headerView.amountTF.text.doubleValue];
-    }else if ([self.currentAssestsType isEqualToString:@"OCT"]){
+    }else if ([self.currentAssestsType isEqualToString:SymbolName_OCT]){
         self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
         self.transferService.code = ContractName_OCTOTHEMOON;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
+    }else if ([self.currentAssestsType isEqualToString:SymbolName_CET]){
+        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOCHAINCE;
+        self.transferService.code = ContractName_OCTOTHEMOON;
+        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f CET", self.headerView.amountTF.text.doubleValue];
     }
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;

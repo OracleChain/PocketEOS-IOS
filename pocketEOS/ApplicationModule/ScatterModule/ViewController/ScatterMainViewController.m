@@ -296,7 +296,8 @@
         [outerNetworkingManager.requestSerializer setValue: action.tag forHTTPHeaderField: @"From"];
         
         [outerNetworkingManager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/plain",@"text/json", @"text/javascript", nil]];
-        NSString *url = @"http://api.pocketeos.top/api_oc_blockchain-v1.3.0/abi_bin_to_json";
+        
+        NSString *url = [NSString stringWithFormat:@"%@/api_oc_blockchain-v1.3.0/abi_bin_to_json", REQUEST_BASEURL];
         //        NSString *url = @"http://10.0.0.11:8080/lottery/abi_json_to_bin";
         [outerNetworkingManager POST: url parameters: [self.abi_bin_to_jsonRequest parameters] progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
