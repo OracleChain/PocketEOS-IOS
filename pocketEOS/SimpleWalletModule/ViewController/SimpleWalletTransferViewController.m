@@ -163,6 +163,7 @@
 
     AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_HTTP_BASEURL]];
 
+
     NSLog(@"notifyUrl %@", notifyUrl);
     [outerNetworkingManager GET:VALIDATE_STRING(notifyUrl) parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
