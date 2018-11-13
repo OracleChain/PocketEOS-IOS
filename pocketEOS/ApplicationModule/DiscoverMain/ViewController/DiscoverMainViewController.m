@@ -238,7 +238,9 @@
         }
         
     }else{
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
+        AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+        vc.addAccountViewControllerFromMode = AddAccountViewControllerFromOtherPage;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
         
     }
 }

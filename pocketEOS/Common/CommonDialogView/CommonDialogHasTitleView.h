@@ -11,6 +11,7 @@
 @protocol CommonDialogHasTitleViewDelegate<NSObject>
 - (void)commonDialogHasTitleViewSkipBtnDidClick:(UIButton *)sender;
 - (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender;
+- (void)commonDialogHasTitleViewWillDismiss;
 @end
 
 

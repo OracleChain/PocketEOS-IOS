@@ -20,6 +20,7 @@
 #import "BaseTabBarController.h"
 #import "AddAccountViewController.h"
 
+
 @interface PhoneLoginViewController ()<PhoneLoginMainViewDelegate, CountryCodeAreaViewControllerDelegate, UITextFieldDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) PhoneLoginMainView *headerView;
@@ -144,9 +145,9 @@
                         model.account_info_table_name = [NSString stringWithFormat:@"%@_%@", ACCOUNTS_TABLE,CURRENT_WALLET_UID];
                         [[WalletTableManager walletTable] addRecord: model];
                     }
-                    
-                    
-                    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
+                    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+                    vc.addAccountViewControllerFromMode = AddAccountViewControllerFromLoginPage;
+                    [self.navigationController pushViewController:vc animated:YES];
                     
                 }
             }

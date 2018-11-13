@@ -154,6 +154,9 @@
     [[NSUserDefaults standardUserDefaults] setObject: nil  forKey:Current_wallet_uid];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [[NSUserDefaults standardUserDefaults] setObject: nil  forKey:Current_Account_name];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     UIViewController *vc;
     if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
         vc = [[LoginEntranceViewController alloc] init];

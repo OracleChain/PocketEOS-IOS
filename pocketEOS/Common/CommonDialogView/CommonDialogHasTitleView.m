@@ -175,6 +175,9 @@
 
 - (void)dismiss{
     [self removeFromSuperview];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(commonDialogHasTitleViewWillDismiss)]) {
+        [self.delegate commonDialogHasTitleViewWillDismiss];
+    }
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{

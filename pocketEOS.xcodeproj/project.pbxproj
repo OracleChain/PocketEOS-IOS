@@ -12257,7 +12257,7 @@
 					"-all_load",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www.;
+				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -12296,7 +12296,7 @@
 					"-all_load",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www.;
+				PRODUCT_BUNDLE_IDENTIFIER = io.oraclechain.PocketEos.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

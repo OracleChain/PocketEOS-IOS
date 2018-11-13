@@ -77,6 +77,7 @@
 @property(nonatomic , strong) CAGradientLayer *gradientLayer;
 @property(nonatomic , strong) EOSResourceService *eosResourceService;
 @property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
+@property(nonatomic , assign) BOOL currentWalletHasSetPassword;
 @end
 
 @implementation AssestsMainViewController
@@ -324,7 +325,13 @@
     WS(weakSelf);
     // 默认的导航栏 block
     [self.navView setLeftBtnDidClickBlock:^{
-        [weakSelf profileCenter];
+        if (CURRENT_WALLET_HAS_SET_PASSWORD) {
+            [weakSelf profileCenter];
+            
+        }else{
+            weakSelf.currentWalletHasSetPassword = YES;
+            [weakSelf addCommonDialogHasTitleViewOfSetPassword];
+        }
         
     }];
    
@@ -342,55 +349,61 @@
     }];
     
     [self.navView setRightBtn2DidClickBlock:^{
-        
-        // 1. 获取摄像设备
-        AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        if (device) {
-            AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-            if (status == AVAuthorizationStatusNotDetermined) {
-                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        if (CURRENT_AccountTable_HAS_Account) {
+            // 1. 获取摄像设备
+            AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if (device) {
+                AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+                if (status == AVAuthorizationStatusNotDetermined) {
+                    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                        
+                        if (granted) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
+                                [weakSelf.navigationController pushViewController:vc animated:YES];
+                            });
+                            // 用户第一次同意了访问相机权限
+                            NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
+                        }else {
+                            // 用户第一次拒绝了访问相机权限
+                            NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
+                        }
+                        
+                        
+                    }];
+                }else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
+                    ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
+                    vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+                    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                        
+                    }];
                     
-                    if (granted) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        });
-                        // 用户第一次同意了访问相机权限
-                        NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
-                    }else {
-                        // 用户第一次拒绝了访问相机权限
-                        NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
-                    }
+                    [alertC addAction:alertA];
+                    [weakSelf presentViewController:alertC animated:YES completion:nil];
                     
-                    
-                }];
-            }else if (status == AVAuthorizationStatusAuthorized) { // 用户允许当前应用访问相机
-                ScanQRCodeViewController *vc = [[ScanQRCodeViewController alloc] init];
-                vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil)preferredStyle:(UIAlertControllerStyleAlert)];
+                } else if (status == AVAuthorizationStatusRestricted) {
+                    NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
+                }
+                
+                
+            }else {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
                 UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                     
                 }];
                 
                 [alertC addAction:alertA];
                 [weakSelf presentViewController:alertC animated:YES completion:nil];
-                
-            } else if (status == AVAuthorizationStatusRestricted) {
-                NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
             }
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
             
             
-        }else {
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil)message:NSLocalizedString(@"未检测到您的摄像头", nil)preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil)style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            
-            [alertC addAction:alertA];
-            [weakSelf presentViewController:alertC animated:YES completion:nil];
         }
+       
     }];
     
     // 改变后的导航栏 block
@@ -831,11 +844,30 @@
     [manager startMonitoring];
 }
 
+- (void)commonDialogHasTitleViewWillDismiss{
+    self.currentWalletHasSetPassword = NO;
+}
+
+- (void)commonDialogHasTitleViewSkipBtnDidClick:(UIButton *)sender{
+    self.currentWalletHasSetPassword = NO;
+}
 
 //CommonDialogHasTitleViewDelegate
 - (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
-    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    
+    if (self.currentWalletHasSetPassword) {
+        
+        // 创建钱包(本地数据库)
+        CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
+        vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+        vc.addAccountViewControllerFromMode = AddAccountViewControllerFromOtherPage;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+        
+    }
 }
 
 - (void)addCommonDialogHasTitleView{
@@ -847,6 +879,17 @@
     OptionModel *model = [[OptionModel alloc] init];
     model.optionName = NSLocalizedString(@"注意", nil);
     model.detail = NSLocalizedString(@"添加EOS账号继续操作", nil);
+    [self.commonDialogHasTitleView setModel:model];
+}
+
+- (void)addCommonDialogHasTitleViewOfSetPassword{
+    [[UIApplication sharedApplication].keyWindow addSubview:self.commonDialogHasTitleView];
+    self.commonDialogHasTitleView.contentTextView.textAlignment = NSTextAlignmentCenter;
+    self.commonDialogHasTitleView.comfirmBtnText = NSLocalizedString(@"去设置", nil);
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"注意", nil);
+    model.detail = NSLocalizedString(@"设置钱包密码继续操作", nil);
     [self.commonDialogHasTitleView setModel:model];
 }
 @end

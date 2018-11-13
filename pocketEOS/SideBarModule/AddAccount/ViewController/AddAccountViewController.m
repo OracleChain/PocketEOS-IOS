@@ -132,16 +132,30 @@
 }
 
 -(void)leftBtnDidClick{
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromLoginPage) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromOtherPage){
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+
 }
 
 -(void)rightBtnDidClick{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (UIView *view in WINDOW.subviews) {
-            [view removeFromSuperview];
-        }
-        [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
-    });
+    if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromLoginPage) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (UIView *view in WINDOW.subviews) {
+                [view removeFromSuperview];
+            }
+            [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+        });
+        
+    }else if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromOtherPage){
+        [self dismissViewControllerAnimated:YES completion:NULL];
+        
+    }
+    
+    
+
 }
 
 //CommonDialogHasTitleViewDelegate
