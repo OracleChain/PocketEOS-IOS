@@ -12,7 +12,7 @@
 @interface CommonDialogHasTitleView()<UIGestureRecognizerDelegate>
 @property(nonatomic , strong) UIView *alphaBackgroundView;// black alpha 0.5
 @property(nonatomic , strong) UIView *contentBackgroundView;
-@property(nonatomic , strong) UITextView *contentTextView;
+
 @property(nonatomic , strong) UIImageView *avatarImg;
 @property(nonatomic , strong) UILabel *titleLabel;
 @property(nonatomic , strong) UIView *lineView;
@@ -94,7 +94,7 @@
 - (UIButton *)updateBtn{
     if (!_updateBtn) {
         _updateBtn = [[UIButton alloc] init];
-        [_updateBtn setTitle:NSLocalizedString(@"确定", nil)forState:(UIControlStateNormal)];
+        [_updateBtn setTitle:IsStrEmpty(self.comfirmBtnText ) ?  NSLocalizedString(@"确定", nil) : self.comfirmBtnText forState:(UIControlStateNormal)];
         [_updateBtn setTitleColor:HEXCOLOR(0x4D7BFE) forState:(UIControlStateNormal)];
         _updateBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];

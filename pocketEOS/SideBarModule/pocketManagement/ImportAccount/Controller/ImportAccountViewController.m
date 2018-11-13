@@ -260,9 +260,7 @@
             NSLog(@"备份到服务器成功!");
         }
     }];
-    
-    
-    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

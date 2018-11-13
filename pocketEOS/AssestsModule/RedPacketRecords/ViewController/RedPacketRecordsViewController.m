@@ -14,7 +14,7 @@
 #import "RedPacketRecord.h"
 #import "RedPacketRecordsTableViewCell.h"
 #import "ForwardRedPacketViewController.h"
-
+#import "TokenInfo.h"
 
 @interface RedPacketRecordsViewController ()<TransferRecordsHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -75,7 +75,15 @@
 
 - (void)selectAssestsBtnDidClick:(UIButton *)sender{
     WS(weakSelf);
-    NSArray *assestsArr = @[@"EOS" , @"OCT"];
+    NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
+    
+    
+    NSMutableArray *assestsArr = [NSMutableArray arrayWithObjects:SymbolName_EOS, SymbolName_OCT  ,nil];
+    for (TokenInfo *tokenInfo in tmpArr) {
+        if ([tokenInfo.token_symbol isEqualToString:SymbolName_CET] && [tokenInfo.contract_name isEqualToString:ContractName_EOSIOCHAINCE]) {
+            [assestsArr addObject:SymbolName_CET];
+        }
+    }
     CDZPickerBuilder *builder = [CDZPickerBuilder new];
     builder.cancelText = NSLocalizedString(@"选择您的Token", nil);
     for (int i = 0 ; i < assestsArr.count; i++) {

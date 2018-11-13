@@ -54,17 +54,14 @@ void uncaughtExceptionHandler(NSException*exception){
     [[SocialManager socialManager] initWithSocialSDK:application didFinishLaunchingWithOptions:launchOptions];
     
     Wallet *wallet = CURRENT_WALLET;
-    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    if (accountArray.count > 0) {
+    
+    if (wallet) {
         
         // 如果本地有当前账号对应的钱包且有账号
         [self.window setRootViewController: rootVC];
         
     }else{
-        if (wallet) {
-            
-            [[WalletTableManager walletTable] deleteRecord:wallet.wallet_uid];            
-        }
+        
         UIViewController *vc;
         if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
             vc = [[LoginEntranceViewController alloc] init];

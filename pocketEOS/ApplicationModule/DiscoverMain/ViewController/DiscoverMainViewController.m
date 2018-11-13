@@ -17,6 +17,7 @@
 #import "QuestionListViewController.h"
 #import "DAppDetailViewController.h"
 #import "CommonDialogHasTitleView.h"
+#import "AddAccountViewController.h"
 
 @interface DiscoverMainViewController ()<ScrollMenuViewDelegate, DiscoverMainHeaderViewDelegate, CommonDialogHasTitleViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -120,7 +121,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DappModel *model = (DappModel *)self.mainService.dataSourceArray[indexPath.row];
     self.currentDappModel = model;
-    [self addCommonDialogHasTitleView];
+    if (CURRENT_AccountTable_HAS_Account) {
+        [self addCommonDialogHasTitleView];
+    }else{
+        [self addCommonDialogHasTitleViewOfAddAccount];
+        
+    }
 }
 
 
@@ -201,7 +207,12 @@
 //DiscoverMainHeaderViewDelegate
 - (void)discoverMainHeaderViewDappItemDidClick:(DappModel *)model{
       self.currentDappModel = model;
-     [self addCommonDialogHasTitleView];
+    if (CURRENT_AccountTable_HAS_Account) {
+        [self addCommonDialogHasTitleView];
+    }else{
+        [self addCommonDialogHasTitleViewOfAddAccount];
+        
+    }
 }
 
 
@@ -216,13 +227,19 @@
 
 
 - (void)handleCommonDialogHasTitleViewConfirmBtnDidClickResult:(DappModel *)model{
-    if ([model.dappName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
-        QuestionListViewController *vc = [[QuestionListViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+    if (CURRENT_AccountTable_HAS_Account) {
+        if ([model.dappName isEqualToString:NSLocalizedString(@"有问币答", nil)]) {
+            QuestionListViewController *vc = [[QuestionListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
     }else{
-        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
+        
     }
 }
 
@@ -234,6 +251,19 @@
     model.optionName = NSLocalizedString(@"注意", nil);
     model.detail = NSLocalizedString(@"您正在跳转至第三方Dapp,确认即同意第三方Dapp的用户协议与隐私政策，由其直接并单独向您承担责任", nil);
     [self.commonDialogHasTitleView setModel:model];
+}
+
+- (void)addCommonDialogHasTitleViewOfAddAccount{
+    [[UIApplication sharedApplication].keyWindow addSubview:self.commonDialogHasTitleView];
+    
+    self.commonDialogHasTitleView.contentTextView.textAlignment = NSTextAlignmentCenter;
+    self.commonDialogHasTitleView.comfirmBtnText = NSLocalizedString(@"去添加", nil);
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"注意", nil);
+    model.detail = NSLocalizedString(@"添加EOS账号继续操作", nil);
+    [self.commonDialogHasTitleView setModel:model];
+    
 }
 
 

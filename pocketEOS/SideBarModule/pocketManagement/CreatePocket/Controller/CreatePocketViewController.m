@@ -142,10 +142,7 @@
         [[WalletTableManager walletTable] addRecord: model];
     }
     
-    
-    
-    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)privacyPolicyBtnDidClick:(UIButton *)sender{

@@ -153,5 +153,15 @@
 }
 
 
+- (BOOL)accountsTableHasAccount{
+    NSArray *accountArr =[[AccountsTableManager accountTable] selectAccountTable];
+    if (accountArr.count > 0) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
 
 @end

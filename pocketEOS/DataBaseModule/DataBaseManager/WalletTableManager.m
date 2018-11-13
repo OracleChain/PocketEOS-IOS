@@ -138,4 +138,13 @@
     return NO;
 }
 
+- (BOOL)walletPasswordHasSet{
+    Wallet *wallet = [[[WalletTableManager walletTable] selectCurrentWallet] firstObject];
+    if (wallet && (wallet.wallet_shapwd.length <= 6)) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 @end

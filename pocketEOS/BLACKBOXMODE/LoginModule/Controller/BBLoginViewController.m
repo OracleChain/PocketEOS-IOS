@@ -235,8 +235,7 @@
     [[NSUserDefaults standardUserDefaults] setObject: model.wallet_uid  forKey:Current_wallet_uid];
     [[NSUserDefaults standardUserDefaults] synchronize];
     // 创建账号(本地数据库)
-    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
 }
 
 -(void)explainBlackBoxModeBtnDidClick{
@@ -272,8 +271,7 @@
                 [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
                 
             }else{
-                AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
+                [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
                 
             }
             break;

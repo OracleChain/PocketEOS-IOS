@@ -15,12 +15,16 @@
 #import "CreateAccountViewController.h"
 #import "CheckWhetherHasFreeQuotaResuest.h"
 #import "CheckWhetherHasFreeQuotaResult.h"
+#import "CommonDialogHasTitleView.h"
+#import "CreatePocketViewController.h"
 
-@interface AddAccountViewController ()
+
+@interface AddAccountViewController ()<CommonDialogHasTitleViewDelegate, UINavigationControllerDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic , strong) AddAccountMainService *mainService;
 @property(nonatomic , strong) CheckWhetherHasFreeQuotaResuest *checkWhetherHasFreeQuotaResuest;
 @property(nonatomic , strong) CheckWhetherHasFreeQuotaResult *checkWhetherHasFreeQuotaResult;
+@property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
 @end
 
 @implementation AddAccountViewController
@@ -28,7 +32,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"添加账号", nil)rightBtnImgName:@"" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"添加账号", nil)rightBtnImgName:@"share" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         _navView.lee_theme.LeeConfigBackgroundColor(@"baseAddAccount_background_color");
     }
@@ -47,6 +51,14 @@
         _checkWhetherHasFreeQuotaResuest = [[CheckWhetherHasFreeQuotaResuest alloc] init];
     }
     return _checkWhetherHasFreeQuotaResuest;
+}
+
+- (CommonDialogHasTitleView *)commonDialogHasTitleView{
+    if (!_commonDialogHasTitleView) {
+        _commonDialogHasTitleView = [[CommonDialogHasTitleView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _commonDialogHasTitleView.delegate = self;
+    }
+    return _commonDialogHasTitleView;
 }
 
 - (void)viewDidLoad {
@@ -83,6 +95,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Wallet *wallet = [[[WalletTableManager walletTable] selectCurrentWallet] firstObject];
+    if (wallet && (wallet.wallet_shapwd.length <= 6)) {
+        [self addCommonDialogHasTitleView];
+        return;
+    }
     OptionModel *model = self.mainService.dataSourceArray[indexPath.row];
     if ([model.optionName isEqualToString:NSLocalizedString(@"导入EOS账号", nil)]) {
         ImportAccountViewController *vc = [[ImportAccountViewController alloc] init];
@@ -114,8 +132,36 @@
 }
 
 -(void)leftBtnDidClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+-(void)rightBtnDidClick{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (UIView *view in WINDOW.subviews) {
+            [view removeFromSuperview];
+        }
+        [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+    });
+}
 
+//CommonDialogHasTitleViewDelegate
+- (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
+    // 创建钱包(本地数据库)
+    CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
+    vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (void)addCommonDialogHasTitleView{
+    [self.view addSubview:self.commonDialogHasTitleView];
+    
+    self.commonDialogHasTitleView.contentTextView.textAlignment = NSTextAlignmentCenter;
+    self.commonDialogHasTitleView.comfirmBtnText = NSLocalizedString(@"去设置", nil);
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"注意", nil);
+    model.detail = NSLocalizedString(@"设置钱包密码继续操作", nil);
+    [self.commonDialogHasTitleView setModel:model];
+}
 @end

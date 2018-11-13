@@ -116,14 +116,10 @@
                 Wallet *wallet = CURRENT_WALLET;
                 if (wallet && (wallet.wallet_shapwd.length > 6)) {
                     NSLog(@"%@", wallet.account_info_table_name);
-                    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-                    if (accountArray.count > 0) {
+                    
                         // 如果本地有当前账号对应的钱包
-                        [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
-                    }else{
-                        AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-                        [self.navigationController pushViewController:vc animated:YES];
-                    }
+                    [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+                    
                     // update wallet table
                     NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET wallet_img = '%@' ,wallet_name = '%@' ,wallet_weixin = '%@'  ,wallet_qq = '%@'  ,wallet_phone = '%@' WHERE wallet_uid = '%@'", WALLET_TABLE , result.data.wallet_img, result.data.wallet_name, result.data.wallet_weixin, result.data.wallet_qq, result.data.wallet_phone, CURRENT_WALLET_UID];
                     NSLog(@"executeUpdate sql %@", sql);
@@ -149,10 +145,8 @@
                         [[WalletTableManager walletTable] addRecord: model];
                     }
                     
-                    // 创建钱包(本地数据库)
-                    CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
-                    vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
-                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                    
+                    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[AddAccountViewController alloc] init]] animated:YES completion:nil];
                     
                 }
             }

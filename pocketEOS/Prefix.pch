@@ -15,6 +15,7 @@
  *  导入系统文件
  */
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 
 #import "BaseNetworkRequest.h"
@@ -28,6 +29,8 @@
  */
 #import "AppConstant.h"
 #import "BaseViewController.h"
+#import "BaseTabBarController.h"
+#import "RootNavigationController.h"
 #import "BaseView.h"
 #import "BaseHeaderView.h"
 #import "BaseTopView.h"

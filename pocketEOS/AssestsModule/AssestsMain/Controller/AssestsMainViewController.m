@@ -55,8 +55,11 @@
 #import "ExcuteMultipleActionsService.h"
 #import "EOSResourceManageViewController.h"
 #import "EOSResourceService.h"
+#import "CommonDialogHasTitleView.h"
+#import "CreatePocketViewController.h"
+#import "AddAccountViewController.h"
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate>
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate, CommonDialogHasTitleViewDelegate>
 
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
@@ -73,6 +76,7 @@
 @property(nonatomic , strong) GetAccountOrderStatusRequest *getAccountOrderStatusRequest;
 @property(nonatomic , strong) CAGradientLayer *gradientLayer;
 @property(nonatomic , strong) EOSResourceService *eosResourceService;
+@property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
 @end
 
 @implementation AssestsMainViewController
@@ -182,6 +186,13 @@
     return _eosResourceService;
 }
 
+- (CommonDialogHasTitleView *)commonDialogHasTitleView{
+    if (!_commonDialogHasTitleView) {
+        _commonDialogHasTitleView = [[CommonDialogHasTitleView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+        _commonDialogHasTitleView.delegate = self;
+    }
+    return _commonDialogHasTitleView;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -192,8 +203,28 @@
     }else{
         [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     }
-    self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
-    [self buidDataSource];
+    
+    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
+    if (accountArray.count == 1) {
+        // 当前只有一个账号
+        AccountInfo *model = accountArray[0];
+        [[NSUserDefaults standardUserDefaults] setObject:model.account_name  forKey:Current_Account_name];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
+    }else{
+        for (AccountInfo *model in accountArray) {
+            if ([model.is_main_account isEqualToString:@"1"]) {
+                AccountInfo *mainAccount = model;
+                [[NSUserDefaults standardUserDefaults] setObject:mainAccount.account_name  forKey:Current_Account_name];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
+            }
+        }
+    }
+    
+    
+    self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
+    [self loadNewData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -237,25 +268,7 @@
     
     [self.mainTableView setTableHeaderView:self.headerView];
     [self loadAllBlocks];
-    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    if (accountArray.count == 1) {
-        // 当前只有一个账号
-        AccountInfo *model = accountArray[0];
-        [[NSUserDefaults standardUserDefaults] setObject:model.account_name  forKey:Current_Account_name];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        self.headerView.userAccountLabel.text = CURRENT_ACCOUNT_NAME;
-    }else{
-        for (AccountInfo *model in accountArray) {
-            if ([model.is_main_account isEqualToString:@"1"]) {
-                AccountInfo *mainAccount = model;
-                [[NSUserDefaults standardUserDefaults] setObject:mainAccount.account_name  forKey:Current_Account_name];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                self.headerView.userAccountLabel.text = CURRENT_ACCOUNT_NAME;
-            }
-        }
-    }
     
-    [self loadNewData];
     
     UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     leftEdgeGesture.edges = UIRectEdgeLeft;
@@ -270,13 +283,12 @@
     [self getAccount];
 }
 
+
 // 构建数据源
 - (void)buidDataSource{
     WS(weakSelf);
-    if (IsNilOrNull(CURRENT_ACCOUNT_NAME)) {
-        return;
-    }
-    self.get_token_info_service.get_token_info_request.accountName = CURRENT_ACCOUNT_NAME;
+    
+    self.get_token_info_service.get_token_info_request.accountName = IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : CURRENT_ACCOUNT_NAME;
     
     self.get_token_info_service.get_token_info_request.ids = self.ids;
     [self.get_token_info_service get_token_info:^(GetTokenInfoResult *result, BOOL isSuccess) {
@@ -298,9 +310,9 @@
                     
                    BOOL success = [NSKeyedArchiver archiveRootObject:weakSelf.get_token_info_service.dataSourceArray toFile:path];
                     
-                    [weakSelf getAccount];
                 }
             }
+        [weakSelf getAccount];
         [UIView animateWithDuration:0.5 animations:^{
             weakSelf.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT +210);
         }];
@@ -317,10 +329,16 @@
     }];
    
     [self.navView setRightBtn1DidClickBlock:^{
-        PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
-        vc.delegate = weakSelf;
-        vc.mainService.currentAccountName = CURRENT_ACCOUNT_NAME;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
+            vc.delegate = weakSelf;
+            vc.mainService.currentAccountName = CURRENT_ACCOUNT_NAME;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
+            
+            
+        }
     }];
     
     [self.navView setRightBtn2DidClickBlock:^{
@@ -377,68 +395,108 @@
     
     // 改变后的导航栏 block
     [self.navView setChangedBtn1DidClickBlock:^{
-        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
-        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
-        vc.fromPage = @"AssestsMainViewController";
-        vc.currentAssestsType = SymbolName_EOS;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            TransferNewViewController *vc = [[TransferNewViewController alloc] init];
+            vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+            vc.fromPage = @"AssestsMainViewController";
+            vc.currentAssestsType = SymbolName_EOS;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
+            
+        }
     }];
     
     [self.navView setChangedBtn2DidClickBlock:^{
-        RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+         if (CURRENT_AccountTable_HAS_Account) {
+             RecieveViewController *vc = [[RecieveViewController alloc] init];
+             vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+             [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
+            
+        }
     }];
     
     [self.navView setChangedBtn3DidClickBlock:^{
-        RedPacketViewController *vc = [[RedPacketViewController alloc] init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
+            
+        }
     }];
     [self.headerView setChangeAccountBtnDidClickBlock:^{
-        ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
-        NSMutableArray *accountInfoArray = [[AccountsTableManager accountTable] selectAccountTable];
-        vc.dataArray = accountInfoArray;
-        vc.changeAccountDataArrayType = ChangeAccountDataArrayTypeLocal;
-        vc.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
+            NSMutableArray *accountInfoArray = [[AccountsTableManager accountTable] selectAccountTable];
+            vc.dataArray = accountInfoArray;
+            vc.changeAccountDataArrayType = ChangeAccountDataArrayTypeLocal;
+            vc.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf addCommonDialogHasTitleView];
+            
+        }
     }];
     
     [self.headerView setTransferBtnDidClickBlock:^{
         
-        TransferNewViewController *vc = [[TransferNewViewController alloc] init];
-        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
-        vc.fromPage = @"AssestsMainViewController";
-        vc.currentAssestsType = SymbolName_EOS;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            TransferNewViewController *vc = [[TransferNewViewController alloc] init];
+            vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+            vc.fromPage = @"AssestsMainViewController";
+            vc.currentAssestsType = SymbolName_EOS;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+        }else{
+            
+            [weakSelf addCommonDialogHasTitleView];
+        }
     }];
     
     [self.headerView setRecieveBtnDidClickBlock:^{
-        RecieveViewController *vc = [[RecieveViewController alloc] init];
-        vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [self.headerView setRedPacketBtnDidClickBlock:^{
-        BOOL result = NO;
-        for (TokenInfo *token in weakSelf.get_token_info_service.dataSourceArray) {
-            if ([token.token_symbol isEqualToString:@"OCT"] || [token.token_symbol isEqualToString:@"EOS"]) {
-                result = YES;
-            }
-        }
-        if (result) {
-            RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+        if (CURRENT_AccountTable_HAS_Account) {
+            RecieveViewController *vc = [[RecieveViewController alloc] init];
             vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }else{
-            [TOASTVIEW showWithText: NSLocalizedString(@"请关注EOS或者OCT即可发送红包", nil)];
+            
+            [weakSelf addCommonDialogHasTitleView];
+        }
+    }];
+    
+    [self.headerView setRedPacketBtnDidClickBlock:^{
+        if (CURRENT_AccountTable_HAS_Account) {
+            BOOL result = NO;
+            for (TokenInfo *token in weakSelf.get_token_info_service.dataSourceArray) {
+                if ([token.token_symbol isEqualToString:@"OCT"] || [token.token_symbol isEqualToString:@"EOS"]) {
+                    result = YES;
+                }
+            }
+            if (result) {
+                RedPacketViewController *vc = [[RedPacketViewController alloc] init];
+                vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }else{
+                [TOASTVIEW showWithText: NSLocalizedString(@"请关注EOS或者OCT即可发送红包", nil)];
+            }
+        }else{
+            
+            [weakSelf addCommonDialogHasTitleView];
         }
     }];
     
     [self.headerView setRamTradeBtnDidClickBlock:^{
-        EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
-        vc.currentAccountName = CURRENT_ACCOUNT_NAME;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    
+        if (CURRENT_AccountTable_HAS_Account) {
+            EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
+            vc.currentAccountName = CURRENT_ACCOUNT_NAME;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            
+            [weakSelf addCommonDialogHasTitleView];
+        }
 //        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
 //        Application *model = [[Application alloc] init];
 ////        model.url = @"https://dapp.newdex.io/";
@@ -450,12 +508,18 @@
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
-        [MobClick event:@"首页资产页点击账号名查看账号"];
-        AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
-        AccountInfo *model = [[AccountInfo alloc] init];
-        model.account_name = CURRENT_ACCOUNT_NAME;
-        vc.model = model;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            [MobClick event:@"首页资产页点击账号名查看账号"];
+            AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
+            AccountInfo *model = [[AccountInfo alloc] init];
+            model.account_name = CURRENT_ACCOUNT_NAME;
+            vc.model = model;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+        }else{
+            
+            [weakSelf addCommonDialogHasTitleView];
+        }
     }];
     
     [self.headerView setAvatarImgDidTapBlock:^{
@@ -464,10 +528,16 @@
     }];
     
     [self.headerView setAddAssestsImgDidTapBlock:^{
-        AddAssestsViewController *vc = [[AddAssestsViewController alloc] init];
-        vc.accountName = CURRENT_ACCOUNT_NAME;
-        vc.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if (CURRENT_AccountTable_HAS_Account) {
+            AddAssestsViewController *vc = [[AddAssestsViewController alloc] init];
+            vc.accountName = CURRENT_ACCOUNT_NAME;
+            vc.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            
+            [weakSelf addCommonDialogHasTitleView];
+        }
+            
     }];
 }
 
@@ -534,12 +604,19 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
-    TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
-    vc.model = model;
-    vc.accountName = CURRENT_ACCOUNT_NAME;
-    vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if (CURRENT_AccountTable_HAS_Account) {
+        AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
+        TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
+        vc.model = model;
+        vc.accountName = CURRENT_ACCOUNT_NAME;
+        vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        
+        [self addCommonDialogHasTitleView];
+    }
 }
 
 #pragma mark - 侧滑
@@ -754,4 +831,22 @@
     [manager startMonitoring];
 }
 
+
+//CommonDialogHasTitleViewDelegate
+- (void)commonDialogHasTitleViewConfirmBtnDidClick:(UIButton *)sender{
+    AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)addCommonDialogHasTitleView{
+    [[UIApplication sharedApplication].keyWindow addSubview:self.commonDialogHasTitleView];
+    
+    self.commonDialogHasTitleView.contentTextView.textAlignment = NSTextAlignmentCenter;
+    self.commonDialogHasTitleView.comfirmBtnText = NSLocalizedString(@"去添加", nil);
+    
+    OptionModel *model = [[OptionModel alloc] init];
+    model.optionName = NSLocalizedString(@"注意", nil);
+    model.detail = NSLocalizedString(@"添加EOS账号继续操作", nil);
+    [self.commonDialogHasTitleView setModel:model];
+}
 @end
