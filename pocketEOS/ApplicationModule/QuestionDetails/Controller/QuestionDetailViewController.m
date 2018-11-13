@@ -111,7 +111,9 @@
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseView_background_color");
     self.navigationController.navigationBar.lee_theme.LeeConfigTintColor(@"common_font_color_1");
     
+
     NSString *url = [NSString stringWithFormat:@"%@:3443/#/answer", REQUEST_HTTP_BASEURL];
+
     [self.webView loadRequest: [NSURLRequest requestWithURL:String_To_URL(url)]];
     
     self.webView.UIDelegate = self;
