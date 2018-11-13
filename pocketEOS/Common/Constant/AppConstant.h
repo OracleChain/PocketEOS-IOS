@@ -16,6 +16,8 @@
  */
 #define CURRENT_WALLET [[[WalletTableManager walletTable] selectCurrentWallet] firstObject];
 
+#define CURRENT_WALLET_HAS_SET_PASSWORD [[WalletTableManager walletTable] walletPasswordHasSet]
+
 /**
  当前 wallet_uid
  */
@@ -25,6 +27,8 @@
  当前 账号名
  */
 #define CURRENT_ACCOUNT_NAME [[NSUserDefaults standardUserDefaults] objectForKey:Current_Account_name]
+
+#define CURRENT_AccountTable_HAS_Account [[AccountsTableManager accountTable] accountsTableHasAccount]
 
 /**
  当前 token_info_array

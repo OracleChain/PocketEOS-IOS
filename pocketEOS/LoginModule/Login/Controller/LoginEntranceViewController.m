@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
 #import <SafariServices/SafariServices.h>
+#import "AddAccountViewController.h"
 
 @interface LoginEntranceViewController ()<LoginMainHeaderViewDelegate, SFSafariViewControllerDelegate>
 @property(nonatomic, strong) LoginService *mainService;
@@ -112,9 +113,9 @@
                         [[WalletTableManager walletTable] addRecord: wallet_wechat];
                         
                         // create local wallet
-                        CreatePocketViewController *vc = [[CreatePocketViewController alloc] init];
-                        vc.createPocketViewControllerFromMode = CreatePocketViewControllerFromSocialMode;
-                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                        AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+                        vc.addAccountViewControllerFromMode = AddAccountViewControllerFromLoginPage;
+                        [self.navigationController pushViewController:vc animated:YES];
                         
                     }
                 }

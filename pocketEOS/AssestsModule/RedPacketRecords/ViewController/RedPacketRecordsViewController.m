@@ -16,7 +16,6 @@
 #import "ForwardRedPacketViewController.h"
 #import "TokenInfo.h"
 
-
 @interface RedPacketRecordsViewController ()<TransferRecordsHeaderViewDelegate>
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) TransferRecordsHeaderView *headerView;

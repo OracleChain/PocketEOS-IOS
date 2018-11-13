@@ -160,7 +160,10 @@
 
 - (void)notifyDappServerExcuteActionsResultWithNotifyDappServerResult:(NotifyDappServerResult *)result{
     NSString *notifyUrl = [NSString stringWithFormat:@"%@&result=%@&txID=%@",result.callback,  result.result , result.txID];
-    AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST__HTTP_BASEURL]];
+
+    AFHTTPSessionManager *outerNetworkingManager = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: REQUEST_HTTP_BASEURL]];
+
+
     NSLog(@"notifyUrl %@", notifyUrl);
     [outerNetworkingManager GET:VALIDATE_STRING(notifyUrl) parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

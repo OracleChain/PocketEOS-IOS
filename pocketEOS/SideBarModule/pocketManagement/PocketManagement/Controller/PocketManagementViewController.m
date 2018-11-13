@@ -186,8 +186,8 @@
 //PocketManagementHeaderViewDelegate
 - (void)createAccountBtnDidClick{
     AddAccountViewController *vc = [[AddAccountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    vc.addAccountViewControllerFromMode = AddAccountViewControllerFromOtherPage;
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
 }
 
 - (void)assestsCollectionBtnDidClick{

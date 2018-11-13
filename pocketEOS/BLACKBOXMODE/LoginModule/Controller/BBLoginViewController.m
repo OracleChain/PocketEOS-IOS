@@ -236,6 +236,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     // 创建账号(本地数据库)
     AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+    vc.addAccountViewControllerFromMode = AddAccountViewControllerFromLoginPage;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -273,6 +274,7 @@
                 
             }else{
                 AddAccountViewController *vc = [[AddAccountViewController alloc] init];
+                vc.addAccountViewControllerFromMode = AddAccountViewControllerFromLoginPage;
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }

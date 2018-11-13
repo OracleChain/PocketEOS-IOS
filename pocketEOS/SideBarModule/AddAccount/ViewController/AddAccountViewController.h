@@ -8,6 +8,14 @@
 
 #import "BaseViewController.h"
 
-@interface AddAccountViewController : BaseViewController
+/**
+ 从那个模式下跳转过来
+ */
+typedef NS_ENUM(NSInteger, AddAccountViewControllerFromMode) {
+    AddAccountViewControllerFromLoginPage,
+    AddAccountViewControllerFromOtherPage
+};
 
+@interface AddAccountViewController : BaseViewController
+@property(nonatomic , assign) AddAccountViewControllerFromMode addAccountViewControllerFromMode;
 @end

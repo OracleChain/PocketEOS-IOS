@@ -148,8 +148,12 @@
         
         [outerNetworkingManager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/plain",@"text/json", @"text/javascript", nil]];
         [SVProgressHUD showWithStatus:nil];
-        NSString *url = [NSString stringWithFormat:@"%@/api_oc_blockchain-v1.3.0/abi_json_to_bin", REQUEST__HTTP_BASEURL];
-        
+
+
+
+        NSString *url = [NSString stringWithFormat:@"%@/api_oc_blockchain-v1.3.0/abi_json_to_bin", REQUEST_HTTP_BASEURL];
+
+
 
         NSLog(@"abi_json_to_binRequest url%@", url);
         NSLog(@"abi_json_to_binRequest param%@", [[self.abi_json_to_binRequest parameters] mj_JSONString]);

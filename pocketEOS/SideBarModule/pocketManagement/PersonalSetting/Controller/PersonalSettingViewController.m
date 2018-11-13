@@ -352,7 +352,10 @@
     
     [[WalletTableManager walletTable] deleteRecord:CURRENT_WALLET_UID];
     [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"DROP TABLE '%@'" , current_wallet.account_info_table_name]];
-
+    
+    [[NSUserDefaults standardUserDefaults] setObject: nil  forKey:Current_Account_name];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     for (UIView *view in WINDOW.subviews) {
         [view removeFromSuperview];
         

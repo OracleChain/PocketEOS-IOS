@@ -54,4 +54,11 @@
  */
 - (BOOL)executeUpdate:(NSString *)sqlString;
 
+
+
+
+/**
+ walletPasswordHasSet
+ */
+- (BOOL)walletPasswordHasSet;
 @end

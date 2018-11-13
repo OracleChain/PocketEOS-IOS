@@ -16,6 +16,7 @@
 - (NSMutableArray *)selectAccountTable;
 - (AccountInfo *)selectAccountTableWithAccountName:(NSString *)accountName;
 - (NSArray *)selectAllNativeAccountName;
+- (BOOL)accountsTableHasAccount;
 /**
  执行 sql 语句
  执行更新：
