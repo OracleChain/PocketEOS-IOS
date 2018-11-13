@@ -133,7 +133,7 @@
                                         <action selector="loginBtn:" destination="L9y-Ro-yXZ" eventType="touchUpInside" id="3qT-pL-bZr"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq9-wK-avU">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq9-wK-avU">
                                     <rect key="frame" x="20" y="424.5" width="335" height="46"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="46" id="KhO-2Z-VgP"/>

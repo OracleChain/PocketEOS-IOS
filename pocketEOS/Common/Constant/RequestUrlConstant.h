@@ -15,6 +15,8 @@
 
 #define REQUEST_BASEURL @"https://api6.pocketeos.top"
 
+#define REQUEST__HTTP_BASEURL @"http://api6.pocketeos.top"
+
 #define REQUEST_HTTP_STATIC_BASEURL @"http://static6.pocketeos.top"
 
 #define REQUEST_REDPACKET_BASEURL @"https://api6.pocketeos.top/api_oc_redpacket"

@@ -211,6 +211,7 @@
 // loginPasswordViewDelegate
 - (void)cancleBtnDidClick:(UIButton *)sender{
     [self.loginPasswordView removeFromSuperview];
+    self.loginPasswordView = nil;
 }
 
 - (void)confirmBtnDidClick:(UIButton *)sender{
@@ -253,7 +254,7 @@
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
     }else if ([self.currentAssestsType isEqualToString:SymbolName_CET]){
         self.transferAbi_json_to_bin_request.code = ContractName_EOSIOCHAINCE;
-        self.transferService.code = ContractName_OCTOTHEMOON;
+        self.transferService.code = ContractName_EOSIOCHAINCE;
         self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f CET", self.headerView.amountTF.text.doubleValue];
     }
     

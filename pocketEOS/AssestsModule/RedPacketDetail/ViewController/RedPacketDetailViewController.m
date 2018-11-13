@@ -237,10 +237,12 @@
 
 - (void)getRate{
     WS(weakSelf);
-    if ([self.redPacketModel.coin isEqualToString:@"EOS"]) {
+    if ([self.redPacketModel.coin isEqualToString:SymbolName_EOS]) {
         self.transferService.getRateRequest.coinmarket_id = @"eos";
-    }else if ([self.redPacketModel.coin isEqualToString:@"OCT"]){
+    }else if ([self.redPacketModel.coin isEqualToString:SymbolName_OCT]){
         self.transferService.getRateRequest.coinmarket_id = @"oraclechain";
+    }else if ([self.redPacketModel.coin isEqualToString:SymbolName_CET]){
+        self.transferService.getRateRequest.coinmarket_id = @"cet_eos";
     }
     [self.transferService get_rate:^(GetRateResult *result, BOOL isSuccess) {
         if (isSuccess) {
