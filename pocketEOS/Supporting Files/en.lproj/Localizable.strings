@@ -655,13 +655,13 @@
 /*
  AddAccountMainService.m
  */
-"导入EOS账号"="Import accout";
-"付费创建"="Pay to create";
-"我是VIP"="I am VIP";
+"导入账号"="Import accout";
+"创建账号"="Pay for a now account";
+"我是VIP"="Use VIP code to get a new account";
 "限时免费"="Limited time free";
-"使用已有的EOS账号"="Import old EOS account";
-"支付费用创建新EOS账号"="Pay to create new accout";
-"填写注册码免费创建EOS账号"="Free create by VIP code";
+"使用已有的EOS账号"="Import now!";
+"支付费用创建新EOS账号"="Buy EOS account with alipay or wechat.";
+"填写注册码免费创建EOS账号"="VIP only!";
 "不定期开放，敬请关注"="Open irregular, please keep focus";
 
 /*
@@ -812,3 +812,44 @@
 "关于我们"="About Us";
 
 "1.删除账号后您无法管理该账号、操作其中的资产或使用该账号登录Dapp  \n2.删除账号后，您无法通过PE重新找回该账号  \n3.如果您未备份私钥，删除账号有可能导致您的账号及其中的资产丢失  \n4.删除账号前，请确保您理解删除账号的意义，并已备份私钥"="1.You could not manage this accout and asset wthin it or launch dapp by this accout after block up.  \n2.Acoout COUlD NOT BE RETRIEVE. \n3.You will lose your asset if you have not backup your private keys.  \n4. Continue olny in the case you understand what you are doing and have backups.";
+
+"暂未导入账号"="No accounts.";
+"去添加"="Add account";
+"去设置"="Set Wallet Pwd";
+"添加EOS账号继续操作"="Add accout before continue.";
+"设置钱包密码继续操作"="Wallet Pwd is required to add account.";
+"跳过添加"="Don't add now.";
+"选择添加账号方式"="See assets after adding accounts.";
+"单私钥"="Single key";
+"双私钥"="Daul keys";
+"请分别输入Owner私钥和Active私钥："="Input Owner key and Active key in two boxes：";
+"请选择您想要导入的账号"="Select accounts to import:";
+"下一步"="Next";
+"点击导入"="Click to import";
+"导入成功"="Imported";
+"导入失败"="Fail";
+"本地存在"="Exsited";
+"权限错误"="Key Err";
+"第1组私钥暂未查找到账号"="First key is unused.";
+"第2组私钥暂未查找到账号"="Second key is unused.";
+"两组私钥相同，请选择单私钥导入"="Please use single key mode!";
+"权限错误"="Permission Err!";
+"变更私钥"="Change Key";
+"导入Owner权限"="Import Owner key";
+"导入Active权限"="Import Active key";
+"变更Owner权限"="Change Owner key";
+"变更Active权限"="Change Active key";
+"不知道Active key？去重置"="Forget Active key？Change now. ";
+"变更"="Change";
+"生成密钥"="Create key";
+"生成的私钥"="New key";
+"注意: \n为避免权限变更失败导致账号不可用，变更权限前请备份原私钥；"="Warning: \nIn case of failures, Backup Old Key before any acion.";
+"1.请复制私钥并妥善保存。 \n2.复制私钥后，请返回上一页并手动填入私钥，方可完成重置。 \n3.如果您不理解本页的内容，请立即停止操作，否则您将自行承担损失。"="1.Please Copy your key and store it properly. \n2.Paste new key in private page and change it. \n3.Act with fully understanding or Stop Right Now!";
+"复制私钥"="Copy key";
+"新的公钥"="New public key";
+"您还未导入Owner，无法变更"="Import onwer key before change auth.";
+"请输入新的Active key"="Input new Active key";
+"请输入新的Owner key"="Input new Owner key";
+"请输入私钥："="Please Input Private key";
+"暂无账号"="No account";
+"变更私钥权限成功"="Change Permision Success";

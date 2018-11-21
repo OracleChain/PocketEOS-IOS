@@ -97,13 +97,53 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copy-icon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="YaJ-Zr-G7T">
+                                            <rect key="frame" x="210" y="20" width="10" height="10"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="10" id="Zv1-dx-Clx"/>
+                                                <constraint firstAttribute="width" constant="10" id="adx-hJ-k5N"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0C-me-qDm">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="SQ5-eP-gJB"/>
+                                            </constraints>
+                                            <connections>
+                                                <action selector="copyOwnerPrivateKeyBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="f3g-MB-2N4"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsE-4H-Azb">
+                                            <rect key="frame" x="0.0" y="70" width="250" height="90.5"/>
+                                            <connections>
+                                                <action selector="copyActivePrivateKeyBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="KqT-WW-FBM"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copy-icon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="8sR-4g-pyn">
+                                            <rect key="frame" x="210" y="90" width="10" height="10"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="10" id="gjc-r0-Roi"/>
+                                                <constraint firstAttribute="height" constant="10" id="uB5-5R-Kd7"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="FsE-4H-Azb" secondAttribute="trailing" id="7nA-u7-aQ2"/>
+                                        <constraint firstAttribute="trailing" secondItem="YaJ-Zr-G7T" secondAttribute="trailing" constant="30" id="H8m-kb-7h0"/>
+                                        <constraint firstItem="b0C-me-qDm" firstAttribute="leading" secondItem="eR8-c9-jPy" secondAttribute="leading" id="NfH-fz-wZW"/>
                                         <constraint firstItem="bT6-cc-ete" firstAttribute="leading" secondItem="eR8-c9-jPy" secondAttribute="leading" constant="10" id="Sbp-0S-3gx"/>
                                         <constraint firstAttribute="bottom" secondItem="bT6-cc-ete" secondAttribute="bottom" constant="10" id="a1j-rK-bfH"/>
+                                        <constraint firstItem="YaJ-Zr-G7T" firstAttribute="top" secondItem="eR8-c9-jPy" secondAttribute="top" constant="20" id="aZs-vb-hy1"/>
                                         <constraint firstAttribute="trailing" secondItem="bT6-cc-ete" secondAttribute="trailing" constant="10" id="ci0-sb-DTp"/>
                                         <constraint firstItem="bT6-cc-ete" firstAttribute="top" secondItem="eR8-c9-jPy" secondAttribute="top" constant="10" id="eF9-6c-ydS"/>
+                                        <constraint firstItem="b0C-me-qDm" firstAttribute="top" secondItem="eR8-c9-jPy" secondAttribute="top" id="oiI-si-J02"/>
+                                        <constraint firstItem="FsE-4H-Azb" firstAttribute="leading" secondItem="eR8-c9-jPy" secondAttribute="leading" id="rvl-8A-AXV"/>
+                                        <constraint firstItem="8sR-4g-pyn" firstAttribute="top" secondItem="YaJ-Zr-G7T" secondAttribute="bottom" constant="60" id="vlM-fp-t4v"/>
+                                        <constraint firstAttribute="trailing" secondItem="b0C-me-qDm" secondAttribute="trailing" id="wc3-gU-dXb"/>
+                                        <constraint firstAttribute="trailing" secondItem="8sR-4g-pyn" secondAttribute="trailing" constant="30" id="wdp-pJ-rzJ"/>
+                                        <constraint firstItem="FsE-4H-Azb" firstAttribute="top" secondItem="b0C-me-qDm" secondAttribute="bottom" id="wvo-EN-73S"/>
+                                        <constraint firstAttribute="bottom" secondItem="FsE-4H-Azb" secondAttribute="bottom" id="xYa-yY-Cha"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -161,6 +201,7 @@
     </objects>
     <resources>
         <image name="QRCode_green.png" width="24" height="24"/>
+        <image name="copy-icon_gray.png" width="14" height="14"/>
         <image name="copy_orange.png" width="69" height="78"/>
     </resources>
 </document>

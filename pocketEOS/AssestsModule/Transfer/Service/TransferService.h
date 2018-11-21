@@ -59,6 +59,9 @@ typedef NS_OPTIONS(NSUInteger, PushTransactionType) {
 
 @property(nonatomic , copy) NSString *password;
 
+@property(nonatomic , copy) NSString *permission;
+
+
 // 获取关注的所有账号
 - (void)getRichlistAccount:(CompleteBlock)complete;
 

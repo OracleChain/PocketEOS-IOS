@@ -81,6 +81,20 @@
     }
 }
 
+- (IBAction)copyOwnerPrivateKeyBtnClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(copyOwnerPrivateKeyBtnDidClick)]) {
+        [self.delegate copyOwnerPrivateKeyBtnDidClick];
+    }
+}
+
+
+- (IBAction)copyActivePrivateKeyBtnClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(copyActivePrivateKeyBtnDidClick)]) {
+        [self.delegate copyActivePrivateKeyBtnDidClick];
+    }
+}
+
+
 - (IBAction)copyBtn:(UIButton *)sender {
     
     self.QRCodeimg.hidden = YES;
@@ -96,5 +110,8 @@
 {
     return NO;
 }
+
+
+
 
 @end

@@ -58,8 +58,13 @@
 #import "CommonDialogHasTitleView.h"
 #import "CreatePocketViewController.h"
 #import "AddAccountViewController.h"
+#import "AssestsMainAddAccountView.h"
+#import "ImportAccountWithoutAccountNameBaseViewController.h"
+#import "VipRegistAccountViewController.h"
+#import "PayRegistAccountViewController.h"
+#import "CreateAccountViewController.h"
 
-@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate, CommonDialogHasTitleViewDelegate>
+@interface AssestsMainViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, ChangeAccountViewControllerDelegate, CQMarqueeViewDelegate, AdvertisementViewDelegate, PocketManagementViewControllerDelegate, VersionUpdateTipViewDelegate, AddAssestsViewControllerDelegate, AccountNotExistViewDelegate, CommonDialogHasTitleViewDelegate, AssestsMainAddAccountViewDelegate>
 
 @property(nonatomic, strong) CustomNavigationView *navView;
 @property(nonatomic, strong) AssestsMainHeaderView *headerView;
@@ -78,6 +83,7 @@
 @property(nonatomic , strong) EOSResourceService *eosResourceService;
 @property(nonatomic , strong) CommonDialogHasTitleView *commonDialogHasTitleView;
 @property(nonatomic , assign) BOOL currentWalletHasSetPassword;
+@property(nonatomic , strong) AssestsMainAddAccountView *assestsMainAddAccountView;
 @end
 
 @implementation AssestsMainViewController
@@ -195,6 +201,15 @@
     return _commonDialogHasTitleView;
 }
 
+- (AssestsMainAddAccountView *)assestsMainAddAccountView{
+    if (!_assestsMainAddAccountView) {
+        _assestsMainAddAccountView = [[AssestsMainAddAccountView alloc] init];
+        _assestsMainAddAccountView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _assestsMainAddAccountView.delegate  = self;
+    }
+    return _assestsMainAddAccountView;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -204,25 +219,6 @@
     }else{
         [_navView.leftBtn sd_setImageWithURL:wallet.wallet_img forState:(UIControlStateNormal) placeholderImage:[UIImage imageNamed:@"wallet_default_avatar"]];
     }
-    
-    NSArray *accountArray = [[AccountsTableManager accountTable ] selectAccountTable];
-    if (accountArray.count == 1) {
-        // 当前只有一个账号
-        AccountInfo *model = accountArray[0];
-        [[NSUserDefaults standardUserDefaults] setObject:model.account_name  forKey:Current_Account_name];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
-    }else{
-        for (AccountInfo *model in accountArray) {
-            if ([model.is_main_account isEqualToString:@"1"]) {
-                AccountInfo *mainAccount = model;
-                [[NSUserDefaults standardUserDefaults] setObject:mainAccount.account_name  forKey:Current_Account_name];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
-            }
-        }
-    }
-    
     
     self.headerView.userAccountLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"当前账号", nil), IsStrEmpty(CURRENT_ACCOUNT_NAME) ? NSLocalizedString(@"暂未导入账号", nil) : VALIDATE_STRING(CURRENT_ACCOUNT_NAME) ] ;
     [self loadNewData];
@@ -234,54 +230,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationItem.title = @"";
-    
-    
-    self.gradientLayer = [CAGradientLayer layer];
-    self.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 290 );
-    self.gradientLayer.startPoint = CGPointMake(1, 1);
-    self.gradientLayer.endPoint = CGPointMake(0, 0);
-    if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
-        self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x1667DF).CGColor, (__bridge id)HEXCOLOR(0x2E82FE).CGColor];
-    }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
-        self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
+    if (CURRENT_AccountTable_HAS_Account) {
+        
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationItem.title = @"";
+        
+        self.gradientLayer = [CAGradientLayer layer];
+        self.gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT + 290 );
+        self.gradientLayer.startPoint = CGPointMake(1, 1);
+        self.gradientLayer.endPoint = CGPointMake(0, 0);
+        if (LEETHEME_CURRENTTHEME_IS_SOCAIL_MODE) {
+            self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x1667DF).CGColor, (__bridge id)HEXCOLOR(0x2E82FE).CGColor];
+        }else if (LEETHEME_CURRENTTHEME_IS_BLACKBOX_MODE){
+            self.gradientLayer.colors = @[(__bridge id)HEXCOLOR(0x23242A).CGColor, (__bridge id)HEXCOLOR(0x282828).CGColor];
+        }
+        self.gradientLayer.locations = @[@(0.0f), @(1.0f)];
+        [self.view.layer addSublayer:self.gradientLayer];
+        
+        
+        [self.view addSubview:self.navView];
+        [self.view addSubview:self.mainTableView];
+        self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
+        
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        header.stateLabel.textColor = HEXCOLOR(0xFFFFFF);
+        header.lastUpdatedTimeLabel.hidden = YES;
+        header.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+        self.mainTableView.mj_header = header;
+        
+        self.mainTableView.mj_footer.hidden = YES;
+        self.mainTableView.backgroundColor = [UIColor clearColor];
+        
+        
+        
+        
+        [self.mainTableView setTableHeaderView:self.headerView];
+        [self loadAllBlocks];
+        
+        
+        UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
+        leftEdgeGesture.edges = UIRectEdgeLeft;
+        [self.view addGestureRecognizer:leftEdgeGesture];
+        leftEdgeGesture.delegate = self;
+        
+        // 配置开屏广告
+        //    [self configAdvertisement];
+        //    [self addinviteFriendBtn];
+        [self checkNewVersion];
+        
+        [self getAccount];
+        
+        
+    }else{
+        [self.view addSubview:self.assestsMainAddAccountView];
     }
-    self.gradientLayer.locations = @[@(0.0f), @(1.0f)];
-    [self.view.layer addSublayer:self.gradientLayer];
-    
-    
-    [self.view addSubview:self.navView];
-    [self.view addSubview:self.mainTableView];
-    self.mainTableView.frame = CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATIONBAR_HEIGHT-TABBAR_HEIGHT);
-    
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    header.stateLabel.textColor = HEXCOLOR(0xFFFFFF);
-    header.lastUpdatedTimeLabel.hidden = YES;
-    header.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    self.mainTableView.mj_header = header;
-    
-    self.mainTableView.mj_footer.hidden = YES;
-    self.mainTableView.backgroundColor = [UIColor clearColor];
-    
-    
-   
-    
-    [self.mainTableView setTableHeaderView:self.headerView];
-    [self loadAllBlocks];
-    
-    
-    UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
-    leftEdgeGesture.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:leftEdgeGesture];
-    leftEdgeGesture.delegate = self;
-    
-    // 配置开屏广告
-//    [self configAdvertisement];
-//    [self addinviteFriendBtn];
-    [self checkNewVersion];
-    
-    [self getAccount];
 }
 
 
@@ -336,20 +338,16 @@
     }];
    
     [self.navView setRightBtn1DidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             PocketManagementViewController *vc = [[PocketManagementViewController alloc] init];
             vc.delegate = weakSelf;
             vc.mainService.currentAccountName = CURRENT_ACCOUNT_NAME;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-            
-        }
+        
     }];
     
     [self.navView setRightBtn2DidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             // 1. 获取摄像设备
             AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
             if (device) {
@@ -398,90 +396,67 @@
                 [alertC addAction:alertA];
                 [weakSelf presentViewController:alertC animated:YES completion:nil];
             }
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-            
-        }
+  
        
     }];
     
     // 改变后的导航栏 block
     [self.navView setChangedBtn1DidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             TransferNewViewController *vc = [[TransferNewViewController alloc] init];
             vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
             vc.fromPage = @"AssestsMainViewController";
             vc.currentAssestsType = SymbolName_EOS;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-        }
+    
     }];
     
     [self.navView setChangedBtn2DidClickBlock:^{
-         if (CURRENT_AccountTable_HAS_Account) {
+         
              RecieveViewController *vc = [[RecieveViewController alloc] init];
              vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
              [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-        }
+    
     }];
     
     [self.navView setChangedBtn3DidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             RedPacketViewController *vc = [[RedPacketViewController alloc] init];
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-        }
+   
     }];
     [self.headerView setChangeAccountBtnDidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             ChangeAccountViewController *vc = [[ChangeAccountViewController alloc] init];
             NSMutableArray *accountInfoArray = [[AccountsTableManager accountTable] selectAccountTable];
             vc.dataArray = accountInfoArray;
             vc.changeAccountDataArrayType = ChangeAccountDataArrayTypeLocal;
             vc.delegate = weakSelf;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            [weakSelf addCommonDialogHasTitleView];
-            
-        }
+       
     }];
     
     [self.headerView setTransferBtnDidClickBlock:^{
         
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             TransferNewViewController *vc = [[TransferNewViewController alloc] init];
             vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
             vc.fromPage = @"AssestsMainViewController";
             vc.currentAssestsType = SymbolName_EOS;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-            
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
+     
     }];
     
     [self.headerView setRecieveBtnDidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             RecieveViewController *vc = [[RecieveViewController alloc] init];
             vc.get_token_info_service_data_array = weakSelf.get_token_info_service.dataSourceArray;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
+    
     }];
     
     [self.headerView setRedPacketBtnDidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             BOOL result = NO;
             for (TokenInfo *token in weakSelf.get_token_info_service.dataSourceArray) {
                 if ([token.token_symbol isEqualToString:@"OCT"] || [token.token_symbol isEqualToString:@"EOS"]) {
@@ -495,21 +470,15 @@
             }else{
                 [TOASTVIEW showWithText: NSLocalizedString(@"请关注EOS或者OCT即可发送红包", nil)];
             }
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
+       
     }];
     
     [self.headerView setRamTradeBtnDidClickBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             EOSResourceManageViewController *vc = [[EOSResourceManageViewController alloc] init];
             vc.currentAccountName = CURRENT_ACCOUNT_NAME;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
+      
 //        DAppDetailViewController *vc = [[DAppDetailViewController alloc] init];
 //        Application *model = [[Application alloc] init];
 ////        model.url = @"https://dapp.newdex.io/";
@@ -521,7 +490,7 @@
     }];
     
     [self.headerView setAccountBtnDidTapBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             [MobClick event:@"首页资产页点击账号名查看账号"];
             AccountQRCodeManagementViewController *vc = [[AccountQRCodeManagementViewController alloc] init];
             AccountInfo *model = [[AccountInfo alloc] init];
@@ -529,10 +498,7 @@
             vc.model = model;
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
+     
     }];
     
     [self.headerView setAvatarImgDidTapBlock:^{
@@ -541,16 +507,12 @@
     }];
     
     [self.headerView setAddAssestsImgDidTapBlock:^{
-        if (CURRENT_AccountTable_HAS_Account) {
+        
             AddAssestsViewController *vc = [[AddAssestsViewController alloc] init];
             vc.accountName = CURRENT_ACCOUNT_NAME;
             vc.delegate = weakSelf;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        }else{
-            
-            [weakSelf addCommonDialogHasTitleView];
-        }
-            
+       
     }];
 }
 
@@ -618,18 +580,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (CURRENT_AccountTable_HAS_Account) {
         AssestsDetailViewController *vc = [[AssestsDetailViewController alloc] init];
         TokenInfo *model = self.get_token_info_service.dataSourceArray[indexPath.row];
         vc.model = model;
         vc.accountName = CURRENT_ACCOUNT_NAME;
         vc.get_token_info_service_data_array = self.get_token_info_service.dataSourceArray;
         [self.navigationController pushViewController:vc animated:YES];
-        
-    }else{
-        
-        [self addCommonDialogHasTitleView];
-    }
+    
+    
 }
 
 #pragma mark - 侧滑
@@ -891,5 +849,51 @@
     model.optionName = NSLocalizedString(@"注意", nil);
     model.detail = NSLocalizedString(@"设置钱包密码继续操作", nil);
     [self.commonDialogHasTitleView setModel:model];
+}
+
+
+//AssestsMainAddAccountViewDelegate
+- (void)importAccount{
+    if (CURRENT_WALLET_HAS_SET_PASSWORD) {
+        ImportAccountWithoutAccountNameBaseViewController *vc = [[ImportAccountWithoutAccountNameBaseViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        self.currentWalletHasSetPassword = YES;
+        [self addCommonDialogHasTitleViewOfSetPassword];
+    }
+}
+
+- (void)payRegist{
+    if (CURRENT_WALLET_HAS_SET_PASSWORD) {
+        PayRegistAccountViewController *vc = [[PayRegistAccountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        self.currentWalletHasSetPassword = YES;
+        [self addCommonDialogHasTitleViewOfSetPassword];
+    }
+}
+
+- (void)vipRegist{
+    if (CURRENT_WALLET_HAS_SET_PASSWORD) {
+        VipRegistAccountViewController *vc = [[VipRegistAccountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        self.currentWalletHasSetPassword = YES;
+        [self addCommonDialogHasTitleViewOfSetPassword];
+    }
+}
+
+- (void)freeCreateAccount{
+    if (CURRENT_WALLET_HAS_SET_PASSWORD) {
+        CreateAccountViewController *vc = [[CreateAccountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        self.currentWalletHasSetPassword = YES;
+        [self addCommonDialogHasTitleViewOfSetPassword];
+    }
 }
 @end

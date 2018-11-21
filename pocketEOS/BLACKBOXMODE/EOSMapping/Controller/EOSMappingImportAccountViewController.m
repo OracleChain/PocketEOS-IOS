@@ -125,7 +125,7 @@
         
         EOSMappingResult *result = [EOSMappingResult mj_objectWithKeyValues:data];
         if (![result.code isEqualToNumber:@0]) {
-            [TOASTVIEW showWithText: result.msg];
+            [TOASTVIEW showWithText: result.message];
         }else{
             if (result.account_names.count > 0) {
                 // 本地公钥和网络公钥匹配, 允许进行导入本地操作

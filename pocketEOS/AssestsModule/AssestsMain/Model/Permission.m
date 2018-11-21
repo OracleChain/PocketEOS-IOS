@@ -9,9 +9,18 @@
 #import "Permission.h"
 
 @implementation Permission
+
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{
-             @"required_auth_key" : @"required_auth.keys[0].key"
+             @"required_auth_key" : @"required_auth.keys[0].key",
+             @"required_auth_keyArray": @"required_auth.keys"
              };
 }
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{
+             @"required_auth_keyArray" : @"Key"
+             };
+}
+
 @end

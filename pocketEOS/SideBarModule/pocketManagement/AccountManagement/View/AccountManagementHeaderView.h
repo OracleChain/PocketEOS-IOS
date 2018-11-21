@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "AccountInfo.h"
+#import "Get_account_permission_service.h"
 
 @protocol AccountManagementHeaderViewDelegate<NSObject>
 
-- (void)ownerTipLabelDidTap;
+
+- (void)shouldImportOwnerPrivateKey;
+- (void)shouldResetOwnerPrivateKey;
+
+- (void)shouldImportActivePrivateKey;
+- (void)shouldResetActivePrivateKey;
+
 
 @end
 
@@ -27,5 +34,6 @@
 
 @property(nonatomic , strong) AccountInfo *localAccount;
 
-- (void)updateViewWithRemoteAccountInfo:(AccountInfo *)remoteAccount;
+
+- (void)updateViewWithGet_account_permission_service:(Get_account_permission_service *)get_account_permission_service;
 @end

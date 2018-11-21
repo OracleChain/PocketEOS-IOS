@@ -13,6 +13,9 @@
 - (void)copyBtnDidClick:(UIButton *)sender;
 
 - (void)exportPrivateKeyViewShouldDismiss;
+
+- (void)copyOwnerPrivateKeyBtnDidClick;
+- (void)copyActivePrivateKeyBtnDidClick;
 @end
 
 @interface ExportPrivateKeyView : UIView

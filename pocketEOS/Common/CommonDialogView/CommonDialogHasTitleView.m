@@ -94,7 +94,7 @@
 - (UIButton *)updateBtn{
     if (!_updateBtn) {
         _updateBtn = [[UIButton alloc] init];
-        [_updateBtn setTitle:IsStrEmpty(self.comfirmBtnText ) ?  NSLocalizedString(@"确定", nil) : self.comfirmBtnText forState:(UIControlStateNormal)];
+        
         [_updateBtn setTitleColor:HEXCOLOR(0x4D7BFE) forState:(UIControlStateNormal)];
         _updateBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_updateBtn addTarget:self action:@selector(updateBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -139,7 +139,7 @@
     self.titleLabel.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.avatarImg, 17.7).heightIs(24).leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView);
 
     [self.contentBackgroundView addSubview:self.contentTextView];
-    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 8).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20).heightIs(66); // .heightIs(detailContentSize.height)
+    self.contentTextView.sd_layout.centerXEqualToView(self.contentBackgroundView).topSpaceToView(self.titleLabel, 8).leftSpaceToView(self.contentBackgroundView, MARGIN_20).rightSpaceToView(self.contentBackgroundView, MARGIN_20).heightIs(detailContentSize.height); // .heightIs(detailContentSize.height)
 
     [self.contentBackgroundView addSubview:self.lineView];
     self.lineView.sd_layout.leftEqualToView(self.contentBackgroundView).rightEqualToView(self.contentBackgroundView).topSpaceToView(self.contentTextView, 22).heightIs(DEFAULT_LINE_HEIGHT);
@@ -156,6 +156,10 @@
     self.titleLabel.text = model.optionName;
     self.contentTextView.text = model.detail;
 
+    
+    [self.updateBtn setTitle:IsStrEmpty(self.comfirmBtnText ) ?  NSLocalizedString(@"确定", nil) : self.comfirmBtnText forState:(UIControlStateNormal)];
+    
+    
     [self.contentBackgroundView setupAutoHeightWithBottomView: self.midLineView bottomMargin: 0];
 }
 

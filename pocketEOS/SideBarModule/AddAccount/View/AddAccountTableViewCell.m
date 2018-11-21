@@ -60,10 +60,10 @@
         self.avatarImg.sd_layout.leftSpaceToView(self.contentView, MARGIN_20).centerYEqualToView(self.contentView).widthIs(38).heightEqualToWidth();
         
         [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_20).topSpaceToView(self.contentView, 29).heightIs(18).widthIs(200);
+        self.titleLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_20).topSpaceToView(self.contentView, 29).heightIs(18).rightSpaceToView(self.contentView, MARGIN_20);
         
         [self.contentView addSubview:self.detailLabel];
-        self.detailLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_20).topSpaceToView(self.titleLabel, 6).heightIs(15).widthIs(200);
+        self.detailLabel.sd_layout.leftSpaceToView(_avatarImg, MARGIN_20).topSpaceToView(self.titleLabel, 6).heightIs(15).rightSpaceToView(self.contentView, MARGIN_20);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;

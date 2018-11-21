@@ -193,6 +193,7 @@
             if(IsNilOrNull(success)){
                 return;
             }
+            NSLog(@"responseObject%@", responseObject);
             success(weakSelf.networkingManager, responseObject);
         }
         else{
@@ -253,6 +254,7 @@
     
     [manager POST:REQUEST_APIPATH parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
         if ([self validateResponseData:responseObject HttpURLResponse:task.response]) {
             if (IsNilOrNull(success)) {
                 return ;
@@ -260,7 +262,7 @@
             if ([responseObject isKindOfClass:[NSData class]]) {
                 
             }
-            
+            NSLog(@"responseObject%@", responseObject);
             success(weakSelf.networkingManager, responseObject);
         }
         [SVProgressHUD dismiss];

@@ -22,4 +22,6 @@
 @property(nonatomic , copy) NSString *name;
 @property(nonatomic, strong) NSArray *available_keys;
 
+@property(nonatomic , copy) NSString *permission;
+
 @end

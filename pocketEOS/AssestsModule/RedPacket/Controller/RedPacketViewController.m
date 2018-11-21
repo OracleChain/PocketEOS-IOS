@@ -31,7 +31,6 @@
 @property(nonatomic, strong) NavigationView *navView;
 @property(nonatomic, strong) RedPacketHeaderView *headerView;
 @property(nonatomic, strong) NSString *currentAccountName;
-@property(nonatomic, strong) NSString *currentAssestsType;
 @property(nonatomic, strong) GetRateResult *getRateResult;
 @property(nonatomic, strong) GetRateRequest *getRateRequest;
 @property(nonatomic , strong) RedPacket *redPacket;
@@ -40,6 +39,7 @@
 @property(nonatomic, strong) LoginPasswordView *loginPasswordView;
 @property(nonatomic , strong) TransferAbi_json_to_bin_request *transferAbi_json_to_bin_request;
 @property(nonatomic , copy) NSString *assest_price_cny;
+@property(nonatomic , strong) TokenInfo *currentToken;
 @end
 
 @implementation RedPacketViewController
@@ -105,7 +105,7 @@
     [super viewWillAppear:animated];
     self.currentAccountName = CURRENT_ACCOUNT_NAME;
     // 设置资产
-    self.headerView.assestChooserLabel.text = self.currentAssestsType;
+    self.headerView.assestChooserLabel.text = self.currentToken.token_symbol;
     [MobClick beginLogPageView:@"pe发红包"];
 }
 
@@ -121,24 +121,17 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
     self.view.lee_theme.LeeConfigBackgroundColor(@"baseHeaderView_background_color");
-    self.currentAssestsType = @"EOS";
-    [self requestRate];
+    
+    NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
+    if (tmpArr.count > 0) {
+        self.currentToken = tmpArr[0];
+    }
+    
+    [self textFieldChange:nil];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.amountTF];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:self.headerView.redPacketCountTF];
-}
-
-- (void)requestRate{
-    NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
-    for (TokenInfo *token in tmpArr) {
-        {//self.get_token_info_service_data_array
-            if ([token.token_symbol isEqualToString:self.currentAssestsType]) {
-                self.assest_price_cny = token.asset_price_cny;
-                [self textFieldChange:nil];
-            }
-        }
-    }
-
 }
 
 
@@ -152,7 +145,7 @@
     self.headerView.sendRedpacketBtn.enabled = isCanSubmit;
     
     
-    self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.assest_price_cny.doubleValue)]];
+    self.headerView.tipLabel.text = [NSString stringWithFormat:@"≈%@CNY" , [NumberFormatter displayStringFromNumber:@(self.headerView.amountTF.text.doubleValue * self.currentToken.asset_price_cny.doubleValue)]];
     
     
 }
@@ -165,7 +158,7 @@
 -(void)rightBtnDidClick{
     [MobClick event:@"红包_红包记录"];
     RedPacketRecordsViewController *vc = [[RedPacketRecordsViewController alloc] init];
-    vc.currentAssestsType = self.currentAssestsType;
+    vc.currentAssestsType = self.currentToken.token_symbol;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -177,18 +170,22 @@
     NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
     
     
-    NSMutableArray *assestsArr = [NSMutableArray arrayWithObjects:SymbolName_EOS, SymbolName_OCT  ,nil];
+    NSMutableArray *assestsArr = [NSMutableArray array];
     for (TokenInfo *tokenInfo in tmpArr) {
-        if ([tokenInfo.token_symbol isEqualToString:SymbolName_CET] && [tokenInfo.contract_name isEqualToString:ContractName_EOSIOCHAINCE]) {
-            [assestsArr addObject:SymbolName_CET];
+        if (tokenInfo.isRedpacket) {
+            [assestsArr addObject:tokenInfo.token_symbol];
         }
     }
     
     [CDZPicker showSinglePickerInView:self.view withBuilder:[CDZPickerBuilder new] strings:assestsArr confirm:^(NSArray<NSString *> * _Nonnull strings, NSArray<NSNumber *> * _Nonnull indexs) {
-        weakSelf.currentAssestsType = VALIDATE_STRING(strings[0]);
-        weakSelf.headerView.assestChooserLabel.text = weakSelf.currentAssestsType;
-        weakSelf.mainService.getRedPacketRecordRequest.type = weakSelf.currentAssestsType;
-        [weakSelf requestRate];
+        for (TokenInfo *tokenInfo in tmpArr) {
+            if ([tokenInfo.token_symbol isEqualToString:VALIDATE_STRING(strings[0])]) {
+                weakSelf.currentToken = tokenInfo;
+            }
+        }
+        weakSelf.headerView.assestChooserLabel.text = weakSelf.currentToken.token_symbol;
+        weakSelf.mainService.getRedPacketRecordRequest.type = weakSelf.currentToken.token_symbol;
+        [weakSelf textFieldChange:nil];
     }cancel:^{
         NSLog(@"user cancled");
     }];
@@ -226,7 +223,7 @@
     self.mainService.sendRedpacketRequest.account = CURRENT_ACCOUNT_NAME;
     self.mainService.sendRedpacketRequest.amount = @(self.headerView.amountTF.text.doubleValue);
     self.mainService.sendRedpacketRequest.packetCount = @(self.headerView.redPacketCountTF.text.integerValue);
-    self.mainService.sendRedpacketRequest.type = self.currentAssestsType;
+    self.mainService.sendRedpacketRequest.type = self.currentToken.token_symbol;;
     self.mainService.sendRedpacketRequest.remark = IsStrEmpty(self.headerView.memoTV.text) ?  @"" :  self.headerView.memoTV.text ;
     
     WS(weakSelf);
@@ -244,19 +241,11 @@
 
 
 - (void)pushTransaction{
-    if ([self.currentAssestsType isEqualToString:SymbolName_EOS]) {
-        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOTOKEN;
-        self.transferService.code = ContractName_EOSIOTOKEN;
-        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f EOS", self.headerView.amountTF.text.doubleValue];
-    }else if ([self.currentAssestsType isEqualToString:SymbolName_OCT]){
-        self.transferAbi_json_to_bin_request.code = ContractName_OCTOTHEMOON;
-        self.transferService.code = ContractName_OCTOTHEMOON;
-        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f OCT", self.headerView.amountTF.text.doubleValue];
-    }else if ([self.currentAssestsType isEqualToString:SymbolName_CET]){
-        self.transferAbi_json_to_bin_request.code = ContractName_EOSIOCHAINCE;
-        self.transferService.code = ContractName_EOSIOCHAINCE;
-        self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%.4f CET", self.headerView.amountTF.text.doubleValue];
-    }
+    
+    self.transferAbi_json_to_bin_request.code = self.currentToken.contract_name;
+    self.transferService.code = self.currentToken.contract_name;
+    NSString *percision = [NSString stringWithFormat:@"%lu", [NSString getDecimalStringPercisionWithDecimalStr:self.currentToken.balance]];
+    self.transferAbi_json_to_bin_request.quantity = [NSString stringWithFormat:@"%@ %@", [NSString stringWithFormat:@"%.*f", percision.intValue, self.headerView.amountTF.text.doubleValue], self.currentToken.token_symbol];
     
     self.transferAbi_json_to_bin_request.action = ContractAction_TRANSFER;
     self.transferAbi_json_to_bin_request.from = CURRENT_ACCOUNT_NAME;
@@ -303,7 +292,7 @@
             model.from = CURRENT_ACCOUNT_NAME;
             model.amount = weakSelf.headerView.amountTF.text;
             model.count = weakSelf.headerView.redPacketCountTF.text;
-            model.coin = weakSelf.currentAssestsType;
+            model.coin = weakSelf.currentToken.token_symbol;
             model.memo = weakSelf.headerView.memoTV.text ;
             model.amount = weakSelf.headerView.amountTF.text;
             model.transactionId = result.transaction_id;

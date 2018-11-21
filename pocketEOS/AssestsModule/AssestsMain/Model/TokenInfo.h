@@ -72,4 +72,6 @@
  */
 @property(nonatomic, copy) NSString *asset_market_cap_cny;
 
+@property(nonatomic , assign) BOOL isRedpacket;
+
 @end

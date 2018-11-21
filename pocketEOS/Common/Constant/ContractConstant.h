@@ -41,6 +41,7 @@
 #define ContractAction_APPROVE @"approve"
 #define ContractAction_ASK @"ask"
 #define ContractAction_ANSWER @"answer"
+#define ContractAction_UPDATEAUTH @"updateauth"
 
 //投票前需要将自己注册到投票系统
 #define ContractAction_REGPROXY @"regproxy"

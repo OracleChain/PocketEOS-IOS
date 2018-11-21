@@ -19,12 +19,13 @@
 #import "AccountManagementService.h"
 #import "EOSResourceManageViewController.h"
 #import "UnStakeEOSViewController.h"
-#import "GetAccountRequest.h"
 #import "GetAccountResult.h"
 #import "GetAccount.h"
 #import "Permission.h"
-#import "ImportOwnerPermisionViewController.h"
 #import "CommonDialogHasPasswordTFView.h"
+#import "Get_account_permission_service.h"
+#import "ImportAccountPermisionViewController.h"
+#import "ResetAccountPermisionViewController.h"
 
 @interface AccountManagementViewController ()<UIGestureRecognizerDelegate,  NavigationViewDelegate, ExportPrivateKeyViewDelegate, SliderVerifyViewDelegate, LoginPasswordViewDelegate, AskQuestionTipViewDelegate, AccountManagementHeaderViewDelegate, CommonDialogHasPasswordTFViewDelegate>
 @property(nonatomic , strong) AccountManagementService *mainService;
@@ -40,8 +41,8 @@
 @property(nonatomic, copy) NSString *currentAction;
 @property(nonatomic, strong) AskQuestionTipView *askQuestionTipView;
 @property(nonatomic, strong) AccountPravicyProtectionRequest *accountPravicyProtectionRequest;
-@property(nonatomic, strong) GetAccountRequest *getAccountRequest;
 @property(nonatomic , strong) CommonDialogHasPasswordTFView *commonDialogHasPasswordTFView;
+@property(nonatomic , strong) Get_account_permission_service *get_account_permission_service;
 @end
 
 @implementation AccountManagementViewController
@@ -150,15 +151,6 @@
     return _accountPravicyProtectionRequest;
 }
 
-- (GetAccountRequest *)getAccountRequest{
-    if (!_getAccountRequest) {
-        _getAccountRequest = [[GetAccountRequest alloc] init];
-    }
-    return _getAccountRequest;
-}
-
-
-
 - (CommonDialogHasPasswordTFView *)commonDialogHasPasswordTFView{
     if (!_commonDialogHasPasswordTFView) {
         _commonDialogHasPasswordTFView = [[CommonDialogHasPasswordTFView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
@@ -167,6 +159,14 @@
         _commonDialogHasPasswordTFView.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     }
     return _commonDialogHasPasswordTFView;
+}
+
+
+- (Get_account_permission_service *)get_account_permission_service{
+    if (!_get_account_permission_service) {
+        _get_account_permission_service = [[Get_account_permission_service alloc] init];
+    }
+    return _get_account_permission_service;
 }
 
 
@@ -200,31 +200,16 @@
     
     self.navView.titleLabel.text = self.model.account_name;
     
-    [self requestRemoteAccountInfo];
+    
 }
 
 - (void)requestRemoteAccountInfo{
     WS(weakSelf);
-    self.getAccountRequest.name = VALIDATE_STRING(self.model.account_name);
-    [self.getAccountRequest postDataSuccess:^(id DAO, id data) {
-        GetAccountResult *result = [GetAccountResult mj_objectWithKeyValues:data];
-        if (![result.code isEqualToNumber:@0]) {
-            [TOASTVIEW showWithText: result.message];
-        }else{
-            GetAccount *model = [GetAccount mj_objectWithKeyValues:result.data];
-            AccountInfo *remoteAccount = [[AccountInfo alloc] init];
-            remoteAccount.account_name = weakSelf.model.account_name;
-            for (Permission *permission in model.permissions) {
-                if ([permission.perm_name isEqualToString:@"active"]) {
-                    remoteAccount.account_active_public_key = permission.required_auth_key;
-                }else if ([permission.perm_name isEqualToString:@"owner"]){
-                    remoteAccount.account_owner_public_key = permission.required_auth_key;
-                }
-            }
-            [weakSelf.headerView updateViewWithRemoteAccountInfo:remoteAccount];
+    self.get_account_permission_service.getAccountRequest.name = VALIDATE_STRING(self.model.account_name) ;
+    [self.get_account_permission_service getAccountPermission:^(Get_account_permission_service *service, BOOL isSuccess) {
+        if (isSuccess) {
+            [weakSelf.headerView updateViewWithGet_account_permission_service:service];
         }
-    } failure:^(id DAO, NSError *error) {
-        NSLog(@"%@", error);
     }];
 }
 
@@ -232,6 +217,7 @@
     AccountInfo *localAccount = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
     self.model = localAccount;
     self.headerView.localAccount = localAccount;
+    [self requestRemoteAccountInfo];
 }
 
 //UITableViewDelegate , UITableViewDataSource
@@ -408,6 +394,12 @@
     [[WalletTableManager walletTable] deleteRecord:CURRENT_WALLET_UID];
     [[WalletTableManager walletTable] executeUpdate:[NSString stringWithFormat:@"DROP TABLE '%@'" , current_wallet.account_info_table_name]];
     
+    [[NSUserDefaults standardUserDefaults] setObject: nil  forKey:Current_wallet_uid];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSUserDefaults standardUserDefaults] setObject: nil  forKey:Current_Account_name];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     for (UIView *view in WINDOW.subviews) {
         [view removeFromSuperview];
         
@@ -438,6 +430,24 @@
 
 }
 
+- (void)copyOwnerPrivateKeyBtnDidClick{
+    AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
+    NSString *ownerPrivateKey = VALIDATE_STRING([AESCrypt decrypt:model.account_owner_private_key password:self.loginPasswordView.inputPasswordTF.text]);
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = ownerPrivateKey;
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
+    
+}
+
+- (void)copyActivePrivateKeyBtnDidClick{
+    AccountInfo *model = [[AccountsTableManager accountTable] selectAccountTableWithAccountName: self.model.account_name];
+    NSString *ownerPrivateKey = VALIDATE_STRING([AESCrypt decrypt:model.account_active_private_key password:self.loginPasswordView.inputPasswordTF.text]);
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = ownerPrivateKey;
+    [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
+}
+
+
 - (void)copyBtnDidClick:(UIButton *)sender{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.exportPrivateKeyView.contentTextView.text;
@@ -465,9 +475,33 @@
 }
 
 //AccountManagementHeaderViewDelegate
-- (void)ownerTipLabelDidTap{
-    ImportOwnerPermisionViewController *vc = [[ImportOwnerPermisionViewController alloc] init];
+
+- (void)shouldImportOwnerPrivateKey{
+    ImportAccountPermisionViewController *vc = [[ImportAccountPermisionViewController alloc] init];
     vc.model = self.model;
+    vc.importAccountPermisionViewControllerCurrentAction = ImportAccountPermisionViewControllerCurrentActionImportOwnerPrivateKey;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)shouldResetOwnerPrivateKey{
+    
+    ResetAccountPermisionViewController *vc = [[ResetAccountPermisionViewController alloc] init];
+    vc.model = self.model;
+    vc.resetAccountPermisionViewControllerCurrentAction = ResetAccountPermisionViewControllerResetOwnerPrivateKey;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)shouldImportActivePrivateKey{
+    ImportAccountPermisionViewController *vc = [[ImportAccountPermisionViewController alloc] init];
+    vc.model = self.model;
+    vc.importAccountPermisionViewControllerCurrentAction = ImportAccountPermisionViewControllerCurrentActionImportActivePrivateKey;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)shouldResetActivePrivateKey{
+    ResetAccountPermisionViewController *vc = [[ResetAccountPermisionViewController alloc] init];
+    vc.model = self.model;
+    vc.resetAccountPermisionViewControllerCurrentAction = ResetAccountPermisionViewControllerResetActivePrivateKey;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

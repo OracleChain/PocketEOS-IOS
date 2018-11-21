@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImportAccountPermisionHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cff-JA-tFL" customClass="BaseSlimLineView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="Ocy-M8-KHC"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hLM-UC-47d">
+                    <rect key="frame" x="20" y="20.5" width="335" height="76"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="dow-sC-YBT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                            <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4q-mw-0eA">
+                    <rect key="frame" x="20" y="116.5" width="335" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Z11-u8-RDd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal">
+                        <color key="titleColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="resetPrivateKeyBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ka4-JP-sNf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exU-Tm-xcS">
+                    <rect key="frame" x="20" y="592" width="335" height="45"/>
+                    <color key="backgroundColor" red="0.30196078431372547" green="0.4823529411764706" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Uib-ci-u8T"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="confirmBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="5aE-42-Yei"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hLM-UC-47d" secondAttribute="trailing" constant="20" id="2gi-aq-nq2"/>
+                <constraint firstItem="hLM-UC-47d" firstAttribute="top" secondItem="Cff-JA-tFL" secondAttribute="bottom" constant="20" id="2ye-EW-7LP"/>
+                <constraint firstItem="Cff-JA-tFL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6ht-lK-r2J"/>
+                <constraint firstItem="hLM-UC-47d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FVc-ic-AuU"/>
+                <constraint firstAttribute="trailing" secondItem="d4q-mw-0eA" secondAttribute="trailing" constant="20" id="HtZ-JA-Acp"/>
+                <constraint firstItem="Cff-JA-tFL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NE0-8e-auH"/>
+                <constraint firstAttribute="trailing" secondItem="exU-Tm-xcS" secondAttribute="trailing" constant="20" id="VCX-ts-8rQ"/>
+                <constraint firstAttribute="bottom" secondItem="exU-Tm-xcS" secondAttribute="bottom" constant="30" id="WnE-2I-amu"/>
+                <constraint firstAttribute="trailing" secondItem="Cff-JA-tFL" secondAttribute="trailing" id="a7R-8m-BXr"/>
+                <constraint firstItem="exU-Tm-xcS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="lP7-sT-qmQ"/>
+                <constraint firstItem="d4q-mw-0eA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="rha-Iw-wtE"/>
+                <constraint firstItem="d4q-mw-0eA" firstAttribute="top" secondItem="hLM-UC-47d" secondAttribute="bottom" constant="20" id="wOp-0X-mop"/>
+            </constraints>
+            <connections>
+                <outlet property="confirmBtn" destination="exU-Tm-xcS" id="7x2-B9-rpo"/>
+                <outlet property="resetPrivateKeyBtn" destination="d4q-mw-0eA" id="XCs-FF-Cr9"/>
+                <outlet property="textView" destination="hLM-UC-47d" id="Sfn-Rl-V1f"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -17,7 +17,7 @@
 #import "CheckWhetherHasFreeQuotaResult.h"
 #import "CommonDialogHasTitleView.h"
 #import "CreatePocketViewController.h"
-
+#import "ImportAccountWithoutAccountNameBaseViewController.h"
 
 @interface AddAccountViewController ()<CommonDialogHasTitleViewDelegate, UINavigationControllerDelegate>
 @property(nonatomic, strong) NavigationView *navView;
@@ -32,7 +32,7 @@
 
 - (NavigationView *)navView{
     if (!_navView) {
-        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"添加账号", nil)rightBtnImgName:@"share" delegate:self];
+        _navView = [NavigationView navigationViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATIONBAR_HEIGHT) LeftBtnImgName:@"back" title:NSLocalizedString(@"添加账号", nil)rightBtnImgName:@"" delegate:self];
         _navView.leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
         _navView.lee_theme.LeeConfigBackgroundColor(@"baseAddAccount_background_color");
     }
@@ -102,10 +102,10 @@
         return;
     }
     OptionModel *model = self.mainService.dataSourceArray[indexPath.row];
-    if ([model.optionName isEqualToString:NSLocalizedString(@"导入EOS账号", nil)]) {
-        ImportAccountViewController *vc = [[ImportAccountViewController alloc] init];
+    if ([model.optionName isEqualToString:NSLocalizedString(@"导入账号", nil)]) {
+        ImportAccountWithoutAccountNameBaseViewController *vc = [[ImportAccountWithoutAccountNameBaseViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([model.optionName isEqualToString:NSLocalizedString(@"付费创建", nil)]){
+    }else if ([model.optionName isEqualToString:NSLocalizedString(@"创建账号", nil)]){
         PayRegistAccountViewController *vc = [[PayRegistAccountViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([model.optionName isEqualToString:NSLocalizedString(@"我是VIP", nil)]){
@@ -118,6 +118,36 @@
         }else{
             [TOASTVIEW showWithText:self.checkWhetherHasFreeQuotaResult.message];
         }
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 150;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setTitle:NSLocalizedString(@"跳过添加", nil) forState:(UIControlStateNormal)];
+    [btn setTitleColor:HEXCOLOR(0x999999) forState:UIControlStateNormal];
+    btn.font = [UIFont systemFontOfSize:13];
+    [btn setBackgroundColor:[UIColor clearColor]];
+    [btn addTarget:self action:@selector(footerBtnDidClick) forControlEvents:(UIControlEventTouchUpInside)];
+    btn.frame = CGRectMake(0, MARGIN_10, SCREEN_WIDTH, 40);
+    return btn;
+}
+
+- (void)footerBtnDidClick{
+    if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromLoginPage) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (UIView *view in WINDOW.subviews) {
+                [view removeFromSuperview];
+            }
+            [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
+        });
+        
+    }else if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromOtherPage){
+        [self dismissViewControllerAnimated:YES completion:NULL];
+        
     }
 }
 
@@ -137,24 +167,6 @@
     }else if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromOtherPage){
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
-
-}
-
--(void)rightBtnDidClick{
-    if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromLoginPage) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            for (UIView *view in WINDOW.subviews) {
-                [view removeFromSuperview];
-            }
-            [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window setRootViewController: [[BaseTabBarController alloc] init]];
-        });
-        
-    }else if (self.addAccountViewControllerFromMode == AddAccountViewControllerFromOtherPage){
-        [self dismissViewControllerAnimated:YES completion:NULL];
-        
-    }
-    
-    
 
 }
 

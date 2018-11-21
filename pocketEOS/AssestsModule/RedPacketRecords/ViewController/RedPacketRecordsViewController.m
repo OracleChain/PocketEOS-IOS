@@ -78,10 +78,10 @@
     NSArray *tmpArr = [ArchiveUtil unarchiveTokenInfoArray];
     
     
-    NSMutableArray *assestsArr = [NSMutableArray arrayWithObjects:SymbolName_EOS, SymbolName_OCT  ,nil];
+    NSMutableArray *assestsArr = [NSMutableArray array];
     for (TokenInfo *tokenInfo in tmpArr) {
-        if ([tokenInfo.token_symbol isEqualToString:SymbolName_CET] && [tokenInfo.contract_name isEqualToString:ContractName_EOSIOCHAINCE]) {
-            [assestsArr addObject:SymbolName_CET];
+        if (tokenInfo.isRedpacket) {
+            [assestsArr addObject:tokenInfo.token_symbol];
         }
     }
     CDZPickerBuilder *builder = [CDZPickerBuilder new];

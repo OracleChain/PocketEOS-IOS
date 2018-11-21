@@ -95,7 +95,7 @@ void uncaughtExceptionHandler(NSException*exception){
     [UMConfigure setLogEnabled:NO];//设置日志, 上线模式
 #endif
     
-    [UMConfigure initWithAppkey:YOUMENG_AppKey channel:@"APP STORE"];// pgyer ||   APP STORE
+    [UMConfigure initWithAppkey:YOUMENG_AppKey channel:@"pgyer"];// pgyer ||   APP STORE
     NSString* deviceID = [UMConfigure deviceIDForIntegration];
     NSLog(@"集成测试的deviceID:%@",deviceID);
 }

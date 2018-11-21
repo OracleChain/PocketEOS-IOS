@@ -57,4 +57,8 @@
 - (void)showRedDotWithIndex:(NSUInteger)index;
 - (void)hideRedDotWithIndex:(NSUInteger)index;
 
+
+
+@property(nonatomic , strong) UIButton *leftBtn;
+@property(nonatomic , strong) BaseView *rightView;
 @end

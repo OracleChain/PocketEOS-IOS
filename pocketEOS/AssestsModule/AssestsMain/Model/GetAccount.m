@@ -9,7 +9,10 @@
 #import "GetAccount.h"
 
 @implementation GetAccount
+
 +(NSDictionary *)mj_objectClassInArray{
     return @{@"permissions"  : @"Permission"};
 }
+
+
 @end

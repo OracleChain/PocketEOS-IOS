@@ -10,7 +10,7 @@
 
 @interface EOSMappingResult : NSObject
 @property(nonatomic, strong) NSNumber *code;
-@property(nonatomic, strong) NSString *msg;
+@property(nonatomic, strong) NSString *message;
 @property(nonatomic, strong) NSArray *account_names;
 
 @end

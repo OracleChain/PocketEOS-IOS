@@ -11,7 +11,11 @@
 @interface Permission : NSObject
 
 // active / owner  
-@property(nonatomic, strong) NSString *perm_name;
+@property(nonatomic, copy) NSString *perm_name;
 // active / owner  public key
-@property(nonatomic, strong) NSString *required_auth_key;
+@property(nonatomic, copy) NSString *required_auth_key;
+
+
+@property(nonatomic , strong) NSArray *required_auth_keyArray;
+
 @end

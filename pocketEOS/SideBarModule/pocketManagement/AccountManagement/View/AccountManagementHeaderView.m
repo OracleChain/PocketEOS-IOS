@@ -11,65 +11,40 @@
 @interface AccountManagementHeaderView()
 @property (weak, nonatomic) IBOutlet UIView *ownerReferenceBaseView;
 @property (weak, nonatomic) IBOutlet UIView *activeReferenceBaseView;
-@property(nonatomic , strong) BaseLabel1 *ownerTipLabel;
-@property(nonatomic , strong) UIImageView *ownerRightIconImg;
-@property(nonatomic , strong) BaseLabel1 *activeTipLabel;
-@property(nonatomic , strong) UIImageView *activeRightIconImg;
+@property (weak, nonatomic) IBOutlet BaseLabel1 *ownerTipLabel;
+@property (weak, nonatomic) IBOutlet BaseLabel1 *activeTipLabel;
+@property(nonatomic , strong) UILabel *ownerPublicKeyTipLabel;
+@property(nonatomic , strong) UILabel *activePublicKeyTipLabel;
 @end
 
 
 @implementation AccountManagementHeaderView
 
-- (BaseLabel1 *)ownerTipLabel{
-    if (!_ownerTipLabel) {
-        _ownerTipLabel = [[BaseLabel1 alloc] init];
-        _ownerTipLabel.font = [UIFont systemFontOfSize:13];
-        _ownerTipLabel.textAlignment = NSTextAlignmentRight;
-        _ownerTipLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ownerTipLabelTapEvent)];
-        [_ownerTipLabel addGestureRecognizer:tap];
+- (UILabel *)ownerPublicKeyTipLabel{
+    if (!_ownerPublicKeyTipLabel) {
+        _ownerPublicKeyTipLabel = [[UILabel alloc] init];
+        _ownerPublicKeyTipLabel.backgroundColor = HEXCOLOR(0xFF8080);
+        _ownerPublicKeyTipLabel.textColor = HEXCOLOR(0xFFFFFF);
+        _ownerPublicKeyTipLabel.font = [UIFont systemFontOfSize:12];
+        _ownerPublicKeyTipLabel.textAlignment = NSTextAlignmentCenter;
     }
-    return _ownerTipLabel;
+    return _ownerPublicKeyTipLabel;
 }
 
-- (UIImageView *)ownerRightIconImg{
-    if (!_ownerRightIconImg) {
-        _ownerRightIconImg = [[UIImageView alloc] init];
+- (UILabel *)activePublicKeyTipLabel{
+    if (!_activePublicKeyTipLabel) {
+        _activePublicKeyTipLabel = [[UILabel alloc] init];
+        _activePublicKeyTipLabel.backgroundColor = HEXCOLOR(0xFF8080);
+        _activePublicKeyTipLabel.textColor = HEXCOLOR(0xFFFFFF);
+        _activePublicKeyTipLabel.font = [UIFont systemFontOfSize:12];
+        _activePublicKeyTipLabel.textAlignment = NSTextAlignmentCenter;
     }
-    return _ownerRightIconImg;
+    return _activePublicKeyTipLabel;
 }
 
-- (BaseLabel1 *)activeTipLabel{
-    if (!_activeTipLabel) {
-        _activeTipLabel = [[BaseLabel1 alloc] init];
-        _activeTipLabel.font = [UIFont systemFontOfSize:13];
-        _activeTipLabel.textAlignment = NSTextAlignmentRight;
-        _activeTipLabel.textColor = HEXCOLOR(0xE8554A);
-    }
-    return _activeTipLabel;
-}
-
-- (UIImageView *)activeRightIconImg{
-    if (!_activeRightIconImg) {
-        _activeRightIconImg = [[UIImageView alloc] init];
-    }
-    return _activeRightIconImg;
-}
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    [self.ownerReferenceBaseView addSubview:self.ownerRightIconImg];
-    [self.ownerReferenceBaseView addSubview:self.ownerTipLabel];
-    
-    self.ownerRightIconImg.sd_layout.rightSpaceToView(self.ownerReferenceBaseView, MARGIN_20).centerYEqualToView(self.ownerReferenceBaseView).widthIs(15).heightIs(15);
-    
-    self.ownerTipLabel.sd_layout.rightSpaceToView(self.ownerRightIconImg, 5).centerYEqualToView(self.ownerReferenceBaseView).widthIs(200).heightIs(21);
-    
-    [self.activeReferenceBaseView addSubview:self.activeRightIconImg];
-    self.activeRightIconImg.sd_layout.rightSpaceToView(self.activeReferenceBaseView, MARGIN_20).centerYEqualToView(self.activeReferenceBaseView).widthIs(15).heightIs(15);
-    
-    [self.activeReferenceBaseView addSubview:self.activeTipLabel];
-    self.activeTipLabel.sd_layout.rightSpaceToView(self.activeRightIconImg, 5).centerYEqualToView(self.activeReferenceBaseView).widthIs(200).heightIs(21);
     
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(copyActivePublicKeyToPasteboard:)];
@@ -85,75 +60,77 @@
 -(void)setLocalAccount:(AccountInfo *)localAccount{
     _localAccount = localAccount;
     if (localAccount.account_owner_public_key.length<6) {
-        self.ownerPublicKeyLabel.text = NSLocalizedString(@"该权限暂未导入", nil);
-        self.ownerTipLabel.text = NSLocalizedString(@"导入Owner权限", nil);
-        self.ownerRightIconImg.image = [UIImage imageNamed:@"right_arrow_gray"];
-        [self.ownerRightIconImg sd_clearViewFrameCache];
-        self.ownerRightIconImg.sd_layout.rightSpaceToView(self.ownerReferenceBaseView, MARGIN_20).centerYEqualToView(self.ownerReferenceBaseView).widthIs(7).heightIs(13);
-        [self.ownerTipLabel sd_clearViewFrameCache];
-        self.ownerTipLabel.sd_layout.rightSpaceToView(self.ownerRightIconImg, 5).centerYEqualToView(self.ownerReferenceBaseView).widthIs(200).heightIs(21);
+        [self.ownerPublicKeyLabel addSubview:self.ownerPublicKeyTipLabel];
+        self.ownerPublicKeyTipLabel.text = NSLocalizedString(@"该权限暂未导入", nil);
+        [self configOwnerPublicKeyTipLabelWidth];
+        
+        self.ownerTipLabel.text = NSLocalizedString(@"导入私钥", nil);
         
     }else{
         self.ownerPublicKeyLabel.text = localAccount.account_owner_public_key;
-        self.ownerTipLabel.hidden = YES;
-        self.ownerRightIconImg.hidden = YES;
+        [self.ownerPublicKeyTipLabel removeFromSuperview];
+        self.ownerTipLabel.text = NSLocalizedString(@"变更私钥", nil);
+
     }
-    self.activePublicKeyLabel.text =  localAccount.account_active_public_key;
+    
+    
+    
+    if (localAccount.account_active_public_key.length<6) {
+        [self.activePublicKeyLabel addSubview:self.activePublicKeyTipLabel];
+        self.activePublicKeyTipLabel.text = NSLocalizedString(@"该权限暂未导入", nil);
+        [self configActivePublicKeyTipLabelWidth];
+        self.activeTipLabel.text = NSLocalizedString(@"导入私钥", nil);
+        
+    }else{
+        self.activePublicKeyLabel.text = localAccount.account_active_public_key;
+        [self.activePublicKeyTipLabel removeFromSuperview];
+        self.activeTipLabel.text = NSLocalizedString(@"变更私钥", nil);
+        
+    }
     
     
 }
 
-- (void)updateViewWithRemoteAccountInfo:(AccountInfo *)remoteAccount{
+
+- (void)updateViewWithGet_account_permission_service:(Get_account_permission_service *)get_account_permission_service{
     // owner_public_key
     self.ownerTipLabel.hidden = NO;
-    self.ownerRightIconImg.hidden = NO;
-    if (!remoteAccount.account_owner_public_key) {
+    
+    if (get_account_permission_service.chainAccountOwnerPublicKeyArray.count==0) {
         self.ownerTipLabel.textColor = HEXCOLOR(0xE8554A);
-        self.ownerTipLabel.text = [NSString stringWithFormat:@"%@%@", remoteAccount.account_name,NSLocalizedString(@"未创建成功", nil)];
-        self.ownerRightIconImg.image = [UIImage imageNamed:@"warning_red"];
-        self.ownerTipLabel.userInteractionEnabled = NO;
-        
-        [self.ownerRightIconImg sd_clearViewFrameCache];
-        self.ownerRightIconImg.sd_layout.rightSpaceToView(self.ownerReferenceBaseView, MARGIN_20).centerYEqualToView(self.ownerReferenceBaseView).widthIs(15).heightIs(15);
-        [self.ownerTipLabel sd_clearViewFrameCache];
-        self.ownerTipLabel.sd_layout.rightSpaceToView(self.ownerRightIconImg, 5).centerYEqualToView(self.ownerReferenceBaseView).widthIs(200).heightIs(21);
+        self.ownerTipLabel.text = [NSString stringWithFormat:@"%@%@", self.localAccount.account_name,NSLocalizedString(@"未创建成功", nil)];
         
     }else{
         if (_localAccount.account_owner_public_key.length>6){
-            if (![_localAccount.account_owner_public_key isEqualToString:remoteAccount.account_owner_public_key]) {
-                self.ownerTipLabel.textColor = HEXCOLOR(0xE8554A);
-                self.ownerTipLabel.text = NSLocalizedString(@"本地私钥已失效", nil);
-                self.ownerRightIconImg.image = [UIImage imageNamed:@"warning_red"];
-                self.ownerTipLabel.userInteractionEnabled = NO;
+            if (![get_account_permission_service.chainAccountOwnerPublicKeyArray containsObject:_localAccount.account_owner_public_key]) {
+                [self.ownerPublicKeyLabel addSubview:self.ownerPublicKeyTipLabel];
+                _ownerPublicKeyTipLabel.text = NSLocalizedString(@"私钥已失效", nil);
+                [self configOwnerPublicKeyTipLabelWidth];
+                
+                
+                self.ownerPublicKeyLabel.text = @"";
+            }
+        }
+    }
+    
+    if (get_account_permission_service.chainAccountActivePublicKeyArray.count==0) {
+        self.activeTipLabel.textColor = HEXCOLOR(0xE8554A);
+        self.activeTipLabel.text = [NSString stringWithFormat:@"%@%@", _localAccount.account_name,NSLocalizedString(@"未创建成功", nil)];
+    }else{
+        // owner_active_key
+        if (_localAccount.account_active_public_key.length>6){
+            if (![get_account_permission_service.chainAccountActivePublicKeyArray containsObject:_localAccount.account_active_public_key]) {
+                [self.activePublicKeyLabel addSubview:self.activePublicKeyTipLabel];
+                _activePublicKeyTipLabel.text = NSLocalizedString(@"私钥已失效", nil);
+                [self configActivePublicKeyTipLabelWidth];
+                
+                
+                self.activePublicKeyLabel.text = @"";
                 
             }
         }
     }
     
-    if (!remoteAccount.account_active_public_key) {
-        self.activeTipLabel.textColor = HEXCOLOR(0xE8554A);
-        self.activeTipLabel.text = [NSString stringWithFormat:@"%@%@", remoteAccount.account_name,NSLocalizedString(@"未创建成功", nil)];
-        self.activeRightIconImg.image = [UIImage imageNamed:@"warning_red"];
-    }else{
-        // owner_active_key
-        if (_localAccount.account_active_public_key.length>6){
-            if (![_localAccount.account_active_public_key isEqualToString:remoteAccount.account_active_public_key]) {
-                self.activeTipLabel.textColor = HEXCOLOR(0xE8554A);
-                self.activeTipLabel.text = NSLocalizedString(@"本地私钥已失效", nil);
-                self.activeRightIconImg.image = [UIImage imageNamed:@"warning_red"];
-            }
-        }
-        
-        
-    }
-   
-}
-
-
-- (void)ownerTipLabelTapEvent{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ownerTipLabelDidTap)]) {
-        [self.delegate ownerTipLabelDidTap];
-    }
 }
 
 - (void)copyActivePublicKeyToPasteboard:(UILongPressGestureRecognizer *)sender{
@@ -167,5 +144,62 @@
     pasteboard.string = [(UILabel *)sender.view text];
     [TOASTVIEW showWithText:NSLocalizedString(@"复制成功", nil)];
 }
+
+
+- (IBAction)ownerTipBtnClick:(UIButton *)sender {
+    if ([self.ownerTipLabel.text isEqualToString: NSLocalizedString(@"导入私钥", nil) ]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(shouldImportOwnerPrivateKey)]) {
+            [self.delegate shouldImportOwnerPrivateKey];
+        }
+        
+    }else if ([self.ownerTipLabel.text isEqualToString: NSLocalizedString(@"变更私钥", nil) ]){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(shouldResetOwnerPrivateKey)]) {
+            [self.delegate shouldResetOwnerPrivateKey];
+        }
+        
+    }
+  
+}
+
+
+
+- (IBAction)activeTipBtnClick:(UIButton *)sender {
+    if ([self.activeTipLabel.text isEqualToString: NSLocalizedString(@"导入私钥", nil) ]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(shouldImportActivePrivateKey)]) {
+            [self.delegate shouldImportActivePrivateKey];
+        }
+        
+    }else if ([self.activeTipLabel.text isEqualToString: NSLocalizedString(@"变更私钥", nil) ]){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(shouldResetActivePrivateKey)]) {
+            [self.delegate shouldResetActivePrivateKey];
+        }
+
+    }
+    
+}
+
+
+- (void)configOwnerPublicKeyTipLabelWidth{
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:12],
+                                 NSForegroundColorAttributeName:HEXCOLOR(0xFFFFFF)
+                                 };
+    CGSize calculatedSize = [_ownerPublicKeyTipLabel.text boundingRectWithSize:CGSizeMake(100, 17) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    _ownerPublicKeyTipLabel.frame = CGRectMake(0, MARGIN_20, calculatedSize.width+MARGIN_10, 17);
+}
+
+- (void)configActivePublicKeyTipLabelWidth{
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:12],
+                                 NSForegroundColorAttributeName:HEXCOLOR(0xFFFFFF)
+                                 };
+    CGSize calculatedSize = [_activePublicKeyTipLabel.text boundingRectWithSize:CGSizeMake(100, 17) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    _activePublicKeyTipLabel.frame = CGRectMake(0, MARGIN_20, calculatedSize.width+MARGIN_10, 17);
+}
+
 @end
+
+
 

@@ -156,6 +156,7 @@
     self.getRequiredPublicKeyRequest.account = self.code;
     self.getRequiredPublicKeyRequest.name = self.action;
     self.getRequiredPublicKeyRequest.available_keys = self.available_keys;
+    self.getRequiredPublicKeyRequest.permission = self.permission;
     
     
     WS(weakSelf);

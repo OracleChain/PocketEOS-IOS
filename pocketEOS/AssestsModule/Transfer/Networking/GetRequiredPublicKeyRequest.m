@@ -36,7 +36,7 @@
     
     NSMutableDictionary *authorizationDict = [NSMutableDictionary dictionary];
     [authorizationDict setObject:VALIDATE_STRING(self.sender) forKey:@"actor"];
-    [authorizationDict setObject:@"active" forKey:@"permission"];
+    [authorizationDict setObject:IsStrEmpty(self.permission) ? @"active" :self.permission forKey:@"permission"];
     [actionDict setObject:@[authorizationDict] forKey:@"authorization"];
     [transacDic setObject:@[actionDict] forKey:@"actions"];
     

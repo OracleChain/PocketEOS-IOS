@@ -16,4 +16,8 @@
 @property(nonatomic, strong) NSString *unstaking_balance;
 @property(nonatomic, strong) NSString *eos_balance;
 @property(nonatomic, strong) NSArray *permissions;
+
+@property(nonatomic, strong) NSArray *ownerPermission_keys;
+@property(nonatomic, strong) NSArray *activePermission_keys;
+
 @end

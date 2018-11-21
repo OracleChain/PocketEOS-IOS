@@ -116,13 +116,13 @@
     [leftBtn addTarget:self action:@selector(leftBtnDidClick:) forControlEvents:(UIControlEventTouchUpInside)];
     leftBtn.lee_theme.LeeAddButtonImage(SOCIAL_MODE, [UIImage imageNamed:@"back"], UIControlStateNormal).LeeAddButtonImage(BLACKBOX_MODE, [UIImage imageNamed:@"back_white"], UIControlStateNormal);
     leftBtn.frame = CGRectMake(5, 5, 30, 30);
-    
+    self.leftBtn = leftBtn;
+    [self addSubview:self.leftBtn];
 
     // add rightBtn
     BaseView *rightView = [[BaseView alloc] init];
     rightView.frame = CGRectMake(SCREEN_WIDTH-5-60, 5, 60, 30);
     
-    [self addSubview:leftBtn];
 
     UIImageView *img = [[UIImageView alloc] init];
     img.image = [UIImage imageNamed:@"rescue-icon"];
@@ -136,17 +136,18 @@
     [btn addTarget:self action:@selector(pageSegmentRightBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     [btn setBackgroundColor:[UIColor clearColor]];
     
-    [self addSubview:rightView];
+    self.rightView = rightView;
+    [self addSubview:self.rightView];
     
     
-    [rightView addSubview:img];
-    img.sd_layout.centerXEqualToView(rightView).topSpaceToView(rightView, 5).widthIs(12).heightIs(12);
+    [self.rightView addSubview:img];
+    img.sd_layout.centerXEqualToView(self.rightView).topSpaceToView(self.rightView, 5).widthIs(12).heightIs(12);
 
-    [rightView addSubview:label];
-    label.sd_layout.centerXEqualToView(rightView).topSpaceToView(img, 4).widthIs(60).heightIs(10);
+    [self.rightView addSubview:label];
+    label.sd_layout.centerXEqualToView(self.rightView).topSpaceToView(img, 4).widthIs(60).heightIs(10);
 
-    [rightView addSubview:btn];
-    btn.frame = rightView.bounds;
+    [self.rightView addSubview:btn];
+    btn.frame = self.rightView.bounds;
     
     
     //tabView
