@@ -652,11 +652,6 @@
 		186BDBD121537A7E001190A7 /* WWJRegularJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBCF21537A7D001190A7 /* WWJRegularJudge.m */; };
 		186BDBD421538670001190A7 /* CandyTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDBD321538670001190A7 /* CandyTopView.m */; };
 		186BDC1521538A9A001190A7 /* CandyTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC1721538A9A001190A7 /* CandyTopView.xib */; };
-		186BDC25215395D0001190A7 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC1E215395D0001190A7 /* SGQRCode.bundle */; };
-		186BDC26215395D0001190A7 /* SGQRCodeObtainConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */; };
-		186BDC27215395D0001190A7 /* SGQRCodeObtain.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC23215395D0001190A7 /* SGQRCodeObtain.m */; };
-		186BDC28215395D0001190A7 /* SGQRCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC24215395D0001190A7 /* SGQRCodeScanView.m */; };
-		186BDC2B21539FA0001190A7 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */; };
 		186BDC852153A96E001190A7 /* transfer_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC832153A96D001190A7 /* transfer_icon@2x.png */; };
 		186BDC862153A96E001190A7 /* transfer_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BDC842153A96E001190A7 /* transfer_icon@3x.png */; };
 		186BDC9C2154C3C2001190A7 /* NotifyDappServerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BDC9B2154C3C2001190A7 /* NotifyDappServerResult.m */; };
@@ -1048,6 +1043,11 @@
 		18C622B91FD63C160043447F /* RecieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622B81FD63C160043447F /* RecieveViewController.m */; };
 		18C622BC1FD63C340043447F /* RecieveHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622BB1FD63C340043447F /* RecieveHeaderView.m */; };
 		18C622C21FD67E4A0043447F /* NavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C622C11FD67E4A0043447F /* NavigationView.m */; };
+		18C6C15821A690AD00250887 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18C6C14F21A690AD00250887 /* SGQRCode.bundle */; };
+		18C6C15921A690AD00250887 /* SGQRCodeObtainConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6C15021A690AD00250887 /* SGQRCodeObtainConfigure.m */; };
+		18C6C15A21A690AD00250887 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6C15121A690AD00250887 /* SGQRCodeGenerateManager.m */; };
+		18C6C15B21A690AD00250887 /* SGQRCodeObtain.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6C15521A690AD00250887 /* SGQRCodeObtain.m */; };
+		18C6C15C21A690AD00250887 /* SGQRCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6C15621A690AD00250887 /* SGQRCodeScanView.m */; };
 		18C7F742211AE01B006AD456 /* PayRegistAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F744211AE01B006AD456 /* PayRegistAccountHeaderView.xib */; };
 		18C7F749211AE038006AD456 /* PaymentTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F74B211AE038006AD456 /* PaymentTipView.xib */; };
 		18C7F750211AE169006AD456 /* VipRegistAccountHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C7F752211AE169006AD456 /* VipRegistAccountHeaderView.xib */; };
@@ -2436,16 +2436,6 @@
 		186BDC1621538A9A001190A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CandyTopView.xib; sourceTree = "<group>"; };
 		186BDC1921538AA2001190A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CandyTopView.strings; sourceTree = "<group>"; };
 		186BDC1B21538AA4001190A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CandyTopView.strings"; sourceTree = "<group>"; };
-		186BDC1D215395D0001190A7 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
-		186BDC1E215395D0001190A7 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
-		186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtainConfigure.m; sourceTree = "<group>"; };
-		186BDC20215395D0001190A7 /* SGQRCodeObtain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtain.h; sourceTree = "<group>"; };
-		186BDC21215395D0001190A7 /* SGQRCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanView.h; sourceTree = "<group>"; };
-		186BDC22215395D0001190A7 /* SGQRCodeObtainConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtainConfigure.h; sourceTree = "<group>"; };
-		186BDC23215395D0001190A7 /* SGQRCodeObtain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtain.m; sourceTree = "<group>"; };
-		186BDC24215395D0001190A7 /* SGQRCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanView.m; sourceTree = "<group>"; };
-		186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
-		186BDC2A21539FA0001190A7 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
 		186BDC832153A96D001190A7 /* transfer_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@2x.png"; sourceTree = "<group>"; };
 		186BDC842153A96E001190A7 /* transfer_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transfer_icon@3x.png"; sourceTree = "<group>"; };
 		186BDC9A2154C3C2001190A7 /* NotifyDappServerResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyDappServerResult.h; sourceTree = "<group>"; };
@@ -3144,6 +3134,16 @@
 		18C622BB1FD63C340043447F /* RecieveHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecieveHeaderView.m; sourceTree = "<group>"; };
 		18C622C01FD67E4A0043447F /* NavigationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationView.h; sourceTree = "<group>"; };
 		18C622C11FD67E4A0043447F /* NavigationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationView.m; sourceTree = "<group>"; };
+		18C6C14E21A690AD00250887 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
+		18C6C14F21A690AD00250887 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		18C6C15021A690AD00250887 /* SGQRCodeObtainConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtainConfigure.m; sourceTree = "<group>"; };
+		18C6C15121A690AD00250887 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		18C6C15221A690AD00250887 /* SGQRCodeObtain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtain.h; sourceTree = "<group>"; };
+		18C6C15321A690AD00250887 /* SGQRCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanView.h; sourceTree = "<group>"; };
+		18C6C15421A690AD00250887 /* SGQRCodeObtainConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeObtainConfigure.h; sourceTree = "<group>"; };
+		18C6C15521A690AD00250887 /* SGQRCodeObtain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeObtain.m; sourceTree = "<group>"; };
+		18C6C15621A690AD00250887 /* SGQRCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanView.m; sourceTree = "<group>"; };
+		18C6C15721A690AD00250887 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
 		18C7F743211AE01B006AD456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PayRegistAccountHeaderView.xib; sourceTree = "<group>"; };
 		18C7F746211AE01E006AD456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PayRegistAccountHeaderView.strings; sourceTree = "<group>"; };
 		18C7F748211AE020006AD456 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PayRegistAccountHeaderView.strings"; sourceTree = "<group>"; };
@@ -3769,6 +3769,7 @@
 		18112F051FCD003E00BEA0D9 /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				18C6C14D21A690AD00250887 /* SGQRCode */,
 				18D02EF2214F8063006D2776 /* PocketSocketWebSocket */,
 				18CEA64C21057DC600B2BFE2 /* YouMeng */,
 				1862E7A620DC850E00F26629 /* UIScrollViewTouch */,
@@ -3781,7 +3782,6 @@
 				18466D952010A049002E675A /* PYSearch */,
 				18725DBC200C4F7900AA1889 /* WebViewJavascriptBridge */,
 				18A2F44D1FF0A20A00B6CE43 /* FMDB */,
-				186BDC1C215395D0001190A7 /* SGQRCode */,
 				18112F061FCD00B700BEA0D9 /* SDAutoLayout */,
 				18112F421FCD016000BEA0D9 /* IQKeyboardManager */,
 				18112FCA1FCD01B800BEA0D9 /* SDWebImage */,
@@ -6477,24 +6477,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		186BDC1C215395D0001190A7 /* SGQRCode */ = {
-			isa = PBXGroup;
-			children = (
-				186BDC2A21539FA0001190A7 /* SGQRCodeGenerateManager.h */,
-				186BDC2921539F9F001190A7 /* SGQRCodeGenerateManager.m */,
-				186BDC1D215395D0001190A7 /* SGQRCode.h */,
-				186BDC1E215395D0001190A7 /* SGQRCode.bundle */,
-				186BDC1F215395D0001190A7 /* SGQRCodeObtainConfigure.m */,
-				186BDC20215395D0001190A7 /* SGQRCodeObtain.h */,
-				186BDC21215395D0001190A7 /* SGQRCodeScanView.h */,
-				186BDC22215395D0001190A7 /* SGQRCodeObtainConfigure.h */,
-				186BDC23215395D0001190A7 /* SGQRCodeObtain.m */,
-				186BDC24215395D0001190A7 /* SGQRCodeScanView.m */,
-			);
-			name = SGQRCode;
-			path = "../../../../Downloads/SGQRCode-master 2/SGQRCode";
-			sourceTree = "<group>";
-		};
 		18725DBC200C4F7900AA1889 /* WebViewJavascriptBridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -8414,6 +8396,23 @@
 			path = NavigationView;
 			sourceTree = "<group>";
 		};
+		18C6C14D21A690AD00250887 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				18C6C14E21A690AD00250887 /* SGQRCode.h */,
+				18C6C14F21A690AD00250887 /* SGQRCode.bundle */,
+				18C6C15021A690AD00250887 /* SGQRCodeObtainConfigure.m */,
+				18C6C15121A690AD00250887 /* SGQRCodeGenerateManager.m */,
+				18C6C15221A690AD00250887 /* SGQRCodeObtain.h */,
+				18C6C15321A690AD00250887 /* SGQRCodeScanView.h */,
+				18C6C15421A690AD00250887 /* SGQRCodeObtainConfigure.h */,
+				18C6C15521A690AD00250887 /* SGQRCodeObtain.m */,
+				18C6C15621A690AD00250887 /* SGQRCodeScanView.m */,
+				18C6C15721A690AD00250887 /* SGQRCodeGenerateManager.h */,
+			);
+			path = SGQRCode;
+			sourceTree = "<group>";
+		};
 		18C7F761211AF229006AD456 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -10189,7 +10188,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186BDC25215395D0001190A7 /* SGQRCode.bundle in Resources */,
 				183FF73B20C14B980058D010 /* thumb_BB@3x.png in Resources */,
 				18A99B0620E6644000E32A29 /* Javascript.html in Resources */,
 				18AD2BBB20D0C9C400536084 /* tip_info@3x.png in Resources */,
@@ -10577,6 +10575,7 @@
 				185D184D1FE760D10021AD18 /* QRCodeBackground@3x.png in Resources */,
 				186F6A3220F4970300FFF881 /* PersonalSettingDetailHeaderView.xib in Resources */,
 				1872F13C202D6FD6005B5915 /* back_white@3x.png in Resources */,
+				18C6C15821A690AD00250887 /* SGQRCode.bundle in Resources */,
 				1835773D2100CC9A00F075EA /* CustomAssestsHeaderView.xib in Resources */,
 				187B63DD206B347D00D0AE86 /* feedBack@2x.png in Resources */,
 				186F69D720F495ED00FFF881 /* AskQuestionHeaderView.xib in Resources */,
@@ -11002,7 +11001,6 @@
 				1806D100206E5A300023D83B /* UnbindWechatRequest.m in Sources */,
 				1889E186217AD6DE002ECF38 /* AssestsCollectionHeaderView.m in Sources */,
 				18C9E8B6212137C200BC2AEA /* Abi_json_to_bin_Result.m in Sources */,
-				186BDC26215395D0001190A7 /* SGQRCodeObtainConfigure.m in Sources */,
 				18A99A8220E6613F00E32A29 /* TAAbstractDotView.m in Sources */,
 				1806D0FA206E5A010023D83B /* BindWechatRequest.m in Sources */,
 				1812758B20B672C8005EDD91 /* CandyEquityResult.m in Sources */,
@@ -11126,6 +11124,7 @@
 				1856E683210B1E55008EFC88 /* AccountQRCodeManagementHeaderView.m in Sources */,
 				18A2F46A1FF0A20A00B6CE43 /* FMDatabasePool.m in Sources */,
 				18210847219E738100897B60 /* Get_key_accounts_request.m in Sources */,
+				18C6C15C21A690AD00250887 /* SGQRCodeScanView.m in Sources */,
 				1889E1AE217B361F002ECF38 /* AssestsCollectionDetailHeaderView.m in Sources */,
 				183F04442150DA11008C45B3 /* Abi_bin_to_jsonRequest.m in Sources */,
 				1832CC4120074EFB00C055B6 /* AskQuestionTableViewCell.m in Sources */,
@@ -11179,6 +11178,7 @@
 				18A178A6218B3BE300521343 /* Discover_Category_config_model.m in Sources */,
 				18ED6CD5210FF1770042200F /* VipRegistAccountService.m in Sources */,
 				18466D8620107288002E675A /* VersionUpdateHeaderView.m in Sources */,
+				18C6C15921A690AD00250887 /* SGQRCodeObtainConfigure.m in Sources */,
 				185DD6CC206CA80400BCFFCF /* MJPropertyType.m in Sources */,
 				244769FC20DD493900B7283C /* PriceModel.m in Sources */,
 				18B2912D20898EB00032EE27 /* RedPacketRecord.m in Sources */,
@@ -11293,6 +11293,7 @@
 				18CE935021A4F620002F958E /* ImportAccountPermisionHeaderView.m in Sources */,
 				18C5C4851FCFDF34002A65CB /* BaseNetworkRequest.m in Sources */,
 				1835775C2101C84E00F075EA /* CustomTokensResult.m in Sources */,
+				18C6C15B21A690AD00250887 /* SGQRCodeObtain.m in Sources */,
 				1835772621007F6200F075EA /* RecommandTokensResult.m in Sources */,
 				1831F3AD20170FD3002CE94D /* Account.m in Sources */,
 				189CEC7620CE7BCE00F81AD8 /* VoteProducers_Abi_json_to_bin_request.m in Sources */,
@@ -11303,7 +11304,6 @@
 				18112F6C1FCD016000BEA0D9 /* IQUIWindow+Hierarchy.m in Sources */,
 				18BE5EB32186AAA5001B4610 /* GetCurrentRamPriceRequest.m in Sources */,
 				180FDF8320215F4600BE593F /* WalletAccount.m in Sources */,
-				186BDC2B21539FA0001190A7 /* SGQRCodeGenerateManager.m in Sources */,
 				18D475E5215F252100F3BF22 /* SimpleWalletTransferHeaderView.m in Sources */,
 				18466D9120107981002E675A /* MessageCenterService.m in Sources */,
 				1835774621017E8F00F075EA /* TransferNewViewController.m in Sources */,
@@ -11313,9 +11313,9 @@
 				18466DEE2010C4DF002E675A /* CDZPicker.m in Sources */,
 				18CE932721A2B2F0002F958E /* ImportAccountWithoutAccountNameSinglePrivateKeyModeHeaderView.m in Sources */,
 				1862E76520DB5DCD00F26629 /* BackupEOSAccountService.m in Sources */,
-				186BDC27215395D0001190A7 /* SGQRCodeObtain.m in Sources */,
 				18BE5F122189AD5B001B4610 /* ShareToFrirndsViewController.m in Sources */,
 				186564B72011CD630044BBC3 /* RegularExpression.m in Sources */,
+				18C6C15A21A690AD00250887 /* SGQRCodeGenerateManager.m in Sources */,
 				183FF8BF1FF345C7006C25F1 /* News.m in Sources */,
 				1811306F1FCD020A00BEA0D9 /* UIRefreshControl+AFNetworking.m in Sources */,
 				181130341FCD01DF00BEA0D9 /* AFURLSessionManager.m in Sources */,
@@ -11469,7 +11469,6 @@
 				180FDF7C20215DD700BE593F /* GetWalletAccountsRequest.m in Sources */,
 				183C643F211AA1EC001C9C4A /* AccountOrderStatusResult.m in Sources */,
 				18FA76E42062484C00545E73 /* BlockChainInfo.m in Sources */,
-				186BDC28215395D0001190A7 /* SGQRCodeScanView.m in Sources */,
 				181130201FCD01C900BEA0D9 /* NullSafe.m in Sources */,
 				1856A4F02008887200D62FEB /* UIScrollView+MJRefresh.m in Sources */,
 				189E3EC3201C5B980022AF19 /* UIApplication+RSKImageCropper.m in Sources */,
